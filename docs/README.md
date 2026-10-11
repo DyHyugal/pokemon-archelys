@@ -1,6 +1,6 @@
 # Documentation Pokémon Archélys
 
-État au 11 octobre 2026 : conception, **cahier des charges V0.1 à approuver**. Aucun moteur ou jeu n’est livré. Les décisions explicites sont transcrites ; les propositions et inconnues sont identifiées séparément.
+État au 11 octobre 2026 : conception, **cahier des charges V0.1 approuvé le 11 octobre 2026**. Aucun moteur ou jeu n’est livré. Les décisions explicites sont transcrites ; les propositions et inconnues sont identifiées séparément.
 
 - [Source de vérité](spec/SOURCE_OF_TRUTH.md)
 - [Cahier des charges V0.1](spec/CAHIER_DES_CHARGES.md)

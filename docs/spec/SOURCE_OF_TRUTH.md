@@ -6,7 +6,7 @@ Ordre de lecture des sources : réponses initiales A–M, puis C01–C33, puis R
 
 En cas de contradiction persistante, marquer À DÉCIDER et demander un choix concret. Une recommandation technique, une proposition de nom ou un exemple de légendaire ne devient pas un choix approuvé implicitement.
 
-Le cahier V0.1 reste soumis à relecture et approbation globale avant développement. Les choix techniques et le rendu doivent ensuite être éprouvés et approuvés séparément. Aucune production n’est autorisée par la seule présence d’un document.
+Le cahier V0.1 a été approuvé par le propriétaire le 11 octobre 2026. Cette approbation ne tranche pas les questions explicitement laissées ouvertes. Les choix techniques et le rendu doivent ensuite être éprouvés et approuvés séparément. Aucune production n’est autorisée par la seule présence d’un document.
 
 Les spécifications de Tactica ne sont pas automatiquement normatives ici. Les comportements explicitement retenus seront réimplémentés, avec une table de correspondance et des vérifications.
 

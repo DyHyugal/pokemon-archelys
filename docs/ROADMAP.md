@@ -2,7 +2,7 @@
 
 | Jalon | Livrable | État |
 |---|---|---|
-| J0 | Dépôt, questionnaires, V0.1, règles et liste des inconnues | Documents préparés ; approbation owner attendue |
+| J0 | Dépôt, questionnaires, V0.1, règles et liste des inconnues | Cahier V0.1 approuvé le 11 octobre 2026 ; questions ouvertes à traiter |
 | J1 | Évaluation moteur/bases, import assets, combat/réseau/save minimal | Non commencé |
 | J2 | Petite scène visuelle jouable et ZIP Windows | Non commencé ; après accord pour les essais |
 | J3 | Première île : graphiques, événements et boucle jouable | Non commencé ; après validations J1/J2 |

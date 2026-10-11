@@ -4,7 +4,7 @@ Les statuts portent sur les preuves, pas sur l’enthousiasme ou la présence da
 
 | Fonction | État | Preuve ou condition |
 |---|---|---|
-| Cadrage V0.1 | À VALIDER | Documents et questionnaires conservés |
+| Cadrage V0.1 | APPROUVÉ | Confirmation explicite du propriétaire, 11 octobre 2026 ; questions ouvertes conservées |
 | Git main/develop | PRÉPARÉ | Branches initialisées ; vérifier push remote |
 | Moteur Godot/Blender | À ÉPROUVER | Candidats, aucune version figée |
 | Assets 3D animés | NON COMMENCÉ | Aucune bibliothèque intégrée |

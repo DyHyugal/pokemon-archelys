@@ -1,6 +1,6 @@
 # Pokémon Archélys — cahier des charges V0.1
 
-**Statut : synthèse à relire et approuver. Date : 11 octobre 2026.** Les références A/C/R correspondent aux identifiants des questionnaires conservés dans docs/sources. Ce document décrit le jeu demandé, pas des fonctionnalités implémentées.
+**Statut : approuvé par le propriétaire le 11 octobre 2026, avec les points explicitement ouverts conservés.** Les références A/C/R correspondent aux identifiants des questionnaires conservés dans docs/sources. Ce document décrit le jeu demandé, pas des fonctionnalités implémentées.
 
 ## Vision et rôle du propriétaire
 

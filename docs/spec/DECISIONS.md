@@ -1,6 +1,6 @@
 # Registre des décisions
 
-Décisions explicites à transcrire ; leur assemblage dans le cahier V0.1 reste à approuver. Les exemples de noms et d’espèces ne valent pas choix définitif.
+Décisions explicites transcrites ; le cahier V0.1 a été approuvé le 11 octobre 2026. Les exemples de noms et d’espèces ne valent pas choix définitif.
 
 | ID | Décision | Provenance |
 |---|---|---|
@@ -24,5 +24,6 @@ Décisions explicites à transcrire ; leur assemblage dans le cahier V0.1 reste 
 | D18 | Rendu stylisé 3D, proportions USUL, caméra contrôlée moyenne | C21 |
 | D19 | Français et anglais complets V1 ; ports autres non datés | C25 |
 | D20 | Nuzlocke solo et Soul-link coop ; restauration libre | C28 |
+| D21 | Cahier des charges V0.1 approuvé ; questions explicitement ouvertes non tranchées | Conversation du 11 octobre 2026 : « je confirme le cahier des charges » |
 
 Recommandations non assimilées à une approbation : neige 9G, première approche LAN/direct, nombre final d’îles, disposition des boss, version Godot, licence du code, synchronisation automatique du wiki. Elles attendent étude ou arbitrage.
