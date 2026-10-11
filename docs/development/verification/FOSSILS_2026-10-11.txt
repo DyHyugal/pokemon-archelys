@@ -26,3 +26,10 @@ Export Windows Godot4.6.3 réussi ; test natif Windows non réalisé.
 Catalogue22 espèces/43 attaques, même snapshot PokéAPI c80757193bd0889054e36f4209762360bdaa4b95 vérifié.
 Paramètres temporaires : niveau5, gratuité, Centre du village, trois échantillons uniques.
 Nuzlocke/multi reportés ; reproduction retirée D58. Anciennes campagnes5 sans drapeau d’échantillons acceptées ; pas de compatibilité de lecture des nouvelles espèces avec anciens binaires.
+
+Source livrée :1830ec45e4fa969b3b38a3dbf3158788efa49d85
+CI GitHub observée Success :https://github.com/DyHyugal/pokemon-archelys/actions/runs/38171126840
+ZIP et SHA256SUMS publiés vérifiés :
+https://github.com/DyHyugal/pokemon-archelys/releases/download/lab-1830ec4/Archelys-Laboratoire-Windows.zip
+ZIP local :396 fichiers,76 441 630octets,testzip sans erreur. Manifest exact, README fossiles et catalogue embarqué22/43 vérifiés.
+Dernière validation Windows propriétaire : D52 ; validation native de ce lot attendue.

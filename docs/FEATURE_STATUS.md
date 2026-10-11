@@ -116,3 +116,5 @@ Livraison bloc12 première partie : [lab-bd216d3](https://github.com/DyHyugal/po
 ## Bloc fossiles D59
 
 **Implémenté et testé localement** : restauration de3 fossiles au Centre, échantillons uniques, coût d'un objet après livraison seulement, destination équipe/PC, origine village et Pokédex, sauvegardes compatibles en lecture, anciennes campagnes sans drapeau acceptées.23 assertions spécifiques et suite complète réussies. Catalogue provisoire22 espèces/43 attaques ; pas de nouveaux modèles. Nuzlocke indisponible pour ce service tant que ses quotas sont reportés. Niveau5/gratuité/distribution d'essai non définitifs. Validation Windows attendue ; D52 reste la dernière validation propriétaire. Reproduction retirée selon D58.
+
+Livraison fossiles : [lab-1830ec4](https://github.com/DyHyugal/pokemon-archelys/releases/tag/lab-1830ec4), CI verte, ZIP et empreintes publiés. Preuve dans `docs/development/verification/FOSSILS_2026-10-11.txt`. README embarqué mis à jour ; même EXE portable. Validation Windows attendue.
