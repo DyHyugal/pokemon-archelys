@@ -1,8 +1,13 @@
 extends Node3D
 
 const PokemonBattle=preload("res://scripts/domain/pokemon_battle.gd")
+const DoubleBattle=preload("res://scripts/domain/double_battle.gd")
 const BattlePanel=preload("res://scripts/ui/pokemon_battle_panel.gd")
 const Mon=preload("res://scripts/domain/pokemon.gd")
+const VisualDistrict=preload("res://scripts/world/visual_district.gd")
+var world_geometry: Node3D
+var visual_variant: int=0
+var displayed_location: String=""
 var pokemon_battle:=PokemonBattle.new()
 var battle_panel: CanvasLayer
 var exploration_help: Label
@@ -60,6 +65,14 @@ func _ready() -> void:
 			capture_frame.call_deferred(arg.trim_prefix("--capture="))
 
 func capture_frame(path: String) -> void:
+	for arg: String in OS.get_cmdline_user_args():
+		if arg.begins_with("--visual="):
+			visual_variant=int(arg.trim_prefix("--visual="));Session.campaign.adventure.exploration.enter("district");_rebuild_location()
+			get_viewport().size=Vector2i(1920,1080);get_viewport().msaa_3d=Viewport.MSAA_4X;camera.size=30
+			for child: Node in get_children():
+				if child is CanvasLayer:child.visible=false
+			var caption:=CanvasLayer.new();add_child(caption)
+			var title:=Label.new();title.text="ARCHÉLYS • COMPARATIF %s • prototype non validé" % ["A — côtier sobre","B — chaleureux","C — contemporain"][visual_variant];title.position=Vector2(28,24);title.add_theme_font_size_override("font_size",28);caption.add_child(title)
 	if "--capture-menu" in OS.get_cmdline_user_args(): _open_menu("settings")
 	if "--capture-team" in OS.get_cmdline_user_args():
 		_open_menu("team");pause_menu.adventure_pages.selected_uid=int(Session.campaign.adventure.team[0].uid);pause_menu.render()
@@ -83,7 +96,7 @@ func _mesh(shape: Mesh, at: Vector3, color: Color) -> MeshInstance3D:
 	instance.mesh = shape
 	instance.material_override = _material(color)
 	instance.position = at
-	add_child(instance)
+	world_geometry.add_child(instance)
 	return instance
 
 func _box(size: Vector3, at: Vector3, color: Color) -> MeshInstance3D:
@@ -92,6 +105,8 @@ func _box(size: Vector3, at: Vector3, color: Color) -> MeshInstance3D:
 	return _mesh(shape, at, color)
 
 func _build_world() -> void:
+	world_geometry=Node3D.new();add_child(world_geometry)
+	displayed_location=Session.campaign.adventure.exploration.location
 	var environment := WorldEnvironment.new()
 	var settings := Environment.new()
 	settings.background_mode = Environment.BG_COLOR
@@ -139,7 +154,7 @@ func _build_world() -> void:
 	camera.current=true
 	var guide: Node3D = load("res://assets/prototypes/mannequin.glb").instantiate()
 	guide.position = GUIDE_POSITION
-	add_child(guide)
+	world_geometry.add_child(guide)
 	var label := Label3D.new()
 	label.text = "Guide • PNJ de test"
 	label.position.y = 2.2
@@ -148,10 +163,16 @@ func _build_world() -> void:
 	guide.add_child(label)
 	_box(Vector3(0.2,1.4,0.2), TARGETS.sign+Vector3(0,0.7,0),Color("66554b"))
 	_box(Vector3(1.6,0.8,0.15),TARGETS.sign+Vector3(0,1.5,0),Color("f0dcc0"))
+	_box(Vector3(3,3,2),Vector3(-11,1.5,9),Color("777969"))
 	_box(Vector3(6,0.07,3),Vector3(-6,0.08,-5.5),Color("39794f"))
 	for id: String in ACTION_TARGETS:
 		var marker:=_box(Vector3(1,1,1),ACTION_TARGETS[id]+Vector3(0,0.5,0),Color("65c6db") if id=="healing" else Color("bd5757"))
 		var hint:=Label3D.new();hint.text="Soins / Heal" if id=="healing" else ("Dresseur / Trainer 1" if id=="trainer-1" else "Dresseur / Trainer 2");hint.position.y=1.7;hint.font_size=22;hint.pixel_size=0.004;marker.add_child(hint)
+	for id: String in World.local_points("village"):
+		var point: Vector3=World.local_points("village")[id]
+		if id not in ["center-door","shop-door"] and not Session.campaign.adventure.exploration.cleared.has(id):
+			var marker:=_box(Vector3(0.55,0.45,0.55),point+Vector3(0,0.23,0),Color("5d6970"))
+			var hint:=Label3D.new();hint.text=id;hint.position.y=1;hint.font_size=22;hint.pixel_size=0.004;marker.add_child(hint)
 	crate_mesh = _box(Vector3(1.2,0.8,1.2),TARGETS.crate+Vector3(0,0.4,0),Color("be895a"))
 
 func _build_ui() -> void:
@@ -164,7 +185,8 @@ func _build_ui() -> void:
 	var debug_toggle := CheckButton.new();debug_toggle.text="Outils labo • F3";debug_toggle.position=Vector2(180,16);layer.add_child(debug_toggle)
 	debug_toggle.toggled.connect(func(value: bool):debug_panel.visible=value)
 	panel.position=Vector2(16,65)
-	var stack:=VBoxContainer.new();panel.add_child(stack)
+	var debug_scroll:=ScrollContainer.new();debug_scroll.custom_minimum_size.y=530;debug_scroll.follow_focus=true;panel.add_child(debug_scroll)
+	var stack:=VBoxContainer.new();stack.size_flags_horizontal=Control.SIZE_EXPAND_FILL;debug_scroll.add_child(stack)
 	var title:=Label.new();title.text="ARCHÉLYS • LABORATOIRE TECHNIQUE";stack.add_child(title)
 	var note:=Label.new();note.text="Décors provisoires — aucune île finale\nDéplacement : ZQSD / WASD / flèches";stack.add_child(note)
 	status=Label.new();stack.add_child(status)
@@ -189,6 +211,10 @@ func _build_ui() -> void:
 		if pokemon_battle.active:return
 		for mon: Dictionary in Session.campaign.adventure.team:Session.campaign.adventure.gain_experience(int(mon.uid),50000)
 		_open_menu("choices"))
+	_button(stack,"Essai soleil / IA difficile",func():_start_support_test("sun"))
+	_button(stack,"Essai terrain / IA difficile",func():_start_support_test("electric"))
+	_button(stack,"Essai combat double",_start_double_test)
+	_button(stack,"Kit Méga (équipe niveau 36 provisoire)",_mega_kit)
 	_button(stack,"Réapprovisionner les consommables du labo",func():
 		if pokemon_battle.active:return
 		for id: String in ["poke-ball","great-ball","potion","antidote","paralyze-heal"]:Session.campaign.adventure.bag[id]=20)
@@ -212,6 +238,13 @@ func _build_ui() -> void:
 	battle_panel=BattlePanel.new();add_child(battle_panel)
 	battle_panel.finished.connect(_battle_finished)
 	exploration_help=Label.new();exploration_help.position=Vector2(460,16);layer.add_child(exploration_help)
+	var saved_speed: Variant=JSON.parse_string(FileAccess.get_file_as_string("user://laboratory_speed.json")) if FileAccess.file_exists("user://laboratory_speed.json") else 1
+	if Mon.integer(saved_speed,1,4):pause_menu.speed=float(saved_speed);Engine.time_scale=float(saved_speed)
+	pause_menu.speed_changed.connect(func(value: float):
+		Engine.time_scale=value
+		var file:=FileAccess.open("user://laboratory_speed.json",FileAccess.WRITE)
+		if file:file.store_string(JSON.stringify(int(value))))
+	pause_menu.travel_requested.connect(_travel)
 	pause_menu.closed.connect(func():Session.submit_axis(Vector2.ZERO))
 	log_box=RichTextLabel.new();log_box.custom_minimum_size=Vector2(430,115);stack.add_child(log_box)
 
@@ -265,7 +298,7 @@ func _local_position() -> Vector3:
 	var players: Dictionary = Session.latest.get("players", {})
 	var record: Dictionary = players.get(int(id), players.get(id, {}))
 	var pos: Array = record.get("position", [0,0,0])
-	return Vector3(float(pos[0]), 0, float(pos[2]))
+	return Vector3(float(pos[0]), float(pos[1]), float(pos[2]))
 
 func _sync_menu() -> void:
 	pause_menu.adventure=Session.campaign.adventure
@@ -298,8 +331,11 @@ func _input(event: InputEvent) -> void:
 func _nearest_interaction() -> String:
 	var nearest: String = ""
 	var distance: float = 2.2
-	var targets: Dictionary=TARGETS.duplicate();targets.merge(ACTION_TARGETS)
+	var location: String=Session.campaign.adventure.exploration.location
+	var targets: Dictionary=World.local_points(location).duplicate()
+	if location=="village":targets.merge(TARGETS);targets.merge(ACTION_TARGETS)
 	for id: String in targets:
+		if id=="climb" and _local_position().y>0:targets[id]=Vector3(-11,3,9)
 		var current: float = _local_position().distance_to(targets[id])
 		if current <= distance:
 			distance=current
@@ -308,6 +344,7 @@ func _nearest_interaction() -> String:
 
 func _open_interaction(id: String) -> bool:
 	if pokemon_battle.active or pause_menu.visible:return false
+	if _contextual_action(id):return false
 	if id=="healing":
 		Session.campaign.adventure.heal_team();message.text="Équipe soignée / Party healed";return false
 	if id in ["trainer-1","trainer-2"]:
@@ -348,9 +385,10 @@ func _update_overview() -> void:
 	journal_text.text="\n".join(lines)
 	inventory_text.text=("Sac • jeton de test : %d" if locale=="fr" else "Bag • test token: %d") % progress.tokens
 	language_button.text="Langue des dialogues : Français" if locale=="fr" else "Dialogue language: English"
-	(crate_mesh.material_override as StandardMaterial3D).albedo_color=Color("75695a") if progress.tokens else Color("be895a")
+	if is_instance_valid(crate_mesh):(crate_mesh.material_override as StandardMaterial3D).albedo_color=Color("75695a") if progress.tokens else Color("be895a")
 
 func _process(_delta: float) -> void:
+	if displayed_location!=Session.campaign.adventure.exploration.location:_rebuild_location()
 	var value: Dictionary=Session.latest
 	var players: Dictionary=value.get("players",{})
 	for id:Variant in avatars.keys():
@@ -376,7 +414,7 @@ func _process(_delta: float) -> void:
 			label.pixel_size = 0.004
 			avatar.add_child(label)
 		var pos:Array=players[id].position
-		var next_position := Vector3(float(pos[0]),0.0,float(pos[2]))
+		var next_position := Vector3(float(pos[0]),float(pos[1]),float(pos[2]))
 		var movement: Vector3 = next_position - avatars[id].position
 		var animator: AnimationPlayer = avatars[id].find_child("AnimationPlayer",true,false)
 		if animator:
@@ -401,6 +439,7 @@ func _process(_delta: float) -> void:
 	_track_encounters(focus)
 	if battle_panel.visible:axis=Vector2.ZERO
 	exploration_help.text="Herbes : nord-ouest • Soins : cube bleu • Dresseurs : cubes rouges\nMenu → Équipe / Résumé / PC • F3 : entraînement technique" if locale=="fr" else "Grass: northwest • Healing: blue cube • Trainers: red cubes\nMenu → Party / Summary / PC • F3: laboratory training"
+	if displayed_location!="village":exploration_help.text="%s • E / Entrée : interaction • Échap : menu" % displayed_location
 	menu_button.text="Menu • Échap" if locale=="fr" else "Menu • Esc"
 	Session.submit_axis(axis)
 	status.text="Joueurs %d/%d • étape %d • cap factice %d" % [players.size(),value.get("participants",1),value.get("progress",0),value.get("level_cap",10)]
@@ -408,7 +447,7 @@ func _process(_delta: float) -> void:
 func _track_encounters(position_now: Vector3) -> void:
 	var distance: float=position_now.distance_to(last_walk_position)
 	last_walk_position=position_now
-	if Session.active_network or pause_menu.visible or dialogue.active or battle_panel.visible or distance>1.0:return
+	if Session.campaign.adventure.exploration.location!="village" or Session.active_network or pause_menu.visible or dialogue.active or battle_panel.visible or distance>1.0:return
 	if position_now.x>=-9 and position_now.x<=-3 and position_now.z>=-7 and position_now.z<=-4:
 		Session.campaign.adventure.encounter_steps+=distance
 		if Session.campaign.adventure.encounter_steps>=3.5:
@@ -426,6 +465,7 @@ func _begin_trainer(id: String) -> void:
 
 func _begin_pokemon_battle(opponents: Array,trainer_id: String="") -> bool:
 	if dialogue.active or pause_menu.visible or Session.active_network:return false
+	pokemon_battle=PokemonBattle.new()
 	if not pokemon_battle.begin(Session.campaign.adventure,opponents,trainer_id):return false
 	Session.submit_axis(Vector2.ZERO)
 	battle_panel.open(pokemon_battle,locale)
@@ -434,7 +474,92 @@ func _begin_pokemon_battle(opponents: Array,trainer_id: String="") -> bool:
 func _battle_finished(outcome: String) -> void:
 	Session.submit_axis(Vector2.ZERO)
 	if outcome=="lost":
+		Session.campaign.adventure.exploration.enter("village")
 		Session.campaign.players[1].position=[0.0,0.0,2.0];Session.latest=Session.campaign.snapshot()
 	last_walk_position=_local_position()
 	Session.campaign.adventure.encounter_steps=0
 	if not Session.campaign.adventure.pending.is_empty():_open_menu("choices")
+
+func _travel(target: String,flight: bool=false) -> void:
+	if Session.active_network or pokemon_battle.active:return
+	if not Session.campaign.adventure.travel(target,flight):
+		message.text="Destination non visitée / Vol non débloqué";return
+	Session.campaign.players[1].position=[0.0,0.0,5.0]
+	Session.submit_axis(Vector2.ZERO);Session.latest=Session.campaign.snapshot();last_walk_position=_local_position()
+	if pause_menu.visible:pause_menu.close()
+	_rebuild_location()
+func _contextual_action(id: String) -> bool:
+	var owner: RefCounted=Session.campaign.adventure
+	var location: String=owner.exploration.location
+	match id:
+		"center-door":_travel("center")
+		"shop-door":_travel("shop")
+		"pier":_travel("cove")
+		"district-gate":_travel("district")
+		"exit":_travel("village")
+		"counter":_open_menu("services")
+		"nurse":owner.heal_team();message.text="Soins terminés / Party healed"
+		"fish":_begin_pokemon_battle([owner.wild(mini(owner.cap,20),"magikarp")])
+		"surf":
+			if owner.exploration.field_unlocked("surf",owner.victories):owner.exploration.cleared.surf=true;message.text="Surf sans Pokémon compatible / Surf without compatible Pokémon";Session.campaign.players[1].position=[4.0,0.0,-4.0];Session.latest=Session.campaign.snapshot()
+			else:message.text="Surf : vaincre le dresseur 1 d'abord / Defeat trainer 1 first"
+		"cut","rock-smash","strength","climb":
+			if owner.exploration.field_unlocked(id,owner.victories):owner.exploration.cleared[id]=true;_rebuild_location();message.text="%s : passage ouvert sans Pokémon compatible" % id
+			else:message.text="%s : scénario non débloqué (dresseur 1)" % id
+			if id=="climb" and owner.exploration.field_unlocked(id,owner.victories):Session.campaign.players[1].position=[-11.0,0.0,7.0] if _local_position().y>0 else [-11.0,3.0,9.0];Session.latest=Session.campaign.snapshot()
+		"visuals":visual_variant=(visual_variant+1)%3;_rebuild_location();message.text="Comparatif %s — non validé" % ["A : côtier sobre","B : chaleureux","C : contemporain"][visual_variant]
+		_:return false
+	Session.submit_axis(Vector2.ZERO);return true
+func _rebuild_location() -> void:
+	world_geometry.free();world_geometry=Node3D.new();add_child(world_geometry)
+	displayed_location=Session.campaign.adventure.exploration.location
+	if displayed_location=="village":
+		world_geometry.free()
+		camera.free()
+		for child: Node in get_children():
+			if child is WorldEnvironment or child is DirectionalLight3D:child.free()
+		_build_world();return
+	if displayed_location=="district":
+		var district:=VisualDistrict.new();world_geometry.add_child(district);district.build(visual_variant)
+	elif displayed_location in ["center","shop"]:
+		_box(Vector3(12,0.3,14),Vector3(0,-0.2,1),Color("b8aa89"))
+		_box(Vector3(12,3,0.3),Vector3(0,1.5,-6),Color("e7e4d7"))
+		for side: int in [-1,1]:_box(Vector3(0.3,3,14),Vector3(side*6,1.5,1),Color("e7e4d7"))
+		_box(Vector3(7,1,1.3),Vector3(0,0.5,-3),Color("6b98a4") if displayed_location=="center" else Color("a97a57"))
+		for x: int in [-4,4]:
+			for y: int in range(1,4):_box(Vector3(1.4,0.3,1),Vector3(x,y*0.7,-4),Color("698279"))
+	else:
+		_box(Vector3(30,0.1,30),Vector3(0,-0.5,0),Color("459eaf"))
+		_box(Vector3(15,0.4,12),Vector3(0,-0.3,3),Color("d9c18a"))
+		_box(Vector3(2,0.1,5),Vector3(0,0,-1),Color("897052"))
+	for id: String in World.local_points(displayed_location):
+		var hint:=Label3D.new();hint.text=id;hint.position=World.local_points(displayed_location)[id]+Vector3(0,1.2,0);hint.font_size=26;hint.pixel_size=0.004;world_geometry.add_child(hint)
+
+func _start_support_test(support: String) -> void:
+	if pause_menu.visible or battle_panel.visible or dialogue.active or Session.active_network:return
+	var owner: RefCounted=Session.campaign.adventure
+	owner.exploration.difficulty="hard"
+	var opponents: Array=[]
+	if support=="sun":
+		for id: String in ["ninetales","venusaur","vulpix"]:opponents.append(Mon.make(id,36,900000+opponents.size()))
+		opponents[0].ability="drought";opponents[1].ability="chlorophyll";opponents[2].ability="drought"
+	else:
+		for id: String in ["raichu","pikachu","raichu"]:opponents.append(Mon.make(id,36,900000+opponents.size()))
+		for index: int in [0,2]:opponents[index].moves[0]={"id":"electric-terrain","pp":10}
+		# Electric Terrain is a legal reusable Gen IX TM in this test catalogue.
+	_begin_pokemon_battle(opponents,"weather-test" if support=="sun" else "terrain-test")
+func _start_double_test() -> void:
+	if battle_panel.visible or pause_menu.visible or dialogue.active or Session.active_network:return
+	pokemon_battle=DoubleBattle.new()
+	if not pokemon_battle.begin(Session.campaign.adventure,[Mon.make("rattata",8,900000),Mon.make("pikachu",8,900001)]):message.text="Deux Pokémon aptes nécessaires / Two ready Pokémon required";return
+	Session.submit_axis(Vector2.ZERO);battle_panel.open(pokemon_battle,locale)
+func _mega_kit() -> void:
+	if battle_panel.visible or pause_menu.visible or dialogue.active:return
+	var owner: RefCounted=Session.campaign.adventure
+	if owner.exploration.nuzlocke=="on":message.text="Kit technique désactivé pendant le défi";return
+	owner.raise_cap(36)
+	for pair: Array in [["venusaur","venusaurite"],["charizard","charizardite-y"],["blastoise","blastoisinite"]]:
+		if owner.team.size()+owner.boxes.size()>=246:break
+		var mon:=Mon.make(pair[0],36,owner.next_uid);mon.item=pair[1];owner.add(mon)
+	for id: String in ["venusaurite","charizardite-x","charizardite-y","blastoisinite"]:owner.bag[id]=maxi(1,int(owner.bag.get(id,0)))
+	message.text="Kit technique reçu : vérifier équipe / PC. Ni starters ni récompenses finales."

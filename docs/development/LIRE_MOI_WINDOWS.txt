@@ -44,116 +44,134 @@ Une signature reconnue exige un certificat de signature de code ou un service
 de signature autorisé. Aucun n'est configuré pour ce projet actuellement.
 Une signature auto-signée ne suffit pas pour être reconnue sur ton PC.
 
-CE QUI CHANGE — LES TROIS BLOCS REGROUPÉS
-Équipe de six, résumé, IV/EV/natures réels, équipement, rappel gratuit et PC.
-Combats solo avec attaques/PP, changements, objets, statuts, KO et remplacements.
-Rencontres en marchant dans les herbes, capture vers l'équipe ou le PC, fuite.
-EXP, limites de niveau non décroissantes, apprentissages et évolutions.
-Tout cela est intégré à la sauvegarde ; ancien jeton et journal conservés.
-Catalogue provisoire : 13 espèces, 27 attaques. Pas de modèles Pokémon finaux.
-Les trois membres initiaux servent aux tests, ce ne sont pas les starters choisis.
+CE QUI CHANGE — BLOCS 4 À 6 REGROUPÉS
+Centre, boutique, achats/vente et argent, intérieurs, carte/Vol, pêche et actions
+contextuelles. Difficulté/challenge/cap/EXP/shiny, quatre vitesses de test.
+Soleil/pluie/sable/neige, terrains, IA poseurs sur les combats d'essai.
+Quatre Méga historiques et doubles solo réels. 17 espèces / 38 attaques.
+Quartier de comparaison A/B/C séparé ; aucun style d'île adopté sans ton choix.
+Questionnaire N01–N51 reçu et transcrit ; propositions/choix restants documentés.
 
-PARCOURS UNIQUE DU LOT
+PARCOURS UNIQUE — UN SEUL RETOUR POUR CE LOT
 
-PRENDRE SES REPÈRES — Charger ta partie depuis le menu si tu souhaites retrouver
-le jeton. L'équipe de test contient Bulbizarre, Salamèche et Carapuce niveau 8.
-Herbes : rectangle vert foncé au nord-ouest, vers (-6,-5).
-Soins : cube bleu près du départ, vers (0,3), E ou Entrée devant lui.
-Dresseur 1 : cube rouge vers (6,-4). Dresseur 2 : vers (10,-4).
-Un message dans les outils labo explique si le deuxième attend la première victoire.
+REPRENDRE — Charger ta partie précédente. Échap ouvre le menu ; molette dans
+le contenu et la navigation si nécessaire. I = sac, J = journal.
+Le village/équipe précédent est conservé. Débloquages et prix sont des données
+techniques provisoires, pas l'équilibrage final. Les sauvegardes 1/2/3 sont lues.
 
-ÉQUIPE — Échap → Équipe / Résumé → choisir un Pokémon.
-Faire défiler la fiche à la molette pour voir statistiques, équipement et attaques.
-Modifier quelques IV, dont une valeur à 0, puis EV et nature ; cliquer Appliquer.
-Les statistiques réelles et le type de Puissance Cachée doivent changer.
-Maximum 252 EV par statistique et 510 au total : une saisie au-delà du total doit
-être refusée sans modifier le Pokémon. Les modifications se font hors combat.
-Placer un autre Pokémon en tête ; vérifier qu'il commence le prochain combat.
+SERVICES — Village : porte maison gauche (-8,2) = Centre, droite (8,2) = boutique.
+E / Entrée à proximité pour entrer. Les objets/PNJ peuvent bloquer le passage,
+interagir en restant devant ; ce n'est pas nécessaire de marcher sur leur centre.
+Dans l'intérieur, comptoir au nord (0,-3) : E / Entrée. Acheter une Potion puis
+cinq, vendre une ; vérifier sac et argent. Une tentative trop chère doit ne rien
+modifier. Une transaction est disponible uniquement dans la boutique.
+Au Centre, soigner puis vérifier PV, PP et statuts. L'exit au sud (0,7) retourne
+au village. Sauvegarder dans un intérieur, relancer et Charger : intérieur correct.
 
-PC ET OBJETS — Déposer un membre depuis son résumé, puis le retirer depuis PC.
-Identité, niveau, attaques et réglages doivent rester identiques.
-On ne peut pas déposer le dernier membre apte au combat ni retirer au-delà de six.
-Équiper la Baie Oran, les Restes ou l'Œuf Chance ; retirer l'objet le rend au sac.
-Une Potion sur un Pokémon blessé doit soigner et consommer un exemplaire.
-Une Potion sur un Pokémon déjà en pleine santé ne doit pas être consommée.
-Le rappel d'attaque est gratuit ; choisir une attaque et l'emplacement à remplacer.
+EXPLORATION — Passage sud (0,9) = crique. Jetée / fish (0,-3) : E lance une
+rencontre de pêche ; mêmes commandes de capture/fuite que dans les herbes.
+Au cap initial : Magicarpe ; dès niveau 20 : Léviator, pas une forme sous-évoluée.
+Surf : point (4,-3), nécessite première victoire contre le dresseur 1.
+Avant : accès à l'eau bloqué ; après : déplacement sur l'eau sans Pokémon
+compatible. Quitter la crique remet le mode Surf à zéro.
+Dans le village, Coupe à gauche (-11,3), Éclate-Roc à droite (11,3), Force (11,6).
+Interagir retire le blocage. Force attend la première victoire.
+Escalade (-11,8) : même condition, accès au promontoire puis E pour redescendre.
+Flash est autorisé dès le début ; pas encore de grotte sombre à tester.
 
-COMBAT — Marcher dans les herbes jusqu'à déclencher une rencontre.
-Chaque message attend une nouvelle pression E / Entrée, ou un clic Continuer.
-Maintenir la touche ne doit pas passer tout le texte. Pas de déplacement ou de
-menu de sauvegarde/édition pendant le combat.
-Choisir une attaque, regarder PV et PP ; changer de Pokémon coûte un tour.
-Les objets de soin peuvent cibler les membres de l'équipe.
-Après un KO, choisir un remplaçant ; les autres membres ne doivent pas être effacés.
-Fuir fonctionne en sauvage, pas contre un dresseur. Défaite complète : soins et
-retour au point de départ du laboratoire, perte de 100 ₽ maximum pour ce test.
-L'écran de combat utilise encore des fiches textuelles, pas les modèles finaux.
+CARTE / VOL — Visiter d'abord crique et quartier via leurs passages.
+Vaincre le dresseur 1 ; Échap → Carte / Vol permet de voler vers village/crique/
+quartier déjà visité, même avec l'équipe Bulbizarre/Salamèche/Carapuce.
+La carte présentée est une navigation technique, pas l'archipel final dessiné.
+Une destination non visitée doit rester bloquée.
 
-CAPTURE — Sac en combat → Poké Ball ou Super Ball.
-Affaiblir ou endormir le Pokémon aide la capture ; elle n'est pas garantie.
-Une Ball lancée est consommée, même en cas d'échec. Le Pokémon capturé conserve
-son espèce, niveau, attaques et état. Répéter jusqu'à avoir six membres : la capture
-suivante doit aller au PC. Les Pokémon de dresseur ne sont pas capturables.
-F3 permet de réapprovisionner les consommables si nécessaire, hors combat.
+RÈGLES — Échap → Règles / Difficulté : chill, normal, hard ; plafond de niveau,
+EXP et chance shiny. OFF permet de dépasser le cap ; réactiver conserve les
+niveaux dépassés, sans gagner d'EXP tant que le cap ne les rattrape pas.
+F3 → entraînement donne de l'EXP pour tester sans grind. Paramètres propose
+1×/2×/3×/4× provisoires ; maintenir E ne doit toujours pas passer tous les textes.
+EXP et shiny concernent les générations/gains à venir, pas les individus déjà créés.
+Sauvegarder/charger doit garder les règles ; langue/caméra/vitesse restent séparées.
 
-PROGRESSION — Les combats et captures donnent de l'EXP aux membres admissibles.
-Cap initial 10 : le niveau ne doit pas le dépasser ni accumuler un saut de niveaux
-à débloquer ensuite. Dresseur 1 ouvre le cap 18 ; dresseur 2 ouvre le cap 36.
-Ces caps et adversaires sont des outils de laboratoire, pas l'équilibrage final.
-Les rematches ne redonnent pas l'argent de première victoire et ne baissent aucun cap.
+MÉGA ET IA — F3 affiche les outils du laboratoire (faire défiler le panneau).
+« Kit Méga » donne Florizarre/Dracaufeu/Tortank niveau 36 et les pierres pour
+essais ; équipe pleine = PC. Les ajouter en équipe puis placer l'un en tête.
+Le kit relève le cap pour éviter le grind ; il ne valide ni starters ni récompenses.
+Résumé : CT gratuites réutilisables et choix de talents légaux.
+Combat → Attaquer : cocher Méga, choisir l'attaque. Transformation pour ce combat,
+une seule Méga de l'équipe, même si elle finit KO. Après combat, forme ordinaire.
+F3 → Essai soleil : Feunard pose le soleil, passe normalement à Florizarre,
+rappelle un poseur si le soleil expire ; Goupix est le second poseur disponible.
+Un KO certain peut passer avant le retrait du poseur. L'essai terrain utilise
+Raichu poseur → Pikachu bénéficiaire → second Raichu poseur.
+Ces boutons activent hard pour cet essai. Vérifier le compteur de champ/climat,
+la remise en place avant un nouveau DPS et l'absence de boucle de changements.
+L'IA ne lit pas ta prochaine action ni tes IV/EV/nature/objet/attaques non révélées.
+C'est une politique de laboratoire à éprouver, pas une IA finale universelle.
 
-APPRENTISSAGES ET ÉVOLUTIONS — Pour éviter le grind du test, F3 affiche
-« Entraînement labo : +50000 EXP (respecte le cap) ». L'utiliser hors combat.
-Au cap 10, les membres restent au plus niveau 10 ; après le premier dresseur,
-le même outil peut les amener à 18 et présenter leurs choix d'apprentissage.
-Choisir une attaque à remplacer ou refuser ; accepter ou refuser l'évolution.
-Bulbizarre/Salamèche/Carapuce peuvent évoluer à partir du niveau 16.
-Après le deuxième dresseur et un entraînement, vérifier les stades suivants
-(Florizarre dès 32, Dracaufeu et Tortank dès 36).
-Les choix non traités restent dans Apprentissages et dans la sauvegarde.
-Pikachu peut évoluer avec la Pierre Foudre du kit, depuis son résumé ;
-il ne devient pas Raichu simplement en montant de niveau dans les herbes.
+DOUBLES — Au moins deux membres aptes ; F3 → Essai combat double.
+Choisir attaque + cible pour le premier membre puis pour le second : les deux
+choix se verrouillent avant la résolution globale du tour. Quatre fiches de PV.
+Tester des cibles différentes, changement vers le troisième membre, KO/remplaçant.
+Deux positions ne doivent pas réserver le même remplaçant. Un seul compteur
+climat/terrain par tour. Catalogue actuel mono-cible ; objets, zone, redirection,
+Abri, raids et gestion avancée des poseurs en doubles ne sont pas encore couverts.
+Un combat double est solo ici ; aucun test de connexion demandé.
 
-PERSISTANCE — Sauvegarder après capture, changement de statistiques et dépôt PC.
-Fermer complètement, relancer et Charger : équipe, PC, PV/PP, objets, cap,
-argent, apprentissages en attente, jeton et journal doivent être retrouvés.
-Langue et caméra restent des préférences indépendantes, conservées automatiquement.
-Anciennes sauvegardes v1/v2 lisibles ; copie originale avant passage en v3.
-Aucun test multijoueur demandé. Un seul retour pour tout le parcours.
+DÉFI NUZLOCKE — Essai facultatif. Sauvegarder une copie normale AVANT activation
+pour pouvoir revenir à ce point de test. Activation dans Règles / Difficulté.
+Un essai de capture par zone : premier échec de Ball, fuite ou KO engage le quota.
+Les doublons familiaux peuvent être ignorés ; si tu choisis de lancer une Ball sur
+un doublon avec quota libre, elle engage ce quota. Clause shiny : capture et usage
+hors quota, résultat shiny fixé à la génération. KO permanent : Centre et soins
+ne ressuscitent pas. Les Pokémon encore vivants dans le PC empêchent le game over.
+Défi désactivable définitivement ; pas de bouton pour le réactiver sur cette partie.
+Passer en normal permet les soins. Reprise avec Chapignon, cadeaux/œufs/fossiles
+et Soul-link sont à compléter ; la règle des nouveaux quotas attend ton choix.
+Le kit technique Méga est interdit tant que le défi est actif.
+
+COMPARATIF GRAPHIQUE — Passage nord du village (0,-9) = quartier visuel.
+Au point « visuals » (0,3), E passe de A à B à C. Aucune variante n'est finale.
+A : côtier sobre / deux pans ; B : chaleureux / cheminée ; C : toit plat / auvent.
+Le ZIP contient aussi trois captures FHD dans Comparatifs.
+Choisir A/B/C/aucune et préciser séparément maison, arbres, eau, chemins et relief.
+C'est une proposition de matériaux/modules, pas une île de qualité finale : eau
+et raccords/ombres/volcan restent à travailler après choix artistique.
+Le mannequin animé est le modèle de test antérieur ; pas de modèles Pokémon.
+
+FICHIERS UTILES DANS LE ZIP
+Comparatifs/quartier-A.png, quartier-B.png, quartier-C.png : rendus du moteur.
+Documentation/Propositions-noms-et-divinites.md : SPOILERS DEV, idées non adoptées.
+Documentation/Questions-restantes-Archelys.xlsx : colonne « Ta réponse » jaune.
+Les réponses N01–N51 déjà reçues ne sont pas redemandées ; ces choix ne bloquent
+pas le parcours technique ci-dessus. Aucun choix graphique final imposé.
 
 RETOUR FACILE À COPIER
 Version : lab-{short_commit}
-Lancement et fluidité : OK / problème
-Équipe / résumé / IV / EV / nature : OK / problème
-PC et équipement : OK / problème
-Combat, PP, changements et KO : OK / problème
-Textes manuels et blocage du déplacement : OK / problème
-Rencontre et fuite : OK / problème
-Capture équipe pleine → PC : OK / problème
-EXP, caps et évolutions : OK / problème
-Apprentissages et rappel : OK / problème
-Sauvegarde/reprise de tout le lot : OK / problème
-Ancienne sauvegarde : OK / non testée / problème
+Lancement / fluidité / menus : OK / problème
+Boutique, argent et soins : OK / problème
+Portes et sauvegarde intérieure : OK / problème
+Pêche, Surf, obstacles et Escalade : OK / problème
+Carte / Vol sans Pokémon compatible : OK / problème
+Cap OFF → ON / EXP / shiny / vitesses : OK / problème
+Méga unique et retour forme normale : OK / problème
+IA poseurs soleil et terrain : OK / problème
+Double : deux choix / cibles / changements / KO : OK / problème
+Nuzlocke : OK / non testé / problème
+Sauvegarde de tout le lot : OK / problème
+Graphismes : A / B / C / aucun ; éléments à conserver / modifier :
 Autre remarque :
 
 SAUVEGARDES ET LIMITES
-Dossier habituel sous Windows :
-%APPDATA%\Godot\app_userdata\Archélys — laboratoire technique\
-Fichier : laboratory_campaign.json
-Copie précédente : laboratory_campaign.json.backup
-Original version 1 : laboratory_campaign.json.v1.backup
-Original version 2 : laboratory_campaign.json.v2.backup
-Format courant : 3 ; les anciens builds ne peuvent pas le lire.
-Préférences indépendantes : preferences.json (langue et distance caméra)
-Pour restaurer : fermer le jeu, préserver la save actuelle, puis copier
-la backup vers le nom laboratory_campaign.json.
-Décors et mannequin provisoires ; données de 13 espèces, sans assets Pokémon
-graphiques ni scénario final. Le moteur couvre le catalogue de test, pas toutes
-les règles 9G, les Méga, terrains/climats, doubles ou l’IA difficile finale.
-La capture utilise le calcul conventionnel sans capture critique ou tous les
-modificateurs spécifiques 9G ; les dégâts ne sont pas certifiés aux arrondis
-exacts de la cartouche. Ces extensions restent suivies dans le rapport du lot.
-La direction artistique ne doit pas être jugée comme une île terminée.
+Dossier Windows : %APPDATA%\Godot\app_userdata\Archélys — laboratoire technique\
+Fichier : laboratory_campaign.json ; copie précédente : .backup
+Originals avant migration : .v1.backup / .v2.backup / .v3.backup
+Format courant 4 ; ancien build incapable de le lire. Pour rollback, fermer le jeu,
+préserver la save actuelle puis copier la backup originale vers le nom principal.
+Préférences : preferences.json (langue/caméra), laboratory_speed.json (vitesse test).
+Sauvegarde/édition refusées en combat. Le lot ne fournit ni campagne finale, ni
+modèles Pokémon, ni conformité 9G exhaustive, ni raids/multijoueur. Les arrondis,
+capture critique et interactions hors catalogue restent à vérifier/compléter.
 
 NOTICES DU MOTEUR
 Godot 4.6.3, licence MIT ; notices incluses dans Godot-LICENSE.txt et

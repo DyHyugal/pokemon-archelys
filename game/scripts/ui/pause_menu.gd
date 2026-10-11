@@ -1,10 +1,15 @@
 extends CanvasLayer
 ## Presentation only: campaign and preferences remain owned by services.
 const AdventurePages=preload("res://scripts/ui/adventure_pages.gd")
+const ExplorationPages=preload("res://scripts/ui/exploration_pages.gd")
+var exploration_pages: RefCounted
+signal travel_requested(target: String,flight: bool)
 var adventure: RefCounted
 var adventure_pages: RefCounted
 signal language_changed(value: String)
 signal camera_changed(value: float)
+signal speed_changed(value: float)
+var speed: float=1.0
 signal save_requested
 signal load_requested
 signal closed
@@ -26,6 +31,7 @@ var buttons: Dictionary = {}
 
 func _ready() -> void:
 	adventure_pages=AdventurePages.new(self)
+	exploration_pages=ExplorationPages.new(self)
 	layer = 10
 	var shade := ColorRect.new()
 	shade.color = Color(0.025, 0.045, 0.075, 0.88)
@@ -40,7 +46,8 @@ func _ready() -> void:
 		margin.add_theme_constant_override("margin_"+side,24)
 	panel.add_child(margin)
 	var row := HBoxContainer.new(); row.add_theme_constant_override("separation",32); margin.add_child(row)
-	navigation=VBoxContainer.new(); navigation.custom_minimum_size.x=230; row.add_child(navigation)
+	var nav_scroll:=ScrollContainer.new();nav_scroll.custom_minimum_size.x=250;nav_scroll.follow_focus=true;row.add_child(nav_scroll)
+	navigation=VBoxContainer.new(); navigation.custom_minimum_size.x=230; nav_scroll.add_child(navigation)
 	var content := VBoxContainer.new(); content.size_flags_horizontal=Control.SIZE_EXPAND_FILL; row.add_child(content)
 	title=Label.new(); title.add_theme_font_size_override("font_size",28); content.add_child(title)
 	var scroll := ScrollContainer.new(); scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL; content.add_child(scroll)
@@ -81,10 +88,10 @@ func render() -> void:
 	clear(navigation); clear(body); buttons.clear()
 	var pages := ["home","bag","journal","settings"]
 	if adventure!=null:
-		pages.append_array(["team","pc","choices"])
+		pages.append_array(["team","pc","choices","map","services","rules"])
 		adventure_pages.adventure=adventure
 	var names := [tr_text("Pause","Pause"),tr_text("Sac","Bag"),tr_text("Journal","Journal"),tr_text("Paramètres","Settings")]
-	if adventure!=null:names.append_array([tr_text("Équipe / Résumé","Party / Summary"),"PC",tr_text("Apprentissages (%d)","Learning (%d)") % adventure.pending.size()])
+	if adventure!=null:names.append_array([tr_text("Équipe / Résumé","Party / Summary"),"PC",tr_text("Apprentissages (%d)","Learning (%d)") % adventure.pending.size(),tr_text("Carte / Vol","Map / Fly"),tr_text("Vie quotidienne","Daily services"),tr_text("Règles / Difficulté","Rules / Difficulty")])
 	for index: int in range(pages.size()):
 		var target: String=pages[index]
 		buttons[target]=button(navigation,names[index],func(): page=target; feedback.text=""; render())
@@ -116,6 +123,7 @@ E / Enter: interact in the world"))
 			if adventure!=null:adventure_pages.render_bag()
 		"team", "pc", "choices":
 			adventure_pages.render(page)
+		"map","services","rules":exploration_pages.render(page)
 		"journal":
 			label(tr_text("Objectifs du laboratoire", "Laboratory objectives"))
 			var ids := ["guide","sign","crate"]
@@ -130,6 +138,11 @@ E / Enter: interact in the world"))
 			zoom=HSlider.new(); zoom.min_value=12; zoom.max_value=22; zoom.step=0.5; zoom.set_value_no_signal(camera_size); body.add_child(zoom)
 			var distance := label(str(camera_size))
 			zoom.value_changed.connect(func(value: float): camera_size=value; distance.text=str(value); camera_changed.emit(value))
+			label(tr_text("Vitesse labo — propositions 1× / 2× / 3× / 4×, musique inchangée", "Laboratory speed — proposed 1× / 2× / 3× / 4×, music unchanged"))
+			var speeds:=OptionButton.new()
+			for value: int in [1,2,3,4]:speeds.add_item("%d×" % value)
+			speeds.select(int(speed)-1);body.add_child(speeds)
+			speeds.item_selected.connect(func(index: int):speed=float(index+1);speed_changed.emit(speed))
 			label(tr_text("Ces préférences sont conservées automatiquement, indépendamment de la sauvegarde de partie.","These preferences are saved automatically, independently of your game save."))
 	buttons[page].grab_focus()
 

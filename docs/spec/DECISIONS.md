@@ -107,3 +107,9 @@ Bloc technique retenu : Pause, Sac, Journal et Paramètres avec accès sauvegard
 | D47 | Réunir les blocs 1 (équipe/PC), 2 (combat solo), 3 (rencontres/capture/progression), commencer et demander un seul playtest après l'ensemble | Demande explicite propriétaire |
 
 Le petit catalogue et l'équipe fournie sont des données techniques provisoires, pas une décision sur les starters, le Pokédex final ou les assets. Le lot cible une boucle complète sur ce catalogue ; la conformité exhaustive 9G et la production graphique restent des chantiers suivis séparément, sans prétendre terminés.
+
+## Validation du lot solo et réponses complémentaires
+
+D48 : le propriétaire confirme lab-2816c71 entièrement fonctionnel. D49 : développer ensemble les blocs 4–6 (vie quotidienne/exploration, difficulté/règles avancées, quartier graphique représentatif). Provenance : conversation du 11 octobre 2026.
+
+Les [réponses N01–N51](REPONSES_N01_N51.md) sont transcrites et font autorité sur leurs sujets. Notamment : pêche pour la démo ; 1G permise comme catalogue provisoire ; Méga existantes pour tests ; caps normal par défaut, OFF sans plafond et retour au cap sans réduire les niveaux existants ; défi désactivable sans réactivation ; KO équipe+PC définit le game over ; images comparatives avant validation puis intégration du style validé. La distribution portable actuelle doit rester inchangée. Les fonctionnalités multijoueurs décidées restent reportées selon la priorité solo.

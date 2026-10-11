@@ -8,15 +8,15 @@ Les statuts portent sur les preuves, pas sur l’enthousiasme ou la présence da
 | Git main/develop | PRÉPARÉ | Branches initialisées ; vérifier push remote |
 | Moteur Godot/Blender | LABORATOIRE TESTÉ | Godot 4.6.3, Blender 4.3.2 ; adéquation finale non validée |
 | Assets 3D animés | PROTOTYPE ORIGINAL TESTÉ | Mannequin GLB, sept os/une animation ; aucun Pokémon intégré |
-| Combat 9G + exceptions | SOCLE SOLO DÉVELOPPÉ ET TESTÉ | Lot D47 : 13 espèces/27 attaques ; conformité exhaustive, Méga et règles avancées à compléter |
-| IA difficile | DEMANDÉ | C18 ; comportements Tactica à analyser |
+| Combat 9G + exceptions | SOCLE SOLO DÉVELOPPÉ ET TESTÉ | D49 : 17 espèces/38 attaques, quatre Méga, terrains/climats, doubles mono-cible ; conformité exhaustive non acquise |
+| IA difficile | POLITIQUE DE LABORATOIRE TESTÉE | Poseur → bénéficiaire → rappel/second poseur, sans données cachées ; switches défensifs complets non finalisés |
 | Coopération 2/3 | REPORTÉ — ESSAI LOCALHOST CONSERVÉ | Trois processus ENet ; pas d’Internet ni combat réseau |
 | Raids phasés/simultanés | DEMANDÉ | R01 ; règles détaillées ouvertes |
-| Sauvegardes et migration | SOLO SCHÉMA 3 TESTÉ | Équipe/PC/sac/progression/choix, lecture v1/v2 et copies originales ; réseau reporté |
+| Sauvegardes et migration | SOLO SCHÉMA 4 TESTÉ | Équipe/PC/sac/progression/choix, lecture v1/v2/v3 et copies originales ; réseau reporté |
 | Soul-link | DEMANDÉ | C28 ; règles précises ouvertes |
 | Région et scénario | EN CADRAGE | Thèmes et synopsis, pas de maps |
 | Résumé IV/EV/natures/PC | DÉVELOPPÉ ET TESTÉ LOCALEMENT | Lot D47 : valeurs réelles, validation IV/EV/nature, PC, équipement ; test Windows attendu |
-| Actions terrain | DEMANDÉ | C32 |
+| Actions terrain | LABORATOIRE DÉVELOPPÉ ET TESTÉ | Obstacles/collisions, Surf, Escalade et Vol carte ; déblocages provisoires, Flash sans grotte à tester |
 | Wiki joueurs | PRÉPARÉ LOCAL | Rubriques documentaires ; non publié |
 | Exports Windows | PREMIER BUILD VALIDÉ WINDOWS | Owner : lab-09897ca lancement/fluidité/déplacement/save/combat OK ; nouveau build à retester |
 | FR/EN complets | DEMANDÉ | C25 |
@@ -41,3 +41,22 @@ Retour propriétaire D44 : lab-e84ee99 validé, excepté l'absence d'un menu Sac
 ## Boucle Pokémon solo regroupée
 
 Menus lab-d33e5ee validés par le propriétaire (D46). Lot D47 : équipe/PC, résumé/IV/EV/natures, équipement et rappel, combat solo, rencontres/capture, EXP/apprentissages/évolutions/caps et stockage schéma 3 développés dans le laboratoire. Catalogue de 13 espèces/27 attaques, pas les 500 entrées finales. Contrôles de domaine et parcours UI exécutés ; validation Windows du nouveau lot attendue. Le moteur n'est pas un simulateur 9G exhaustif : arrondis exacts, capture critique/modificateurs spécifiques, catalogue complet, terrains/climats, Méga/doubles et IA difficile restent à implémenter/vérifier. [Portée exacte](development/LOT_BOUCLE_POKEMON_SOLO.md).
+
+## Lot D49 — après validation de lab-2816c71
+
+Les équipes/combat/capture de D47 sont désormais **validés Windows par le propriétaire** (D48). Le lot D49 ajoute services/exploration, essais de règles avancées et comparatifs graphiques ; développé et testé techniquement, **nouveau playtest Windows et direction artistique attendus**. Les réponses N01–N51 sont transcrites ; noms/divinités proposés, sans choix implicite.
+
+| Fonction nouvelle | État / limites |
+|---|---|
+| Boutique / monnaie / Centre / intérieurs | Développé et testé, prix/lieux provisoires |
+| Pêche et map/Fly | Développé et testé sur famille Magicarpe ; carte finale absente |
+| Caps OFF / retour / EXP / shiny | Développé et testé ; option shiny concerne la génération future |
+| Méga historiques | Quatre formes testables ; une seule par camp, y compris après KO |
+| Terrains / climats | Sous-ensemble 9G testé sur catalogue ; interactions hors catalogue à compléter |
+| Doubles solo | Quatre acteurs, cibles/queue/switch/KO testés ; zone/redirection/objets et IA poseurs double à compléter |
+| Nuzlocke solo | Quotas/KO/PC/shiny/doublons et retrait testés ; reprise Chapignon ouverte N35, œufs/cadeaux/fossiles non présents |
+| Soul-link / raid / réseau | Reportés ; les réponses règlent des choix mais ne constituent pas du code livré |
+| Quartier graphique | Trois rendus FHD et lieu comparatif, validation N45 attendue ; aucune île finale produite |
+| Musique / personnalisation / cinématiques | Spécifiées, pas développées dans ce lot |
+
+[Rapport de portée et preuves](development/LOT_EXPLORATION_REGLES_VISUELS.md).

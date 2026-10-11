@@ -6,6 +6,8 @@ static func integer(value: Variant, low: int, high: int) -> bool:
 	return (value is int or value is float) and is_finite(float(value)) and float(value)==floorf(float(value)) and value>=low and value<=high
 static func experience(level: int, group: String) -> int:
 	if level<=1:return 0
+	if group=="slow":return int(5*level*level*level/4)
+	if group=="fast":return int(4*level*level*level/5)
 	if group=="medium-slow":return maxi(0,int(6.0*pow(level,3)/5.0)-15*level*level+100*level-140)
 	return level*level*level
 static func make(id: String, level: int, uid: int) -> Dictionary:
@@ -18,7 +20,7 @@ static func make(id: String, level: int, uid: int) -> Dictionary:
 	mon.hp=stats(mon).hp
 	return mon
 static func stats(mon: Dictionary) -> Dictionary:
-	var base: Array=Catalog.species(mon.species).stats
+	var base: Array=mon.get("battle_form",Catalog.species(mon.species)).stats
 	var result: Dictionary={}
 	var nature: int=NATURES.find(mon.nature)
 	for index: int in range(6):
@@ -39,11 +41,12 @@ static func hidden_power(mon: Dictionary) -> String:
 static func legal_move(mon: Dictionary, move_id: String) -> bool:
 	var id: String=mon.species
 	while not id.is_empty():
+		if move_id in Catalog.species(id).get("machines",[]):return true
 		if Catalog.species(id).learnset.any(func(entry: Dictionary):return entry.move==move_id and entry.level<=mon.level):return true
 		id=Catalog.species(id).get("previous","")
 	return false
 static func validate(mon: Variant) -> bool:
-	if not mon is Dictionary or not integer(mon.get("uid"),1,1000000) or not mon.get("species") is String or Catalog.species(mon.species).is_empty():return false
+	if not mon is Dictionary or mon.has("battle_form") or not integer(mon.get("uid"),1,1000000) or not mon.get("species") is String or Catalog.species(mon.species).is_empty():return false
 	if not integer(mon.get("level"),1,100) or not integer(mon.get("experience"),0,2000000):return false
 	if int(mon.level)<int(Catalog.species(mon.species).get("minimum_level",1)):return false
 	var minimum:=experience(int(mon.level),Catalog.species(mon.species).growth)
@@ -53,8 +56,9 @@ static func validate(mon: Variant) -> bool:
 		for value: Variant in mon[field]:
 			if not integer(value,0,31 if field=="iv" else 252):return false
 	if mon.ev.reduce(func(a: float,b: Variant):return a+float(b),0.0)>510:return false
-	if mon.get("nature") not in NATURES or mon.get("ability")!=Catalog.species(mon.species).ability:return false
-	if mon.get("item") not in ["","oran-berry","leftovers","lucky-egg"]:return false
+	if mon.get("nature") not in NATURES or mon.get("ability") not in Catalog.species(mon.species).get("abilities",[Catalog.species(mon.species).ability]):return false
+	if mon.has("shiny") and not mon.shiny is bool:return false
+	if mon.get("item") not in ["","oran-berry","leftovers","lucky-egg","venusaurite","charizardite-x","charizardite-y","blastoisinite"]:return false
 	if mon.get("status") not in ["","burn","poison","paralysis","sleep","freeze"] or not integer(mon.get("status_turns"),0,3):return false
 	if not mon.get("moves") is Array or mon.moves.is_empty() or mon.moves.size()>4:return false
 	var known: Array=[]

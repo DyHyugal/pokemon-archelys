@@ -1,0 +1,410 @@
+[
+  {
+    "id": "N01",
+    "question": "Valides-tu le parcours tropicale → mystique → hivernale → high-tech, avec retours draconiques puis île céleste et repaire ?",
+    "answer": "Oui je valide, il faudrait juste implémenter des base secondaires de la team RR sur chaque Ile (logique vu qu'ils ont le contrôle la région) et chaque fois qu'un repaire l'ile serait libéré de l'emprise de la team RR\nJe pense que l'ordre pour chaque ile devrait être un truc du genre :\nArrivé sur l'ile > présentation du prochain challenge > découverte du premier biome > challenge de biome > découverte deuxième biome > challenge deuxième biome > ... répéter le cycle jusqu'à fin des biomes & challenges > intéraction team RR > boss de raid > repaire team RR de l'ile\nalors évidemment c'est le déroulement logique et j'ai mis l'intéraction team RR à la fin mais je pense qu'il faudrait changer à chaque ile le moment de l'intéraction de la team RR genre ile 1 l'intéraction RR se fait après le premier biome, ile 2 après le 3e biome, ile 3 après le 2e biome etc.. par contre la fin doit pas changer c'est toujours raid de boss > repaire RR de l'ile > cinématique de libération de l'ile",
+    "context": "Ordre proposé dans le scénario V0.1.",
+    "before": "Avant cartes finales",
+    "theme": "Scénario"
+  },
+  {
+    "id": "N02",
+    "question": "Valides-tu le réseau de portails célestes exigeant l’accord des gardiens, que RR tente de forcer ?",
+    "answer": "Comprend pas la question",
+    "context": "Proposition ; pas un pouvoir qui rend instantanément invincible.",
+    "before": "Avant scénario final",
+    "theme": "Scénario"
+  },
+  {
+    "id": "N03",
+    "question": "Valides-tu les grandes étapes du père : enquête, confirmation qu’il est vivant, libération avant le combat final au repaire ?",
+    "answer": "je valide avec une petite précision, le combat final au repaire à pour but de libérer le père et de détruire l'organisation RR",
+    "context": "Proposition V0.1.",
+    "before": "Avant scénario final",
+    "theme": "Scénario"
+  },
+  {
+    "id": "N04",
+    "question": "Valides-tu les arcs des compagnons : Vyna apprend le discernement, Raidon la responsabilité, Hyu les conséquences humaines ?",
+    "answer": "Non et je ne pense pas que ce soit nécessaire",
+    "context": "Proposition ; les personnalités décidées restent conservées.",
+    "before": "Avant dialogues",
+    "theme": "Scénario"
+  },
+  {
+    "id": "N05",
+    "question": "Valides-tu le casting proposé (Silver, Ignace, Naïra, Lyraël, Soren, Éliane) ou quels éléments changer ?",
+    "answer": "Je valide mais les noms ne me conviennent pas",
+    "context": "Les cinq descendants nouveaux sont inventés, pas canoniques.",
+    "before": "Avant modèles personnages",
+    "theme": "Scénario"
+  },
+  {
+    "id": "N06",
+    "question": "Le gardien/dieu est-il le quatrième combat du Défi divin, ou un cinquième après quatre adversaires ?",
+    "answer": "C'est le cinquième après les 4 gardien, c'est sur la même base qu'une ligue pokémon",
+    "context": "Quatre au total proposé pour respecter Q05.",
+    "before": "Avant progression finale",
+    "theme": "Scénario"
+  },
+  {
+    "id": "N07",
+    "question": "En coop, le titre de gardien est-il attribué aux trois héros ou seulement au personnage de l’hôte ?",
+    "answer": "les achievements, items cléfs etc.. Sont débloqué pour chaque joueur ayant atteint la progression nécessaire pour l'obtenir donc si les 3 joueurs font toute l'aventure ensemble ils ont logiquements les mêmes items clef et les mêmes achievements",
+    "context": "Reconnaissance collective proposée.",
+    "before": "Avant épilogue",
+    "theme": "Scénario"
+  },
+  {
+    "id": "N08",
+    "question": "Quelle violence peut-on montrer : seulement conséquences/dialogues, blessures visibles sans gore, autre ?",
+    "answer": "La limite c'est le gore, c'est un jeu pokémon donc on veut pas voir de bras qui se fait arracher ou quoi mais par contre on peu avoir des scènes un peu dramatique comme un personnage méchant qui se fait exploser par une attaque d'un pokémon légendaire (un peu comme dans pokémon Z dans la guerre de fin)",
+    "context": "Pas de gore proposé ; père emprisonné conservé.",
+    "before": "Avant cinématiques",
+    "theme": "Scénario"
+  },
+  {
+    "id": "N09",
+    "question": "Que deviennent les dirigeants vaincus : prison, fuite pour postgame, rédemption individuelle, autre ?",
+    "answer": "Prison pour ceux qui ont l'intelligence de se rendre après leur défaite, annihilation pour ceux qui restent combatif après leurs défaite",
+    "context": "Conséquences distinctes selon personnalité ; pas de pardon automatique.",
+    "before": "Avant finale",
+    "theme": "Scénario"
+  },
+  {
+    "id": "N10",
+    "question": "Souhaites-tu nommer toi-même les îles ou recevoir une liste de propositions ?",
+    "answer": "Fais moi une liste de proposition pour chaque ile stp",
+    "context": "Noms provisoires descriptifs dans les outils.",
+    "before": "Avant publication narrative",
+    "theme": "Scénario"
+  },
+  {
+    "id": "N11",
+    "question": "Défi divin : peut-on modifier les Pokémon de l’équipe via boîtes pendant les pauses, ou seulement soigner/objets/CT ?",
+    "answer": "seulement soigner/objet/ct",
+    "context": "Soins/objets/CT approuvés ; boîtes pas encore décidées.",
+    "before": "Avant défi final",
+    "theme": "Scénario"
+  },
+  {
+    "id": "N12",
+    "question": "Un nouvel invité rejoint-il le chapitre commun avec récapitulatif, ou doit-il rejouer les anciens chapitres séparément ?",
+    "answer": "il doit rejouer les anciens chapitres séparément jusqu'à arriver jusqu'à la progression des autres joueurs",
+    "context": "Le rattrapage obligatoire demandé implique une progression séparée à concevoir.",
+    "before": "Avant campagne coop complète",
+    "theme": "Campagne"
+  },
+  {
+    "id": "N13",
+    "question": "Retirer un joueur libère-t-il immédiatement l’attente scénaristique ? Qui autorise le retrait ?",
+    "answer": "Oui ça permettrait de débloquer la situation au besoin, l'hote aurait un menu \"gestion du groupe\" avec \"kick un jouer / inviter un joueur / bannir un jouer / débannir un joueur / paramétrage de la save commune\"\nquand je dis save commune c'est le paramétrage du serveur multi hein donc les paramétrages sont commun mais choississable uniquement par l'hote\nLe menu hote n'est pas exhaustif et est amené a changé au fil des idées de gestion qui me viennent",
+    "context": "Hôte avec confirmation proposée ; ne pas retirer silencieusement un ami absent.",
+    "before": "Avant lobby complet",
+    "theme": "Campagne"
+  },
+  {
+    "id": "N14",
+    "question": "Un remplaçant reprend-il le personnage/équipe de l’ancien joueur ou crée-t-il un nouveau profil ?",
+    "answer": "Non il créé un nouveau profil propre à lui donc si il n'a pas de save sur ce serveur multi il commence son aventure normalement et progresse dans l'histoire normalement",
+    "context": "Nouveau profil sans duplication proposé ; transfert explicite à décider.",
+    "before": "Avant sauvegardes publiques",
+    "theme": "Campagne"
+  },
+  {
+    "id": "N15",
+    "question": "Lors du changement d’hôte, les identités et les équipes restent-elles inchangées ?",
+    "answer": "oui les identités et équipes restent inchangées, les saves ne changent pas c'est juste la transmission de l'hote qui change",
+    "context": "Oui recommandé ; copie la plus récente validée, sans fusion de saves.",
+    "before": "Avant imports coop",
+    "theme": "Campagne"
+  },
+  {
+    "id": "N16",
+    "question": "Qui choisit la réponse d’un dialogue de groupe : hôte, déclencheur, vote ?",
+    "answer": "vote je pense que c'est le mieu",
+    "context": "Hôte dans scénario linéaire proposé ; tous voient la scène.",
+    "before": "Avant dialogues coop",
+    "theme": "Campagne"
+  },
+  {
+    "id": "N17",
+    "question": "L’option bot en combat normal est-elle choisie par l’hôte ou par tous les joueurs présents ?",
+    "answer": "je pense que c'est un des paramètrages que l'hote peu choisir depuis son menu",
+    "context": "Hôte proposée ; étapes principales attendent toujours tous les participants.",
+    "before": "Avant combats coop",
+    "theme": "Campagne"
+  },
+  {
+    "id": "N18",
+    "question": "Accepter un échange entre deux joueurs exige-t-il une confirmation finale des deux avec affichage des Pokémon ?",
+    "answer": "Oui et accès au summary du pokémon proposé donc joueur A peu voir le summary du pokémon proposé B et inversement",
+    "context": "Oui recommandé ; transaction atomique et annulation à la déconnexion.",
+    "before": "Avant échanges",
+    "theme": "Campagne"
+  },
+  {
+    "id": "N19",
+    "question": "Veux-tu raids au tour par tour collectif avec PV/résistances, ou aussi timer global, bouclier, purge des boosts et scripts des raids Téracristal ?",
+    "answer": "Oui globalement il faudrait tout ça, le timer permettrait d'ajouter de la difficulté et d'eviter que les joueurs puisse bypass le raid avec des stratégies fourbe comme un pokémon spectre avec malédiction",
+    "context": "Tours collectifs proposés ; détails à valider, aucune Téracristallisation ajoutée.",
+    "before": "Avant moteur de raid final",
+    "theme": "Raids"
+  },
+  {
+    "id": "N20",
+    "question": "Les boss ont-ils une action normale par tour ou des actions supplémentaires annoncées ?",
+    "answer": "je pense que le fonctionnement des raid terracristal est bien, si je dis pas de connerie le boss de raid tape plusieurs fois par tour",
+    "context": "Une action par défaut dans le laboratoire seulement ; pas une règle finale.",
+    "before": "Avant équilibrage raids",
+    "theme": "Raids"
+  },
+  {
+    "id": "N21",
+    "question": "Statuts sur les boss : mêmes règles normales, durée réduite, ou immunités ciblées annoncées ?",
+    "answer": "même règle normale",
+    "context": "Éviter immunités cachées ; proposer cas par cas.",
+    "before": "Avant équilibrage raids",
+    "theme": "Raids"
+  },
+  {
+    "id": "N22",
+    "question": "Résistance renforcée : réduction de dégâts, défense accrue, bouclier visible, ou choix selon boss ?",
+    "answer": "réduction légère de dégats, défense légèrement accrue, bouclier au bout d'un nombre de tour !\nGlobalement je veux le même scénario que pour les raid terracristal/dynamax",
+    "context": "Un mécanisme visible à la fois recommandé, coefficients après mesures.",
+    "before": "Avant équilibrage raids",
+    "theme": "Raids"
+  },
+  {
+    "id": "N23",
+    "question": "Entre phases, conserve-t-on PV, boosts, météo/terrain et Pokémon actifs ? Y a-t-il une pause de choix/soins ?",
+    "answer": "Non pour les raid 1v3 contre le boss le combat est reset mais les dresseurs ne peuvent pas se soigner (on met comme ça pour l'instant mais je pense que ça peu être compliquer en terme de difficulté) ni intéragir avec leur sac ou autre => directement un dialogue type \"ATTENTION, CE N'EST PAS FINI !!!\" et lancement du combat du deuxième 1v3 puis à la fin du combat \"QUOI Y'EN A ENCORE UN ?!\" et lancement du dernier boss => a adapter si c'est du multi 2 joueurs",
+    "context": "État conservé proposé sauf scripts annoncés ; détails à décider.",
+    "before": "Avant raids phasés",
+    "theme": "Raids"
+  },
+  {
+    "id": "N24",
+    "question": "Valides-tu phases/simultané répartis 3/2 entre les cinq îles ordinaires ?",
+    "answer": "Oui je valide",
+    "context": "Tropicale phases, mystique simultané, hivernale phases, high-tech simultané, draconique phases proposés.",
+    "before": "Avant scénarisation boss",
+    "theme": "Raids"
+  },
+  {
+    "id": "N25",
+    "question": "Après capture, un joueur peut-il rejouer le raid pour aider un ami sans obtenir un second exemplaire ?",
+    "answer": "Oui",
+    "context": "Oui proposé ; récompenses secondaires à limiter explicitement.",
+    "before": "Avant captures coop",
+    "theme": "Raids"
+  },
+  {
+    "id": "N26",
+    "question": "Si quelqu’un refuse la capture garantie, peut-il refaire le raid plus tard ?",
+    "answer": "Oui",
+    "context": "Oui proposé ; pas de capture enregistrée sans choix.",
+    "before": "Avant captures coop",
+    "theme": "Raids"
+  },
+  {
+    "id": "N27",
+    "question": "Les attaques de zone touchent-elles tous les ennemis éligibles en 3 contre 3 ? Les soutiens aux alliés restent-ils possibles ?",
+    "answer": "Règles officiel des jeux officiels",
+    "context": "Oui proposé ; dégâts alliés interdits en raid déjà décidé.",
+    "before": "Avant table de ciblage",
+    "theme": "Raids"
+  },
+  {
+    "id": "N28",
+    "question": "Après 60 secondes sans choix, utiliser une attaque légale selon un ordre fixe ou un conseil automatique simple ?",
+    "answer": "choisir une attaque aléatoire parmis les 4 du pokémon présent sur le terrain (uniquement pour le joueur qui n'a pas choisis d'action)",
+    "context": "Choix déterministe légal, sans connaissance ennemie cachée, proposé.",
+    "before": "Avant expiration des tours",
+    "theme": "Raids"
+  },
+  {
+    "id": "N29",
+    "question": "Valides-tu les règles proposées, en particulier première rencontre par zone et doublons de famille ignorables ?",
+    "answer": "Oui",
+    "context": "Proposition dans SOUL_LINK_PROPOSITION.md ; mode facultatif.",
+    "before": "Avant mode défi",
+    "theme": "Soul-link"
+  },
+  {
+    "id": "N30",
+    "question": "Capture manquée : groupe de liens inutilisable pour tous, ou nouvelle tentative pour préserver le groupe ?",
+    "answer": "non si la capture a été failed pour au moins un des joueurs alors la zone est considéré comme raté et aucun pokémon n'est capturable sur cette zone (un œuf qui éclos dans cette zone est considéré comme MORT directement si un pokémon a déjà été claim dans cette zone)",
+    "context": "Groupe exclu proposé ; owner arbitre le niveau de contrainte.",
+    "before": "Avant mode défi",
+    "theme": "Soul-link"
+  },
+  {
+    "id": "N31",
+    "question": "Cadeaux/fossiles : quotas distincts ou soumis au quota de la zone ?",
+    "answer": "quota de la zone parce que l'item n'est pas considéré comme zone, seulement le pokémon fossile une fois restauré et il deviendra le pokémon de zone de la ville où la restauration de fossile est possible",
+    "context": "Liens par catégorie de cadeau proposés.",
+    "before": "Avant mode défi",
+    "theme": "Soul-link"
+  },
+  {
+    "id": "N32",
+    "question": "Chromatique hors quota : utilisable ou collection seulement ?",
+    "answer": "oui y'a la shiny rule qui permet de capturer un shiny dans une zone déjà claim",
+    "context": "Collection seule proposée pour préserver le défi.",
+    "before": "Avant mode défi",
+    "theme": "Soul-link"
+  },
+  {
+    "id": "N33",
+    "question": "Un nouveau joueur rejoint-il les liens existants, crée-t-il de nouveaux liens ou ne peut-il entrer en cours de Soul-link ?",
+    "answer": "il créé de nouveaux lien au fur et a mesure qu'il claim les zones mais globalement il faudrait mettre un avertissement pour que ces cas de scénarios n'arrivent pas",
+    "context": "À décider avant d’autoriser campagnes défi réajustables.",
+    "before": "Avant mode défi",
+    "theme": "Soul-link"
+  },
+  {
+    "id": "N34",
+    "question": "Peut-on désactiver le Soul-link/Nuzlocke au milieu d’une campagne puis le réactiver ?",
+    "answer": "oui on peu le désactiver mais pas le réactiver sinon ça va être bordelique",
+    "context": "Désactivation possible avec avertissement ; réactivation ne répare pas les pertes proposée.",
+    "before": "Avant mode défi",
+    "theme": "Soul-link"
+  },
+  {
+    "id": "N35",
+    "question": "Après défaite totale, continuer en mode normal ou terminer strictement le défi ?",
+    "answer": "Donc défaite total c'est : tout les pokémons de l'équipe sont mort et tout ceux du pc également normalement, si oui alors => proposer un choix sur un écran game over avec \"Continuer en mode normal ou recommencer le nuzlocke ? La progression sera conservé, un pokémon de pret vous sera fourni pour claim une zone déjà débloqué, ce pokémon sera retiré après la première capture\"\nprévoir un chapignon avec false-swipe, spore, danse lame, clonage avec des restes",
+    "context": "Continuer en normal proposé, pas de suppression de save.",
+    "before": "Avant mode défi",
+    "theme": "Soul-link"
+  },
+  {
+    "id": "N36",
+    "question": "Quels paramètres de campagne l’hôte peut-il modifier sans vote (difficulté, caps, EXP, shiny, défi) ?",
+    "answer": "globalement ce qui touche à la difficulté, pour le confort chaque joueur a son menu individuelle (shiny, exp, distance d'affichage du personnage, etc..)",
+    "context": "Paramètres communs par l’hôte hors combat avec notification proposés.",
+    "before": "Avant options complètes",
+    "theme": "Options"
+  },
+  {
+    "id": "N37",
+    "question": "Désactiver puis réactiver le cap : que faire des Pokémon déjà au-dessus ?",
+    "answer": "Le cap doit être défini sur normal par défaut, si changer sur OFF on désactive le level cap, si c'est mis sur \"difficile\" on change laisse les pokémons déjà au dessus du cap comme ils sont par contre il ne pourront pas aller au dela du level cap à partir du moment où il est défini (pareil pour OFF => normal)",
+    "context": "Pas de baisse de niveau ; règle d’utilisation à proposer.",
+    "before": "Avant caps optionnels",
+    "theme": "Options"
+  },
+  {
+    "id": "N38",
+    "question": "Quelles vitesses de jeu veux-tu proposer et sur quoi agissent-elles ?",
+    "answer": "comme pour tactica, 4 niveau de vitesse qui agissent sur tout sauf sur la musique du jeu",
+    "context": "Animations/textes locaux ; pas d’accélération indépendante de la simulation réseau.",
+    "before": "Avant confort final",
+    "theme": "Options"
+  },
+  {
+    "id": "N39",
+    "question": "IV/EV/natures : modification simultanée possible pendant qu’un ami combat, ou bloquée pour toute la campagne ?",
+    "answer": "Modification IV/EV/NATURE depuis le menu summary donc quand le menu summary est disponible les joueurs peuvent le faire\npendant qu'un ami combat, il est possible soit de spec (avec option de quitter) soit vaguer a ses occupations jusqu'au prochain blocage scénaristique",
+    "context": "Bloquer seulement les Pokémon engagés dans un combat/échange proposé.",
+    "before": "Avant résumé complet",
+    "theme": "Options"
+  },
+  {
+    "id": "N40",
+    "question": "Changement du taux shiny : seulement futures rencontres ou aussi œufs déjà obtenus ?",
+    "answer": "futures rencontres uniquement, les stats d'un pokémon sont généré en même temps que l'œuf donc inchangeable",
+    "context": "Génération future proposée ; pas de reroll d’un Pokémon sauvegardé.",
+    "before": "Avant génération Pokémon",
+    "theme": "Options"
+  },
+  {
+    "id": "N41",
+    "question": "Quand peux-tu fournir le premier lot de Pokédex et starters pour une démo ?",
+    "answer": "Je vais faire une sélection, je pense que dans la journée (11/10) ou demain je pourrais te fournir la liste complete, sinon je peu te fournir un premier lot de pokédex et starter pour la démo => tu peux prendre la 1G ça fera un bon début pour tester et on remplassera ensuite par le pokédex archélys",
+    "context": "Petit lot représentatif avant import massif ; pas besoin de finaliser 500 tout de suite.",
+    "before": "Avant première île jouable",
+    "theme": "Contenu"
+  },
+  {
+    "id": "N42",
+    "question": "Quels noms/types/lignées delta et quelles Méga sont prioritaires pour le premier essai ?",
+    "answer": "C'est pas prioritaire et tu auras la liste au plus tard demain quand j'aurais fini le pokédex (delta et fakemon compris)\nOn fera l'ajout en temps voulu, pour l'instant intègre les mega des pokémons qui en ont déjà pour les tests",
+    "context": "Liste owner ; modèles provisoires seulement en attendant.",
+    "before": "Avant production espèces",
+    "theme": "Contenu"
+  },
+  {
+    "id": "N43",
+    "question": "Pour les gardiens, veux-tu choisir les espèces ou recevoir des propositions par thème et mythologie ?",
+    "answer": "Alors attention à ne pas confondre, les gardiens sont uniquement sur l'ile céleste\nles boss légendaire de fin d'ile sont les divinités local on va dire et je veux bien que tu me fasse un proposition en accord avec celle que j'ai fait pour l'ile high tech (miraidon, zekrom et zeraora)",
+    "context": "Propositions sans implantation avant accord.",
+    "before": "Avant boss définitifs",
+    "theme": "Contenu"
+  },
+  {
+    "id": "N44",
+    "question": "Photo/pêche : indispensables à la première démo ou V1 seulement ?",
+    "answer": "indispensable pour la peche pour la démo parce que c'est une fonctionnalité importante + elle permet d'avoir de nouvelle zone\npar contre la photo c'est pour la v1, pas prioritaire",
+    "context": "V1 demandées ; première démo recentrée proposée.",
+    "before": "Avant périmètre démo",
+    "theme": "Contenu"
+  },
+  {
+    "id": "N45",
+    "question": "Le style des exemples provisoires sert-il à choisir une direction, ou souhaites-tu des images comparatives avant validation ?",
+    "answer": "images comparatives avant validation et ensuite on intègre sur la demo pour que je vois le rendu une fois transformer en asset\nidéalement il faudrait qu'on garde ce process pour chaque asset",
+    "context": "Images comparatives puis petit décor représentatif recommandé.",
+    "before": "Avant direction artistique",
+    "theme": "Graphismes"
+  },
+  {
+    "id": "N46",
+    "question": "Quelles personnalisations minimales du héros en V1 : peau, cheveux, vêtements, visage ?",
+    "answer": "oui tout ça, on ajoutera par la suite des shop de vetement avec un petit choix pour la v1",
+    "context": "Petite sélection cohérente proposée ; éviter promesse Z-A complète.",
+    "before": "Avant rig personnages",
+    "theme": "Graphismes"
+  },
+  {
+    "id": "N47",
+    "question": "Cinématiques : combien de scènes vraiment animées distinguer des dialogues mis en scène ?",
+    "answer": "les cinématiques on en fait à minima une cinématique par ile (après victoire contre le boss de l'ile + le repaire team RR) + 1 ou deux par ile si intéressant mais on va pas en faire 150 non plus",
+    "context": "Quelques moments clefs proposés ; storyboard avant assets.",
+    "before": "Avant production cinématiques",
+    "theme": "Graphismes"
+  },
+  {
+    "id": "N48",
+    "question": "Musique originale, bibliothèques réutilisables autorisées, ou combinaison ?",
+    "answer": "combinaison, on ajoutera nos propre remix pour les combats important",
+    "context": "Inventaire de provenance ; aucun morceau tiers intégré sans vérification.",
+    "before": "Avant audio",
+    "theme": "Graphismes"
+  },
+  {
+    "id": "N49",
+    "question": "Valides-tu ZIP Windows de laboratoire très provisoire pour les premiers tests, même sans Pokémon final ?",
+    "answer": "Je valide le fonctionne actuel ! Ne pas changer, pour l'instant tout fonctionne comme prévu donc ne pas toucher, prendre le fonctionnement trouvé dans le chat codex",
+    "context": "Oui déjà pour format ; préciser attentes visuelles avec le bilan.",
+    "before": "Avant essais owner",
+    "theme": "Livraison"
+  },
+  {
+    "id": "N50",
+    "question": "Souhaites-tu une licence open source pour le code original ? Laquelle ou veux-tu une proposition argumentée ?",
+    "answer": "SI l'open source nous permet de faire ce qu'on veut alors go sinon on trouvera une autre solution",
+    "context": "Ne pas imposer une licence sur les assets tiers ; décision owner.",
+    "before": "Avant contributions externes",
+    "theme": "Livraison"
+  },
+  {
+    "id": "N51",
+    "question": "Quelle stratégie de spoilers wiki : conseils progressifs, balises explicites, pages de postgame séparées ?",
+    "answer": "Oui tout ça stp",
+    "context": "Pages progressives et spoilers explicitement annoncés proposées.",
+    "before": "Avant wiki joueurs",
+    "theme": "Livraison"
+  }
+]

@@ -19,10 +19,13 @@ manifest={'commit':args.commit,'godot':'4.6.3','stage':'technical-laboratory',
           'distribution':'portable-external-pck','unmodified_godot_template':True,
           'windows_execution':'not validated on Windows','network_validation':'deferred; prior lab-09897ca tested on localhost only'}
 (folder/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
-(folder/'release-notes.md').write_text("Lot solo regroupé : équipe/résumé avec édition IV/EV/natures, objets tenus et rappel gratuit ; PC ; combats au tour par tour, rencontres sauvages, capture, EXP, apprentissage, évolutions et caps. 13 espèces/27 attaques provisoires, interface sans modèles Pokémon finaux. Parcours unique dans le LIRE-MOI.\n\nÉquipe de laboratoire, pas les starters définitifs. Le combat couvre ce petit catalogue, sans conformité exhaustive 9G ni IA difficile finale. Sauvegarde schéma 3 avec copie originale v1/v2 conservée avant conversion. EXE Godot portable officiel inchangé ; garder EXE/PCK ensemble. Aucun test multijoueur demandé.\n",encoding='utf-8')
+(folder/'release-notes.md').write_text("Blocs 4–6 regroupés : boutique/Centre/intérieurs, pêche et actions contextuelles, carte/Vol ; réglages cap/EXP/shiny/défi ; terrains/climats, politique de poseurs en IA difficile, quatre Méga historiques et doubles solo mono-cible. 17 espèces/38 attaques provisoires. Trois comparatifs FHD dans le ZIP, aucun style final adopté.\n\nParcours unique et limites dans LIRE-MOI. Questions restantes et propositions de noms/divinités dans Documentation (SPOILERS DEV). Reprise Nuzlocke avec Chapignon et règles complètes de doubles/raids restent à compléter. Sauvegarde schéma4 avec originaux v1/v2/v3 préservés. EXE Godot portable officiel inchangé ; garder EXE/PCK ensemble. Aucun test multijoueur demandé.\n",encoding='utf-8')
 archive=folder/'Archelys-Laboratoire-Windows.zip'
 with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as z:
     for file in [exe,pck,folder/'LIRE-MOI.txt',folder/'manifest.json',root/'docs/licenses/Godot-LICENSE.txt',root/'docs/licenses/Godot-COPYRIGHT.txt',root/'docs/licenses/PokeAPI-LICENSE.txt']:z.write(file,file.name)
+    for file in sorted((root/'docs/design/comparatifs').glob('quartier-*.png')):z.write(file,'Comparatifs/'+file.name)
+    z.write(root/'docs/design/PROPOSITIONS_NOMS_ET_DIVINITES.md','Documentation/Propositions-noms-et-divinites.md')
+    z.write(root/'docs/sources/Questions-restantes-Archelys.xlsx','Documentation/Questions-restantes-Archelys.xlsx')
 with zipfile.ZipFile(archive) as z:assert z.testzip() is None
 (folder/'SHA256SUMS.txt').write_text(hashlib.sha256(archive.read_bytes()).hexdigest()+'  '+archive.name+'\n')
 print('Windows ZIP verified:',archive,archive.stat().st_size)

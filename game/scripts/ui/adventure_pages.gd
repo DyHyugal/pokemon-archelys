@@ -64,14 +64,24 @@ func render_team() -> void:
 		if ok:refresh()
 		menu.feedback.text=t("Statistiques recalculées.","Stats recalculated.") if ok else t("Réglage refusé : maximum 510 EV au total. Rien n'a été modifié.","Rejected: maximum 510 total EVs. Nothing was changed."))
 	menu.label(t("Équipement et objets","Held items and items"))
-	for item: String in ["","oran-berry","leftovers","lucky-egg"]:
+	for item: String in ["","oran-berry","leftovers","lucky-egg","venusaurite","charizardite-x","charizardite-y","blastoisinite"]:
 		var id: String=item
 		menu.button(menu.body,t("Retirer l'objet","Remove held item") if id=="" else t("Tenir : ","Hold: ")+name_of(id),func():
 			var ok: bool=adventure.equip(selected_uid,id);refresh();menu.feedback.text=t("Équipement modifié.","Equipment changed.") if ok else t("Objet absent du sac.","Item missing from bag."))
-	for item: String in ["potion","antidote","paralyze-heal","thunder-stone"]:
+	for item: String in ["potion","antidote","paralyze-heal","thunder-stone","fire-stone"]:
 		var id: String=item
 		menu.button(menu.body,t("Utiliser : ","Use: ")+name_of(id),func():
 			var ok: bool=adventure.use(id,selected_uid);refresh();menu.feedback.text=t("Objet utilisé.","Item used.") if ok else t("Impossible : objet absent ou aucun effet.","Cannot use: item missing or no effect."))
+	menu.label(t("Talent — choix légaux du catalogue", "Ability — legal catalogue choices"))
+	for ability: String in Catalog.species(mon.species).get("abilities",[]):
+		var id: String=ability
+		menu.button(menu.body,Catalog.text("abilities",id,menu.locale),func():adventure.set_ability(selected_uid,id);refresh())
+	menu.label(t("CT réutilisables du catalogue (gratuites au labo)","Reusable catalogue TMs (free in laboratory)"))
+	for move_id: String in Catalog.species(mon.species).get("machines",[]):
+		var id: String=move_id
+		for slot: int in range(mini(4,mon.moves.size()+1)):
+			var target: int=slot
+			menu.button(menu.body,"%s → %d" % [name_of(id),slot+1],func():adventure.teach_machine(selected_uid,id,target);refresh())
 	render_relearn(mon)
 func render_relearn(mon: Dictionary) -> void:
 	menu.label(t("Rappel gratuit des attaques du catalogue","Free move reminder for this catalogue"))

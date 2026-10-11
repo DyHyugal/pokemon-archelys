@@ -93,11 +93,11 @@ func _physics_process(delta: float) -> void:
 		var pos: Array = record.position
 		var next_x := clampf(float(pos[0]) + axis.x * 5.0 * delta, -14.0, 14.0)
 		var next_z := clampf(float(pos[2]) + axis.y * 5.0 * delta, -10.0, 10.0)
-		if World.can_step(Vector2(float(pos[0]),float(pos[2])),Vector2(next_x,float(pos[2]))):
+		if _can_step(Vector2(float(pos[0]),float(pos[2])),Vector2(next_x,float(pos[2]))):
 			pos[0] = next_x
-		if World.can_step(Vector2(float(pos[0]),float(pos[2])),Vector2(float(pos[0]),next_z)):
+		if _can_step(Vector2(float(pos[0]),float(pos[2])),Vector2(float(pos[0]),next_z)):
 			pos[2] = next_z
-	if campaign.all_at_gate():
+	if campaign.adventure.exploration.location=="village" and campaign.all_at_gate():
 		if not gate_latched and campaign.progress == 0:
 			campaign.advance()
 			gate_latched = true
@@ -108,3 +108,15 @@ func _physics_process(delta: float) -> void:
 	if active_network and elapsed >= 0.1:
 		elapsed = 0.0
 		_snapshot.rpc(latest)
+
+func _can_step(origin: Vector2,destination: Vector2) -> bool:
+	var location: String=campaign.adventure.exploration.location
+	if location=="cove" and campaign.adventure.exploration.cleared.has("surf"):return absf(destination.x)<7 and destination.y>-8 and destination.y<9
+	if location=="village":
+		if float(campaign.players.get(1,{}).get("position",[0,0,0])[1])>0:return absf(destination.x+11)<1.45 and destination.y>8.05 and destination.y<9.95
+		if absf(destination.x+11)<1.5 and destination.y>8:return false
+		for id: String in ["cut","rock-smash","strength"]:
+			var point: Vector3=World.local_points(location)[id]
+			if not campaign.adventure.exploration.cleared.has(id) and destination.distance_to(Vector2(point.x,point.z))<0.7:return false
+		return World.can_step(origin,destination)
+	return World.local_walkable(destination,location)

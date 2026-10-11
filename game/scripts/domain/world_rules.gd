@@ -8,6 +8,25 @@ const SERVICE_POINTS={"healing":Vector3(0,0,3),"trainer-1":Vector3(6,0,-4),"trai
 static func interaction_points() -> Dictionary:
 	var points:=INTERACTIONS.duplicate();points.merge(SERVICE_POINTS);return points
 
+static func local_points(location: String) -> Dictionary:
+	match location:
+		"center":return {"exit":Vector3(0,0,7),"nurse":Vector3(0,0,-3)}
+		"shop":return {"exit":Vector3(0,0,7),"counter":Vector3(0,0,-3)}
+		"cove":return {"exit":Vector3(0,0,7),"fish":Vector3(0,0,-3),"surf":Vector3(4,0,-3)}
+		"district":return {"exit":Vector3(0,0,7),"visuals":Vector3(0,0,3)}
+	return {"center-door":Vector3(-8,0,2.2),"shop-door":Vector3(8,0,2.2),"pier":Vector3(0,0,9),"district-gate":Vector3(0,0,-9),"cut":Vector3(-11,0,3),"rock-smash":Vector3(11,0,3),"strength":Vector3(11,0,6),"climb":Vector3(-11,0,8)}
+static func local_walkable(pos: Vector2,location: String) -> bool:
+	if location in ["center","shop"]:return absf(pos.x)<5.5 and pos.y>-5 and pos.y<8
+	if location=="cove":return absf(pos.x)<7 and pos.y<9 and (pos.y>=-2 or (absf(pos.x)<1 and pos.y>=-3))
+	if location=="district":
+		if absf(pos.x)>14 or absf(pos.y)>10:return false
+		for house: Vector2 in HOUSES:
+			if absf(pos.x-house.x)<2 and absf(pos.y-house.y)<1.8:return false
+		for tree: Vector2 in TREES:
+			if pos.distance_to(tree)<0.8:return false
+		return true
+	return walkable(pos)
+
 const HOUSES: Array[Vector2] = [Vector2(-8, 0), Vector2(8, 0), Vector2(-8, 6)]
 const TREES: Array[Vector2] = [Vector2(-12,-5), Vector2(12,-5), Vector2(10,7), Vector2(-4,7)]
 

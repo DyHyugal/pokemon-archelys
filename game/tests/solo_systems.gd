@@ -44,7 +44,7 @@ func _initialize() -> void:
 	check(Store.write_snapshot(path,current.snapshot())==OK and FileAccess.get_file_as_string(path+".v1.backup")==original,"Migration preserves original v1 bytes")
 	current.laboratory.complete("sign")
 	check(Store.write_snapshot(path,current.snapshot())==OK and FileAccess.get_file_as_string(path+".v1.backup")==original,"Later saves preserve migration backup")
-	invalid=current.snapshot();invalid.schema=4
+	invalid=current.snapshot();invalid.schema=5
 	check(not Campaign.validate(invalid),"Future unknown schema rejected")
 	print("SOLO SYSTEMS: %d checks, %d failures" % [checks,failures])
 	quit(1 if failures else 0)
