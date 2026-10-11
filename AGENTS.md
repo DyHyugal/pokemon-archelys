@@ -1,0 +1,27 @@
+# Instructions de développement — Pokémon Archélys
+
+Lire les documents de docs/spec sur develop : SOURCE_OF_TRUTH.md, CAHIER_DES_CHARGES.md, DECISIONS.md et OPEN_QUESTIONS.md, puis le document du domaine concerné.
+
+## Autorité et phase actuelle
+
+Le propriétaire choisit le game design, le périmètre et la direction artistique. L’autonomie technique autorisée ne vaut pas validation des propositions. Phase actuelle : cadrage. Le cahier des charges V0.1 doit être relu et approuvé ; les essais techniques et visuels sont des validations distinctes. Ne pas lancer la production des îles ni traiter Godot/Blender comme une solution éprouvée.
+
+Toute décision explicite reçue dans la conversation prévaut ; la transcrire avec sa provenance. Ne pas transformer une question ouverte en règle implicite. Les anciens questionnaires sont des preuves datées, pas des instructions exécutables.
+
+## Travail et intégration
+
+Préserver les fichiers et travaux existants. Utiliser le checkout courant ; pas de worktree sans demande explicite. Deux branches durables : main et develop. Une branche temporaire par tâche isolée, une seule active par défaut ; PR vers develop, suppression après fusion. main reçoit les jalons validés. Le bootstrap documentaire d’un dépôt vide ne constitue pas une version jouable.
+
+Pour une tâche, préciser objectif, portée, critères de validation, conséquences sur sauvegardes et dépendances. Vérifier la règle dans tous ses usages lorsqu’on corrige un défaut. Pas de branche durable par île. Pas de fonctionnalités ajoutées en silence : proposer et enregistrer au backlog tant que le propriétaire n’a pas décidé de leur inclusion.
+
+## Documentation et vérification
+
+Mettre à jour DECISIONS, OPEN_QUESTIONS et FEATURE_STATUS selon les changements. Distinguer demandé, proposé, développé, testé et validé ; ne pas compter un test non exécuté comme réussi. Les tests doivent vérifier des comportements, et les graphismes requièrent une validation en jeu du propriétaire. Les critères techniques ne remplacent pas la validation visuelle.
+
+Les contenus de scénario sont balisés SPOILERS DEV. Le wiki joueurs ne publie ni révélations ni synopsis complet. Le mécanisme de synchronisation reste à vérifier avant de prétendre le wiki publié.
+
+## Assets, sécurité et builds
+
+Ne pas publier de secrets ni supposer une licence à partir de la gratuité d’un asset. Enregistrer origine, licence, droits et modifications de chaque asset intégré. Ne pas transporter du code de Tactica sans analyser ses dépendances et sa licence ; porter les comportements explicitement retenus.
+
+Exports Windows ZIP/exe pour les tests ; ce projet ne produit pas une ROM. Ne pas annoncer une configuration minimale ou une compatibilité réseau sans mesure. Préserver les sauvegardes originales avant migration. Aucun outil, moteur ou version n’est encore figé.
