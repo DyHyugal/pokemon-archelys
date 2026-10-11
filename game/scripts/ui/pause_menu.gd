@@ -5,6 +5,10 @@ const ExplorationPages=preload("res://scripts/ui/exploration_pages.gd")
 const CollectionPages=preload("res://scripts/ui/collection_pages.gd")
 var collection_pages: RefCounted
 const ComfortPages=preload("res://scripts/ui/comfort_pages.gd")
+const StylePages=preload("res://scripts/ui/style_pages.gd")
+var style_pages: RefCounted
+signal appearance_changed
+signal photo_requested
 var comfort_pages: RefCounted
 var comfort: RefCounted
 signal comfort_changed
@@ -44,6 +48,7 @@ func _ready() -> void:
 	exploration_pages=ExplorationPages.new(self)
 	collection_pages=CollectionPages.new(self)
 	comfort_pages=ComfortPages.new(self)
+	style_pages=StylePages.new(self)
 	layer = 10
 	var shade := ColorRect.new()
 	shade.color = Color(0.025, 0.045, 0.075, 0.88)
@@ -101,10 +106,10 @@ func render() -> void:
 	clear(navigation); clear(body); buttons.clear()
 	var pages := ["home","bag","journal","settings"]
 	if adventure!=null:
-		pages.append_array(["team","pc","choices","map","services","rules","dex","cinema","saves","nursery","journey"])
+		pages.append_array(["team","pc","choices","map","services","rules","dex","cinema","saves","nursery","journey","appearance","photo"])
 		adventure_pages.adventure=adventure
 	var names := [tr_text("Pause","Pause"),tr_text("Sac","Bag"),tr_text("Journal","Journal"),tr_text("Paramètres","Settings")]
-	if adventure!=null:names.append_array([tr_text("Équipe / Résumé","Party / Summary"),"PC",tr_text("Apprentissages (%d)","Learning (%d)") % adventure.pending.size(),tr_text("Carte / Vol","Map / Fly"),tr_text("Vie quotidienne","Daily services"),tr_text("Règles / Difficulté","Rules / Difficulty"),"Pokédex",tr_text("Cinématiques","Cinematics"),tr_text("Sauvegardes","Save slots"),tr_text("Œufs / Incubateur","Eggs / Incubator"),tr_text("Aventure","Adventure")])
+	if adventure!=null:names.append_array([tr_text("Équipe / Résumé","Party / Summary"),"PC",tr_text("Apprentissages (%d)","Learning (%d)") % adventure.pending.size(),tr_text("Carte / Vol","Map / Fly"),tr_text("Vie quotidienne","Daily services"),tr_text("Règles / Difficulté","Rules / Difficulty"),"Pokédex",tr_text("Cinématiques","Cinematics"),tr_text("Sauvegardes","Save slots"),tr_text("Œufs / Incubateur","Eggs / Incubator"),tr_text("Aventure","Adventure"),tr_text("Personnage","Character"),tr_text("Photo","Photo")])
 	for index: int in range(pages.size()):
 		var target: String=pages[index]
 		buttons[target]=button(navigation,names[index],func(): page=target; feedback.text=""; render())
@@ -113,6 +118,10 @@ func render() -> void:
 	buttons.resume=button(navigation,tr_text("Reprendre • Échap","Resume • Esc"),close)
 	title.text=names[pages.find(page)]
 	match page:
+		"appearance":style_pages.render()
+		"photo":
+			label(tr_text("Cadrage libre autour du personnage, sans déplacer la partie. Export PNG à la résolution de la fenêtre. Disponible seulement en exploration solo.","Free framing around your character without moving the campaign. PNG export at the window resolution. Available only in solo exploration."))
+			button(body,tr_text("Ouvrir le mode photo","Open photo mode"),func():photo_requested.emit())
 		"home":
 			label(tr_text("Laboratoire solo — décors et contenu provisoires.","Solo laboratory — temporary scenery and content."))
 			label(tr_text("Consulte ton sac et ton journal, règle la caméra ou sauvegarde ta progression.

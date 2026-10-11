@@ -8,6 +8,14 @@ func _init(owner: CanvasLayer) -> void:menu=owner
 func t(fr: String,en: String) -> String:return menu.tr_text(fr,en)
 func render() -> void:
  if menu.comfort==null:return
+ menu.label(t("Thème de l'interface","Interface theme"))
+ var palettes:=OptionButton.new();palettes.name="InterfaceTheme"
+ for text: String in [t("Sombre","Dark"),t("Clair","Light"),t("Contraste renforcé","High contrast")]:palettes.add_item(text)
+ palettes.select(["dark","light","contrast"].find(menu.comfort.data.get("theme","dark")));menu.body.add_child(palettes)
+ palettes.item_selected.connect(func(index: int):
+  var error: int=menu.comfort.set_theme(["dark","light","contrast"][index])
+  if error==OK:menu.comfort_changed.emit()
+  else:menu.feedback.text=error_string(error))
  menu.label(t("Lisibilité","Readability"))
  var size:=OptionButton.new();size.name="TextSize"
  for value: int in [16,20,24]:size.add_item(t("Texte : %d px","Text: %d px") % value)

@@ -25,6 +25,8 @@ steps=[(['godot','--headless','--path',str(root/'game'),'--editor','--import','-
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/mega_ui.gd'],'MEGA UI:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/collection_systems.gd'],'COLLECTION SYSTEMS:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/collection_scene.gd'],'COLLECTION SCENE:'),
+       (['godot','--headless','--path',str(root/'game'),'--script','res://tests/presentation_systems.gd'],'PRESENTATION SYSTEMS:'),
+       (['godot','--headless','--path',str(root/'game'),'--script','res://tests/presentation_scene.gd'],'PRESENTATION SCENE:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/comfort_systems.gd'],'COMFORT SYSTEMS:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/comfort_scene.gd'],'COMFORT SCENE:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/tactics_systems.gd'],'TACTICS SYSTEMS: 46 checks, 0 failures'),

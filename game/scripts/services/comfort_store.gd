@@ -5,19 +5,21 @@ const KEYS={"left":[KEY_A,KEY_Q,KEY_LEFT],"right":[KEY_D,KEY_RIGHT],"up":[KEY_W,
 const ACTIONS=["left","right","up","down","interact","menu","bag","journal"]
 const PATH="user://comfort.json"
 var path: String
-var data: Dictionary={"keys":{},"master":80,"music":70,"effects":80,"text_size":16}
+var data: Dictionary={"keys":{},"master":80,"music":70,"effects":80,"text_size":16,"theme":"dark"}
 func _init(file_path: String=PATH) -> void:
  path=file_path
  if FileAccess.file_exists(path):
   var parser:=JSON.new()
   if parser.parse(FileAccess.get_file_as_string(path))==OK and validate(parser.data):
    data=parser.data.duplicate(true)
+   data.theme=parser.data.get("theme","dark")
    for field: String in ["master","music","effects","text_size"]:data[field]=int(data[field])
    for action: String in data.keys:data.keys[action]=int(data.keys[action])
 static func allowed_key(code: int) -> bool:
  return (code>=KEY_A and code<=KEY_Z) or (code>=KEY_0 and code<=KEY_9) or code in [KEY_TAB,KEY_UP,KEY_DOWN,KEY_LEFT,KEY_RIGHT,KEY_SHIFT,KEY_CTRL]
 static func validate(value: Variant) -> bool:
  if not value is Dictionary or not value.get("keys") is Dictionary:return false
+ if value.get("theme","dark") not in ["dark","light","contrast"]:return false
  for field: String in ["master","music","effects"]:
   if not Mon.integer(value.get(field),0,100):return false
  if not Mon.integer(value.get("text_size"),16,24) or int(value.text_size) not in [16,20,24]:return false
@@ -68,3 +70,6 @@ func axis() -> Vector2:
    if action=="up":result.y-=1
    if action=="down":result.y+=1
  return result.limit_length()
+
+func set_theme(value: String) -> Error:
+ var next:=data.duplicate(true);next.theme=value;return update(next)

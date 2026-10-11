@@ -19,7 +19,9 @@ func _initialize() -> void:call_deferred("run")
 func run() -> void:
  var a:=owner();a.team[0].hp=50;a.team[0].moves=[{"id":"surf","pp":3},{"id":"protect","pp":10}]
  a.team[1].hp=20
- var b:=Adapter.new();check(b.begin(a,[Mon.make("raticate",50,900000)]),"Real packaged bridge starts")
+ # Harmless opponent isolates the item/PP boundary from random combat KOs.
+ var opponent: Dictionary=Mon.make("magikarp",100,900000);opponent.moves=[{"id":"splash","pp":40}]
+ var b:=Adapter.new();check(b.begin(a,[opponent]),"Real packaged bridge starts")
  var pid: int=int(b.transport.child.pid)
  var frames: int=0
  while b.busy and frames<200:frames+=1;await create_timer(0.01).timeout

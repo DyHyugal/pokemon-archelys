@@ -31,3 +31,5 @@ Les combats du laboratoire utilisent maintenant [Showdown intégré](docs/develo
 **Dernière livraison : [Windows lab-484ec66](https://github.com/DyHyugal/pokemon-archelys/releases/download/lab-484ec66/Archelys-Laboratoire-Windows.zip)** — aventure proposée, IA et comparatifs FHD réunis ; même EXE, runtime hors ligne et parcours de test dans LIRE-MOI. [CI réussie](https://github.com/DyHyugal/pokemon-archelys/actions/runs/38173375505). Validation Windows de ce lot attendue.
 
 Le [lot groupé aventure/IA/visuels](docs/development/LOT_AVENTURE_IA_VISUELS.md) relie village, sentier, épreuve et épilogue, avec sauvegarde et récompenses uniques. Il enrichit les comparatifs FHD ; scénario et direction artistique proposés restent à approuver. Le LIRE-MOI du ZIP contient le parcours de test complet.
+
+Le [lot personnage/thèmes/photo](docs/development/LOT_PERSONNAGE_THEMES_PHOTO.md) ajoute la personnalisation sauvegardée du mannequin, trois palettes d'interface et l'export PNG avec cadrage. Les assets restent provisoires ; toutes les consignes du parcours regroupé sont dans le LIRE-MOI du ZIP.

@@ -8,6 +8,10 @@ const Mon=preload("res://scripts/domain/pokemon.gd")
 const VisualDistrict=preload("res://scripts/world/visual_district.gd")
 const Comfort=preload("res://scripts/services/comfort_store.gd")
 const LabAudio=preload("res://scripts/services/laboratory_audio.gd")
+const AvatarStyle=preload("res://scripts/world/avatar_style.gd")
+const InterfaceStyle=preload("res://scripts/ui/interface_style.gd")
+const PhotoMode=preload("res://scripts/ui/photo_mode.gd")
+var photo_mode: CanvasLayer
 var comfort:=Comfort.new()
 var lab_audio: Node
 var ui_theme:=Theme.new()
@@ -240,6 +244,12 @@ func _build_ui() -> void:
 	overview.visible=false
 	pause_menu=PauseMenu.new();pause_menu.slots=slots;pause_menu.comfort=comfort;add_child(pause_menu)
 	pause_menu.comfort_changed.connect(_apply_comfort)
+	pause_menu.appearance_changed.connect(_apply_appearance)
+	photo_mode=PhotoMode.new();add_child(photo_mode)
+	photo_mode.finished.connect(func():_open_menu("photo"))
+	pause_menu.photo_requested.connect(func():
+		pause_menu.close()
+		if not photo_mode.start(self):_open_menu("photo"))
 	pause_menu.audio_preview_requested.connect(func(kind: String):
 		if kind=="stop":lab_audio.stop_previews()
 		else:lab_audio.preview(kind))
@@ -270,10 +280,11 @@ func _button(parent: Node, text: String, action: Callable) -> Button:
 	return button
 
 func _apply_comfort() -> void:
+	InterfaceStyle.apply(ui_theme,comfort.data.get("theme","dark"))
 	ui_theme.default_font_size=int(comfort.data.text_size)
 	for type: String in ["Label","Button","CheckButton","CheckBox","OptionButton","ItemList","LineEdit","TextEdit","SpinBox","PopupMenu"]:ui_theme.set_font_size("font_size",type,int(comfort.data.text_size))
 	for key: String in ["normal_font_size","bold_font_size","italics_font_size","bold_italics_font_size","mono_font_size"]:ui_theme.set_font_size(key,"RichTextLabel",int(comfort.data.text_size))
-	for layer_node: Node in [gameplay_layer,pause_menu,battle_panel,cinematic_panel]:
+	for layer_node: Node in [gameplay_layer,pause_menu,battle_panel,cinematic_panel,photo_mode]:
 		for control: Node in layer_node.get_children():
 			if control is Control:control.theme=ui_theme
 	dialogue_hint.text="%s / Entrée • phrase suivante / next line" % comfort.caption("interact")
@@ -290,17 +301,20 @@ func _persist_preferences() -> void:
 		message.text="Préférences : %s" % error_string(error)
 
 func _save() -> void:
+	if photo_mode.active:return
 	if pokemon_battle.active or cinematic.active:return
 	if not multiplayer.is_server():
 		message.text="La sauvegarde de campagne appartient à l’hôte.";return
 	message.text="Sauvegarde : %s" % error_string(slots.write(Session.campaign.snapshot()))
 
 func _load() -> void:
+	if photo_mode.active:return
 	_slot_action("load",slots.active)
 
 func _slot_action(action: String,slot: int) -> void:
+	if photo_mode.active:return
 	if action not in ["save","new","load","auto","backup"]:return
-	if Session.active_network or pokemon_battle.active or cinematic.active or dialogue.active:return
+	if photo_mode.active or Session.active_network or pokemon_battle.active or cinematic.active or dialogue.active:return
 	var value: Dictionary={}
 	if action in ["load","auto","backup"]:
 		value=slots.read(slot,action=="auto",action=="backup")
@@ -316,11 +330,12 @@ func _slot_action(action: String,slot: int) -> void:
 	elif action in ["load","auto","backup"]:
 		Session.campaign.restore(value);Session.campaign.adventure.initialize();message.text="Chargée" if locale=="fr" else "Loaded"
 	else:return
-	Session.submit_axis(Vector2.ZERO);Session.latest=Session.campaign.snapshot();last_walk_position=_local_position()
+	Session.submit_axis(Vector2.ZERO);Session.latest=Session.campaign.snapshot();last_walk_position=_local_position();_apply_appearance()
 	last_auto_tick=Time.get_ticks_msec();auto_baseline=JSON.stringify(Session.campaign.snapshot())
 	_sync_menu();pause_menu.feedback.text=message.text
 
 func _autosave_if_safe(force: bool=false) -> void:
+	if photo_mode.active:return
 	if not slots.autosave or Session.active_network or pokemon_battle.active or battle_panel.visible or cinematic.active or dialogue.active or pause_menu.visible:return
 	var now:=Time.get_ticks_msec()
 	if not force and now-last_auto_tick<60000:return
@@ -332,7 +347,7 @@ func _autosave_if_safe(force: bool=false) -> void:
 	else:message.text="Autosauvegarde / Autosave : %s" % error_string(error)
 
 func _play_scene(id: String,replay: bool=false) -> void:
-	if Session.active_network or pokemon_battle.active or dialogue.active or cinematic.active:return
+	if photo_mode.active or Session.active_network or pokemon_battle.active or dialogue.active or cinematic.active:return
 	var owner: RefCounted=Session.campaign.adventure
 	var entry: Dictionary=Cinematic.library().get(id,{})
 	if entry.is_empty() or (entry.get("location","village")!="any" and owner.exploration.location!=entry.get("location","village")):return
@@ -383,12 +398,17 @@ func _sync_menu() -> void:
 	pause_menu.sync(locale,camera.size,Session.campaign.laboratory)
 
 func _open_menu(page: String = "home") -> void:
+	if photo_mode.active:return
 	if dialogue.active or battle_panel.visible or cinematic.active: return
 	Session.submit_axis(Vector2.ZERO)
 	_sync_menu()
 	pause_menu.open(page)
 
 func _input(event: InputEvent) -> void:
+	if photo_mode.active:
+		if event is InputEventKey and event.keycode==KEY_ESCAPE:
+			photo_mode.handle_key(event);get_viewport().set_input_as_handled()
+		return
 	if cinematic.active:
 		if cinematic_panel.handle_key(event):get_viewport().set_input_as_handled()
 		return
@@ -426,6 +446,7 @@ func _nearest_interaction() -> String:
 	return nearest
 
 func _open_interaction(id: String) -> bool:
+	if photo_mode.active:return false
 	if pokemon_battle.active or pause_menu.visible or cinematic.active:return false
 	if _contextual_action(id):return false
 	if id=="healing":
@@ -443,6 +464,7 @@ func _open_interaction(id: String) -> bool:
 	return dialogue.begin(record,locale)
 
 func _unhandled_key_input(event: InputEvent) -> void:
+	if photo_mode.active:return
 	if cinematic.active or battle_panel.visible or pause_menu.visible or not event is InputEventKey or not event.pressed or event.echo:
 		return
 	if not comfort.confirming(event):
@@ -485,6 +507,7 @@ func _process(_delta: float) -> void:
 			var avatar: Node3D = model.instantiate()
 			add_child(avatar)
 			avatars[id] = avatar
+			AvatarStyle.apply(avatar,Session.campaign.adventure.appearance)
 			var animator: AnimationPlayer = avatar.find_child("AnimationPlayer",true,false)
 			if animator:
 				for animation_name: StringName in animator.get_animation_list():
@@ -511,9 +534,9 @@ func _process(_delta: float) -> void:
 				animator.stop()
 		avatars[id].position = next_position
 	var axis: Vector2=comfort.axis()
-	if battle_panel.visible or pause_menu.visible or dialogue.active or cinematic.active or get_viewport().gui_get_focus_owner() is LineEdit:axis=Vector2.ZERO
+	if photo_mode.active or battle_panel.visible or pause_menu.visible or dialogue.active or cinematic.active or get_viewport().gui_get_focus_owner() is LineEdit:axis=Vector2.ZERO
 	var focus := _local_position()
-	if not cinematic.active:
+	if not cinematic.active and not photo_mode.active:
 		camera.position = focus + CAMERA_OFFSET
 		camera.look_at(focus)
 	interaction_hint.text = (("%s / Entrée : interagir" if locale=="fr" else "%s / Enter: interact") % comfort.caption("interact")) if not _nearest_interaction().is_empty() and not dialogue.active and not pause_menu.visible and not battle_panel.visible and not cinematic.active else ""
@@ -529,6 +552,7 @@ func _process(_delta: float) -> void:
 	status.text="Joueurs %d/%d • étape %d • cap factice %d" % [players.size(),value.get("participants",1),value.get("progress",0),value.get("level_cap",10)]
 
 func _track_encounters(position_now: Vector3) -> void:
+	if photo_mode.active:last_walk_position=position_now;return
 	var distance: float=position_now.distance_to(last_walk_position)
 	last_walk_position=position_now
 	Session.campaign.adventure.nursery.walk(distance,Session.active_network or pause_menu.visible or dialogue.active or battle_panel.visible or cinematic.active or pokemon_battle.active)
@@ -549,7 +573,7 @@ func _begin_trainer(id: String) -> void:
 	_begin_pokemon_battle(opponents,id)
 
 func _begin_pokemon_battle(opponents: Array,trainer_id: String="") -> bool:
-	if dialogue.active or pause_menu.visible or cinematic.active or Session.active_network:return false
+	if photo_mode.active or dialogue.active or pause_menu.visible or cinematic.active or Session.active_network:return false
 	pokemon_battle=PokemonBattle.new()
 	if not pokemon_battle.begin(Session.campaign.adventure,opponents,trainer_id):message.text="Showdown indisponible : vérifier le dossier complet du jeu / Showdown unavailable: keep the complete game folder";return false
 	Session.submit_axis(Vector2.ZERO)
@@ -569,14 +593,15 @@ func _battle_finished(outcome: String) -> void:
 	if not Session.campaign.adventure.pending.is_empty():_open_menu("choices")
 
 func _travel(target: String,flight: bool=false) -> void:
-	if Session.active_network or pokemon_battle.active or cinematic.active or dialogue.active:return
+	if photo_mode.active or Session.active_network or pokemon_battle.active or cinematic.active or dialogue.active:return
 	if not Session.campaign.adventure.travel(target,flight):
 		message.text="Destination fermée : consulter le menu Aventure / Destination locked: check Adventure menu";return
 	Session.campaign.players[1].position=[0.0,0.0,5.0]
-	Session.submit_axis(Vector2.ZERO);Session.latest=Session.campaign.snapshot();last_walk_position=_local_position()
+	Session.submit_axis(Vector2.ZERO);Session.latest=Session.campaign.snapshot();last_walk_position=_local_position();_apply_appearance()
 	if pause_menu.visible:pause_menu.close()
 	_rebuild_location()
 func _contextual_action(id: String) -> bool:
+	if photo_mode.active:return false
 	var owner: RefCounted=Session.campaign.adventure
 	var location: String=owner.exploration.location
 	match id:
@@ -615,6 +640,7 @@ func _contextual_action(id: String) -> bool:
 		_:return false
 	Session.submit_axis(Vector2.ZERO);return true
 func _rebuild_location() -> void:
+	_apply_appearance()
 	world_geometry.free();world_geometry=Node3D.new();add_child(world_geometry)
 	displayed_location=Session.campaign.adventure.exploration.location
 	if displayed_location=="village":
@@ -678,3 +704,6 @@ func _start_tactics_test() -> void:
 func _stop_tactics_test() -> void:
 	if pokemon_battle.active and pokemon_battle.get("sandbox")==true:
 		pokemon_battle.finish("escaped");battle_panel.event_index=pokemon_battle.events.size();battle_panel.render()
+
+func _apply_appearance() -> void:
+	for avatar: Node3D in avatars.values():AvatarStyle.apply(avatar,Session.campaign.adventure.appearance)

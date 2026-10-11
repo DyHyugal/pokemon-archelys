@@ -1,4 +1,4 @@
-ARCHÉLYS — AVENTURE / COMBAT / VISUELS / OUVERTURE PROPOSÉE
+ARCHÉLYS — PERSONNAGE / THÈMES / PHOTO + AVENTURE
 Version : lab-{short_commit}
 Commit : {commit}
 
@@ -9,6 +9,13 @@ nécessaire. Nom EXE fixe, binaire officiel Godot inchangé ; non signé par nou
 En cas de blocage, noter le message et la protection sans les désactiver.
 
 CE QUI CHANGE
+Nouveaux menus Personnage et Photo, thèmes Sombre/Clair/Contraste dans Paramètres.
+Peau/haut/pantalon/cheveux/visage d'essai changent le mannequin et sont sauvegardés
+avec la campagne. Aucun modèle ou boutique de vêtements définitifs.
+Le thème reste une préférence locale, indépendant de la partie chargée.
+Photo permet de cadrer sans se déplacer puis d'exporter un vrai PNG sans UI.
+La résolution exportée est celle de la fenêtre. Aucun envoi sur Internet.
+
 Menu Aventure, prologue FR/EN, sentier et épreuve reliés au village, balise,
 boss Showdown, épilogue, progression et récompenses persistantes. L'ouverture
 est une proposition jouable, pas le scénario ou la première île finalisés.
@@ -22,6 +29,32 @@ Catalogue22 espèces/43 attaques inchangé. Œufs cadeaux/fossiles conservés.
 Reproduction retirée ; multi/raids/Nuzlocke/Soul-link non prioritaires.
 
 PARCOURS DE TEST GROUPÉ
+
+NOUVEAUTÉS PERSONNAGE / THÈMES / PHOTO
+Menu → Personnage : changer peau, haut/pantalon, coiffure/couleur et visage.
+Fermer pour voir le mannequin ; Photo permet aussi de l'observer de près.
+Sauvegarder puis charger : même apparence, équipe/sac/objectifs conservés.
+Une nouvelle campagne conserve le mannequin initial ; les autres slots gardent
+leurs choix. Attention : ne pas écraser un slot précieux en testant ce point.
+Ces silhouettes sont des fixtures, pas le héros final.
+
+Paramètres → Thème : essayer Sombre, Clair et Contraste. Vérifier lisibilité
+sur Sac, Équipe/PC, Journal, dialogues et combat, puis relancer le jeu : thème,
+langue, touches et volumes conservés. Charger une autre partie ne doit pas
+changer ce thème. Les deux colonnes du menu ont leur barre de défilement :
+Personnage et Photo sont en bas de la liste de gauche.
+
+Menu → Photo → Ouvrir : régler distance/angle/hauteur avec les curseurs.
+Le personnage reste sur place, sans interactions ni rencontres. Enregistrer
+une photo PNG : elle doit correspondre au cadrage sans interface/étiquettes.
+Prendre une deuxième photo : la première reste disponible. Ouvrir le dossier
+des photos depuis le bouton ; le chemin est aussi affiché après export.
+Sous Windows il se trouve dans les données utilisateur Godot du laboratoire,
+pas dans le ZIP extrait. Échap ou Retour au jeu : caméra/zoom restaurés et
+retour au menu Photo. Le décor animé n'est pas gelé. Vérifier FR puis EN.
+PNG à la résolution courante, pas nécessairement FHD si la fenêtre est plus petite.
+
+PARCOURS AVENTURE DU LOT PRÉCÉDENT À TESTER AUSSI
 Garder une copie des anciennes sauvegardes avant d'écrire avec cette version.
 Charger normalement : équipe/PC/sac et préférences langue/caméra conservés.
 Les anciennes campagnes démarrent le nouveau parcours sans drapeaux acquis.
@@ -67,7 +100,8 @@ conservés. Au Centre, les cadeaux de fossiles et leur restauration restent
 uniques/transactionnels : si équipe/PC pleins, aucun fossile perdu.
 
 RETOUR UTILE
-Version lab-{short_commit} ; lancement ; parcours prologue→sentier→balise→boss
+Version lab-{short_commit} ; personnage conservé ; thèmes lisibles ; photo PNG
+et retour caméra ; lancement ; parcours prologue→sentier→balise→boss
 →épilogue ; sauvegarde à mi-parcours et récompense unique ; combat/Méga ;
 fluidité et préférence graphique. Un seul retour groupé suffit.
 Pour un problème : lieu, action, attendu, observé ; pas besoin de tester les

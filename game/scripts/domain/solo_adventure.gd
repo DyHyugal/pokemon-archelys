@@ -4,6 +4,8 @@ const Catalog=preload("res://scripts/domain/pokemon_catalog.gd")
 const Exploration=preload("res://scripts/domain/exploration.gd")
 const Records=preload("res://scripts/domain/journey_records.gd")
 const Journey=preload("res://scripts/domain/journey.gd")
+const Appearance=preload("res://scripts/domain/appearance.gd")
+var appearance: Dictionary=Appearance.DEFAULT.duplicate()
 var journey:=Journey.new()
 const Nursery=preload("res://scripts/domain/nursery.gd")
 var nursery:=Nursery.new()
@@ -139,10 +141,11 @@ func wild(level: int=-1, species_id: String="") -> Dictionary:
 	mon.nature=Mon.NATURES[rng.randi_range(0,24)];mon.hp=Mon.stats(mon).hp
 	return mon
 func snapshot() -> Dictionary:
-	return {"journey":journey.snapshot(),"fossil_samples_received":fossil_samples_received,"nursery":nursery.snapshot(),"records":records.snapshot(),"team":team.duplicate(true),"boxes":boxes.duplicate(true),"bag":bag.duplicate(true),"next_uid":next_uid,"cap":cap,"money":money,"victories":victories.duplicate(true),"pending":pending.duplicate(true),"initialized":initialized,"exploration":exploration.snapshot()}
+	return {"appearance":appearance.duplicate(),"journey":journey.snapshot(),"fossil_samples_received":fossil_samples_received,"nursery":nursery.snapshot(),"records":records.snapshot(),"team":team.duplicate(true),"boxes":boxes.duplicate(true),"bag":bag.duplicate(true),"next_uid":next_uid,"cap":cap,"money":money,"victories":victories.duplicate(true),"pending":pending.duplicate(true),"initialized":initialized,"exploration":exploration.snapshot()}
 static func validate(value: Variant) -> bool:
 	if not value is Dictionary:return false
 	if value.has("journey") and not Journey.validate(value.journey):return false
+	if value.has("appearance") and not Appearance.validate(value.appearance):return false
 	if value.has("fossil_samples_received") and not value.fossil_samples_received is bool:return false
 	if value.has("nursery") and not Nursery.validate(value.nursery):return false
 	if value.has("records") and not Records.validate(value.records):return false
@@ -187,6 +190,7 @@ static func validate(value: Variant) -> bool:
 	return true
 func restore(value: Dictionary) -> bool:
 	if not validate(value):return false
+	appearance=Appearance.normalized(value.appearance) if value.has("appearance") else Appearance.DEFAULT.duplicate()
 	journey=Journey.new()
 	if value.has("journey"):journey.restore(value.journey)
 	fossil_samples_received=value.get("fossil_samples_received",false)
@@ -266,3 +270,9 @@ func grant_mega_kit() -> bool:
 			equip(int(mon.uid),stone)
 	for stone: String in ["venusaurite","charizardite-x","charizardite-y","blastoisinite"]:bag[stone]=maxi(1,int(bag.get(stone,0)))
 	return true
+
+func set_appearance(field: String,index: int) -> bool:
+	if in_battle or not Appearance.DEFAULT.has(field):return false
+	var next:=appearance.duplicate();next[field]=index
+	if not Appearance.validate(next):return false
+	appearance=next;return true

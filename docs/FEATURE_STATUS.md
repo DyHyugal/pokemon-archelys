@@ -122,3 +122,13 @@ Livraison fossiles : [lab-1830ec4](https://github.com/DyHyugal/pokemon-archelys/
 ## Livraison groupée D61
 
 Combat/IA, parcours solo et maquette d'ouverture : développés et tests locaux réussis. Comparatifs FHD originaux actualisés, sentier ajouté ; direction artistique non validée. Mesure llvmpipe logiciel5,3fps à1920×1080, ne décrit pas un GPU joueur. Preuves et limites : [rapport](development/LOT_AVENTURE_IA_VISUELS.md). Dernière validation owner D52 ; aucun nouveau retour Windows acquis.
+
+## Livraison groupée D62 — personnage, interface, photo
+
+| Fonction | État | Preuve / limite |
+|---|---|---|
+| Personnage personnalisé | PROTOTYPE ORIGINAL TESTÉ | Peau/haut/pantalon/couleur et forme de cheveux/visage, sélection par campagne ; rig et matériaux réels ; modèle/shops finaux non produits |
+| Thèmes d'interface | LOCAL DÉVELOPPÉ ET TESTÉ | Sombre/clair/contraste, menus/dialogues/combat/photo, migration des préférences sans perte des touches/volumes ; aucune certification accessibilité |
+| Photo | EXPORT PNG DÉVELOPPÉ ET TESTÉ | Cadrage autour du héros, résolution courante, UI/étiquettes masquées, caméra restaurée ; fichier réellement rendu sous GL Linux |
+
+D61 conservé dans cette version et toujours à valider Windows. D52 reste le dernier retour propriétaire reçu. Rapport : [lot personnage/thèmes/photo](development/LOT_PERSONNAGE_THEMES_PHOTO.md).

@@ -114,3 +114,9 @@ Ordre recommandé :1→2→3→4. Des préparatifs de l'art peuvent accompagner 
 Combat/IA et affichage → route persistante et règles de progression → enrichissement/rendus FHD → ouverture proposée FR/EN. Ces quatre chantiers sont développés et vérifiés techniquement dans un seul build. La condition artistique/narrative du lot4 demeure : la production de la vraie première île attend l'approbation ; le parcours livré est sa maquette jouable. Aucun développement réseau/défis/reproduction.
 
 Après ce build : recueillir un retour groupé Windows sur parcours/sauvegarde/combats et une critique des comparatifs ; corriger les écarts observés avant extension. Choisir ensuite style, espèces/assets et dialogues de l'ouverture, puis remplacer progressivement les fixtures. Voir LOT_AVENTURE_IA_VISUELS.md. Ne pas annoncer le moteur complet ou la fidélité exhaustive sur la seule base de ces tests.
+
+## D62 — lot suivant indépendant des choix de production
+
+Personnage de laboratoire et persistance → thèmes d'interface et migration de préférences → photo/cadrage/export réel. Un ZIP englobe ces nouveautés et conserve le parcours D61 à tester demain. Aucun besoin de produire de nouveaux modèles Pokémon ou d'îles pour vérifier ce socle. Boutiques de vêtements et assets finaux attendent la sélection artistique. Les demandes photo/personnalisation existent déjà ; aucun nouveau mini-jeu ou changement d'économie final.
+
+Suites après retour groupé : corriger le parcours et la présentation observés ; intégrer les arbitrages de style/casting/catalogue nécessaires à la vraie première tranche, puis produire ses assets selon le processus comparatif approuvé. Pas de démarrage automatique des modes reportés.
