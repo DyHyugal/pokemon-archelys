@@ -1,0 +1,696 @@
+{
+  "Tes réponses initiales": [
+    [
+      "ID",
+      "QUESTION INITIALE",
+      "TA RÉPONSE INITIALE",
+      "THÈME"
+    ],
+    [
+      "A1",
+      "Réinterprétation reconnaissable d’Alola, ou nouvelle région conservant principalement les quatre îles et le parcours ?",
+      "Nouvelle région un peu comme Hisui et Sinnoh, les histoires n'auront rien à voir mais y'aura des clin d'œil ! Je sais pas encore si ça serait comme hisui et sinnoh ou si ça serait une version miroir d'alola",
+      "Ambition et périmètre"
+    ],
+    [
+      "A2",
+      "Quelles sont tes trois priorités absolues : graphismes, scénario, exploration, combats difficiles, collection, autre ?",
+      "je dirais graphismes, scénario et combats difficiles si je devais choisir mais tout est important ! Pour l'IA des combats on utilisera l'ia qu'on aura peaufiné avec les retours playtest de tactica",
+      "Ambition et périmètre"
+    ],
+    [
+      "A3",
+      "Quelle limite fixer au temps, au budget et aux abonnements ? Préfères-tu réduire le contenu plutôt que prolonger le projet ?",
+      "Y'a pas de date limite, je veux aller au bout de ce projet, le budget ça sera les quota de l'abonnement Plus dont je dispose actuellement et je préfère prolonger le projet",
+      "Ambition et périmètre"
+    ],
+    [
+      "A4",
+      "Quelle durée viser pour l’histoire principale et le postgame ?",
+      "je dirais comme ça 15h pour un joueur qui prend le temps d'explorer un peu et de se faire une vrai team etc mais pas full explo, 20h ou plus pour une personne qui prend son temps et 10-12h pour quelqu'un qui rush pour la partie principale et le post-game on s'en fou en soit je dirais si il rajoute 5~10h c'est nickel mais bon je sais pas trop ce que ça représente exactement",
+      "Ambition et périmètre"
+    ],
+    [
+      "A5",
+      "La V1 doit-elle contenir toute la région, ou acceptes-tu d’abord une démo autonome sur la première île ?",
+      "on va y'aller par étapes, le but c'est d'avoir un premier jet assez rapidement pour tester juste les design pour valider les choix graphique et la direction  artistique + les fonctionnements basique du jeu (combats, échanges, intéractions etc..)",
+      "Ambition et périmètre"
+    ],
+    [
+      "B1",
+      "Windows uniquement au départ, ou Linux/macOS également ?",
+      "Windows principalement, une fois la version terminé on la rendra disponible pour les autres distrib Linux/MacOS/AndroidOS",
+      "Plateforme et outils"
+    ],
+    [
+      "B2",
+      "Quelle configuration PC minimale supporter ? Quelle est ta propre configuration si elle sert de référence ?",
+      "Y'a pas de configuration minimale prédéfini, l'objectif c'est pas de dire \"si t'as pas une 5080Ti et un ThreadRipper tu peux pas jouer\" mais plutôt développer le jeu pour qu'un pc moyen genre i5 16Go ram et une carte graphique dédié même pas forcément très puissante suffise à jouer au jeu sans que y'ai full freeze/crash etc",
+      "Plateforme et outils"
+    ],
+    [
+      "B3",
+      "Visons-nous 1080p à 60 images/s sur cette configuration, avec des réglages graphiques réduits possibles ?",
+      "Oui 60FPS c'est l'objectif, si c'est une faible charge de travail alors intégrer la possibilité d'avoir 120/240 fps serait un plus mais pas spécialement nécessaire",
+      "Plateforme et outils"
+    ],
+    [
+      "B4",
+      "Acceptes-tu Godot + Blender comme premier choix à tester ? Les outils doivent-ils tous être gratuits ?",
+      "Je ne connais pas ces outils mais on peu faire un test et voir ce que ça donne, par contre je veux pas me lancer sur une solution et au finale elle n'est pas adapté mais on s'en rend compte quand on a déjà fait la moitié du projet genre après 3 ou 4 mois de projet déjà",
+      "Plateforme et outils"
+    ],
+    [
+      "B5",
+      "Veux-tu seulement utiliser le jeu, ou aussi éditer toi-même maps, dialogues, équipes et événements dans des outils simples ?",
+      "non je vais pas pas intervenir techniquement sur la conception du jeu, je serais seulement là pour donner les directives et les choix finaux",
+      "Plateforme et outils"
+    ],
+    [
+      "C1",
+      "Quels jeux sont tes références visuelles précises ? Choisis idéalement une référence pour les décors et une pour les personnages.",
+      "Graphiquement j'aime bien DEPS et ZA, évidemment les gros problèmes où game freak on fait les crevards genre les fenêtres des immeubles dans ZA faut corriger\nPour les personnages plutôt ZA vu que y'a beaucoup de personnalisation",
+      "Direction artistique et caméra"
+    ],
+    [
+      "C2",
+      "Personnages chibi, proportions proches d’USUL, ou proportions plus naturelles ?",
+      "proches d'USUL voir même les perso d'USUL qu'on customisera plus tard",
+      "Direction artistique et caméra"
+    ],
+    [
+      "C3",
+      "Caméra contrôlée comme USUL, rotation limitée, ou caméra libre ? Recommandation à confirmer : caméra contrôlée.",
+      "caméra controlée mais je connais pas vraiment la différence et ce que ça implique",
+      "Direction artistique et caméra"
+    ],
+    [
+      "C4",
+      "Quel rendu : couleurs franches et cel-shading, matériaux plus doux, ou mélange précis à définir ?",
+      "globalement j'aimerais un jeu FHD avec des design/couleurs qui font très récent, sur le technique je ne sais pas trop quoi choisir j'ai pas d'opinion sur ça ! Par contre pour les textes box, design des menus etc j'aimerais que les joueurs puisse choisir plusieurs choix de colorimétries (noir/rouge/antracite ou blanc/bleu/gris ou vert/noir ou autre proposition que tu peux me faire)",
+      "Direction artistique et caméra"
+    ],
+    [
+      "C5",
+      "Quelles finitions indispensables : éclairage nocturne, météo, eau animée, végétation en mouvement, expressions faciales, personnalisation du héros ?",
+      "oui tout ça c'est bien, après on va pas faire un studio de développement de jeu juste toi et moi mdr mais bon si c'est faisable sans que ça prenne 3 ans alors ça me va",
+      "Direction artistique et caméra"
+    ],
+    [
+      "D1",
+      "As-tu déjà des modèles, animations ou bibliothèques de décors ? Sous quels formats et avec quelles conditions d’utilisation ?",
+      "Non pour l'instant je n'ai que des idées, par contre j'ai aucun problème avec le fait de récupérer des trucs déjà existant qu'on adapte a notre sauce après si c'est libre de droits (après vu qu'on mettra pas le jeu en vente y'a pas de problème normalement)",
+      "Assets et production graphique"
+    ],
+    [
+      "D2",
+      "Quelle part du travail graphique peux-tu effectuer ou financer : retouches, modélisation, animation, validation uniquement ?",
+      "Je pense uniquement la validation, après pour la conception/modélisation on peu demander à ChatGPT de nous faire les premiers plans afin de dégrossir le projet et surtout je perd pas une rotation de quota pour arriver a avoir une asset comme je la voulais",
+      "Assets et production graphique"
+    ],
+    [
+      "D3",
+      "Acceptes-tu d’harmoniser les assets existants pour éviter un mélange visible de styles ?",
+      "tu me dis ce qui est plus facile pour toi et ce qui prend le moins de temps en dépit de la qualité, mais j'aimerais globalement changer des assets en fonction de la disposition etc + ajouter des assets + supprimer d'autres assets donc je pense que reprendre les assets d'alola directement ça serait pas le plus opti",
+      "Assets et production graphique"
+    ],
+    [
+      "D4",
+      "Combien de Fakemons réellement nouveaux et de formes delta envisages-tu, séparément ?",
+      "j'ai pas d'idée mais je pense 50/100 environ sur les 500 en comptant toutes les familles et leurs stades d'évolutions",
+      "Assets et production graphique"
+    ],
+    [
+      "D5",
+      "Cinématiques avec personnages animés dans le moteur, portraits illustrés, ou combinaison ? Souhaites-tu des voix ?",
+      "non pas de voix par contre des sons oui, si pas trop lourd on peu intégrer quelques cinématique",
+      "Assets et production graphique"
+    ],
+    [
+      "E1",
+      "Conservons-nous quatre îles principales et une structure équivalente au Paradis Æther ?",
+      "Pour l'instant on garde 4 iles + paradis aether, on verra plus tard si j'ai besoin/envie d'en rajouter d'autres sur d'autres thématiques",
+      "Région et exploration"
+    ],
+    [
+      "E2",
+      "Quelle identité pour chacune des quatre îles ? La jungle et le volcan sont-ils sur la même île ?",
+      "Je n'ai pas encore toutes les idées pour ça.. Je pensais faire :\nune ile volcanique + tropicale comme akala mais en version moins enfantine avec un vrai volcan et une vrai foret tropicale\nune ile mystique (type fée, type tenebr, type psy et spectre)\nune ile hivernale avec un pic enneigé\nune ile draconique avec des montagnes et des climats propre à chaque type de dragons (tempête de sable/neige, tourbillon/typhon, volcan, etc...) plutot sous forme d'une ile sacrée et en plusieurs parti (un peu comme punk hasard dans OneP iece) et chaque parti correspond à un biome et chaque biome devient accessible au fur et a mesure (finir une ile pour débloqué un biome et les biome scale pour être au dessus des derniers combats de l'ile qui te permet de débloquer ce biome) + les personnages présent sur cette ile doivent être un peu rustre et simple en terme de réflexion/logique (exemple les bestians/homme-bêtes dans les animes)\nune ile high-tech avec des installations electrique un peu partout style ville futuriste de Noir2 (ou blanc 2 jsp)",
+      "Région et exploration"
+    ],
+    [
+      "E3",
+      "Quels lieux d’Alola veux-tu absolument conserver, transformer ou supprimer ?",
+      "globalement je veux changer je pense 90% du jeu, on garde uniquement le squelette des iles et des villes en partie",
+      "Région et exploration"
+    ],
+    [
+      "E4",
+      "Parcours entre les îles imposé avec liberté locale, ou certaines îles accessibles dans plusieurs ordres ?",
+      "imposé et liberté locale sinon ça va etre trop chiant et bordélique surtout si y'a la partie multijoueur a prendre en compte dans la progression",
+      "Région et exploration"
+    ],
+    [
+      "E5",
+      "Quels déplacements : montures, bateau, Surf, plongée, vol depuis la carte, escalade ? Obstacles dépendant uniquement de la progression scénaristique ?",
+      "globalement il faudrait des blocages par les prochaines cs disponible + blocage scénaristique ! Les cs que je veux impérativement :\nforce\nescalade\nsurf\nvol\neclate roc\ncoupe\nplongé serait bien si on intègre une sortie d'ile sous marine mais je ne sais pas si ça va pas rajouter bcp de boulot vu qu'on a pas de base pour ça (sauf si on peu intégrer la partie sous marine des remix ROSA",
+      "Région et exploration"
+    ],
+    [
+      "F1",
+      "Monde Pokémon officiel, univers alternatif, ou univers indépendant utilisant les Pokémon ?",
+      "plutôt type monde pokémon officiel mais je pense plutôt à une histoire comme insurgence, le héro se retrouve forcé à rejoindre une quête de pouvoir pour affronter les forces obscures => idéalement je garderais le paradi aether pour en faire le repaire d'une team rainbow rocket qui controlerait déjà le monde et personne n'a la force pour ce soulever et faire tomber cette team qui serait des expert pokémon (genre une team qui team rocket qui a appris a jouer au jeu mdr",
+      "Histoire principale"
+    ],
+    [
+      "F2",
+      "Personnages d’Alola réécrits, ou nouvelle distribution ?",
+      "nouvelle distribution",
+      "Histoire principale"
+    ],
+    [
+      "F3",
+      "Quel conflit central : exploitation des îles, déséquilibre écologique, traditions contre modernisation, recherches dangereuses, dimensions, autre ?",
+      "Comme dit plus haut, la team des méchants (surement un union des enfants des grands dirigeants des précédentes teams genre rainbow rocket mais avec les enfants qui sont devenu des maitres pokémons dans chacune de leur régions et sont venu conquérir ensemble la nouvelle région)",
+      "Histoire principale"
+    ],
+    [
+      "F4",
+      "Quelle place pour les gardiens, légendaires, Ultra-Chimères et Necrozma : conservés, remplacés ou absents ?",
+      "remplacés par d'autre légendaires, on se basera sur la mythologie et l'ethymologie des pokémons légendaire pour en faire les gardiens finaux des iles (zekrom et miraidon par exemple pour l'ile futuriste avec l'électricité etc",
+      "Histoire principale"
+    ],
+    [
+      "F5",
+      "Quelle tonalité : aventure lumineuse avec moments graves, mystère, récit plus sombre ? Sujets à éviter ?",
+      "récit plus sombre vue que c'est la team RR qui a le contrôle de la région",
+      "Histoire principale"
+    ],
+    [
+      "G1",
+      "Qui est le héros : habitant, nouvel arrivant, étudiant, apprenti chercheur ? Personnage muet ou doté de dialogues ?",
+      "habitant avec un père qui s'est fait capturer ou même tuer par la team RR, doté de dialogues mais pas des masses, un peu comme red mais qui se contente de l'essentiel",
+      "Héros, antagonistes et mise en scène"
+    ],
+    [
+      "G2",
+      "Combien de rivaux et compagnons, et quels rôles au-delà des combats ?",
+      "j'avais une idée de faire 3 rivaux, leurs rôle serait d'accompagner le héro dans sa quête pour faire démanteler la team RR",
+      "Héros, antagonistes et mise en scène"
+    ],
+    [
+      "G3",
+      "Organisation ennemie visible dès le départ, antagoniste progressivement révélé, ou plusieurs groupes en conflit ?",
+      "progressivement révélé",
+      "Héros, antagonistes et mise en scène"
+    ],
+    [
+      "G4",
+      "Quelles motivations rendent l’antagoniste crédible, et quelles conséquences concrètes ses actions ont-elles sur les îles ?",
+      "la team RR aurait le contrôle des Iles sauf l'ile draconique qui est trop \"réserve naturelle surpuissante\" pour être controller et l'ile sacré sur laquelle la team RR cherche désespérément a atteindre (surement une ile céleste où se déroulera l'end game)",
+      "Héros, antagonistes et mise en scène"
+    ],
+    [
+      "G5",
+      "Histoire linéaire ou choix ayant des conséquences ? Une seule fin ? Scènes passables et rejouables ? Journal des objectifs ?",
+      "c'est le premier fangame alors restont sobre sur le developpement, on part sur du linéaire avec cinématiques rejouable une fois débloqué mais pas les scènes ! Les scènes sont passable sauf celle qui apporte un élément clef (genre la prochaine destination etc pour éviter d'etre bloqué par exemple)\noui un journal des objectifs qui te dis où aller et quoi faire peu être bien",
+      "Héros, antagonistes et mise en scène"
+    ],
+    [
+      "H1",
+      "Conservons-nous Capitaines, épreuves, Dominants et grandes épreuves, ou un système hybride avec des arènes ?",
+      "Système hybride plutôt avec arènes et épreuves + 8 autres arènes réparti dans l'ultra dimension",
+      "Tour des Îles et progression"
+    ],
+    [
+      "H2",
+      "Combien d’épreuves et de boss principaux ? Une épreuve par type ou seulement celles utiles au parcours ?",
+      "je dirais autant d'élément qu'il y a de biome par ile, après définir exactement quel type d'épreuve pour chaque biome c'est trop avancé je pense",
+      "Tour des Îles et progression"
+    ],
+    [
+      "H3",
+      "Épreuves avec énigmes, exploration, combats spéciaux ou mélange ? Quels minijeux éviter ?",
+      "pour l'instant on peu envisager un peu de tout mais si y'a des trucs relou je te dirais et on remplacera",
+      "Tour des Îles et progression"
+    ],
+    [
+      "H4",
+      "Gardons-nous une Ligue fondée pendant l’aventure et la défense du titre après la victoire ?",
+      "pas de ligue à proprement parler mais plutôt le \"défi divin\" qui te fais enchainer (avec un temps pour se soigner entre chaque combat, on est pas des barbares non plus !) et enfin le \"dieu de l'ile sacrée\"",
+      "Tour des Îles et progression"
+    ],
+    [
+      "H5",
+      "Quels acquis de Tactica reprendre explicitement : caps, règles d’évolution, accès aux objets compétitifs, soins, déplacements, autres ?",
+      "Je pense qu'on peu reprendre la majeure partie des améliorations/features qu'on a développé pour tactica hormis la partie graphique",
+      "Tour des Îles et progression"
+    ],
+    [
+      "I1",
+      "Quelle génération de référence pour règles, statistiques, talents et attaques ? Modifications maison ?",
+      "base toi sur la 9G et je modifierais ensuite au besoin",
+      "Combats et difficulté"
+    ],
+    [
+      "I2",
+      "Quelles mécaniques spéciales : Méga-Évolution, capacités Z, Dynamax, Téracristallisation ? Peuvent-elles coexister dans un combat ?",
+      "juste la mega",
+      "Combats et difficulté"
+    ],
+    [
+      "I3",
+      "Tour par tour classique ? Quelle place pour Duo, Dominants accompagnés et affrontements à plusieurs phases ?",
+      "tour par tour classique, des combats duo de manière ponctuelle pour l'aventure en solo et beaucoups plus pour la partie multi ! Idéalement j'aimerais que le jeu se joue à 3 par exemple si y'a 3 sbires de la team RR à affronter, chacun en prend un) les combats en mode multi remplacent les combats avec les rivaux en renfort\noui on pourra mettre des dominants accompagnés et des affrontements phasé par exemple pour le légendaire de fin d'ile",
+      "Combats et difficulté"
+    ],
+    [
+      "I4",
+      "Quels modes de difficulté ? Quels changements : équipes, objets, IA, règles ou niveaux ? Quelles informations l’IA peut-elle connaître ?",
+      "globalement le même paramétrage que tactica => on améliorera l'IA avec ce qu'on peu sans la rendre omniscient",
+      "Combats et difficulté"
+    ],
+    [
+      "I5",
+      "Quels réglages : changement gratuit après un KO, objets du sac, limites de soins, animations, accélération et validation manuelle des textes ?",
+      "on laisse le style défini et le style \"choix\" comme dans les jeux classique, le healing pareil, l'animation pareil etc.. Globalement tout ça devrait être choississable dans les options",
+      "Combats et difficulté"
+    ],
+    [
+      "J1",
+      "Les « 500 » comptent-ils les espèces ou chaque forme séparément ? Quel maximum de modèles distincts ?",
+      "toutes les formes de la famille sont comprise, les formes méga ne sont pas comprise car ce ne sont pas des espèces a part entières",
+      "Pokémon et collection"
+    ],
+    [
+      "J2",
+      "Quels starters et générations représenter ? Espèces obligatoires ou exclues ?",
+      "ça je ferais le pokédex moi-même et le choix des starter aussi, je te dirais qui mettre en starter et dans le pokedex puis tu fera la répartition par zone avec les mêmes règles que pour tactica",
+      "Pokémon et collection"
+    ],
+    [
+      "J3",
+      "Que signifie une forme delta : type, apparence, statistiques, talent, évolution, histoire ? Forme régionale ou catégorie propre au jeu ?",
+      "une forme delta comme dans plusieurs fangames, représente un pokémon existant mais avec un type changé (par exemple la ligné de dracaufeu dans insurgence devient dragron spectre) et on pourra les classé sous \"forme régionale\"",
+      "Pokémon et collection"
+    ],
+    [
+      "J4",
+      "Quelles règles d’évolution et rencontres sauvages ? Échanges remplacés par un objet ? Stade toujours légal au niveau rencontré ?",
+      "oui autant éviter au maximum la dépendance sur le mode multijoueur, globalement les mêmes règles que pour tactica",
+      "Pokémon et collection"
+    ],
+    [
+      "J5",
+      "Quelles fonctions : reproduction, chromatiques, fossiles, talents cachés, légendaires, Pokédex avec indices de localisation ?",
+      "pas compris la question, toutes ces fonctionnalitées doivent être disponible et les légendaires ne sont accéssible qu'en post game parce que sinon trop broken",
+      "Pokémon et collection"
+    ],
+    [
+      "K1",
+      "Comment gérer expérience, partage d’EXP, caps, entraînement et risque de devoir farmer ?",
+      "on réintègre les pnj développé pour tactica et on donne de l'expérience en fonction du level et du stade d'évolution + de l'espèce mise KO ou capturé, le level cap ça sera comme tactica",
+      "Économie et confort de jeu"
+    ],
+    [
+      "K2",
+      "IV/EV/natures conservés ? Quand peut-on les consulter et les modifier ?",
+      "définissable dans les options comme tactica, consultable depuis le summury et modifiable (avec soustraction d'IV par exemple pour les pokémons sous distortion ou pour les puissances cachées)",
+      "Économie et confort de jeu"
+    ],
+    [
+      "K3",
+      "Quelle disponibilité pour Balls, CT, objets tenus et outils compétitifs ? CT réutilisables et rappel de capacités gratuit ?",
+      "globalement la meme courbe de progression qu'alola + pnj tactica\noui ct réutilisable et rappel de capacités gratuit",
+      "Économie et confort de jeu"
+    ],
+    [
+      "K4",
+      "Conséquences d’une défaite : argent perdu, retour au dernier soin, autre ? Modes optionnels de type Nuzlocke ?",
+      "argent perdu, retour au dernier centre pokémon, le nuzlocke sera a intégrer aussi",
+      "Économie et confort de jeu"
+    ],
+    [
+      "K5",
+      "Quels conforts : accès aux boîtes, plusieurs sauvegardes, autosave, remappage des commandes, taille des textes, audio et accessibilité ?",
+      "oui tout ça c'est bien",
+      "Économie et confort de jeu"
+    ],
+    [
+      "L1",
+      "Quel postgame dès la V1 : arc scénaristique, revanches, combats mystère, facility de combat, exploration supplémentaire ?",
+      "scénaristique, revanches, combats mystère et tour de combat + exploration de l'ultra monde",
+      "Postgame, fonctions annexes et livraison"
+    ],
+    [
+      "L2",
+      "Jeu entièrement solo et hors ligne ? Échanges, combats en ligne et coopération augmenteraient fortement le périmètre.",
+      "idéalement j'aimerais qu'il soit en jouable en solo et en multijoueur avec un système d'invitation et l'histoire qui se base sur l'avancé de la save avec des gardes-fou pour pas qu'on puisse bypass une partie de l'histoire en allant sur une save multi puis retourner sur sa save solo ! Si c'est possible, un système à la palworld pour faire son propre serveur  sur le pc de celui qui veux hébergé ça serait top\nle multi apporterait la possibilité de voir en temps réel les combats des autres (pas comme violet/ecarlate mais plutot avoir un mode spec avec la même vision que si on jouait le combat en voyant les choix du joueur et le déroulement du combat), possibilité de remplacer un rival / des rivaux pendant des combats scénaristiques (exemple René aux colonnes lance) et surement d'autres features si d'autres feature semblent intéressante hésite pas a me faire des propositions\nen gros j'aimerais que ce soit la même histoire mais déroulement différent en fonction de si le jeu se passe à 2 ou 3 ou en solo, les combats duo (tous) devrais pouvoir se faire avec 2 joueurs contre les deux CPU\nil faudrait également pouvoir intéragir avec les joueurs de la parti multi donc il faut que les joueurs puissent se voir en permanence sauf \"instance solo\" quand scénaristiquement parlant c'est pas possible de laisser du multi mais en gros l'idée c'est vraiment de faire l'aventure ensemble comme pour un mmorpg et la difficulté pour les boss qui sont fait en multi scale sur le nombre de joueur (par exemple le boss de fin de l'ile futuriste passerait de \"zekrom\" en solo a \"zekrom + miraidon\" en duo et \"zekrom + miraidon + zeraora ou un autre légendaire type électrique\" pour du trio => pas plus de trio sinon c'est chiant de ouf\npour faire simple, le mode club union de la 9G en plus avancée pour qu'on puisse vraiment vivre l'aventure à plusieurs",
+      "Postgame, fonctions annexes et livraison"
+    ],
+    [
+      "L3",
+      "Quelles activités annexes : photo, pêche, concours, cuisine, habitats, quêtes ? Lesquelles peuvent attendre ?",
+      "photo et pêche sont bien, le reste on verra plus tard",
+      "Postgame, fonctions annexes et livraison"
+    ],
+    [
+      "L4",
+      "Français uniquement au départ ? Prévoir l’anglais dès l’architecture initiale ?",
+      "français au départ avec anglais également à prévoir pour la v1 donc construire le jeu pour les deux langues",
+      "Postgame, fonctions annexes et livraison"
+    ],
+    [
+      "L5",
+      "Distribution gratuite privée ou publique ? Installateur, ZIP portable, mises à jour et compatibilité des anciennes sauvegardes ?",
+      "publique comme tactica et on fera un système de patch et de versionning en fonction des fix, les sauvegardes doivent resté compatible",
+      "Postgame, fonctions annexes et livraison"
+    ],
+    [
+      "M1",
+      "Valides-tu deux branches durables (main et develop) et une seule branche temporaire active par défaut ?",
+      "Oui je valide, la branch develop servirait surtout pour les features et du coup la branche temporaire à pas trop d'utilité",
+      "Gouvernance du développement"
+    ],
+    [
+      "M2",
+      "Quelles actions puis-je effectuer en autonomie : développer, ajouter des dépendances, pousser, ouvrir une PR, fusionner, publier un build ? Quelles décisions gardes-tu ?",
+      "globalement tu peux tout faire en autonomie, seules les décisions de game design me sont réservés et le pilotage du projet avec ton assistance bien sur",
+      "Gouvernance du développement"
+    ],
+    [
+      "M3",
+      "Où suivre le projet : GitHub Issues/Projects et documentation du dépôt, ou autre outil ?",
+      "github mais surtout le wiki avec une parti roadmap comme tactica",
+      "Gouvernance du développement"
+    ],
+    [
+      "M4",
+      "Qui valide le visuel, le scénario et les playtests ? À quelle fréquence souhaites-tu recevoir un build ?",
+      "c'est moi qui ferais les tests de validation finaux sur le visuel et le reste, au début on va faire des checks fréquent pour valider la base de conception, une fois que ça sera fait on pourra continuer tranquillement et faire des checks plus éloigné genre un check par ile finis\npas besoin de build la rom, je le ferais manuellement pour les test, on intègrera le build quand la v1 sera fini",
+      "Gouvernance du développement"
+    ],
+    [
+      "M5",
+      "Une idée ajoutée après validation du périmètre remplace-t-elle du contenu, reporte-t-elle le jalon ou passe-t-elle au backlog plutôt que de s’ajouter silencieusement ?",
+      "ça dépend de l'idée et de son importance, pose moi la question systématiquement quand le cas se présente si ma réponse n'est pas claire",
+      "Gouvernance du développement"
+    ]
+  ],
+  "Réponses complémentaires": [
+    [
+      "ID",
+      "QUESTION",
+      "TA RÉPONSE",
+      "THÈME",
+      "À TRANCHER AVANT"
+    ],
+    [
+      "C01",
+      "Le mode coopératif est-il obligatoire dans la V1 ? Proposition : prototype technique réseau à 2 puis 3 joueurs dès le début, avant de produire la première île ; montée progressive du contenu ensuite.",
+      "On peu faire un mix des deux, une ile sur deux ou alors via un tirage au sort, on peu faire soit un système de phase avec du coup les 3 légendaire sous forme de raid 1 légendaire contre 3 pokémon en même temps > légendaire 1 KO on enchaine sur le légendaire suivant et on peu aussi faire une sorte de combat trio de raid où on sera en 3V3 de raid sur le terrain en meme temps",
+      "Périmètre",
+      "Avant architecture"
+    ],
+    [
+      "C02",
+      "Quelle structure retenir : cinq îles principales, quatre en fusionnant des thèmes, ou quatre îles de progression + île draconique transversale ? L’île céleste est-elle une zone finale supplémentaire et l’ancienne Æther un site séparé ?",
+      "Oui faisons ça, je valide",
+      "Région",
+      "Avant scénario"
+    ],
+    [
+      "C03",
+      "Quelle île accueille le départ, quel est l’ordre obligatoire des îles, et l’île draconique est-elle visitée entre chaque île ou à la fin ? Les 8 arènes de l’Ultra-Dimension sont-elles toutes du postgame ?",
+      "Oui aucun soucis pour recommencer une partie même si c'est presque systématiquement à chaque petites modifications au début, ça permet le contrôle des régressions",
+      "Région",
+      "Avant scénario"
+    ],
+    [
+      "C04",
+      "Veux-tu une région du monde officiel avec événements originaux compatibles, ou une chronologie alternative assumée ? Alola miroir, autre époque d’Alola ou archipel distinct ? Les descendants des chefs des teams peuvent-ils être des personnages entièrement inventés ?",
+      "Oui le but n'est pas de recommencer le jeu à chaque maj",
+      "Canon",
+      "Avant scénario"
+    ],
+    [
+      "C05",
+      "La domination concerne-t-elle la région ou le monde entier ? Que savent les habitants au début : occupation publique, gouvernement respectable servant de façade, ou disparition progressive des libertés ? Que découvre-t-on progressivement : existence, identité, méthodes ou objectif final du groupe ?",
+      "Oui mais il faut préciser aux joueurs que leur save sera converti pour être utilisable vers la nouvelle version + un back up de la save actuelle sur la version actuelle reste disponible (indiquer l'emplacement et comment la restaurer)",
+      "Antagonistes",
+      "Avant scénario"
+    ],
+    [
+      "C06",
+      "Le père est-il capturé, mort ou porté disparu ? Quel âge approximatif a le héros ? Quels rôles différencient les 3 rivaux ? Quel niveau de violence autoriser à l’écran : implicite, montrée sans gore, autre ?",
+      "Oui plutôt A, ça permet de continuer a faire son équipe ou farmer ou chercher des items pendant que quelqu'un va manger ou autre plutôt que d'attendre 3h parce que tout le monde va manger en décaler",
+      "Personnages",
+      "Avant scénario"
+    ],
+    [
+      "C07",
+      "Pourquoi le groupe veut-il atteindre l’île céleste, et quel est le rôle du Défi divin dans sa défaite ? La chute du groupe et le Défi constituent-ils la fin principale, ou le Défi est-il postgame ? Quelle motivation commune lie les descendants des anciennes teams ?",
+      "Oui j'accepte la proposition",
+      "Histoire",
+      "Avant scénario"
+    ],
+    [
+      "C08",
+      "Modèle préféré : campagne partagée avec sauvegarde commune détenue par l’hôte et profils de joueurs liés à cette campagne, ou personnages solo transportables chez l’hôte ? Recommandation : campagnes séparées du solo, sans transfert de Pokémon, objets ou progression entre campagnes dans la V1.",
+      "les combats normaux c'est sans problème par contre les combats lié à un moment scénaristique ne doivent pas être lancé si tout le monde n'est pas là docn ce cas n'est pas sensé existé\n\nsinon je choisis le cas A pour la déconnexion PENDANT le combat",
+      "Sauvegardes coop",
+      "Avant architecture"
+    ],
+    [
+      "C09",
+      "Qui conserve la campagne quand l’hôte quitte ? Un invité absent lors d’un boss reçoit-il sa progression ? Peut-il rejoindre une campagne plus avancée ? Recommandation à discuter : session fermée quand l’hôte quitte ; progression commune, récapitulatif pour les absents et nouveaux joueurs.",
+      "la campagne est save sur le pc hote, les clients/invités auront une copie en local au cas où (prévoir la possibilité d'importé une save sur une campagne multi + faire la distinction entre save multi et save solo)\nnon il ne reçoit pas la progression, il basculera automatiquement en mode solo, oui il peu rejoindre une campagne plus avancée mais sera en mode solo le temps de rattraper les autres\noui la session se termine quand l'hote quitte, la progression peu être commune en effet si c'est plus simple a gérer mais du coup ça serait chiant que l'histoire puisse avancer sans que tout le monde soit là donc faudrait mettre des blocages sur les parties scénaristique",
+      "Sauvegardes coop",
+      "Avant architecture"
+    ],
+    [
+      "C10",
+      "Pour le premier prototype, acceptes-tu LAN et connexion directe avec configuration réseau ou VPN existant ? Pour la V1, une invitation sans configuration est-elle obligatoire ? Hébergement par un joueur ou serveur dédié gratuit à lancer soi-même ? Avec budget zéro, il faut éprouver la traversée NAT et les éventuels relais avant de promettre une connexion universelle.",
+      "alors la j'ai aucune idée, fais au mieux entre facilité de mise en place et sécurité stp",
+      "Réseau",
+      "Avant architecture"
+    ],
+    [
+      "C11",
+      "Chaque joueur a-t-il son équipe de 6 et son avatar ? Peut-on explorer des zones différentes ? Téléportation de regroupement et attente obligatoire aux portes scénaristiques ? Qui déclenche et décide les dialogues de groupe ?",
+      "Oui, chacun fais son aventure entre deux partie de l'histoire (scénario) par exemple quand il faut traverser x ou y route chacun est libre, et je pense qu'il faut mettre un blocage quand quelqu'un arrive sur le prochain bloc scénaristique pour attendre tout le monde",
+      "Coopération",
+      "Avant architecture"
+    ],
+    [
+      "C12",
+      "Boss à trois : un vrai combat commun avec 3 Pokémon actifs par camp, trois combats simultanés distincts, ou un Duo avec rotation du troisième joueur ? Un vrai 3 contre 3 impose des règles inédites : portée, ciblage, attaques de zone, alliés et talents. Quel format veux-tu ?",
+      "pour les boss ça serait du tour par tour sauf que dans le tour on intègre les 4 pokémons (1 pokémon par jouer + le boss) et l'ordre d'attaque se fait en fonction de la vitesse des pokémons et des priorités utilisé mais ça reste sous forme d'un combat classique",
+      "Combats à trois",
+      "Avant architecture"
+    ],
+    [
+      "C13",
+      "En Duo, un Pokémon actif par joueur et combien de Pokémon de réserve par joueur ? Quand un joueur est éliminé, les autres continuent-ils ? Un départ est-il remplacé par un rival IA ? En trio, que fait le troisième joueur pendant un combat exclusivement Duo ?",
+      "chaque dresseurs à son équipe de 6 pokémon, si un dresseur a tout ses pokémons KO alors l'autre joueur toujours en lice doit continuer en 1 contre 2 (l'autre passe en mode spectateur)\n\nidéalement il faudrait adapté en fonction de si la save/serveur a été configuré sur 1/2/3 joueurs et les combats trio serait remplacé par du duo du coup et inversement\nsi c'est une save trio ou duo et qu'un des joueurs n'est pas connecté alors oui il faudra remplacer par un rival IA",
+      "Combats coop",
+      "Avant architecture"
+    ],
+    [
+      "C14",
+      "Faut-il un délai pour choisir les actions ? En cas de déconnexion, pause, IA de remplacement ou abandon ? Le format et la difficulté du boss sont-ils figés à son lancement ? Un joueur peut-il rejoindre un combat déjà commencé ?",
+      "Oui un délai c'est ok je pense, si déco alors abandon du combat\nformat et non pas possible de rejoindre un combat déjà lancé",
+      "Combats coop",
+      "Avant architecture"
+    ],
+    [
+      "C15",
+      "Objets ramassables et récompenses individuels ou partagés ? En rencontre de groupe, un Pokémon capturable par joueur ou une capture unique attribuée ? Les échanges et combats entre joueurs sont-ils nécessaires dès la V1 ? Échanges uniquement dans la même campagne ?",
+      "individuels, capture par joueur\noui échanges et combats nécessaire entre joueur pour la v1 uniquement dans la même campagne pour l'instant, on axera sur du mmorpg plus tard si c'est pertinent",
+      "Récompenses coop",
+      "Avant architecture"
+    ],
+    [
+      "C16",
+      "Le spectateur voit-il les choix de son ami immédiatement, ou seulement après validation ? Doit-on masquer les informations adverses non révélées ? Spectateurs uniquement parmi les 3 participants de la session, ou personnes supplémentaires ?",
+      "il les voit en temps réel donc immédiatement et oui le spec ne doit pas donné d'avantage hormis les conseils des autres joueurs qui sont en vocal sur discord par exemple mais non le spec ne doit pas voir les choix de l'adversaire et le spec est dispo que pour les joueurs de la partie (on pense pas mmorpg pour l'instant juste multi) ",
+      "Spectateur",
+      "Avant architecture"
+    ],
+    [
+      "C17",
+      "Quelle référence 9G exacte (Écarlate/Violet avec DLC, par exemple) ? Veux-tu réintroduire Puissance Cachée, absente de ces jeux ? Neige 9G ou grêle ancienne ? Les Méga reprennent-elles les règles des combats au tour par tour des anciennes générations et la limite d’une Méga par joueur ou par camp en coopération ?",
+      "Prenons les logiques et les lois de combats de la 9G + réintroduction des attaques manquantes sur leurs dernière version disponible comme PC, pour la neige je ne connais pas la différence entre la nouvelle et l'ancienne donc prend celle qui est la plus intéressante\nOui elle reprenne les règles de base donc ça reste en tour par tour et une mega par joueur par combat => si KO alors pas de mega possible pour la fin du combat",
+      "Fidélité aux règles",
+      "Avant architecture"
+    ],
+    [
+      "C18",
+      "Valides-tu la reprise des comportements et règles de Tactica avec réimplémentation et tests, plutôt qu’un transfert direct du code ? Pour les caps : maximum scénaristique non décroissant, boss du même événement au même palier ; faut-il reprendre ces règles exactes ? En coopération, cap commun à la campagne ou propre au joueur ?",
+      "Oui réimplémentation de ce que tu peux de Tactica\noui reprend ces règles\nen coop le cap commun à la campagne est le plus simple et le plus logique il me semble",
+      "Caps et IA",
+      "Avant architecture"
+    ],
+    [
+      "C19",
+      "Quand tu dis 500, chaque stade compte-t-il comme une entrée (Salamèche, Reptincel, Dracaufeu = 3), et chaque forme régionale également ? Les 50–100 créations regroupent-elles Fakemons et deltas ou chacune de ces catégories ? Combien de créations au design entièrement nouveau versus variantes de modèles existants ?",
+      "500 c'est le nombre total estimée d'entrée dans le pokédex, oui la famille de salamèche compte pour 3 entrée et les formes régionales sont comprise dedans ! Les créations comptent fakemons et delta (50/100 au total) je pense que ça sera 3 familes de fakemon donc 9 fakemon et le reste on aura juste a modifier légèrement l'artwork, les couleurs et types + stat + talent",
+      "Pokédex",
+      "Avant production assets"
+    ],
+    [
+      "C20",
+      "Valides-tu que les légendaires puissent être affrontés comme boss pendant l’histoire mais capturés seulement après ? Quels gardiens prioritaires par île ? En coopération, chaque joueur peut-il obtenir son exemplaire et les boss gagnent-ils des alliés plutôt que des espèces nouvelles à chaque effectif ?",
+      "Oui je valide, capture uniquement en postgame\nles gardiens par ile c'est en fonction du lore et de la thématique de l'ile\noui les légendaires seront capturables pour tout le monde (sous forme de raid je pense)\npas compris ta dernière question",
+      "Légendaires",
+      "Avant scénario"
+    ],
+    [
+      "C21",
+      "Valides-tu ce mélange à éprouver : décors 3D stylisés nets, proportions USUL, caméra dirigée par zone, sans contrôle libre, scènes narratives avec angles dédiés ? Préfères-tu une caméra assez proche des personnages ou une vue plus haute ? On pourra choisir sur des images comparatives.",
+      "oui je valide et je préfère une caméra à distance moyenne des personnages",
+      "Graphismes",
+      "Avant prototype visuel"
+    ],
+    [
+      "C22",
+      "Pour tester la chaîne graphique à budget zéro, acceptes-tu d’abord des modèles provisoires et quelques assets réutilisables dont les licences autorisent l’usage prévu ? Si un modèle essentiel manque ou ne peut être réutilisé, préfères-tu remplacement de l’espèce, modèle simplifié, création progressive ou report ? Un jeu gratuit n’accorde pas automatiquement des droits de redistribution.",
+      "Modèle provisoires pour qu'on détermine ce qui est ok ou non, on récupère ce qui est récuperable pour notre jeu mais si y'a pas idéalement faudra le faire et si on a pas les droits pour la redistribution bah on va s'inspirer de ça et recréer notre truc tant pis",
+      "Assets",
+      "Avant prototype visuel"
+    ],
+    [
+      "C23",
+      "Quels critères te feront valider le prototype : silhouette, textures, raccords, fenêtres modélisées ou textures détaillées, éclairage, eau, animations ? Acceptes-tu de figer un niveau de détail réaliste après essai, avant de généraliser à la région ?",
+      "j'ai pas de critères défini, je veux simplement que ce soit beau en FHD après je suis réaliste je veux pas demander un niveau digne d'un film ou d'un jeu d'un grand studio\nle plan c'est de faire la première ile graphiquement pour valider le game design",
+      "Qualité visuelle",
+      "Avant prototype visuel"
+    ],
+    [
+      "C24",
+      "Quelle est ta configuration exacte (CPU, GPU, RAM, Windows) ? Peux-tu tester des ZIP Windows exécutables ? Proposition : exports de test dès le prototype, sans installateur ; automatisation de publication plus tard. Veux-tu lancer depuis Godot ou simplement ouvrir l’exécutable ?",
+      "la configuration requise pour que le jeu soit jouable ou ma config à moi ?\n\nMa config c'est : \ni7 13e gen\n4060 Ti\n32 Go de RAM\nmais je pense que ya pas besoin d'avoir autant de ressource pour faire tourner le jeu qu'on veut non ?",
+      "Matériel et livrables",
+      "Avant prototype"
+    ],
+    [
+      "C25",
+      "Ces ports sont-ils post-V1 sans obligation de date ? Pour Android, tactile et jeu entre téléphone et PC requis à terme ? Pour macOS, auras-tu accès à une machine de test ? Le français et l’anglais doivent-ils être intégralement disponibles dès la V1 ?",
+      "J'ai pas de machine de test pour macos mais osef au pire on fait pas macos\nnon pas d'obligation de date pour l'instant, on établi d'abord le chantier avant de mettre des dates limites, l'objectif c'est de le faire rapidement mais correctement surtout\noui anglais/français dispo pour la v1 intégralement",
+      "Ports",
+      "Avant architecture"
+    ],
+    [
+      "C26",
+      "Quel ordre de grandeur veux-tu pour les boss obligatoires de l’histoire (8, 12, 16, autre) ? Les 8 arènes de l’Ultra-Dimension et la Tour de Combat sont-elles postgame ? Le Défi divin comporte-t-il un nombre fixe d’adversaires et autorise-t-il retour arrière et modification des équipes entre combats ?",
+      "Un boss par ile, si en duo alors 2 légendaire lors de l'affrontement du boss et si trio alors 3 légendaires lors de l'affrontement du boss mais toujours un seul combat de boss par ile, c'est le nombre de légendaire dans le comba de boss qui dépend du nombre de joueur",
+      "Progression",
+      "Avant scénario"
+    ],
+    [
+      "C27",
+      "Modification gratuite des IV/EV/natures dès le départ ou déblocage par PNJ ? Autoriser IV à 0 et Puissance Cachée implique-t-il modification des valeurs réelles, pas seulement entraînement ultime ? Les règles d’objets, soins et difficulté sont-elles choisies par l’hôte pour toute la campagne ou individuelles ?",
+      "Je pense que le plus simple et le plus rapide c'est de remplacer le pnj iv/ev/exp/nature/etc.. Et de mettre ces fonctionnalité la directmeent dans le summary pokémon un peu comme pokémon quetzal\nl'exp serait dispo via un multiplicateur d'exp (activable ou non dans les options) et give d'un oeuf chance dès le début du jeu\nOui on modifie les valeurs réelle et on met un indicateur du type de PC dans le résumé du pokémon\noui difficulté commune à la campagne multi",
+      "IV, EV et objets",
+      "Avant combat jouable"
+    ],
+    [
+      "C28",
+      "Nuzlocke solo seulement ou également coop ? Quelles règles obligatoires : KO permanent, une capture par zone, doublons, chromatiques, cadeaux ? Autosave et restauration de sauvegarde doivent-elles être libres ou limitées pour ce mode ?",
+      "en multi le nuzlocke devient un soul-link, chaque dresseur peu capturer un pokémon par zone et ils sont tous lié les uns aux autres, si un ko => les pokémons liés sotn KO et donc inutilisable\ntu trouveras les règles commune des soul link sur le web\nça peu rester libre, on est pas à l'abri d'avoir des saves saturés ou corrompu",
+      "Nuzlocke",
+      "Avant sauvegardes"
+    ],
+    [
+      "C29",
+      "Valides-tu main = version validée, develop = prochain jalon assemblé, une courte branche temporaire = travail isolé puis PR supprimée ? Pour le wiki, préfères-tu documents du dépôt publiés automatiquement vers le wiki (une seule source), ou wiki normatif synchronisé vers le dépôt ?",
+      "Oui je valide\nle wiki on fait comme tactica, a terme je veux la même configuration du wiki et les mêmes onglets",
+      "Gouvernance",
+      "Avant premier dépôt"
+    ],
+    [
+      "C30",
+      "Avant tout développement, veux-tu approuver le cahier des charges V0.1 et les résultats de l’essai technique/visuel séparément ? Proposition : autonomie technique ensuite, validation par toi des choix de design, des écarts de périmètre, du rendu et des jalons ; nouveaux ajouts inscrits au backlog tant que leur inclusion n’est pas décidée.",
+      "Oui et oui je valide la proposition",
+      "Autonomie",
+      "Avant premier dépôt"
+    ],
+    [
+      "C31",
+      "Quel nom provisoire pour le projet et le dépôt ? Nouveau dépôt GitHub privé pendant la conception, puis public, ou public dès le début ? Les documents de scénario contiennent-ils des spoilers à conserver séparément de la documentation joueurs ?",
+      "Je n'ai pas d'idée de nom pour l'instant et on fera un dépôt git publique directement (pour le wiki)\nles documents de scénario sont utile que pour le dev, les joueurs n'iront pas lire le repos github\nsur le wiki il faut faire attention au contenu fourni oui, les joueurs doivent pouvoir se repérer quand ils sont perdu sans pour autant se faire spoil",
+      "Nom et hébergement",
+      "Avant premier dépôt"
+    ],
+    [
+      "C32",
+      "Valides-tu les actions contextuelles sans Pokémon compatible et Vol depuis la carte, débloquées par l’histoire ? La plongée est-elle un ajout reporté après le prototype, ou une nécessité de l’histoire initiale ? Réutiliser des assets ROSA ne fournit pas automatiquement le système sous-marin dans Godot.",
+      "Oui je valide\nLa plongée, à toi de me dire si une ile sous marine c'est jouable ou non en terme de charge, attention la qualité ne doit pas baisser pour autant",
+      "Déplacements",
+      "Avant progression jouable"
+    ],
+    [
+      "C33",
+      "Les 15 h sont-elles une cible indicative à réévaluer une fois les îles et boss fixés ? Pour les sauvegardes, acceptes-tu des resets explicitement annoncés pendant le prototype, puis migrations et sauvegarde de secours à partir d’une alpha publique ? Compatibilité des versions antérieures vers les nouvelles, sans promesse de retour vers une ancienne version ?",
+      "oui c'est indicatifs pour l'instant\nje comprend pas les questions suivantes",
+      "Durée et sauvegardes",
+      "Avant architecture"
+    ]
+  ],
+  "Questions simplifiées": [
+    [
+      "ID",
+      "QUESTION SIMPLIFIÉE",
+      "TA RÉPONSE",
+      "POURQUOI CETTE QUESTION"
+    ],
+    [
+      "R01 — C20/C12/C26",
+      "Tu as confirmé que le boss possède 1 légendaire en solo, 2 en duo et 3 en trio. Ces légendaires sont-ils tous présents en même temps sur le terrain, ou le boss les envoie-t-il un par un ? Exemple en trio : tes 3 joueurs contre Zekrom + Miraidon + Zeraora en même temps, ou contre Zekrom puis Miraidon puis Zeraora ?",
+      "On peu faire un mix des deux, une ile sur deux ou alors via un tirage au sort, on peu faire soit un système de phase avec du coup les 3 légendaire sous forme de raid 1 légendaire contre 3 pokémon en même temps > légendaire 1 KO on enchaine sur le légendaire suivant et on peu aussi faire une sorte de combat trio de raid où on sera en 3V3 de raid sur le terrain en meme temps",
+      "Détermine combien de Pokémon agissent dans chaque tour. Tes réponses décrivent à la fois un boss unique actif et plusieurs légendaires."
+    ],
+    [
+      "R02 — C24",
+      "Pour tester le jeu, préfères-tu télécharger un ZIP, le décompresser et ouvrir le fichier .exe, sans installer Godot ? Je recommande cette méthode.",
+      "Oui faisons ça, je valide",
+      "Ta configuration personnelle est bien celle demandée. Elle sert à tester ; la configuration minimale sera déterminée par des mesures, pas par ton PC seul."
+    ],
+    [
+      "R03 — C33",
+      "Pendant les tout premiers essais, acceptes-tu que certaines mises à jour demandent de recommencer une partie ? Je te préviendrai avant. Cela concerne uniquement les prototypes, pas une promesse de perdre ses sauvegardes à chaque mise à jour.",
+      "Oui aucun soucis pour recommencer une partie même si c'est presque systématiquement à chaque petites modifications au début, ça permet le contrôle des régressions",
+      "Les systèmes peuvent encore changer avant que la structure des sauvegardes soit stabilisée."
+    ],
+    [
+      "R04 — C33",
+      "À partir de la première version publique de test, souhaites-tu qu’une mise à jour conserve automatiquement la partie, avec une copie de secours avant de convertir la sauvegarde ? Je recommande oui.",
+      "Oui le but n'est pas de recommencer le jeu à chaque maj",
+      "Une migration signifie simplement adapter une ancienne sauvegarde au nouveau format tout en conservant la progression."
+    ],
+    [
+      "R05 — C33",
+      "Acceptes-tu qu’une sauvegarde utilisée avec une nouvelle version ne fonctionne plus avec une ancienne version du jeu ? La copie de secours permettrait de retrouver l’état avant la mise à jour. Je recommande oui.",
+      "Oui mais il faut préciser aux joueurs que leur save sera converti pour être utilisable vers la nouvelle version + un back up de la save actuelle sur la version actuelle reste disponible (indiquer l'emplacement et comment la restaurer)",
+      "La compatibilité des anciennes sauvegardes vers le nouveau jeu ne garantit pas le sens inverse."
+    ],
+    [
+      "R06 — C08/C09",
+      "Si un ami manque une session, que veux-tu ? A : on peut explorer et combattre, mais les événements principaux attendent tous les joueurs. B : on avance l’histoire sans lui et il doit la rattraper seul. Je recommande A, cohérent avec ton souhait de vivre l’histoire ensemble.",
+      "Oui plutôt A, ça permet de continuer a faire son équipe ou farmer ou chercher des items pendant que quelqu'un va manger ou autre plutôt que d'attendre 3h parce que tout le monde va manger en décaler",
+      "Tu as demandé une campagne partagée, mais aussi un rattrapage solo. La règle A évite de créer plusieurs progressions scénaristiques dans la même campagne."
+    ],
+    [
+      "R07 — C09",
+      "La copie de la campagne chez chaque invité sert-elle uniquement de sauvegarde de secours ? Proposition : on peut l’importer pour changer d’hôte ou restaurer la campagne, mais elle ne devient pas automatiquement une partie solo séparée.",
+      "Oui j'accepte la proposition",
+      "Une copie peut être ancienne ; l’import doit préserver les profils des joueurs et éviter de mélanger deux versions divergentes de la campagne."
+    ],
+    [
+      "R08 — C13/C14",
+      "Tu préfères quoi si un joueur se déconnecte PENDANT un combat ? A : le combat s’arrête pour tous et on revient à l’état d’avant le combat. B : un rival IA le remplace et le combat continue. Tu as indiqué A pour une déconnexion ; je propose de réserver le rival IA aux combats qui commencent avec un joueur absent.",
+      "les combats normaux c'est sans problème par contre les combats lié à un moment scénaristique ne doivent pas être lancé si tout le monde n'est pas là docn ce cas n'est pas sensé existé\n\nsinon je choisis le cas A pour la déconnexion PENDANT le combat",
+      "Précise la différence entre joueur absent au lancement et joueur quittant un combat déjà commencé."
+    ]
+  ]
+}
