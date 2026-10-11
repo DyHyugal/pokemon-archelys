@@ -1,0 +1,94 @@
+Source du jeu : 5e8ed1b
+Showdown : 942cda71d14bf0618bd57991708a2e2734b6daba
+Node : 24.19.0 ; Godot : 4.6.3 ; Linux cloud
+Commande : python tools/check_prototype.py
+Préparation : python tools/prepare_showdown.py --windows
+
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[   0% ] first_scan_filesystem | Started Project initialization (5 steps)
+[   0% ] first_scan_filesystem | Scanning file structure...
+[  16% ] first_scan_filesystem | Loading global class names...
+[  33% ] first_scan_filesystem | Verifying GDExtensions...
+[  50% ] first_scan_filesystem | Creating autoload scripts...
+[  66% ] first_scan_filesystem | Initializing plugins...
+[  83% ] first_scan_filesystem | Starting file scan...
+[ DONE ] first_scan_filesystem
+
+[   0% ] loading_editor_layout | Started Loading editor (5 steps)
+[   0% ] loading_editor_layout | Loading editor layout...
+[  16% ] loading_editor_layout | Loading docks...
+[ DONE ] loading_editor_layout
+
+
+SHOWDOWN ADAPTER: 36 checks, 0 failures
+
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+SHOWDOWN INTEGRATION: 33 checks, 0 failures
+
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+ARCHÉLYS TESTS: 19 checks, 0 failures
+
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+SOLO SYSTEMS: 18 checks, 0 failures
+
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+DIALOGUE TESTS: 6 checks, 0 failures
+
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+POKEMON SYSTEMS: 71 checks, 0 failures
+
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+EXPLORATION COMBAT: 70 checks, 0 failures
+
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+EXPLORATION SCENE: shop/center/doors, saved interior, fishing/Surf, field collisions/climb, map/Fly, graphical alternatives and actual double controls; 0 failures
+
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+POKEMON SCENE: summary editing, grass encounter, combat commands/manual text, modal input, full-party capture/PC, menu disk persistence and learning/evolution exercised; 0 failures
+
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+MEGA UI: existing evolved individual, equipment/Bag preservation, visible checkbox/reasons, single and doubles activation; 0 failures
+
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+COLLECTION SYSTEMS: 32 checks, 0 failures
+
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+COLLECTION SCENE: 27 checks, 0 failures
+
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+COMFORT SYSTEMS: 21 checks, 0 failures
+
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+COMFORT SCENE: 26 checks, 0 failures
+
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+TACTICS SYSTEMS: 46 checks, 0 failures
+
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+TACTICS SCENE: 24 checks, 0 failures
+
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+GLB IMPORT: 7 bones, 1 animation(s), playback exercised
+
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+SCENE SMOKE: avatar, input, authoritative movement, closer following camera, NPC/manual dialogue/movement lock, solo battle UI, preference persistence, single crate reward, inventory/journal save/load, real bag details, pause navigation, modal movement/interaction lock and persistent settings controls exercised
+
+ALL PROTOTYPE CHECKS PASSED

@@ -8,8 +8,8 @@ Les statuts portent sur les preuves, pas sur l’enthousiasme ou la présence da
 | Git main/develop | PRÉPARÉ | Branches initialisées ; vérifier push remote |
 | Moteur Godot/Blender | LABORATOIRE TESTÉ | Godot 4.6.3, Blender 4.3.2 ; adéquation finale non validée |
 | Assets 3D animés | PROTOTYPE ORIGINAL TESTÉ | Mannequin GLB, sept os/une animation ; aucun Pokémon intégré |
-| Combat 9G + exceptions | SOCLE SOLO DÉVELOPPÉ ET TESTÉ | D49 : 17 espèces/38 attaques, quatre Méga, terrains/climats, doubles mono-cible ; conformité exhaustive non acquise |
-| IA difficile | POLITIQUE DE LABORATOIRE TESTÉE | Poseur → bénéficiaire → rappel/second poseur, sans données cachées ; switches défensifs complets non finalisés |
+| Combat 9G + exceptions | SHOWDOWN INTÉGRÉ ET TESTÉ LOCALEMENT | D56 : simple/double, Méga, attaques/talents/objets/champs via simulateur ; catalogue17/42, conformité des règles originales à éprouver |
+| IA difficile | POLITIQUE SHOWDOWN À VUES LIMITÉES TESTÉE | Poseur → bénéficiaire de talent/type → renouvellement ; aucun set/choix adverses cachés ; stratégie experte non finalisée |
 | Coopération 2/3 | REPORTÉ — ESSAI LOCALHOST CONSERVÉ | Trois processus ENet ; pas d’Internet ni combat réseau |
 | Raids phasés/simultanés | DEMANDÉ | R01 ; règles détaillées ouvertes |
 | Sauvegardes et migration | SOLO SCHÉMA 5 TESTÉ | Slots/autosave/Pokédex/scènes, lecture v1/v2/v3/v4 et copies originales ; réseau reporté |
@@ -100,3 +100,5 @@ D55, état historique avant D56 : Showdown **FAISABILITÉ TESTÉE, NON INTÉGRÉ
 ## D56 — combat Showdown
 
 **DÉVELOPPÉ ET TESTÉ LOCALEMENT, WINDOWS À VALIDER** : combats Pokémon jouables simples/doubles raccordés au simulateur local, états de campagne et PP préservés, runtime portable, panne avec restauration ; [rapport](development/INTEGRATION_SHOWDOWN.md). Format9G + Méga, catalogue17/42 conservé. IA à vues limitées intégrée, stratégie experte encore incomplète. Ancien moteur seulement en comparaison ; aucun code Tactica importé. Réseau/raids/défis restent reportés.
+
+Livraison D56 : lab-5e8ed1b publiée, CI38168553600 réussie.36 contrôles Node,33 Godot et parcours de scènes réussis. Windows propriétaire toujours à valider ; D52 reste la dernière validation reçue.

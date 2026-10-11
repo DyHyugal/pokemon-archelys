@@ -25,3 +25,7 @@ Commande de lot : `python tools/check_prototype.py`, après préparation du mote
 ZIP portable : EXE Godot officiel non modifié, PCK, dossier showdown, runtime Node officiel24.19.0 et notices MIT/dépendances. L'archive Node est comparée aux SHA256 officiels obtenus par HTTPS ; le packager vérifie de nouveau le binaire. Cela ne prétend pas vérifier une signature Authenticode ou garantir l'acceptation par le Contrôle intelligent Windows. Aucune installation ni connexion requise à l'exécution.
 
 Même nom d'EXE ; tests groupés dans LIRE-MOI. Windows et fluidité sur le PC propriétaire restent à valider. Les messages essentiels sont présentés en FR/EN ; certains détails du protocole (noms de champs/effets) restent techniques et devront être enrichis avec la future présentation des combats. Graphismes finaux, catalogue final, raids, réseau, Nuzlocke et Soul-link ne sont pas livrés par cette intégration.
+
+## Livraison vérifiée
+
+Source du jeu : `5e8ed1b`, [ZIP Windows lab-5e8ed1b](https://github.com/DyHyugal/pokemon-archelys/releases/download/lab-5e8ed1b/Archelys-Laboratoire-Windows.zip). [CI GitHub réussie](https://github.com/DyHyugal/pokemon-archelys/actions/runs/38168553600), validation et publication terminées. ZIP local72,9MiB, binaire Godot inchangé et runtime/notices inclus ; SHA256SUMS accompagne la release. [Journal des contrôles locaux](verification/SHOWDOWN_2026-10-11.txt). Le README embarqué contient le parcours owner ; aucune validation Windows propriétaire déduite de cette publication.

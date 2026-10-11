@@ -1,5 +1,7 @@
 # Étude du moteur de combat — 11 octobre 2026
 
+État historique D55, avant adoption. **D56 a depuis autorisé et livré l'intégration** : consulter [le rapport courant](INTEGRATION_SHOWDOWN.md).
+
 **Recommandation technique : conserver Godot pour le jeu et utiliser Pokémon Showdown pour résoudre les combats.** Tactica peut servir de référence pour les règles et les données de conception. Porter son moteur GBA complet serait beaucoup plus coûteux. Cette étude ne remplace pas le moteur actuel et ne modifie aucune sauvegarde ni livraison Windows.
 
 ## Licence : utilisation autorisée, sous conditions
