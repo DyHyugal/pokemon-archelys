@@ -1,4 +1,4 @@
-ARCHÉLYS — GESTION DES ÉQUIPES + PERSONNAGE / PHOTO / AVENTURE
+ARCHÉLYS — LISIBILITÉ COMBATS + ÉQUIPES / PERSONNAGE / AVENTURE
 Version : lab-{short_commit}
 Commit : {commit}
 
@@ -9,6 +9,17 @@ nécessaire. Nom EXE fixe, binaire officiel Godot inchangé ; non signé par nou
 En cas de blocage, noter le message et la protection sans les désactiver.
 
 CE QUI CHANGE
+Messages de combat FR/EN lisibles : statuts, variations de statistiques/crans,
+efficacité/critique, talents/objets révélés, climat/terrain. Les effets inconnus
+hors catalogue peuvent conserver leur nom anglais. Textes toujours manuels,
+aucune avance automatique à vitesse x4 ou par répétition d'une touche maintenue.
+Historique pendant le combat, pages de vingt messages déjà présentés ; il ne
+révèle pas la suite d'un tour. Échap revient au message/choix exact. Historique
+limité au combat courant, sans sauvegarde/replay après la sortie.
+Fiches d'attaques activables en simple/double : catégorie, puissance/précision
+DE BASE, priorité, cible et risque allié de Surf. Pas de prédiction de KO.
+Statuts des remplaçants FR/EN, rappel du choix verrouillé en double.
+
 PC en huit boîtes stables de trente emplacements ; déplacer ou échanger des
 cases ne décale pas les autres individus. Échange direct PC/équipe à six membres,
 résumé et préparation accessibles sans retirer le Pokémon. Recherche dans tout
@@ -37,6 +48,24 @@ Catalogue22 espèces/43 attaques inchangé. Œufs cadeaux/fossiles conservés.
 Reproduction retirée ; multi/raids/Nuzlocke/Soul-link non prioritaires.
 
 PARCOURS DE TEST GROUPÉ
+
+NOUVEAU PARCOURS LISIBILITÉ DES COMBATS
+Lancer un combat sauvage ou un essai tactique. Laisser un message affiché sans
+appuyer : même avec une vitesse accélérée, il doit attendre. Maintenir la touche
+ne doit pas passer la suite par répétition clavier ; la relâcher puis confirmer.
+Ouvrir Historique pendant un texte : le message actuel est lisible mais la suite
+reste cachée. Échap revient au même texte. Au choix des attaques, activer les
+fiches : puissance/précision/priorité/cible ; rien ne dépense de PP avant le choix.
+En double, vérifier la mention des dégâts alliés pour Surf, et de soi-même pour
+Abri. Après le premier choix, consulter l'historique puis revenir : le second
+partenaire reste à choisir et le premier choix doit être conservé. Finir le tour.
+Comparer FR/EN via les paramètres hors combat puis un nouveau combat. Déclencher
+si possible une baisse de précision, un statut, un champ ou une Méga ; les noms
+connus doivent être lisibles dans la bonne langue. Le compteur suit les textes.
+Après quelques tours, consulter les pages d'historique : aucune action/PP/objet
+ne doit être consommée. Terminer normalement le combat ; l'historique repart
+vide au combat suivant. Ces messages/fiches restent des outils de laboratoire.
+
 
 NOUVEAU PARCOURS PC / PRÉPARATION
 Préparer quelques membres au PC en déposant des Pokémon depuis leur résumé.

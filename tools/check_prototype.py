@@ -11,6 +11,7 @@ env.setdefault('ARCHELYS_NODE_BIN',shutil.which('node') or '')
 steps=[(['godot','--headless','--path',str(root/'game'),'--editor','--import','--quit'],None),
        ([env['ARCHELYS_NODE_BIN'],str(root/'combat/showdown/tests.cjs')],'SHOWDOWN ADAPTER:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/showdown_integration.gd'],'SHOWDOWN INTEGRATION:'),
+       (['godot','--headless','--path',str(root/'game'),'--script','res://tests/battle_readability.gd'],'BATTLE READABILITY:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/run_tests.gd'],'ARCHÉLYS TESTS: 19 checks, 0 failures'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/journey_systems.gd'],'JOURNEY SYSTEMS: 17 checks, 0 failures'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/journey_scene.gd'],'JOURNEY SCENE:'),

@@ -11,6 +11,9 @@ var actions: VBoxContainer
 var mega_selected: bool=false
 var event_index: int=0
 var choice_page: String="main"
+var journal_open: bool=false
+var journal_page: int=0
+var move_details: bool=false
 var panel: PanelContainer
 func _ready() -> void:
 	layer=12
@@ -22,7 +25,7 @@ func _ready() -> void:
 	var stack:=VBoxContainer.new();stack.add_theme_constant_override("separation",16);margin.add_child(stack)
 	cards=Label.new();cards.add_theme_font_size_override("font_size",23);stack.add_child(cards)
 	message=Label.new();message.custom_minimum_size.y=95;message.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;stack.add_child(message)
-	var scroll:=ScrollContainer.new();scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;stack.add_child(scroll)
+	var scroll:=ScrollContainer.new();scroll.follow_focus=true;scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;stack.add_child(scroll)
 	actions=VBoxContainer.new();actions.size_flags_horizontal=Control.SIZE_EXPAND_FILL;scroll.add_child(actions)
 	visible=false
 func t(fr: String,en: String) -> String:return fr if locale=="fr" else en
@@ -33,9 +36,9 @@ func open(simulator: RefCounted,language: String) -> void:
 	if battle!=null and battle.has_signal("changed") and battle.changed.is_connected(_battle_changed):battle.changed.disconnect(_battle_changed)
 	battle=simulator
 	if battle.has_signal("changed"):battle.changed.connect(_battle_changed)
-	locale=language;visible=true;event_index=0;choice_page="main";mega_selected=false;render()
+	locale=language;visible=true;event_index=0;choice_page="main";mega_selected=false;journal_open=false;journal_page=0;render()
 func _battle_changed() -> void:
-	event_index=0;render()
+	event_index=0;journal_open=false;render()
 func execute(command: Dictionary) -> void:
 	if command.kind=="move" and mega_selected:command.mega=true
 	if not battle.execute(command):return
@@ -45,6 +48,9 @@ func advance() -> void:
 	if event_index<battle.events.size():event_index+=1;render()
 func handle_key(event: InputEvent) -> bool:
 	if not event is InputEventKey or not event.pressed:return false
+	if journal_open:
+		if not event.echo and (event.keycode==KEY_ESCAPE or (comfort!=null and comfort.matches(event,"menu"))):journal_open=false;render();return true
+		return event.echo
 	if ((comfort!=null and comfort.confirming(event)) or (comfort==null and event.keycode in [KEY_A,KEY_E,KEY_ENTER,KEY_SPACE])) and event_index<battle.events.size():
 		if not event.echo:advance()
 		return true
@@ -59,9 +65,13 @@ func render() -> void:
 	cards.text+="\n"+field_caption()
 	if battle.get("double_mode")==true:cards.text=double_cards()
 	if battle.has_signal("changed"):cards.text+=t("\nMoteur : Showdown • règles 9G", "\nEngine: Showdown • Gen IX rules")
+	if journal_open:
+		render_journal();return
 	if event_index<battle.events.size():
 		message.text=battle.events[event_index][locale]
-		button(t("Continuer • %s / Entrée","Continue • %s / Enter") % (comfort.caption("interact") if comfort!=null else "E"),advance).grab_focus();return
+		message.text+=t("\nMessage %d / %d — avance manuelle","\nMessage %d / %d — manual advance") % [event_index+1,battle.events.size()]
+		button(t("Continuer • %s / Entrée","Continue • %s / Enter") % (comfort.caption("interact") if comfort!=null else "E"),advance).grab_focus()
+		journal_button();return
 	if battle.get("busy")==true:
 		message.text=t("Showdown résout le combat…", "Showdown is resolving the battle…");return
 	if not battle.active:
@@ -69,6 +79,7 @@ func render() -> void:
 	message.text=t("Que veux-tu faire ?","What will you do?")
 	if battle.has_signal("changed") and battle.available_moves(0).size()==1 and player.moves.size()>1:
 		message.text+=t("\nUne seule attaque disponible : vérifie le verrouillage ou les PP.","\nOnly one move available: check locking or PP.")
+	journal_button()
 	if battle.get("double_mode")==true:
 		render_double();return
 	if player.hp<=0:
@@ -80,6 +91,7 @@ func render() -> void:
 			button(t("Sac","Bag"),func():choice_page="bag";render())
 			button(t("Fuir","Run"),func():execute({"kind":"run"}),battle.trainer.is_empty())
 		"moves":
+			details_toggle()
 			render_mega_toggle()
 			if battle.charging[0]>=0:
 				button(t("Terminer l’attaque chargée","Complete charged move"),func():execute({"kind":"move","slot":battle.charging[0]}));return
@@ -87,7 +99,9 @@ func render() -> void:
 			else:
 				for i: int in range(player.moves.size()):
 					var slot: int=i;var move: Dictionary=Catalog.move(player.moves[i].id)
-					button("%s • %s • %d/%d PP" % [name_of(player.moves[i].id),Catalog.text("type_names",move.type,locale),player.moves[i].pp,move.pp],func():execute({"kind":"move","slot":slot}),slot in battle.available_moves(0))
+					var attack: Button=button("%s • %s • %d/%d PP" % [name_of(player.moves[i].id),Catalog.text("type_names",move.type,locale),player.moves[i].pp,move.pp],func():execute({"kind":"move","slot":slot}),slot in battle.available_moves(0))
+					attack.tooltip_text=move_caption(move)
+					if move_details:detail_label(move_caption(move))
 			back()
 		"team":render_team(false);back()
 		"bag":
@@ -108,7 +122,7 @@ func back() -> void:button(t("Retour • Échap","Back • Esc"),func():choice_p
 func render_team(forced: bool) -> void:
 	for i: int in range(battle.adventure.team.size()):
 		var index: int=i;var mon: Dictionary=battle.adventure.team[i]
-		button("%s Nv.%d • %d/%d PV" % [name_of(mon.species),mon.level,mon.hp,Mon.stats(mon).hp],func():
+		button(t("%s Nv.%d • %d/%d PV %s","%s Lv.%d • %d/%d HP %s") % [name_of(mon.species),mon.level,mon.hp,Mon.stats(mon).hp,Catalog.text("status_names",mon.status,locale)],func():
 			if forced:
 				if battle.replace_fainted(index):event_index=0;render()
 			else:execute({"kind":"switch","index":index}),battle.valid_switch(index))
@@ -131,12 +145,15 @@ func render_double() -> void:
 	if battle.replacement_needed():message.text=t("Remplacement obligatoire", "Replacement required");render_team(true);return
 	if battle.current(0).hp<=0:battle.next_actor()
 	message.text=t("Choisir pour %s (position %d). Les deux choix sont verrouillés avant le tour.","Choose for %s (position %d). Both choices are locked before the turn.") % [name_of(battle.current(0).species),battle.selected_player+1]
+	details_toggle()
 	render_mega_toggle()
+	if not battle.queued.is_empty():message.text+=t("\nChoix allié verrouillé ; termine le choix du partenaire.","\nAlly choice locked; finish the partner’s choice.")
 	var choices: Array=battle.available_moves(0)
 	if battle.charging[0]>=0:choices=[battle.charging[0]]
 	if choices.is_empty():choices=[-1]
 	for slot: int in choices:
 		var move: Dictionary=battle.move_for(0,slot)
+		if move_details:detail_label(name_of(battle.move_id(0,slot))+" — "+move_caption(move))
 		var target_kind: String=move.get("target","self" if move.get("self",false) else "single")
 		if target_kind!="single":
 			var command: Dictionary={"kind":"move","slot":slot,"target":0,"mega":mega_selected}
@@ -179,3 +196,36 @@ func field_caption() -> String:
 	var weather: String={"sun":t("Soleil","Sun"),"rain":t("Pluie","Rain"),"snow":t("Neige","Snow"),"sand":t("Tempête de sable","Sandstorm")}.get(battle.field.weather,t("Aucun","None"))
 	var terrain: String={"electric":t("Électrique","Electric"),"grass":t("Herbu","Grassy"),"misty":t("Brumeux","Misty"),"psychic":t("Psychique","Psychic")}.get(battle.field.terrain,t("Aucun","None"))
 	return t("Climat : %s (%d tours) • Terrain : %s (%d tours)","Weather: %s (%d turns) • Terrain: %s (%d turns)") % [weather,battle.field.weather_turns,terrain,battle.field.terrain_turns]
+
+func journal_button() -> void:
+	if battle.get("history")==null:return
+	var control: Button=button(t("Historique du combat","Battle history"),func():journal_open=true;journal_page=maxi(0,(history_entries().size()-1)/20);render())
+	control.name="BattleHistory"
+func history_entries() -> Array:
+	var entries: Array=[]
+	var all: Variant=battle.get("history")
+	if not all is Array:return entries
+	var limit: int=all.size()-1
+	if event_index<battle.events.size():limit=int(battle.events[event_index].get("sequence",-1))
+	for entry: Dictionary in all:
+		if int(entry.sequence)<=limit:entries.append(entry)
+	return entries
+func render_journal() -> void:
+	var entries: Array=history_entries()
+	var pages: int=maxi(1,ceili(entries.size()/20.0))
+	journal_page=clampi(journal_page,0,pages-1)
+	message.text=t("Historique — page %d / %d. Lecture seule ; aucun message futur.","History — page %d / %d. Read only; no future messages.") % [journal_page+1,pages]
+	for entry: Dictionary in entries.slice(journal_page*20,(journal_page+1)*20):
+		detail_label(t("Tour %d : ","Turn %d: ") % entry.turn+str(entry[locale]))
+	button(t("Page précédente","Previous page"),func():journal_page-=1;render(),journal_page>0)
+	button(t("Page suivante","Next page"),func():journal_page+=1;render(),journal_page<pages-1)
+	button(t("Retour au combat • Échap","Back to battle • Esc"),func():journal_open=false;render()).grab_focus()
+func detail_label(text: String) -> void:
+	var control:=Label.new();control.text=text;control.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;control.size_flags_horizontal=Control.SIZE_EXPAND_FILL;actions.add_child(control)
+func details_toggle() -> void:
+	var toggle:=CheckButton.new();toggle.name="BattleMoveDetails";toggle.text=t("Afficher les fiches d'attaques","Show move details");toggle.set_pressed_no_signal(move_details);actions.add_child(toggle)
+	toggle.toggled.connect(func(value: bool):move_details=value;render())
+func move_caption(move: Dictionary) -> String:
+	var category: String={"physical":t("Physique","Physical"),"special":t("Spéciale","Special"),"status":t("Statut","Status")}.get(move.get("category","status"),"")
+	var target: String={"single":t("une cible choisie","one selected target"),"self":t("soi-même","self"),"ally":t("allié","ally"),"opponents":t("tous les adversaires","all opponents"),"all-adjacent":t("adversaires ET allié","opponents AND ally")}.get(move.get("target","self" if move.get("self",false) else "single"),"")
+	return t("%s • Puissance %s • Précision %s • Priorité %d • Cible : %s","%s • Power %s • Accuracy %s • Priority %d • Target: %s") % [category,str(int(move.get("power",0))) if move.get("power",0)>0 else "—",str(int(move.get("accuracy",0)))+"%" if move.get("accuracy",0)>0 else "—",move.get("priority",0),target]

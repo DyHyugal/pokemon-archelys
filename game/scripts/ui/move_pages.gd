@@ -39,7 +39,7 @@ func update_selection() -> void:
  if ids.is_empty():details.text=t("Aucune attaque légale correspondant à cette recherche.","No legal moves match this search.");return
  var id: String=ids[maxi(0,picker.selected)];var move: Dictionary=Catalog.move(id)
  var category: String={"physical":t("Physique","Physical"),"special":t("Spéciale","Special"),"status":t("Statut","Status")}[move.category]
- details.text="%s • %s • %s\n%s %s • %s %s • %d PP • %s %d" % [Catalog.name_of(id,menu.locale),Catalog.text("type_names",move.type,menu.locale),category,t("Puissance","Power"),str(move.power) if move.power>0 else "—",t("Précision","Accuracy"),str(move.accuracy)+"%" if move.accuracy>0 else "—",move.pp,t("Priorité","Priority"),move.priority]
+ details.text="%s • %s • %s\n%s %s • %s %s • %d PP • %s %d" % [Catalog.name_of(id,menu.locale),Catalog.text("type_names",move.type,menu.locale),category,t("Puissance","Power"),str(int(move.power)) if move.power>0 else "—",t("Précision","Accuracy"),str(int(move.accuracy))+"%" if move.accuracy>0 else "—",move.pp,t("Priorité","Priority"),move.priority]
  var mon: Dictionary=menu.adventure.find(uid)
  if mon.is_empty():return
  if mon.moves.any(func(slot: Dictionary):return slot.id==id):details.text+="\n"+t("Déjà connue : ses PP ne sont pas réinitialisés.","Already known: its PP are not reset.");return

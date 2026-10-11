@@ -138,3 +138,7 @@ D61 conservé dans cette version et toujours à valider Windows. D52 reste le de
 **Développé et testé localement** : huit boîtes de trente emplacements stables, déplacements et échanges internes, échange direct avec équipe pleine, recherche nom/type/talent FR/EN et UID exact, résumé PC sans retrait, CT/rappel filtrés avec détail et confirmation, ordre d'attaques avec PP. Captures/éclosions/fossiles utilisent le rangement central. Sauvegardes5 anciennes compatibles en lecture ; slot corrompu/ref UID incohérente refusés. Catalogue22/43 inchangé.
 
 31 contrôles domaine/Showdown/capacité et16 contrôles menus/parcours ; suite précédente réussie. PC rendu sous GL Linux et inspecté. Windows à tester avec D61/D62 ; D52 reste la dernière validation reçue. [Rapport](development/LOT_GESTION_EQUIPES.md).
+
+## D64 — lisibilité des combats solo
+
+Messages publics FR/EN, historique paginé sans messages futurs, fiches d'attaques simples/doubles et statut des remplaçants : développés et testés localement :52 contrôles spécifiques,53 sous rendu GL avec export PNG, suite complète réussie. Lecture sans action ni consommation de PP ; choix doubles conservés. Historique temporaire, pas de modification du schéma5 ni de replay sauvegardé. Styles/animations configurables restent à développer ; aucune conformité exhaustive à toutes les traductions Showdown revendiquée. [Portée](development/LOT_LISIBILITE_COMBATS.md). Retour Windows groupé attendu, dernière validation D52.

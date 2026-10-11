@@ -28,3 +28,5 @@ D61 : ouverture village/sentier/épreuve jouable en proposition. Les textes Vyna
 D62 : sélections techniques de peau/vêtements/coiffure/visage sur mannequin, thèmes d'interface et photo sont testables. N46 reste ouvert pour la sélection des modèles/cosmétiques finaux et boutiques. Les captures PNG ne choisissent aucun style final ; pas de fonctions réseau ajoutées. Retour Windows D61 et D62 attendu demain, dernier retour validé D52.
 
 D63 : rangement stable240 places, résumé PC et préparation CT/rappel testables. Cela ne choisit aucun Pokédex/asset/économie finale, ni une extension des modes reportés. Retour groupé des nouveaux lots toujours attendu ; les choix déjà répondus ne sont pas rouverts.
+
+D64 : les messages et fiches de combat sont améliorés dans le laboratoire ; le journal est temporaire et sans révélation des messages futurs. Aucun nouveau choix produit requis pour ces contrôles de présentation. Les paramètres de styles/animations et le contenu artistique restent distincts ; pas de validation Windows implicite des lots précédents.

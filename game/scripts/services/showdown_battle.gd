@@ -1,6 +1,7 @@
 extends "res://scripts/domain/adventure_battle.gd"
 ## Adventure adapter only. All battle actions/residuals/abilities resolve in Showdown.
 signal changed
+const Messages=preload("res://scripts/services/battle_messages.gd")
 const Transport=preload("res://scripts/services/showdown_transport.gd")
 var transport: Node
 var busy: bool=false
@@ -17,6 +18,10 @@ var defeated: Array=[]
 var imported: Dictionary={}
 var last_error: String=""
 var pending_item: String=""
+var history: Array=[]
+func say(fr: String,en: String) -> void:
+ var entry: Dictionary={"fr":fr,"en":en,"sequence":history.size(),"turn":turn}
+ events.append(entry);history.append(entry.duplicate(true))
 func begin(owner: RefCounted,opponents: Array,trainer_id: String="") -> bool:
  if active or owner.in_battle or opponents.is_empty() or trainer_id not in ["","trainer-1","trainer-2","weather-test","terrain-test","slice-boss"]:return false
  var ready: Array=[]
@@ -34,7 +39,7 @@ func begin(owner: RefCounted,opponents: Array,trainer_id: String="") -> bool:
  if not transport.start():transport.queue_free();last_error="Showdown runtime missing";return false
  saved_campaign=owner.snapshot();adventure=owner;enemies=opponents.duplicate(true);trainer=trainer_id
  player_index=int(ready[0]);enemy_index=0;player_slots=ready.slice(0,2);enemy_slots=[0,1]
- active=true;owner.in_battle=true;result="";turn=0;events=[];participants={current(0).uid:true};defeated=[]
+ active=true;owner.in_battle=true;result="";turn=0;events=[];history=[];participants={current(0).uid:true};defeated=[]
  encounter_zone=owner.exploration.location;field=Field.new();request={};queued={};imported={}
  transport.reply.connect(_received);transport.failed.connect(_failure)
  if trainer.is_empty() and not enemies[0].get("shiny",false) and not family_duplicate(enemies[0].species):owner.exploration.reserve_encounter(encounter_zone,int(enemies[0].uid))
@@ -206,32 +211,8 @@ func _received(payload: Dictionary) -> void:
   else:finish("draw")
  changed.emit()
 func _event(line: String) -> void:
- var a:=line.split("|")
- if a.size()<3:return
- var actor: String=str(a[2]);var uid: int=int(actor.get_slice(": ",1))
- var label: String=actor
- var label_en: String=actor
- for mon: Dictionary in adventure.team+enemies:
-  if int(mon.uid)==uid:label=title(mon);label_en=title(mon,"en")
- match a[1]:
-  "move":say("%s utilise %s." % [label,_move_name(a[3],"fr")],"%s used %s." % [label_en,_move_name(a[3],"en")])
-  "switch","drag":say("%s entre en combat." % label,"%s entered the battle." % label_en)
-  "faint":say("%s est K.O." % label,"%s fainted." % label_en)
-  "-mega":say("%s méga-évolue !" % label,"%s Mega Evolved!" % label_en)
-  "-damage":say("%s subit des dégâts (%s)." % [label,a[3]],"%s took damage (%s)." % [label_en,a[3]])
-  "-heal":say("%s récupère des PV (%s)." % [label,a[3]],"%s recovered HP (%s)." % [label_en,a[3]])
-  "cant":
-   var reason: String={"slp":"dort","frz":"est gelé","par":"est paralysé","flinch":"est apeuré","recharge":"doit se recharger"}.get(a[3],a[3])
-   say("%s %s ; aucune attaque." % [label,reason],"%s could not move: %s." % [label_en,a[3]])
-  "-prepare":say("%s prépare %s." % [label,_move_name(a[3],"fr")],"%s is preparing %s." % [label_en,_move_name(a[3],"en")])
-  "-status":say("%s : %s." % [label,a[3]],"%s: %s." % [label,a[3]])
-  "-weather","-fieldstart","-fieldend":say("Climat / terrain : %s." % a[2],"Weather / terrain: %s." % a[2])
-  "-boost","-unboost":say("%s : %s %s." % [label,a[3],"↑" if a[1]=="-boost" else "↓"],"%s: %s %s." % [label,a[3],"↑" if a[1]=="-boost" else "↓"])
-  "-singleturn","-immune","-miss","-fail","-activate","-start","-end","-curestatus","-ability","-item","-enditem","-supereffective","-resisted","-crit":say("%s • %s" % [label," / ".join(a.slice(3)) if a.size()>3 else a[1].trim_prefix("-")],"%s • %s" % [label," / ".join(a.slice(3)) if a.size()>3 else a[1].trim_prefix("-")])
-func _move_name(value: String,lang: String) -> String:
- for id: String in Catalog.data().moves:
-  if Catalog.name_of(id,"en")==value:return Catalog.name_of(id,lang)
- return value
+ var entry: Dictionary=Messages.format_line(line,adventure.team+enemies)
+ if not entry.is_empty():say(entry.fr,entry.en)
 func finish(outcome: String) -> void:
  if not active:return
  # Campaign progression occurs once after the battle, never changes Showdown's combat stats mid-turn.
