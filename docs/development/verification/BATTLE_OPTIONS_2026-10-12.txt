@@ -1,0 +1,61 @@
+ARCHÉLYS — D65 OPTIONS DE COMBAT ET DÉFAITE
+Date :12 octobre2026, Europe/Paris
+Source :9ff4c8d3f6fc9a3bf6a8ad1615989f55cb1309d4
+Branche :docs/cadrage-valide ; aucun merge main/develop.
+
+VALIDATION LOCALE
+SHOWDOWN ADAPTER: 70 checks, 0 failures
+SHOWDOWN INTEGRATION: 33 checks, 0 failures
+BATTLE OPTIONS: 44 checks, 0 failures
+BATTLE READABILITY: 52 checks, 0 failures
+ARCHÉLYS TESTS: 19 checks, 0 failures
+JOURNEY SYSTEMS: 17 checks, 0 failures
+JOURNEY SCENE: 14 checks, 0 failures
+FOSSIL SYSTEMS: 23 checks, 0 failures
+NURSERY SYSTEMS: 18 checks, 0 failures
+SOLO SYSTEMS: 18 checks, 0 failures
+DIALOGUE TESTS: 6 checks, 0 failures
+POKEMON SYSTEMS: 71 checks, 0 failures
+EXPLORATION COMBAT: 70 checks, 0 failures
+EXPLORATION SCENE: shop/center/doors, saved interior, fishing/Surf, field collisions/climb, map/Fly, graphical alternatives and actual double controls; 0 failures
+POKEMON SCENE: summary editing, grass encounter, combat commands/manual text, modal input, full-party capture/PC, menu disk persistence and learning/evolution exercised; 0 failures
+MEGA UI: existing evolved individual, equipment/Bag preservation, visible checkbox/reasons, single and doubles activation; 0 failures
+COLLECTION SYSTEMS: 32 checks, 0 failures
+COLLECTION SCENE: 27 checks, 0 failures
+STORAGE SYSTEMS: 31 checks, 0 failures
+STORAGE SCENE: 16 checks, 0 failures
+PRESENTATION SYSTEMS: 17 checks, 0 failures
+PRESENTATION SCENE: 13 checks, 0 failures
+COMFORT SYSTEMS: 21 checks, 0 failures
+COMFORT SCENE: 26 checks, 0 failures
+TACTICS SYSTEMS: 46 checks, 0 failures
+TACTICS SCENE: 24 checks, 0 failures
+GLB IMPORT: 7 bones, 1 animation(s), playback exercised
+SCENE SMOKE: avatar, input, authoritative movement, closer following camera, NPC/manual dialogue/movement lock, solo battle UI, preference persistence, single crate reward, inventory/journal save/load, real bag details, pause navigation, modal movement/interaction lock and persistent settings controls exercised
+ALL PROTOTYPE CHECKS PASSED
+
+RENDU
+BATTLE OPTIONS: 45 checks, 0 failures sous GL Linux.
+Capture réelle :BATTLE_OPTIONS.png ; renderer Mesa llvmpipe.
+Aucune performance GPU joueur déduite de ce rendu.
+
+DISTRIBUTION LOCALE
+Export Windows sans erreur, EXE identique au template officiel Godot.
+Runtime Node officiel et sources Showdown épinglées, bridge Archélys modifié.
+ZIP :397 fichiers ; testzip OK ; manifest correspond au source.
+SHA256 du ZIP LOCAL :a3bb17ccf006ae409db45d97e143d00d0cbe49eb8f3eb2e694c032429dd8be14  Archelys-Laboratoire-Windows.zip
+La CI reconstruit une archive distincte ; consulter son SHA256SUMS publié.
+
+GITHUB
+CI réussie :https://github.com/DyHyugal/pokemon-archelys/actions/runs/38179922894
+Liste publique des assets vérifiée pour lab-9ff4c8d.
+ZIP :https://github.com/DyHyugal/pokemon-archelys/releases/download/lab-9ff4c8d/Archelys-Laboratoire-Windows.zip
+Empreinte :https://github.com/DyHyugal/pokemon-archelys/releases/download/lab-9ff4c8d/SHA256SUMS.txt
+
+LIMITES
+Dernier playtest Windows propriétaire D52 ; nouveau lot à tester.
+Laboratoire, pas V1 finalisée ni validation artistique.
+Styles simples seulement ; objets du sac en double restent hors périmètre.
+Soins ON/OFF, pas de quota chiffré final ; pénalité100₽ provisoire.
+Animations graphiques configurables restent à développer.
+Multi/raids/défis reportés, reproduction retirée.
