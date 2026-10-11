@@ -1,5 +1,13 @@
 extends Node3D
 
+const PokemonBattle=preload("res://scripts/domain/pokemon_battle.gd")
+const BattlePanel=preload("res://scripts/ui/pokemon_battle_panel.gd")
+const Mon=preload("res://scripts/domain/pokemon.gd")
+var pokemon_battle:=PokemonBattle.new()
+var battle_panel: CanvasLayer
+var exploration_help: Label
+var last_walk_position:=Vector3.ZERO
+const ACTION_TARGETS=World.SERVICE_POINTS
 const PauseMenu = preload("res://scripts/ui/pause_menu.gd")
 var pause_menu: CanvasLayer
 var debug_panel: PanelContainer
@@ -38,6 +46,7 @@ var battle := Battle.new()
 const SAVE_PATH := "user://laboratory_campaign.json"
 
 func _ready() -> void:
+	Session.campaign.adventure.initialize()
 	preferences = Preferences.read(preferences_path)
 	locale = preferences.language
 	_build_world()
@@ -52,6 +61,11 @@ func _ready() -> void:
 
 func capture_frame(path: String) -> void:
 	if "--capture-menu" in OS.get_cmdline_user_args(): _open_menu("settings")
+	if "--capture-team" in OS.get_cmdline_user_args():
+		_open_menu("team");pause_menu.adventure_pages.selected_uid=int(Session.campaign.adventure.team[0].uid);pause_menu.render()
+	if "--capture-battle" in OS.get_cmdline_user_args(): _begin_pokemon_battle([Session.campaign.adventure.wild(8,"rattata")])
+	if "--capture-choices" in OS.get_cmdline_user_args():
+		Session.campaign.adventure.raise_cap(18);Session.campaign.adventure.gain_experience(1,100000);_open_menu("choices")
 	await get_tree().create_timer(1.0).timeout
 	await RenderingServer.frame_post_draw
 	var error := get_viewport().get_texture().get_image().save_png(path)
@@ -134,6 +148,10 @@ func _build_world() -> void:
 	guide.add_child(label)
 	_box(Vector3(0.2,1.4,0.2), TARGETS.sign+Vector3(0,0.7,0),Color("66554b"))
 	_box(Vector3(1.6,0.8,0.15),TARGETS.sign+Vector3(0,1.5,0),Color("f0dcc0"))
+	_box(Vector3(6,0.07,3),Vector3(-6,0.08,-5.5),Color("39794f"))
+	for id: String in ACTION_TARGETS:
+		var marker:=_box(Vector3(1,1,1),ACTION_TARGETS[id]+Vector3(0,0.5,0),Color("65c6db") if id=="healing" else Color("bd5757"))
+		var hint:=Label3D.new();hint.text="Soins / Heal" if id=="healing" else ("Dresseur / Trainer 1" if id=="trainer-1" else "Dresseur / Trainer 2");hint.position.y=1.7;hint.font_size=22;hint.pixel_size=0.004;marker.add_child(hint)
 	crate_mesh = _box(Vector3(1.2,0.8,1.2),TARGETS.crate+Vector3(0,0.4,0),Color("be895a"))
 
 func _build_ui() -> void:
@@ -167,7 +185,14 @@ func _build_ui() -> void:
 	_button(stack,"Charger (solo uniquement)",_load)
 	_button(stack,"Simuler un tour de combat",_turn)
 	_button(stack,"Réinitialiser le combat",_start_battle)
-	message=Label.new();message.text="Zone turquoise : tous présents pour franchir l’étape.";stack.add_child(message)
+	_button(stack,"Entraînement labo : +50000 EXP (respecte le cap)",func():
+		if pokemon_battle.active:return
+		for mon: Dictionary in Session.campaign.adventure.team:Session.campaign.adventure.gain_experience(int(mon.uid),50000)
+		_open_menu("choices"))
+	_button(stack,"Réapprovisionner les consommables du labo",func():
+		if pokemon_battle.active:return
+		for id: String in ["poke-ball","great-ball","potion","antidote","paralyze-heal"]:Session.campaign.adventure.bag[id]=20)
+	message=Label.new();message.position=Vector2(20,640);message.text="";layer.add_child(message)
 	interaction_hint=Label.new();interaction_hint.position=Vector2(20,675);layer.add_child(interaction_hint)
 	dialogue_panel=PanelContainer.new();dialogue_panel.position=Vector2(460,510);dialogue_panel.custom_minimum_size=Vector2(800,190);dialogue_panel.visible=false;layer.add_child(dialogue_panel)
 	var conversation := VBoxContainer.new();dialogue_panel.add_child(conversation)
@@ -184,6 +209,9 @@ func _build_ui() -> void:
 	pause_menu.camera_changed.connect(func(value: float):camera.size=value;_persist_preferences())
 	pause_menu.save_requested.connect(func():_save();pause_menu.feedback.text=message.text)
 	pause_menu.load_requested.connect(func():_load();_sync_menu();pause_menu.feedback.text=message.text)
+	battle_panel=BattlePanel.new();add_child(battle_panel)
+	battle_panel.finished.connect(_battle_finished)
+	exploration_help=Label.new();exploration_help.position=Vector2(460,16);layer.add_child(exploration_help)
 	pause_menu.closed.connect(func():Session.submit_axis(Vector2.ZERO))
 	log_box=RichTextLabel.new();log_box.custom_minimum_size=Vector2(430,115);stack.add_child(log_box)
 
@@ -202,17 +230,22 @@ func _persist_preferences() -> void:
 		message.text="Préférences : %s" % error_string(error)
 
 func _save() -> void:
+	if pokemon_battle.active:return
 	if not multiplayer.is_server():
 		message.text="La sauvegarde de campagne appartient à l’hôte.";return
 	message.text="Sauvegarde : %s" % error_string(Store.write_snapshot(SAVE_PATH,Session.campaign.snapshot()))
 
 func _load() -> void:
+	if pokemon_battle.active:return
 	if Session.active_network:
 		message.text="Chargement réseau non implémenté ; aucun état écrasé.";return
 	var value:=Store.read_snapshot(SAVE_PATH)
 	if not value.is_empty() and (int(value.get("participants",1)) != 1 or value.get("players",{}).size() != 1):
 		message.text="Campagne coop : import non implémenté, solo inchangé.";return
 	message.text="Chargée" if Session.campaign.restore(value) else "Sauvegarde absente/invalide ; partie intacte."
+	Session.campaign.adventure.initialize()
+	Session.latest=Session.campaign.snapshot()
+	last_walk_position=_local_position()
 
 func _start_battle() -> void:
 	battle.begin({
@@ -235,15 +268,19 @@ func _local_position() -> Vector3:
 	return Vector3(float(pos[0]), 0, float(pos[2]))
 
 func _sync_menu() -> void:
+	pause_menu.adventure=Session.campaign.adventure
 	pause_menu.sync(locale,camera.size,Session.campaign.laboratory)
 
 func _open_menu(page: String = "home") -> void:
-	if dialogue.active: return
+	if dialogue.active or battle_panel.visible: return
 	Session.submit_axis(Vector2.ZERO)
 	_sync_menu()
 	pause_menu.open(page)
 
 func _input(event: InputEvent) -> void:
+	if battle_panel.visible:
+		if battle_panel.handle_key(event):get_viewport().set_input_as_handled()
+		return
 	if event is InputEventKey and event.pressed and not event.echo:
 		if pause_menu.visible:
 			if pause_menu.handle_key(event): get_viewport().set_input_as_handled()
@@ -261,14 +298,20 @@ func _input(event: InputEvent) -> void:
 func _nearest_interaction() -> String:
 	var nearest: String = ""
 	var distance: float = 2.2
-	for id: String in TARGETS:
-		var current: float = _local_position().distance_to(TARGETS[id])
+	var targets: Dictionary=TARGETS.duplicate();targets.merge(ACTION_TARGETS)
+	for id: String in targets:
+		var current: float = _local_position().distance_to(targets[id])
 		if current <= distance:
 			distance=current
 			nearest=id
 	return nearest
 
 func _open_interaction(id: String) -> bool:
+	if pokemon_battle.active or pause_menu.visible:return false
+	if id=="healing":
+		Session.campaign.adventure.heal_team();message.text="Équipe soignée / Party healed";return false
+	if id in ["trainer-1","trainer-2"]:
+		_begin_trainer(id);return false
 	if id not in TARGETS or Session.active_network or pause_menu.visible:
 		return false
 	active_interaction=id
@@ -278,7 +321,7 @@ func _open_interaction(id: String) -> bool:
 	return dialogue.begin(record,locale)
 
 func _unhandled_key_input(event: InputEvent) -> void:
-	if pause_menu.visible or not event is InputEventKey or not event.pressed or event.echo:
+	if battle_panel.visible or pause_menu.visible or not event is InputEventKey or not event.pressed or event.echo:
 		return
 	if event.keycode not in [KEY_A, KEY_E, KEY_ENTER]:
 		return
@@ -349,12 +392,49 @@ func _process(_delta: float) -> void:
 	if Input.is_physical_key_pressed(KEY_D) or Input.is_physical_key_pressed(KEY_RIGHT):axis.x+=1
 	if Input.is_physical_key_pressed(KEY_W) or Input.is_physical_key_pressed(KEY_Z) or Input.is_physical_key_pressed(KEY_UP):axis.y-=1
 	if Input.is_physical_key_pressed(KEY_S) or Input.is_physical_key_pressed(KEY_DOWN):axis.y+=1
-	if pause_menu.visible or dialogue.active or get_viewport().gui_get_focus_owner() is LineEdit:axis=Vector2.ZERO
+	if battle_panel.visible or pause_menu.visible or dialogue.active or get_viewport().gui_get_focus_owner() is LineEdit:axis=Vector2.ZERO
 	var focus := _local_position()
 	camera.position = focus + CAMERA_OFFSET
 	camera.look_at(focus)
-	interaction_hint.text = ("E / Entrée : interagir" if locale=="fr" else "E / Enter: interact") if not _nearest_interaction().is_empty() and not dialogue.active and not pause_menu.visible else ""
+	interaction_hint.text = ("E / Entrée : interagir" if locale=="fr" else "E / Enter: interact") if not _nearest_interaction().is_empty() and not dialogue.active and not pause_menu.visible and not battle_panel.visible else ""
 	_update_overview()
+	_track_encounters(focus)
+	if battle_panel.visible:axis=Vector2.ZERO
+	exploration_help.text="Herbes : nord-ouest • Soins : cube bleu • Dresseurs : cubes rouges\nMenu → Équipe / Résumé / PC • F3 : entraînement technique" if locale=="fr" else "Grass: northwest • Healing: blue cube • Trainers: red cubes\nMenu → Party / Summary / PC • F3: laboratory training"
 	menu_button.text="Menu • Échap" if locale=="fr" else "Menu • Esc"
 	Session.submit_axis(axis)
 	status.text="Joueurs %d/%d • étape %d • cap factice %d" % [players.size(),value.get("participants",1),value.get("progress",0),value.get("level_cap",10)]
+
+func _track_encounters(position_now: Vector3) -> void:
+	var distance: float=position_now.distance_to(last_walk_position)
+	last_walk_position=position_now
+	if Session.active_network or pause_menu.visible or dialogue.active or battle_panel.visible or distance>1.0:return
+	if position_now.x>=-9 and position_now.x<=-3 and position_now.z>=-7 and position_now.z<=-4:
+		Session.campaign.adventure.encounter_steps+=distance
+		if Session.campaign.adventure.encounter_steps>=3.5:
+			Session.campaign.adventure.encounter_steps=0
+			_begin_pokemon_battle([Session.campaign.adventure.wild()])
+
+func _begin_trainer(id: String) -> void:
+	var adventure: RefCounted=Session.campaign.adventure
+	if id=="trainer-2" and not adventure.victories.has("trainer-1"):
+		message.text="Bats le premier dresseur d'abord / Defeat trainer 1 first";return
+	var opponents: Array=[]
+	var ids: Array=["rattata","pikachu"] if id=="trainer-1" else ["ivysaur","charmeleon","wartortle"]
+	for species_id: String in ids:opponents.append(Mon.make(species_id,10 if id=="trainer-1" else 18,900000+opponents.size()))
+	_begin_pokemon_battle(opponents,id)
+
+func _begin_pokemon_battle(opponents: Array,trainer_id: String="") -> bool:
+	if dialogue.active or pause_menu.visible or Session.active_network:return false
+	if not pokemon_battle.begin(Session.campaign.adventure,opponents,trainer_id):return false
+	Session.submit_axis(Vector2.ZERO)
+	battle_panel.open(pokemon_battle,locale)
+	return true
+
+func _battle_finished(outcome: String) -> void:
+	Session.submit_axis(Vector2.ZERO)
+	if outcome=="lost":
+		Session.campaign.players[1].position=[0.0,0.0,2.0];Session.latest=Session.campaign.snapshot()
+	last_walk_position=_local_position()
+	Session.campaign.adventure.encounter_steps=0
+	if not Session.campaign.adventure.pending.is_empty():_open_menu("choices")

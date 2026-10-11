@@ -11,6 +11,8 @@ steps=[(['godot','--headless','--path',str(root/'game'),'--editor','--import','-
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/run_tests.gd'],'ARCHÉLYS TESTS: 19 checks, 0 failures'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/solo_systems.gd'],'SOLO SYSTEMS: 18 checks, 0 failures'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/dialogue_tests.gd'],'DIALOGUE TESTS: 6 checks, 0 failures'),
+       (['godot','--headless','--path',str(root/'game'),'--script','res://tests/pokemon_systems.gd'],'POKEMON SYSTEMS: 71 checks, 0 failures'),
+       (['godot','--headless','--path',str(root/'game'),'--script','res://tests/pokemon_scene.gd'],'POKEMON SCENE:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/asset_import.gd'],'GLB IMPORT:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/scene_smoke.gd'],'SCENE SMOKE:')]
 if args.network:

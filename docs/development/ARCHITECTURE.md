@@ -45,3 +45,9 @@ Contrôles : 19 originaux, 18 progression/préférences/migration, 6 dialogues, 
 ## Présentation des menus solo
 
 `ui/pause_menu.gd` est une couche de présentation : affiche une copie de progression et émet demandes de sauvegarde, chargement ou changement de préférences. Le monde raccorde ces signaux aux services existants. Aucune nouvelle dépendance ni migration : campagne schéma 2, préférences indépendantes inchangées. Menu modal bloque axes et interactions ; dialogues ont priorité et ne peuvent être interrompus par Échap. Échap revient d'une page à Pause puis ferme ; Tab/Entrée et souris naviguent dans les contrôles Godot.
+
+## Lot D47 : boucle Pokémon solo
+
+`PokemonCatalog` charge les données JSON figées ; `Pokemon` calcule/valide les individus et statistiques, normalise les entiers JSON ; `SoloAdventure` possède équipe, PC, sac, argent, caps, victoires et choix différés ; `PokemonBattle` traite les commandes et produit des événements FR/EN, sans rendu/réseau. Les interfaces `AdventurePages` et `PokemonBattlePanel` raccordent les menus et le combat au même modèle. Le duel factice ancien est conservé dans les outils F3, pas utilisé pour cette boucle.
+
+Snapshot campagne schéma 3 : versions 1/2 encore lues ; original `.vN.backup` préservé avant conversion, backup roulante inchangée. Validation complète avant mutation ; inventaire/IDs/PP/EV/choix contrôlés. Aucun snapshot de combat actif : sauvegarde/chargement et édition sont bloqués pendant le combat. Préférences indépendantes inchangées. Aucune dépendance supplémentaire : données embarquées, Godot existant, script d'import Python standard avec sources et empreintes figées. Multijoueur non développé.

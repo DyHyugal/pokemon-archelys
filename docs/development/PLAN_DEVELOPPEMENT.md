@@ -53,3 +53,7 @@ Livrer des lots cohérents plutôt qu’une fonctionnalité isolée par ZIP. Les
 ### Bloc après lab-e84ee99 validé
 
 Assembler les menus solo autour des services existants : Pause, Sac, Journal et Paramètres, sauvegarde/chargement, contrôles modaux et HUD dégagé. Ensuite poursuivre les systèmes solo indépendants du casting ; contenu Pokémon, scénario et production d'îles restent soumis aux choix/validations déjà identifiés. Aucun démarrage des travaux réseau.
+
+### D47 : les trois premiers blocs sont réunis
+
+Équipe/résumé/PC → moteur solo → rencontre/capture/progression sont les étapes internes d'un seul lot, avec un build et un parcours owner à sa fin. Premier catalogue provisoire pour éprouver la boucle avant extension. Les systèmes avancés, correction des limites de fidélité 9G, graphique représentatif et décisions produit restantes demeurent explicites dans le rapport.

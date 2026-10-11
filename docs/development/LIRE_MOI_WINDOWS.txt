@@ -44,62 +44,96 @@ Une signature reconnue exige un certificat de signature de code ou un service
 de signature autorisé. Aucun n'est configuré pour ce projet actuellement.
 Une signature auto-signée ne suffit pas pour être reconnue sur ton PC.
 
-CE QUI CHANGE DANS CE LOT
-Menu Pause avec Sac, Journal, Paramètres, Sauvegarder et Charger.
-Le Sac affiche le jeton reçu, sa quantité et sa description.
-Distance caméra disponible dans Paramètres, conservée automatiquement.
-Langue FR/EN des menus et dialogues ; préférences indépendantes de la campagne.
-Écran de jeu dégagé ; outils du laboratoire masqués, accessibles par F3.
-Le format de sauvegarde reste version 2 ; anciennes sauvegardes lisibles.
-Le jeton et les objectifs sont du contenu technique, pas le catalogue final.
+CE QUI CHANGE — LES TROIS BLOCS REGROUPÉS
+Équipe de six, résumé, IV/EV/natures réels, équipement, rappel gratuit et PC.
+Combats solo avec attaques/PP, changements, objets, statuts, KO et remplacements.
+Rencontres en marchant dans les herbes, capture vers l'équipe ou le PC, fuite.
+EXP, limites de niveau non décroissantes, apprentissages et évolutions.
+Tout cela est intégré à la sauvegarde ; ancien jeton et journal conservés.
+Catalogue provisoire : 13 espèces, 27 attaques. Pas de modèles Pokémon finaux.
+Les trois membres initiaux servent aux tests, ce ne sont pas les starters choisis.
 
-PARCOURS DU LOT — UN SEUL RETOUR POUR L'ENSEMBLE
+PARCOURS UNIQUE DU LOT
 
-MENU — Échap ouvre Pause ; clic sur Menu fonctionne aussi.
-Choisir les pages à la souris ou avec Tab puis Entrée.
-Échap revient à Pause depuis une page ; une seconde pression reprend le jeu.
-I ouvre directement le Sac ; J ouvre le Journal, hors dialogue.
-Déplacement et interactions du monde doivent rester bloqués dans les menus.
-À la fermeture, le déplacement doit reprendre normalement.
+PRENDRE SES REPÈRES — Charger ta partie depuis le menu si tu souhaites retrouver
+le jeton. L'équipe de test contient Bulbizarre, Salamèche et Carapuce niveau 8.
+Herbes : rectangle vert foncé au nord-ouest, vers (-6,-5).
+Soins : cube bleu près du départ, vers (0,3), E ou Entrée devant lui.
+Dresseur 1 : cube rouge vers (6,-4). Dresseur 2 : vers (10,-4).
+Un message dans les outils labo explique si le deuxième attend la première victoire.
 
-SAC — Charger ta sauvegarde via le menu. Si tu avais reçu le jeton,
-ouvrir Sac : « Jeton de test × 1 » et une description indiquant quantité 1.
-Sinon, le sac indique qu'il est vide. Aller à la caisse au sud-est (6,6),
-appuyer E ou Entrée pour l'ouvrir, puis consulter le Sac avec I.
-Rouvrir la caisse : toujours un seul jeton ; aucun bouton Utiliser,
-car cet objet sert seulement au test de récompense et de persistance.
+ÉQUIPE — Échap → Équipe / Résumé → choisir un Pokémon.
+Faire défiler la fiche à la molette pour voir statistiques, équipement et attaques.
+Modifier quelques IV, dont une valeur à 0, puis EV et nature ; cliquer Appliquer.
+Les statistiques réelles et le type de Puissance Cachée doivent changer.
+Maximum 252 EV par statistique et 510 au total : une saisie au-delà du total doit
+être refusée sans modifier le Pokémon. Les modifications se font hors combat.
+Placer un autre Pokémon en tête ; vérifier qu'il commence le prochain combat.
 
-JOURNAL — Parler au guide à droite, lire le panneau au nord-ouest (-3,-3),
-ouvrir la caisse. Le Journal affiche les coches correspondantes.
-Chaque phrase attend une nouvelle pression E / Entrée ; une touche maintenue
-ne doit pas tout passer. Échap ne coupe pas une conversation active.
+PC ET OBJETS — Déposer un membre depuis son résumé, puis le retirer depuis PC.
+Identité, niveau, attaques et réglages doivent rester identiques.
+On ne peut pas déposer le dernier membre apte au combat ni retirer au-delà de six.
+Équiper la Baie Oran, les Restes ou l'Œuf Chance ; retirer l'objet le rend au sac.
+Une Potion sur un Pokémon blessé doit soigner et consommer un exemplaire.
+Une Potion sur un Pokémon déjà en pleine santé ne doit pas être consommée.
+Le rappel d'attaque est gratuit ; choisir une attaque et l'emplacement à remplacer.
 
-PARAMÈTRES — Choisir anglais, rapprocher puis éloigner la caméra avec le curseur.
-Les menus et prochains dialogues changent de langue. Fermer le menu pour voir
-la nouvelle distance. Charger la partie : ces préférences restent conservées.
-Fermer complètement le jeu puis le relancer : langue et caméra sont conservées,
-même avant le chargement d'une sauvegarde.
+COMBAT — Marcher dans les herbes jusqu'à déclencher une rencontre.
+Chaque message attend une nouvelle pression E / Entrée, ou un clic Continuer.
+Maintenir la touche ne doit pas passer tout le texte. Pas de déplacement ou de
+menu de sauvegarde/édition pendant le combat.
+Choisir une attaque, regarder PV et PP ; changer de Pokémon coûte un tour.
+Les objets de soin peuvent cibler les membres de l'équipe.
+Après un KO, choisir un remplaçant ; les autres membres ne doivent pas être effacés.
+Fuir fonctionne en sauvage, pas contre un dresseur. Défaite complète : soins et
+retour au point de départ du laboratoire, perte de 100 ₽ maximum pour ce test.
+L'écran de combat utilise encore des fiches textuelles, pas les modèles finaux.
 
-SAUVEGARDE — Sauvegarder dans le menu après avoir reçu le jeton et validé
-les objectifs. Marcher ailleurs puis Charger : position, jeton et coches restaurés.
-Fermer/reprendre le jeu et Charger : vérifier la même chose.
-La campagne n'est pas chargée automatiquement ; les préférences le sont.
+CAPTURE — Sac en combat → Poké Ball ou Super Ball.
+Affaiblir ou endormir le Pokémon aide la capture ; elle n'est pas garantie.
+Une Ball lancée est consommée, même en cas d'échec. Le Pokémon capturé conserve
+son espèce, niveau, attaques et état. Répéter jusqu'à avoir six membres : la capture
+suivante doit aller au PC. Les Pokémon de dresseur ne sont pas capturables.
+F3 permet de réapprovisionner les consommables si nécessaire, hors combat.
 
-RÉGRESSION COURTE — Déplacements ZQSD/WASD/flèches et obstacles.
-F3 ou Outils labo affiche les boutons du duel factice et de reset.
-Le combat reste une simulation technique, sans règles Pokémon complètes.
-Aucun test multijoueur demandé ; connexion et sauvegardes multi reportées.
+PROGRESSION — Les combats et captures donnent de l'EXP aux membres admissibles.
+Cap initial 10 : le niveau ne doit pas le dépasser ni accumuler un saut de niveaux
+à débloquer ensuite. Dresseur 1 ouvre le cap 18 ; dresseur 2 ouvre le cap 36.
+Ces caps et adversaires sont des outils de laboratoire, pas l'équilibrage final.
+Les rematches ne redonnent pas l'argent de première victoire et ne baissent aucun cap.
+
+APPRENTISSAGES ET ÉVOLUTIONS — Pour éviter le grind du test, F3 affiche
+« Entraînement labo : +50000 EXP (respecte le cap) ». L'utiliser hors combat.
+Au cap 10, les membres restent au plus niveau 10 ; après le premier dresseur,
+le même outil peut les amener à 18 et présenter leurs choix d'apprentissage.
+Choisir une attaque à remplacer ou refuser ; accepter ou refuser l'évolution.
+Bulbizarre/Salamèche/Carapuce peuvent évoluer à partir du niveau 16.
+Après le deuxième dresseur et un entraînement, vérifier les stades suivants
+(Florizarre dès 32, Dracaufeu et Tortank dès 36).
+Les choix non traités restent dans Apprentissages et dans la sauvegarde.
+Pikachu peut évoluer avec la Pierre Foudre du kit, depuis son résumé ;
+il ne devient pas Raichu simplement en montant de niveau dans les herbes.
+
+PERSISTANCE — Sauvegarder après capture, changement de statistiques et dépôt PC.
+Fermer complètement, relancer et Charger : équipe, PC, PV/PP, objets, cap,
+argent, apprentissages en attente, jeton et journal doivent être retrouvés.
+Langue et caméra restent des préférences indépendantes, conservées automatiquement.
+Anciennes sauvegardes v1/v2 lisibles ; copie originale avant passage en v3.
+Aucun test multijoueur demandé. Un seul retour pour tout le parcours.
 
 RETOUR FACILE À COPIER
 Version : lab-{short_commit}
-Lancement : OK / bloqué
-Menu, navigation et reprise : OK / problème
-Sac, quantité et description du jeton : OK / problème
-Journal : OK / problème
-Langue et caméra après relancement : OK / problème
-Sauvegarde/chargement depuis le menu : OK / problème
-Dialogue, déplacements et fluidité : OK / problème
-Duel factice/reset : OK / problème
+Lancement et fluidité : OK / problème
+Équipe / résumé / IV / EV / nature : OK / problème
+PC et équipement : OK / problème
+Combat, PP, changements et KO : OK / problème
+Textes manuels et blocage du déplacement : OK / problème
+Rencontre et fuite : OK / problème
+Capture équipe pleine → PC : OK / problème
+EXP, caps et évolutions : OK / problème
+Apprentissages et rappel : OK / problème
+Sauvegarde/reprise de tout le lot : OK / problème
+Ancienne sauvegarde : OK / non testée / problème
 Autre remarque :
 
 SAUVEGARDES ET LIMITES
@@ -108,12 +142,21 @@ Dossier habituel sous Windows :
 Fichier : laboratory_campaign.json
 Copie précédente : laboratory_campaign.json.backup
 Original version 1 : laboratory_campaign.json.v1.backup
+Original version 2 : laboratory_campaign.json.v2.backup
+Format courant : 3 ; les anciens builds ne peuvent pas le lire.
 Préférences indépendantes : preferences.json (langue et distance caméra)
 Pour restaurer : fermer le jeu, préserver la save actuelle, puis copier
 la backup vers le nom laboratory_campaign.json.
-Décors et mannequin provisoires ; aucun Pokémon officiel ni scénario final.
+Décors et mannequin provisoires ; données de 13 espèces, sans assets Pokémon
+graphiques ni scénario final. Le moteur couvre le catalogue de test, pas toutes
+les règles 9G, les Méga, terrains/climats, doubles ou l’IA difficile finale.
+La capture utilise le calcul conventionnel sans capture critique ou tous les
+modificateurs spécifiques 9G ; les dégâts ne sont pas certifiés aux arrondis
+exacts de la cartouche. Ces extensions restent suivies dans le rapport du lot.
 La direction artistique ne doit pas être jugée comme une île terminée.
 
 NOTICES DU MOTEUR
 Godot 4.6.3, licence MIT ; notices incluses dans Godot-LICENSE.txt et
 Godot-COPYRIGHT.txt (sources officielles du tag 4.6.3-stable).
+
+Données de référence PokéAPI : notice BSD dans PokeAPI-LICENSE.txt.

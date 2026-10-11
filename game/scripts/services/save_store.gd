@@ -21,11 +21,12 @@ static func write_snapshot(path: String, data: Dictionary) -> Error:
 	if parse_error != OK or not parsed is Dictionary or not Campaign.validate(parsed):
 		return ERR_INVALID_DATA
 	if FileAccess.file_exists(path) and not read_snapshot(path).is_empty():
-		# Preserve the original schema-1 save once, separately from rolling backups.
-		if read_snapshot(path).get("schema") == 1 and data.get("schema") == 2 and not FileAccess.file_exists(path+".v1.backup"):
-			var migration_error := DirAccess.copy_absolute(path,path+".v1.backup")
-			if migration_error != OK:
-				return migration_error
+		# Preserve each original schema once, separately from rolling backups.
+		var previous: int=int(read_snapshot(path).schema)
+		var original_path: String=path+".v%d.backup" % previous
+		if previous<int(data.schema) and not FileAccess.file_exists(original_path):
+			var migration_error := DirAccess.copy_absolute(path,original_path)
+			if migration_error != OK:return migration_error
 		var backup_error := DirAccess.copy_absolute(path, path + ".backup")
 		if backup_error != OK:
 			return backup_error

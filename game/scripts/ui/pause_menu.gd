@@ -1,5 +1,8 @@
 extends CanvasLayer
 ## Presentation only: campaign and preferences remain owned by services.
+const AdventurePages=preload("res://scripts/ui/adventure_pages.gd")
+var adventure: RefCounted
+var adventure_pages: RefCounted
 signal language_changed(value: String)
 signal camera_changed(value: float)
 signal save_requested
@@ -22,6 +25,7 @@ var feedback: Label
 var buttons: Dictionary = {}
 
 func _ready() -> void:
+	adventure_pages=AdventurePages.new(self)
 	layer = 10
 	var shade := ColorRect.new()
 	shade.color = Color(0.025, 0.045, 0.075, 0.88)
@@ -48,7 +52,7 @@ func tr_text(fr: String, en: String) -> String:
 	return fr if locale=="fr" else en
 
 func button(parent: Node, text: String, action: Callable) -> Button:
-	var control := Button.new(); control.text=text; control.custom_minimum_size.y=42
+	var control := Button.new(); control.text=text; control.custom_minimum_size.y=34
 	parent.add_child(control); control.pressed.connect(action); return control
 
 func label(text: String) -> Label:
@@ -76,7 +80,11 @@ func close() -> void:
 func render() -> void:
 	clear(navigation); clear(body); buttons.clear()
 	var pages := ["home","bag","journal","settings"]
+	if adventure!=null:
+		pages.append_array(["team","pc","choices"])
+		adventure_pages.adventure=adventure
 	var names := [tr_text("Pause","Pause"),tr_text("Sac","Bag"),tr_text("Journal","Journal"),tr_text("Paramètres","Settings")]
+	if adventure!=null:names.append_array([tr_text("Équipe / Résumé","Party / Summary"),"PC",tr_text("Apprentissages (%d)","Learning (%d)") % adventure.pending.size()])
 	for index: int in range(pages.size()):
 		var target: String=pages[index]
 		buttons[target]=button(navigation,names[index],func(): page=target; feedback.text=""; render())
@@ -105,6 +113,9 @@ E / Enter: interact in the world"))
 				item_details=label("")
 				item.item_selected.connect(func(_index: int): show_item())
 				item.select(0); show_item()
+			if adventure!=null:adventure_pages.render_bag()
+		"team", "pc", "choices":
+			adventure_pages.render(page)
 		"journal":
 			label(tr_text("Objectifs du laboratoire", "Laboratory objectives"))
 			var ids := ["guide","sign","crate"]

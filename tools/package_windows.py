@@ -19,10 +19,10 @@ manifest={'commit':args.commit,'godot':'4.6.3','stage':'technical-laboratory',
           'distribution':'portable-external-pck','unmodified_godot_template':True,
           'windows_execution':'not validated on Windows','network_validation':'deferred; prior lab-09897ca tested on localhost only'}
 (folder/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
-(folder/'release-notes.md').write_text("Lot menus solo : Pause, Sac avec quantité/description du jeton, Journal, Paramètres langue/caméra persistants et sauvegarde/chargement. Échap ouvre le menu ; I ouvre le Sac, J le Journal ; F3 affiche les outils de labo. Parcours complet dans le LIRE-MOI.\n\nEXE officiel Godot inchangé, PCK séparé ; garder les deux ensemble. Nom fixe Archelys-Laboratoire.exe, toujours non signé. Le propriétaire a validé lab-e84ee99 sur son PC ; ce nouveau lot reste à tester sous Windows. Sauvegardes schéma 2 compatibles. Décors, objets et combat factice provisoires ; aucun test multijoueur demandé.\n",encoding='utf-8')
+(folder/'release-notes.md').write_text("Lot solo regroupé : équipe/résumé avec édition IV/EV/natures, objets tenus et rappel gratuit ; PC ; combats au tour par tour, rencontres sauvages, capture, EXP, apprentissage, évolutions et caps. 13 espèces/27 attaques provisoires, interface sans modèles Pokémon finaux. Parcours unique dans le LIRE-MOI.\n\nÉquipe de laboratoire, pas les starters définitifs. Le combat couvre ce petit catalogue, sans conformité exhaustive 9G ni IA difficile finale. Sauvegarde schéma 3 avec copie originale v1/v2 conservée avant conversion. EXE Godot portable officiel inchangé ; garder EXE/PCK ensemble. Aucun test multijoueur demandé.\n",encoding='utf-8')
 archive=folder/'Archelys-Laboratoire-Windows.zip'
 with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as z:
-    for file in [exe,pck,folder/'LIRE-MOI.txt',folder/'manifest.json',root/'docs/licenses/Godot-LICENSE.txt',root/'docs/licenses/Godot-COPYRIGHT.txt']:z.write(file,file.name)
+    for file in [exe,pck,folder/'LIRE-MOI.txt',folder/'manifest.json',root/'docs/licenses/Godot-LICENSE.txt',root/'docs/licenses/Godot-COPYRIGHT.txt',root/'docs/licenses/PokeAPI-LICENSE.txt']:z.write(file,file.name)
 with zipfile.ZipFile(archive) as z:assert z.testzip() is None
 (folder/'SHA256SUMS.txt').write_text(hashlib.sha256(archive.read_bytes()).hexdigest()+'  '+archive.name+'\n')
 print('Windows ZIP verified:',archive,archive.stat().st_size)

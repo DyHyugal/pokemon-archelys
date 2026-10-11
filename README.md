@@ -21,3 +21,5 @@ Ce projet est distinct de Pokémon Tactica. Aucun modèle, animation ou musique 
 Le [laboratoire et son bilan](https://github.com/DyHyugal/pokemon-archelys/blob/docs/cadrage-valide/docs/development/BILAN_SESSION_2026-10-11.md) sont dans la branche de travail en attente d’intégration. Les prereleases éventuelles sont des prototypes, pas la V1.
 
 Le [bloc menus solo](docs/development/LOT_MENUS_SOLO.md) présente le Sac, le Journal et les Paramètres, dont la distance de caméra conservée entre lancements.
+
+Le [lot regroupé de boucle Pokémon solo](docs/development/LOT_BOUCLE_POKEMON_SOLO.md) relie équipe/PC, combat, rencontres, capture et progression sur un catalogue provisoire, avec un parcours de test unique dans le ZIP.

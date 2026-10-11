@@ -1,0 +1,1682 @@
+{
+  "abilities": {
+    "blaze": {
+      "en": "Blaze",
+      "fr": "Brasier"
+    },
+    "overgrow": {
+      "en": "Overgrow",
+      "fr": "Engrais"
+    },
+    "run-away": {
+      "en": "Run Away",
+      "fr": "Fuite"
+    },
+    "static": {
+      "en": "Static",
+      "fr": "Statik"
+    },
+    "torrent": {
+      "en": "Torrent",
+      "fr": "Torrent"
+    }
+  },
+  "chart": {
+    "bug": {
+      "dark": 2,
+      "fairy": 0.5,
+      "fighting": 0.5,
+      "fire": 0.5,
+      "flying": 0.5,
+      "ghost": 0.5,
+      "grass": 2,
+      "poison": 0.5,
+      "psychic": 2,
+      "steel": 0.5
+    },
+    "dark": {
+      "dark": 0.5,
+      "fairy": 0.5,
+      "fighting": 0.5,
+      "ghost": 2,
+      "psychic": 2
+    },
+    "dragon": {
+      "dragon": 2,
+      "fairy": 0,
+      "steel": 0.5
+    },
+    "electric": {
+      "dragon": 0.5,
+      "electric": 0.5,
+      "flying": 2,
+      "grass": 0.5,
+      "ground": 0,
+      "water": 2
+    },
+    "fairy": {
+      "dark": 2,
+      "dragon": 2,
+      "fighting": 2,
+      "fire": 0.5,
+      "poison": 0.5,
+      "steel": 0.5
+    },
+    "fighting": {
+      "bug": 0.5,
+      "dark": 2,
+      "fairy": 0.5,
+      "flying": 0.5,
+      "ghost": 0,
+      "ice": 2,
+      "normal": 2,
+      "poison": 0.5,
+      "psychic": 0.5,
+      "rock": 2,
+      "steel": 2
+    },
+    "fire": {
+      "bug": 2,
+      "dragon": 0.5,
+      "fire": 0.5,
+      "grass": 2,
+      "ice": 2,
+      "rock": 0.5,
+      "steel": 2,
+      "water": 0.5
+    },
+    "flying": {
+      "bug": 2,
+      "electric": 0.5,
+      "fighting": 2,
+      "grass": 2,
+      "rock": 0.5,
+      "steel": 0.5
+    },
+    "ghost": {
+      "dark": 0.5,
+      "ghost": 2,
+      "normal": 0,
+      "psychic": 2
+    },
+    "grass": {
+      "bug": 0.5,
+      "dragon": 0.5,
+      "fire": 0.5,
+      "flying": 0.5,
+      "grass": 0.5,
+      "ground": 2,
+      "poison": 0.5,
+      "rock": 2,
+      "steel": 0.5,
+      "water": 2
+    },
+    "ground": {
+      "bug": 0.5,
+      "electric": 2,
+      "fire": 2,
+      "flying": 0,
+      "grass": 0.5,
+      "poison": 2,
+      "rock": 2,
+      "steel": 2
+    },
+    "ice": {
+      "dragon": 2,
+      "fire": 0.5,
+      "flying": 2,
+      "grass": 2,
+      "ground": 2,
+      "ice": 0.5,
+      "steel": 0.5,
+      "water": 0.5
+    },
+    "normal": {
+      "ghost": 0,
+      "rock": 0.5,
+      "steel": 0.5
+    },
+    "poison": {
+      "fairy": 2,
+      "ghost": 0.5,
+      "grass": 2,
+      "ground": 0.5,
+      "poison": 0.5,
+      "rock": 0.5,
+      "steel": 0
+    },
+    "psychic": {
+      "dark": 0,
+      "fighting": 2,
+      "poison": 2,
+      "psychic": 0.5,
+      "steel": 0.5
+    },
+    "rock": {
+      "bug": 2,
+      "fighting": 0.5,
+      "fire": 2,
+      "flying": 2,
+      "ground": 0.5,
+      "ice": 2,
+      "steel": 0.5
+    },
+    "steel": {
+      "electric": 0.5,
+      "fairy": 2,
+      "fire": 0.5,
+      "ice": 2,
+      "rock": 2,
+      "steel": 0.5,
+      "water": 0.5
+    },
+    "water": {
+      "dragon": 0.5,
+      "fire": 2,
+      "grass": 0.5,
+      "ground": 2,
+      "rock": 2,
+      "water": 0.5
+    }
+  },
+  "items": {
+    "antidote": {
+      "names": {
+        "en": "Antidote",
+        "fr": "Antidote"
+      }
+    },
+    "great-ball": {
+      "names": {
+        "en": "Great Ball",
+        "fr": "Super Ball"
+      }
+    },
+    "leftovers": {
+      "names": {
+        "en": "Leftovers",
+        "fr": "Restes"
+      }
+    },
+    "lucky-egg": {
+      "names": {
+        "en": "Lucky Egg",
+        "fr": "Œuf Chance"
+      }
+    },
+    "oran-berry": {
+      "names": {
+        "en": "Oran Berry",
+        "fr": "Baie Oran"
+      }
+    },
+    "paralyze-heal": {
+      "names": {
+        "en": "Paralyze Heal",
+        "fr": "Anti-Para"
+      }
+    },
+    "poke-ball": {
+      "names": {
+        "en": "Poké Ball",
+        "fr": "Poké Ball"
+      }
+    },
+    "potion": {
+      "names": {
+        "en": "Potion",
+        "fr": "Potion"
+      }
+    },
+    "thunder-stone": {
+      "names": {
+        "en": "Thunder Stone",
+        "fr": "Pierre Foudre"
+      }
+    }
+  },
+  "moves": {
+    "bite": {
+      "accuracy": 100,
+      "category": "physical",
+      "contact": true,
+      "flinch": 30,
+      "names": {
+        "en": "Bite",
+        "fr": "Morsure"
+      },
+      "power": 60,
+      "pp": 25,
+      "priority": 0,
+      "type": "dark"
+    },
+    "double-team": {
+      "accuracy": 0,
+      "category": "status",
+      "change": 1,
+      "contact": false,
+      "names": {
+        "en": "Double Team",
+        "fr": "Reflet"
+      },
+      "power": 0,
+      "pp": 15,
+      "priority": 0,
+      "self": true,
+      "stage": "evasion",
+      "type": "normal"
+    },
+    "dragon-breath": {
+      "accuracy": 100,
+      "category": "special",
+      "chance": 30,
+      "contact": false,
+      "names": {
+        "en": "Dragon Breath",
+        "fr": "Draco-Souffle"
+      },
+      "power": 60,
+      "pp": 20,
+      "priority": 0,
+      "status": "paralysis",
+      "type": "dragon"
+    },
+    "ember": {
+      "accuracy": 100,
+      "category": "special",
+      "chance": 10,
+      "contact": false,
+      "names": {
+        "en": "Ember",
+        "fr": "Flammèche"
+      },
+      "power": 40,
+      "pp": 25,
+      "priority": 0,
+      "status": "burn",
+      "type": "fire"
+    },
+    "fire-fang": {
+      "accuracy": 95,
+      "category": "physical",
+      "chance": 10,
+      "contact": true,
+      "flinch": 10,
+      "names": {
+        "en": "Fire Fang",
+        "fr": "Crocs Feu"
+      },
+      "power": 65,
+      "pp": 15,
+      "priority": 0,
+      "status": "burn",
+      "type": "fire"
+    },
+    "flamethrower": {
+      "accuracy": 100,
+      "category": "special",
+      "chance": 10,
+      "contact": false,
+      "names": {
+        "en": "Flamethrower",
+        "fr": "Lance-Flammes"
+      },
+      "power": 90,
+      "pp": 15,
+      "priority": 0,
+      "status": "burn",
+      "type": "fire"
+    },
+    "growl": {
+      "accuracy": 100,
+      "category": "status",
+      "change": -1,
+      "contact": false,
+      "names": {
+        "en": "Growl",
+        "fr": "Rugissement"
+      },
+      "power": 0,
+      "pp": 40,
+      "priority": 0,
+      "stage": "attack",
+      "type": "normal"
+    },
+    "growth": {
+      "accuracy": 0,
+      "category": "status",
+      "contact": false,
+      "growth": true,
+      "names": {
+        "en": "Growth",
+        "fr": "Croissance"
+      },
+      "power": 0,
+      "pp": 20,
+      "priority": 0,
+      "self": true,
+      "type": "normal"
+    },
+    "hydro-pump": {
+      "accuracy": 80,
+      "category": "special",
+      "contact": false,
+      "names": {
+        "en": "Hydro Pump",
+        "fr": "Hydrocanon"
+      },
+      "power": 110,
+      "pp": 5,
+      "priority": 0,
+      "type": "water"
+    },
+    "poison-powder": {
+      "accuracy": 75,
+      "category": "status",
+      "contact": false,
+      "names": {
+        "en": "Poison Powder",
+        "fr": "Poudre Toxik"
+      },
+      "powder": true,
+      "power": 0,
+      "pp": 35,
+      "priority": 0,
+      "status": "poison",
+      "type": "poison"
+    },
+    "quick-attack": {
+      "accuracy": 100,
+      "category": "physical",
+      "contact": true,
+      "names": {
+        "en": "Quick Attack",
+        "fr": "Vive-Attaque"
+      },
+      "power": 40,
+      "pp": 30,
+      "priority": 1,
+      "type": "normal"
+    },
+    "razor-leaf": {
+      "accuracy": 95,
+      "category": "physical",
+      "contact": false,
+      "crit_stage": 1,
+      "names": {
+        "en": "Razor Leaf",
+        "fr": "Tranch’Herbe"
+      },
+      "power": 55,
+      "pp": 25,
+      "priority": 0,
+      "type": "grass"
+    },
+    "scratch": {
+      "accuracy": 100,
+      "category": "physical",
+      "contact": true,
+      "names": {
+        "en": "Scratch",
+        "fr": "Griffe"
+      },
+      "power": 40,
+      "pp": 35,
+      "priority": 0,
+      "type": "normal"
+    },
+    "seed-bomb": {
+      "accuracy": 100,
+      "category": "physical",
+      "contact": false,
+      "names": {
+        "en": "Seed Bomb",
+        "fr": "Canon Graine"
+      },
+      "power": 80,
+      "pp": 15,
+      "priority": 0,
+      "type": "grass"
+    },
+    "sleep-powder": {
+      "accuracy": 75,
+      "category": "status",
+      "contact": false,
+      "names": {
+        "en": "Sleep Powder",
+        "fr": "Poudre Dodo"
+      },
+      "powder": true,
+      "power": 0,
+      "pp": 15,
+      "priority": 0,
+      "status": "sleep",
+      "type": "grass"
+    },
+    "smokescreen": {
+      "accuracy": 100,
+      "category": "status",
+      "change": -1,
+      "contact": false,
+      "names": {
+        "en": "Smokescreen",
+        "fr": "Brouillard"
+      },
+      "power": 0,
+      "pp": 20,
+      "priority": 0,
+      "stage": "accuracy",
+      "type": "normal"
+    },
+    "spark": {
+      "accuracy": 100,
+      "category": "physical",
+      "chance": 30,
+      "contact": true,
+      "names": {
+        "en": "Spark",
+        "fr": "Étincelle"
+      },
+      "power": 65,
+      "pp": 20,
+      "priority": 0,
+      "status": "paralysis",
+      "type": "electric"
+    },
+    "struggle": {
+      "accuracy": 0,
+      "category": "physical",
+      "contact": true,
+      "names": {
+        "en": "Struggle",
+        "fr": "Lutte"
+      },
+      "power": 50,
+      "pp": 1,
+      "priority": 0,
+      "struggle": true,
+      "type": "normal"
+    },
+    "tackle": {
+      "accuracy": 100,
+      "category": "physical",
+      "contact": true,
+      "names": {
+        "en": "Tackle",
+        "fr": "Charge"
+      },
+      "power": 40,
+      "pp": 35,
+      "priority": 0,
+      "type": "normal"
+    },
+    "tail-whip": {
+      "accuracy": 100,
+      "category": "status",
+      "change": -1,
+      "contact": false,
+      "names": {
+        "en": "Tail Whip",
+        "fr": "Mimi-Queue"
+      },
+      "power": 0,
+      "pp": 30,
+      "priority": 0,
+      "stage": "defense",
+      "type": "normal"
+    },
+    "thunder-shock": {
+      "accuracy": 100,
+      "category": "special",
+      "chance": 10,
+      "contact": false,
+      "names": {
+        "en": "Thunder Shock",
+        "fr": "Éclair"
+      },
+      "power": 40,
+      "pp": 30,
+      "priority": 0,
+      "status": "paralysis",
+      "type": "electric"
+    },
+    "thunder-wave": {
+      "accuracy": 90,
+      "category": "status",
+      "contact": false,
+      "names": {
+        "en": "Thunder Wave",
+        "fr": "Cage Éclair"
+      },
+      "power": 0,
+      "pp": 20,
+      "priority": 0,
+      "status": "paralysis",
+      "type": "electric"
+    },
+    "thunderbolt": {
+      "accuracy": 100,
+      "category": "special",
+      "chance": 10,
+      "contact": false,
+      "names": {
+        "en": "Thunderbolt",
+        "fr": "Tonnerre"
+      },
+      "power": 90,
+      "pp": 15,
+      "priority": 0,
+      "status": "paralysis",
+      "type": "electric"
+    },
+    "vine-whip": {
+      "accuracy": 100,
+      "category": "physical",
+      "contact": true,
+      "names": {
+        "en": "Vine Whip",
+        "fr": "Fouet Lianes"
+      },
+      "power": 45,
+      "pp": 25,
+      "priority": 0,
+      "type": "grass"
+    },
+    "water-gun": {
+      "accuracy": 100,
+      "category": "special",
+      "contact": false,
+      "names": {
+        "en": "Water Gun",
+        "fr": "Pistolet à O"
+      },
+      "power": 40,
+      "pp": 25,
+      "priority": 0,
+      "type": "water"
+    },
+    "water-pulse": {
+      "accuracy": 100,
+      "category": "special",
+      "confusion": 20,
+      "contact": false,
+      "names": {
+        "en": "Water Pulse",
+        "fr": "Vibraqua"
+      },
+      "power": 60,
+      "pp": 20,
+      "priority": 0,
+      "type": "water"
+    },
+    "withdraw": {
+      "accuracy": 0,
+      "category": "status",
+      "change": 1,
+      "contact": false,
+      "names": {
+        "en": "Withdraw",
+        "fr": "Repli"
+      },
+      "power": 0,
+      "pp": 40,
+      "priority": 0,
+      "self": true,
+      "stage": "defense",
+      "type": "water"
+    }
+  },
+  "natures": {
+    "adamant": {
+      "en": "Adamant",
+      "fr": "Rigide"
+    },
+    "bashful": {
+      "en": "Bashful",
+      "fr": "Pudique"
+    },
+    "bold": {
+      "en": "Bold",
+      "fr": "Assuré"
+    },
+    "brave": {
+      "en": "Brave",
+      "fr": "Brave"
+    },
+    "calm": {
+      "en": "Calm",
+      "fr": "Calme"
+    },
+    "careful": {
+      "en": "Careful",
+      "fr": "Prudent"
+    },
+    "docile": {
+      "en": "Docile",
+      "fr": "Docile"
+    },
+    "gentle": {
+      "en": "Gentle",
+      "fr": "Gentil"
+    },
+    "hardy": {
+      "en": "Hardy",
+      "fr": "Hardi"
+    },
+    "hasty": {
+      "en": "Hasty",
+      "fr": "Pressé"
+    },
+    "impish": {
+      "en": "Impish",
+      "fr": "Malin"
+    },
+    "jolly": {
+      "en": "Jolly",
+      "fr": "Jovial"
+    },
+    "lax": {
+      "en": "Lax",
+      "fr": "Lâche"
+    },
+    "lonely": {
+      "en": "Lonely",
+      "fr": "Solo"
+    },
+    "mild": {
+      "en": "Mild",
+      "fr": "Doux"
+    },
+    "modest": {
+      "en": "Modest",
+      "fr": "Modeste"
+    },
+    "naive": {
+      "en": "Naive",
+      "fr": "Naïf"
+    },
+    "naughty": {
+      "en": "Naughty",
+      "fr": "Mauvais"
+    },
+    "quiet": {
+      "en": "Quiet",
+      "fr": "Discret"
+    },
+    "quirky": {
+      "en": "Quirky",
+      "fr": "Bizarre"
+    },
+    "rash": {
+      "en": "Rash",
+      "fr": "Foufou"
+    },
+    "relaxed": {
+      "en": "Relaxed",
+      "fr": "Relax"
+    },
+    "sassy": {
+      "en": "Sassy",
+      "fr": "Malpoli"
+    },
+    "serious": {
+      "en": "Serious",
+      "fr": "Sérieux"
+    },
+    "timid": {
+      "en": "Timid",
+      "fr": "Timide"
+    }
+  },
+  "species": {
+    "blastoise": {
+      "ability": "torrent",
+      "base_exp": 239,
+      "catch_rate": 45,
+      "effort": [
+        0,
+        0,
+        0,
+        0,
+        3,
+        0
+      ],
+      "growth": "medium-slow",
+      "learnset": [
+        {
+          "level": 1,
+          "move": "tackle"
+        },
+        {
+          "level": 1,
+          "move": "tail-whip"
+        },
+        {
+          "level": 1,
+          "move": "water-gun"
+        },
+        {
+          "level": 1,
+          "move": "withdraw"
+        },
+        {
+          "level": 12,
+          "move": "bite"
+        },
+        {
+          "level": 15,
+          "move": "water-pulse"
+        },
+        {
+          "level": 49,
+          "move": "hydro-pump"
+        }
+      ],
+      "learnset_version_group": 20,
+      "minimum_level": 36,
+      "names": {
+        "en": "Blastoise",
+        "fr": "Tortank"
+      },
+      "previous": "wartortle",
+      "stats": [
+        79,
+        83,
+        100,
+        85,
+        105,
+        78
+      ],
+      "types": [
+        "water"
+      ]
+    },
+    "bulbasaur": {
+      "ability": "overgrow",
+      "base_exp": 64,
+      "catch_rate": 45,
+      "effort": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      "evolution": {
+        "level": 16,
+        "target": "ivysaur"
+      },
+      "growth": "medium-slow",
+      "learnset": [
+        {
+          "level": 1,
+          "move": "tackle"
+        },
+        {
+          "level": 1,
+          "move": "growl"
+        },
+        {
+          "level": 3,
+          "move": "vine-whip"
+        },
+        {
+          "level": 6,
+          "move": "growth"
+        },
+        {
+          "level": 12,
+          "move": "razor-leaf"
+        },
+        {
+          "level": 15,
+          "move": "poison-powder"
+        },
+        {
+          "level": 15,
+          "move": "sleep-powder"
+        },
+        {
+          "level": 18,
+          "move": "seed-bomb"
+        }
+      ],
+      "learnset_version_group": 20,
+      "names": {
+        "en": "Bulbasaur",
+        "fr": "Bulbizarre"
+      },
+      "stats": [
+        45,
+        49,
+        49,
+        65,
+        65,
+        45
+      ],
+      "types": [
+        "grass",
+        "poison"
+      ]
+    },
+    "charizard": {
+      "ability": "blaze",
+      "base_exp": 240,
+      "catch_rate": 45,
+      "effort": [
+        0,
+        0,
+        0,
+        3,
+        0,
+        0
+      ],
+      "growth": "medium-slow",
+      "learnset": [
+        {
+          "level": 1,
+          "move": "scratch"
+        },
+        {
+          "level": 1,
+          "move": "growl"
+        },
+        {
+          "level": 1,
+          "move": "ember"
+        },
+        {
+          "level": 1,
+          "move": "smokescreen"
+        },
+        {
+          "level": 12,
+          "move": "dragon-breath"
+        },
+        {
+          "level": 19,
+          "move": "fire-fang"
+        },
+        {
+          "level": 30,
+          "move": "flamethrower"
+        }
+      ],
+      "learnset_version_group": 20,
+      "minimum_level": 36,
+      "names": {
+        "en": "Charizard",
+        "fr": "Dracaufeu"
+      },
+      "previous": "charmeleon",
+      "stats": [
+        78,
+        84,
+        78,
+        109,
+        85,
+        100
+      ],
+      "types": [
+        "fire",
+        "flying"
+      ]
+    },
+    "charmander": {
+      "ability": "blaze",
+      "base_exp": 62,
+      "catch_rate": 45,
+      "effort": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "evolution": {
+        "level": 16,
+        "target": "charmeleon"
+      },
+      "growth": "medium-slow",
+      "learnset": [
+        {
+          "level": 1,
+          "move": "scratch"
+        },
+        {
+          "level": 1,
+          "move": "growl"
+        },
+        {
+          "level": 4,
+          "move": "ember"
+        },
+        {
+          "level": 8,
+          "move": "smokescreen"
+        },
+        {
+          "level": 12,
+          "move": "dragon-breath"
+        },
+        {
+          "level": 17,
+          "move": "fire-fang"
+        },
+        {
+          "level": 24,
+          "move": "flamethrower"
+        }
+      ],
+      "learnset_version_group": 20,
+      "names": {
+        "en": "Charmander",
+        "fr": "Salamèche"
+      },
+      "stats": [
+        39,
+        52,
+        43,
+        60,
+        50,
+        65
+      ],
+      "types": [
+        "fire"
+      ]
+    },
+    "charmeleon": {
+      "ability": "blaze",
+      "base_exp": 142,
+      "catch_rate": 45,
+      "effort": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        1
+      ],
+      "evolution": {
+        "level": 36,
+        "target": "charizard"
+      },
+      "growth": "medium-slow",
+      "learnset": [
+        {
+          "level": 1,
+          "move": "scratch"
+        },
+        {
+          "level": 1,
+          "move": "growl"
+        },
+        {
+          "level": 1,
+          "move": "ember"
+        },
+        {
+          "level": 1,
+          "move": "smokescreen"
+        },
+        {
+          "level": 12,
+          "move": "dragon-breath"
+        },
+        {
+          "level": 19,
+          "move": "fire-fang"
+        },
+        {
+          "level": 30,
+          "move": "flamethrower"
+        }
+      ],
+      "learnset_version_group": 20,
+      "minimum_level": 16,
+      "names": {
+        "en": "Charmeleon",
+        "fr": "Reptincel"
+      },
+      "previous": "charmander",
+      "stats": [
+        58,
+        64,
+        58,
+        80,
+        65,
+        80
+      ],
+      "types": [
+        "fire"
+      ]
+    },
+    "ivysaur": {
+      "ability": "overgrow",
+      "base_exp": 142,
+      "catch_rate": 45,
+      "effort": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        0
+      ],
+      "evolution": {
+        "level": 32,
+        "target": "venusaur"
+      },
+      "growth": "medium-slow",
+      "learnset": [
+        {
+          "level": 1,
+          "move": "vine-whip"
+        },
+        {
+          "level": 1,
+          "move": "tackle"
+        },
+        {
+          "level": 1,
+          "move": "growl"
+        },
+        {
+          "level": 1,
+          "move": "growth"
+        },
+        {
+          "level": 12,
+          "move": "razor-leaf"
+        },
+        {
+          "level": 15,
+          "move": "poison-powder"
+        },
+        {
+          "level": 15,
+          "move": "sleep-powder"
+        },
+        {
+          "level": 20,
+          "move": "seed-bomb"
+        }
+      ],
+      "learnset_version_group": 20,
+      "minimum_level": 16,
+      "names": {
+        "en": "Ivysaur",
+        "fr": "Herbizarre"
+      },
+      "previous": "bulbasaur",
+      "stats": [
+        60,
+        62,
+        63,
+        80,
+        80,
+        60
+      ],
+      "types": [
+        "grass",
+        "poison"
+      ]
+    },
+    "pikachu": {
+      "ability": "static",
+      "base_exp": 112,
+      "catch_rate": 190,
+      "effort": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "evolution": {
+        "item": "thunder-stone",
+        "target": "raichu"
+      },
+      "growth": "medium",
+      "learnset": [
+        {
+          "level": 1,
+          "move": "tail-whip"
+        },
+        {
+          "level": 1,
+          "move": "growl"
+        },
+        {
+          "level": 1,
+          "move": "thunder-shock"
+        },
+        {
+          "level": 1,
+          "move": "quick-attack"
+        },
+        {
+          "level": 4,
+          "move": "thunder-wave"
+        },
+        {
+          "level": 8,
+          "move": "double-team"
+        },
+        {
+          "level": 20,
+          "move": "spark"
+        },
+        {
+          "level": 36,
+          "move": "thunderbolt"
+        }
+      ],
+      "learnset_version_group": 20,
+      "names": {
+        "en": "Pikachu",
+        "fr": "Pikachu"
+      },
+      "stats": [
+        35,
+        55,
+        40,
+        50,
+        50,
+        90
+      ],
+      "types": [
+        "electric"
+      ]
+    },
+    "raichu": {
+      "ability": "static",
+      "base_exp": 218,
+      "catch_rate": 75,
+      "effort": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        3
+      ],
+      "growth": "medium",
+      "learnset": [
+        {
+          "level": 1,
+          "move": "tail-whip"
+        },
+        {
+          "level": 1,
+          "move": "growl"
+        },
+        {
+          "level": 1,
+          "move": "thunder-shock"
+        },
+        {
+          "level": 1,
+          "move": "thunderbolt"
+        },
+        {
+          "level": 1,
+          "move": "thunder-wave"
+        },
+        {
+          "level": 1,
+          "move": "quick-attack"
+        },
+        {
+          "level": 1,
+          "move": "double-team"
+        },
+        {
+          "level": 1,
+          "move": "spark"
+        }
+      ],
+      "learnset_version_group": 20,
+      "names": {
+        "en": "Raichu",
+        "fr": "Raichu"
+      },
+      "previous": "pikachu",
+      "stats": [
+        60,
+        90,
+        55,
+        90,
+        80,
+        110
+      ],
+      "types": [
+        "electric"
+      ]
+    },
+    "raticate": {
+      "ability": "run-away",
+      "base_exp": 145,
+      "catch_rate": 127,
+      "effort": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "growth": "medium",
+      "learnset": [
+        {
+          "level": 1,
+          "move": "tackle"
+        },
+        {
+          "level": 1,
+          "move": "tail-whip"
+        },
+        {
+          "level": 1,
+          "move": "quick-attack"
+        },
+        {
+          "level": 12,
+          "move": "bite"
+        }
+      ],
+      "learnset_version_group": 19,
+      "minimum_level": 20,
+      "names": {
+        "en": "Raticate",
+        "fr": "Rattatac"
+      },
+      "previous": "rattata",
+      "stats": [
+        55,
+        81,
+        60,
+        50,
+        70,
+        97
+      ],
+      "types": [
+        "normal"
+      ]
+    },
+    "rattata": {
+      "ability": "run-away",
+      "base_exp": 51,
+      "catch_rate": 255,
+      "effort": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "evolution": {
+        "level": 20,
+        "target": "raticate"
+      },
+      "growth": "medium",
+      "learnset": [
+        {
+          "level": 1,
+          "move": "tackle"
+        },
+        {
+          "level": 3,
+          "move": "tail-whip"
+        },
+        {
+          "level": 6,
+          "move": "quick-attack"
+        },
+        {
+          "level": 12,
+          "move": "bite"
+        }
+      ],
+      "learnset_version_group": 19,
+      "names": {
+        "en": "Rattata",
+        "fr": "Rattata"
+      },
+      "stats": [
+        30,
+        56,
+        35,
+        25,
+        35,
+        72
+      ],
+      "types": [
+        "normal"
+      ]
+    },
+    "squirtle": {
+      "ability": "torrent",
+      "base_exp": 63,
+      "catch_rate": 45,
+      "effort": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "evolution": {
+        "level": 16,
+        "target": "wartortle"
+      },
+      "growth": "medium-slow",
+      "learnset": [
+        {
+          "level": 1,
+          "move": "tackle"
+        },
+        {
+          "level": 1,
+          "move": "tail-whip"
+        },
+        {
+          "level": 3,
+          "move": "water-gun"
+        },
+        {
+          "level": 6,
+          "move": "withdraw"
+        },
+        {
+          "level": 12,
+          "move": "bite"
+        },
+        {
+          "level": 15,
+          "move": "water-pulse"
+        },
+        {
+          "level": 33,
+          "move": "hydro-pump"
+        }
+      ],
+      "learnset_version_group": 20,
+      "names": {
+        "en": "Squirtle",
+        "fr": "Carapuce"
+      },
+      "stats": [
+        44,
+        48,
+        65,
+        50,
+        64,
+        43
+      ],
+      "types": [
+        "water"
+      ]
+    },
+    "venusaur": {
+      "ability": "overgrow",
+      "base_exp": 236,
+      "catch_rate": 45,
+      "effort": [
+        0,
+        0,
+        0,
+        2,
+        1,
+        0
+      ],
+      "growth": "medium-slow",
+      "learnset": [
+        {
+          "level": 1,
+          "move": "vine-whip"
+        },
+        {
+          "level": 1,
+          "move": "tackle"
+        },
+        {
+          "level": 1,
+          "move": "growl"
+        },
+        {
+          "level": 1,
+          "move": "growth"
+        },
+        {
+          "level": 12,
+          "move": "razor-leaf"
+        },
+        {
+          "level": 15,
+          "move": "poison-powder"
+        },
+        {
+          "level": 15,
+          "move": "sleep-powder"
+        },
+        {
+          "level": 20,
+          "move": "seed-bomb"
+        }
+      ],
+      "learnset_version_group": 20,
+      "minimum_level": 32,
+      "names": {
+        "en": "Venusaur",
+        "fr": "Florizarre"
+      },
+      "previous": "ivysaur",
+      "stats": [
+        80,
+        82,
+        83,
+        100,
+        100,
+        80
+      ],
+      "types": [
+        "grass",
+        "poison"
+      ]
+    },
+    "wartortle": {
+      "ability": "torrent",
+      "base_exp": 142,
+      "catch_rate": 45,
+      "effort": [
+        0,
+        0,
+        1,
+        0,
+        1,
+        0
+      ],
+      "evolution": {
+        "level": 36,
+        "target": "blastoise"
+      },
+      "growth": "medium-slow",
+      "learnset": [
+        {
+          "level": 1,
+          "move": "tackle"
+        },
+        {
+          "level": 1,
+          "move": "tail-whip"
+        },
+        {
+          "level": 1,
+          "move": "water-gun"
+        },
+        {
+          "level": 1,
+          "move": "withdraw"
+        },
+        {
+          "level": 12,
+          "move": "bite"
+        },
+        {
+          "level": 15,
+          "move": "water-pulse"
+        },
+        {
+          "level": 45,
+          "move": "hydro-pump"
+        }
+      ],
+      "learnset_version_group": 20,
+      "minimum_level": 16,
+      "names": {
+        "en": "Wartortle",
+        "fr": "Carabaffe"
+      },
+      "previous": "squirtle",
+      "stats": [
+        59,
+        63,
+        80,
+        65,
+        80,
+        58
+      ],
+      "types": [
+        "water"
+      ]
+    }
+  },
+  "stat_names": {
+    "attack": {
+      "en": "Attack",
+      "fr": "Attaque"
+    },
+    "defense": {
+      "en": "Defense",
+      "fr": "Défense"
+    },
+    "hp": {
+      "en": "HP",
+      "fr": "PV"
+    },
+    "special_attack": {
+      "en": "Sp. Attack",
+      "fr": "Attaque Spé."
+    },
+    "special_defense": {
+      "en": "Sp. Defense",
+      "fr": "Défense Spé."
+    },
+    "speed": {
+      "en": "Speed",
+      "fr": "Vitesse"
+    }
+  },
+  "status_names": {
+    "burn": {
+      "en": "burn",
+      "fr": "brûlure"
+    },
+    "freeze": {
+      "en": "freeze",
+      "fr": "gel"
+    },
+    "paralysis": {
+      "en": "paralysis",
+      "fr": "paralysie"
+    },
+    "poison": {
+      "en": "poison",
+      "fr": "empoisonnement"
+    },
+    "sleep": {
+      "en": "sleep",
+      "fr": "sommeil"
+    }
+  },
+  "type_names": {
+    "bug": {
+      "en": "Bug",
+      "fr": "Insecte"
+    },
+    "dark": {
+      "en": "Dark",
+      "fr": "Ténèbres"
+    },
+    "dragon": {
+      "en": "Dragon",
+      "fr": "Dragon"
+    },
+    "electric": {
+      "en": "Electric",
+      "fr": "Électrik"
+    },
+    "fairy": {
+      "en": "Fairy",
+      "fr": "Fée"
+    },
+    "fighting": {
+      "en": "Fighting",
+      "fr": "Combat"
+    },
+    "fire": {
+      "en": "Fire",
+      "fr": "Feu"
+    },
+    "flying": {
+      "en": "Flying",
+      "fr": "Vol"
+    },
+    "ghost": {
+      "en": "Ghost",
+      "fr": "Spectre"
+    },
+    "grass": {
+      "en": "Grass",
+      "fr": "Plante"
+    },
+    "ground": {
+      "en": "Ground",
+      "fr": "Sol"
+    },
+    "ice": {
+      "en": "Ice",
+      "fr": "Glace"
+    },
+    "normal": {
+      "en": "Normal",
+      "fr": "Normal"
+    },
+    "poison": {
+      "en": "Poison",
+      "fr": "Poison"
+    },
+    "psychic": {
+      "en": "Psychic",
+      "fr": "Psy"
+    },
+    "rock": {
+      "en": "Rock",
+      "fr": "Roche"
+    },
+    "steel": {
+      "en": "Steel",
+      "fr": "Acier"
+    },
+    "water": {
+      "en": "Water",
+      "fr": "Eau"
+    }
+  }
+}

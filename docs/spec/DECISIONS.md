@@ -98,3 +98,12 @@ D42 est un constat sur son PC, pas une garantie sur tous les PC. Le moteur non m
 | D45 | Ajouter le menu Sac et garder une option de distance caméra dans Paramètres ; poursuivre le bloc suivant | Demande explicite du propriétaire |
 
 Bloc technique retenu : Pause, Sac, Journal et Paramètres avec accès sauvegarde/chargement. Il présente les systèmes déjà éprouvés ; ni catalogue final, ni scénario, ni rendu artistique approuvés par cette validation.
+
+## Lot solo regroupé
+
+| ID | Décision | Provenance |
+|---|---|---|
+| D46 | lab-d33e5ee validé : ergonomie parfaite et fonctionnement correct | Retour explicite propriétaire du 11 octobre 2026 |
+| D47 | Réunir les blocs 1 (équipe/PC), 2 (combat solo), 3 (rencontres/capture/progression), commencer et demander un seul playtest après l'ensemble | Demande explicite propriétaire |
+
+Le petit catalogue et l'équipe fournie sont des données techniques provisoires, pas une décision sur les starters, le Pokédex final ou les assets. Le lot cible une boucle complète sur ce catalogue ; la conformité exhaustive 9G et la production graphique restent des chantiers suivis séparément, sans prétendre terminés.

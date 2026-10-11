@@ -47,3 +47,7 @@ Contrôles locaux : intégrité ZIP et empreintes EXE/PCK ; EXE identique au tem
 Livraison portable : [ZIP lab-477caad](https://github.com/DyHyugal/pokemon-archelys/releases/download/lab-477caad/Archelys-Laboratoire-Windows.zip). Archive publiée téléchargée et vérifiée : CRC, SHA256 ZIP/EXE/PCK, correspondance EXE au moteur officiel et présence du LIRE-MOI/notices. Le manifeste indique explicitement une distribution portable non signée.
 
 Lot après D43 : préférences automatiquement conservées au relancement, interactions guide/panneau/caisse, journal et jeton persistants. Save schéma 2 ; schéma 1 lu et original préservé dans `.v1.backup` lors de la première sauvegarde convertie. Le parcours complet du lot est dans le LIRE-MOI livré. Les anciens builds ne lisent pas le schéma 2 ; restaurer une copie originale pour revenir en arrière.
+
+## Lot regroupé D47
+
+Le test suivant couvre équipe/résumé/PC, combat solo, herbes/capture et EXP/caps/évolutions dans un seul parcours. Le LIRE-MOI livré fait référence pour les étapes exactes de ce build. [Rapport et limites](LOT_BOUCLE_POKEMON_SOLO.md). Aucun test multi ni validation graphique finale demandé.

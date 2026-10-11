@@ -41,3 +41,7 @@ Retour D42 : le propriétaire confirme le lancement de lab-477caad sans avertiss
 ## Après validation lab-e84ee99
 
 D44 valide le lot Windows précédent. D45 demande un vrai écran Sac et le maintien du réglage caméra dans les Paramètres. Ce bloc de présentation n'attend aucun arbitrage de scénario ; les 51 questions produit restantes restent ouvertes. Signature finale et compatibilité sur d'autres PC restent à vérifier.
+
+## Lot regroupé D47
+
+Le bloc menus lab-d33e5ee est validé par le propriétaire (D46). Les blocs équipe/PC, combat solo, rencontres/capture/progression sont réunis. Le laboratoire utilise des espèces et caps provisoires pour progresser sans fixer les starters/Pokédex. Le choix des espèces finales, des assets et les arbitrages scénaristiques restent ouverts ; aucun retour intermédiaire demandé sur chaque sous-système.
