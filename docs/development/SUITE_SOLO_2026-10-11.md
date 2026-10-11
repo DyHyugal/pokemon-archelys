@@ -25,3 +25,9 @@ Capture avec le renderer OpenGL Mesa : visuel réel du laboratoire ; aucune mesu
 Maintenir les règles de jeu indépendantes des scènes et des connexions. Continuer le socle solo : données d’espèces/attaques, menus équipe/résumé et inventaire, puis boucle rencontre/combat/capture selon le petit lot sélectionné. Ne pas annoncer les règles 9G implémentées à partir du duel factice. Préparer des échantillons artistiques avant la production des îles ; scénario et choix ouverts restent à valider au retour du questionnaire.
 
 Une seule branche temporaire active : `docs/cadrage-valide`. Les sources sont poussées dessus, pas fusionnées dans `develop` sans la procédure PR. Le ZIP est une prerelease technique, pas la première île jouable.
+
+## Livraison vérifiée
+
+Sources : commit `b52bd14bb8bf2877ac071dfa137147321813fc67`, poussé sur la branche de travail. [CI réussie](https://github.com/DyHyugal/pokemon-archelys/actions/runs/38132694065) : validation puis export et publication, 43 secondes au total.
+
+[Télécharger le ZIP Windows](https://github.com/DyHyugal/pokemon-archelys/releases/download/lab-b52bd14/Archelys-Laboratoire-Windows.zip). Le ZIP publié a été téléchargé et vérifié : SHA256 conforme au fichier publié, intégrité ZIP, signature EXE et empreinte de l’exécutable conforme au manifeste ; commit attendu. Le nouveau build n’a pas été exécuté sur Windows ici.

@@ -23,7 +23,6 @@ Les statuts portent sur les preuves, pas sur l’enthousiasme ou la présence da
 | Réponses Q01–Q16 | TRANSCRITES | Classeur et JSON conservés ; décisions D22–D33 |
 | Scénario complet et casting | PROPOSÉS | Documents V0.1, approbation owner attendue |
 | Règles Soul-link | PROPOSÉES | Mode facultatif ; détails à valider |
-
 | Dialogues PNJ | SOCLE SOLO TESTÉ | PNJ de laboratoire, proximité, avance manuelle, blocage du déplacement, données FR/EN ; pas de scénario final |
 | Caméra rapprochée | MODIFIÉE ET TESTÉE TECHNIQUEMENT | Taille 22→16, suivi joueur et réglage de zoom ; préférence visuelle owner attendue |
 
