@@ -69,7 +69,7 @@ func render() -> void:
 			button(t("Sac","Bag"),func():choice_page="bag";render())
 			button(t("Fuir","Run"),func():execute({"kind":"run"}),battle.trainer.is_empty())
 		"moves":
-			if battle.can_mega(0):button(t("Méga : ","Mega: ")+("✓" if mega_selected else "○"),func():mega_selected=not mega_selected;render())
+			render_mega_toggle()
 			if battle.charging[0]>=0:
 				button(t("Terminer l’attaque chargée","Complete charged move"),func():execute({"kind":"move","slot":battle.charging[0]}));return
 			if battle.available_moves(0).is_empty():button(t("Lutte (tous les PP épuisés)","Struggle (all PP depleted)"),func():execute({"kind":"move","slot":-1}))
@@ -117,7 +117,7 @@ func render_double() -> void:
 	if battle.replacement_needed():message.text=t("Remplacement obligatoire", "Replacement required");render_team(true);return
 	if battle.current(0).hp<=0:battle.next_actor()
 	message.text=t("Choisir pour %s (position %d). Les deux choix sont verrouillés avant le tour.","Choose for %s (position %d). Both choices are locked before the turn.") % [name_of(battle.current(0).species),battle.selected_player+1]
-	if battle.can_mega(0):button(t("Méga : ","Mega: ")+("✓" if mega_selected else "○"),func():mega_selected=not mega_selected;render())
+	render_mega_toggle()
 	var choices: Array=battle.available_moves(0)
 	if battle.charging[0]>=0:choices=[battle.charging[0]]
 	if choices.is_empty():choices=[-1]
@@ -130,3 +130,19 @@ func render_double() -> void:
 	for index: int in range(battle.adventure.team.size()):
 		var next_index: int=index
 		if battle.valid_switch(index):button(t("Changer : ","Switch: ")+name_of(battle.adventure.team[index].species),func():execute({"kind":"switch","index":next_index}))
+
+func render_mega_toggle() -> void:
+	var mon: Dictionary=battle.current(0)
+	var ready: bool=battle.can_mega(0)
+	var reason: String=""
+	if battle.mega_used[0]:reason=t("déjà utilisée dans ce combat","already used this battle")
+	elif not Catalog.data().mega_forms.values().any(func(form: Dictionary):return form.base==mon.species):reason=t("aucune Méga pour cette espèce","no Mega for this species")
+	elif not ready:reason=t("équiper une pierre compatible depuis le résumé, hors combat","equip a compatible stone from Summary outside battle")
+	if battle.get("double_mode")==true:
+		for command: Dictionary in battle.queued.values():
+			if command.get("mega",false):ready=false;reason=t("réservée par l'autre Pokémon","reserved by the other Pokémon")
+	if not ready:mega_selected=false
+	var toggle:=CheckButton.new();toggle.name="MegaToggle";toggle.custom_minimum_size.y=40
+	toggle.text=t("Méga-évolution","Mega Evolution")+(" — "+reason if reason!="" else "")
+	toggle.disabled=not ready;toggle.set_pressed_no_signal(mega_selected);actions.add_child(toggle)
+	toggle.toggled.connect(func(value: bool):mega_selected=value;render())

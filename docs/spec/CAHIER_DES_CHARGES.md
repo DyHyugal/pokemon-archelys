@@ -100,3 +100,7 @@ Défi : première rencontre, familles doublons ignorables, quotas de zone égale
 Pêche indispensable à la démo, photo V1 ultérieure. Catalogue 1G permis pour tests, Méga existantes demandées. Images comparatives avant validation puis intégration, processus conservé pour les assets. Personnalisation peau/cheveux/vêtements/visage et petits magasins de vêtements V1. Au moins une cinématique de libération par île, une/deux supplémentaires si pertinent ; audio original et réutilisable autorisé, provenance requise. Distribution portable actuelle conservée. Wiki progressif avec balises et postgame séparé. Licence code à recommander sans confondre droits des assets.
 
 Coop future : nouveaux profils rejouent leurs chapitres séparés ; gestion hôte kick/inviter/bannir/débannir/options communes, sortie libère l'attente ; changement d'hôte conserve identités/équipes ; réponses de groupe par vote ; échanges avec double confirmation et résumés. Shiny/EXP/caméra individuels, difficulté commune par hôte. Paramètres et implémentation coop toujours reportés.
+
+## Priorité après retour du laboratoire D50
+
+Nuzlocke/Soul-link reportés à plus tard, sans nouvelles tâches ou demandes de playtest pour ces modes. Les règles recueillies restent conservées au backlog. Type/thème du quartier approuvé dans son principe, graphismes provisoires à remplacer/améliorer avant validation artistique des assets. Le reste du lot lab-58819aa est confirmé fonctionnel par le propriétaire, sauf le parcours d'accès Méga à corriger.

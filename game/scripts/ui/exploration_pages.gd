@@ -42,7 +42,7 @@ func render(page: String) -> void:
 		choice(t("Multiplicateur EXP","XP multiplier"),["1","2","3","4","5"],str(state.exp_multiplier),func(value: String):state.exp_multiplier=int(value))
 		choice(t("Chance shiny pour les futures rencontres (1 sur N)","Shiny odds for future encounters (1 in N)"),["4096","1024","256","64","1"],str(state.shiny_odds),func(value: String):state.shiny_odds=int(value))
 		menu.label(t("Nuzlocke : %s — un essai de capture par zone ; KO permanent, doublons familiaux ignorables. Les règles cadeaux/œufs/fossiles/Soul-link attendent ces systèmes.","Nuzlocke: %s — one capture attempt per zone; permanent fainting, family duplicates can be ignored. Gifts/eggs/fossils/Soul-link rules await those systems.") % state.nuzlocke)
-		if state.nuzlocke=="off":menu.button(menu.body,t("Activer le défi sur cette partie de laboratoire","Enable challenge on this laboratory game"),func():state.enable_challenge();state.record_deaths(owner.team);menu.render())
+		if state.nuzlocke=="off":menu.label(t("Nuzlocke / Soul-link reportés : aucun test demandé pour le moment.","Nuzlocke / Soul-link deferred: no testing requested for now."))
 		elif state.nuzlocke=="on":
 			menu.button(menu.body,t("Désactiver définitivement le défi (aucune réactivation)","Permanently disable challenge (cannot re-enable)"),func():state.retire_challenge();menu.render())
 			menu.label(t("Quotas : %s\nMorts : %s","Claims: %s\nDead: %s") % [str(state.claims),str(state.dead)])

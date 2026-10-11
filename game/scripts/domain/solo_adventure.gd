@@ -220,3 +220,20 @@ func set_ability(uid: int, ability: String) -> bool:
 	var mon:=find(uid)
 	if mon.is_empty() or ability not in Catalog.species(mon.species).get("abilities",[]):return false
 	mon.ability=ability;return true
+
+func grant_mega_kit() -> bool:
+	# Explicit laboratory helper. Preserve existing individuals and held items.
+	if in_battle or exploration.nuzlocke=="on":return false
+	raise_cap(36)
+	for pair: Array in [["venusaur","venusaurite"],["charizard","charizardite-y"],["blastoise","blastoisinite"]]:
+		if not (team+boxes).any(func(mon: Dictionary):return mon.species==pair[0]):
+			if team.size()+boxes.size()<246:add(Mon.make(pair[0],36,next_uid))
+		for mon: Dictionary in team+boxes:
+			if mon.species!=pair[0]:continue
+			# Keep a compatible Mega stone, including Charizard X.
+			if Catalog.data().mega_forms.get(mon.item,{}).get("base")==mon.species:continue
+			var stone: String=pair[1]
+			bag[stone]=int(bag.get(stone,0))+1
+			equip(int(mon.uid),stone)
+	for stone: String in ["venusaurite","charizardite-x","charizardite-y","blastoisinite"]:bag[stone]=maxi(1,int(bag.get(stone,0)))
+	return true

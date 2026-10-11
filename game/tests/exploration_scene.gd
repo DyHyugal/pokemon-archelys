@@ -46,9 +46,13 @@ func run() -> void:
 	world.pokemon_battle.finish("won");drain(world)
 	world._start_double_test();drain(world)
 	check(world.battle_panel.cards.text.contains("double") and world.battle_panel.actions.get_child_count()>=4,"Double UI shows four actors and target controls")
-	world.battle_panel.actions.get_child(0).pressed.emit();check(world.pokemon_battle.turn==0 and world.pokemon_battle.queued.size()==1,"First double button queues action")
-	world.battle_panel.actions.get_child(0).pressed.emit();check(world.pokemon_battle.turn==1,"Second double button resolves global turn")
+	click_double_move(world);check(world.pokemon_battle.turn==0 and world.pokemon_battle.queued.size()==1,"First double button queues action")
+	click_double_move(world);check(world.pokemon_battle.turn==1,"Second double button resolves global turn")
 	world.pokemon_battle.finish("won");drain(world)
 	Engine.time_scale=1.0
 	print("EXPLORATION SCENE: shop/center/doors, saved interior, fishing/Surf, field collisions/climb, map/Fly, graphical alternatives and actual double controls; %d failures" % failures)
 	quit(1 if failures else 0)
+
+func click_double_move(world: Node) -> void:
+	for control: Node in world.battle_panel.actions.get_children():
+		if control is Button and not control is CheckButton and control.text.contains("→"):control.pressed.emit();return

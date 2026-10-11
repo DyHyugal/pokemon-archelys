@@ -44,134 +44,48 @@ Une signature reconnue exige un certificat de signature de code ou un service
 de signature autorisé. Aucun n'est configuré pour ce projet actuellement.
 Une signature auto-signée ne suffit pas pour être reconnue sur ton PC.
 
-CE QUI CHANGE — BLOCS 4 À 6 REGROUPÉS
-Centre, boutique, achats/vente et argent, intérieurs, carte/Vol, pêche et actions
-contextuelles. Difficulté/challenge/cap/EXP/shiny, quatre vitesses de test.
-Soleil/pluie/sable/neige, terrains, IA poseurs sur les combats d'essai.
-Quatre Méga historiques et doubles solo réels. 17 espèces / 38 attaques.
-Quartier de comparaison A/B/C séparé ; aucun style d'île adopté sans ton choix.
-Questionnaire N01–N51 reçu et transcrit ; propositions/choix restants documentés.
+CORRECTIF APRÈS TON RETOUR SUR lab-58819aa
 
-PARCOURS UNIQUE — UN SEUL RETOUR POUR CE LOT
+Le reste du lot est confirmé fonctionnel, notamment les actions contextuelles.
+Ce build corrige l'accès Méga : le kit équipe désormais aussi tes Pokémon déjà
+évolués, et n'ajoute pas un nouvel exemplaire d'une espèce déjà possédée.
+Identité, niveau, PV, PP, attaques et réglages conservés. L'ancien objet tenu
+retourne au sac ; une pierre Méga compatible déjà tenue est conservée.
+Une vraie case « Méga-évolution » / « Mega Evolution » est toujours visible
+dans les choix d'attaque, en simple comme en double. Si elle est désactivée,
+son texte explique : espèce sans Méga, pierre manquante/incompatible, Méga déjà
+utilisée ou réservée par l'autre membre du double.
 
-REPRENDRE — Charger ta partie précédente. Échap ouvre le menu ; molette dans
-le contenu et la navigation si nécessaire. I = sac, J = journal.
-Le village/équipe précédent est conservé. Débloquages et prix sont des données
-techniques provisoires, pas l'équilibrage final. Les sauvegardes 1/2/3 sont lues.
+TEST CIBLÉ — PAS BESOIN DE REFAIRE LE LOT VALIDÉ
+Charger ta sauvegarde. Hors combat/menu, F3 → Kit Méga.
+Ton Dracaufeu existant reçoit une Dracaufite Y s'il n'a pas déjà de pierre
+compatible ; Florizarre et Tortank reçoivent leur pierre aussi.
+Placer le Pokémon en tête, entrer en combat, Attaquer → cocher Méga → attaque.
+La transformation doit se produire pendant ce tour. Une seule Méga par combat,
+même après KO. Après combat, forme ordinaire et pierre conservée.
+Sans pierre compatible, la case doit rester visible et expliquer le blocage.
+Relancer le kit ne doit pas ajouter de doublons supplémentaires ni perdre d'objet.
+Équiper une Dracaufite X depuis le résumé permet l'autre forme de Dracaufeu.
+En double, réserver une Méga sur le premier membre empêche une deuxième réservation.
+Aucun changement du format de sauvegarde4 ; les anciennes versions1/2/3 restent lues.
 
-SERVICES — Village : porte maison gauche (-8,2) = Centre, droite (8,2) = boutique.
-E / Entrée à proximité pour entrer. Les objets/PNJ peuvent bloquer le passage,
-interagir en restant devant ; ce n'est pas nécessaire de marcher sur leur centre.
-Dans l'intérieur, comptoir au nord (0,-3) : E / Entrée. Acheter une Potion puis
-cinq, vendre une ; vérifier sac et argent. Une tentative trop chère doit ne rien
-modifier. Une transaction est disponible uniquement dans la boutique.
-Au Centre, soigner puis vérifier PV, PP et statuts. L'exit au sud (0,7) retourne
-au village. Sauvegarder dans un intérieur, relancer et Charger : intérieur correct.
+Nuzlocke/Soul-link reportés à plus tard : aucun test demandé, activation d'un
+nouveau défi retirée du menu. Une partie qui l'avait déjà activé peut toujours
+le désactiver ; ses données ne sont pas supprimées.
+Le thème/type de quartier est retenu ; les images A/B/C restent des prototypes,
+pas des graphismes finaux approuvés. Aucune refonte artistique dans ce correctif.
+Les dossiers Comparatifs et Documentation sont conservés pour consultation.
 
-EXPLORATION — Passage sud (0,9) = crique. Jetée / fish (0,-3) : E lance une
-rencontre de pêche ; mêmes commandes de capture/fuite que dans les herbes.
-Au cap initial : Magicarpe ; dès niveau 20 : Léviator, pas une forme sous-évoluée.
-Surf : point (4,-3), nécessite première victoire contre le dresseur 1.
-Avant : accès à l'eau bloqué ; après : déplacement sur l'eau sans Pokémon
-compatible. Quitter la crique remet le mode Surf à zéro.
-Dans le village, Coupe à gauche (-11,3), Éclate-Roc à droite (11,3), Force (11,6).
-Interagir retire le blocage. Force attend la première victoire.
-Escalade (-11,8) : même condition, accès au promontoire puis E pour redescendre.
-Flash est autorisé dès le début ; pas encore de grotte sombre à tester.
-
-CARTE / VOL — Visiter d'abord crique et quartier via leurs passages.
-Vaincre le dresseur 1 ; Échap → Carte / Vol permet de voler vers village/crique/
-quartier déjà visité, même avec l'équipe Bulbizarre/Salamèche/Carapuce.
-La carte présentée est une navigation technique, pas l'archipel final dessiné.
-Une destination non visitée doit rester bloquée.
-
-RÈGLES — Échap → Règles / Difficulté : chill, normal, hard ; plafond de niveau,
-EXP et chance shiny. OFF permet de dépasser le cap ; réactiver conserve les
-niveaux dépassés, sans gagner d'EXP tant que le cap ne les rattrape pas.
-F3 → entraînement donne de l'EXP pour tester sans grind. Paramètres propose
-1×/2×/3×/4× provisoires ; maintenir E ne doit toujours pas passer tous les textes.
-EXP et shiny concernent les générations/gains à venir, pas les individus déjà créés.
-Sauvegarder/charger doit garder les règles ; langue/caméra/vitesse restent séparées.
-
-MÉGA ET IA — F3 affiche les outils du laboratoire (faire défiler le panneau).
-« Kit Méga » donne Florizarre/Dracaufeu/Tortank niveau 36 et les pierres pour
-essais ; équipe pleine = PC. Les ajouter en équipe puis placer l'un en tête.
-Le kit relève le cap pour éviter le grind ; il ne valide ni starters ni récompenses.
-Résumé : CT gratuites réutilisables et choix de talents légaux.
-Combat → Attaquer : cocher Méga, choisir l'attaque. Transformation pour ce combat,
-une seule Méga de l'équipe, même si elle finit KO. Après combat, forme ordinaire.
-F3 → Essai soleil : Feunard pose le soleil, passe normalement à Florizarre,
-rappelle un poseur si le soleil expire ; Goupix est le second poseur disponible.
-Un KO certain peut passer avant le retrait du poseur. L'essai terrain utilise
-Raichu poseur → Pikachu bénéficiaire → second Raichu poseur.
-Ces boutons activent hard pour cet essai. Vérifier le compteur de champ/climat,
-la remise en place avant un nouveau DPS et l'absence de boucle de changements.
-L'IA ne lit pas ta prochaine action ni tes IV/EV/nature/objet/attaques non révélées.
-C'est une politique de laboratoire à éprouver, pas une IA finale universelle.
-
-DOUBLES — Au moins deux membres aptes ; F3 → Essai combat double.
-Choisir attaque + cible pour le premier membre puis pour le second : les deux
-choix se verrouillent avant la résolution globale du tour. Quatre fiches de PV.
-Tester des cibles différentes, changement vers le troisième membre, KO/remplaçant.
-Deux positions ne doivent pas réserver le même remplaçant. Un seul compteur
-climat/terrain par tour. Catalogue actuel mono-cible ; objets, zone, redirection,
-Abri, raids et gestion avancée des poseurs en doubles ne sont pas encore couverts.
-Un combat double est solo ici ; aucun test de connexion demandé.
-
-DÉFI NUZLOCKE — Essai facultatif. Sauvegarder une copie normale AVANT activation
-pour pouvoir revenir à ce point de test. Activation dans Règles / Difficulté.
-Un essai de capture par zone : premier échec de Ball, fuite ou KO engage le quota.
-Les doublons familiaux peuvent être ignorés ; si tu choisis de lancer une Ball sur
-un doublon avec quota libre, elle engage ce quota. Clause shiny : capture et usage
-hors quota, résultat shiny fixé à la génération. KO permanent : Centre et soins
-ne ressuscitent pas. Les Pokémon encore vivants dans le PC empêchent le game over.
-Défi désactivable définitivement ; pas de bouton pour le réactiver sur cette partie.
-Passer en normal permet les soins. Reprise avec Chapignon, cadeaux/œufs/fossiles
-et Soul-link sont à compléter ; la règle des nouveaux quotas attend ton choix.
-Le kit technique Méga est interdit tant que le défi est actif.
-
-COMPARATIF GRAPHIQUE — Passage nord du village (0,-9) = quartier visuel.
-Au point « visuals » (0,3), E passe de A à B à C. Aucune variante n'est finale.
-A : côtier sobre / deux pans ; B : chaleureux / cheminée ; C : toit plat / auvent.
-Le ZIP contient aussi trois captures FHD dans Comparatifs.
-Choisir A/B/C/aucune et préciser séparément maison, arbres, eau, chemins et relief.
-C'est une proposition de matériaux/modules, pas une île de qualité finale : eau
-et raccords/ombres/volcan restent à travailler après choix artistique.
-Le mannequin animé est le modèle de test antérieur ; pas de modèles Pokémon.
-
-FICHIERS UTILES DANS LE ZIP
-Comparatifs/quartier-A.png, quartier-B.png, quartier-C.png : rendus du moteur.
-Documentation/Propositions-noms-et-divinites.md : SPOILERS DEV, idées non adoptées.
-Documentation/Questions-restantes-Archelys.xlsx : colonne « Ta réponse » jaune.
-Les réponses N01–N51 déjà reçues ne sont pas redemandées ; ces choix ne bloquent
-pas le parcours technique ci-dessus. Aucun choix graphique final imposé.
-
-RETOUR FACILE À COPIER
+RETOUR SI TU TESTES CE CORRECTIF
 Version : lab-{short_commit}
-Lancement / fluidité / menus : OK / problème
-Boutique, argent et soins : OK / problème
-Portes et sauvegarde intérieure : OK / problème
-Pêche, Surf, obstacles et Escalade : OK / problème
-Carte / Vol sans Pokémon compatible : OK / problème
-Cap OFF → ON / EXP / shiny / vitesses : OK / problème
-Méga unique et retour forme normale : OK / problème
-IA poseurs soleil et terrain : OK / problème
-Double : deux choix / cibles / changements / KO : OK / problème
-Nuzlocke : OK / non testé / problème
-Sauvegarde de tout le lot : OK / problème
-Graphismes : A / B / C / aucun ; éléments à conserver / modifier :
+Kit sur Dracaufeu déjà évolué / ancien objet rendu : OK / problème
+Case Méga, transformation et pierre conservée après combat : OK / problème
+Double et réservation unique : OK / non testé / problème
 Autre remarque :
 
-SAUVEGARDES ET LIMITES
-Dossier Windows : %APPDATA%\Godot\app_userdata\Archélys — laboratoire technique\
-Fichier : laboratory_campaign.json ; copie précédente : .backup
-Originals avant migration : .v1.backup / .v2.backup / .v3.backup
-Format courant 4 ; ancien build incapable de le lire. Pour rollback, fermer le jeu,
-préserver la save actuelle puis copier la backup originale vers le nom principal.
-Préférences : preferences.json (langue/caméra), laboratory_speed.json (vitesse test).
-Sauvegarde/édition refusées en combat. Le lot ne fournit ni campagne finale, ni
-modèles Pokémon, ni conformité 9G exhaustive, ni raids/multijoueur. Les arrondis,
-capture critique et interactions hors catalogue restent à vérifier/compléter.
+Sauvegardes : %APPDATA%\Godot\app_userdata\Archélys — laboratoire technique\
+Fichier laboratory_campaign.json, format4 ; backup roulante .backup et originaux
+.v1.backup/.v2.backup/.v3.backup. EXE/PCK ensemble, même nom et moteur portable.
 
 NOTICES DU MOTEUR
 Godot 4.6.3, licence MIT ; notices incluses dans Godot-LICENSE.txt et

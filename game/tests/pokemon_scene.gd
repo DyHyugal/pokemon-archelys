@@ -35,7 +35,8 @@ func run() -> void:
 	world.battle_panel.choice_page="moves";world.battle_panel.render()
 	check(world.battle_panel.actions.get_child_count()>=2,"Battle renders move controls")
 	var pp: int=world.pokemon_battle.current(0).moves[0].pp
-	world.battle_panel.actions.get_child(0).pressed.emit()
+	for control: Node in world.battle_panel.actions.get_children():
+		if control is Button and not control is CheckButton and control.text.contains("PP"):control.pressed.emit();break
 	check(world.pokemon_battle.turn==1 and world.pokemon_battle.current(0).moves[0].pp==pp-1,"Actual move button resolves command and PP")
 	world.battle_panel.execute({"kind":"run"})
 	while world.battle_panel.visible:key(KEY_E);key(KEY_E,false)

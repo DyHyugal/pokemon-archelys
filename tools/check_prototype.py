@@ -15,6 +15,7 @@ steps=[(['godot','--headless','--path',str(root/'game'),'--editor','--import','-
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/exploration_combat.gd'],'EXPLORATION COMBAT: 70 checks, 0 failures'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/exploration_scene.gd'],'EXPLORATION SCENE:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/pokemon_scene.gd'],'POKEMON SCENE:'),
+       (['godot','--headless','--path',str(root/'game'),'--script','res://tests/mega_ui.gd'],'MEGA UI:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/asset_import.gd'],'GLB IMPORT:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/scene_smoke.gd'],'SCENE SMOKE:')]
 if args.network:

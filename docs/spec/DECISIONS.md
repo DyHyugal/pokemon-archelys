@@ -115,3 +115,9 @@ D48 : le propriétaire confirme lab-2816c71 entièrement fonctionnel. D49 : dév
 Les [réponses N01–N51](REPONSES_N01_N51.md) sont transcrites et font autorité sur leurs sujets. Notamment : pêche pour la démo ; 1G permise comme catalogue provisoire ; Méga existantes pour tests ; caps normal par défaut, OFF sans plafond et retour au cap sans réduire les niveaux existants ; défi désactivable sans réactivation ; KO équipe+PC définit le game over ; images comparatives avant validation puis intégration du style validé. La distribution portable actuelle doit rester inchangée. Les fonctionnalités multijoueurs décidées restent reportées selon la priorité solo.
 
 Exécution technique de D49 : lot livré `lab-58819aa`, systèmes/services et règles de laboratoire développés,184assertions/CI/rendu PCK réussis. Pas d'approbation artistique implicite ; reprise du défi N35 et raids ouverts reportés ; doubles mono-cible à étendre. Rapport dans `docs/development/LOT_EXPLORATION_REGLES_VISUELS.md`. Les noms et divinités proposés ne sont pas des décisions.
+
+## Retour Windows sur lab-58819aa
+
+D50 — propriétaire : tout le reste fonctionne, notamment les CS ; accès Méga absent même avec kit, correction requise. Nuzlocke/Soul-link non testés et reportés, non prioritaires : aucun nouveau développement ou playtest de ces modes demandé maintenant. Thème/type de ville apprécié ; rendu graphique à retravailler, aucune variante A/B/C ni asset final approuvé. Provenance : retour et capture du 11 octobre 2026.
+
+Correction technique : kit équipe aussi les individus compatibles déjà possédés, conserve leur identité/niveau/PV/PP et remet l'objet précédent au sac ; kit répété ne duplique plus les espèces déjà présentes. Case Méga visible en simple/double avec raison d'indisponibilité. Format de sauvegarde4 et moteur portable inchangés.

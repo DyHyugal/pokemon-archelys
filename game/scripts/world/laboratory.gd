@@ -557,9 +557,4 @@ func _mega_kit() -> void:
 	if battle_panel.visible or pause_menu.visible or dialogue.active:return
 	var owner: RefCounted=Session.campaign.adventure
 	if owner.exploration.nuzlocke=="on":message.text="Kit technique désactivé pendant le défi";return
-	owner.raise_cap(36)
-	for pair: Array in [["venusaur","venusaurite"],["charizard","charizardite-y"],["blastoise","blastoisinite"]]:
-		if owner.team.size()+owner.boxes.size()>=246:break
-		var mon:=Mon.make(pair[0],36,owner.next_uid);mon.item=pair[1];owner.add(mon)
-	for id: String in ["venusaurite","charizardite-x","charizardite-y","blastoisinite"]:owner.bag[id]=maxi(1,int(owner.bag.get(id,0)))
-	message.text="Kit technique reçu : vérifier équipe / PC. Ni starters ni récompenses finales."
+	if owner.grant_mega_kit():message.text="Kit Méga : Pokémon compatibles existants équipés ; pierres aussi dans le sac. Attaquer → cocher Méga. / Existing compatible Pokémon equipped; stones also in Bag. Fight → tick Mega."

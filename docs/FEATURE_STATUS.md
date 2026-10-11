@@ -62,3 +62,9 @@ Les équipes/combat/capture de D47 sont désormais **validés Windows par le pro
 [Rapport de portée et preuves](development/LOT_EXPLORATION_REGLES_VISUELS.md).
 
 Livraison D49 : [lab-58819aa](https://github.com/DyHyugal/pokemon-archelys/releases/tag/lab-58819aa), CI verte,184assertions et parcours de scènes réussis, ZIP publié/PCK vérifiés ; nouveau test Windows et comparatifs artistiques attendent le propriétaire. Les fonctionnalités limitées/reportées restent indiquées dans le tableau et le rapport.
+
+## Retour D50 et correctif d'accès Méga
+
+lab-58819aa : fonctionnement du reste du lot confirmé Windows par le propriétaire, notamment CS. Méga non accessible dans son parcours : ancien Dracaufeu non équipé par le kit. Correctif développé : équipements des individus existants avec restitution de l'ancien objet, kit sans doublons supplémentaires, vraie case visible et motifs d'indisponibilité en simple/double. Test de scène reproduisant Dracaufeu37/kit/case/attaque et réservation Méga en double. Nouveau build à retester uniquement sur ce correctif.
+
+Nuzlocke/Soul-link : **reportés, non prioritaires et non validés Windows** ; activation d'un nouveau défi retirée du menu de laboratoire, états déjà sauvegardés conservés et désactivation possible pour une ancienne partie. Aucun nouveau travail de règles ni test propriétaire demandé. Graphismes : thème/type de ville apprécié, qualité visuelle et assets finaux non approuvés.
