@@ -28,7 +28,7 @@ Le [nouveau lot exploration/règles/comparatifs](https://github.com/DyHyugal/pok
 
 Les combats du laboratoire utilisent maintenant [Showdown intégré](docs/development/INTEGRATION_SHOWDOWN.md), un simulateur local sous MIT. Pour développer : Node24.19.0, `python tools/prepare_showdown.py`, puis `python tools/check_prototype.py`. Le ZIP joueur contient le runtime ; aucune installation ni connexion nécessaire. La validation Windows de ce nouveau lot reste distincte des tests locaux.
 
-**Dernière livraison : [Windows lab-8f8d115](https://github.com/DyHyugal/pokemon-archelys/releases/download/lab-8f8d115/Archelys-Laboratoire-Windows.zip)** — personnage, thèmes et photo, avec aventure D61 conservée ; même EXE, runtime hors ligne et parcours groupé dans LIRE-MOI. [CI réussie](https://github.com/DyHyugal/pokemon-archelys/actions/runs/38175546422). Validation Windows de ces nouveautés attendue.
+**Dernière livraison : [Windows lab-8066627](https://github.com/DyHyugal/pokemon-archelys/releases/download/lab-8066627/Archelys-Laboratoire-Windows.zip)** — gros bloc gestion/préparation des équipes, avec aventure/personnage/thèmes/photo conservés ; même EXE, runtime hors ligne et parcours groupé dans LIRE-MOI. [CI réussie](https://github.com/DyHyugal/pokemon-archelys/actions/runs/38177011319). Validation Windows des nouveaux lots attendue.
 
 Le [lot groupé aventure/IA/visuels](docs/development/LOT_AVENTURE_IA_VISUELS.md) relie village, sentier, épreuve et épilogue, avec sauvegarde et récompenses uniques. Il enrichit les comparatifs FHD ; scénario et direction artistique proposés restent à approuver. Le LIRE-MOI du ZIP contient le parcours de test complet.
 

@@ -1,0 +1,57 @@
+ARCHÉLYS — D63 GESTION DES ÉQUIPES
+Date :11 octobre2026, Europe/Paris
+Source :8066627b9ffd06a177565252c14dbce5a8ea4799
+Branche :docs/cadrage-valide ; aucun merge main/develop.
+
+VALIDATION LOCALE
+SHOWDOWN ADAPTER: 41 checks, 0 failures
+SHOWDOWN INTEGRATION: 33 checks, 0 failures
+ARCHÉLYS TESTS: 19 checks, 0 failures
+JOURNEY SYSTEMS: 17 checks, 0 failures
+JOURNEY SCENE: 14 checks, 0 failures
+FOSSIL SYSTEMS: 23 checks, 0 failures
+NURSERY SYSTEMS: 18 checks, 0 failures
+SOLO SYSTEMS: 18 checks, 0 failures
+DIALOGUE TESTS: 6 checks, 0 failures
+POKEMON SYSTEMS: 71 checks, 0 failures
+EXPLORATION COMBAT: 70 checks, 0 failures
+EXPLORATION SCENE: shop/center/doors, saved interior, fishing/Surf, field collisions/climb, map/Fly, graphical alternatives and actual double controls; 0 failures
+POKEMON SCENE: summary editing, grass encounter, combat commands/manual text, modal input, full-party capture/PC, menu disk persistence and learning/evolution exercised; 0 failures
+MEGA UI: existing evolved individual, equipment/Bag preservation, visible checkbox/reasons, single and doubles activation; 0 failures
+COLLECTION SYSTEMS: 32 checks, 0 failures
+COLLECTION SCENE: 27 checks, 0 failures
+STORAGE SYSTEMS: 31 checks, 0 failures
+STORAGE SCENE: 16 checks, 0 failures
+PRESENTATION SYSTEMS: 17 checks, 0 failures
+PRESENTATION SCENE: 13 checks, 0 failures
+COMFORT SYSTEMS: 21 checks, 0 failures
+COMFORT SCENE: 26 checks, 0 failures
+TACTICS SYSTEMS: 46 checks, 0 failures
+TACTICS SCENE: 24 checks, 0 failures
+GLB IMPORT: 7 bones, 1 animation(s), playback exercised
+SCENE SMOKE: avatar, input, authoritative movement, closer following camera, NPC/manual dialogue/movement lock, solo battle UI, preference persistence, single crate reward, inventory/journal save/load, real bag details, pause navigation, modal movement/interaction lock and persistent settings controls exercised
+ALL PROTOTYPE CHECKS PASSED
+
+RENDU
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+STORAGE SCENE: 16 checks, 0 failures
+Capture PC1280x720 avec62 individus stockés, inspectée ; stockage/textes provisoires, pas nouveaux sprites finaux.
+
+PACKAGING
+397 fichiers ; ZIP sans erreur ; source/manifest correspondent.
+PE Godot officiel inchangé, PCK externe, Node24.19.0 épinglé.
+SHA256 ZIP local :7878d08ba105f33dbef409801448c114970fde5fb26f7a93182338658e56b00b
+Empreinte locale éventuellement différente de CI (génération/timestamps).
+
+PUBLICATION
+CI :https://github.com/DyHyugal/pokemon-archelys/actions/runs/38177011319
+État :Success, source8066627 vérifiée.
+Validation/export/upload/publication réussis.
+ZIP :https://github.com/DyHyugal/pokemon-archelys/releases/download/lab-8066627/Archelys-Laboratoire-Windows.zip
+SHA256SUMS :https://github.com/DyHyugal/pokemon-archelys/releases/download/lab-8066627/SHA256SUMS.txt
+Les deux assets vérifiés sur la page publique expanded_assets/lab-8066627.
+
+LIMITES
+Dernière validation Windows D52 ; D61/D62/D63 à tester par le propriétaire.
+Catalogue22/43 inchangé ; graphismes finaux/narration de production non approuvés.
+Reproduction retirée, multijoueur/raids/défis reportés.

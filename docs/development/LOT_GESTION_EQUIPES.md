@@ -31,3 +31,5 @@ L'API historique deposit/withdraw/add reste disponible ; les règles de capacit�
 `storage_scene.gd` :16 contrôles de vrais menus, déplacement entre boîtes, recherche bilingue/UID exact et pagination de soixante résultats, résumé depuis PC, édition IV, recherche de rappel, annulation/confirmation, échange à équipe pleine et restauration. Rendu graphique Linux du même parcours et capture du PC inspectée. Toutes les suites antérieures de `tools/check_prototype.py` conservées et réussies.
 
 La validation Windows et l'appréciation de l'ergonomie restent attendues ; D52 est la dernière validation reçue. Le LIRE-MOI regroupe ce bloc et les nouveaux lots précédents. Preuves/version/CI dans `verification/STORAGE_2026-10-11.txt` après publication.
+
+[Capture du PC de vérification](verification/STORAGE_PC.png) —62 individus de test, Linux GL,1280×720 ; aucun contenu propriétaire validé implicitement.
