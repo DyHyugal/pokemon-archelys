@@ -12,6 +12,8 @@ var nursery:=Nursery.new()
 var records:=Records.new()
 var exploration:=Exploration.new()
 var team: Array=[]
+const Storage=preload("res://scripts/domain/storage.gd")
+var storage_slots: Dictionary={}
 var boxes: Array=[]
 var bag: Dictionary={}
 var next_uid: int=1
@@ -38,7 +40,7 @@ func add(mon: Dictionary) -> String:
 	records.observe(mon.species,true)
 	next_uid=maxi(next_uid,int(mon.uid)+1)
 	if team.size()<6:team.append(mon);return "team"
-	boxes.append(mon);return "pc"
+	boxes.append(mon);_sync_storage();return "pc"
 func find(uid: int) -> Dictionary:
 	for mon: Dictionary in team+boxes:
 		if int(mon.uid)==uid:return mon
@@ -51,11 +53,11 @@ func deposit(index: int) -> bool:
 	if in_battle:return false
 	if index<0 or index>=team.size() or team.size()<=1 or boxes.size()>=240:return false
 	if team[index].hp>0 and not team.any(func(mon: Dictionary):return mon!=team[index] and mon.hp>0):return false
-	boxes.append(team.pop_at(index));return true
+	boxes.append(team.pop_at(index));_sync_storage();return true
 func withdraw(index: int) -> bool:
 	if in_battle:return false
 	if index<0 or index>=boxes.size() or team.size()>=6:return false
-	team.append(boxes.pop_at(index));return true
+	var mon: Dictionary=boxes.pop_at(index);storage_slots.erase(str(int(mon.uid)));team.append(mon);_sync_storage();return true
 func equip(uid: int, item: String) -> bool:
 	if in_battle:return false
 	var mon:=find(uid)
@@ -141,7 +143,8 @@ func wild(level: int=-1, species_id: String="") -> Dictionary:
 	mon.nature=Mon.NATURES[rng.randi_range(0,24)];mon.hp=Mon.stats(mon).hp
 	return mon
 func snapshot() -> Dictionary:
-	return {"appearance":appearance.duplicate(),"journey":journey.snapshot(),"fossil_samples_received":fossil_samples_received,"nursery":nursery.snapshot(),"records":records.snapshot(),"team":team.duplicate(true),"boxes":boxes.duplicate(true),"bag":bag.duplicate(true),"next_uid":next_uid,"cap":cap,"money":money,"victories":victories.duplicate(true),"pending":pending.duplicate(true),"initialized":initialized,"exploration":exploration.snapshot()}
+	_sync_storage()
+	return {"storage_slots":storage_slots.duplicate(),"appearance":appearance.duplicate(),"journey":journey.snapshot(),"fossil_samples_received":fossil_samples_received,"nursery":nursery.snapshot(),"records":records.snapshot(),"team":team.duplicate(true),"boxes":boxes.duplicate(true),"bag":bag.duplicate(true),"next_uid":next_uid,"cap":cap,"money":money,"victories":victories.duplicate(true),"pending":pending.duplicate(true),"initialized":initialized,"exploration":exploration.snapshot()}
 static func validate(value: Variant) -> bool:
 	if not value is Dictionary:return false
 	if value.has("journey") and not Journey.validate(value.journey):return false
@@ -158,6 +161,7 @@ static func validate(value: Variant) -> bool:
 	for mon: Variant in value.team+value.boxes:
 		if not Mon.validate(mon) or mon.uid in ids or mon.uid>=value.next_uid:return false
 		ids.append(mon.uid)
+	if value.has("storage_slots") and not Storage.valid(value.storage_slots,value.boxes):return false
 	var egg_ids: Array=[]
 	if value.has("nursery"):
 		for egg: Dictionary in value.nursery.eggs:
@@ -203,6 +207,7 @@ func restore(value: Dictionary) -> bool:
 	team=[];boxes=[];bag={}
 	for mon: Dictionary in value.team:team.append(Mon.normalize(mon))
 	for mon: Dictionary in value.boxes:boxes.append(Mon.normalize(mon))
+	storage_slots=Storage.reconcile(boxes,value.get("storage_slots",{}))
 	for mon: Dictionary in team+boxes:records.observe(mon.species,true)
 	for key: String in value.bag:bag[key]=int(value.bag[key])
 	next_uid=int(value.next_uid);cap=int(value.cap);money=int(value.money);victories=value.victories.duplicate(true);pending=value.pending.duplicate(true);initialized=value.initialized
@@ -276,3 +281,46 @@ func set_appearance(field: String,index: int) -> bool:
 	var next:=appearance.duplicate();next[field]=index
 	if not Appearance.validate(next):return false
 	appearance=next;return true
+
+func _sync_storage() -> void:
+	storage_slots=Storage.reconcile(boxes,storage_slots)
+func stored_uid(slot: int) -> int:
+	_sync_storage();return Storage.uid_at(storage_slots,slot)
+func move_stored(uid: int,slot: int) -> bool:
+	if in_battle or slot<0 or slot>=Storage.CAPACITY:return false
+	_sync_storage()
+	var key: String=str(uid)
+	if not storage_slots.has(key):return false
+	var current: int=int(storage_slots[key]);var other: int=Storage.uid_at(storage_slots,slot)
+	storage_slots[key]=slot
+	if other!=0:storage_slots[str(other)]=current
+	return true
+func exchange_with_party(uid: int,index: int) -> bool:
+	if in_battle or index<0 or index>=team.size():return false
+	var incoming: Dictionary=find(uid)
+	if incoming.is_empty() or incoming not in boxes:return false
+	var next: Array=team.duplicate();next[index]=incoming
+	if not next.any(func(mon: Dictionary):return mon.hp>0 and exploration.can_heal(mon)):return false
+	_sync_storage()
+	var boxed_index: int=boxes.find(incoming);var outgoing: Dictionary=team[index]
+	var slot: int=int(storage_slots[str(uid)])
+	boxes[boxed_index]=outgoing;team[index]=incoming
+	storage_slots.erase(str(uid));storage_slots[str(int(outgoing.uid))]=slot
+	return true
+
+func move_options(uid: int,source: String) -> Array:
+	var mon:=find(uid)
+	if mon.is_empty():return []
+	if source=="machine":return Catalog.species(mon.species).get("machines",[]).duplicate()
+	if source!="reminder":return []
+	var result: Array=[];var id: String=mon.species
+	while not id.is_empty():
+		for entry: Dictionary in Catalog.species(id).learnset:
+			if entry.level<=mon.level and entry.move not in result:result.append(entry.move)
+		id=Catalog.species(id).get("previous","")
+	return result
+func reorder_moves(uid: int,from: int,to: int) -> bool:
+	if in_battle:return false
+	var mon:=find(uid)
+	if mon.is_empty() or from<0 or to<0 or from>=mon.moves.size() or to>=mon.moves.size():return false
+	var first: Dictionary=mon.moves[from];mon.moves[from]=mon.moves[to];mon.moves[to]=first;return true

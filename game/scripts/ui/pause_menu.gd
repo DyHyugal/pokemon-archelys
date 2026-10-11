@@ -1,5 +1,7 @@
 extends CanvasLayer
 ## Presentation only: campaign and preferences remain owned by services.
+const StoragePages=preload("res://scripts/ui/storage_pages.gd")
+var storage_pages: RefCounted
 const AdventurePages=preload("res://scripts/ui/adventure_pages.gd")
 const ExplorationPages=preload("res://scripts/ui/exploration_pages.gd")
 const CollectionPages=preload("res://scripts/ui/collection_pages.gd")
@@ -45,6 +47,7 @@ var buttons: Dictionary = {}
 
 func _ready() -> void:
 	adventure_pages=AdventurePages.new(self)
+	storage_pages=StoragePages.new(self)
 	exploration_pages=ExplorationPages.new(self)
 	collection_pages=CollectionPages.new(self)
 	comfort_pages=ComfortPages.new(self)
@@ -67,7 +70,7 @@ func _ready() -> void:
 	navigation=VBoxContainer.new(); navigation.custom_minimum_size.x=230; nav_scroll.add_child(navigation)
 	var content := VBoxContainer.new(); content.size_flags_horizontal=Control.SIZE_EXPAND_FILL; row.add_child(content)
 	title=Label.new(); title.add_theme_font_size_override("font_size",28); content.add_child(title)
-	var scroll := ScrollContainer.new(); scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL; content.add_child(scroll)
+	var scroll := ScrollContainer.new(); scroll.follow_focus=true; scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL; content.add_child(scroll)
 	body=VBoxContainer.new(); body.size_flags_horizontal=Control.SIZE_EXPAND_FILL; body.add_theme_constant_override("separation",16); scroll.add_child(body)
 	feedback=Label.new(); feedback.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART; content.add_child(feedback)
 	visible=false
@@ -186,7 +189,8 @@ E / Enter: interact in the world"))
 		var help: Label=body.get_child(1)
 		help.text=tr_text("%s / Échap : menu · %s : sac · %s : journal\n%s / Entrée : interagir", "%s / Esc: menu · %s: bag · %s: journal\n%s / Enter: interact") % [comfort.caption("menu"),comfort.caption("bag"),comfort.caption("journal"),comfort.caption("interact")]
 	if page=="settings":comfort_pages.render()
-	buttons[page].grab_focus()
+	if page=="pc" and body.has_node("StorageInspect"):body.get_node("StorageInspect").grab_focus()
+	else:buttons[page].grab_focus()
 
 func show_item() -> void:
 	item_details.text=tr_text("Jeton de test

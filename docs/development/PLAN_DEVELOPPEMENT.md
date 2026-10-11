@@ -120,3 +120,9 @@ Après ce build : recueillir un retour groupé Windows sur parcours/sauvegarde/c
 Personnage de laboratoire et persistance → thèmes d'interface et migration de préférences → photo/cadrage/export réel. Un ZIP englobe ces nouveautés et conserve le parcours D61 à tester demain. Aucun besoin de produire de nouveaux modèles Pokémon ou d'îles pour vérifier ce socle. Boutiques de vêtements et assets finaux attendent la sélection artistique. Les demandes photo/personnalisation existent déjà ; aucun nouveau mini-jeu ou changement d'économie final.
 
 Suites après retour groupé : corriger le parcours et la présentation observés ; intégrer les arbitrages de style/casting/catalogue nécessaires à la vraie première tranche, puis produire ses assets selon le processus comparatif approuvé. Pas de démarrage automatique des modes reportés.
+
+## D63 — gros bloc gestion et préparation des équipes
+
+Emplacements stables et transactions de transfert → interface huit boîtes/recherche → résumé commun PC/équipe → préparation des attaques et confirmation → contrôle bout en bout avec Showdown/sauvegarde. Réutiliser les240 places et les règles du catalogue existant, pas un nouveau système de coût ou de relâchement. Une livraison conserve tous les lots précédents à tester demain.
+
+Après ce bloc, priorité au retour propriétaire groupé et aux décisions qui débloquent les vrais contenus/assets ; ne pas produire arbitrairement de nouvelles îles ou500 Pokémon. Les fondations de collection/preparation sont testées, pas un jeu complet annoncé.

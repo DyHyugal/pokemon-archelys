@@ -26,3 +26,5 @@ D59 : fossiles intégrés pour essai solo au Centre du village. Lieu narratif fi
 D61 : ouverture village/sentier/épreuve jouable en proposition. Les textes Vyna, niveaux, adversaires et récompenses sont des fixtures à approuver avec les assets ; aucun nouveau choix final implicite. Comparatifs FHD actualisés A/B/C et sentier ; aucune variante sélectionnée. La mesure Linux utilise llvmpipe logiciel : la fluidité Windows/GPU reste à mesurer lors du parcours groupé.
 
 D62 : sélections techniques de peau/vêtements/coiffure/visage sur mannequin, thèmes d'interface et photo sont testables. N46 reste ouvert pour la sélection des modèles/cosmétiques finaux et boutiques. Les captures PNG ne choisissent aucun style final ; pas de fonctions réseau ajoutées. Retour Windows D61 et D62 attendu demain, dernier retour validé D52.
+
+D63 : rangement stable240 places, résumé PC et préparation CT/rappel testables. Cela ne choisit aucun Pokédex/asset/économie finale, ni une extension des modes reportés. Retour groupé des nouveaux lots toujours attendu ; les choix déjà répondus ne sont pas rouverts.

@@ -132,3 +132,9 @@ Combat/IA, parcours solo et maquette d'ouverture : développés et tests locaux 
 | Photo | EXPORT PNG DÉVELOPPÉ ET TESTÉ | Cadrage autour du héros, résolution courante, UI/étiquettes masquées, caméra restaurée ; fichier réellement rendu sous GL Linux |
 
 D61 conservé dans cette version et toujours à valider Windows. D52 reste le dernier retour propriétaire reçu. Rapport : [lot personnage/thèmes/photo](development/LOT_PERSONNAGE_THEMES_PHOTO.md).
+
+## D63 — gestion et préparation des équipes
+
+**Développé et testé localement** : huit boîtes de trente emplacements stables, déplacements et échanges internes, échange direct avec équipe pleine, recherche nom/type/talent FR/EN et UID exact, résumé PC sans retrait, CT/rappel filtrés avec détail et confirmation, ordre d'attaques avec PP. Captures/éclosions/fossiles utilisent le rangement central. Sauvegardes5 anciennes compatibles en lecture ; slot corrompu/ref UID incohérente refusés. Catalogue22/43 inchangé.
+
+31 contrôles domaine/Showdown/capacité et16 contrôles menus/parcours ; suite précédente réussie. PC rendu sous GL Linux et inspecté. Windows à tester avec D61/D62 ; D52 reste la dernière validation reçue. [Rapport](development/LOT_GESTION_EQUIPES.md).

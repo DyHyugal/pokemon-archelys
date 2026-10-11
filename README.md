@@ -33,3 +33,5 @@ Les combats du laboratoire utilisent maintenant [Showdown intégré](docs/develo
 Le [lot groupé aventure/IA/visuels](docs/development/LOT_AVENTURE_IA_VISUELS.md) relie village, sentier, épreuve et épilogue, avec sauvegarde et récompenses uniques. Il enrichit les comparatifs FHD ; scénario et direction artistique proposés restent à approuver. Le LIRE-MOI du ZIP contient le parcours de test complet.
 
 Le [lot personnage/thèmes/photo](docs/development/LOT_PERSONNAGE_THEMES_PHOTO.md) ajoute la personnalisation sauvegardée du mannequin, trois palettes d'interface et l'export PNG avec cadrage. Les assets restent provisoires ; toutes les consignes du parcours regroupé sont dans le LIRE-MOI du ZIP.
+
+Le [gros bloc gestion des équipes](docs/development/LOT_GESTION_EQUIPES.md) apporte huit boîtes stables, les échanges avec l'équipe pleine, la recherche bilingue et la préparation d'un Pokémon stocké avec confirmation des CT/rappels. Il conserve tous les nouveaux lots précédents, à tester avec le parcours du LIRE-MOI.

@@ -1,13 +1,16 @@
 extends RefCounted
+const MovePages=preload("res://scripts/ui/move_pages.gd")
+var move_pages: RefCounted
 const Mon=preload("res://scripts/domain/pokemon.gd")
 const Catalog=preload("res://scripts/domain/pokemon_catalog.gd")
 var menu: CanvasLayer
 var adventure: RefCounted
 var selected_uid: int=0
+var summary_from: String="team"
 var iv_controls: Array=[]
 var ev_controls: Array=[]
 var nature_control: OptionButton
-func _init(parent: CanvasLayer) -> void:menu=parent
+func _init(parent: CanvasLayer) -> void:menu=parent;move_pages=MovePages.new(menu)
 func t(fr: String,en: String) -> String:return menu.tr_text(fr,en)
 func name_of(id: String) -> String:return Catalog.name_of(id,menu.locale)
 func refresh() -> void:menu.render()
@@ -25,22 +28,27 @@ func render_bag() -> void:
 func render_team() -> void:
 	menu.label(t("Équipe %d/6 • cap %d • %d ₽","Party %d/6 • cap %d • ₽%d") % [adventure.team.size(),adventure.cap,adventure.money])
 	var mon: Dictionary=adventure.find(selected_uid)
-	if mon.is_empty() or mon not in adventure.team:
+	if mon.is_empty() or (summary_from=="team" and mon not in adventure.team):
 		for entry: Dictionary in adventure.team:
 			var uid: int=int(entry.uid)
-			menu.button(menu.body,"%s • Nv.%d • %d/%d PV %s" % [name_of(entry.species),entry.level,entry.hp,Mon.stats(entry).hp,Catalog.text("status_names",entry.status,menu.locale)],func():selected_uid=uid;refresh())
+			menu.button(menu.body,"%s • Nv.%d • %d/%d PV %s" % [name_of(entry.species),entry.level,entry.hp,Mon.stats(entry).hp,Catalog.text("status_names",entry.status,menu.locale)],func():selected_uid=uid;summary_from="team";refresh())
 		return
-	menu.button(menu.body,t("← Retour à l'équipe","← Back to party"),func():selected_uid=0;refresh())
+	menu.button(menu.body,t("← Retour au PC","← Back to PC") if summary_from=="pc" else t("← Retour à l'équipe","← Back to party"),func():menu.page="pc" if summary_from=="pc" else "team";selected_uid=0;refresh())
 	menu.label("— %s #%d —" % [name_of(mon.species),mon.uid])
 	menu.label(t("Types : %s\nTalent : %s\nObjet : %s\nEXP : %d • prochain niveau : %d", "Types: %s\nAbility: %s\nItem: %s\nEXP: %d • next level: %d") % [" / ".join(Catalog.species(mon.species).types.map(func(id: String):return Catalog.text("type_names",id,menu.locale))),Catalog.text("abilities",mon.ability,menu.locale),name_of(mon.item) if mon.item!="" else "—",mon.experience,Mon.experience(mini(100,int(mon.level)+1),Catalog.species(mon.species).growth)])
 	menu.label(t("Puissance Cachée : %s (type calculé depuis les IV)","Hidden Power: %s (type calculated from IVs)") % Catalog.text("type_names",Mon.hidden_power(mon),menu.locale))
-	for slot: Dictionary in mon.moves:menu.label("%s • %d/%d PP" % [name_of(slot.id),slot.pp,Catalog.move(slot.id).pp])
+	for i: int in range(mon.moves.size()):
+		var slot: Dictionary=mon.moves[i];menu.label("%d. %s • %d/%d PP" % [i+1,name_of(slot.id),slot.pp,Catalog.move(slot.id).pp])
+		if i>0:
+			var current: int=i
+			menu.button(menu.body,t("Monter l'attaque %d","Move attack %d up") % (i+1),func():adventure.reorder_moves(selected_uid,current,current-1);refresh())
 	var index: int=adventure.team.find(mon)
-	if index>0:menu.button(menu.body,t("Placer en tête","Move to lead"),func():adventure.reorder(index,0);refresh())
-	menu.button(menu.body,t("Déposer au PC","Deposit in PC"),func():
-		var ok: bool=adventure.deposit(index)
-		if ok:selected_uid=0;refresh()
-		menu.feedback.text=t("Déposé au PC.","Deposited in PC.") if ok else t("Garde au moins un Pokémon apte au combat dans l'équipe.","Keep at least one battle-ready Pokémon in the party."))
+	if index>=0:
+		if index>0:menu.button(menu.body,t("Placer en tête","Move to lead"),func():adventure.reorder(index,0);refresh())
+		menu.button(menu.body,t("Déposer au PC","Deposit in PC"),func():
+			var ok: bool=adventure.deposit(index)
+			if ok:selected_uid=0;summary_from="team";refresh()
+			menu.feedback.text=t("Déposé au PC.","Deposited in PC.") if ok else t("Garde au moins un Pokémon apte au combat dans l'équipe.","Keep at least one battle-ready Pokémon in the party."))
 	menu.label(t("Édition gratuite, hors combat — appliquer pour confirmer","Free editing, outside battle — apply to confirm"))
 	var grid:=GridContainer.new();grid.columns=4;menu.body.add_child(grid)
 	for heading: String in [t("Statistique","Stat"),t("Valeur réelle","Actual value"),"IV (0–31)","EV (0–252)"]:
@@ -76,35 +84,9 @@ func render_team() -> void:
 	for ability: String in Catalog.species(mon.species).get("abilities",[]):
 		var id: String=ability
 		menu.button(menu.body,Catalog.text("abilities",id,menu.locale),func():adventure.set_ability(selected_uid,id);refresh())
-	menu.label(t("CT réutilisables du catalogue (gratuites au labo)","Reusable catalogue TMs (free in laboratory)"))
-	for move_id: String in Catalog.species(mon.species).get("machines",[]):
-		var id: String=move_id
-		for slot: int in range(mini(4,mon.moves.size()+1)):
-			var target: int=slot
-			menu.button(menu.body,"%s → %d" % [name_of(id),slot+1],func():adventure.teach_machine(selected_uid,id,target);refresh())
-	render_relearn(mon)
-func render_relearn(mon: Dictionary) -> void:
-	menu.label(t("Rappel gratuit des attaques du catalogue","Free move reminder for this catalogue"))
-	var choices: Array=[];var id: String=mon.species
-	while not id.is_empty():
-		for entry: Dictionary in Catalog.species(id).learnset:
-			if entry.level<=mon.level and entry.move not in choices:choices.append(entry.move)
-		id=Catalog.species(id).get("previous","")
-	var picker:=OptionButton.new()
-	for move_id: String in choices:picker.add_item(name_of(move_id))
-	menu.body.add_child(picker)
-	for slot: int in range(mini(4,mon.moves.size()+1)):
-		var target: int=slot
-		menu.button(menu.body,t("Rappeler dans l'emplacement %d","Relearn into slot %d") % (slot+1),func():
-			var ok: bool=adventure.relearn(selected_uid,choices[picker.selected],target)
-			refresh();menu.feedback.text=t("Attaque rappelée.","Move relearned.") if ok else t("Attaque déjà connue ou emplacement invalide.","Move already known or invalid slot."))
+	move_pages.render(mon)
 func render_pc() -> void:
-	menu.label(t("PC : %d/240 • équipe : %d/6","PC: %d/240 • party: %d/6") % [adventure.boxes.size(),adventure.team.size()])
-	if adventure.boxes.is_empty():menu.label(t("Le PC est vide. Dépose un Pokémon depuis son résumé.","The PC is empty. Deposit a Pokémon from its summary."))
-	for i: int in range(adventure.boxes.size()):
-		var index: int=i;var mon: Dictionary=adventure.boxes[i]
-		menu.button(menu.body,t("Retirer %s Nv.%d (#%d)","Withdraw %s Lv.%d (#%d)") % [name_of(mon.species),mon.level,mon.uid],func():
-			var ok: bool=adventure.withdraw(index);refresh();menu.feedback.text=t("Ajouté à l'équipe.","Added to party.") if ok else t("Équipe pleine : dépose un Pokémon d'abord.","Party full: deposit a Pokémon first."))
+	menu.storage_pages.render()
 func render_choices() -> void:
 	if adventure.pending.is_empty():menu.label(t("Aucun apprentissage ni évolution en attente.","No pending move or evolution."));return
 	var choice: Dictionary=adventure.pending[0];var mon: Dictionary=adventure.find(int(choice.uid))

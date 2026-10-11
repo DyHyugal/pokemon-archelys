@@ -1,4 +1,4 @@
-ARCHÉLYS — PERSONNAGE / THÈMES / PHOTO + AVENTURE
+ARCHÉLYS — GESTION DES ÉQUIPES + PERSONNAGE / PHOTO / AVENTURE
 Version : lab-{short_commit}
 Commit : {commit}
 
@@ -9,6 +9,14 @@ nécessaire. Nom EXE fixe, binaire officiel Godot inchangé ; non signé par nou
 En cas de blocage, noter le message et la protection sans les désactiver.
 
 CE QUI CHANGE
+PC en huit boîtes stables de trente emplacements ; déplacer ou échanger des
+cases ne décale pas les autres individus. Échange direct PC/équipe à six membres,
+résumé et préparation accessibles sans retirer le Pokémon. Recherche dans tout
+le PC par nom/type/talent FR/EN et #UID exact, filtre de type.
+CT/rappel unifiés avec recherche, fiche de l'attaque, emplacement et confirmation.
+Annuler conserve le set ; attaque déjà connue ne réinitialise pas ses PP.
+Changer l'ordre des attaques conserve leurs PP. Aucun relâchement/suppression.
+
 Nouveaux menus Personnage et Photo, thèmes Sombre/Clair/Contraste dans Paramètres.
 Peau/haut/pantalon/cheveux/visage d'essai changent le mannequin et sont sauvegardés
 avec la campagne. Aucun modèle ou boutique de vêtements définitifs.
@@ -29,6 +37,40 @@ Catalogue22 espèces/43 attaques inchangé. Œufs cadeaux/fossiles conservés.
 Reproduction retirée ; multi/raids/Nuzlocke/Soul-link non prioritaires.
 
 PARCOURS DE TEST GROUPÉ
+
+NOUVEAU PARCOURS PC / PRÉPARATION
+Préparer quelques membres au PC en déposant des Pokémon depuis leur résumé.
+Garder au moins un membre apte. Ouvrir PC : huit boîtes et trente cases chacune.
+Choisir une case occupée, puis Déplacer. Changer de boîte et choisir une case
+vide : seul cet individu bouge. Choisir une case occupée pour échanger les places.
+Sauvegarder/charger : cases, membres, PV/PP/objets et apparence conservés.
+Les anciennes campagnes se rangent dans l'ordre de leur ancien PC au premier
+chargement ; garder une copie des anciennes sauvegardes avant de les écrire.
+
+Dans la recherche du PC (plus bas, défilement de droite), essayer un nom français
+puis anglais, un talent, un type, et # suivi de l'identifiant individuel.
+Les résultats couvrent toutes les boîtes, par pages de trente, et ouvrent la
+bonne case. Utiliser Précédents/Suivants si nécessaire. Le filtre
+de type peut être combiné à la recherche. Sur une fiche sélectionnée, cliquer
+Consulter/préparer : le résumé concerne le Pokémon stocké sans le retirer.
+Modifier IV/EV/nature, choisir un talent légal et un objet disponible ; vérifier
+ses vraies statistiques sans soin gratuit ni changement des autres membres.
+
+En bas du résumé, choisir CT ou Rappel, puis rechercher une attaque en français
+ou en anglais. Vérifier type/catégorie/puissance/précision/PP/priorité. Choisir
+l'emplacement, annuler une fois : aucun changement. Refaire et confirmer :
+seule l'attaque ciblée change. Une attaque déjà connue ne permet pas de rendre
+ses PP. Monter une attaque dans l'ordre : ses PP doivent la suivre.
+Le rappel inclut les sous-évolutions au niveau autorisé, le catalogue reste22/43.
+
+Revenir au PC, compléter l'équipe à six membres puis utiliser Échanger avec
+un membre de l'équipe : opération possible sans septième membre, le membre
+sortant reprend la case du Pokémon retiré. Aucun PV/PP/statut/objet perdu.
+Essayer de remplacer le seul membre apte par un Pokémon K.O. : refus attendu.
+Retirer reste possible uniquement s'il reste une place dans l'équipe.
+Faire ensuite un vrai combat avec le membre préparé : bon set/talent/objet,
+PP diminués sur la bonne attaque. Sauvegarder/charger et revoir sa fiche.
+Tester aussi le PC et le résumé en anglais. Défilement et focus restent utiles.
 
 NOUVEAUTÉS PERSONNAGE / THÈMES / PHOTO
 Menu → Personnage : changer peau, haut/pantalon, coiffure/couleur et visage.
@@ -100,7 +142,8 @@ conservés. Au Centre, les cadeaux de fossiles et leur restauration restent
 uniques/transactionnels : si équipe/PC pleins, aucun fossile perdu.
 
 RETOUR UTILE
-Version lab-{short_commit} ; personnage conservé ; thèmes lisibles ; photo PNG
+Version lab-{short_commit} ; rangement PC stable ; transferts/préparation et PP
+conservés ; recherche/confirmation ; personnage conservé ; thèmes lisibles ; photo PNG
 et retour caméra ; lancement ; parcours prologue→sentier→balise→boss
 →épilogue ; sauvegarde à mi-parcours et récompense unique ; combat/Méga ;
 fluidité et préférence graphique. Un seul retour groupé suffit.
