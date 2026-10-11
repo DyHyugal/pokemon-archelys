@@ -85,4 +85,11 @@ function start(player,enemy,mode='singles',extra={}){const a=new Adapter();const
  check(s.request.active[0].moves[0].id==='struggle','Zero PP requests Struggle');
  const t=a.act({choice:'move 1'});check(t.player[0].pp[0].pp===0&&t.logs.some(l=>l.includes('Struggle')),'Struggle executes without inventing PP');a.close();
 }
+{
+ const {a}=start([mon('blastoise',1,['protect'])],[mon('raichu',9,['electric-terrain','thunderbolt']),mon('raichu',10,['thunderbolt']),mon('raichu',11,['electric-terrain','thunderbolt'])],'singles',{difficulty:'hard'});
+ check(choose(a.aiView(),Dex)==='move 1','Manual setter establishes missing Electric Terrain');
+ a.act({choice:'move 1'});check(choose(a.aiView(),Dex)==='switch 2','Electric DPS receives terrain without requiring Surge Surfer');
+ a.act({choice:'move 1'});const view=a.aiView();view.terrain='';view.own.find(p=>p.uid===9).fainted=true;view.own.find(p=>p.uid===9).hp=0;
+ check(choose(view,Dex)==='switch 3','Expired terrain renews through backup setter instead of another DPS');a.close();
+}
 console.log(`SHOWDOWN ADAPTER: ${checks} checks, 0 failures`);

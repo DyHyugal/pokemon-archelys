@@ -10,7 +10,7 @@ Le [transport](../../game/scripts/services/showdown_transport.gd) utilise un pro
 
 Les captures, permissions du sac, EXP/EV, évolutions et progression sont isolées dans `adventure_battle.gd`. Le simulateur résout les attaques/talents/objets tenus, priorités, précision, météo et terrains. Les soins du sac simple utilisent ses objets Pokémon et consomment un tour sans attaque du joueur. Les récompenses des ennemis vaincus sont engagées à la fin du combat ; l'aventure ne modifie pas les statistiques du simulateur en plein tour. Le format de sauvegarde5 et les préférences restent inchangés. Les anciens moteurs sont conservés pour comparaison, sans usage par les combats Pokémon jouables.
 
-L'IA reçoit une projection explicite de sa propre équipe et des adversaires actifs visibles. Pas d'IV/EV, objet, set caché ou commandes adverses. Elle conserve une politique de poseur → bénéficiaire → renouvellement et sélection de coups par données publiques. Cette politique est un socle, pas une IA experte finalisée : prévision stratégique, switches défensifs et coopération avancée restent à approfondir. Aucun portage de code Tactica.
+L'IA reçoit une projection explicite de sa propre équipe et des adversaires actifs visibles. Pas d'IV/EV, objet, set caché ou commandes adverses. Elle conserve une politique de poseur → bénéficiaire → renouvellement, avec bénéfice de type sous terrain pour un DPS sans talent dédié et sélection de coups par données publiques. Cette politique est un socle, pas une IA experte finalisée : prévision stratégique, switches défensifs et coopération avancée restent à approfondir. Aucun portage de code Tactica.
 
 ## Vérifications
 
@@ -18,7 +18,7 @@ Les tests de l'adaptateur Node couvrent conditions et PP initiaux, Surf et dég�
 
 Les tests Godot utilisent le vrai processus préparé : ticks pendant les échanges, synchronisation HP/PP, sac après acquittement, sortie/arrêt, panne et rollback, deux actifs K.O. avec un seul remplaçant, victoire scénaristique sans récompense dupliquée, sauvegarde valide et refus sans runtime. Les tests de scènes existants sont adaptés à l'asynchronisme et exercent les vrais boutons : sauvage, capture vers PC, disque, Méga, simple/double, Surf/Abri/Coup d'Main, texte et commandes personnalisées. Les anciens tests du moteur maison ne sont pas présentés comme preuve de conformité Showdown.
 
-Commande de lot : `python tools/check_prototype.py`, après préparation du moteur. Résultats locaux : **33 vérifications Node et33 Godot réussies**, contrôles complets du prototype réussis, dont24 vérifications de scène tactique. La livraison Windows reste à éprouver sur le PC propriétaire. La suite amont ciblée61 réussis/2 ignorés de D55 reste une preuve distincte ; aucune promesse d'avoir testé chaque interaction officielle. Les règles originales et futurs Fakemons devront avoir leurs propres tests.
+Commande de lot : `python tools/check_prototype.py`, après préparation du moteur. Résultats locaux : **36 vérifications Node et33 Godot réussies**, contrôles complets du prototype réussis, dont24 vérifications de scène tactique. La livraison Windows reste à éprouver sur le PC propriétaire. La suite amont ciblée61 réussis/2 ignorés de D55 reste une preuve distincte ; aucune promesse d'avoir testé chaque interaction officielle. Les règles originales et futurs Fakemons devront avoir leurs propres tests.
 
 ## Livraison et limites
 

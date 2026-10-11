@@ -3,6 +3,12 @@
 const supportAbilities={drought:'sunnyday',drizzle:'raindance',sandstream:'sandstorm',snowwarning:'snowscape',electricsurge:'electricterrain',grassysurge:'grassyterrain',psychicsurge:'psychicterrain',mistysurge:'mistyterrain'};
 const beneficiaries={chlorophyll:'sunnyday',solarpower:'sunnyday',swiftswim:'raindance',raindish:'raindance',surgesurfer:'electricterrain',sandrush:'sandstorm',slushrush:'snowscape'};
 const setters=new Set(Object.values(supportAbilities));
+function benefits(p,field){
+ if(beneficiaries[p.ability]===field)return true;
+ const type={sunnyday:'Fire',raindance:'Water',electricterrain:'Electric',grassyterrain:'Grass',psychicterrain:'Psychic'}[field];
+ if(!type||!p.types.includes(type))return false;
+ return !field.endsWith('terrain')||(!p.types.includes('Flying')&&p.ability!=='levitate');
+}
 function choose(view,Dex){
  const r=view.request;if(!r||r.wait)return '';
  const own=view.own;const used=new Set();let mega=false;
@@ -22,7 +28,7 @@ function choose(view,Dex){
   if(view.difficulty==='hard'&&desired){
    if(!running){const set=options.find(m=>m.id===desired);if(set)return 'move '+set.slot;
     const reserve=bench.find(q=>!used.has(q.uid)&&isSetter(q));if(reserve&&canSwitch){used.add(reserve.uid);return 'switch '+(own.indexOf(reserve)+1);}}
-   else if(isSetter(p)&&active.length===1){const receiver=bench.find(q=>!used.has(q.uid)&&beneficiaries[q.ability]===desired);
+   else if(isSetter(p)&&active.length===1){const receiver=bench.find(q=>!used.has(q.uid)&&!isSetter(q)&&benefits(q,desired));
     if(receiver&&canSwitch){used.add(receiver.uid);return 'switch '+(own.indexOf(receiver)+1);}}
   }
   let best=null;
