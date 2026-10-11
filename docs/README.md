@@ -33,3 +33,5 @@
 - [Bilan et reprise](development/BILAN_SESSION_2026-10-11.md)
 
 - [Suite solo et retour de test propriétaire](development/SUITE_SOLO_2026-10-11.md)
+
+- [Signature Windows : options gratuites et coûts vérifiables](development/SIGNATURE_WINDOWS_ET_OPTIONS_GRATUITES.md)
