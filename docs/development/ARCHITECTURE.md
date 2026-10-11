@@ -41,3 +41,7 @@ Identités persistantes et commandes versionnées ; données espèces/attaques/i
 La présentation choisit l’interaction la plus proche, lit les dialogues localisés, suspend le mouvement et affiche journal/sac. Panneau et caisse sont des géométries originales provisoires. Les nouvelles interactions restent solo, sans développement de synchronisation multijoueur.
 
 Contrôles : 19 originaux, 18 progression/préférences/migration, 6 dialogues, import du modèle et scène réelle (clavier, panneau, caisse, journal, stockage et nouvelle scène). Le moteur portable reste identique, seules les données PCK changent. Les anciennes descriptions schéma 1 et préférences non persistées décrivent les builds précédents et sont remplacées par ce lot.
+
+## Présentation des menus solo
+
+`ui/pause_menu.gd` est une couche de présentation : affiche une copie de progression et émet demandes de sauvegarde, chargement ou changement de préférences. Le monde raccorde ces signaux aux services existants. Aucune nouvelle dépendance ni migration : campagne schéma 2, préférences indépendantes inchangées. Menu modal bloque axes et interactions ; dialogues ont priorité et ne peuvent être interrompus par Échap. Échap revient d'une page à Pause puis ferme ; Tab/Entrée et souris naviguent dans les contrôles Godot.

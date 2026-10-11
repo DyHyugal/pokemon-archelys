@@ -1,5 +1,9 @@
 extends Node3D
 
+const PauseMenu = preload("res://scripts/ui/pause_menu.gd")
+var pause_menu: CanvasLayer
+var debug_panel: PanelContainer
+var menu_button: Button
 const World = preload("res://scripts/domain/world_rules.gd")
 const Store = preload("res://scripts/services/save_store.gd")
 const Dialogue = preload("res://scripts/domain/dialogue.gd")
@@ -47,6 +51,7 @@ func _ready() -> void:
 			capture_frame.call_deferred(arg.trim_prefix("--capture="))
 
 func capture_frame(path: String) -> void:
+	if "--capture-menu" in OS.get_cmdline_user_args(): _open_menu("settings")
 	await get_tree().create_timer(1.0).timeout
 	await RenderingServer.frame_post_draw
 	var error := get_viewport().get_texture().get_image().save_png(path)
@@ -134,6 +139,13 @@ func _build_world() -> void:
 func _build_ui() -> void:
 	var layer:=CanvasLayer.new();add_child(layer)
 	var panel:=PanelContainer.new();panel.position=Vector2(16,16);panel.custom_minimum_size=Vector2(430,0);layer.add_child(panel)
+	debug_panel=panel
+	panel.visible=false
+	menu_button=_button(layer,"Menu • Échap",func():_open_menu())
+	menu_button.position=Vector2(16,16)
+	var debug_toggle := CheckButton.new();debug_toggle.text="Outils labo • F3";debug_toggle.position=Vector2(180,16);layer.add_child(debug_toggle)
+	debug_toggle.toggled.connect(func(value: bool):debug_panel.visible=value)
+	panel.position=Vector2(16,65)
 	var stack:=VBoxContainer.new();panel.add_child(stack)
 	var title:=Label.new();title.text="ARCHÉLYS • LABORATOIRE TECHNIQUE";stack.add_child(title)
 	var note:=Label.new();note.text="Décors provisoires — aucune île finale\nDéplacement : ZQSD / WASD / flèches";stack.add_child(note)
@@ -156,7 +168,7 @@ func _build_ui() -> void:
 	_button(stack,"Simuler un tour de combat",_turn)
 	_button(stack,"Réinitialiser le combat",_start_battle)
 	message=Label.new();message.text="Zone turquoise : tous présents pour franchir l’étape.";stack.add_child(message)
-	interaction_hint=Label.new();stack.add_child(interaction_hint)
+	interaction_hint=Label.new();interaction_hint.position=Vector2(20,675);layer.add_child(interaction_hint)
 	dialogue_panel=PanelContainer.new();dialogue_panel.position=Vector2(460,510);dialogue_panel.custom_minimum_size=Vector2(800,190);dialogue_panel.visible=false;layer.add_child(dialogue_panel)
 	var conversation := VBoxContainer.new();dialogue_panel.add_child(conversation)
 	dialogue_speaker=Label.new();conversation.add_child(dialogue_speaker)
@@ -166,6 +178,13 @@ func _build_ui() -> void:
 	var overview_stack := VBoxContainer.new();overview.add_child(overview_stack)
 	journal_text=Label.new();journal_text.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;journal_text.custom_minimum_size.x=400;overview_stack.add_child(journal_text)
 	inventory_text=Label.new();overview_stack.add_child(inventory_text)
+	overview.visible=false
+	pause_menu=PauseMenu.new();add_child(pause_menu)
+	pause_menu.language_changed.connect(func(value: String):_set_locale(value);_sync_menu())
+	pause_menu.camera_changed.connect(func(value: float):camera.size=value;_persist_preferences())
+	pause_menu.save_requested.connect(func():_save();pause_menu.feedback.text=message.text)
+	pause_menu.load_requested.connect(func():_load();_sync_menu();pause_menu.feedback.text=message.text)
+	pause_menu.closed.connect(func():Session.submit_axis(Vector2.ZERO))
 	log_box=RichTextLabel.new();log_box.custom_minimum_size=Vector2(430,115);stack.add_child(log_box)
 
 func _button(parent: Node, text: String, action: Callable) -> Button:
@@ -215,7 +234,26 @@ func _local_position() -> Vector3:
 	var pos: Array = record.get("position", [0,0,0])
 	return Vector3(float(pos[0]), 0, float(pos[2]))
 
+func _sync_menu() -> void:
+	pause_menu.sync(locale,camera.size,Session.campaign.laboratory)
+
+func _open_menu(page: String = "home") -> void:
+	if dialogue.active: return
+	Session.submit_axis(Vector2.ZERO)
+	_sync_menu()
+	pause_menu.open(page)
+
 func _input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and not event.echo:
+		if pause_menu.visible:
+			if pause_menu.handle_key(event): get_viewport().set_input_as_handled()
+			return
+		if not dialogue.active and event.keycode in [KEY_ESCAPE,KEY_I,KEY_J]:
+			_open_menu("bag" if event.keycode==KEY_I else ("journal" if event.keycode==KEY_J else "home"))
+			get_viewport().set_input_as_handled();return
+		if event.keycode==KEY_F3:
+			debug_panel.visible=not debug_panel.visible
+			get_viewport().set_input_as_handled();return
 	# Active conversations consume confirmation before any previously focused button.
 	if dialogue.active:
 		_unhandled_key_input(event)
@@ -231,7 +269,7 @@ func _nearest_interaction() -> String:
 	return nearest
 
 func _open_interaction(id: String) -> bool:
-	if id not in TARGETS or Session.active_network:
+	if id not in TARGETS or Session.active_network or pause_menu.visible:
 		return false
 	active_interaction=id
 	var record: Dictionary=interaction_records[id]
@@ -240,7 +278,7 @@ func _open_interaction(id: String) -> bool:
 	return dialogue.begin(record,locale)
 
 func _unhandled_key_input(event: InputEvent) -> void:
-	if not event is InputEventKey or not event.pressed or event.echo:
+	if pause_menu.visible or not event is InputEventKey or not event.pressed or event.echo:
 		return
 	if event.keycode not in [KEY_A, KEY_E, KEY_ENTER]:
 		return
@@ -311,11 +349,12 @@ func _process(_delta: float) -> void:
 	if Input.is_physical_key_pressed(KEY_D) or Input.is_physical_key_pressed(KEY_RIGHT):axis.x+=1
 	if Input.is_physical_key_pressed(KEY_W) or Input.is_physical_key_pressed(KEY_Z) or Input.is_physical_key_pressed(KEY_UP):axis.y-=1
 	if Input.is_physical_key_pressed(KEY_S) or Input.is_physical_key_pressed(KEY_DOWN):axis.y+=1
-	if dialogue.active or get_viewport().gui_get_focus_owner() is LineEdit:axis=Vector2.ZERO
+	if pause_menu.visible or dialogue.active or get_viewport().gui_get_focus_owner() is LineEdit:axis=Vector2.ZERO
 	var focus := _local_position()
 	camera.position = focus + CAMERA_OFFSET
 	camera.look_at(focus)
-	interaction_hint.text = ("E / Entrée : interagir" if locale=="fr" else "E / Enter: interact") if not _nearest_interaction().is_empty() and not dialogue.active else ""
+	interaction_hint.text = ("E / Entrée : interagir" if locale=="fr" else "E / Enter: interact") if not _nearest_interaction().is_empty() and not dialogue.active and not pause_menu.visible else ""
 	_update_overview()
+	menu_button.text="Menu • Échap" if locale=="fr" else "Menu • Esc"
 	Session.submit_axis(axis)
 	status.text="Joueurs %d/%d • étape %d • cap factice %d" % [players.size(),value.get("participants",1),value.get("progress",0),value.get("level_cap",10)]

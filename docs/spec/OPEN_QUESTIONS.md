@@ -37,3 +37,7 @@ Signature demandée : certificat de signature de code/service de signature autor
 Le propriétaire demande un essai gratuit non signé (D41). Une variante moteur Godot non modifié + PCK séparé est préparée ; son lancement avec Contrôle intelligent actif attend le retour Windows. Elle ne tranche pas la signature de la distribution finale.
 
 Retour D42 : le propriétaire confirme le lancement de lab-477caad sans avertissement et les contrôles solo OK. La compatibilité universelle du moteur non signé reste non garantie ; aucune signature payante nécessaire pour poursuivre ses tests actuels. D43 demande des lots plus complets et la persistance de langue.
+
+## Après validation lab-e84ee99
+
+D44 valide le lot Windows précédent. D45 demande un vrai écran Sac et le maintien du réglage caméra dans les Paramètres. Ce bloc de présentation n'attend aucun arbitrage de scénario ; les 51 questions produit restantes restent ouvertes. Signature finale et compatibilité sur d'autres PC restent à vérifier.

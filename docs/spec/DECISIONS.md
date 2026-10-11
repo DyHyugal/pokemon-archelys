@@ -89,3 +89,12 @@ Choix technique pour cet essai : moteur officiel Godot non modifié et données 
 | D43 | Corriger la persistance de langue signalée ; poursuivre par lots de plusieurs fonctionnalités avec playtests moins fréquents | Demande explicite du propriétaire |
 
 D42 est un constat sur son PC, pas une garantie sur tous les PC. Le moteur non modifié est conservé. Prochain lot solo : préférences persistantes, interactions panneau/caisse, sac de test et journal sauvegardé ; ce contenu technique ne valide aucun scénario ou catalogue final. Les contrôles automatisés restent réalisés à chaque lot, les demandes de retour owner sont regroupées.
+
+## Validation du lot solo et menus demandés
+
+| ID | Décision | Provenance |
+|---|---|---|
+| D44 | Lot lab-e84ee99 validé par le propriétaire : tout OK, sauf absence d'écran Sac pour consulter le jeton | Conversation du 11 octobre 2026 |
+| D45 | Ajouter le menu Sac et garder une option de distance caméra dans Paramètres ; poursuivre le bloc suivant | Demande explicite du propriétaire |
+
+Bloc technique retenu : Pause, Sac, Journal et Paramètres avec accès sauvegarde/chargement. Il présente les systèmes déjà éprouvés ; ni catalogue final, ni scénario, ni rendu artistique approuvés par cette validation.

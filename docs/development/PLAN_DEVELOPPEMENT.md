@@ -49,3 +49,7 @@ Le questionnaire restant contient des choix avant le système concerné ; ses 51
 ## Cadence après D43
 
 Livrer des lots cohérents plutôt qu’une fonctionnalité isolée par ZIP. Les contrôles locaux/CI restent systématiques ; le LIRE-MOI rassemble un parcours owner pour toutes les nouveautés. Premier lot : préférence langue/zoom, interactions, journal, sac et migration. La production des îles et les données Pokémon choisies restent conditionnées aux arbitrages et à la direction artistique.
+
+### Bloc après lab-e84ee99 validé
+
+Assembler les menus solo autour des services existants : Pause, Sac, Journal et Paramètres, sauvegarde/chargement, contrôles modaux et HUD dégagé. Ensuite poursuivre les systèmes solo indépendants du casting ; contenu Pokémon, scénario et production d'îles restent soumis aux choix/validations déjà identifiés. Aucun démarrage des travaux réseau.

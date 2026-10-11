@@ -45,74 +45,61 @@ de signature autorisé. Aucun n'est configuré pour ce projet actuellement.
 Une signature auto-signée ne suffit pas pour être reconnue sur ton PC.
 
 CE QUI CHANGE DANS CE LOT
-Langue des dialogues et distance caméra enregistrées automatiquement.
-Elles restent conservées au chargement et au relancement du jeu.
-Le bouton de langue indique désormais la langue sélectionnée.
-Interactions avec un guide, un panneau et une caisse.
-Sac de test avec un jeton ; la caisse ne le donne qu'une seule fois.
-Journal avec trois objectifs de laboratoire, persistants dans la campagne.
-Lecture des sauvegardes anciennes et copie originale conservée avant conversion.
-Moteur portable identique ; aucun achat de certificat ni changement de Windows.
-Ce sont des systèmes de test : pas le scénario final, pas un catalogue d'objets
-Pokémon terminé, pas encore un moteur de combat 9G.
+Menu Pause avec Sac, Journal, Paramètres, Sauvegarder et Charger.
+Le Sac affiche le jeton reçu, sa quantité et sa description.
+Distance caméra disponible dans Paramètres, conservée automatiquement.
+Langue FR/EN des menus et dialogues ; préférences indépendantes de la campagne.
+Écran de jeu dégagé ; outils du laboratoire masqués, accessibles par F3.
+Le format de sauvegarde reste version 2 ; anciennes sauvegardes lisibles.
+Le jeton et les objectifs sont du contenu technique, pas le catalogue final.
 
-PARCOURS DE TEST DU LOT — UN SEUL RETOUR POUR L'ENSEMBLE
+PARCOURS DU LOT — UN SEUL RETOUR POUR L'ENSEMBLE
 
-PRÉFÉRENCES — passer les dialogues en anglais et ajuster la caméra.
-Charger la partie : les choix actuels doivent rester conservés.
-Fermer complètement le jeu puis le rouvrir : anglais et distance choisie doivent
-revenir automatiquement, avant même de charger une campagne.
-La langue concerne les dialogues et le panneau journal/sac ; toute l'interface
-n'est pas encore traduite. La phrase déjà ouverte garde sa langue jusqu'à la fin.
+MENU — Échap ouvre Pause ; clic sur Menu fonctionne aussi.
+Choisir les pages à la souris ou avec Tab puis Entrée.
+Échap revient à Pause depuis une page ; une seconde pression reprend le jeu.
+I ouvre directement le Sac ; J ouvre le Journal, hors dialogue.
+Déplacement et interactions du monde doivent rester bloqués dans les menus.
+À la fermeture, le déplacement doit reprendre normalement.
 
-EXPLORATION — E ou Entrée près d'un objet ouvre son interaction.
-Guide à droite du départ ; panneau au nord-ouest (-3,-3) ; caisse au sud-est (6,6).
-Les coordonnées servent seulement à repérer les objets dans ce laboratoire.
-À distance, E ne doit rien ouvrir. Le personnage s'arrête pendant les textes.
-Une phrase doit attendre une nouvelle pression ; maintenir la touche ne doit
-pas faire défiler toutes les phrases. Après fermeture, le déplacement reprend.
+SAC — Charger ta sauvegarde via le menu. Si tu avais reçu le jeton,
+ouvrir Sac : « Jeton de test × 1 » et une description indiquant quantité 1.
+Sinon, le sac indique qu'il est vide. Aller à la caisse au sud-est (6,6),
+appuyer E ou Entrée pour l'ouvrir, puis consulter le Sac avec I.
+Rouvrir la caisse : toujours un seul jeton ; aucun bouton Utiliser,
+car cet objet sert seulement au test de récompense et de persistance.
 
-JOURNAL — terminer les trois phrases du guide, puis lire les deux du panneau.
-Leurs objectifs passent de cercle à coche. Ouvrir la caisse complète le troisième.
-Le journal est une mini-boucle technique, sans engagement sur le scénario final.
+JOURNAL — Parler au guide à droite, lire le panneau au nord-ouest (-3,-3),
+ouvrir la caisse. Le Journal affiche les coches correspondantes.
+Chaque phrase attend une nouvelle pression E / Entrée ; une touche maintenue
+ne doit pas tout passer. Échap ne coupe pas une conversation active.
 
-SAC — la caisse ajoute exactement un jeton de test et devient plus sombre.
-L'ouvrir à nouveau affiche qu'elle est vide ; le sac doit rester à un jeton.
-Le jeton n'est pas utilisable : il sert à éprouver récompenses et persistance.
+PARAMÈTRES — Choisir anglais, rapprocher puis éloigner la caméra avec le curseur.
+Les menus et prochains dialogues changent de langue. Fermer le menu pour voir
+la nouvelle distance. Charger la partie : ces préférences restent conservées.
+Fermer complètement le jeu puis le relancer : langue et caméra sont conservées,
+même avant le chargement d'une sauvegarde.
 
-SAUVEGARDE — après les objectifs, cliquer Sauvegarder, puis marcher ailleurs.
-Cliquer Charger : retrouver position, coches du journal et jeton.
-Fermer puis rouvrir le jeu et cliquer Charger : retrouver aussi ces états.
-Rouvrir la caisse après chargement ne doit pas donner un second jeton.
-La campagne ne se charge pas automatiquement au lancement ; les préférences, oui.
+SAUVEGARDE — Sauvegarder dans le menu après avoir reçu le jeton et validé
+les objectifs. Marcher ailleurs puis Charger : position, jeton et coches restaurés.
+Fermer/reprendre le jeu et Charger : vérifier la même chose.
+La campagne n'est pas chargée automatiquement ; les préférences le sont.
 
-ANCIENNE SAVE — si tu avais une sauvegarde du laboratoire précédent, la charger
-sans l'effacer : position et palier restent, journal/sac nouveaux sont vides.
-Le format devient version 2 lors de ta prochaine sauvegarde. Une copie originale
-version 1 est conservée dans laboratory_campaign.json.v1.backup.
-Les anciens builds ne savent pas lire la nouvelle version 2 ; utiliser cette
-copie pour revenir en arrière, en préservant d'abord tes fichiers.
-
-COMBAT ET FLUIDITÉ — vérifier rapidement le duel factice et son reset,
-le déplacement ZQSD/WASD/flèches et les obstacles. Caméra suivie et réglable.
-Le duel reste transitoire ; aucun test de mécaniques Pokémon complètes demandé.
-
-AUCUN TEST MULTIJOUEUR DEMANDÉ. Ne pas passer du temps sur connexion,
-copies de sauvegardes ou trois fenêtres. L'ancien essai, s'il est affiché,
-reste limité à localhost ; connexions entre PC et Internet non validées.
+RÉGRESSION COURTE — Déplacements ZQSD/WASD/flèches et obstacles.
+F3 ou Outils labo affiche les boutons du duel factice et de reset.
+Le combat reste une simulation technique, sans règles Pokémon complètes.
+Aucun test multijoueur demandé ; connexion et sauvegardes multi reportées.
 
 RETOUR FACILE À COPIER
 Version : lab-{short_commit}
-Lancement : OK / bloqué (message exact)
-Caméra : confortable / trop loin / trop près ; valeur préférée si ajustée
-Dialogue : OK / problème (ouverture, attente, touche maintenue, déplacement)
-Langue/zoom après relancement : OK / problème
-Panneau et journal : OK / problème
-Caisse unique et sac : OK / problème
-Sauvegarde position/journal/sac : OK / problème
-Ancienne save : OK / non testée / problème
-Duel factice : OK / problème
-Fluidité et obstacles : OK / problème
+Lancement : OK / bloqué
+Menu, navigation et reprise : OK / problème
+Sac, quantité et description du jeton : OK / problème
+Journal : OK / problème
+Langue et caméra après relancement : OK / problème
+Sauvegarde/chargement depuis le menu : OK / problème
+Dialogue, déplacements et fluidité : OK / problème
+Duel factice/reset : OK / problème
 Autre remarque :
 
 SAUVEGARDES ET LIMITES

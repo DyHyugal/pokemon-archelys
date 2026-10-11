@@ -20,6 +20,10 @@ func run()->void:
 		push_error("Movement input did not reach authoritative simulation");quit(1);return
 	if world.camera.size != 16.0 or world.camera.position.distance_to(world._local_position()+world.CAMERA_OFFSET)>0.01:
 		push_error("Closer camera did not follow the player");quit(1);return
+	world._open_menu("bag")
+	if "vide" not in world.pause_menu.body.get_child(0).text:
+		push_error("Empty bag state not presented");quit(1);return
+	world.pause_menu.close()
 	var distant:=InputEventKey.new();distant.keycode=KEY_E;distant.pressed=true
 	root.push_input(distant,true)
 	if world.dialogue.active:
@@ -32,6 +36,9 @@ func run()->void:
 	interact.pressed=false;root.push_input(interact.duplicate(),true)
 	if not world.dialogue.active or not world.dialogue_panel.visible:
 		push_error("Nearby NPC did not open dialogue from input");quit(1);return
+	world._open_menu()
+	if world.pause_menu.visible:
+		push_error("Menu interrupted active dialogue");quit(1);return
 	var held: InputEventKey=interact.duplicate();held.pressed=true;held.echo=true
 	root.push_input(held,true)
 	if world.dialogue.index!=0:
@@ -81,6 +88,39 @@ func run()->void:
 	world._update_overview()
 	if "test token: 1" not in world.inventory_text.text:
 		push_error("Inventory UI not refreshed");quit(1);return
+	# Exercise the actual menu input and controls, including modal ownership.
+	var menu_key:=InputEventKey.new();menu_key.keycode=KEY_I;menu_key.pressed=true
+	root.push_input(menu_key.duplicate(),true)
+	await process_frame
+	if not world.pause_menu.visible or world.pause_menu.page!="bag" or "Quantity: 1" not in world.pause_menu.item_details.text:
+		push_error("Bag shortcut did not show saved token and details");quit(1);return
+	stopped=session.campaign.players[1].position.duplicate()
+	input.pressed=true;Input.parse_input_event(input.duplicate())
+	for step:int in range(20):await physics_frame
+	input.pressed=false;Input.parse_input_event(input.duplicate())
+	interact.pressed=true;root.push_input(interact.duplicate(),true)
+	if session.campaign.players[1].position!=stopped or world.dialogue.active:
+		push_error("Menu allowed movement or world interaction");quit(1);return
+	world.pause_menu.buttons.settings.pressed.emit()
+	world.pause_menu.zoom.value=13.0
+	world.pause_menu.language.item_selected.emit(0)
+	if world.locale!="fr" or world.camera.size!=13.0 or world.Preferences.read(world.preferences_path).camera_size!=13.0:
+		push_error("Settings controls failed to persist language/camera");quit(1);return
+	world.pause_menu.buttons.journal.pressed.emit()
+	if world.pause_menu.page!="journal" or "✓ Parler au guide" not in world.pause_menu.body.get_child(1).text:
+		push_error("Journal menu did not reflect saved objectives");quit(1);return
+	world.pause_menu.buttons.save.pressed.emit()
+	session.campaign.laboratory=session.campaign.LabProgress.new()
+	world.pause_menu.buttons.load.pressed.emit()
+	if session.campaign.laboratory.tokens!=1 or world.pause_menu.feedback.text!="Chargée":
+		push_error("Menu save/load did not restore inventory");quit(1);return
+	menu_key.keycode=KEY_ESCAPE;root.push_input(menu_key.duplicate(),true)
+	if not world.pause_menu.visible or world.pause_menu.page!="home":
+		push_error("Escape did not return to pause");quit(1);return
+	root.push_input(menu_key.duplicate(),true)
+	if world.pause_menu.visible:
+		push_error("Escape did not resume game");quit(1);return
+	world._set_locale("en");world.camera.size=14.5;world._persist_preferences()
 	var restarted: Node=scene.instantiate()
 	restarted.preferences_path=world.preferences_path
 	root.add_child(restarted)
@@ -88,5 +128,5 @@ func run()->void:
 	if restarted.locale!="en" or restarted.camera.size!=14.5:
 		push_error("New scene did not restore saved language and camera");quit(1);return
 	restarted.queue_free()
-	print("SCENE SMOKE: avatar, input, authoritative movement, closer following camera, NPC/manual dialogue/movement lock, solo battle UI, preference persistence, single crate reward, inventory/journal save/load exercised")
+	print("SCENE SMOKE: avatar, input, authoritative movement, closer following camera, NPC/manual dialogue/movement lock, solo battle UI, preference persistence, single crate reward, inventory/journal save/load, real bag details, pause navigation, modal movement/interaction lock and persistent settings controls exercised")
 	quit(0)

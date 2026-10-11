@@ -33,3 +33,7 @@ Les statuts portent sur les preuves, pas sur l’enthousiasme ou la présence da
 | Caméra rapprochée | MODIFIÉE ET TESTÉE TECHNIQUEMENT | Taille 22→16, suivi joueur et réglage de zoom ; préférence visuelle owner attendue |
 
 Priorité D36 : solo d’abord ; réseau, copies/imports de campagnes et Soul-link coop reportés. Le rendu actuel demeure provisoire.
+
+## Bloc menus solo
+
+Retour propriétaire D44 : lab-e84ee99 validé, excepté l'absence d'un menu Sac. Le nouveau bloc fournit Pause, Sac (jeton/quantité/description ou sac vide), Journal, Paramètres FR/EN et distance caméra persistante, sauvegarde/chargement. Outils laboratoire cachés par défaut. Développement et vérification technique du bloc ; validation Windows et visuelle du nouveau build encore attendue. Pas de contenu ou combat Pokémon final.
