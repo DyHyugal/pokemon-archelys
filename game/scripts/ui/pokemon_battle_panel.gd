@@ -80,6 +80,8 @@ func render() -> void:
 	if battle.has_signal("changed") and battle.available_moves(0).size()==1 and player.moves.size()>1:
 		message.text+=t("\nUne seule attaque disponible : vérifie le verrouillage ou les PP.","\nOnly one move available: check locking or PP.")
 	journal_button()
+	if battle.get("shift_offer") is Dictionary and not battle.shift_offer.is_empty():
+		render_shift();return
 	if battle.get("double_mode")==true:
 		render_double();return
 	if player.hp<=0:
@@ -105,12 +107,13 @@ func render() -> void:
 			back()
 		"team":render_team(false);back()
 		"bag":
+			if not battle.adventure.exploration.bag_healing:detail_label(t("Soins du sac désactivés pour ce combat.","Bag healing disabled for this battle."))
 			for item: String in ["poke-ball","great-ball"]:
 				var id: String=item
 				button("%s × %d" % [name_of(id),battle.adventure.bag.get(id,0)],func():execute({"kind":"ball","item":id}),battle.valid_command({"kind":"ball","item":id}))
 			for item: String in ["potion","antidote","paralyze-heal"]:
 				var id: String=item
-				button("%s × %d" % [name_of(id),battle.adventure.bag.get(id,0)],func():choice_page=id;render(),battle.adventure.bag.get(id,0)>0)
+				button("%s × %d" % [name_of(id),battle.adventure.bag.get(id,0)],func():choice_page=id;render(),battle.adventure.exploration.bag_healing and battle.adventure.bag.get(id,0)>0)
 			back()
 		_:
 			for i: int in range(battle.adventure.team.size()):
@@ -229,3 +232,12 @@ func move_caption(move: Dictionary) -> String:
 	var category: String={"physical":t("Physique","Physical"),"special":t("Spéciale","Special"),"status":t("Statut","Status")}.get(move.get("category","status"),"")
 	var target: String={"single":t("une cible choisie","one selected target"),"self":t("soi-même","self"),"ally":t("allié","ally"),"opponents":t("tous les adversaires","all opponents"),"all-adjacent":t("adversaires ET allié","opponents AND ally")}.get(move.get("target","self" if move.get("self",false) else "single"),"")
 	return t("%s • Puissance %s • Précision %s • Priorité %d • Cible : %s","%s • Power %s • Accuracy %s • Priority %d • Target: %s") % [category,str(int(move.get("power",0))) if move.get("power",0)>0 else "—",str(int(move.get("accuracy",0)))+"%" if move.get("accuracy",0)>0 else "—",move.get("priority",0),target]
+
+func render_shift() -> void:
+	message.text=t("Le dresseur va envoyer %s. Veux-tu changer de Pokémon ?","The trainer is about to send out %s. Would you like to switch Pokémon?") % name_of(battle.shift_offer.species)
+	var stay: Button=button(t("Garder le Pokémon actuel","Keep current Pokémon"),func():if battle.choose_shift():mega_selected=false;choice_page="main";render())
+	stay.name="DeclineShift";stay.grab_focus()
+	for i: int in range(battle.adventure.team.size()):
+		var index: int=i;var mon: Dictionary=battle.adventure.team[i]
+		var control: Button=button(t("Changer : %s Nv.%d • %d/%d PV %s","Switch: %s Lv.%d • %d/%d HP %s") % [name_of(mon.species),mon.level,mon.hp,Mon.stats(mon).hp,Catalog.text("status_names",mon.status,locale)],func():if battle.choose_shift(index):mega_selected=false;choice_page="main";render(),battle.valid_switch(index))
+		control.name="ShiftMember%d" % index

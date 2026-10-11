@@ -54,15 +54,18 @@ function format(mode) {
  Dex.formats.rulesetCache.set(f.id,f);return f;
 }
 class Adapter {
- constructor(){this.b=null;this.cursor=0;this.sources=new Map();this.observed={};this.rewarded=new Set();this.difficulty='normal';}
+ constructor(){this.b=null;this.cursor=0;this.sources=new Map();this.observed={};this.rewarded=new Set();this.difficulty='normal';this.pendingShift=null;this.battleStyle='set';this.trainerBattle=false;this.bagHealing=true;}
  start(req){
   if(this.b)throw Error('Battle already running');
   if(!['singles','doubles'].includes(req.mode))throw Error('Invalid mode');
+  if(!['set','shift'].includes(req.battleStyle??'set')||typeof(req.trainerBattle??false)!=='boolean'||typeof(req.bagHealing??true)!=='boolean')throw Error('Invalid battle settings');
+  this.battleStyle=req.battleStyle??'set';this.trainerBattle=req.trainerBattle??false;this.bagHealing=req.bagHealing??true;
   const teams=[checkedTeam(req.player),checkedTeam(req.enemy)];
   const uids=teams.flat().map(p=>p.uid);if(new Set(uids).size!==uids.length)throw Error('Duplicate identity');
   const count=req.mode==='doubles'?2:1;
   for(const team of teams)if(team.filter(p=>p.hp>0).length<count)throw Error('Not enough healthy Pokémon');
   this.difficulty=req.difficulty||'normal';this.sources=new Map(teams.flat().map(p=>[p.uid,p]));
+  this.cursor=0;this.observed={};this.rewarded=new Set();this.pendingShift=null;
   const order=team=>[...team.filter(p=>p.hp>0),...team.filter(p=>p.hp===0)].map(convert);
   try{this.b=new Battle({format:format(req.mode),strictChoices:true,seed:req.seed,
     p1:{name:'Player',team:order(teams[0])},p2:{name:'Opponent',team:order(teams[1])}});}
@@ -85,11 +88,19 @@ class Adapter {
   for(let i=0;i<8&&!this.b.ended;i++){
    const r=this.b.p2.activeRequest;
    if(!r?.forceSwitch||(!this.b.p1.activeRequest?.wait && this.b.p1.activeRequest))break;
+   const outgoing=this.b.p2.active[0];
+   const own=this.b.p1.active[0];
+   if(this.b.gameType==='singles'&&this.trainerBattle&&this.battleStyle==='shift'&&outgoing?.fainted&&own?.hp&&this.b.p1.pokemon.some(p=>!p.isActive&&!p.fainted&&p.hp>0)){
+    const choice=this.enemyChoice();
+    const position=Number(/^switch (\d+)$/.exec(choice)?.[1])-1;
+    const incoming=this.b.p2.pokemon[position];
+    if(incoming&&!incoming.fainted){this.pendingShift={choice,species:this.sources.get(Number(incoming.name)).species};break;}
+   }
    this.b.choose('p2',this.enemyChoice());
   }
  }
  act(req){
-  if(!this.b||this.b.ended)throw Error('No active battle');
+  if(!this.b||this.b.ended||this.pendingShift)throw Error('No action available');
   if(typeof req.choice!=='string'||req.choice.length>256)throw Error('Invalid choice');
   // Decide before accepting player choices; the pure policy never receives them.
   const enemy=this.enemyChoice();
@@ -100,10 +111,28 @@ class Adapter {
   }
   this.b.commitChoices();this.autoplaySwitches();return this.state();
  }
+ shift(req){
+  if(!this.b||this.b.ended||!this.pendingShift)throw Error('No shift opportunity');
+  if(!bounded(req.uid,0,1000000))throw Error('Invalid shift identity');
+  const target=this.b.p1.pokemon.find(p=>Number(p.name)===req.uid);
+  if(req.uid&&(!target||target.isActive||target.fainted||!target.hp))throw Error('Invalid shift target');
+  const enemy=this.pendingShift.choice;
+  // Ask the upstream simulator for simultaneous replacement choices. It resolves
+  // switching, volatile clearing, hazards and entry abilities; no free turn is run.
+  if(req.uid){
+   this.b.p1.active[0].switchFlag=true;
+   this.b.makeRequest('switch');
+   this.b.p1.choose(`switch ${target.position+1}`);
+   if(!this.b.p1.isChoiceDone())throw Error('Incomplete shift choice');
+   this.b.p2.choose(enemy);this.b.commitChoices();
+  }else{this.b.choose('p2',enemy);}
+  this.pendingShift=null;this.autoplaySwitches();return this.state();
+ }
  external(req){
-  if(!this.b||this.b.ended||this.b.gameType!=='singles'||this.b.p1.activeRequest?.forceSwitch)throw Error('External action unavailable');
+  if(!this.b||this.b.ended||this.pendingShift||this.b.gameType!=='singles'||this.b.p1.activeRequest?.forceSwitch)throw Error('External action unavailable');
   const target=this.b.p1.pokemon.find(p=>Number(p.name)===req.uid);
   if(req.item){
+   if(!this.bagHealing)throw Error('Bag healing disabled');
    if(!target||target.fainted)throw Error('Invalid item target');
    if(req.item==='potion'&&target.hp<target.maxhp){target.heal(20);this.b.add('-heal',target,target.getHealth,'[from] item: Potion');}
    else if(req.item==='antidote'&&['psn','tox'].includes(target.status))target.cureStatus();
@@ -137,11 +166,11 @@ class Adapter {
    pp:(p.transformed?p.baseMoveSlots:p.moveSlots).map(m=>({id:m.id,pp:m.pp})),
    stages:{...p.boosts},ability:p.ability}));
   const request=b.p1.activeRequest?JSON.parse(JSON.stringify(b.p1.activeRequest)):{};
-  return {protocol:VERSION,turn:Math.max(0,b.turn-1),request,player:party(b.p1),enemy:party(b.p2),
+  return {protocol:VERSION,turn:Math.max(0,b.turn-1+(this.pendingShift?1:0)),request,player:party(b.p1),enemy:party(b.p2),
    playerActive:b.p1.active.map(p=>p?Number(p.name):0),enemyActive:b.p2.active.map(p=>p?Number(p.name):0),
    weather:weatherIds[b.field.weather]||'',weatherTurns:b.field.weatherState.duration||0,
    terrain:terrainIds[b.field.terrain]||'',terrainTurns:b.field.terrainState.duration||0,
-   logs,defeated,ended:b.ended,winner:b.winner||'',megaUsed:b.sides.map(s=>s.pokemon.some(p=>p.species.isMega))};
+   shift:this.pendingShift?{species:this.pendingShift.species}:null,logs,defeated,ended:b.ended,winner:b.winner||'',megaUsed:b.sides.map(s=>s.pokemon.some(p=>p.species.isMega))};
  }
  close(){this.b?.destroy();this.b=null;return {closed:true};}
 }
@@ -152,7 +181,7 @@ if(require.main===module){
   try{
    if(Buffer.byteLength(line)>65536)throw Error('Message too large');req=JSON.parse(line);
    if(!bounded(req.id,1,1000000)||req.protocol!==VERSION)throw Error('Protocol mismatch');
-   const ops={start:'start',act:'act',external:'external',close:'close'};
+   const ops={start:'start',act:'act',external:'external',shift:'shift',close:'close'};
    if(!ops[req.op])throw Error('Unknown operation');
    const state=adapter[ops[req.op]](req);
    process.stdout.write(JSON.stringify({id:req.id,ok:true,...state})+'\n');

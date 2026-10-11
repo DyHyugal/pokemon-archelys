@@ -115,4 +115,64 @@ function start(player,enemy,mode='singles',extra={}){const a=new Adapter();const
  const s=a.act({choice:'move 1'});
  check(s.logs.some(l=>l.includes('Rollout')),'Imported fossil Rollout resolves in real simulator');a.close();
 }
+{
+ const player=[mon('blastoise',1,['surf']),mon('vulpix',2,['protect'],{ability:'drought'})];
+ const enemy=[mon('rattata',9,['tail-whip'],{hp:1}),mon('magikarp',10,['splash'])];
+ const {a}=start(player,enemy,'singles',{battleStyle:'shift',trainerBattle:true});
+ let s=a.act({choice:'move 1'});
+ check(s.shift?.species==='magikarp'&&s.enemyActive[0]===9,'Shift stops before announced enemy enters');
+ check(!s.logs.some(l=>l.startsWith('|switch|p2a: 10')),'Upcoming switch remains pending');
+ const before=JSON.stringify(s.player);const turn=s.turn;
+ assert.throws(()=>a.act({choice:'move 1'}));checks++;
+ assert.throws(()=>a.shift({uid:1}));checks++;
+ assert.throws(()=>a.shift({uid:999}));checks++;
+ check(JSON.stringify(a.state().player)===before,'Invalid shift targets are atomic');
+ s=a.shift({uid:2});
+ check(!s.shift&&s.playerActive[0]===2&&s.enemyActive[0]===10&&s.turn===turn,'Free switch and announced enemy enter without advancing a turn');
+ check(s.weather==='sun'&&s.logs.some(l=>l.includes('Drought')),'Upstream entry ability resolves on free switch');
+ check(s.player.find(p=>p.uid===1).pp[0].pp===14&&s.player.find(p=>p.uid===2).pp[0].pp===10,'Free switch spends no additional PP');
+ assert.throws(()=>a.shift({uid:0}));checks++;a.close();
+ const decline=start(player,enemy,'singles',{battleStyle:'shift',trainerBattle:true}).a;
+ s=decline.act({choice:'move 1'});s=decline.shift({uid:0});
+ check(!s.shift&&s.playerActive[0]===1&&s.enemyActive[0]===10&&s.turn===1,'Declining sends fixed announced enemy without action cost');decline.close();
+ for(const options of [{battleStyle:'set',trainerBattle:true},{battleStyle:'shift',trainerBattle:false}]){
+  const adapter=start(player,enemy,'singles',options).a;s=adapter.act({choice:'move 1'});
+  check(!s.shift&&s.enemyActive[0]===10,'Set style and wild battles do not offer free shifts');adapter.close();
+ }
+ const healer=start([mon('blastoise',1,['protect'],{hp:50})],[mon('magikarp',9,['splash'])],'singles',{bagHealing:false}).a;
+ const hp=healer.b.p1.active[0].hp;const round=healer.b.turn;
+ assert.throws(()=>healer.external({item:'potion',uid:1}));checks++;
+ check(healer.b.p1.active[0].hp===hp&&healer.b.turn===round,'Disabled healing has no effect or turn cost');
+ check(healer.external({}).turn===1,'Capture failure remains a permitted external action');healer.close();
+ const hazards=start(player,enemy,'singles',{battleStyle:'shift',trainerBattle:true}).a;
+ hazards.b.p1.addSideCondition('stealthrock',hazards.b.p2.active[0],Dex.moves.get('stealthrock'));hazards.b.p1.active[0].boosts.spa=2;
+ s=hazards.act({choice:'move 1'});s=hazards.shift({uid:2});
+ check(s.player.find(p=>p.uid===2).hp<player[1].hp,'Free switch takes upstream entry hazard damage');
+ check(s.player.find(p=>p.uid===1).stages.spa===0,'Free switch clears outgoing volatile stat stages natively');hazards.close();
+ const entryKO=start([player[0],{...player[1],hp:1}],enemy,'singles',{battleStyle:'shift',trainerBattle:true}).a;
+ entryKO.b.p1.addSideCondition('stealthrock',entryKO.b.p2.active[0],Dex.moves.get('stealthrock'));entryKO.act({choice:'move 1'});s=entryKO.shift({uid:2});
+ check(s.request.forceSwitch?.[0]&&s.player.find(p=>p.uid===2).hp===0&&!s.shift,'Entry hazard KO yields native replacement rather than another free shift');entryKO.close();
+ for(const [p,e,mode] of [[[player[0]],enemy,'singles'],[player,[enemy[0]],'singles'],[player,enemy,'doubles']]){
+  const adapter=start(p,e,mode,{battleStyle:'shift',trainerBattle:true}).a;
+  s=adapter.act({choice:mode==='doubles'?'move 1, move 1':'move 1'});
+  check(!s.shift,'No free shift without reserves, after last foe or in doubles');adapter.close();
+ }
+ const doubleKO=start([{...player[0],hp:1,status:'poison'},player[1]],enemy,'singles',{battleStyle:'shift',trainerBattle:true}).a;
+ s=doubleKO.act({choice:'move 1'});
+ check(s.request.forceSwitch?.[0]&&!s.shift,'Simultaneous residual KO forces replacement without bonus offer');doubleKO.close();
+ const weather=start(player,enemy,'singles',{battleStyle:'shift',trainerBattle:true}).a;
+ weather.b.field.setWeather('raindance',weather.b.p1.active[0]);s=weather.act({choice:'move 1'});
+ const duration=s.weatherTurns;s=weather.shift({uid:0});
+ check(s.weatherTurns===duration,'Declining a shift does not consume an additional weather duration tick');weather.close();
+ weather.start({player,enemy,mode:'singles',seed:[1,2,3,4],battleStyle:'shift',trainerBattle:true});
+ weather.act({choice:'move 1'});check(!!weather.pendingShift,'Restart fixture actually pauses at a free shift');weather.close();
+ weather.start({player,enemy,mode:'singles',seed:[1,2,3,4]});
+ check(!weather.pendingShift&&weather.state().request.active?.length===1,'Same adapter can restart without stale pending choices');weather.close();
+ const forms=start(player,[enemy[0],mon('charizard',10,['flamethrower'],{item:'charizardite-x'})],'singles',{battleStyle:'shift',trainerBattle:true}).a;
+ forms.b.p2.pokemon[1].formeChange('Charizard-Mega-X',Dex.items.get('charizarditex'),true);
+ s=forms.act({choice:'move 1'});check(s.shift?.species==='charizard','Previously Mega-evolved reserve announced with readable base catalogue identity');forms.close();
+ const held=start([mon('blastoise',1,['protect'],{hp:50,item:'leftovers'})],[mon('magikarp',9,['splash'])],'singles',{bagHealing:false}).a;
+ s=held.act({choice:'move 1'});check(s.player[0].hp>50,'Disabling bag healing does not disable held item recovery');held.close();
+ assert.throws(()=>start(player,enemy,'singles',{battleStyle:'wrong'}));checks++;
+}
 console.log(`SHOWDOWN ADAPTER: ${checks} checks, 0 failures`);

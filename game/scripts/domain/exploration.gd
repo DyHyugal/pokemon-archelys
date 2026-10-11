@@ -7,6 +7,8 @@ var location: String="village"
 var visited: Array=["village"]
 var cleared: Dictionary={}
 var difficulty: String="normal"
+var battle_style: String="set"
+var bag_healing: bool=true
 var cap_enabled: bool=true
 var nuzlocke: String="off" # off -> on -> retired; never re-enabled
 var claims: Dictionary={}
@@ -14,9 +16,10 @@ var dead: Array=[]
 var shiny_odds: int=4096
 var exp_multiplier: int=1
 func snapshot() -> Dictionary:
-	return {"location":location,"visited":visited.duplicate(),"cleared":cleared.duplicate(),"difficulty":difficulty,"cap_enabled":cap_enabled,"nuzlocke":nuzlocke,"claims":claims.duplicate(true),"dead":dead.duplicate(),"exp_multiplier":exp_multiplier,"shiny_odds":shiny_odds}
+	return {"location":location,"visited":visited.duplicate(),"cleared":cleared.duplicate(),"difficulty":difficulty,"battle_style":battle_style,"bag_healing":bag_healing,"cap_enabled":cap_enabled,"nuzlocke":nuzlocke,"claims":claims.duplicate(true),"dead":dead.duplicate(),"exp_multiplier":exp_multiplier,"shiny_odds":shiny_odds}
 static func validate(data: Variant) -> bool:
 	if not data is Dictionary or not Mon.integer(data.get("shiny_odds"),1,4096):return false
+	if data.get("battle_style","set") not in ["set","shift"] or not data.get("bag_healing",true) is bool:return false
 	if data.get("location") not in LOCATIONS or not data.get("visited") is Array or data.location not in data.visited or data.visited.size()>LOCATIONS.size():return false
 	var seen: Array=[]
 	for id: Variant in data.visited:
@@ -36,6 +39,7 @@ static func validate(data: Variant) -> bool:
 func restore(data: Dictionary) -> bool:
 	if not validate(data):return false
 	location=data.location;visited=data.visited.duplicate();cleared=data.cleared.duplicate();difficulty=data.difficulty;cap_enabled=data.cap_enabled;nuzlocke=data.nuzlocke;claims=data.claims.duplicate(true);dead=[];exp_multiplier=int(data.exp_multiplier);shiny_odds=int(data.shiny_odds)
+	battle_style=data.get("battle_style","set");bag_healing=data.get("bag_healing",true)
 	for uid: Variant in data.dead:dead.append(int(uid))
 	for claim: Dictionary in claims.values():claim.uid=int(claim.uid)
 	return true

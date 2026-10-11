@@ -54,6 +54,7 @@ func valid_command(command: Dictionary) -> bool:
 		"switch":return valid_switch(command.get("index"))
 		"ball":return trainer.is_empty() and (current(1).get("shiny",false) or adventure.exploration.may_capture(encounter_zone,int(current(1).uid)) or (not adventure.exploration.claims.has(encounter_zone) and family_duplicate(current(1).species))) and command.get("item") in ["poke-ball","great-ball"] and int(adventure.bag.get(command.item,0))>0 and adventure.team.size()+adventure.boxes.size()<246
 		"item":
+			if not adventure.exploration.bag_healing:return false
 			if command.get("item") not in ["potion","antidote","paralyze-heal"] or not Mon.integer(command.get("index"),0,adventure.team.size()-1):return false
 			var copy: Dictionary=adventure.snapshot();var probe=adventure.get_script().new();probe.restore(copy)
 			return probe.use(command.item,int(probe.team[int(command.index)].uid))

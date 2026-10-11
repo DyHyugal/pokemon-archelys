@@ -50,6 +50,13 @@ func render(page: String) -> void:
 	elif page=="rules":
 		menu.label(t("Réglages de campagne — modifiables hors combat","Campaign settings — change outside battle"))
 		choice(t("Difficulté de l'IA","AI difficulty"),["chill","normal","hard"],state.difficulty,func(value: String):state.difficulty=value)
+		menu.label(t("Style de combat","Battle style"))
+		var styles:=OptionButton.new();styles.name="BattleStyle";styles.add_item(t("Défini — aucun changement gratuit","Set — no free switch"));styles.add_item(t("Choix — proposition après un K.O. adverse","Shift — offer after opponent faints"));styles.select(0 if state.battle_style=="set" else 1);menu.body.add_child(styles)
+		styles.item_selected.connect(func(index: int):owner.set_battle_options("set" if index==0 else "shift",state.bag_healing))
+		menu.label(t("Choix s'applique aux dresseurs en simple : tu peux refuser ou changer avant le prochain adversaire. Pas de proposition en sauvage, double ou après un double K.O.","Shift applies to single trainer battles: decline or switch before the next opponent. No offer in wild/double battles or after both active Pokémon faint."))
+		var healing:=CheckButton.new();healing.name="BattleHealing";healing.text=t("Autoriser les soins du sac en combat","Allow bag healing in battle");healing.set_pressed_no_signal(state.bag_healing);menu.body.add_child(healing)
+		healing.toggled.connect(func(value: bool):owner.set_battle_options(state.battle_style,value))
+		menu.label(t("Désactiver bloque Potions et remèdes pendant les combats. Centres, objets tenus, captures et soins hors combat restent disponibles.","Disabling blocks Potions and remedies during battles. Centers, held items, captures and out-of-battle healing remain available."))
 		var cap_toggle:=CheckButton.new();cap_toggle.text=t("Plafond de niveau actif","Level ceiling enabled");cap_toggle.button_pressed=state.cap_enabled;menu.body.add_child(cap_toggle)
 		cap_toggle.toggled.connect(func(value: bool):state.cap_enabled=value)
 		menu.label(t("Désactiver permet de dépasser le cap. Le réactiver conserve les niveaux, mais bloque l'EXP des membres déjà au-dessus.","Disabling allows levels above the cap. Re-enabling preserves levels but blocks XP for members already above it."))

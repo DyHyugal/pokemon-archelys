@@ -68,6 +68,7 @@ func equip(uid: int, item: String) -> bool:
 	if mon.item!="":bag[mon.item]=int(bag.get(mon.item,0))+1
 	mon.item=item;return true
 func use(item: String, uid: int) -> bool:
+	if in_battle and not exploration.bag_healing:return false
 	if in_battle and item in ["thunder-stone","fire-stone"]:return false
 	var mon:=find(uid)
 	if mon.is_empty() or not exploration.can_heal(mon) or int(bag.get(item,0))<=0 or mon.hp<=0:return false
@@ -324,3 +325,7 @@ func reorder_moves(uid: int,from: int,to: int) -> bool:
 	var mon:=find(uid)
 	if mon.is_empty() or from<0 or to<0 or from>=mon.moves.size() or to>=mon.moves.size():return false
 	var first: Dictionary=mon.moves[from];mon.moves[from]=mon.moves[to];mon.moves[to]=first;return true
+
+func set_battle_options(style: String,healing: bool) -> bool:
+	if in_battle or style not in ["set","shift"]:return false
+	exploration.battle_style=style;exploration.bag_healing=healing;return true

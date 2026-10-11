@@ -1,4 +1,4 @@
-ARCHÉLYS — LISIBILITÉ COMBATS + ÉQUIPES / PERSONNAGE / AVENTURE
+ARCHÉLYS — OPTIONS COMBAT / DÉFAITE + LOTS SOLO PRÉCÉDENTS
 Version : lab-{short_commit}
 Commit : {commit}
 
@@ -9,6 +9,18 @@ nécessaire. Nom EXE fixe, binaire officiel Godot inchangé ; non signé par nou
 En cas de blocage, noter le message et la protection sans les désactiver.
 
 CE QUI CHANGE
+Règles : styles Défini / Choix, soins du sac en combat ON/OFF.
+Choix propose un changement gratuit après le KO adverse en dresseur SIMPLE,
+avec une réserve apte et ton actif vivant. Pas en sauvage/double/dernier ennemi.
+Ennemi annoncé choisi avant ta réponse ; accepter/refuser ne donne pas de tour
+supplémentaire. Showdown résout talents, pièges et éventuels KO à l'entrée.
+Désactiver les soins bloque les Potions/remèdes en combat, pas les captures,
+Centres, soins hors combat ou objets tenus. Réglages conservés dans la campagne.
+Anciennes parties : Défini et soins autorisés, comportement antérieur conservé.
+Défaite : perte de100₽ maximum (essai), soins puis retour au vrai Centre après
+les textes. Aucun prélèvement répété. L'essai tactique garde son isolation.
+Animations graphiques finales/configurables toujours à développer.
+
 Messages de combat FR/EN lisibles : statuts, variations de statistiques/crans,
 efficacité/critique, talents/objets révélés, climat/terrain. Les effets inconnus
 hors catalogue peuvent conserver leur nom anglais. Textes toujours manuels,
@@ -48,6 +60,25 @@ Catalogue22 espèces/43 attaques inchangé. Œufs cadeaux/fossiles conservés.
 Reproduction retirée ; multi/raids/Nuzlocke/Soul-link non prioritaires.
 
 PARCOURS DE TEST GROUPÉ
+
+NOUVEAU PARCOURS OPTIONS / DÉFAITE
+Dans Règles, choisir Choix et désactiver les soins du sac. Sauvegarder/recharger :
+les deux options doivent rester. Affronter un dresseur simple à plusieurs membres
+(labo Dresseur1 ou2). Après un KO adverse, lire les textes puis vérifier la
+proposition : garder ou changer vers une réserve apte. Aucun PP supplémentaire
+ne doit être perdu par le changement ; un talent d'entrée doit fonctionner.
+Refaire en Défini : le prochain adversaire arrive sans proposition. Pas de bonus
+en sauvage/double ni si tu n'as aucune réserve apte ou si ton actif est aussi KO.
+Consulter l'historique pendant une proposition puis Échap : décision inchangée.
+Avec soins désactivés, ouvrir Sac : Potions/remèdes grisés, aucune consommation.
+Après la sortie, les soins hors combat et ceux du Centre doivent fonctionner.
+Réactiver et refaire un combat : vérifier une Potion sur un membre blessé.
+Tester aussi les options/propositions en anglais via Paramètres hors combat.
+Enfin, perdre un vrai combat de campagne (pas l'essai tactique) : après les textes,
+retour au Centre, équipe soignée, argent diminué une seule fois de100 maximum.
+Sauvegarder/recharger au Centre : lieu/argent/options conservés. Perdre un essai
+tactique doit conserver la campagne réelle. Aucun test de défi/multi demandé.
+
 
 NOUVEAU PARCOURS LISIBILITÉ DES COMBATS
 Lancer un combat sauvage ou un essai tactique. Laisser un message affiché sans

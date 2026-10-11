@@ -586,8 +586,8 @@ func _battle_finished(outcome: String) -> void:
 	Session.submit_axis(Vector2.ZERO)
 	if outcome=="won" and pokemon_battle.trainer=="slice-boss":message.text="Épreuve gagnée — conclusion dans le menu Aventure / Trial won — ending in Adventure menu"
 	if outcome=="lost":
-		Session.campaign.adventure.exploration.enter("village")
-		Session.campaign.players[1].position=[0.0,0.0,2.0];Session.latest=Session.campaign.snapshot()
+		Session.campaign.adventure.exploration.enter("center")
+		Session.campaign.players[1].position=[0.0,0.0,5.0];Session.latest=Session.campaign.snapshot();_rebuild_location()
 	last_walk_position=_local_position()
 	Session.campaign.adventure.encounter_steps=0
 	if not Session.campaign.adventure.pending.is_empty():_open_menu("choices")

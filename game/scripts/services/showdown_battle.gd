@@ -17,6 +17,7 @@ var saved_campaign: Dictionary={}
 var defeated: Array=[]
 var imported: Dictionary={}
 var last_error: String=""
+var shift_offer: Dictionary={}
 var pending_item: String=""
 var history: Array=[]
 func say(fr: String,en: String) -> void:
@@ -40,10 +41,10 @@ func begin(owner: RefCounted,opponents: Array,trainer_id: String="") -> bool:
  saved_campaign=owner.snapshot();adventure=owner;enemies=opponents.duplicate(true);trainer=trainer_id
  player_index=int(ready[0]);enemy_index=0;player_slots=ready.slice(0,2);enemy_slots=[0,1]
  active=true;owner.in_battle=true;result="";turn=0;events=[];history=[];participants={current(0).uid:true};defeated=[]
- encounter_zone=owner.exploration.location;field=Field.new();request={};queued={};imported={}
+ encounter_zone=owner.exploration.location;field=Field.new();request={};queued={};imported={};shift_offer={}
  transport.reply.connect(_received);transport.failed.connect(_failure)
  if trainer.is_empty() and not enemies[0].get("shiny",false) and not family_duplicate(enemies[0].species):owner.exploration.reserve_encounter(encounter_zone,int(enemies[0].uid))
- return _send({"op":"start","mode":"doubles" if double_mode else "singles","player":owner.team,"enemy":enemies,"difficulty":owner.exploration.difficulty})
+ return _send({"op":"start","mode":"doubles" if double_mode else "singles","player":owner.team,"enemy":enemies,"difficulty":owner.exploration.difficulty,"battleStyle":owner.exploration.battle_style,"trainerBattle":not trainer.is_empty(),"bagHealing":owner.exploration.bag_healing})
 func _send(payload: Dictionary) -> bool:
  busy=true
  if not transport.send(payload):_failure("Could not send simulator request");return false
@@ -86,7 +87,7 @@ func valid_switch(index: Variant) -> bool:
   if command.kind=="switch" and int(command.index)==int(index):return false
  return adventure.exploration.can_heal(adventure.team[int(index)])
 func valid_command(command: Dictionary) -> bool:
- if busy or not active or replacement_needed():return false
+ if busy or not active or replacement_needed() or not shift_offer.is_empty():return false
  if command.get("kind")=="move":
   if command.get("mega",false) and not can_mega(0):return false
   if not Mon.integer(command.get("slot"),-1,3):return false
@@ -190,6 +191,7 @@ func _received(payload: Dictionary) -> void:
   say("Action refusée : "+last_error,"Action rejected: "+last_error);changed.emit();return
  if not pending_item.is_empty():adventure.bag[pending_item]-=1;pending_item=""
  last_error="";events=[];imported=payload;request=payload.request;turn=int(payload.turn)
+ shift_offer=payload.shift.duplicate(true) if payload.get("shift") is Dictionary else {}
  _sync(adventure.team,payload.player);_sync(enemies,payload.enemy)
  player_slots=[];enemy_slots=[]
  for uid: Variant in payload.playerActive:player_slots.append(_position(adventure.team,int(uid)))
@@ -207,7 +209,7 @@ func _received(payload: Dictionary) -> void:
  adventure.exploration.record_deaths(adventure.team)
  if payload.ended:
   if payload.winner=="Player":finish("won")
-  elif payload.winner=="Opponent":finish("lost");adventure.money=maxi(0,adventure.money-100);adventure.heal_team();say("Défaite : retour au point de soins.","Defeat: return to healing point.")
+  elif payload.winner=="Opponent":finish("lost")
   else:finish("draw")
  changed.emit()
 func _event(line: String) -> void:
@@ -225,6 +227,9 @@ func finish(outcome: String) -> void:
  if outcome=="won":adventure.journey.won(adventure,trainer)
  if outcome=="won":say("Victoire ! Cap actuel : %d." % adventure.cap,"Victory! Current level cap: %d." % adventure.cap)
  super.finish(outcome)
+ if outcome=="lost":
+  adventure.money=maxi(0,adventure.money-100);adventure.heal_team();say("Défaite : retour au Centre Pokémon.","Defeat: return to the Pokémon Center.")
+ shift_offer={}
  busy=false;queued.clear()
  if transport!=null:transport.stop();transport.queue_free();transport=null
  changed.emit()
@@ -235,3 +240,8 @@ func _failure(reason: String) -> void:
  say("Combat annulé, partie restaurée : "+reason,"Battle cancelled, campaign restored: "+reason)
  if transport!=null:transport.stop();transport.queue_free();transport=null
  changed.emit()
+
+func choose_shift(index: int=-1) -> bool:
+ if busy or not active or shift_offer.is_empty() or (index!=-1 and not valid_switch(index)):return false
+ events=[]
+ return _send({"op":"shift","uid":0 if index==-1 else int(adventure.team[index].uid)})

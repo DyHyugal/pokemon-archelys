@@ -30,3 +30,5 @@ D62 : sélections techniques de peau/vêtements/coiffure/visage sur mannequin, t
 D63 : rangement stable240 places, résumé PC et préparation CT/rappel testables. Cela ne choisit aucun Pokédex/asset/économie finale, ni une extension des modes reportés. Retour groupé des nouveaux lots toujours attendu ; les choix déjà répondus ne sont pas rouverts.
 
 D64 : les messages et fiches de combat sont améliorés dans le laboratoire ; le journal est temporaire et sans révélation des messages futurs. Aucun nouveau choix produit requis pour ces contrôles de présentation. Les paramètres de styles/animations et le contenu artistique restent distincts ; pas de validation Windows implicite des lots précédents.
+
+D65 : styles classiques Défini/Choix et soins du sac ON/OFF testables dans le solo ; aucune limite chiffrée supplémentaire décidée. Pénalité100₽ reste celle du laboratoire, pas un choix d'économie finale. Animations de combat configurables et présentation finale restent à développer. Nouveaux lots Windows à tester ; aucune validation owner implicite.

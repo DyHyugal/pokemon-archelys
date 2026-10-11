@@ -142,3 +142,7 @@ D61 conservé dans cette version et toujours à valider Windows. D52 reste le de
 ## D64 — lisibilité des combats solo
 
 Messages publics FR/EN, historique paginé sans messages futurs, fiches d'attaques simples/doubles et statut des remplaçants : développés et testés localement :52 contrôles spécifiques,53 sous rendu GL avec export PNG, suite complète réussie. Lecture sans action ni consommation de PP ; choix doubles conservés. Historique temporaire, pas de modification du schéma5 ni de replay sauvegardé. Styles/animations configurables restent à développer ; aucune conformité exhaustive à toutes les traductions Showdown revendiquée. [Portée](development/LOT_LISIBILITE_COMBATS.md). Retour Windows groupé attendu, dernière validation D52.
+
+## D65 — styles, soins et retour au Centre
+
+Lot solo : Défini/Choix, remplacement gratuit orchestré par Showdown, soins du sac ON/OFF et défaite au Centre avec pénalité unique. Champs optionnels campagne5, anciennes sauvegardes compatibles ; aucun nouveau quota de soins ni règle de raid. Développé et testé :29 nouveaux contrôles bridge,44 contrôles domaine/menus/disque,45 sous rendu GL avec PNG ; suite complète réussie. Windows à tester. [Portée et limites](development/LOT_OPTIONS_COMBAT_DEFAITE.md). Animations configurables restent à développer, D52 dernière validation propriétaire.
