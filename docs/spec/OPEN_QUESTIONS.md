@@ -27,3 +27,7 @@ Lancement, déplacement, fluidité, sauvegarde et combat factice du premier labo
 Inventaire assets et licences ; bases/moteur ; export Windows et performances (réseau et invitations reportés) ; sauvegardes atomiques et rollback ciblé ; échanges sans duplication ; Soul-link concurrent ; catalogue des attaques ; sécurité des informations PvP ; wiki bilingue et spoilers. Détails dans TECHNICAL_VALIDATION.md.
 
 Plongée/île sous-marine : étude de coût, décision d’ajout après proposition, qualité inchangée. Aucun délai de production ni disponibilité de modèles ne sont supposés.
+
+## Livraison Windows
+
+Signature demandée : certificat de signature de code/service de signature autorisé non disponible. Conserver un build clairement non signé et les instructions de diagnostic dans le LIRE-MOI ; ne pas créer un certificat auto-signé présenté comme une solution de confiance. Cela bloque la signature demandée, pas la préparation du ZIP et des tests.

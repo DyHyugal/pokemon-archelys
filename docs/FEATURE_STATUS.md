@@ -24,6 +24,8 @@ Les statuts portent sur les preuves, pas sur l’enthousiasme ou la présence da
 | Scénario complet et casting | PROPOSÉS | Documents V0.1, approbation owner attendue |
 | Règles Soul-link | PROPOSÉES | Mode facultatif ; détails à valider |
 | Dialogues PNJ | SOCLE SOLO TESTÉ | PNJ de laboratoire, proximité, avance manuelle, blocage du déplacement, données FR/EN ; pas de scénario final |
+| Signature Windows | DEMANDÉE — NON DISPONIBLE | Aucun certificat/service de signature ; build non signé, avertissement Windows signalé par owner |
+| LIRE-MOI par build | PRÉPARÉ | Version/commit/hash injectés, tests owner précis et diagnostic de blocage Windows ; nom EXE fixe |
 | Caméra rapprochée | MODIFIÉE ET TESTÉE TECHNIQUEMENT | Taille 22→16, suivi joueur et réglage de zoom ; préférence visuelle owner attendue |
 
 Priorité D36 : solo d’abord ; réseau, copies/imports de campagnes et Soul-link coop reportés. Le rendu actuel demeure provisoire.

@@ -27,3 +27,9 @@ Export : `godot --headless --path game --export-release Windows "$PWD/builds/Arc
 ## Ce que le test owner doit vérifier
 
 Retour acquis sur le premier build : lancement, déplacement, fluidité, sauvegarde et combat factice OK. Pour la suite : vérifier le confort de la caméra rapprochée et du curseur de distance ; aller près du guide (à droite du départ), appuyer sur E ou Entrée, vérifier que le mouvement s’arrête et que chaque phrase attend une nouvelle pression. FR/EN choisit la langue du prochain dialogue. Le combat affiché est désormais un duel solo. Le rendu final et une première île ne sont pas à valider à partir de ce graybox.
+
+## Tests inclus dans le ZIP et nom fixe
+
+Chaque ZIP contient désormais un LIRE-MOI avec version, commit, empreinte de l’exécutable, changements, tests à effectuer et modèle de retour. Sa source est [LIRE_MOI_WINDOWS.txt](LIRE_MOI_WINDOWS.txt) ; le packaging injecte les informations du build. Son changement déclenche la CI et une nouvelle release. Le nom `Archelys-Laboratoire.exe` reste identique, seul le tag de release change.
+
+L’exécutable est toujours non signé : aucun certificat/service de signature de code n’est disponible. Le LIRE-MOI distingue SmartScreen, qui peut proposer « Informations complémentaires → Exécuter quand même », des protections qui ne proposent pas cette option. Aucune désactivation globale de la sécurité n’est demandée.

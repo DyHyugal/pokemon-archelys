@@ -1,0 +1,98 @@
+ARCHÉLYS — LABORATOIRE TECHNIQUE WINDOWS
+
+VERSION DE CE BUILD
+Version : lab-{short_commit}
+Commit source : {commit}
+Moteur : Godot 4.6.3
+Exécutable : Archelys-Laboratoire.exe — nom fixe pour toutes les versions.
+Signature éditeur : absente. L'empreinte SHA256 ci-dessous contrôle l'intégrité,
+mais ne constitue pas une signature numérique reconnue par Windows.
+SHA256 de l'exécutable : {exe_sha256}
+
+INSTALLATION ET BLOCAGE WINDOWS
+Décompresser entièrement le ZIP dans un dossier, puis ouvrir
+Archelys-Laboratoire.exe. Aucune installation de Godot n'est nécessaire.
+Il s'agit d'un prototype Windows 64 bits, pas d'une ROM.
+
+Si l'écran indique « Windows a protégé votre ordinateur » et propose
+« Informations complémentaires », cliquer dessus puis « Exécuter quand même »
+si tu choisis d'exécuter ce build téléchargé depuis la release du dépôt.
+Une autre possibilité, quand Windows la propose : clic droit sur le fichier,
+Propriétés, cocher « Débloquer », puis Appliquer. Cela ne signe pas le programme.
+
+Ces options ne sont pas disponibles dans tous les cas. Smart App Control,
+une politique d'entreprise ou une détection antivirus sont des situations
+différentes : ne pas désactiver globalement la protection. Dans ce cas, noter
+le texte exact de l'écran et le nom de la protection pour diagnostiquer le blocage.
+
+Une signature reconnue exige un certificat de signature de code ou un service
+de signature autorisé. Aucun n'est configuré pour ce projet actuellement.
+Une signature auto-signée ne suffit pas pour être reconnue sur ton PC.
+
+CE QUI CHANGE PAR RAPPORT AU PREMIER LABORATOIRE
+Caméra rapprochée (taille 16 au lieu de 22) avec suivi du personnage et curseur
+de distance. PNJ guide près du départ, dialogue manuel en français ou anglais.
+Déplacement suspendu pendant le dialogue. Combat factice en duel solo.
+Anciennes commandes réseau masquées : le multijoueur est reporté.
+Cette livraison ajoute surtout ce LIRE-MOI détaillé ; elle ne modifie pas
+les systèmes de jeu de la précédente suite solo lab-b52bd14.
+
+TESTS À FAIRE SUR CETTE VERSION
+
+CAMÉRA — marcher dans plusieurs directions. Le personnage doit rester visible.
+Ajuster le curseur « Distance caméra » : à gauche, il apparaît plus grand ;
+à droite, on voit davantage du décor. Dire si la distance par défaut est
+confortable, encore trop loin ou trop près. Aucune valeur finale imposée.
+
+DIALOGUE — aller près du guide à droite du départ et appuyer sur E ou Entrée.
+Une phrase doit apparaître. Sans appuyer, elle doit rester affichée.
+Essayer de marcher : le personnage doit rester sur place pendant l'échange.
+Appuyer sur E/Entrée pour afficher exactement la phrase suivante ; maintenir
+la touche ne doit pas faire défiler plusieurs phrases. À la fin des trois
+phrases, le dialogue se ferme et le déplacement redevient possible.
+À distance du guide, E ne doit pas ouvrir la conversation.
+A fonctionne aussi, mais E évite le conflit avec le déplacement WASD.
+
+LANGUE — terminer le dialogue, cliquer une fois sur « Dialogue FR / EN »,
+puis reparler au guide : ses trois phrases doivent être en anglais.
+Recliquer puis reparler : elles doivent être en français. Le reste du panneau
+n'est pas encore entièrement traduit. Le changement s'applique au prochain dialogue.
+
+SAUVEGARDE — cliquer « Sauvegarder le laboratoire », marcher ailleurs,
+puis « Charger » : retrouver la position sauvegardée. La sauvegarde du premier
+laboratoire reste compatible ; aucun effacement demandé. Le dialogue, le duel
+factice et les préférences caméra/langue ne sont pas sauvegardés.
+
+COMBAT FACTICE — cliquer « Simuler un tour de combat » : seulement J1 et Boss
+agissent, les PV du boss diminuent. « Réinitialiser le combat » remet le duel
+au départ. Ce test ne valide pas encore un moteur Pokémon 9G.
+
+CONTRÔLE RAPIDE — lancement sans erreur, commandes ZQSD/WASD/flèches,
+maisons et arbres bloquant le passage, fluidité sans régression visible.
+Le premier laboratoire avait passé ces contrôles sur le PC du propriétaire.
+Ce nouveau build doit être lancé à son tour : la CI ne remplace pas ce test Windows.
+
+AUCUN TEST MULTIJOUEUR DEMANDÉ. Ne pas passer du temps sur connexion,
+copies de sauvegardes ou trois fenêtres. L'ancien essai, s'il est affiché,
+reste limité à localhost ; connexions entre PC et Internet non validées.
+
+RETOUR FACILE À COPIER
+Version : lab-{short_commit}
+Lancement : OK / bloqué (message exact)
+Caméra : confortable / trop loin / trop près ; valeur préférée si ajustée
+Dialogue : OK / problème (ouverture, attente, touche maintenue, déplacement)
+Langue FR/EN : OK / problème
+Sauvegarde : OK / problème
+Duel factice : OK / problème
+Fluidité et obstacles : OK / problème
+Autre remarque :
+
+SAUVEGARDES ET LIMITES
+Dossier habituel sous Windows :
+%APPDATA%\Godot\app_userdata\Archélys — laboratoire technique\
+Fichier : laboratory_campaign.json
+Copie précédente : laboratory_campaign.json.backup
+Pour restaurer : fermer le jeu, préserver la save actuelle, puis copier
+la backup vers le nom laboratory_campaign.json.
+Décors et mannequin provisoires ; aucun Pokémon officiel ni scénario final.
+La direction artistique ne doit pas être jugée comme une île terminée.

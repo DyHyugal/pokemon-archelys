@@ -62,3 +62,13 @@ Ces décisions n’approuvent pas encore les noms d’îles, nouveaux dirigeants
 | D37 | Rapprocher la caméra du laboratoire ; rendu final toujours à valider séparément | Retour explicite : caméra encore un peu loin |
 
 D36 change l’ordre de réalisation. La coopération demeure un objectif demandé ; sa date et son inclusion au jalon V1 seront réévaluées, sans prétendre qu’elle est déjà fonctionnelle ou la supprimer du périmètre silencieusement. Le propriétaire remplit le questionnaire complémentaire pendant la poursuite des systèmes solo indépendants des arbitrages.
+
+## Distribution Windows — retour sur le blocage d’exécution
+
+| ID | Décision | Provenance |
+|---|---|---|
+| D38 | Garder le nom de l’exécutable identique entre versions ; version dans le LIRE-MOI | Demande explicite du propriétaire |
+| D39 | Mettre les changements et tests précis attendus dans le LIRE-MOI de chaque ZIP pour éviter de devoir les demander dans le chat | Demande explicite du propriétaire |
+| D40 | Signature Windows demandée ; aucun certificat de signature/service disponible ici, build toujours non signé | Demande propriétaire et constat de l’environnement ; résolution en attente de moyens de signature |
+
+Le nom était déjà fixe sur les premiers ZIP : `Archelys-Laboratoire.exe`, conservé. Les tags de releases identifient les versions, pas le nom du fichier. Un certificat auto-signé ne résout pas la confiance Windows ; un SHA256 n’est pas une signature Authenticode. Même un certificat reconnu ne garantit pas l’absence de SmartScreen. Le nouveau retour indique un blocage Windows sur la suite solo : cette exécution reste non validée.
