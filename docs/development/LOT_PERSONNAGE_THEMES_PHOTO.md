@@ -27,3 +27,5 @@ Tests domaine/préférences/PNG :17 contrôles, dont image rechargée et pixels/
 Le test existant Showdown du raccordement Potion/PP pouvait perdre le Pokémon par un KO aléatoire, alors qu'il cherchait à tester les transactions. Sa fixture utilise désormais un Magicarpe niveau100 avec Trempette, sans danger et assez résistant pour laisser se résoudre les deux tours. Les assertions de Potion/PP/tour sont conservées, pas relâchées ; les autres tests KO/remplacements restent séparés.
 
 `tools/check_prototype.py` conserve toutes les suites antérieures. Windows et appréciation artistique attendent le propriétaire ; aucune garantie60FPS ou validation Windows déduite de llvmpipe. D52 reste la dernière validation Windows reçue. Preuves/build/CI dans `verification/PRESENTATION_2026-10-11.txt` après publication.
+
+Captures de vérification Linux : [menu clair](verification/PRESENTATION_MENU_CLAIR.png) et [PNG photo](verification/PRESENTATION_PHOTO.png). Rendu et mannequin provisoires, captures1280×720 ; ce ne sont pas des assets finaux.

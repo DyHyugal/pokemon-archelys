@@ -1,0 +1,57 @@
+ARCHÉLYS — D62, PERSONNAGE / THÈMES / PHOTO
+Date :11 octobre2026, Europe/Paris
+Source :8f8d115e9380724acfdd57b97730c046622b23ed
+Branche :docs/cadrage-valide, aucun merge main/develop.
+
+VALIDATION LOCALE
+SHOWDOWN ADAPTER: 41 checks, 0 failures
+SHOWDOWN INTEGRATION: 33 checks, 0 failures
+ARCHÉLYS TESTS: 19 checks, 0 failures
+JOURNEY SYSTEMS: 17 checks, 0 failures
+JOURNEY SCENE: 14 checks, 0 failures
+FOSSIL SYSTEMS: 23 checks, 0 failures
+NURSERY SYSTEMS: 18 checks, 0 failures
+SOLO SYSTEMS: 18 checks, 0 failures
+DIALOGUE TESTS: 6 checks, 0 failures
+POKEMON SYSTEMS: 71 checks, 0 failures
+EXPLORATION COMBAT: 70 checks, 0 failures
+EXPLORATION SCENE: shop/center/doors, saved interior, fishing/Surf, field collisions/climb, map/Fly, graphical alternatives and actual double controls; 0 failures
+POKEMON SCENE: summary editing, grass encounter, combat commands/manual text, modal input, full-party capture/PC, menu disk persistence and learning/evolution exercised; 0 failures
+MEGA UI: existing evolved individual, equipment/Bag preservation, visible checkbox/reasons, single and doubles activation; 0 failures
+COLLECTION SYSTEMS: 32 checks, 0 failures
+COLLECTION SCENE: 27 checks, 0 failures
+PRESENTATION SYSTEMS: 17 checks, 0 failures
+PRESENTATION SCENE: 13 checks, 0 failures
+COMFORT SYSTEMS: 21 checks, 0 failures
+COMFORT SCENE: 26 checks, 0 failures
+TACTICS SYSTEMS: 46 checks, 0 failures
+TACTICS SCENE: 24 checks, 0 failures
+GLB IMPORT: 7 bones, 1 animation(s), playback exercised
+SCENE SMOKE: avatar, input, authoritative movement, closer following camera, NPC/manual dialogue/movement lock, solo battle UI, preference persistence, single crate reward, inventory/journal save/load, real bag details, pause navigation, modal movement/interaction lock and persistent settings controls exercised
+ALL PROTOTYPE CHECKS PASSED
+
+RENDU RÉEL
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+PRESENTATION SCENE: 13 checks, 0 failures
+PNG réel1280x720 du viewport et capture du menu clair générés et inspectés.
+Export sans interfaces/étiquettes ; caméra restaurée ; CPU logiciel, pas validation GPU Windows.
+
+PACKAGING
+397 fichiers, ZIP sans erreur, manifeste correspond à la source.
+EXE Godot officiel inchangé, PCK externe et Node24.19.0 épinglé.
+SHA256 ZIP local :b25da081c80efb9960cf66455272f0d273b0c1de23cf11c69b28f5d79f6a2654
+Empreinte locale éventuellement différente du ZIP CI (génération/timestamps).
+
+PUBLICATION
+CI :https://github.com/DyHyugal/pokemon-archelys/actions/runs/38175546422
+État :Success, source8f8d115 vérifiée.
+Validation/export/upload/publication réussis.
+ZIP :https://github.com/DyHyugal/pokemon-archelys/releases/download/lab-8f8d115/Archelys-Laboratoire-Windows.zip
+SHA256SUMS :https://github.com/DyHyugal/pokemon-archelys/releases/download/lab-8f8d115/SHA256SUMS.txt
+Les deux assets vérifiés sur la page publique expanded_assets/lab-8f8d115.
+
+LIMITES
+D52 dernière validation Windows reçue ; D61 et D62 à tester demain par le propriétaire.
+Mannequin/palettes/coiffures provisoires ; pas choix des assets finaux.
+Aucune certification exhaustive accessibilité/règles Pokémon, aucune promesse60FPS.
+Reproduction retirée ; réseau/raids/Nuzlocke/Soul-link reportés.
