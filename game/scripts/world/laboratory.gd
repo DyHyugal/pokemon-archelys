@@ -6,6 +6,11 @@ const BattlePanel=preload("res://scripts/ui/pokemon_battle_panel.gd")
 const Catalog=preload("res://scripts/domain/pokemon_catalog.gd")
 const Mon=preload("res://scripts/domain/pokemon.gd")
 const VisualDistrict=preload("res://scripts/world/visual_district.gd")
+const Comfort=preload("res://scripts/services/comfort_store.gd")
+const LabAudio=preload("res://scripts/services/laboratory_audio.gd")
+var comfort:=Comfort.new()
+var lab_audio: Node
+var ui_theme:=Theme.new()
 const SaveSlots=preload("res://scripts/services/save_slots.gd")
 const Cinematic=preload("res://scripts/domain/cinematic.gd")
 const CinematicPanel=preload("res://scripts/ui/cinematic_panel.gd")
@@ -49,6 +54,7 @@ var dialogue := Dialogue.new()
 var dialogue_record: Dictionary = {}
 var dialogue_panel: PanelContainer
 var dialogue_text: Label
+var dialogue_hint: Label
 var dialogue_speaker: Label
 var interaction_hint: Label
 var locale: String = "fr"
@@ -69,6 +75,8 @@ func _ready() -> void:
 	locale = preferences.language
 	_build_world()
 	_build_ui()
+	lab_audio=LabAudio.new();add_child(lab_audio)
+	_apply_comfort()
 	_start_battle()
 	last_auto_tick=Time.get_ticks_msec();auto_baseline=JSON.stringify(Session.campaign.snapshot())
 	for id: String in TARGETS:
@@ -194,15 +202,15 @@ func _build_ui() -> void:
 	var panel:=PanelContainer.new();panel.position=Vector2(16,16);panel.custom_minimum_size=Vector2(430,0);layer.add_child(panel)
 	debug_panel=panel
 	panel.visible=false
-	menu_button=_button(layer,"Menu • Échap",func():_open_menu())
-	menu_button.position=Vector2(16,16)
-	var debug_toggle := CheckButton.new();debug_toggle.text="Outils labo • F3";debug_toggle.position=Vector2(180,16);layer.add_child(debug_toggle)
+	var toolbar:=HBoxContainer.new();toolbar.position=Vector2(16,16);toolbar.add_theme_constant_override("separation",16);layer.add_child(toolbar)
+	menu_button=_button(toolbar,"Menu • Échap",func():_open_menu())
+	var debug_toggle := CheckButton.new();debug_toggle.text="Outils labo • F3";toolbar.add_child(debug_toggle)
 	debug_toggle.toggled.connect(func(value: bool):debug_panel.visible=value)
 	panel.position=Vector2(16,65)
 	var debug_scroll:=ScrollContainer.new();debug_scroll.custom_minimum_size.y=530;debug_scroll.follow_focus=true;panel.add_child(debug_scroll)
 	var stack:=VBoxContainer.new();stack.size_flags_horizontal=Control.SIZE_EXPAND_FILL;debug_scroll.add_child(stack)
 	var title:=Label.new();title.text="ARCHÉLYS • LABORATOIRE TECHNIQUE";stack.add_child(title)
-	var note:=Label.new();note.text="Décors provisoires — aucune île finale\nDéplacement : ZQSD / WASD / flèches";stack.add_child(note)
+	var note:=Label.new();note.text="Décors provisoires — aucune île finale\nDéplacement : Paramètres → Commandes";stack.add_child(note)
 	status=Label.new();stack.add_child(status)
 	var camera_label := Label.new();camera_label.text="Distance caméra (proche ← → loin)";stack.add_child(camera_label)
 	var zoom := HSlider.new();zoom.min_value=12;zoom.max_value=22;zoom.step=0.5;zoom.value=camera.size;stack.add_child(zoom)
@@ -238,23 +246,27 @@ func _build_ui() -> void:
 	var conversation := VBoxContainer.new();dialogue_panel.add_child(conversation)
 	dialogue_speaker=Label.new();conversation.add_child(dialogue_speaker)
 	dialogue_text=Label.new();dialogue_text.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;dialogue_text.custom_minimum_size=Vector2(780,90);conversation.add_child(dialogue_text)
-	var next_hint := Label.new();next_hint.text="A / E / Entrée • phrase suivante / next line";conversation.add_child(next_hint)
+	dialogue_hint=Label.new();conversation.add_child(dialogue_hint)
 	var overview := PanelContainer.new();overview.position=Vector2(460,16);overview.custom_minimum_size=Vector2(420,0);layer.add_child(overview)
 	var overview_stack := VBoxContainer.new();overview.add_child(overview_stack)
 	journal_text=Label.new();journal_text.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;journal_text.custom_minimum_size.x=400;overview_stack.add_child(journal_text)
 	inventory_text=Label.new();overview_stack.add_child(inventory_text)
 	overview.visible=false
-	pause_menu=PauseMenu.new();pause_menu.slots=slots;add_child(pause_menu)
+	pause_menu=PauseMenu.new();pause_menu.slots=slots;pause_menu.comfort=comfort;add_child(pause_menu)
+	pause_menu.comfort_changed.connect(_apply_comfort)
+	pause_menu.audio_preview_requested.connect(func(kind: String):
+		if kind=="stop":lab_audio.stop_previews()
+		else:lab_audio.preview(kind))
 	pause_menu.slot_requested.connect(_slot_action)
 	pause_menu.scene_requested.connect(_play_scene)
-	cinematic_panel=CinematicPanel.new();add_child(cinematic_panel)
+	cinematic_panel=CinematicPanel.new();cinematic_panel.comfort=comfort;add_child(cinematic_panel)
 	cinematic_panel.advance_requested.connect(_next_shot)
 	cinematic_panel.skip_requested.connect(_skip_scene)
 	pause_menu.language_changed.connect(func(value: String):_set_locale(value);_sync_menu())
 	pause_menu.camera_changed.connect(func(value: float):camera.size=value;_persist_preferences())
 	pause_menu.save_requested.connect(func():_save();pause_menu.feedback.text=message.text)
 	pause_menu.load_requested.connect(func():_load();_sync_menu();pause_menu.feedback.text=message.text)
-	battle_panel=BattlePanel.new();add_child(battle_panel)
+	battle_panel=BattlePanel.new();battle_panel.comfort=comfort;add_child(battle_panel)
 	battle_panel.finished.connect(_battle_finished)
 	exploration_help=Label.new();exploration_help.position=Vector2(460,16);layer.add_child(exploration_help)
 	var saved_speed: Variant=JSON.parse_string(FileAccess.get_file_as_string("user://laboratory_speed.json")) if FileAccess.file_exists("user://laboratory_speed.json") else 1
@@ -264,12 +276,22 @@ func _build_ui() -> void:
 		var file:=FileAccess.open("user://laboratory_speed.json",FileAccess.WRITE)
 		if file:file.store_string(JSON.stringify(int(value))))
 	pause_menu.travel_requested.connect(_travel)
-	pause_menu.closed.connect(func():Session.submit_axis(Vector2.ZERO))
+	pause_menu.closed.connect(func():Session.submit_axis(Vector2.ZERO);if lab_audio:lab_audio.stop_previews())
 	log_box=RichTextLabel.new();log_box.custom_minimum_size=Vector2(430,115);stack.add_child(log_box)
 
 func _button(parent: Node, text: String, action: Callable) -> Button:
 	var button:=Button.new();button.text=text;button.pressed.connect(action);parent.add_child(button)
 	return button
+
+func _apply_comfort() -> void:
+	ui_theme.default_font_size=int(comfort.data.text_size)
+	for type: String in ["Label","Button","CheckButton","CheckBox","OptionButton","ItemList","LineEdit","TextEdit","SpinBox","PopupMenu"]:ui_theme.set_font_size("font_size",type,int(comfort.data.text_size))
+	for key: String in ["normal_font_size","bold_font_size","italics_font_size","bold_italics_font_size","mono_font_size"]:ui_theme.set_font_size(key,"RichTextLabel",int(comfort.data.text_size))
+	for layer_node: Node in [gameplay_layer,pause_menu,battle_panel,cinematic_panel]:
+		for control: Node in layer_node.get_children():
+			if control is Control:control.theme=ui_theme
+	dialogue_hint.text="%s / Entrée • phrase suivante / next line" % comfort.caption("interact")
+	if lab_audio:lab_audio.apply(comfort.data)
 
 func _set_locale(value: String) -> void:
 	locale=value
@@ -385,9 +407,11 @@ func _input(event: InputEvent) -> void:
 		if pause_menu.visible:
 			if pause_menu.handle_key(event): get_viewport().set_input_as_handled()
 			return
-		if not dialogue.active and event.keycode in [KEY_ESCAPE,KEY_I,KEY_J]:
-			_open_menu("bag" if event.keycode==KEY_I else ("journal" if event.keycode==KEY_J else "home"))
+		if not dialogue.active and (comfort.matches(event,"menu") or comfort.matches(event,"bag") or comfort.matches(event,"journal")):
+			_open_menu("bag" if comfort.matches(event,"bag") else ("journal" if comfort.matches(event,"journal") else "home"))
 			get_viewport().set_input_as_handled();return
+		if not dialogue.active and comfort.matches(event,"interact") and not get_viewport().gui_get_focus_owner() is LineEdit:
+			_unhandled_key_input(event);get_viewport().set_input_as_handled();return
 		if event.keycode==KEY_F3:
 			debug_panel.visible=not debug_panel.visible
 			get_viewport().set_input_as_handled();return
@@ -427,7 +451,7 @@ func _open_interaction(id: String) -> bool:
 func _unhandled_key_input(event: InputEvent) -> void:
 	if cinematic.active or battle_panel.visible or pause_menu.visible or not event is InputEventKey or not event.pressed or event.echo:
 		return
-	if event.keycode not in [KEY_A, KEY_E, KEY_ENTER]:
+	if not comfort.confirming(event):
 		return
 	if dialogue.active:
 		dialogue.advance()
@@ -492,23 +516,20 @@ func _process(_delta: float) -> void:
 			else:
 				animator.stop()
 		avatars[id].position = next_position
-	var axis:=Vector2.ZERO
-	if Input.is_physical_key_pressed(KEY_A) or Input.is_physical_key_pressed(KEY_Q) or Input.is_physical_key_pressed(KEY_LEFT):axis.x-=1
-	if Input.is_physical_key_pressed(KEY_D) or Input.is_physical_key_pressed(KEY_RIGHT):axis.x+=1
-	if Input.is_physical_key_pressed(KEY_W) or Input.is_physical_key_pressed(KEY_Z) or Input.is_physical_key_pressed(KEY_UP):axis.y-=1
-	if Input.is_physical_key_pressed(KEY_S) or Input.is_physical_key_pressed(KEY_DOWN):axis.y+=1
+	var axis: Vector2=comfort.axis()
 	if battle_panel.visible or pause_menu.visible or dialogue.active or cinematic.active or get_viewport().gui_get_focus_owner() is LineEdit:axis=Vector2.ZERO
 	var focus := _local_position()
 	if not cinematic.active:
 		camera.position = focus + CAMERA_OFFSET
 		camera.look_at(focus)
-	interaction_hint.text = ("E / Entrée : interagir" if locale=="fr" else "E / Enter: interact") if not _nearest_interaction().is_empty() and not dialogue.active and not pause_menu.visible and not battle_panel.visible and not cinematic.active else ""
+	interaction_hint.text = (("%s / Entrée : interagir" if locale=="fr" else "%s / Enter: interact") % comfort.caption("interact")) if not _nearest_interaction().is_empty() and not dialogue.active and not pause_menu.visible and not battle_panel.visible and not cinematic.active else ""
 	_update_overview()
 	_track_encounters(focus)
 	if battle_panel.visible:axis=Vector2.ZERO
 	exploration_help.text="Herbes : nord-ouest • Soins : cube bleu • Dresseurs : cubes rouges\nMenu → Équipe / Résumé / PC • F3 : entraînement technique" if locale=="fr" else "Grass: northwest • Healing: blue cube • Trainers: red cubes\nMenu → Party / Summary / PC • F3: laboratory training"
 	if displayed_location!="village":exploration_help.text="%s • E / Entrée : interaction • Échap : menu" % displayed_location
-	menu_button.text="Menu • Échap" if locale=="fr" else "Menu • Esc"
+	exploration_help.text=exploration_help.text.replace("E / Entrée",comfort.caption("interact")+" / Entrée").replace("E / Enter",comfort.caption("interact")+" / Enter")
+	menu_button.text="Menu • "+comfort.caption("menu")
 	Session.submit_axis(axis)
 	_autosave_if_safe()
 	status.text="Joueurs %d/%d • étape %d • cap factice %d" % [players.size(),value.get("participants",1),value.get("progress",0),value.get("level_cap",10)]

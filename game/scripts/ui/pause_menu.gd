@@ -4,6 +4,11 @@ const AdventurePages=preload("res://scripts/ui/adventure_pages.gd")
 const ExplorationPages=preload("res://scripts/ui/exploration_pages.gd")
 const CollectionPages=preload("res://scripts/ui/collection_pages.gd")
 var collection_pages: RefCounted
+const ComfortPages=preload("res://scripts/ui/comfort_pages.gd")
+var comfort_pages: RefCounted
+var comfort: RefCounted
+signal comfort_changed
+signal audio_preview_requested(kind: String)
 var slots: RefCounted
 signal scene_requested(id: String,replay: bool)
 signal slot_requested(action: String,slot: int)
@@ -38,6 +43,7 @@ func _ready() -> void:
 	adventure_pages=AdventurePages.new(self)
 	exploration_pages=ExplorationPages.new(self)
 	collection_pages=CollectionPages.new(self)
+	comfort_pages=ComfortPages.new(self)
 	layer = 10
 	var shade := ColorRect.new()
 	shade.color = Color(0.025, 0.045, 0.075, 0.88)
@@ -85,6 +91,7 @@ func open(target: String = "home") -> void:
 	page=target; visible=true; feedback.text=""; render()
 
 func close() -> void:
+	comfort_pages.capture_action=""
 	visible=false
 	var focus := get_viewport().gui_get_focus_owner()
 	if focus: focus.release_focus()
@@ -151,6 +158,10 @@ E / Enter: interact in the world"))
 			speeds.select(int(speed)-1);body.add_child(speeds)
 			speeds.item_selected.connect(func(index: int):speed=float(index+1);speed_changed.emit(speed))
 			label(tr_text("Ces préférences sont conservées automatiquement, indépendamment de la sauvegarde de partie.","These preferences are saved automatically, independently of your game save."))
+	if page=="home" and comfort!=null:
+		var help: Label=body.get_child(1)
+		help.text=tr_text("%s / Échap : menu · %s : sac · %s : journal\n%s / Entrée : interagir", "%s / Esc: menu · %s: bag · %s: journal\n%s / Enter: interact") % [comfort.caption("menu"),comfort.caption("bag"),comfort.caption("journal"),comfort.caption("interact")]
+	if page=="settings":comfort_pages.render()
 	buttons[page].grab_focus()
 
 func show_item() -> void:
@@ -161,8 +172,9 @@ Quantity: %d
 Sample item received from the laboratory crate. Cannot be used; retained in your game save.") % tokens
 
 func handle_key(event: InputEventKey) -> bool:
+	if comfort_pages.handle_key(event):return true
 	if not event.pressed or event.echo: return false
-	if event.keycode==KEY_ESCAPE:
+	if event.keycode==KEY_ESCAPE or (comfort!=null and comfort.matches(event,"menu")):
 		if page=="home": close()
 		else: page="home"; feedback.text=""; render()
 		return true

@@ -19,10 +19,10 @@ manifest={'commit':args.commit,'godot':'4.6.3','stage':'technical-laboratory',
           'distribution':'portable-external-pck','unmodified_godot_template':True,
           'windows_execution':'not validated on Windows','network_validation':'deferred; prior lab-09897ca tested on localhost only'}
 (folder/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
-(folder/'release-notes.md').write_text("Blocs 7 à 9 regroupés : Pokédex de laboratoire (vus/obtenus, filtres, localisations légales), timeline de cinématique FR/EN manuelle et galerie, trois emplacements solo et autosauvegardes séparées. Format5 lit1/2/3/4 avec originaux préservés. Correctif Méga inclus ; même EXE officiel non modifié et PCK séparé.\n\nParcours owner regroupé dans LIRE-MOI. Catalogue17 espèces, scène technique sans scénario final ni nouveaux assets ; Nuzlocke/Soul-link/multijoueur reportés. Thème de ville retenu, qualité artistique toujours à retravailler.\n",encoding='utf-8')
+(folder/'release-notes.md').write_text("Bloc10 confort : commandes clavier reconfigurables et cohérentes monde/dialogue/combat/cinématique, conflits refusés et retour Échap permanent. Volumes Général/Musique/Effets avec calibration originale, texte16/20/24 et préférences locales indépendantes des campagnes.\n\nBlocs7–9 et Méga validés Windows par le propriétaire ; conservés sans nouveau parcours de retest. Format5, chemins et moteur portable inchangés. Test du seul bloc confort dans LIRE-MOI. Pas de soundtrack finale, manette ou accessibilité exhaustive ; Nuzlocke/Soul-link/multi reportés.\n",encoding='utf-8')
 archive=folder/'Archelys-Laboratoire-Windows.zip'
 with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as z:
-    for file in [exe,pck,folder/'LIRE-MOI.txt',folder/'manifest.json',root/'docs/licenses/Godot-LICENSE.txt',root/'docs/licenses/Godot-COPYRIGHT.txt',root/'docs/licenses/PokeAPI-LICENSE.txt']:z.write(file,file.name)
+    for file in [exe,pck,folder/'LIRE-MOI.txt',folder/'manifest.json',root/'docs/licenses/Godot-LICENSE.txt',root/'docs/licenses/Godot-COPYRIGHT.txt',root/'docs/licenses/PokeAPI-LICENSE.txt',root/'docs/licenses/LABORATORY_AUDIO.md']:z.write(file,file.name)
     for file in sorted((root/'docs/design/comparatifs').glob('quartier-*.png')):z.write(file,'Comparatifs/'+file.name)
     z.write(root/'docs/design/PROPOSITIONS_NOMS_ET_DIVINITES.md','Documentation/Propositions-noms-et-divinites.md')
     z.write(root/'docs/sources/Questions-restantes-Archelys.xlsx','Documentation/Questions-restantes-Archelys.xlsx')

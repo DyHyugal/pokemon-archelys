@@ -18,6 +18,8 @@ steps=[(['godot','--headless','--path',str(root/'game'),'--editor','--import','-
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/mega_ui.gd'],'MEGA UI:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/collection_systems.gd'],'COLLECTION SYSTEMS:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/collection_scene.gd'],'COLLECTION SCENE:'),
+       (['godot','--headless','--path',str(root/'game'),'--script','res://tests/comfort_systems.gd'],'COMFORT SYSTEMS:'),
+       (['godot','--headless','--path',str(root/'game'),'--script','res://tests/comfort_scene.gd'],'COMFORT SCENE:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/asset_import.gd'],'GLB IMPORT:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/scene_smoke.gd'],'SCENE SMOKE:')]
 if args.network:

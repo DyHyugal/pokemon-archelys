@@ -67,3 +67,11 @@ La priorité de développement est toujours le solo ; les commandes doubles sont
 `SaveSlots` compose `SaveStore` et sépare trois manuelles de trois autos. Slot1 = chemin historique. Les préférences de slot/autosave ne contiennent pas de campagne. Les écritures temporaires sont relues/validées ; backup roulante pour fichier valide, original par ancien schéma, archive d'un original invalide si explicitement remplacé. L'autosave utilise l'horloge monotone réelle, attend un contexte sûr et compare à son état de référence pour éviter les écritures inutiles. Aucun autosave d'un combat partiel.
 
 Campagne schéma5 exige les découvertes/scènes, lit1/2/3/4 et reconstruit uniquement les espèces possédées quand l'historique est absent. Pas d'invention de rencontres passées. `CollectionPages` présente Pokédex/galerie/slots ; domaine et services restent indépendants de l'UI et aucune API réseau de production n'est ajoutée.
+
+## Bloc10 : préférences et périphériques de présentation
+
+`ComfortStore` stocke touches physiques et volumes/taille dans un fichier local indépendant de la campagne5. Validation de conflits sur touches effectives (defaults compris), normalisation numérique après JSON, écriture temporaire/rename et état changé seulement après réussite. Aucun paramètre de confort transporté dans une sauvegarde de campagne.
+
+`ComfortPages` gère uniquement les contrôles et capture modale. Le monde lit l'axe du service et route les touches ; la confirmation est partagée avec `PokemonBattlePanel` et `CinematicPanel`, y compris les messages de double. Les interactions monde sont prises avant la navigation GUI pour permettre Tab personnalisée sans déplacement de focus parasite. Le thème des corps de texte s'applique aux quatre interfaces, avec alignement automatique de la barre Menu/Outils pour les grandes polices.
+
+`LaboratoryAudio` possède les lecteurs de calibration et configure Music/Effects vers Master. Gains/mute ne dépendent pas d'Engine.time_scale. Son de calibration généré original et provenance séparée ; futur contenu musical/effets pourra réutiliser les bus, sans ajouter une bande-son implicite dans ce lot.

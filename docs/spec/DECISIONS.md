@@ -127,3 +127,11 @@ Correction technique : kit équipe aussi les individus compatibles déjà possé
 Provenance : conversation du 11 octobre 2026, « ok je teste ça après mais continue les blocs stp ». Le test propriétaire de la Méga reste attendu ; il ne bloque pas les systèmes indépendants. Lot technique suivant regroupé : Pokédex et localisations, cinématiques/galerie, emplacements solo/autosauvegarde. Il réutilise les exigences C25/J5/K5/Q06 et la cadence D43, sans choix implicite du Pokédex final ni validation artistique. Ordre de réalisation choisi techniquement dans le périmètre déjà demandé, pas nouvelle règle de game design. Nuzlocke/Soul-link et réseau restent reportés conformément à D50/D36.
 
 La timeline de laboratoire sert uniquement à vérifier cadrages, avance manuelle, passage des scènes secondaires et replay des cinématiques terminées. Elle n'approuve ni le scénario final ni le casting. Le format5 ajoute l'historique vu/obtenu et des scènes ; lecture1/2/3/4 et conservation des originaux lors des écritures migrées. Trois slots et intervalle autosave60s sont des valeurs d'essai configurables/à éprouver, pas un engagement sur toutes les plateformes.
+
+## D52 — validation Windows du lot D51 et de la Méga
+
+Provenance : conversation du 11 octobre 2026, « ok je valide le fonctionnement des 3 implémentations et de la mega, continue sur le prochain bloc stp ». Pokédex de laboratoire, cinématique/galerie, slots/autosave de lab-04a2317 et parcours Méga sont validés fonctionnellement par le propriétaire. Cette validation ne sélectionne pas le Pokédex final ni de nouveaux assets artistiques. Nuzlocke/Soul-link et réseau restent reportés.
+
+## D53 — prochain bloc solo : réglages de confort
+
+Suite technique dans les exigences déjà demandées K5/L3/Q16 : commandes clavier personnalisables, volumes Général/Musique/Effets avec sons de calibration originaux, taille des textes. Préférences individuelles séparées de la campagne, conservées au chargement et entre sessions. Échap reste un retour permanent, Entrée/Espace des confirmations permanentes, F3 réservé au laboratoire ; conflits de touches entre commandes refusés. Valeurs de laboratoire à éprouver, pas une validation exhaustive d'accessibilité ou de contrôle manette. Format de campagne5 inchangé, aucun travail réseau ni nouvelle règle narrative.

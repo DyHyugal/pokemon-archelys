@@ -65,3 +65,7 @@ Assembler les menus solo autour des services existants : Pause, Sac, Journal et 
 9. Persistance : trois emplacements solo, préférence du slot actif, autosave distincte, récupération explicite de la sauvegarde précédente, migration avec originaux préservés.
 
 Ces trois blocs forment un seul build et un seul parcours de test. Le correctif Méga y reste inclus. Mapping de production, assets finaux, personnalisation/audio/commandes, reproduction/fossiles et extension des interactions de combat restent ensuite à planifier dans les règles approuvées ; réseau et modes défi reportés. La suite ne constitue pas une annonce de fin du moteur ou du jeu.
+
+### D52/D53 : bloc 10 — confort après validation de D51
+
+D52 valide fonctionnellement les blocs7–9 et la Méga sous Windows. Bloc10 : personnalisation des touches clavier (déplacement/interagir/menu/sac/journal), trois volumes et sons d'essai originaux, taille des textes16/20/24. Une seule livraison avec parcours groupé. Réutiliser la touche d'interaction dans dialogues, combats et cinématiques ; garder les retours sûrs et les confirmations manuelles. Préférences locales séparées de toutes les sauvegardes, sans changement de schéma ni dépendance. Audio final, personnalisation graphique du héros, assets et mapping de production restent distincts ; manette et accessibilité avancée ne sont pas prétendues terminées.

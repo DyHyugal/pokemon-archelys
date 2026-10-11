@@ -2,6 +2,7 @@ extends CanvasLayer
 signal finished(result: String)
 const Mon=preload("res://scripts/domain/pokemon.gd")
 const Catalog=preload("res://scripts/domain/pokemon_catalog.gd")
+var comfort: RefCounted
 var battle: RefCounted
 var locale: String="fr"
 var cards: Label
@@ -39,10 +40,10 @@ func advance() -> void:
 	if event_index<battle.events.size():event_index+=1;render()
 func handle_key(event: InputEvent) -> bool:
 	if not event is InputEventKey or not event.pressed:return false
-	if event.keycode in [KEY_A,KEY_E,KEY_ENTER,KEY_SPACE] and event_index<battle.events.size():
+	if ((comfort!=null and comfort.confirming(event)) or (comfort==null and event.keycode in [KEY_A,KEY_E,KEY_ENTER,KEY_SPACE])) and event_index<battle.events.size():
 		if not event.echo:advance()
 		return true
-	if event.keycode==KEY_ESCAPE:
+	if event.keycode==KEY_ESCAPE or (comfort!=null and comfort.matches(event,"menu")):
 		if not event.echo and event_index>=battle.events.size() and choice_page!="main":choice_page="main";render()
 		return true
 	return event.echo
@@ -54,7 +55,7 @@ func render() -> void:
 	if battle.get("double_mode")==true:cards.text=double_cards()
 	if event_index<battle.events.size():
 		message.text=battle.events[event_index][locale]
-		button(t("Continuer • E / Entrée","Continue • E / Enter"),advance).grab_focus();return
+		button(t("Continuer • %s / Entrée","Continue • %s / Enter") % (comfort.caption("interact") if comfort!=null else "E"),advance).grab_focus();return
 	if not battle.active:
 		visible=false;finished.emit(battle.result);return
 	message.text=t("Que veux-tu faire ?","What will you do?")

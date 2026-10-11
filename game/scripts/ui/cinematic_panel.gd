@@ -5,6 +5,7 @@ var text: Label
 var heading: Label
 var next_button: Button
 var skip_button: Button
+var comfort: RefCounted
 var model: RefCounted
 var locale: String="fr"
 func _ready() -> void:
@@ -27,11 +28,11 @@ func render(timeline: RefCounted,language: String) -> void:
  var entry: Dictionary=model.library()[model.id]
  heading.text="%s · %d/%d" % [entry.names[locale],model.index+1,entry.steps.size()]
  text.text=model.current()[locale]
- next_button.text="Suite • E / Entrée" if locale=="fr" else "Next • E / Enter"
+ next_button.text=("Suite • %s / Entrée" if locale=="fr" else "Next • %s / Enter") % (comfort.caption("interact") if comfort!=null else "E")
  skip_button.text="Passer • Échap" if locale=="fr" else "Skip • Esc";skip_button.visible=entry.skippable
  next_button.grab_focus()
 func handle_key(event: InputEvent) -> bool:
  if not event is InputEventKey or not event.pressed or event.echo:return false
- if event.keycode in [KEY_E,KEY_ENTER,KEY_A,KEY_SPACE]:advance_requested.emit();return true
- if event.keycode==KEY_ESCAPE:skip_requested.emit();return true
+ if (comfort!=null and comfort.confirming(event)) or (comfort==null and event.keycode in [KEY_E,KEY_ENTER,KEY_A,KEY_SPACE]):advance_requested.emit();return true
+ if event.keycode==KEY_ESCAPE or (comfort!=null and comfort.matches(event,"menu")):skip_requested.emit();return true
  return false

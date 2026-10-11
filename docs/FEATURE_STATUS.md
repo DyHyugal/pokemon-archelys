@@ -18,7 +18,7 @@ Les statuts portent sur les preuves, pas sur l’enthousiasme ou la présence da
 | Résumé IV/EV/natures/PC | SOCLE VALIDÉ WINDOWS | lab-2816c71, D48 ; extensions CT/talents/Méga du nouveau lot à retester |
 | Actions terrain | LABORATOIRE DÉVELOPPÉ ET TESTÉ | Obstacles/collisions, Surf, Escalade et Vol carte ; déblocages provisoires, Flash sans grotte à tester |
 | Wiki joueurs | PRÉPARÉ LOCAL | Rubriques documentaires ; non publié |
-| Exports Windows | PORTABLE VALIDÉ JUSQU’À lab-58819aa | Méga et lot D51 : validation owner attendue |
+| Exports Windows | PORTABLE VALIDÉ JUSQU’À lab-04a2317 | D52 : blocs7–9 et Méga validés ; bloc10 à tester |
 | FR/EN complets | DEMANDÉ | C25 |
 | Réponses Q01–Q16 | TRANSCRITES | Classeur et JSON conservés ; décisions D22–D33 |
 | Scénario complet et casting | PROPOSÉS | Documents V0.1, approbation owner attendue |
@@ -76,3 +76,9 @@ Suite autorisée pendant que le correctif Méga reste à tester. Pokédex provis
 Pas de scénario final ou animation narrative produits, pas de nouveaux assets, catalogue17 espèces inchangé. Les exigences de reproduction/fossiles/personnalisation/audio/commandes et interactions9G non couvertes demeurent à développer. Nuzlocke/Soul-link/multijoueur reportés. [Portée et preuves](development/LOT_COLLECTION_CINEMA_SAVES.md).
 
 Livraison D51 : [lab-04a2317](https://github.com/DyHyugal/pokemon-archelys/releases/tag/lab-04a2317), CI verte et ZIP publié vérifié. 216 assertions de domaine, 27 contrôles du nouveau parcours et autres scènes du socle réussis. Validation Windows du lot et de la Méga attendue, sans test des modes reportés.
+
+## D52 : validation propriétaire et bloc10
+
+Retour explicite Windows : **Pokédex, cinématique/galerie, emplacements/autosave et Méga validés** sur lab-04a2317. Ne plus présenter leur fonctionnement comme en attente. Leur portée de laboratoire et la validation artistique séparée demeurent.
+
+Bloc10 développé : touches clavier reconfigurables avec refus des conflits et retour Échap permanent ; volumes Général/Musique/Effets réels avec calibration originale ; texte16/20/24 et préférences locales conservées indépendamment de la campagne5. Test technique réalisé, **nouvelle validation Windows attendue**, pas de musique finale ni manette/accessibilité exhaustive. [Rapport](development/LOT_CONFORT.md).

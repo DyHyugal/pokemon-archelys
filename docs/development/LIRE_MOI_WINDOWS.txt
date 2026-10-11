@@ -44,110 +44,90 @@ Une signature reconnue exige un certificat de signature de code ou un service
 de signature autorisé. Aucun n'est configuré pour ce projet actuellement.
 Une signature auto-signée ne suffit pas pour être reconnue sur ton PC.
 
-BLOCS 7 À 9 REGROUPÉS — POKÉDEX, MISE EN SCÈNE ET SAUVEGARDES
+BLOC10 — COMMANDES, VOLUMES ET LISIBILITÉ
 
-Les systèmes du lot précédent restent validés par ton retour. Le correctif Méga
-est inclus ici : pas besoin de télécharger séparément lab-0d10428. Le nom EXE
-et la distribution moteur officiel + PCK séparé sont conservés.
-Nuzlocke, Soul-link et multijoueur restent reportés. Aucun test de ces modes.
-Le thème de ville reste retenu ; les assets graphiques ne changent pas ici.
+Tu as validé le Pokédex, les cinématiques, les emplacements/autosave et la Méga
+sur lab-04a2317. Ils sont conservés : pas besoin de refaire leurs parcours.
+Ce build ajoute un bloc de réglages locaux. Même nom EXE, même moteur officiel
+non modifié et PCK séparé. Format de campagne5 inchangé, fichiers conservés.
+Nuzlocke, Soul-link et multijoueur restent reportés, sans test demandé.
 
-AVANT DE CHANGER DE PARTIE
-Le jeu démarre dans le laboratoire. « Charger » ouvre la sauvegarde MANUELLE
-de l'emplacement actif. Menu → Sauvegardes permet de charger explicitement
-une manuelle, son précédent fichier .backup, ou une autosauvegarde.
-Charger / nouvelle partie quitte la partie en mémoire SANS l'enregistrer.
-Sauvegarder d'abord si tu veux garder la progression en cours.
-L'emplacement 1 conserve exactement l'ancien laboratory_campaign.json.
-La préférence d'emplacement actif et le choix autosave survivent au lancement.
+OUVRIR LES NOUVEAUX RÉGLAGES
+Menu → Paramètres. Utiliser la molette dans le contenu de droite pour atteindre
+Lisibilité, Volumes puis Commandes clavier. La navigation de gauche défile
+séparément. Langue, caméra et vitesse restent disponibles en haut.
 
-POKÉDEX ET LOCALISATIONS
-Dans le menu → Pokédex, les trois espèces de départ sont « obtenues ». Les
-espèces encore inconnues apparaissent en ??? avec les détails désactivés.
-Les filtres Toutes / Vues / Obtenues et les fiches sont accessibles au clic.
-Une rencontre réelle, y compris par pêche, ajoute l'espèce aux vues. Une
-capture, un cadeau du kit ou une évolution ajoute l'espèce aux obtenues ;
-l'ancienne espèce reste enregistrée. Les Pokémon du banc d'un adversaire ne
-sont pas révélés avant leur entrée en combat, contrairement aux deux actifs
-d'un combat double qui sont visibles ensemble.
+TEXTE PLUS GRAND
+Choisir Texte16,20 ou24px. Vérifier les libellés et boutons du menu, puis une
+conversation avec le guide et un message de combat. Les corps de texte
+changent également dans la cinématique ; les titres et certains panneaux
+ayant une taille propre gardent leur style. Le menu et les actions de combat
+peuvent défiler quand le texte prend plus de place. Revenir à16 si préféré.
+Il s'agit d'un premier réglage de lisibilité, pas de toutes les fonctions
+d'accessibilité ni d'un changement d'assets graphiques.
 
-Sur une fiche connue, vérifier les types et le lieu de rencontre ; les
-statistiques de base et talents apparaissent pour les espèces obtenues.
-Les localisations correspondent au laboratoire et à ses stades légaux selon
-le niveau, pas aux îles définitives. Seules 17 espèces sont présentes : ce
-n'est pas le Pokédex final. Aucun modèle de Pokémon n'est ajouté dans ce lot.
-Passer en anglais permet de vérifier les libellés des nouvelles pages.
+VOLUMES ET SONS D'ESSAI
+Les trois curseurs règlent Général, Musique et Effets. Général affecte les
+deux catégories ; chaque catégorie a ensuite son propre volume. Zéro coupe
+le son, remonter le curseur le réactive.
 
-CINÉMATIQUES ET GALERIE
-Au village → menu → Cinématiques → Découvrir la visite. C'est une scène
-TECHNIQUE : vues de caméra, bandes de cadrage, textes FR/EN et commandes
-manuelles, pas un épisode de l'histoire d'Archélys. Les éléments d'interface
-habituels sont masqués pendant la scène ; le déplacement et les interactions
-sont bloqués. E / Entrée ou le bouton Suite avance d'un cadrage. Une touche
-maintenue et la vitesse ×4 ne doivent pas passer les phrases automatiquement.
+Cliquer Écouter la mélodie d'essai, puis Écouter le son d'effet. La mélodie dure
+1,6seconde, l'effet0,35seconde ; recliquer pour réécouter après un réglage.
+Vérifier qu'Effets à0 coupe l'effet mais garde la mélodie, Musique à0 fait
+l'inverse, et Général à0 coupe les deux. Monter les curseurs pour retrouver
+les sons. Le bouton Arrêter et la fermeture du menu arrêtent les essais.
+Les échantillons sont originaux, synthétisés pour calibrer les réglages :
+ce ne sont pas les musiques ni bruitages finaux. Leur provenance est dans
+LABORATORY_AUDIO.md. En vitesse4×, la mélodie garde sa hauteur et sa durée.
+L'écoute réelle attend ton retour Windows ; les tests techniques vérifient
+les données, lecteurs, gains et bus sans prétendre écouter à ta place.
 
-La visite principale n'est pas passable avec Échap. Après ses quatre cadrages,
-la caméra retrouve sa distance et la galerie s'ouvre. « Rejouer » devient
-accessible ; le replay ne donne ni objet ni Pokémon ni progression en plus.
-La scène secondaire, elle, peut être passée par Échap ou le bouton Passer.
-Elle n'est pas rejouable une fois terminée. Les scènes ne se lancent qu'au
-village et les déblocages se conservent dans chaque sauvegarde séparée.
-Les cinématiques animées du scénario, leur musique et assets restent à créer.
+CHANGER LES TOUCHES
+Cliquer Interagir / texte suivant puis appuyer sur F, par exemple. Fermer le
+menu et vérifier que F permet d'interagir avec le guide et d'avancer ses
+textes. La même touche sert aux messages de combat et aux cinématiques.
+L'ancienne E ne doit plus avancer les textes après cette modification.
+Une touche maintenue ne doit pas passer plusieurs phrases automatiquement.
+Entrée/Espace restent disponibles pour confirmer les interfaces, ainsi que
+l'ancienne confirmation A dans les textes. Échap garde toujours le retour.
 
-TROIS EMPLACEMENTS ET AUTOSAUVEGARDE
-Menu → Sauvegardes indique l'emplacement actif, les fichiers manuels et auto,
-l'heure UTC et le premier Pokémon. Les trois emplacements sont indépendants.
-« Sauvegarder ici » demande confirmation avant d'enregistrer la partie
-actuelle dans cet emplacement et de le rendre actif. « Nouvelle partie ici »
-demande confirmation, démarre en mémoire et conserve les anciens fichiers.
-Enregistrer explicitement ensuite pour remplacer la manuelle précédente.
-Un chargement absent/invalide laisse la partie et l'emplacement actif intacts.
+Changer ensuite Aller à gauche, par exemple vers K : cette touche remplace
+les anciens alias de cette action, elle ne s'ajoute pas aux trois touches.
+Un conflit avec une autre commande est refusé, y compris ses valeurs par
+défaut. Les touches réservées (Échap, Entrée, Espace, F3) sont refusées pour
+une nouvelle affectation. Lettres physiques A–Z, chiffres, flèches, Tab,
+Maj/Ctrl sont proposées dans ce premier bloc ; pas de combos ni de manette.
+Échap pendant la saisie annule le changement et laisse les paramètres ouverts.
+La touche de Menu peut changer, mais Échap reste toujours disponible.
 
-Pour l'essai, garde ta partie dans l'emplacement 1, puis démarre une nouvelle
-partie dans le 2. Vérifie que journal, Pokédex et galerie ont leurs propres
-états ; sauvegarde-la et recharge la manuelle du 1 pour retrouver ta partie.
-Ce parcours suffit, pas besoin de recommencer toute la boucle de combat.
+Les touches sont PHYSIQUES : la position du clavier prévaut pour éviter de
+changer le comportement en passant AZERTY/QWERTY. Les noms affichés suivent
+les codes physiques Godot ; ils peuvent donc différer de la lettre imprimée.
+Les flèches et les alias de déplacement initiaux sont conservés tant qu'une
+action n'a pas été reconfigurée. Le reset restaure seulement les touches,
+sans changer les volumes, la taille du texte, la langue ou la caméra.
 
-L'autosauvegarde est activée par défaut, désactivable dans cette page. Après
-un changement (déplacement, objet, etc.), elle écrit à une échéance de 60
-secondes RÉELLES au plus tôt ; la vitesse du jeu ne raccourcit pas ce délai.
-Elle attend la fin d'un combat, dialogue, cinématique ou menu. Fermer le menu
-et se déplacer, attendre environ une minute, puis consulter le fichier auto.
-Charger auto doit restituer cet état. La sauvegarde manuelle ne change pas.
-Un état inchangé ne provoque pas d'écriture ; un chargement ne réécrit pas
-immédiatement l'autosauvegarde que tu viens de récupérer.
+CONSERVER LES RÉGLAGES
+Ces réglages sont enregistrés automatiquement, sans sauvegarder la partie.
+Fermer et relancer l'EXE : volumes, texte et touches doivent revenir. Charger
+une ancienne partie ou un autre emplacement ne doit pas les modifier.
+Vérifier ce point avec une sauvegarde existante, sans recommencer l'aventure.
 
-MÉGA — CORRECTIF À TESTER SI CE N'EST PAS ENCORE FAIT
-F3 → kit Méga équipe les individus compatibles déjà possédés. L'ancien objet
-retourne au sac et une pierre X/Y compatible est conservée si déjà tenue.
-Combat → Attaquer → activer Méga → choisir une attaque. Le contrôle reste
-visible et explique pourquoi il serait indisponible. Une seule Méga par camp,
-avec réservation partagée en double. Forme normale après le combat, pierre
-conservée. Le kit répété ne crée pas de nouveaux doublons d'espèces présentes.
-
-SAUVEGARDES ET COMPATIBILITÉ
 Dossier : %APPDATA%\Godot\app_userdata\Archélys — laboratoire technique\
-Manuelles : laboratory_campaign.json, laboratory_campaign.slot2.json et
-laboratory_campaign.slot3.json. Autos : mêmes noms avec .auto avant .json.
-Préférences de slots : laboratory_campaign.slots.json. Aucune save réseau.
-Le nouveau format5 lit les anciens formats1/2/3/4. Lors du premier écrasement
-manuel d'une ancienne save, ses octets originaux restent dans .v1.backup,
-.v2.backup, .v3.backup ou .v4.backup ; les sauvegardes suivantes conservent
-également le précédent fichier valide en .backup. Un fichier invalide remplacé
-explicitement est préservé dans .invalid-<date>-<compteur>.backup.
+Le nouveau fichier comfort.json conserve touches/volumes/taille. Langue/caméra
+restent dans preferences.json et la vitesse dans laboratory_speed.json.
+Les campagnes et autosaves ne changent pas de format ou de chemin dans ce lot.
+L'emplacement1 conserve laboratory_campaign.json ; les autres emplacements et
+leurs .auto.json/.backup restent utilisables. Ne pas supprimer les campagnes
+pour réinitialiser des commandes : le bouton Reset touches suffit.
 
-La migration ajoute les espèces actuellement possédées au Pokédex ; elle
-n'invente pas l'historique des anciennes rencontres ni des anciennes scènes.
-Retour vers un ancien build non garanti : utiliser l'original .v4.backup dans
-une copie séparée du dossier plutôt que charger format5 dans une ancienne version.
-
-RETOUR GROUPÉ
+RETOUR CIBLÉ SUR CE BLOC
 Version : lab-{short_commit}
-Pokédex / filtres / types / localisations : OK / problème
-Visite / avance manuelle / replay / scène secondaire : OK / problème
-Slots séparés / retour à l'ancienne partie : OK / problème
-Autosave séparée / rechargement / désactivation : OK / problème
-Méga (si nouveau test) : OK / non testé / problème
+Texte16/20/24 et défilement : OK / problème
+Volumes séparés, mute, sons d'essai et vitesse : OK / problème
+Touches monde/dialogue/combat : OK / problème
+Conflits, annulation et reset des touches : OK / problème
+Relance/chargement sans perte des réglages : OK / problème
 Autre remarque :
 
 NOTICES DU MOTEUR
