@@ -9,3 +9,7 @@ Pause ouvre Sac, Journal et Paramètres ainsi que Sauvegarder/Charger. Le sac pr
 Aucune dépendance supplémentaire ni changement de schéma de campagne/préférences. Sauvegardes précédentes utilisables, service et copies de migration conservés. L'EXE reste le moteur portable officiel inchangé ; seules les données PCK évoluent.
 
 Contrôles exécutés avec succès ([log](validation/menu-checks.log)). Validation : suite domaine (43 contrôles), import GLB et scène fonctionnelle étendue aux contrôles des menus, quantité/description, blocage de mouvement, réglages et sauvegarde/chargement. Rendu Linux logiciel inspecté ([capture](validation/menus-solo.png)), sans validation de performances GPU Windows ; nouveau test Windows et validation visuelle appartiennent au propriétaire. Parcours regroupé dans le LIRE-MOI du ZIP.
+
+## Livraison vérifiée
+
+[ZIP Windows lab-d33e5ee](https://github.com/DyHyugal/pokemon-archelys/releases/download/lab-d33e5ee/Archelys-Laboratoire-Windows.zip) ; [CI réussie](https://github.com/DyHyugal/pokemon-archelys/actions/runs/38138387209) en 44 s. Archive publiée téléchargée : CRC, empreintes ZIP/EXE/PCK, commit source et LIRE-MOI contrôlés. EXE comparé octet pour octet avec celui de lab-e84ee99 validé par le propriétaire : identique. Tests locaux et CI réussis ; test de ce bloc sous Windows encore attendu. Branche de travail poussée, aucune fusion effectuée.
