@@ -2,7 +2,7 @@ name: Archélys laboratory
 on:
   push:
     branches: [develop, docs/cadrage-valide]
-    paths: [game/**, tools/**, docs/development/LIRE_MOI_WINDOWS.txt, .github/workflows/laboratory.yml]
+    paths: [game/**, tools/**, docs/licenses/**, docs/development/LIRE_MOI_WINDOWS.txt, .github/workflows/laboratory.yml]
   pull_request:
     branches: [develop]
   workflow_dispatch:

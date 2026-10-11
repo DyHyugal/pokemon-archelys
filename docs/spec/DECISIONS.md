@@ -72,3 +72,11 @@ D36 change l’ordre de réalisation. La coopération demeure un objectif demand
 | D40 | Signature Windows demandée ; aucun certificat de signature/service disponible ici, build toujours non signé | Demande propriétaire et constat de l’environnement ; résolution en attente de moyens de signature |
 
 Le nom était déjà fixe sur les premiers ZIP : `Archelys-Laboratoire.exe`, conservé. Les tags de releases identifient les versions, pas le nom du fichier. Un certificat auto-signé ne résout pas la confiance Windows ; un SHA256 n’est pas une signature Authenticode. Même un certificat reconnu ne garantit pas l’absence de SmartScreen. Le nouveau retour indique un blocage Windows sur la suite solo : cette exécution reste non validée.
+
+## Essai de distribution gratuite
+
+| ID | Décision | Provenance |
+|---|---|---|
+| D41 | Essayer une distribution gratuite non signée pour la version de test, avec retour du propriétaire sur le lancement | Conversation : « essayons la distribution gratuite pour la version de test » |
+
+Choix technique pour cet essai : moteur officiel Godot non modifié et données de jeu dans un PCK séparé. Ce conditionnement ne signe pas le moteur et ne garantit pas une autorisation du Contrôle intelligent. Nom EXE fixe et LIRE-MOI par version conservés ; aucune modification des protections Windows demandée pour mesurer le résultat.

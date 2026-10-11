@@ -35,3 +35,11 @@ Chaque ZIP contient désormais un LIRE-MOI avec version, commit, empreinte de l�
 L’exécutable est toujours non signé : aucun certificat/service de signature de code n’est disponible. Le LIRE-MOI distingue SmartScreen, qui peut proposer « Informations complémentaires → Exécuter quand même », des protections qui ne proposent pas cette option. Aucune désactivation globale de la sécurité n’est demandée.
 
 Livraison `lab-2d171c7` : ZIP publié téléchargé, empreintes ZIP/EXE et intégrité vérifiées ; LIRE-MOI versionné et nom fixe confirmés. Le répertoire de certificats Authenticode de l’exécutable est vide, conformément au statut non signé. Le build précédent a été signalé bloqué par Windows : aucune nouvelle exécution Windows validée ici.
+
+## Essai portable gratuit — EXE et PCK séparés
+
+Le nouveau ZIP contient `Archelys-Laboratoire.exe` et `Archelys-Laboratoire.pck`. Décompresser entièrement et conserver les deux fichiers dans le même dossier. L’EXE est identique octet pour octet au template officiel Godot 4.6.3 Windows x86_64 release : export sans pack incorporé et sans personnalisation des ressources Windows. Le packager refuse un EXE différent du template installé et ajoute les notices Godot. Le jeu et les sauvegardes ne changent pas.
+
+Premier test demandé : lancer normalement, sans modifier les protections Windows. Si le Contrôle intelligent bloque encore, signaler ce résultat ; ne pas poursuivre les tests en jeu. Si le jeu démarre, les tests caméra/dialogue/langue/save/duel du LIRE-MOI s’appliquent. Ce conditionnement ne fournit aucune signature de confiance. Le moteur peut rester identique entre mises à jour de données, mais changera si sa version ou ses options changent.
+
+Contrôles locaux : intégrité ZIP et empreintes EXE/PCK ; EXE identique au template vérifié ; lancement du PCK exporté avec le moteur Godot Linux de même version et capture réelle OpenGL. Ce dernier test valide le chargement des ressources, pas l’exécution de l’EXE sous Windows ni une autorisation par le Contrôle intelligent. Aucun nouveau test multijoueur.

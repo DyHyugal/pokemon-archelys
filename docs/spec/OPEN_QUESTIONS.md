@@ -33,3 +33,5 @@ Plongée/île sous-marine : étude de coût, décision d’ajout après proposit
 Signature demandée : certificat de signature de code/service de signature autorisé non disponible. Conserver un build clairement non signé et les instructions de diagnostic dans le LIRE-MOI ; ne pas créer un certificat auto-signé présenté comme une solution de confiance. Cela bloque la signature demandée, pas la préparation du ZIP et des tests.
 
 Étude disponible : `docs/development/SIGNATURE_WINDOWS_ET_OPTIONS_GRATUITES.md`. SignPath Foundation gratuit sous conditions, Store MSIX gratuit après acceptation, export Web proposé pour les tests. Aucun choix de licence, candidature ni achat réalisé. Microsoft Artifact Signing Public Trust ne prend actuellement en charge les particuliers que dans USA/Canada ; vérifier résidence/statut avant toute souscription.
+
+Le propriétaire demande un essai gratuit non signé (D41). Une variante moteur Godot non modifié + PCK séparé est préparée ; son lancement avec Contrôle intelligent actif attend le retour Windows. Elle ne tranche pas la signature de la distribution finale.

@@ -8,11 +8,25 @@ Exécutable : Archelys-Laboratoire.exe — nom fixe pour toutes les versions.
 Signature éditeur : absente. L'empreinte SHA256 ci-dessous contrôle l'intégrité,
 mais ne constitue pas une signature numérique reconnue par Windows.
 SHA256 de l'exécutable : {exe_sha256}
+SHA256 des données PCK : {pck_sha256}
 
 INSTALLATION ET BLOCAGE WINDOWS
 Décompresser entièrement le ZIP dans un dossier, puis ouvrir
 Archelys-Laboratoire.exe. Aucune installation de Godot n'est nécessaire.
 Il s'agit d'un prototype Windows 64 bits, pas d'une ROM.
+Cette variante portable contient un moteur Godot non modifié et un fichier
+Archelys-Laboratoire.pck séparé contenant le jeu. Garder les deux fichiers
+dans le même dossier ; ne pas lancer l'EXE depuis l'intérieur du ZIP.
+Aucune signature reconnue ni autorisation Windows n'est ajoutée.
+Le Contrôle intelligent des applications peut donc encore bloquer le lancement.
+
+PREMIER TEST DE CETTE LIVRAISON
+Essayer d'abord de lancer normalement Archelys-Laboratoire.exe, sans modifier
+les réglages de sécurité Windows. Si Windows le bloque encore, noter simplement
+« lancement bloqué par le Contrôle intelligent » : les tests en jeu attendront.
+S'il démarre, vérifier les tests ci-dessous. Cette variante change uniquement
+l'emballage du jeu, pas ses mécaniques. La sauvegarde Windows reste compatible.
+
 
 Si l'écran indique « Windows a protégé votre ordinateur » et propose
 « Informations complémentaires », cliquer dessus puis « Exécuter quand même »
@@ -34,8 +48,9 @@ Caméra rapprochée (taille 16 au lieu de 22) avec suivi du personnage et curseu
 de distance. PNJ guide près du départ, dialogue manuel en français ou anglais.
 Déplacement suspendu pendant le dialogue. Combat factice en duel solo.
 Anciennes commandes réseau masquées : le multijoueur est reporté.
-Cette livraison ajoute surtout ce LIRE-MOI détaillé ; elle ne modifie pas
-les systèmes de jeu de la précédente suite solo lab-b52bd14.
+Cette livraison sépare le moteur et les données, pour conserver le même
+exécutable lors des mises à jour de contenu à moteur/export identiques.
+Elle ne modifie pas les systèmes de jeu de la suite solo lab-b52bd14.
 
 TESTS À FAIRE SUR CETTE VERSION
 
@@ -96,3 +111,7 @@ Pour restaurer : fermer le jeu, préserver la save actuelle, puis copier
 la backup vers le nom laboratory_campaign.json.
 Décors et mannequin provisoires ; aucun Pokémon officiel ni scénario final.
 La direction artistique ne doit pas être jugée comme une île terminée.
+
+NOTICES DU MOTEUR
+Godot 4.6.3, licence MIT ; notices incluses dans Godot-LICENSE.txt et
+Godot-COPYRIGHT.txt (sources officielles du tag 4.6.3-stable).
