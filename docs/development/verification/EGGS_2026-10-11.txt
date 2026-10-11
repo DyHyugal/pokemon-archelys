@@ -23,3 +23,10 @@ ALL PROTOTYPE CHECKS PASSED
 
 Export Windows Godot4.6.3 réussi. Exécution native Windows non réalisée.
 Limites : incubateur indépendant, cadeaux uniques, durée20m provisoires ; reproduction/fossiles non implémentés.
+
+Livraison source bd216d3d7ecee6249ebcb274c8048d8a1ba6e4d9
+CI GitHub observée Success : https://github.com/DyHyugal/pokemon-archelys/actions/runs/38169572784
+Assets ZIP et SHA256SUMS publiés vérifiés :
+https://github.com/DyHyugal/pokemon-archelys/releases/download/lab-bd216d3/Archelys-Laboratoire-Windows.zip
+ZIP local :396 fichiers,76 436 191octets, testzip sans erreur, README incubateur et commit exact vérifiés.
+Dernière validation propriétaire D52 ; aucune validation Windows du lot œufs encore reçue.

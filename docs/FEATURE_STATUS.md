@@ -106,3 +106,5 @@ Livraison D56 : lab-5e8ed1b publiée, CI38168553600 réussie.36 contrôles Node,
 ## Bloc12 — première partie acquisitions solo
 
 Cadeaux d'œufs/incubation/éclosion : implémentés dans un incubateur de laboratoire séparé de l'équipe. Caractéristiques fixées à la réception selon N40, sauvegarde JSON et anciennes campagnes compatibles, aucune identité dupliquée à l'éclosion.18 assertions spécifiques plus suite complète requise. Reproduction et fossiles **restent à développer**. Validation Windows **attendue**, aucune validation implicite par D57.
+
+Livraison bloc12 première partie : [lab-bd216d3](https://github.com/DyHyugal/pokemon-archelys/releases/tag/lab-bd216d3), CI verte. Preuve : `docs/development/verification/EGGS_2026-10-11.txt`. Le README embarque les tests groupés œufs + Showdown ; EXE toujours `Archelys-Laboratoire.exe`.
