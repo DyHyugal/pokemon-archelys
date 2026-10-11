@@ -539,6 +539,7 @@ func _process(_delta: float) -> void:
 func _track_encounters(position_now: Vector3) -> void:
 	var distance: float=position_now.distance_to(last_walk_position)
 	last_walk_position=position_now
+	Session.campaign.adventure.nursery.walk(distance,Session.active_network or pause_menu.visible or dialogue.active or battle_panel.visible or cinematic.active or pokemon_battle.active)
 	if Session.campaign.adventure.exploration.location!="village" or Session.active_network or pause_menu.visible or dialogue.active or battle_panel.visible or cinematic.active or distance>1.0:return
 	if position_now.x>=-9 and position_now.x<=-3 and position_now.z>=-7 and position_now.z<=-4:
 		Session.campaign.adventure.encounter_steps+=distance

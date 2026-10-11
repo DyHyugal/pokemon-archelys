@@ -149,3 +149,9 @@ Provenance : demande propriétaire du 11 octobre 2026 d'étudier une base solide
 ## D56 — intégration Showdown approuvée
 
 Provenance : demande explicite du propriétaire, « procède à l'intégration de showdown pour la partie combat et intéraction des attaques etc.. »,11 octobre2026. Adopter Showdown pour les combats Pokémon et interactions, conserver Godot pour aventure/présentation et les règles de campagne. D55 n'est plus un choix moteur ouvert. Pas de portage de code Tactica, pas de nouveau périmètre réseau/raids/défis/catalogue final. Runtime local portable et notices obligatoires ; sauvegardes5 préservées. Un lot de test Windows groupé avec même nom d'EXE et consignes embarquées. Rapport d'implémentation : `docs/development/INTEGRATION_SHOWDOWN.md`. Cette autorisation ne constitue pas encore une validation Windows de l'intégration.
+
+## D57 — continuation des blocs solo
+
+Provenance : demande propriétaire « ok je te laisse continuer sur les blocs alors »,11 octobre2026. Poursuite autorisée ; aucune nouvelle validation Windows déduite. D52 reste la dernière validation reçue. Bloc12 acquisitions, première partie : cadeaux d'œufs, incubation par déplacement et éclosion, sauvegarde comprise. N40 impose de fixer les caractéristiques à la création de l'œuf.
+
+Paramètres purement techniques de laboratoire : trois cadeaux uniques (starters1G déjà autorisés comme fixtures), incubateur séparé de l'équipe,20m de marche et éclosion confirmée dans le menu. Aucun choix des starters finaux, distribution narrative ou durée officielle. La reproduction, héritages/compatibilités et restauration des fossiles ne sont pas implémentés dans cette partie. Nuzlocke/Soul-link et réseau restent reportés.

@@ -119,3 +119,20 @@ func render_choices() -> void:
 			var text: String=t("Emplacement libre","Empty slot") if slot==mon.moves.size() else name_of(mon.moves[slot].id)
 			menu.button(menu.body,t("Remplacer : ","Replace: ")+text,func():adventure.resolve_choice(0,target);refresh())
 	menu.button(menu.body,t("Refuser ce choix","Decline this choice"),func():adventure.resolve_choice(0,-1);refresh())
+
+func render_nursery() -> void:
+	menu.label(t("Incubateur de laboratoire : cadeaux uniques, durée courte d'essai. Les œufs ne sont pas dans l'équipe de combat.","Laboratory incubator: one-time gifts, short test duration. Eggs are separate from the battle party."))
+	for id: String in adventure.nursery.GIFTS:
+		var species_id: String=id
+		if id not in adventure.nursery.received:
+			menu.button(menu.body,t("Recevoir un œuf de %s","Receive a %s egg") % name_of(id),func():
+				adventure.nursery.receive(adventure,species_id);refresh())
+	for egg: Dictionary in adventure.nursery.eggs:
+		var uid: int=int(egg.mon.uid)
+		menu.label(t("Œuf #%d • Marche restante : %.1f m","Egg #%d • Walking remaining: %.1f m") % [uid,egg.remaining])
+		if egg.remaining<=0:
+			menu.button(menu.body,t("Faire éclore #%d","Hatch #%d") % uid,func():
+				var result: String=adventure.nursery.hatch(adventure,uid)
+				refresh()
+				menu.feedback.text=t("Éclosion → %s","Hatched → %s") % result if result in ["team","pc"] else t("Équipe et PC pleins : l'œuf est conservé.","Party and PC full: egg retained."))
+	menu.label(t("Marche dans le monde puis reviens ici. Le Pokédex est mis à jour à l'éclosion. Sauvegarde possible à chaque étape.","Walk in the world, then return here. The Pokédex updates on hatching. You can save at every stage."))

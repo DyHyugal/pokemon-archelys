@@ -12,6 +12,7 @@ steps=[(['godot','--headless','--path',str(root/'game'),'--editor','--import','-
        ([env['ARCHELYS_NODE_BIN'],str(root/'combat/showdown/tests.cjs')],'SHOWDOWN ADAPTER:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/showdown_integration.gd'],'SHOWDOWN INTEGRATION:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/run_tests.gd'],'ARCHÉLYS TESTS: 19 checks, 0 failures'),
+       (['godot','--headless','--path',str(root/'game'),'--script','res://tests/nursery_systems.gd'],'NURSERY SYSTEMS: 18 checks, 0 failures'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/solo_systems.gd'],'SOLO SYSTEMS: 18 checks, 0 failures'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/dialogue_tests.gd'],'DIALOGUE TESTS: 6 checks, 0 failures'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/pokemon_systems.gd'],'POKEMON SYSTEMS: 71 checks, 0 failures'),

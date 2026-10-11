@@ -1,4 +1,4 @@
-ARCHÉLYS — LABORATOIRE SHOWDOWN
+ARCHÉLYS — LABORATOIRE ŒUFS + SHOWDOWN
 Version : lab-{short_commit}
 Commit : {commit}
 
@@ -18,6 +18,11 @@ Si le simulateur est indisponible ou plante, le combat est refusé/annulé ;
 la campagne est restaurée. Il n'y a pas de moteur de secours silencieux.
 
 CE QUI CHANGE
+Nouveau menu Œufs / Incubateur : trois cadeaux uniques, incubation par marche
+et éclosion confirmée vers équipe ou PC. Caractéristiques fixées à réception.
+Incubateur séparé de l’équipe et durée20m sont des paramètres d’essai, pas les
+règles finales de reproduction. Reproduction et fossiles restent à développer.
+
 Les combats Pokémon simples et doubles utilisent maintenant Showdown, avec
 les règles9G et les Méga historiques. Attaques, dégâts, priorités, précision,
 statuts, talents, objets tenus, climats et terrains sont résolus par ce moteur.
@@ -34,6 +39,16 @@ avec poseur/bénéficiaire/renouvellement ; ce n'est pas encore l'IA finale.
 Multi, raids, Nuzlocke et Soul-link restent reportés.
 
 PARCOURS DE TEST GROUPÉ
+
+Dans le menu Œufs / Incubateur, recevoir un œuf puis fermer le menu et marcher
+hors des herbes pour éviter les combats. Revenir au menu : la marche restante
+doit diminuer. Sauvegarder à mi-parcours, quitter et charger : même avancement.
+Le temps passé dans les menus, dialogues ou combats ne doit pas incuber.
+Après20m, confirmer l’éclosion : un Pokémon niveau1 apparaît dans l’équipe ou
+le PC, avec les caractéristiques conservées ; aucun second cadeau de la même
+espèce ni seconde éclosion possible. Vérifier résumé/Pokédex puis sauvegarder
+et recharger. Essayer également le menu en anglais. Aucun œuf ne combat.
+
 
 Commencer par lancer normalement le jeu depuis le dossier extrait. Charger
 une sauvegarde existante et vérifier équipe, sac, langue et réglages de caméra.

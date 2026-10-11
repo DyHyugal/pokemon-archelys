@@ -85,3 +85,7 @@ La suite des interactions maison prévue après D54 est à réexaminer : l'[étu
 ### D56 : migration autorisée et exécutée
 
 D56 valide explicitement la base Showdown. Lot : adaptateur asynchrone et format, raccordement simple/double, parité des parcours solo et sauvegardes, runtime Windows portable. Les mécaniques nouvelles de combat doivent désormais s'appuyer sur ce moteur ; ne plus étendre les calculs maison. Après playtest de ce lot : approfondir IA et présentation, puis contenus/catalogue selon les choix propriétaires, sans rouvrir le chantier réseau ou les modes reportés.
+
+### D57 — bloc12 acquisitions, partie œufs
+
+Réception unique de cadeaux d'essai → incubation persistée par marche effective → confirmation d'éclosion → équipe ou PC. L'incubateur séparé protège l'interface Showdown des entités non combattantes. Paramètres temporaires documentés, pas comportement final des œufs de l'équipe. Ensuite : reproduction/héritage avec données biologiques sourcées, puis fossiles avec petit catalogue technique et restauration transactionnelle. Pas de développement multi/défis pendant ce lot.

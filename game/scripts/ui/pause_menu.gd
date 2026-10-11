@@ -101,10 +101,10 @@ func render() -> void:
 	clear(navigation); clear(body); buttons.clear()
 	var pages := ["home","bag","journal","settings"]
 	if adventure!=null:
-		pages.append_array(["team","pc","choices","map","services","rules","dex","cinema","saves"])
+		pages.append_array(["team","pc","choices","map","services","rules","dex","cinema","saves","nursery"])
 		adventure_pages.adventure=adventure
 	var names := [tr_text("Pause","Pause"),tr_text("Sac","Bag"),tr_text("Journal","Journal"),tr_text("Paramètres","Settings")]
-	if adventure!=null:names.append_array([tr_text("Équipe / Résumé","Party / Summary"),"PC",tr_text("Apprentissages (%d)","Learning (%d)") % adventure.pending.size(),tr_text("Carte / Vol","Map / Fly"),tr_text("Vie quotidienne","Daily services"),tr_text("Règles / Difficulté","Rules / Difficulty"),"Pokédex",tr_text("Cinématiques","Cinematics"),tr_text("Sauvegardes","Save slots")])
+	if adventure!=null:names.append_array([tr_text("Équipe / Résumé","Party / Summary"),"PC",tr_text("Apprentissages (%d)","Learning (%d)") % adventure.pending.size(),tr_text("Carte / Vol","Map / Fly"),tr_text("Vie quotidienne","Daily services"),tr_text("Règles / Difficulté","Rules / Difficulty"),"Pokédex",tr_text("Cinématiques","Cinematics"),tr_text("Sauvegardes","Save slots"),tr_text("Œufs / Incubateur","Eggs / Incubator")])
 	for index: int in range(pages.size()):
 		var target: String=pages[index]
 		buttons[target]=button(navigation,names[index],func(): page=target; feedback.text=""; render())
@@ -138,6 +138,8 @@ E / Enter: interact in the world"))
 			adventure_pages.render(page)
 		"map","services","rules":exploration_pages.render(page)
 		"dex","cinema","saves":collection_pages.render(page)
+		"nursery":
+			adventure_pages.render_nursery()
 		"journal":
 			label(tr_text("Objectifs du laboratoire", "Laboratory objectives"))
 			var ids := ["guide","sign","crate"]

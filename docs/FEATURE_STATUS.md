@@ -102,3 +102,7 @@ D55, état historique avant D56 : Showdown **FAISABILITÉ TESTÉE, NON INTÉGRÉ
 **DÉVELOPPÉ ET TESTÉ LOCALEMENT, WINDOWS À VALIDER** : combats Pokémon jouables simples/doubles raccordés au simulateur local, états de campagne et PP préservés, runtime portable, panne avec restauration ; [rapport](development/INTEGRATION_SHOWDOWN.md). Format9G + Méga, catalogue17/42 conservé. IA à vues limitées intégrée, stratégie experte encore incomplète. Ancien moteur seulement en comparaison ; aucun code Tactica importé. Réseau/raids/défis restent reportés.
 
 Livraison D56 : lab-5e8ed1b publiée, CI38168553600 réussie.36 contrôles Node,33 Godot et parcours de scènes réussis. Windows propriétaire toujours à valider ; D52 reste la dernière validation reçue.
+
+## Bloc12 — première partie acquisitions solo
+
+Cadeaux d'œufs/incubation/éclosion : implémentés dans un incubateur de laboratoire séparé de l'équipe. Caractéristiques fixées à la réception selon N40, sauvegarde JSON et anciennes campagnes compatibles, aucune identité dupliquée à l'éclosion.18 assertions spécifiques plus suite complète requise. Reproduction et fossiles **restent à développer**. Validation Windows **attendue**, aucune validation implicite par D57.

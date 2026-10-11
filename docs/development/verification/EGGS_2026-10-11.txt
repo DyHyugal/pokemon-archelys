@@ -1,0 +1,25 @@
+Bloc12 — œufs, première partie acquisitions solo
+Date : 11 octobre2026
+Commande : ARCHELYS_RUNTIME_ROOT=/workspace/.archelys-runtime PATH=/workspace/.archelys-runtime/bin:$PATH python tools/check_prototype.py
+Résultat : succès, y compris18 assertions incubation/JSON/identités/capacité/UI FR-EN.
+
+SHOWDOWN ADAPTER: 36 checks, 0 failures
+SHOWDOWN INTEGRATION: 33 checks, 0 failures
+ARCHÉLYS TESTS: 19 checks, 0 failures
+NURSERY SYSTEMS: 18 checks, 0 failures
+SOLO SYSTEMS: 18 checks, 0 failures
+DIALOGUE TESTS: 6 checks, 0 failures
+POKEMON SYSTEMS: 71 checks, 0 failures
+EXPLORATION COMBAT: 70 checks, 0 failures
+COLLECTION SYSTEMS: 32 checks, 0 failures
+COLLECTION SCENE: 27 checks, 0 failures
+COMFORT SYSTEMS: 21 checks, 0 failures
+COMFORT SCENE: 26 checks, 0 failures
+TACTICS SYSTEMS: 46 checks, 0 failures
+TACTICS SCENE: 24 checks, 0 failures
+GLB IMPORT: 7 bones, 1 animation(s), playback exercised
+SCENE SMOKE: avatar, input, authoritative movement, closer following camera, NPC/manual dialogue/movement lock, solo battle UI, preference persistence, single crate reward, inventory/journal save/load, real bag details, pause navigation, modal movement/interaction lock and persistent settings controls exercised
+ALL PROTOTYPE CHECKS PASSED
+
+Export Windows Godot4.6.3 réussi. Exécution native Windows non réalisée.
+Limites : incubateur indépendant, cadeaux uniques, durée20m provisoires ; reproduction/fossiles non implémentés.

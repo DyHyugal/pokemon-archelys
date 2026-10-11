@@ -3,6 +3,8 @@ const Mon=preload("res://scripts/domain/pokemon.gd")
 const Catalog=preload("res://scripts/domain/pokemon_catalog.gd")
 const Exploration=preload("res://scripts/domain/exploration.gd")
 const Records=preload("res://scripts/domain/journey_records.gd")
+const Nursery=preload("res://scripts/domain/nursery.gd")
+var nursery:=Nursery.new()
 var records:=Records.new()
 var exploration:=Exploration.new()
 var team: Array=[]
@@ -134,9 +136,10 @@ func wild(level: int=-1, species_id: String="") -> Dictionary:
 	mon.nature=Mon.NATURES[rng.randi_range(0,24)];mon.hp=Mon.stats(mon).hp
 	return mon
 func snapshot() -> Dictionary:
-	return {"records":records.snapshot(),"team":team.duplicate(true),"boxes":boxes.duplicate(true),"bag":bag.duplicate(true),"next_uid":next_uid,"cap":cap,"money":money,"victories":victories.duplicate(true),"pending":pending.duplicate(true),"initialized":initialized,"exploration":exploration.snapshot()}
+	return {"nursery":nursery.snapshot(),"records":records.snapshot(),"team":team.duplicate(true),"boxes":boxes.duplicate(true),"bag":bag.duplicate(true),"next_uid":next_uid,"cap":cap,"money":money,"victories":victories.duplicate(true),"pending":pending.duplicate(true),"initialized":initialized,"exploration":exploration.snapshot()}
 static func validate(value: Variant) -> bool:
 	if not value is Dictionary:return false
+	if value.has("nursery") and not Nursery.validate(value.nursery):return false
 	if value.has("records") and not Records.validate(value.records):return false
 	if value.has("exploration") and not Exploration.validate(value.exploration):return false
 	if not value.get("initialized") is bool or not value.get("team") is Array or not value.get("boxes") is Array or not value.get("bag") is Dictionary or not value.get("pending") is Array or not value.get("victories") is Dictionary:return false
@@ -147,6 +150,11 @@ static func validate(value: Variant) -> bool:
 	for mon: Variant in value.team+value.boxes:
 		if not Mon.validate(mon) or mon.uid in ids or mon.uid>=value.next_uid:return false
 		ids.append(mon.uid)
+	var egg_ids: Array=[]
+	if value.has("nursery"):
+		for egg: Dictionary in value.nursery.eggs:
+			if egg.mon.uid in ids or egg.mon.uid in egg_ids or egg.mon.uid>=value.next_uid:return false
+			egg_ids.append(egg.mon.uid)
 	for key: Variant in value.bag:
 		if not key is String or not Catalog.data().items.has(key) or not Mon.integer(value.bag[key],0,999):return false
 	for key: Variant in value.victories:
@@ -174,6 +182,8 @@ static func validate(value: Variant) -> bool:
 	return true
 func restore(value: Dictionary) -> bool:
 	if not validate(value):return false
+	nursery=Nursery.new()
+	if value.has("nursery"):nursery.restore(value.nursery)
 	records=Records.new()
 	if value.has("records"):records.restore(value.records)
 	exploration=Exploration.new()
