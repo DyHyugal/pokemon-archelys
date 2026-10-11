@@ -29,3 +29,5 @@ Ne pas publier de secrets ni supposer une licence à partir de la gratuité d’
 Exports Windows ZIP/exe pour les tests ; ce projet ne produit pas une ROM. Ne pas annoncer une configuration minimale ou une compatibilité réseau sans mesure. Préserver les sauvegardes originales avant migration. Godot 4.6.3 et Blender 4.3.2 servent au laboratoire ; choix final du moteur après essais. Exécuter tools/check_prototype.py pour le socle, sans présenter ses résultats comme validation 9G ou Internet.
 
 Chaque build Windows garde le nom `Archelys-Laboratoire.exe`. Actualiser `docs/development/LIRE_MOI_WINDOWS.txt` avec les changements et tests owner de ce build ; le packager y injecte version/commit/empreinte. Ne pas annoncer un build signé sans signature Authenticode vérifiée ; hash et signature Git ne sont pas une signature Windows.
+
+D43 : regrouper les fonctionnalités et les playtests manuels en lots cohérents, avec un parcours complet dans le LIRE-MOI. Les contrôles automatisés restent requis par lot ; ne pas solliciter le propriétaire après chaque petite modification. D42 confirme le lancement sans avertissement de lab-477caad sur son PC uniquement.

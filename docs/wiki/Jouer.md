@@ -1,6 +1,6 @@
 # Jouer au laboratoire technique
 
-Une [prerelease Windows de laboratoire](https://github.com/DyHyugal/pokemon-archelys/releases/tag/lab-477caad) est disponible. [Télécharger le ZIP](https://github.com/DyHyugal/pokemon-archelys/releases/download/lab-477caad/Archelys-Laboratoire-Windows.zip), le décompresser entièrement et ouvrir Archelys-Laboratoire.exe ; aucune installation de Godot n’est nécessaire.
+Une [prerelease Windows de laboratoire](https://github.com/DyHyugal/pokemon-archelys/releases/tag/lab-e84ee99) est disponible. [Télécharger le ZIP](https://github.com/DyHyugal/pokemon-archelys/releases/download/lab-e84ee99/Archelys-Laboratoire-Windows.zip), le décompresser entièrement et ouvrir Archelys-Laboratoire.exe ; aucune installation de Godot n’est nécessaire.
 
 Il s’agit d’un essai de faisabilité avec décors et mannequin provisoires. Aucun Pokémon final ni histoire n’est disponible ; le premier build a été essayé avec succès sous Windows par le propriétaire. Chaque build suivant reste à tester. Ce n’est pas la démo de la première île ni une validation du rendu final.
 
@@ -15,3 +15,5 @@ Cette suite solo ajoute une caméra rapprochée avec réglage de distance et un 
 Le nom `Archelys-Laboratoire.exe` reste fixe. Chaque ZIP inclut un LIRE-MOI indiquant sa version, les changements, les tests précis et les résultats attendus. L’exécutable demeure non signé : aucune identité/certificat de signature de code n’est configuré ; les possibilités de lancement dépendent du message de protection affiché par Windows.
 
 Cette livraison est une variante portable gratuite : décompresser entièrement le ZIP et conserver `Archelys-Laboratoire.exe` et `Archelys-Laboratoire.pck` ensemble. Le moteur est l’exécutable officiel Godot non modifié ; il reste non signé et le Contrôle intelligent peut encore le bloquer. Le premier test consiste à lancer normalement sans modifier les protections Windows, puis à suivre le LIRE-MOI si le jeu démarre.
+
+Le lot actuel ajoute les préférences langue/caméra persistantes, un panneau et une caisse de test, un journal et un jeton sauvegardés. Le propriétaire a validé le moteur portable précédent sous Windows ; celui-ci reste identique. Les changements du lot attendent son retour. Le LIRE-MOI contient un parcours de test regroupé et les explications de migration/copie de l’ancienne sauvegarde.
