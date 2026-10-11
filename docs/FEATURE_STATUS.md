@@ -82,3 +82,5 @@ Livraison D51 : [lab-04a2317](https://github.com/DyHyugal/pokemon-archelys/relea
 Retour explicite Windows : **Pokédex, cinématique/galerie, emplacements/autosave et Méga validés** sur lab-04a2317. Ne plus présenter leur fonctionnement comme en attente. Leur portée de laboratoire et la validation artistique séparée demeurent.
 
 Bloc10 développé : touches clavier reconfigurables avec refus des conflits et retour Échap permanent ; volumes Général/Musique/Effets réels avec calibration originale ; texte16/20/24 et préférences locales conservées indépendamment de la campagne5. Test technique réalisé, **nouvelle validation Windows attendue**, pas de musique finale ni manette/accessibilité exhaustive. [Rapport](development/LOT_CONFORT.md).
+
+Livraison bloc10 : [lab-d9b3d8d](https://github.com/DyHyugal/pokemon-archelys/releases/tag/lab-d9b3d8d), CI verte/ZIP vérifié.46nouveaux contrôles réussis (21services,25scène), suite antérieure également réussie. Test Windows ciblé du confort attendu ; aucune attente répétée sur les fonctionnalités déjà validées par D52.

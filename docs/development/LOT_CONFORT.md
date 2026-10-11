@@ -23,3 +23,9 @@ Nouveaux tests :21 assertions de service sur persistance/conflits/réserves/sons
 Le contrôle du PCK exporté et les captures en texte24 complètent le parcours automatisé. Aucun test Nuzlocke/Soul-link/multi. La validation Windows de ce bloc reste attendue ; les anciens systèmes et la Méga ont déjà reçu D52.
 
 Preuves : [journal des contrôles](validation/comfort-checks.log), [volumes](validation/comfort-settings.png), [touches](validation/comfort-keys.png), [dialogue24](validation/comfort-dialogue.png), [combat24](validation/comfort-battle.png), [cinématique24](validation/comfort-cinematic.png). Suite obligatoire réussie :237 assertions de domaine,25 nouveaux contrôles de scène et les parcours précédents. Rendu du PCK exporté inspecté sous Linux/Mesa ; écoute et lancement Windows attendent le propriétaire. Aucun changement de schéma, migration ou dépendance dans ce bloc.
+
+## Livraison vérifiée
+
+Source `d9b3d8d1c6a6ee8077f952676eaf202bd93ae651`, préversion [lab-d9b3d8d](https://github.com/DyHyugal/pokemon-archelys/releases/tag/lab-d9b3d8d). [CI réussie](https://github.com/DyHyugal/pokemon-archelys/actions/runs/38160154219),47secondes. ZIP public téléchargé : CRC, SHA256, manifeste/commit, empreintes EXE/PCK, LIRE-MOI ciblé et notice audio contrôlés. EXE officiel inchangé ; pas de nouvelle signature ni fusion automatique.
+
+[Télécharger Windows](https://github.com/DyHyugal/pokemon-archelys/releases/download/lab-d9b3d8d/Archelys-Laboratoire-Windows.zip). SHA256 ZIP : `f10f7a9f33e374d0d4295fe879540e5ce49cdf0239ba42ba0ab560a30a6cd4a3`. Essai Windows et écoute du bloc confort restent au propriétaire ; D52 valide déjà les anciens blocs et la Méga.
