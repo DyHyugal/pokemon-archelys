@@ -15,10 +15,10 @@ Les statuts portent sur les preuves, pas sur l’enthousiasme ou la présence da
 | Sauvegardes et migration | SOLO SCHÉMA 4 TESTÉ | Équipe/PC/sac/progression/choix, lecture v1/v2/v3 et copies originales ; réseau reporté |
 | Soul-link | DEMANDÉ | C28 ; règles précises ouvertes |
 | Région et scénario | EN CADRAGE | Thèmes et synopsis, pas de maps |
-| Résumé IV/EV/natures/PC | DÉVELOPPÉ ET TESTÉ LOCALEMENT | Lot D47 : valeurs réelles, validation IV/EV/nature, PC, équipement ; test Windows attendu |
+| Résumé IV/EV/natures/PC | SOCLE VALIDÉ WINDOWS | lab-2816c71, D48 ; extensions CT/talents/Méga du nouveau lot à retester |
 | Actions terrain | LABORATOIRE DÉVELOPPÉ ET TESTÉ | Obstacles/collisions, Surf, Escalade et Vol carte ; déblocages provisoires, Flash sans grotte à tester |
 | Wiki joueurs | PRÉPARÉ LOCAL | Rubriques documentaires ; non publié |
-| Exports Windows | PREMIER BUILD VALIDÉ WINDOWS | Owner : lab-09897ca lancement/fluidité/déplacement/save/combat OK ; nouveau build à retester |
+| Exports Windows | PORTABLE VALIDÉ JUSQU’À lab-2816c71 | Nouveau lab-58819aa exporté/publié/vérifié ; validation owner attendue |
 | FR/EN complets | DEMANDÉ | C25 |
 | Réponses Q01–Q16 | TRANSCRITES | Classeur et JSON conservés ; décisions D22–D33 |
 | Scénario complet et casting | PROPOSÉS | Documents V0.1, approbation owner attendue |
@@ -38,9 +38,9 @@ Priorité D36 : solo d’abord ; réseau, copies/imports de campagnes et Soul-li
 
 Retour propriétaire D44 : lab-e84ee99 validé, excepté l'absence d'un menu Sac. Le nouveau bloc fournit Pause, Sac (jeton/quantité/description ou sac vide), Journal, Paramètres FR/EN et distance caméra persistante, sauvegarde/chargement. Outils laboratoire cachés par défaut. Développement et vérification technique du bloc ; validation Windows et visuelle du nouveau build encore attendue. Pas de contenu ou combat Pokémon final.
 
-## Boucle Pokémon solo regroupée
+## Historique — boucle Pokémon solo regroupée
 
-Menus lab-d33e5ee validés par le propriétaire (D46). Lot D47 : équipe/PC, résumé/IV/EV/natures, équipement et rappel, combat solo, rencontres/capture, EXP/apprentissages/évolutions/caps et stockage schéma 3 développés dans le laboratoire. Catalogue de 13 espèces/27 attaques, pas les 500 entrées finales. Contrôles de domaine et parcours UI exécutés ; validation Windows du nouveau lot attendue. Le moteur n'est pas un simulateur 9G exhaustif : arrondis exacts, capture critique/modificateurs spécifiques, catalogue complet, terrains/climats, Méga/doubles et IA difficile restent à implémenter/vérifier. [Portée exacte](development/LOT_BOUCLE_POKEMON_SOLO.md).
+Menus lab-d33e5ee validés par le propriétaire (D46). Lot D47 : équipe/PC, résumé/IV/EV/natures, équipement et rappel, combat solo, rencontres/capture, EXP/apprentissages/évolutions/caps et stockage schéma 3 développés dans le laboratoire. Catalogue de 13 espèces/27 attaques, pas les 500 entrées finales. Contrôles de domaine et parcours UI exécutés, puis validation Windows reçue (D48). À ce stade du lot D47, le moteur n'était pas un simulateur 9G exhaustif : arrondis exacts, capture critique/modificateurs spécifiques, catalogue complet, terrains/climats, Méga/doubles et IA difficile restent à implémenter/vérifier. [Portée exacte](development/LOT_BOUCLE_POKEMON_SOLO.md).
 
 ## Lot D49 — après validation de lab-2816c71
 
@@ -60,3 +60,5 @@ Les équipes/combat/capture de D47 sont désormais **validés Windows par le pro
 | Musique / personnalisation / cinématiques | Spécifiées, pas développées dans ce lot |
 
 [Rapport de portée et preuves](development/LOT_EXPLORATION_REGLES_VISUELS.md).
+
+Livraison D49 : [lab-58819aa](https://github.com/DyHyugal/pokemon-archelys/releases/tag/lab-58819aa), CI verte,184assertions et parcours de scènes réussis, ZIP publié/PCK vérifiés ; nouveau test Windows et comparatifs artistiques attendent le propriétaire. Les fonctionnalités limitées/reportées restent indiquées dans le tableau et le rapport.

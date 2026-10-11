@@ -33,3 +33,9 @@ Schéma **4**, lecture 1/2/3 ; conservation originale `.vN.backup` au premier re
 184 assertions de domaine exécutées (114 antérieures + 70 du lot), import du mannequin et trois parcours de scène réels (`pokemon_scene`, `exploration_scene`, `scene_smoke`). Contrôles de migration3→4, transactions refusées sans perte, caps réactivés, données cachées ne modifiant pas l'IA, poseurs/climats/champs/KO, Méga unique et nettoyée, Nuzlocke avec PC, tours doubles et collisions. `tools/check_prototype.py` exécute ces contrôles et échoue aussi sur les erreurs de script/absence de marqueur. Validation Windows **du nouveau build attendue** ; ni les résultats locaux ni la CI ne la remplacent.
 
 Même EXE officiel portable, PCK séparé. Catalogue figé sous notice PokéAPI BSD ; export ZIP/README par build. Les anciennes captures/documents du lot D47 décrivent ce build antérieur, pas les limites actuelles.
+
+## Livraison vérifiée
+
+Source `58819aa2b58bfd40da1d48ce0c28eb5c5fda5f38`, [release lab-58819aa](https://github.com/DyHyugal/pokemon-archelys/releases/tag/lab-58819aa). [CI 38146377159](https://github.com/DyHyugal/pokemon-archelys/actions/runs/38146377159) : succès, 43 s (validation27 s, publication11 s). Export local et PCK exporté rendus sous Godot/Linux ; PCK publié téléchargé et lancé/rendu également, sans erreur de script. Windows du propriétaire reste à retester.
+
+ZIP publié re-téléchargé : SHA256 conforme au fichier de sommes, CRC de chaque entrée valide, manifest au commit source, hashes EXE/PCK cohérents. EXE identique à la version portable déjà validée par le propriétaire ; SHA256 `91724f15024a3a545e28ccd83134403d31ce2323a38e51c95e4dfa282f732ab6`. Présence des trois PNG FHD, licences, LIRE-MOI du lot et Excel17questions avec colonne « Ta réponse » contrôlée. Sources poussées sur l'unique branche de travail existante `docs/cadrage-valide` ; aucune fusion automatique vers develop/main.

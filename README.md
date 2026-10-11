@@ -23,3 +23,5 @@ Le [laboratoire et son bilan](https://github.com/DyHyugal/pokemon-archelys/blob/
 Le [bloc menus solo](docs/development/LOT_MENUS_SOLO.md) présente le Sac, le Journal et les Paramètres, dont la distance de caméra conservée entre lancements.
 
 Le [lot regroupé de boucle Pokémon solo](docs/development/LOT_BOUCLE_POKEMON_SOLO.md) relie équipe/PC, combat, rencontres, capture et progression sur un catalogue provisoire, avec un parcours de test unique dans le ZIP.
+
+Le [nouveau lot exploration/règles/comparatifs](https://github.com/DyHyugal/pokemon-archelys/blob/docs/cadrage-valide/docs/development/LOT_EXPLORATION_REGLES_VISUELS.md) est disponible en [ZIP Windows lab-58819aa](https://github.com/DyHyugal/pokemon-archelys/releases/download/lab-58819aa/Archelys-Laboratoire-Windows.zip). LIRE-MOI contient un seul parcours de test ; dossiers Comparatifs et Documentation contiennent trois rendus FHD, propositions de noms/divinités (SPOILERS DEV) et Excel des questions restantes avec colonne réponse. Le prototype ne constitue pas l'aventure finale ou une direction artistique approuvée.
