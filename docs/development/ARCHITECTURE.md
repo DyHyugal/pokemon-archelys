@@ -57,3 +57,13 @@ Snapshot campagne schéma 3 : versions 1/2 encore lues ; original `.vN.backup` p
 `Exploration` porte lieu/visites, obstacles, difficulté/cap/EXP/shiny, quotas et morts du défi ; `SoloAdventure` l'agrège et gère les transactions. `BattleField` sépare horloges météo/terrain ; `DoubleBattle` réutilise les attaques de `PokemonBattle` en conservant les états volatils par acteur et une queue globale. `ExplorationPages` présente les services/carte/règles ; `VisualDistrict` contient uniquement le comparatif original, jamais un choix artistique implicite. Campagne schéma4 lit1/2/3 et sauvegarde leurs originaux. Aucun modèle réseau nouveau.
 
 La priorité de développement est toujours le solo ; les commandes doubles sont celles de deux membres du joueur, pas un protocole coop. La conversion en production nécessitera des cartes/déblocages scénaristiques et un simulateur enrichi pour les attaques de zone/raids. [Portée précise du lot](LOT_EXPLORATION_REGLES_VISUELS.md).
+
+## Lot D51 : découvertes, timeline et persistance solo
+
+`JourneyRecords` appartient à `SoloAdventure`. Il suit les espèces vues/obtenues et scènes terminées sans lire les équipes ennemies cachées. `PokemonBattle.enter_field` couvre les entrées simples/doubles ; acquisition et évolutions enregistrent les obtentions. Les bases sauvages et plafond pêche sont partagés dans `PokemonCatalog`, pour que `habitats` n'utilise pas une liste indépendante divergente.
+
+`Cinematic` ne contient que l'état d'une timeline manuelle et lit les cadrages/textes de `data/cinematics/laboratory.json`. `CinematicPanel` émet avance/passage ; le monde gère le tween caméra, masque/restaure le HUD, bloque menu/mouvement/interactions/combat/save et restaure la distance initiale. Pas de rewards ni modification de progression dans ces scènes techniques.
+
+`SaveSlots` compose `SaveStore` et sépare trois manuelles de trois autos. Slot1 = chemin historique. Les préférences de slot/autosave ne contiennent pas de campagne. Les écritures temporaires sont relues/validées ; backup roulante pour fichier valide, original par ancien schéma, archive d'un original invalide si explicitement remplacé. L'autosave utilise l'horloge monotone réelle, attend un contexte sûr et compare à son état de référence pour éviter les écritures inutiles. Aucun autosave d'un combat partiel.
+
+Campagne schéma5 exige les découvertes/scènes, lit1/2/3/4 et reconstruit uniquement les espèces possédées quand l'historique est absent. Pas d'invention de rencontres passées. `CollectionPages` présente Pokédex/galerie/slots ; domaine et services restent indépendants de l'UI et aucune API réseau de production n'est ajoutée.

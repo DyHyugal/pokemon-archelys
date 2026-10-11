@@ -326,6 +326,7 @@ func mega(side: int) -> bool:
 	mega_used[side]=true;current(side).battle_form=Catalog.data().mega_forms[current(side).item].duplicate(true)
 	say("%s méga-évolue !" % title(current(side)),"%s Mega Evolved!" % title(current(side),"en"));enter_field(side);return true
 func enter_field(side: int) -> void:
+	if side==1:adventure.records.observe(current(1).species)
 	if ability(side)=="intimidate":stage_change(1-side,"attack",-1)
 	match ability(side):
 		"drought":field.set_weather("sun");say("Sécheresse : soleil.","Drought: sunlight.")

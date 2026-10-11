@@ -2,6 +2,11 @@ extends CanvasLayer
 ## Presentation only: campaign and preferences remain owned by services.
 const AdventurePages=preload("res://scripts/ui/adventure_pages.gd")
 const ExplorationPages=preload("res://scripts/ui/exploration_pages.gd")
+const CollectionPages=preload("res://scripts/ui/collection_pages.gd")
+var collection_pages: RefCounted
+var slots: RefCounted
+signal scene_requested(id: String,replay: bool)
+signal slot_requested(action: String,slot: int)
 var exploration_pages: RefCounted
 signal travel_requested(target: String,flight: bool)
 var adventure: RefCounted
@@ -32,6 +37,7 @@ var buttons: Dictionary = {}
 func _ready() -> void:
 	adventure_pages=AdventurePages.new(self)
 	exploration_pages=ExplorationPages.new(self)
+	collection_pages=CollectionPages.new(self)
 	layer = 10
 	var shade := ColorRect.new()
 	shade.color = Color(0.025, 0.045, 0.075, 0.88)
@@ -88,10 +94,10 @@ func render() -> void:
 	clear(navigation); clear(body); buttons.clear()
 	var pages := ["home","bag","journal","settings"]
 	if adventure!=null:
-		pages.append_array(["team","pc","choices","map","services","rules"])
+		pages.append_array(["team","pc","choices","map","services","rules","dex","cinema","saves"])
 		adventure_pages.adventure=adventure
 	var names := [tr_text("Pause","Pause"),tr_text("Sac","Bag"),tr_text("Journal","Journal"),tr_text("Paramètres","Settings")]
-	if adventure!=null:names.append_array([tr_text("Équipe / Résumé","Party / Summary"),"PC",tr_text("Apprentissages (%d)","Learning (%d)") % adventure.pending.size(),tr_text("Carte / Vol","Map / Fly"),tr_text("Vie quotidienne","Daily services"),tr_text("Règles / Difficulté","Rules / Difficulty")])
+	if adventure!=null:names.append_array([tr_text("Équipe / Résumé","Party / Summary"),"PC",tr_text("Apprentissages (%d)","Learning (%d)") % adventure.pending.size(),tr_text("Carte / Vol","Map / Fly"),tr_text("Vie quotidienne","Daily services"),tr_text("Règles / Difficulté","Rules / Difficulty"),"Pokédex",tr_text("Cinématiques","Cinematics"),tr_text("Sauvegardes","Save slots")])
 	for index: int in range(pages.size()):
 		var target: String=pages[index]
 		buttons[target]=button(navigation,names[index],func(): page=target; feedback.text=""; render())
@@ -124,6 +130,7 @@ E / Enter: interact in the world"))
 		"team", "pc", "choices":
 			adventure_pages.render(page)
 		"map","services","rules":exploration_pages.render(page)
+		"dex","cinema","saves":collection_pages.render(page)
 		"journal":
 			label(tr_text("Objectifs du laboratoire", "Laboratory objectives"))
 			var ids := ["guide","sign","crate"]

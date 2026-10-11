@@ -57,3 +57,11 @@ Assembler les menus solo autour des services existants : Pause, Sac, Journal et 
 ### D47 : les trois premiers blocs sont réunis
 
 Équipe/résumé/PC → moteur solo → rencontre/capture/progression sont les étapes internes d'un seul lot, avec un build et un parcours owner à sa fin. Premier catalogue provisoire pour éprouver la boucle avant extension. Les systèmes avancés, correction des limites de fidélité 9G, graphique représentatif et décisions produit restantes demeurent explicites dans le rapport.
+
+### D51 : blocs 7 à 9 regroupés, suite solo indépendante du test Méga
+
+7. Pokédex : historiques vu/obtenu, filtres, fiches et habitats issus des rencontres légales du laboratoire ; catalogue final toujours attendu.
+8. Mise en scène : timeline de caméra/texte FR/EN, verrouillage des commandes de jeu, distinction scène principale non passable / secondaire passable, galerie de replay. Aucune scène du scénario final produite.
+9. Persistance : trois emplacements solo, préférence du slot actif, autosave distincte, récupération explicite de la sauvegarde précédente, migration avec originaux préservés.
+
+Ces trois blocs forment un seul build et un seul parcours de test. Le correctif Méga y reste inclus. Mapping de production, assets finaux, personnalisation/audio/commandes, reproduction/fossiles et extension des interactions de combat restent ensuite à planifier dans les règles approuvées ; réseau et modes défi reportés. La suite ne constitue pas une annonce de fin du moteur ou du jeu.

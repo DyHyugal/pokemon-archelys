@@ -41,17 +41,18 @@ func advance() -> bool:
 
 func snapshot() -> Dictionary:
 	# Network IDs are transient; persistence is prototype-only.
-	return {"schema": 4, "adventure": adventure.snapshot(), "laboratory": laboratory.snapshot(), "participants": participant_count, "progress": progress,
+	return {"schema": 5, "adventure": adventure.snapshot(), "laboratory": laboratory.snapshot(), "participants": participant_count, "progress": progress,
 		"level_cap": level_cap, "players": players.duplicate(true)}
 
 static func validate(data: Dictionary) -> bool:
-	if data.get("schema") != 1 and data.get("schema") != 2 and data.get("schema") != 3 and data.get("schema") != 4:
+	if data.get("schema") != 1 and data.get("schema") != 2 and data.get("schema") != 3 and data.get("schema") != 4 and data.get("schema") != 5:
 		return false
 	if data.get("schema") >= 2 and not LabProgress.validate(data.get("laboratory")):
 		return false
 	if data.get("schema") >= 3 and not Adventure.validate(data.get("adventure")):
 		return false
-	if data.get("schema")==4 and not data.adventure.has("exploration"):return false
+	if data.get("schema")>=4 and not data.adventure.has("exploration"):return false
+	if data.get("schema")==5 and not data.adventure.has("records"):return false
 	for key: String in ["participants", "progress", "level_cap"]:
 		if not data.has(key) or not (data[key] is int or data[key] is float):
 			return false

@@ -2,6 +2,8 @@ extends RefCounted
 const Mon=preload("res://scripts/domain/pokemon.gd")
 const Catalog=preload("res://scripts/domain/pokemon_catalog.gd")
 const Exploration=preload("res://scripts/domain/exploration.gd")
+const Records=preload("res://scripts/domain/journey_records.gd")
+var records:=Records.new()
 var exploration:=Exploration.new()
 var team: Array=[]
 var boxes: Array=[]
@@ -26,6 +28,7 @@ func add(mon: Dictionary) -> String:
 	if not Mon.validate(mon) or team.size()+boxes.size()>=246:return "full"
 	for owned: Dictionary in team+boxes:
 		if int(owned.uid)==int(mon.uid):return "duplicate"
+	records.observe(mon.species,true)
 	next_uid=maxi(next_uid,int(mon.uid)+1)
 	if team.size()<6:team.append(mon);return "team"
 	boxes.append(mon);return "pc"
@@ -66,6 +69,7 @@ func use(item: String, uid: int) -> bool:
 	elif item=="paralyze-heal" and mon.status=="paralysis":mon.status="";mon.status_turns=0
 	elif item in ["thunder-stone","fire-stone"] and Catalog.species(mon.species).get("evolution",{}).get("item")==item:
 		Mon.evolve(mon,Catalog.species(mon.species).evolution.target)
+		records.observe(mon.species,true)
 	else:return false
 	bag[item]-=1;return true
 func edit(uid: int, iv: Array, ev: Array, nature: String) -> bool:
@@ -108,6 +112,7 @@ func resolve_choice(index: int, slot: int) -> bool:
 	if choice.kind=="evolution":
 		if slot==0:
 			Mon.evolve(mon,choice.target)
+			records.observe(mon.species,true)
 			var next: Dictionary=Catalog.species(mon.species).get("evolution",{})
 			if next.has("level") and mon.level>=next.level:pending.append({"kind":"evolution","uid":mon.uid,"target":next.target})
 		elif slot!=-1:return false
@@ -122,16 +127,17 @@ func resolve_choice(index: int, slot: int) -> bool:
 	pending.remove_at(index);return true
 func wild(level: int=-1, species_id: String="") -> Dictionary:
 	if level<0:level=rng.randi_range(maxi(2,cap-4),cap)
-	if species_id.is_empty():species_id=["rattata","pikachu","bulbasaur","charmander","squirtle"][rng.randi_range(0,4)]
+	if species_id.is_empty():species_id=Catalog.WILD_BASES[rng.randi_range(0,Catalog.WILD_BASES.size()-1)]
 	var mon:=Mon.make(Catalog.legal_species(species_id,level),level,next_uid)
 	for i: int in range(6):mon.iv[i]=rng.randi_range(0,31)
 	mon.shiny=rng.randi_range(1,exploration.shiny_odds)==1
 	mon.nature=Mon.NATURES[rng.randi_range(0,24)];mon.hp=Mon.stats(mon).hp
 	return mon
 func snapshot() -> Dictionary:
-	return {"team":team.duplicate(true),"boxes":boxes.duplicate(true),"bag":bag.duplicate(true),"next_uid":next_uid,"cap":cap,"money":money,"victories":victories.duplicate(true),"pending":pending.duplicate(true),"initialized":initialized,"exploration":exploration.snapshot()}
+	return {"records":records.snapshot(),"team":team.duplicate(true),"boxes":boxes.duplicate(true),"bag":bag.duplicate(true),"next_uid":next_uid,"cap":cap,"money":money,"victories":victories.duplicate(true),"pending":pending.duplicate(true),"initialized":initialized,"exploration":exploration.snapshot()}
 static func validate(value: Variant) -> bool:
 	if not value is Dictionary:return false
+	if value.has("records") and not Records.validate(value.records):return false
 	if value.has("exploration") and not Exploration.validate(value.exploration):return false
 	if not value.get("initialized") is bool or not value.get("team") is Array or not value.get("boxes") is Array or not value.get("bag") is Dictionary or not value.get("pending") is Array or not value.get("victories") is Dictionary:return false
 	if value.team.size()>6 or value.boxes.size()>240 or not Mon.integer(value.get("next_uid"),1,1000000) or not Mon.integer(value.get("cap"),10,100) or not Mon.integer(value.get("money"),0,999999):return false
@@ -168,11 +174,14 @@ static func validate(value: Variant) -> bool:
 	return true
 func restore(value: Dictionary) -> bool:
 	if not validate(value):return false
+	records=Records.new()
+	if value.has("records"):records.restore(value.records)
 	exploration=Exploration.new()
 	if value.has("exploration"):exploration.restore(value.exploration)
 	team=[];boxes=[];bag={}
 	for mon: Dictionary in value.team:team.append(Mon.normalize(mon))
 	for mon: Dictionary in value.boxes:boxes.append(Mon.normalize(mon))
+	for mon: Dictionary in team+boxes:records.observe(mon.species,true)
 	for key: String in value.bag:bag[key]=int(value.bag[key])
 	next_uid=int(value.next_uid);cap=int(value.cap);money=int(value.money);victories=value.victories.duplicate(true);pending=value.pending.duplicate(true);initialized=value.initialized
 	for choice: Dictionary in pending:choice.uid=int(choice.uid)

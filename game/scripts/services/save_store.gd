@@ -20,6 +20,11 @@ static func write_snapshot(path: String, data: Dictionary) -> Error:
 	read_back.close()
 	if parse_error != OK or not parsed is Dictionary or not Campaign.validate(parsed):
 		return ERR_INVALID_DATA
+	if FileAccess.file_exists(path) and read_snapshot(path).is_empty():
+		# Never discard corrupt or unsupported originals during recovery.
+		var preserved: String=path+".invalid-%d-%d.backup" % [Time.get_unix_time_from_system(),Time.get_ticks_usec()]
+		var preserve_error:=DirAccess.copy_absolute(path,preserved)
+		if preserve_error!=OK:return preserve_error
 	if FileAccess.file_exists(path) and not read_snapshot(path).is_empty():
 		# Preserve each original schema once, separately from rolling backups.
 		var previous: int=int(read_snapshot(path).schema)

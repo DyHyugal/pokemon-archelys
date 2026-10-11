@@ -3,8 +3,21 @@ extends Node3D
 const PokemonBattle=preload("res://scripts/domain/pokemon_battle.gd")
 const DoubleBattle=preload("res://scripts/domain/double_battle.gd")
 const BattlePanel=preload("res://scripts/ui/pokemon_battle_panel.gd")
+const Catalog=preload("res://scripts/domain/pokemon_catalog.gd")
 const Mon=preload("res://scripts/domain/pokemon.gd")
 const VisualDistrict=preload("res://scripts/world/visual_district.gd")
+const SaveSlots=preload("res://scripts/services/save_slots.gd")
+const Cinematic=preload("res://scripts/domain/cinematic.gd")
+const CinematicPanel=preload("res://scripts/ui/cinematic_panel.gd")
+var slots:=SaveSlots.new()
+var cinematic:=Cinematic.new()
+var cinematic_panel: CanvasLayer
+var gameplay_layer: CanvasLayer
+var cinematic_hud_visible: bool=true
+var cinematic_zoom: float=16
+var shot_tween: Tween
+var last_auto_tick: int=0
+var auto_baseline: String=""
 var world_geometry: Node3D
 var visual_variant: int=0
 var displayed_location: String=""
@@ -57,6 +70,7 @@ func _ready() -> void:
 	_build_world()
 	_build_ui()
 	_start_battle()
+	last_auto_tick=Time.get_ticks_msec();auto_baseline=JSON.stringify(Session.campaign.snapshot())
 	for id: String in TARGETS:
 		interaction_records[id] = JSON.parse_string(FileAccess.get_file_as_string("res://data/dialogues/laboratory_%s.json" % id))
 	dialogue_record = interaction_records.guide
@@ -176,7 +190,7 @@ func _build_world() -> void:
 	crate_mesh = _box(Vector3(1.2,0.8,1.2),TARGETS.crate+Vector3(0,0.4,0),Color("be895a"))
 
 func _build_ui() -> void:
-	var layer:=CanvasLayer.new();add_child(layer)
+	var layer:=CanvasLayer.new();add_child(layer);gameplay_layer=layer
 	var panel:=PanelContainer.new();panel.position=Vector2(16,16);panel.custom_minimum_size=Vector2(430,0);layer.add_child(panel)
 	debug_panel=panel
 	panel.visible=false
@@ -230,7 +244,12 @@ func _build_ui() -> void:
 	journal_text=Label.new();journal_text.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;journal_text.custom_minimum_size.x=400;overview_stack.add_child(journal_text)
 	inventory_text=Label.new();overview_stack.add_child(inventory_text)
 	overview.visible=false
-	pause_menu=PauseMenu.new();add_child(pause_menu)
+	pause_menu=PauseMenu.new();pause_menu.slots=slots;add_child(pause_menu)
+	pause_menu.slot_requested.connect(_slot_action)
+	pause_menu.scene_requested.connect(_play_scene)
+	cinematic_panel=CinematicPanel.new();add_child(cinematic_panel)
+	cinematic_panel.advance_requested.connect(_next_shot)
+	cinematic_panel.skip_requested.connect(_skip_scene)
 	pause_menu.language_changed.connect(func(value: String):_set_locale(value);_sync_menu())
 	pause_menu.camera_changed.connect(func(value: float):camera.size=value;_persist_preferences())
 	pause_menu.save_requested.connect(func():_save();pause_menu.feedback.text=message.text)
@@ -263,22 +282,67 @@ func _persist_preferences() -> void:
 		message.text="Préférences : %s" % error_string(error)
 
 func _save() -> void:
-	if pokemon_battle.active:return
+	if pokemon_battle.active or cinematic.active:return
 	if not multiplayer.is_server():
 		message.text="La sauvegarde de campagne appartient à l’hôte.";return
-	message.text="Sauvegarde : %s" % error_string(Store.write_snapshot(SAVE_PATH,Session.campaign.snapshot()))
+	message.text="Sauvegarde : %s" % error_string(slots.write(Session.campaign.snapshot()))
 
 func _load() -> void:
-	if pokemon_battle.active:return
-	if Session.active_network:
-		message.text="Chargement réseau non implémenté ; aucun état écrasé.";return
-	var value:=Store.read_snapshot(SAVE_PATH)
-	if not value.is_empty() and (int(value.get("participants",1)) != 1 or value.get("players",{}).size() != 1):
-		message.text="Campagne coop : import non implémenté, solo inchangé.";return
-	message.text="Chargée" if Session.campaign.restore(value) else "Sauvegarde absente/invalide ; partie intacte."
-	Session.campaign.adventure.initialize()
-	Session.latest=Session.campaign.snapshot()
-	last_walk_position=_local_position()
+	_slot_action("load",slots.active)
+
+func _slot_action(action: String,slot: int) -> void:
+	if action not in ["save","new","load","auto","backup"]:return
+	if Session.active_network or pokemon_battle.active or cinematic.active or dialogue.active:return
+	var value: Dictionary={}
+	if action in ["load","auto","backup"]:
+		value=slots.read(slot,action=="auto",action=="backup")
+		if value.is_empty():message.text="Sauvegarde absente/invalide ; partie intacte. / Save absent/invalid; game unchanged.";pause_menu.feedback.text=message.text;return
+	if slot<1 or slot>3:return
+	# Switch only after a valid read. Restore validates before mutating campaign.
+	if action in ["load","auto","backup"] and not CampaignModel.validate(value):return
+	var error: int=slots.select(slot)
+	if error!=OK:message.text=error_string(error);pause_menu.feedback.text=message.text;return
+	if action=="save":_save()
+	elif action=="new":
+		Session.campaign=CampaignModel.new();Session.campaign.add_player(1,"Solo");Session.campaign.adventure.initialize();message.text="Nouvelle partie en mémoire / New game in memory"
+	elif action in ["load","auto","backup"]:
+		Session.campaign.restore(value);Session.campaign.adventure.initialize();message.text="Chargée" if locale=="fr" else "Loaded"
+	else:return
+	Session.submit_axis(Vector2.ZERO);Session.latest=Session.campaign.snapshot();last_walk_position=_local_position()
+	last_auto_tick=Time.get_ticks_msec();auto_baseline=JSON.stringify(Session.campaign.snapshot())
+	_sync_menu();pause_menu.feedback.text=message.text
+
+func _autosave_if_safe(force: bool=false) -> void:
+	if not slots.autosave or Session.active_network or pokemon_battle.active or battle_panel.visible or cinematic.active or dialogue.active or pause_menu.visible:return
+	var now:=Time.get_ticks_msec()
+	if not force and now-last_auto_tick<60000:return
+	last_auto_tick=now
+	var value: Dictionary=Session.campaign.snapshot();var serialized:=JSON.stringify(value)
+	if serialized==auto_baseline:return
+	var error: int=slots.write(value,true)
+	if error==OK:auto_baseline=serialized;message.text="Autosauvegarde · %d / Autosaved" % slots.active
+	else:message.text="Autosauvegarde / Autosave : %s" % error_string(error)
+
+func _play_scene(id: String,replay: bool=false) -> void:
+	if Session.active_network or pokemon_battle.active or dialogue.active or cinematic.active or Session.campaign.adventure.exploration.location!="village":return
+	if not cinematic.begin(id,Session.campaign.adventure.records,replay):return
+	cinematic_zoom=camera.size;cinematic_hud_visible=gameplay_layer.visible;gameplay_layer.hide();pause_menu.close();Session.submit_axis(Vector2.ZERO);_render_shot()
+func _render_shot() -> void:
+	cinematic_panel.render(cinematic,locale)
+	if not cinematic.active:
+		if shot_tween:shot_tween.kill()
+		gameplay_layer.visible=cinematic_hud_visible;camera.size=cinematic_zoom;last_walk_position=_local_position();_open_menu("cinema");return
+	var shot: Dictionary=cinematic.current();var point: Array=shot.focus;var focus:=Vector3(point[0],point[1],point[2])
+	if shot_tween:shot_tween.kill()
+	shot_tween=create_tween().set_parallel(true)
+	shot_tween.tween_property(camera,"position",focus+CAMERA_OFFSET,0.6)
+	shot_tween.tween_property(camera,"size",float(shot.size),0.6)
+	# Camera offset remains constant, so the existing orientation matches every shot.
+func _next_shot() -> void:
+	if not cinematic.active:return
+	cinematic.advance();_render_shot()
+func _skip_scene() -> void:
+	if cinematic.skip():_render_shot()
 
 func _start_battle() -> void:
 	battle.begin({
@@ -305,12 +369,15 @@ func _sync_menu() -> void:
 	pause_menu.sync(locale,camera.size,Session.campaign.laboratory)
 
 func _open_menu(page: String = "home") -> void:
-	if dialogue.active or battle_panel.visible: return
+	if dialogue.active or battle_panel.visible or cinematic.active: return
 	Session.submit_axis(Vector2.ZERO)
 	_sync_menu()
 	pause_menu.open(page)
 
 func _input(event: InputEvent) -> void:
+	if cinematic.active:
+		if cinematic_panel.handle_key(event):get_viewport().set_input_as_handled()
+		return
 	if battle_panel.visible:
 		if battle_panel.handle_key(event):get_viewport().set_input_as_handled()
 		return
@@ -343,7 +410,7 @@ func _nearest_interaction() -> String:
 	return nearest
 
 func _open_interaction(id: String) -> bool:
-	if pokemon_battle.active or pause_menu.visible:return false
+	if pokemon_battle.active or pause_menu.visible or cinematic.active:return false
 	if _contextual_action(id):return false
 	if id=="healing":
 		Session.campaign.adventure.heal_team();message.text="Équipe soignée / Party healed";return false
@@ -358,7 +425,7 @@ func _open_interaction(id: String) -> bool:
 	return dialogue.begin(record,locale)
 
 func _unhandled_key_input(event: InputEvent) -> void:
-	if battle_panel.visible or pause_menu.visible or not event is InputEventKey or not event.pressed or event.echo:
+	if cinematic.active or battle_panel.visible or pause_menu.visible or not event is InputEventKey or not event.pressed or event.echo:
 		return
 	if event.keycode not in [KEY_A, KEY_E, KEY_ENTER]:
 		return
@@ -430,11 +497,12 @@ func _process(_delta: float) -> void:
 	if Input.is_physical_key_pressed(KEY_D) or Input.is_physical_key_pressed(KEY_RIGHT):axis.x+=1
 	if Input.is_physical_key_pressed(KEY_W) or Input.is_physical_key_pressed(KEY_Z) or Input.is_physical_key_pressed(KEY_UP):axis.y-=1
 	if Input.is_physical_key_pressed(KEY_S) or Input.is_physical_key_pressed(KEY_DOWN):axis.y+=1
-	if battle_panel.visible or pause_menu.visible or dialogue.active or get_viewport().gui_get_focus_owner() is LineEdit:axis=Vector2.ZERO
+	if battle_panel.visible or pause_menu.visible or dialogue.active or cinematic.active or get_viewport().gui_get_focus_owner() is LineEdit:axis=Vector2.ZERO
 	var focus := _local_position()
-	camera.position = focus + CAMERA_OFFSET
-	camera.look_at(focus)
-	interaction_hint.text = ("E / Entrée : interagir" if locale=="fr" else "E / Enter: interact") if not _nearest_interaction().is_empty() and not dialogue.active and not pause_menu.visible and not battle_panel.visible else ""
+	if not cinematic.active:
+		camera.position = focus + CAMERA_OFFSET
+		camera.look_at(focus)
+	interaction_hint.text = ("E / Entrée : interagir" if locale=="fr" else "E / Enter: interact") if not _nearest_interaction().is_empty() and not dialogue.active and not pause_menu.visible and not battle_panel.visible and not cinematic.active else ""
 	_update_overview()
 	_track_encounters(focus)
 	if battle_panel.visible:axis=Vector2.ZERO
@@ -442,12 +510,13 @@ func _process(_delta: float) -> void:
 	if displayed_location!="village":exploration_help.text="%s • E / Entrée : interaction • Échap : menu" % displayed_location
 	menu_button.text="Menu • Échap" if locale=="fr" else "Menu • Esc"
 	Session.submit_axis(axis)
+	_autosave_if_safe()
 	status.text="Joueurs %d/%d • étape %d • cap factice %d" % [players.size(),value.get("participants",1),value.get("progress",0),value.get("level_cap",10)]
 
 func _track_encounters(position_now: Vector3) -> void:
 	var distance: float=position_now.distance_to(last_walk_position)
 	last_walk_position=position_now
-	if Session.campaign.adventure.exploration.location!="village" or Session.active_network or pause_menu.visible or dialogue.active or battle_panel.visible or distance>1.0:return
+	if Session.campaign.adventure.exploration.location!="village" or Session.active_network or pause_menu.visible or dialogue.active or battle_panel.visible or cinematic.active or distance>1.0:return
 	if position_now.x>=-9 and position_now.x<=-3 and position_now.z>=-7 and position_now.z<=-4:
 		Session.campaign.adventure.encounter_steps+=distance
 		if Session.campaign.adventure.encounter_steps>=3.5:
@@ -464,7 +533,7 @@ func _begin_trainer(id: String) -> void:
 	_begin_pokemon_battle(opponents,id)
 
 func _begin_pokemon_battle(opponents: Array,trainer_id: String="") -> bool:
-	if dialogue.active or pause_menu.visible or Session.active_network:return false
+	if dialogue.active or pause_menu.visible or cinematic.active or Session.active_network:return false
 	pokemon_battle=PokemonBattle.new()
 	if not pokemon_battle.begin(Session.campaign.adventure,opponents,trainer_id):return false
 	Session.submit_axis(Vector2.ZERO)
@@ -481,7 +550,7 @@ func _battle_finished(outcome: String) -> void:
 	if not Session.campaign.adventure.pending.is_empty():_open_menu("choices")
 
 func _travel(target: String,flight: bool=false) -> void:
-	if Session.active_network or pokemon_battle.active:return
+	if Session.active_network or pokemon_battle.active or cinematic.active or dialogue.active:return
 	if not Session.campaign.adventure.travel(target,flight):
 		message.text="Destination non visitée / Vol non débloqué";return
 	Session.campaign.players[1].position=[0.0,0.0,5.0]
@@ -499,7 +568,7 @@ func _contextual_action(id: String) -> bool:
 		"exit":_travel("village")
 		"counter":_open_menu("services")
 		"nurse":owner.heal_team();message.text="Soins terminés / Party healed"
-		"fish":_begin_pokemon_battle([owner.wild(mini(owner.cap,20),"magikarp")])
+		"fish":_begin_pokemon_battle([owner.wild(mini(owner.cap,Catalog.FISH_MAX_LEVEL),Catalog.FISH_BASE)])
 		"surf":
 			if owner.exploration.field_unlocked("surf",owner.victories):owner.exploration.cleared.surf=true;message.text="Surf sans Pokémon compatible / Surf without compatible Pokémon";Session.campaign.players[1].position=[4.0,0.0,-4.0];Session.latest=Session.campaign.snapshot()
 			else:message.text="Surf : vaincre le dresseur 1 d'abord / Defeat trainer 1 first"
@@ -536,7 +605,7 @@ func _rebuild_location() -> void:
 		var hint:=Label3D.new();hint.text=id;hint.position=World.local_points(displayed_location)[id]+Vector3(0,1.2,0);hint.font_size=26;hint.pixel_size=0.004;world_geometry.add_child(hint)
 
 func _start_support_test(support: String) -> void:
-	if pause_menu.visible or battle_panel.visible or dialogue.active or Session.active_network:return
+	if pause_menu.visible or battle_panel.visible or dialogue.active or cinematic.active or Session.active_network:return
 	var owner: RefCounted=Session.campaign.adventure
 	owner.exploration.difficulty="hard"
 	var opponents: Array=[]
@@ -549,12 +618,12 @@ func _start_support_test(support: String) -> void:
 		# Electric Terrain is a legal reusable Gen IX TM in this test catalogue.
 	_begin_pokemon_battle(opponents,"weather-test" if support=="sun" else "terrain-test")
 func _start_double_test() -> void:
-	if battle_panel.visible or pause_menu.visible or dialogue.active or Session.active_network:return
+	if battle_panel.visible or pause_menu.visible or dialogue.active or cinematic.active or Session.active_network:return
 	pokemon_battle=DoubleBattle.new()
 	if not pokemon_battle.begin(Session.campaign.adventure,[Mon.make("rattata",8,900000),Mon.make("pikachu",8,900001)]):message.text="Deux Pokémon aptes nécessaires / Two ready Pokémon required";return
 	Session.submit_axis(Vector2.ZERO);battle_panel.open(pokemon_battle,locale)
 func _mega_kit() -> void:
-	if battle_panel.visible or pause_menu.visible or dialogue.active:return
+	if battle_panel.visible or pause_menu.visible or dialogue.active or cinematic.active:return
 	var owner: RefCounted=Session.campaign.adventure
 	if owner.exploration.nuzlocke=="on":message.text="Kit technique désactivé pendant le défi";return
 	if owner.grant_mega_kit():message.text="Kit Méga : Pokémon compatibles existants équipés ; pierres aussi dans le sac. Attaquer → cocher Méga. / Existing compatible Pokémon equipped; stones also in Bag. Fight → tick Mega."

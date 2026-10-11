@@ -1,5 +1,8 @@
 extends RefCounted
 ## Read-only, deliberately bounded laboratory catalogue.
+const WILD_BASES=["rattata","pikachu","bulbasaur","charmander","squirtle"]
+const FISH_BASE="magikarp"
+const FISH_MAX_LEVEL=20
 static var cached: Dictionary = {}
 static func data() -> Dictionary:
 	if cached.is_empty(): cached=JSON.parse_string(FileAccess.get_file_as_string("res://data/pokemon/laboratory.json"))

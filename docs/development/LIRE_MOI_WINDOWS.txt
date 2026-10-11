@@ -44,48 +44,111 @@ Une signature reconnue exige un certificat de signature de code ou un service
 de signature autorisé. Aucun n'est configuré pour ce projet actuellement.
 Une signature auto-signée ne suffit pas pour être reconnue sur ton PC.
 
-CORRECTIF APRÈS TON RETOUR SUR lab-58819aa
+BLOCS 7 À 9 REGROUPÉS — POKÉDEX, MISE EN SCÈNE ET SAUVEGARDES
 
-Le reste du lot est confirmé fonctionnel, notamment les actions contextuelles.
-Ce build corrige l'accès Méga : le kit équipe désormais aussi tes Pokémon déjà
-évolués, et n'ajoute pas un nouvel exemplaire d'une espèce déjà possédée.
-Identité, niveau, PV, PP, attaques et réglages conservés. L'ancien objet tenu
-retourne au sac ; une pierre Méga compatible déjà tenue est conservée.
-Une vraie case « Méga-évolution » / « Mega Evolution » est toujours visible
-dans les choix d'attaque, en simple comme en double. Si elle est désactivée,
-son texte explique : espèce sans Méga, pierre manquante/incompatible, Méga déjà
-utilisée ou réservée par l'autre membre du double.
+Les systèmes du lot précédent restent validés par ton retour. Le correctif Méga
+est inclus ici : pas besoin de télécharger séparément lab-0d10428. Le nom EXE
+et la distribution moteur officiel + PCK séparé sont conservés.
+Nuzlocke, Soul-link et multijoueur restent reportés. Aucun test de ces modes.
+Le thème de ville reste retenu ; les assets graphiques ne changent pas ici.
 
-TEST CIBLÉ — PAS BESOIN DE REFAIRE LE LOT VALIDÉ
-Charger ta sauvegarde. Hors combat/menu, F3 → Kit Méga.
-Ton Dracaufeu existant reçoit une Dracaufite Y s'il n'a pas déjà de pierre
-compatible ; Florizarre et Tortank reçoivent leur pierre aussi.
-Placer le Pokémon en tête, entrer en combat, Attaquer → cocher Méga → attaque.
-La transformation doit se produire pendant ce tour. Une seule Méga par combat,
-même après KO. Après combat, forme ordinaire et pierre conservée.
-Sans pierre compatible, la case doit rester visible et expliquer le blocage.
-Relancer le kit ne doit pas ajouter de doublons supplémentaires ni perdre d'objet.
-Équiper une Dracaufite X depuis le résumé permet l'autre forme de Dracaufeu.
-En double, réserver une Méga sur le premier membre empêche une deuxième réservation.
-Aucun changement du format de sauvegarde4 ; les anciennes versions1/2/3 restent lues.
+AVANT DE CHANGER DE PARTIE
+Le jeu démarre dans le laboratoire. « Charger » ouvre la sauvegarde MANUELLE
+de l'emplacement actif. Menu → Sauvegardes permet de charger explicitement
+une manuelle, son précédent fichier .backup, ou une autosauvegarde.
+Charger / nouvelle partie quitte la partie en mémoire SANS l'enregistrer.
+Sauvegarder d'abord si tu veux garder la progression en cours.
+L'emplacement 1 conserve exactement l'ancien laboratory_campaign.json.
+La préférence d'emplacement actif et le choix autosave survivent au lancement.
 
-Nuzlocke/Soul-link reportés à plus tard : aucun test demandé, activation d'un
-nouveau défi retirée du menu. Une partie qui l'avait déjà activé peut toujours
-le désactiver ; ses données ne sont pas supprimées.
-Le thème/type de quartier est retenu ; les images A/B/C restent des prototypes,
-pas des graphismes finaux approuvés. Aucune refonte artistique dans ce correctif.
-Les dossiers Comparatifs et Documentation sont conservés pour consultation.
+POKÉDEX ET LOCALISATIONS
+Dans le menu → Pokédex, les trois espèces de départ sont « obtenues ». Les
+espèces encore inconnues apparaissent en ??? avec les détails désactivés.
+Les filtres Toutes / Vues / Obtenues et les fiches sont accessibles au clic.
+Une rencontre réelle, y compris par pêche, ajoute l'espèce aux vues. Une
+capture, un cadeau du kit ou une évolution ajoute l'espèce aux obtenues ;
+l'ancienne espèce reste enregistrée. Les Pokémon du banc d'un adversaire ne
+sont pas révélés avant leur entrée en combat, contrairement aux deux actifs
+d'un combat double qui sont visibles ensemble.
 
-RETOUR SI TU TESTES CE CORRECTIF
+Sur une fiche connue, vérifier les types et le lieu de rencontre ; les
+statistiques de base et talents apparaissent pour les espèces obtenues.
+Les localisations correspondent au laboratoire et à ses stades légaux selon
+le niveau, pas aux îles définitives. Seules 17 espèces sont présentes : ce
+n'est pas le Pokédex final. Aucun modèle de Pokémon n'est ajouté dans ce lot.
+Passer en anglais permet de vérifier les libellés des nouvelles pages.
+
+CINÉMATIQUES ET GALERIE
+Au village → menu → Cinématiques → Découvrir la visite. C'est une scène
+TECHNIQUE : vues de caméra, bandes de cadrage, textes FR/EN et commandes
+manuelles, pas un épisode de l'histoire d'Archélys. Les éléments d'interface
+habituels sont masqués pendant la scène ; le déplacement et les interactions
+sont bloqués. E / Entrée ou le bouton Suite avance d'un cadrage. Une touche
+maintenue et la vitesse ×4 ne doivent pas passer les phrases automatiquement.
+
+La visite principale n'est pas passable avec Échap. Après ses quatre cadrages,
+la caméra retrouve sa distance et la galerie s'ouvre. « Rejouer » devient
+accessible ; le replay ne donne ni objet ni Pokémon ni progression en plus.
+La scène secondaire, elle, peut être passée par Échap ou le bouton Passer.
+Elle n'est pas rejouable une fois terminée. Les scènes ne se lancent qu'au
+village et les déblocages se conservent dans chaque sauvegarde séparée.
+Les cinématiques animées du scénario, leur musique et assets restent à créer.
+
+TROIS EMPLACEMENTS ET AUTOSAUVEGARDE
+Menu → Sauvegardes indique l'emplacement actif, les fichiers manuels et auto,
+l'heure UTC et le premier Pokémon. Les trois emplacements sont indépendants.
+« Sauvegarder ici » demande confirmation avant d'enregistrer la partie
+actuelle dans cet emplacement et de le rendre actif. « Nouvelle partie ici »
+demande confirmation, démarre en mémoire et conserve les anciens fichiers.
+Enregistrer explicitement ensuite pour remplacer la manuelle précédente.
+Un chargement absent/invalide laisse la partie et l'emplacement actif intacts.
+
+Pour l'essai, garde ta partie dans l'emplacement 1, puis démarre une nouvelle
+partie dans le 2. Vérifie que journal, Pokédex et galerie ont leurs propres
+états ; sauvegarde-la et recharge la manuelle du 1 pour retrouver ta partie.
+Ce parcours suffit, pas besoin de recommencer toute la boucle de combat.
+
+L'autosauvegarde est activée par défaut, désactivable dans cette page. Après
+un changement (déplacement, objet, etc.), elle écrit à une échéance de 60
+secondes RÉELLES au plus tôt ; la vitesse du jeu ne raccourcit pas ce délai.
+Elle attend la fin d'un combat, dialogue, cinématique ou menu. Fermer le menu
+et se déplacer, attendre environ une minute, puis consulter le fichier auto.
+Charger auto doit restituer cet état. La sauvegarde manuelle ne change pas.
+Un état inchangé ne provoque pas d'écriture ; un chargement ne réécrit pas
+immédiatement l'autosauvegarde que tu viens de récupérer.
+
+MÉGA — CORRECTIF À TESTER SI CE N'EST PAS ENCORE FAIT
+F3 → kit Méga équipe les individus compatibles déjà possédés. L'ancien objet
+retourne au sac et une pierre X/Y compatible est conservée si déjà tenue.
+Combat → Attaquer → activer Méga → choisir une attaque. Le contrôle reste
+visible et explique pourquoi il serait indisponible. Une seule Méga par camp,
+avec réservation partagée en double. Forme normale après le combat, pierre
+conservée. Le kit répété ne crée pas de nouveaux doublons d'espèces présentes.
+
+SAUVEGARDES ET COMPATIBILITÉ
+Dossier : %APPDATA%\Godot\app_userdata\Archélys — laboratoire technique\
+Manuelles : laboratory_campaign.json, laboratory_campaign.slot2.json et
+laboratory_campaign.slot3.json. Autos : mêmes noms avec .auto avant .json.
+Préférences de slots : laboratory_campaign.slots.json. Aucune save réseau.
+Le nouveau format5 lit les anciens formats1/2/3/4. Lors du premier écrasement
+manuel d'une ancienne save, ses octets originaux restent dans .v1.backup,
+.v2.backup, .v3.backup ou .v4.backup ; les sauvegardes suivantes conservent
+également le précédent fichier valide en .backup. Un fichier invalide remplacé
+explicitement est préservé dans .invalid-<date>-<compteur>.backup.
+
+La migration ajoute les espèces actuellement possédées au Pokédex ; elle
+n'invente pas l'historique des anciennes rencontres ni des anciennes scènes.
+Retour vers un ancien build non garanti : utiliser l'original .v4.backup dans
+une copie séparée du dossier plutôt que charger format5 dans une ancienne version.
+
+RETOUR GROUPÉ
 Version : lab-{short_commit}
-Kit sur Dracaufeu déjà évolué / ancien objet rendu : OK / problème
-Case Méga, transformation et pierre conservée après combat : OK / problème
-Double et réservation unique : OK / non testé / problème
+Pokédex / filtres / types / localisations : OK / problème
+Visite / avance manuelle / replay / scène secondaire : OK / problème
+Slots séparés / retour à l'ancienne partie : OK / problème
+Autosave séparée / rechargement / désactivation : OK / problème
+Méga (si nouveau test) : OK / non testé / problème
 Autre remarque :
-
-Sauvegardes : %APPDATA%\Godot\app_userdata\Archélys — laboratoire technique\
-Fichier laboratory_campaign.json, format4 ; backup roulante .backup et originaux
-.v1.backup/.v2.backup/.v3.backup. EXE/PCK ensemble, même nom et moteur portable.
 
 NOTICES DU MOTEUR
 Godot 4.6.3, licence MIT ; notices incluses dans Godot-LICENSE.txt et

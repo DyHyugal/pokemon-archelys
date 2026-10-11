@@ -1,0 +1,20 @@
+{
+ "lab-tour": {
+  "names":{"fr":"Visite mise en scène — essai technique","en":"Staged tour — technical test"},
+  "replayable":true,"skippable":false,
+  "steps":[
+   {"focus":[0,0,0],"size":19,"fr":"Une vue d'ensemble du laboratoire. Cette scène vérifie les cadrages ; elle ne raconte pas l'histoire d'Archélys.","en":"An overview of the laboratory. This scene tests camera shots; it does not tell Archelys' story."},
+   {"focus":[-6,0,-5],"size":13,"fr":"Les herbes abritent des rencontres. Les textes attendent une nouvelle pression, même à vitesse élevée.","en":"Wild encounters live in the grass. Text waits for a new press, even at high speed."},
+   {"focus":[7,0,0],"size":15,"fr":"Le village relie les services et les zones d'exploration. Les bâtiments restent des modèles provisoires.","en":"The village connects services and exploration areas. Buildings remain provisional models."},
+   {"focus":[0,0,0],"size":16,"fr":"La visite est terminée. Elle sera disponible dans la galerie ; ton équipe et tes objets restent inchangés.","en":"The tour is over. It will be available in the gallery; your party and items remain unchanged."}
+  ]
+ },
+ "lab-note": {
+  "names":{"fr":"Scène secondaire — essai du passage","en":"Secondary scene — skip test"},
+  "replayable":false,"skippable":true,
+  "steps":[
+   {"focus":[0,0,0],"size":16,"fr":"Une scène secondaire peut être passée avec Échap. Elle n'est pas ajoutée à la galerie de replay.","en":"A secondary scene may be skipped with Escape. It is not added to the replay gallery."},
+   {"focus":[0,0,0],"size":16,"fr":"Fin de cette note de laboratoire.","en":"End of this laboratory note."}
+  ]
+ }
+}

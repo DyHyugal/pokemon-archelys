@@ -121,3 +121,9 @@ Exécution technique de D49 : lot livré `lab-58819aa`, systèmes/services et r�
 D50 — propriétaire : tout le reste fonctionne, notamment les CS ; accès Méga absent même avec kit, correction requise. Nuzlocke/Soul-link non testés et reportés, non prioritaires : aucun nouveau développement ou playtest de ces modes demandé maintenant. Thème/type de ville apprécié ; rendu graphique à retravailler, aucune variante A/B/C ni asset final approuvé. Provenance : retour et capture du 11 octobre 2026.
 
 Correction technique : kit équipe aussi les individus compatibles déjà possédés, conserve leur identité/niveau/PV/PP et remet l'objet précédent au sac ; kit répété ne duplique plus les espèces déjà présentes. Case Méga visible en simple/double avec raison d'indisponibilité. Format de sauvegarde4 et moteur portable inchangés.
+
+## D51 — continuer les lots solo pendant le test Méga
+
+Provenance : conversation du 11 octobre 2026, « ok je teste ça après mais continue les blocs stp ». Le test propriétaire de la Méga reste attendu ; il ne bloque pas les systèmes indépendants. Lot technique suivant regroupé : Pokédex et localisations, cinématiques/galerie, emplacements solo/autosauvegarde. Il réutilise les exigences C25/J5/K5/Q06 et la cadence D43, sans choix implicite du Pokédex final ni validation artistique. Ordre de réalisation choisi techniquement dans le périmètre déjà demandé, pas nouvelle règle de game design. Nuzlocke/Soul-link et réseau restent reportés conformément à D50/D36.
+
+La timeline de laboratoire sert uniquement à vérifier cadrages, avance manuelle, passage des scènes secondaires et replay des cinématiques terminées. Elle n'approuve ni le scénario final ni le casting. Le format5 ajoute l'historique vu/obtenu et des scènes ; lecture1/2/3/4 et conservation des originaux lors des écritures migrées. Trois slots et intervalle autosave60s sont des valeurs d'essai configurables/à éprouver, pas un engagement sur toutes les plateformes.

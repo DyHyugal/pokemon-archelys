@@ -81,7 +81,7 @@ func run()->void:
 		push_error("Save button did not persist");quit(1);return
 	session.campaign.laboratory=session.campaign.LabProgress.new()
 	world._load()
-	if world.message.text != "Chargée":
+	if world.message.text != "Loaded":
 		push_error("Load button did not restore");quit(1);return
 	if session.campaign.laboratory.tokens!=1 or not session.campaign.laboratory.completed.has("guide") or world.locale!="en" or world.camera.size!=14.5:
 		push_error("Load lost inventory, journal or preferences");quit(1);return

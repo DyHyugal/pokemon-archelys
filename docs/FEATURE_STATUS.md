@@ -12,13 +12,13 @@ Les statuts portent sur les preuves, pas sur l’enthousiasme ou la présence da
 | IA difficile | POLITIQUE DE LABORATOIRE TESTÉE | Poseur → bénéficiaire → rappel/second poseur, sans données cachées ; switches défensifs complets non finalisés |
 | Coopération 2/3 | REPORTÉ — ESSAI LOCALHOST CONSERVÉ | Trois processus ENet ; pas d’Internet ni combat réseau |
 | Raids phasés/simultanés | DEMANDÉ | R01 ; règles détaillées ouvertes |
-| Sauvegardes et migration | SOLO SCHÉMA 4 TESTÉ | Équipe/PC/sac/progression/choix, lecture v1/v2/v3 et copies originales ; réseau reporté |
-| Soul-link | DEMANDÉ | C28 ; règles précises ouvertes |
+| Sauvegardes et migration | SOLO SCHÉMA 5 TESTÉ | Slots/autosave/Pokédex/scènes, lecture v1/v2/v3/v4 et copies originales ; réseau reporté |
+| Soul-link | REPORTÉ | D50 : non prioritaire, aucun test Windows acquis |
 | Région et scénario | EN CADRAGE | Thèmes et synopsis, pas de maps |
 | Résumé IV/EV/natures/PC | SOCLE VALIDÉ WINDOWS | lab-2816c71, D48 ; extensions CT/talents/Méga du nouveau lot à retester |
 | Actions terrain | LABORATOIRE DÉVELOPPÉ ET TESTÉ | Obstacles/collisions, Surf, Escalade et Vol carte ; déblocages provisoires, Flash sans grotte à tester |
 | Wiki joueurs | PRÉPARÉ LOCAL | Rubriques documentaires ; non publié |
-| Exports Windows | PORTABLE VALIDÉ JUSQU’À lab-2816c71 | Nouveau lab-58819aa exporté/publié/vérifié ; validation owner attendue |
+| Exports Windows | PORTABLE VALIDÉ JUSQU’À lab-58819aa | Méga et lot D51 : validation owner attendue |
 | FR/EN complets | DEMANDÉ | C25 |
 | Réponses Q01–Q16 | TRANSCRITES | Classeur et JSON conservés ; décisions D22–D33 |
 | Scénario complet et casting | PROPOSÉS | Documents V0.1, approbation owner attendue |
@@ -68,3 +68,9 @@ Livraison D49 : [lab-58819aa](https://github.com/DyHyugal/pokemon-archelys/relea
 lab-58819aa : fonctionnement du reste du lot confirmé Windows par le propriétaire, notamment CS. Méga non accessible dans son parcours : ancien Dracaufeu non équipé par le kit. Correctif développé : équipements des individus existants avec restitution de l'ancien objet, kit sans doublons supplémentaires, vraie case visible et motifs d'indisponibilité en simple/double. Test de scène reproduisant Dracaufeu37/kit/case/attaque et réservation Méga en double. Nouveau build à retester uniquement sur ce correctif.
 
 Nuzlocke/Soul-link : **reportés, non prioritaires et non validés Windows** ; activation d'un nouveau défi retirée du menu de laboratoire, états déjà sauvegardés conservés et désactivation possible pour une ancienne partie. Aucun nouveau travail de règles ni test propriétaire demandé. Graphismes : thème/type de ville apprécié, qualité visuelle et assets finaux non approuvés.
+
+## Lot D51 — blocs 7 à 9 regroupés
+
+Suite autorisée pendant que le correctif Méga reste à tester. Pokédex provisoire vu/obtenu, filtres et localisations légales ; timeline de caméra/texte manuelle FR/EN et galerie de replay ; trois emplacements solo et autosave distincte, récupération backup, migration5 préservant les originaux1/2/3/4. Développés et testés techniquement, **validation Windows propriétaire attendue**. Correctif Méga inclus.
+
+Pas de scénario final ou animation narrative produits, pas de nouveaux assets, catalogue17 espèces inchangé. Les exigences de reproduction/fossiles/personnalisation/audio/commandes et interactions9G non couvertes demeurent à développer. Nuzlocke/Soul-link/multijoueur reportés. [Portée et preuves](development/LOT_COLLECTION_CINEMA_SAVES.md).
