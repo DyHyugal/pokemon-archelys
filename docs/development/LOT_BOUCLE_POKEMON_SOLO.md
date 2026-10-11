@@ -32,3 +32,7 @@ Domaine indépendant du moteur de rendu ; UI émet des commandes. Aucun réseau 
 Les captures Linux logiciel servent à inspecter le rendu ; aucune mesure de GPU Windows ou validation artistique finale. Un seul parcours owner dans le LIRE-MOI. EXE moteur officiel inchangé ; les données PCK changent. Branche de travail poussée, aucune fusion automatique.
 
 Contrôles locaux réussis : [log](validation/pokemon-loop-checks.log). Captures inspectées : [résumé](validation/pokemon-team.png), [combat](validation/pokemon-battle.png), [apprentissage](validation/pokemon-choices.png). Import de données répété avec sources figées et empreintes vérifiées.
+
+## Livraison publiée
+
+[ZIP Windows lab-2816c71](https://github.com/DyHyugal/pokemon-archelys/releases/download/lab-2816c71/Archelys-Laboratoire-Windows.zip) ; [CI réussie](https://github.com/DyHyugal/pokemon-archelys/actions/runs/38141018877). Archive publiée téléchargée : CRC, empreintes ZIP/EXE/PCK, commit source, LIRE-MOI et notice PokéAPI vérifiés. EXE identique octet pour octet à lab-d33e5ee validé par le propriétaire. PCK exporté chargé et combat rendu sous Linux logiciel ; cela ne remplace pas le test Windows. Version source du build : 2816c71.

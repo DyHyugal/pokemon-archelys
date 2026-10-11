@@ -1,6 +1,6 @@
 # Jouer au laboratoire technique
 
-Une [prerelease Windows de laboratoire](https://github.com/DyHyugal/pokemon-archelys/releases/tag/lab-d33e5ee) est disponible. [Télécharger le ZIP](https://github.com/DyHyugal/pokemon-archelys/releases/download/lab-d33e5ee/Archelys-Laboratoire-Windows.zip), le décompresser entièrement et ouvrir Archelys-Laboratoire.exe ; aucune installation de Godot n’est nécessaire.
+Une [prerelease Windows de laboratoire](https://github.com/DyHyugal/pokemon-archelys/releases/tag/lab-2816c71) est disponible. [Télécharger le ZIP](https://github.com/DyHyugal/pokemon-archelys/releases/download/lab-2816c71/Archelys-Laboratoire-Windows.zip), le décompresser entièrement et ouvrir Archelys-Laboratoire.exe ; aucune installation de Godot n’est nécessaire.
 
 Il s’agit d’un essai de faisabilité avec décors et mannequin provisoires. Aucun Pokémon final ni histoire n’est disponible ; le premier build a été essayé avec succès sous Windows par le propriétaire. Chaque build suivant reste à tester. Ce n’est pas la démo de la première île ni une validation du rendu final.
 
@@ -16,4 +16,4 @@ Le nom `Archelys-Laboratoire.exe` reste fixe. Chaque ZIP inclut un LIRE-MOI indi
 
 Cette livraison est une variante portable gratuite : décompresser entièrement le ZIP et conserver `Archelys-Laboratoire.exe` et `Archelys-Laboratoire.pck` ensemble. Le moteur est l’exécutable officiel Godot non modifié ; il reste non signé et le Contrôle intelligent peut encore le bloquer. Le premier test consiste à lancer normalement sans modifier les protections Windows, puis à suivre le LIRE-MOI si le jeu démarre.
 
-Le lot actuel propose un menu Pause (Échap), un Sac (I) avec quantité et description du jeton, un Journal (J) et des Paramètres conservant langue et distance caméra. Sauvegarder et Charger sont accessibles dans ce menu ; F3 affiche les outils du laboratoire. Le propriétaire a validé le lot précédent lab-e84ee99. Le moteur reste identique ; les changements de ce bloc attendent son retour Windows. Le LIRE-MOI décrit un parcours regroupé.
+Le lot actuel réunit équipe/résumé et PC, combats solo, rencontres dans les herbes, capture, EXP et évolutions. Il contient 13 espèces et 27 attaques provisoires ; les starters, modèles Pokémon et scénario finaux ne sont pas fixés. Les menus, langue et distance caméra restent disponibles. Le propriétaire a validé lab-d33e5ee ; ce nouveau lot attend son playtest. Le LIRE-MOI décrit tout le parcours regroupé et les sauvegardes anciennes sont conservées avant conversion.

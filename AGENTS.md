@@ -31,3 +31,5 @@ Exports Windows ZIP/exe pour les tests ; ce projet ne produit pas une ROM. Ne pa
 Chaque build Windows garde le nom `Archelys-Laboratoire.exe`. Actualiser `docs/development/LIRE_MOI_WINDOWS.txt` avec les changements et tests owner de ce build ; le packager y injecte version/commit/empreinte. Ne pas annoncer un build signé sans signature Authenticode vérifiée ; hash et signature Git ne sont pas une signature Windows.
 
 D43 : regrouper les fonctionnalités et les playtests manuels en lots cohérents, avec un parcours complet dans le LIRE-MOI. Les contrôles automatisés restent requis par lot ; ne pas solliciter le propriétaire après chaque petite modification. D42 confirme le lancement sans avertissement de lab-477caad sur son PC uniquement.
+
+D46 valide les menus de lab-d33e5ee. D47 regroupe équipe/résumé/PC, combat solo et rencontres/capture/progression dans un seul lot de test ; ne demander aucun playtest intermédiaire entre ces trois sous-blocs. Catalogue actuel provisoire (13 espèces/27 attaques), ni starters définitifs ni conformité exhaustive 9G ; lire le rapport LOT_BOUCLE_POKEMON_SOLO.md avant extension.
