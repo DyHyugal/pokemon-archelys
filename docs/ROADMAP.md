@@ -3,8 +3,8 @@
 | Jalon | Livrable | État |
 |---|---|---|
 | J0 | Dépôt, questionnaires, V0.1, règles et liste des inconnues | Cahier V0.1 approuvé le 11 octobre 2026 ; questions ouvertes à traiter |
-| J1 | Évaluation moteur/bases, import assets, combat/réseau/save minimal | Non commencé |
-| J2 | Petite scène visuelle jouable et ZIP Windows | Non commencé ; après accord pour les essais |
+| J1 | Évaluation moteur/bases, import assets, combat/réseau/save minimal | Laboratoire initial testé ; validations finales restantes |
+| J2 | Petite scène visuelle jouable et ZIP Windows | Graybox et export créés ; direction finale à valider |
 | J3 | Première île : graphiques, événements et boucle jouable | Non commencé ; après validations J1/J2 |
 | J4 | Autres îles, biomes draconiques et progression du scénario | Non commencé |
 | J5 | Île céleste, repaire, postgame, Ultra-Dimension | Non commencé ; découpage à préciser |

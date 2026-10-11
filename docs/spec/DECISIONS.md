@@ -46,3 +46,9 @@ Recommandations non assimilées à une approbation : neige 9G, première approch
 | D33 | Édition IV/EV/natures gratuite initialement, hors combat ; options modifiables | Q16 |
 
 Ces décisions n’approuvent pas encore les noms d’îles, nouveaux dirigeants, scénario proposé, formule des résistances ni les règles Soul-link détaillées.
+
+## Autorisation de la session technique
+
+| ID | Décision | Provenance |
+|---|---|---|
+| D34 | Autorisation de commencer la conception et les essais techniques en autonomie, préparer questionnaire complet et plan de développement | Conversation du 11 octobre 2026 |

@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-11",
+  "godot": "4.6.3",
+  "blender": "4.3.2",
+  "domain_checks_passed": 19,
+  "domain_checks_failed": 0,
+  "network": "3 processes localhost",
+  "asset": "7 bones, 1 animation, original mannequin",
+  "scene_smoke": "input/movement/battle UI/save/load exercised",
+  "capture": "Godot renderer with Xorg dummy and llvmpipe",
+  "windows": "export succeeded; runtime not tested",
+  "not_validated": [
+    "Internet",
+    "multi-PC LAN",
+    "production Pokemon combat engine",
+    "final art direction"
+  ]
+}

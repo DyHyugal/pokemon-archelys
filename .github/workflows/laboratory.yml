@@ -1,0 +1,53 @@
+name: Archélys laboratory
+on:
+  push:
+    branches: [develop, docs/cadrage-valide]
+    paths: [game/**, tools/**, .github/workflows/laboratory.yml]
+  pull_request:
+    branches: [develop]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install verified Godot
+        run: |
+          python3 tools/bootstrap_godot.py --prefix "$RUNNER_TEMP/archelys-godot" --templates
+          echo "$RUNNER_TEMP/archelys-godot/bin" >> "$GITHUB_PATH"
+          echo "XDG_DATA_HOME=$RUNNER_TEMP/archelys-godot/data" >> "$GITHUB_ENV"
+      - name: Prototype checks
+        run: python3 tools/check_prototype.py
+      - name: Export Windows
+        run: |
+          mkdir -p builds
+          godot --headless --path game --export-release Windows "$PWD/builds/Archelys-Laboratoire.exe"
+          python3 tools/package_windows.py --commit "$GITHUB_SHA"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Archelys-Laboratoire-Windows
+          path: |
+            builds/Archelys-Laboratoire-Windows.zip
+            builds/SHA256SUMS.txt
+            builds/release-notes.md
+          retention-days: 30
+  publish-laboratory:
+    if: github.event_name == 'push'
+    needs: validate
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: Archelys-Laboratoire-Windows
+          path: builds
+      - name: Publish clearly labeled prerelease
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          LAB_TAG="lab-${GITHUB_SHA:0:7}"
+          gh release create "$LAB_TAG" builds/Archelys-Laboratoire-Windows.zip builds/SHA256SUMS.txt --target "$GITHUB_SHA" --prerelease --title "Archélys laboratoire ${GITHUB_SHA:0:7}" --notes-file builds/release-notes.md

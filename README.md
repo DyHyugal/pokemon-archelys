@@ -2,7 +2,7 @@
 
 Fangame Pokémon en cours de conception : un nouvel archipel, un récit original et une aventure solo ou coopérative jusqu’à trois joueurs.
 
-**État : cadrage. Aucun jeu ni build n’est encore disponible.**
+**État : cadrage approuvé et laboratoire technique initial. Aucune version d’aventure jouable n’est disponible.**
 
 Le nom de travail est Pokémon Archélys. Le rendu cible est une 3D stylisée nette en Full HD sur Windows. Les choix techniques doivent être éprouvés avant la production.
 
@@ -17,3 +17,5 @@ La [documentation de conception sur develop](https://github.com/DyHyugal/pokemon
 Lire [AGENTS.md](AGENTS.md) avant toute modification. Les choix de game design et la validation visuelle appartiennent au propriétaire du projet. Les recherches et prototypes ne sont pas présentés comme des fonctions terminées.
 
 Ce projet est distinct de Pokémon Tactica. Aucun modèle, animation ou musique tiers n’est inclus à ce stade. Le dépôt ne définit pas encore une licence générale sur son code et ses contenus ; les droits des assets seront suivis séparément.
+
+Le [laboratoire et son bilan](https://github.com/DyHyugal/pokemon-archelys/blob/docs/cadrage-valide/docs/development/BILAN_SESSION_2026-10-11.md) sont dans la branche de travail en attente d’intégration. Les prereleases éventuelles sont des prototypes, pas la V1.

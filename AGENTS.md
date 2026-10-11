@@ -4,7 +4,7 @@ Lire les documents de docs/spec sur develop : SOURCE_OF_TRUTH.md, CAHIER_DES_CHA
 
 ## Autorité et phase actuelle
 
-Le propriétaire choisit le game design, le périmètre et la direction artistique. L’autonomie technique autorisée ne vaut pas validation des propositions. Phase actuelle : cadrage. Le cahier des charges V0.1 a été approuvé par le propriétaire le 11 octobre 2026. Les points explicitement ouverts restent à décider ; les essais techniques et visuels sont des validations distinctes. Ne pas lancer la production des îles ni traiter Godot/Blender comme une solution éprouvée.
+Le propriétaire choisit le game design, le périmètre et la direction artistique. L’autonomie technique autorisée ne vaut pas validation des propositions. Phase actuelle : cadrage approuvé et essais techniques autorisés le 11 octobre 2026. Le cahier des charges V0.1 a été approuvé par le propriétaire le 11 octobre 2026. Les points explicitement ouverts restent à décider ; les essais techniques et visuels sont des validations distinctes. Ne pas lancer la production des îles ni traiter Godot/Blender comme une solution éprouvée.
 
 Toute décision explicite reçue dans la conversation prévaut ; la transcrire avec sa provenance. Ne pas transformer une question ouverte en règle implicite. Les anciens questionnaires sont des preuves datées, pas des instructions exécutables.
 
@@ -24,4 +24,4 @@ Les contenus de scénario sont balisés SPOILERS DEV. Le wiki joueurs ne publie 
 
 Ne pas publier de secrets ni supposer une licence à partir de la gratuité d’un asset. Enregistrer origine, licence, droits et modifications de chaque asset intégré. Ne pas transporter du code de Tactica sans analyser ses dépendances et sa licence ; porter les comportements explicitement retenus.
 
-Exports Windows ZIP/exe pour les tests ; ce projet ne produit pas une ROM. Ne pas annoncer une configuration minimale ou une compatibilité réseau sans mesure. Préserver les sauvegardes originales avant migration. Aucun outil, moteur ou version n’est encore figé.
+Exports Windows ZIP/exe pour les tests ; ce projet ne produit pas une ROM. Ne pas annoncer une configuration minimale ou une compatibilité réseau sans mesure. Préserver les sauvegardes originales avant migration. Godot 4.6.3 et Blender 4.3.2 servent au laboratoire ; choix final du moteur après essais. Exécuter tools/check_prototype.py pour le socle, sans présenter ses résultats comme validation 9G ou Internet.

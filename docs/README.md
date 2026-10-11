@@ -22,3 +22,12 @@
 - [Casting RR proposé](design/CASTING_PROPOSITION.md)
 - [Soul-link facultatif : règles proposées](design/SOUL_LINK_PROPOSITION.md)
 - [Raids : décisions et précisions](design/RAIDS_CADRAGE.md)
+
+## Première session technique
+
+- [Questionnaire complémentaire : 51 questions](sources/Questionnaire-Archelys-complement-complet.xlsx)
+- [Ordre de développement](development/PLAN_DEVELOPPEMENT.md)
+- [Architecture actuelle](development/ARCHITECTURE.md)
+- [Bases examinées](development/BASES_EVALUEES.md)
+- [Tester le laboratoire](development/TESTER_LABORATOIRE.md)
+- [Bilan et reprise](development/BILAN_SESSION_2026-10-11.md)
