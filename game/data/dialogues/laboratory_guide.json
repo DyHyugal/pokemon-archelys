@@ -1,0 +1,18 @@
+{
+  "fr": {
+    "speaker": "Guide du laboratoire",
+    "lines": [
+      "Bienvenue ! Cette zone sert à tester les systèmes, pas le scénario final d’Archélys.",
+      "Le personnage s’arrête pendant la conversation. Chaque phrase attend une nouvelle pression sur A, E ou Entrée.",
+      "La caméra suit maintenant ton personnage. Tu peux ajuster sa distance dans le panneau de test. Bonne exploration !"
+    ]
+  },
+  "en": {
+    "speaker": "Laboratory guide",
+    "lines": [
+      "Welcome! This area tests game systems, not the final Archélys story.",
+      "Movement pauses during conversations. Each line waits for a new press of A, E or Enter.",
+      "The camera now follows your character. Adjust its distance in the test panel. Enjoy exploring!"
+    ]
+  }
+}

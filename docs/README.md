@@ -1,6 +1,6 @@
 # Documentation Pokémon Archélys
 
-État au 11 octobre 2026 : conception, **cahier des charges V0.1 approuvé le 11 octobre 2026**. Aucun moteur ou jeu n’est livré. Les décisions explicites sont transcrites ; les propositions et inconnues sont identifiées séparément.
+État au 11 octobre 2026 : conception, **cahier des charges V0.1 approuvé le 11 octobre 2026**. Un laboratoire technique Windows est livré et son premier build a été testé par le propriétaire ; aucun jeu complet n’est livré. Les décisions explicites sont transcrites ; les propositions et inconnues sont identifiées séparément.
 
 - [Source de vérité](spec/SOURCE_OF_TRUTH.md)
 - [Cahier des charges V0.1](spec/CAHIER_DES_CHARGES.md)
@@ -31,3 +31,5 @@
 - [Bases examinées](development/BASES_EVALUEES.md)
 - [Tester le laboratoire](development/TESTER_LABORATOIRE.md)
 - [Bilan et reprise](development/BILAN_SESSION_2026-10-11.md)
+
+- [Suite solo et retour de test propriétaire](development/SUITE_SOLO_2026-10-11.md)

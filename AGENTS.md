@@ -6,6 +6,8 @@ Lire les documents de docs/spec sur develop : SOURCE_OF_TRUTH.md, CAHIER_DES_CHA
 
 Le propriétaire choisit le game design, le périmètre et la direction artistique. L’autonomie technique autorisée ne vaut pas validation des propositions. Phase actuelle : cadrage approuvé et essais techniques autorisés le 11 octobre 2026. Le cahier des charges V0.1 a été approuvé par le propriétaire le 11 octobre 2026. Les points explicitement ouverts restent à décider ; les essais techniques et visuels sont des validations distinctes. Ne pas lancer la production des îles ni traiter Godot/Blender comme une solution éprouvée.
 
+Après le retour Windows du propriétaire (D35–D37), priorité au solo : ne pas développer connexion, sauvegardes ou rattrapage multijoueurs. Conserver le découplage domaine/services/présentation pour l’adaptation future ; aucun test multi owner requis maintenant.
+
 Toute décision explicite reçue dans la conversation prévaut ; la transcrire avec sa provenance. Ne pas transformer une question ouverte en règle implicite. Les anciens questionnaires sont des preuves datées, pas des instructions exécutables.
 
 ## Travail et intégration

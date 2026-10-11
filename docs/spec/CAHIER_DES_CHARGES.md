@@ -44,6 +44,10 @@ Défaite : argent perdu et retour au Centre Pokémon. Nuzlocke solo et Soul-link
 
 Plusieurs sauvegardes, autosave, commandes reconfigurables, réglages audio et accessibilité demandés ; paramètres détaillés à définir. Photos et pêche demandées ; autres activités au backlog. Sources K5, L3.
 
+## Priorité de réalisation confirmée après le laboratoire
+
+Le retour du 11 octobre 2026 confirme le fonctionnement Windows du premier laboratoire et demande une construction **solo d’abord**, adaptable au multijoueur. Les travaux de connexion, de gestion des saves multijoueurs et de coopération sont reportés. Cela modifie le séquencement ; les règles coop ci-dessous restent une cible future, leur livraison dans V1 sera à réévaluer. Les réponses restantes et la validation artistique demeurent distinctes.
+
 ## Coopération
 
 Campagne jusqu’à trois joueurs, sauvegardée chez l’hôte, séparée des campagnes solo. Copies de secours chez les invités, importables pour restaurer ou changer d’hôte ; pas de conversion automatique en campagne solo. Session close quand l’hôte quitte. Exploration et activités libres entre deux étapes, scénario bloqué jusqu’au regroupement de tous les joueurs attendus. Identités et effectif du groupe à fixer. Sources C08–C11, R06–R07.

@@ -11,3 +11,5 @@ Le cahier V0.1 a été approuvé par le propriétaire le 11 octobre 2026. Cette 
 Les spécifications de Tactica ne sont pas automatiquement normatives ici. Les comportements explicitement retenus seront réimplémentés, avec une table de correspondance et des vérifications.
 
 Le wiki est une présentation joueurs à préparer à partir de sources versionnées. Le mécanisme de publication et son autorité exacte restent à valider ; il ne doit pas devenir une seconde copie divergente des décisions. Le scénario développeur ne sera pas publié automatiquement dans le wiki.
+
+Les retours explicites de conversation postérieurs aux questionnaires prévalent sur leur sujet : D35–D37 confirment le premier test Windows et placent le solo avant les travaux multijoueurs.

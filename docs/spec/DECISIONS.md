@@ -52,3 +52,13 @@ Ces décisions n’approuvent pas encore les noms d’îles, nouveaux dirigeants
 | ID | Décision | Provenance |
 |---|---|---|
 | D34 | Autorisation de commencer la conception et les essais techniques en autonomie, préparer questionnaire complet et plan de développement | Conversation du 11 octobre 2026 |
+
+## Retour propriétaire et priorité solo — 11 octobre 2026
+
+| ID | Décision | Provenance |
+|---|---|---|
+| D35 | Laboratoire `lab-09897ca` : lancement Windows, déplacement, fluidité, sauvegarde et combat factice confirmés OK ; multijoueur non testé | Retour explicite dans la conversation |
+| D36 | Construire le jeu en solo d’abord ; reporter connexion, sauvegardes et autres travaux multijoueurs, tout en gardant une architecture adaptable | Conversation : « construction du jeu en solo d’abord […] adaptation en multi après » |
+| D37 | Rapprocher la caméra du laboratoire ; rendu final toujours à valider séparément | Retour explicite : caméra encore un peu loin |
+
+D36 change l’ordre de réalisation. La coopération demeure un objectif demandé ; sa date et son inclusion au jalon V1 seront réévaluées, sans prétendre qu’elle est déjà fonctionnelle ou la supprimer du périmètre silencieusement. Le propriétaire remplit le questionnaire complémentaire pendant la poursuite des systèmes solo indépendants des arbitrages.

@@ -2,6 +2,17 @@ extends Node3D
 
 const World = preload("res://scripts/domain/world_rules.gd")
 const Store = preload("res://scripts/services/save_store.gd")
+const Dialogue = preload("res://scripts/domain/dialogue.gd")
+const GUIDE_POSITION := Vector3(3, 0, 3)
+const CAMERA_OFFSET := Vector3(0, 17, 18)
+var dialogue := Dialogue.new()
+var dialogue_record: Dictionary = {}
+var dialogue_panel: PanelContainer
+var dialogue_text: Label
+var dialogue_speaker: Label
+var interaction_hint: Label
+var locale: String = "fr"
+
 const Battle = preload("res://scripts/domain/battle.gd")
 var avatars: Dictionary = {}
 var camera: Camera3D
@@ -16,6 +27,7 @@ func _ready() -> void:
 	_build_world()
 	_build_ui()
 	_start_battle()
+	dialogue_record = JSON.parse_string(FileAccess.get_file_as_string("res://data/dialogues/laboratory_guide.json"))
 	for arg: String in OS.get_cmdline_user_args():
 		if arg.begins_with("--capture="):
 			capture_frame.call_deferred(arg.trim_prefix("--capture="))
@@ -87,11 +99,20 @@ func _build_world() -> void:
 	_box(Vector3(5.5,0.07,1.4),Vector3(0,0.08,-8.0),Color("74cabc"))
 	camera = Camera3D.new()
 	camera.projection=Camera3D.PROJECTION_ORTHOGONAL
-	camera.size=22.0
-	camera.position=Vector3(0,17,18)
+	camera.size=16.0
+	camera.position=CAMERA_OFFSET
 	add_child(camera)
 	camera.look_at(Vector3.ZERO)
 	camera.current=true
+	var guide: Node3D = load("res://assets/prototypes/mannequin.glb").instantiate()
+	guide.position = GUIDE_POSITION
+	add_child(guide)
+	var label := Label3D.new()
+	label.text = "Guide • PNJ de test"
+	label.position.y = 2.2
+	label.font_size = 28
+	label.pixel_size = 0.004
+	guide.add_child(label)
 
 func _build_ui() -> void:
 	var layer:=CanvasLayer.new();add_child(layer)
@@ -100,15 +121,28 @@ func _build_ui() -> void:
 	var title:=Label.new();title.text="ARCHÉLYS • LABORATOIRE TECHNIQUE";stack.add_child(title)
 	var note:=Label.new();note.text="Décors provisoires — aucune île finale\nDéplacement : ZQSD / WASD / flèches";stack.add_child(note)
 	status=Label.new();stack.add_child(status)
-	address=LineEdit.new();address.text="127.0.0.1";address.placeholder_text="Adresse de l’hôte";stack.add_child(address)
-	_button(stack,"Héberger 3 joueurs (localhost)",func():
+	var camera_label := Label.new();camera_label.text="Distance caméra (proche ← → loin)";stack.add_child(camera_label)
+	var zoom := HSlider.new();zoom.min_value=12;zoom.max_value=22;zoom.step=0.5;zoom.value=camera.size;stack.add_child(zoom)
+	zoom.value_changed.connect(func(value: float):camera.size=value)
+	_button(stack,"Dialogue FR / EN",func():locale="en" if locale=="fr" else "fr")
+	var network_toggle := CheckButton.new();network_toggle.text="Afficher l’ancien essai réseau (reporté)";stack.add_child(network_toggle)
+	var network_tools := VBoxContainer.new();network_tools.visible=false;stack.add_child(network_tools)
+	network_toggle.toggled.connect(func(enabled: bool):network_tools.visible=enabled)
+	address=LineEdit.new();address.text="127.0.0.1";address.placeholder_text="Adresse de l’hôte";network_tools.add_child(address)
+	_button(network_tools,"Héberger 3 joueurs (localhost)",func():
 		message.text="Serveur : %s" % error_string(Session.host(3)))
-	_button(stack,"Rejoindre",func():message.text="Connexion : %s" % error_string(Session.join(address.text)))
+	_button(network_tools,"Rejoindre",func():message.text="Connexion : %s" % error_string(Session.join(address.text)))
 	_button(stack,"Sauvegarder le laboratoire",_save)
 	_button(stack,"Charger (solo uniquement)",_load)
 	_button(stack,"Simuler un tour de combat",_turn)
 	_button(stack,"Réinitialiser le combat",_start_battle)
 	message=Label.new();message.text="Zone turquoise : tous présents pour franchir l’étape.";stack.add_child(message)
+	interaction_hint=Label.new();stack.add_child(interaction_hint)
+	dialogue_panel=PanelContainer.new();dialogue_panel.position=Vector2(460,510);dialogue_panel.custom_minimum_size=Vector2(800,190);dialogue_panel.visible=false;layer.add_child(dialogue_panel)
+	var conversation := VBoxContainer.new();dialogue_panel.add_child(conversation)
+	dialogue_speaker=Label.new();conversation.add_child(dialogue_speaker)
+	dialogue_text=Label.new();dialogue_text.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;dialogue_text.custom_minimum_size=Vector2(780,90);conversation.add_child(dialogue_text)
+	var next_hint := Label.new();next_hint.text="A / E / Entrée • phrase suivante / next line";conversation.add_child(next_hint)
 	log_box=RichTextLabel.new();log_box.custom_minimum_size=Vector2(430,115);stack.add_child(log_box)
 
 func _button(parent: Node, text: String, action: Callable) -> void:
@@ -130,17 +164,44 @@ func _load() -> void:
 func _start_battle() -> void:
 	battle.begin({
 		"J1":{"side":0,"hp":100,"speed":55,"power":18},
-		"J2":{"side":0,"hp":100,"speed":45,"power":18},
-		"J3":{"side":0,"hp":100,"speed":35,"power":18},
-		"Boss":{"side":1,"hp":240,"speed":40,"power":25}},true)
-	if log_box:log_box.text="Combat factice : 3 alliés contre 1 boss.\nAucune règle 9G complète ni IA Tactica ici."
+		"Boss":{"side":1,"hp":100,"speed":40,"power":25}},false)
+	if log_box:log_box.text="Combat factice : duel solo.\nAucune règle 9G complète ni IA Tactica ici."
 
 func _turn() -> void:
 	var actions:Array=[]
-	for actor:String in ["J1","J2","J3"]:actions.append({"actor":actor,"target":"Boss"})
+	for actor:String in ["J1"]:actions.append({"actor":actor,"target":"Boss"})
 	actions.append({"actor":"Boss","target":"J1"})
 	var events:=battle.resolve(actions)
 	log_box.text="Tour %d\n%s\nPV boss : %d" % [battle.turn_index,"\n".join(events),battle.units.Boss.hp]
+
+func _local_position() -> Vector3:
+	var id := str(multiplayer.get_unique_id())
+	var players: Dictionary = Session.latest.get("players", {})
+	var record: Dictionary = players.get(int(id), players.get(id, {}))
+	var pos: Array = record.get("position", [0,0,0])
+	return Vector3(float(pos[0]), 0, float(pos[2]))
+
+func _input(event: InputEvent) -> void:
+	# Active conversations consume confirmation before any previously focused button.
+	if dialogue.active:
+		_unhandled_key_input(event)
+
+func _unhandled_key_input(event: InputEvent) -> void:
+	if not event is InputEventKey or not event.pressed or event.echo:
+		return
+	if event.keycode not in [KEY_A, KEY_E, KEY_ENTER]:
+		return
+	if dialogue.active:
+		dialogue.advance()
+	elif _local_position().distance_to(GUIDE_POSITION) <= 2.2:
+		dialogue.begin(dialogue_record, locale)
+	else:
+		return
+	Session.submit_axis(Vector2.ZERO)
+	dialogue_panel.visible = dialogue.active
+	dialogue_speaker.text = dialogue.speaker
+	dialogue_text.text = dialogue.current_line()
+	get_viewport().set_input_as_handled()
 
 func _process(_delta: float) -> void:
 	var value: Dictionary=Session.latest
@@ -184,6 +245,10 @@ func _process(_delta: float) -> void:
 	if Input.is_physical_key_pressed(KEY_D) or Input.is_physical_key_pressed(KEY_RIGHT):axis.x+=1
 	if Input.is_physical_key_pressed(KEY_W) or Input.is_physical_key_pressed(KEY_Z) or Input.is_physical_key_pressed(KEY_UP):axis.y-=1
 	if Input.is_physical_key_pressed(KEY_S) or Input.is_physical_key_pressed(KEY_DOWN):axis.y+=1
-	if get_viewport().gui_get_focus_owner() is LineEdit:axis=Vector2.ZERO
+	if dialogue.active or get_viewport().gui_get_focus_owner() is LineEdit:axis=Vector2.ZERO
+	var focus := _local_position()
+	camera.position = focus + CAMERA_OFFSET
+	camera.look_at(focus)
+	interaction_hint.text = ("A / E / Entrée : parler au guide" if locale=="fr" else "A / E / Enter: talk to the guide") if focus.distance_to(GUIDE_POSITION)<=2.2 and not dialogue.active else ""
 	Session.submit_axis(axis)
 	status.text="Joueurs %d/%d • étape %d • cap factice %d" % [players.size(),value.get("participants",1),value.get("progress",0),value.get("level_cap",10)]

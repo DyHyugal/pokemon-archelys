@@ -8,7 +8,13 @@ Architecture séparant domaine, services et présentation ; outils reproductible
 
 ## 2. Stabiliser les systèmes qui conditionnent tout le jeu
 
-Règles de raids et rattrapage ; identités de campagne, progression et migrations ; données Pokémon, localisation, inventaire et résumés ; actions de combat Solo/Duo puis raids ; informations IA ; échanges et spectateur. L’objectif est une petite boucle fonctionnelle vérifiée, pas de couvrir immédiatement 500 espèces.
+Priorité solo : interactions et dialogues localisés, progression, sauvegardes, données Pokémon, inventaire et résumés, combat solo puis rencontres et captures. Les règles Pokémon doivent être spécifiées/testées avant de remplacer le combat factice. Raids, rattrapage, échanges et spectateur attendent la reprise multijoueur. L’objectif est une petite boucle fonctionnelle vérifiée, pas de couvrir immédiatement 500 espèces.
+
+## Priorité confirmée après le retour Windows
+
+D35–D37 : premier laboratoire confirmé jouable sous Windows, caméra à rapprocher. Les travaux suivants sont solo ; ne pas prolonger les essais connexion/saves multi. Un modèle de dialogue indépendant de la scène, des données FR/EN et le simulateur séparé préparent l’adaptation future sans coder le réseau de production. Les commandes réseau de l’ancien essai restent masquées par défaut, sans supprimer ses sources. Le socle dialogue est testé avec un PNJ de laboratoire, sans scénario imposé.
+
+Prochaines étapes indépendantes : catalogue de données et validation des règles 9G, menus d’équipe/résumé, inventaire ; première rencontre/combat/capture après le choix du petit lot d’espèces et des assets autorisés. Éprouver quelques échantillons visuels avant le mapping de production. Aucun chantier des îles n’est lancé à partir du graybox seul.
 
 ## 3. Éprouver la direction artistique
 
@@ -20,7 +26,7 @@ Plan des routes, villes, biomes, transitions, points d’intérêt et blocages ;
 
 ## 5. Première boucle d’aventure
 
-Prologue, PNJ, journal, première route, rencontres, capture, soins, boutique, arène/épreuve, boss et ouverture draconique. Version solo testable indépendamment ; coop sur les mêmes événements avec contrôles de regroupement. Réglages et progression comparés aux règles retenues de Tactica.
+Prologue, PNJ, journal, première route, rencontres, capture, soins, boutique, arène/épreuve, boss et ouverture draconique. Version solo testable indépendamment. Préserver des événements et règles séparés de la présentation ; leur adaptation coop et les contrôles de regroupement viennent plus tard. Réglages et progression comparés aux règles retenues de Tactica.
 
 ## 6. Extension par île
 

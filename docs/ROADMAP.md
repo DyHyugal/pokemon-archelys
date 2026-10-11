@@ -4,7 +4,7 @@
 |---|---|---|
 | J0 | Dépôt, questionnaires, V0.1, règles et liste des inconnues | Cahier V0.1 approuvé le 11 octobre 2026 ; questions ouvertes à traiter |
 | J1 | Évaluation moteur/bases, import assets, combat/réseau/save minimal | Laboratoire initial testé ; validations finales restantes |
-| J2 | Petite scène visuelle jouable et ZIP Windows | Graybox et export créés ; direction finale à valider |
+| J2 | Petite scène visuelle jouable et ZIP Windows | Premier export validé sous Windows par owner ; caméra et dialogue ajoutés ; direction finale à valider |
 | J3 | Première île : graphiques, événements et boucle jouable | Non commencé ; après validations J1/J2 |
 | J4 | Autres îles, biomes draconiques et progression du scénario | Non commencé |
 | J5 | Île céleste, repaire, postgame, Ultra-Dimension | Non commencé ; découpage à préciser |
@@ -14,3 +14,5 @@
 Pas de date imposée. Pas de durée de production inventée avant les essais. Les contrôles sont fréquents au début, plus espacés ensuite avec validation par île ; cela ne supprime pas les vérifications techniques régulières.
 
 Backlog à étudier : plongée/île sous-marine, Linux/Android, invitations simplifiées, serveur dédié, autres activités. MMO, transfert solo↔coop et monde ouvert ne sont pas des engagements V1.
+
+Priorité actualisée D36 : solo d’abord, multijoueur après. Préserver la séparation des règles et de la présentation ; les validations réseau ne bloquent plus les étapes solo. Coop au jalon V1 à réévaluer au retour de ce chantier.
