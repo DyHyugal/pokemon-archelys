@@ -6,6 +6,12 @@ const Field=preload("res://scripts/domain/battle_field.gd")
 var field:=Field.new()
 var mega_used: Array=[false,false]
 var charging: Array=[-1,-1]
+# Combat-only state keyed by identity, never serialized into campaign saves.
+var protected: Dictionary={}
+var protect_chain: Dictionary={}
+var helping: Dictionary={}
+var spread_multiplier: float=1.0
+var protect_has_following_action: bool=true
 var encounter_zone: String="village"
 var observed_move: String=""
 var adventure: RefCounted
@@ -34,8 +40,8 @@ func begin(owner: RefCounted, opponents: Array, trainer_id: String="") -> bool:
 		if owner.team[i].hp>0:first=i;break
 	if first<0:return false
 	adventure=owner;enemies=opponents.duplicate(true);trainer=trainer_id;player_index=first;enemy_index=0
-	active=true;adventure.in_battle=true;result="";turn=0;events=[];stages=[{},{}];confusion=[0,0];participants={adventure.team[first].uid:true}
-	field=Field.new();mega_used=[false,false];charging=[-1,-1];observed_move="";encounter_zone=adventure.exploration.location
+	active=true;adventure.in_battle=true;result="";turn=0;events=[];stages=[{},{}];confusion=[0,0];flinched=[false,false];participants={adventure.team[first].uid:true}
+	field=Field.new();mega_used=[false,false];charging=[-1,-1];protected={};protect_chain={};helping={};spread_multiplier=1.0;protect_has_following_action=true;observed_move="";encounter_zone=adventure.exploration.location
 	if trainer.is_empty() and not enemies[0].get("shiny",false) and not family_duplicate(enemies[0].species):adventure.exploration.reserve_encounter(encounter_zone,int(enemies[0].uid))
 	enter_field(0);enter_field(1)
 	say("%s apparaît !" % title(enemies[0]),"%s appeared!" % title(enemies[0],"en"));return true
@@ -72,6 +78,7 @@ func replace_fainted(index: int) -> bool:
 	if not active or current(0).hp>0 or not valid_switch(index):return false
 	events=[];switch_player(index);return true
 func switch_player(index: int) -> void:
+	protected.erase(int(current(0).uid));protect_chain.erase(int(current(0).uid));helping.erase(int(current(0).uid))
 	player_index=index;stages[0]={};confusion[0]=0;charging[0]=-1;enter_field(0);participants[current(0).uid]=true
 	say("À toi, %s !" % title(current(0)),"Go, %s!" % title(current(0),"en"))
 func choose_enemy_move() -> int:
@@ -108,7 +115,8 @@ func damage(side: int, move: Dictionary, critical: bool=false, roll: float=1.0) 
 	var physical: bool=move.category=="physical"
 	var attack: float=stat(side,"attack" if physical else "special_attack",critical,true)
 	var defense: float=stat(1-side,"defense" if physical else "special_defense",critical,false)
-	var base: float=floorf(floorf((floorf(2.0*attacker.level/5.0)+2.0)*float(move.power)*attack/maxf(1.0,defense))/50.0)+2.0
+	var power: float=floorf(float(move.power)*1.5) if helping.has(int(attacker.uid)) else float(move.power)
+	var base: float=floorf(floorf((floorf(2.0*attacker.level/5.0)+2.0)*power*attack/maxf(1.0,defense))/50.0)+2.0
 	var stab: float=1.5 if not neutral and move.type in types(side) else 1.0
 	var ability_type: String={"overgrow":"grass","blaze":"fire","torrent":"water"}.get(ability(side),"")
 	var ability: float=1.5 if move.type==ability_type and attacker.hp<=Mon.stats(attacker).hp/3 else 1.0
@@ -118,7 +126,7 @@ func damage(side: int, move: Dictionary, critical: bool=false, roll: float=1.0) 
 	if ability(side)=="tough-claws" and move.get("contact",false):base*=1.3
 	if ability(side)=="mega-launcher" and move==Catalog.move("water-pulse"):base*=1.5
 	if ability(1-side)=="thick-fat" and move.type in ["fire","ice"]:base*=0.5
-	return maxi(1,int(base*field.power(move.type,grounded(side),grounded(1-side))*stab*effect*ability*(1.5 if critical else 1.0)*roll))
+	return maxi(1,int(base*spread_multiplier*field.power(move.type,grounded(side),grounded(1-side))*stab*effect*ability*(1.5 if critical else 1.0)*roll))
 func apply_status(side: int, status: String) -> bool:
 	var target:=current(side);var target_types: Array=types(side)
 	if target.status!="" or target.hp<=0:return false
@@ -148,21 +156,44 @@ func stage_change(side: int, key: String, change: int) -> void:
 	var before: int=int(stages[side].get(key,0));stages[side][key]=clampi(before+change,-6,6)
 	say("%s : %s %s." % [title(current(side)),Catalog.text("stat_names",key),"↑" if change>0 else "↓"],"%s: %s %s." % [title(current(side),"en"),Catalog.text("stat_names",key,"en"),"↑" if change>0 else "↓"])
 func attack(side: int, slot: int) -> void:
-	if not ready_to_act(side):return
-	var attacker:=current(side);var defender:=current(1-side)
+	if not start_attack(side,slot):return
+	resolve_hit(side,move_for(side,slot),move_id(side,slot))
+func start_attack(side: int, slot: int) -> bool:
+	var attacker:=current(side)
 	var id:=move_id(side,slot);var move:=move_for(side,slot)
+	# Selecting another move, or failing to act, ends the consecutive Protect chain.
+	if not move.get("protect",false):protect_chain.erase(int(attacker.uid))
+	if not ready_to_act(side):protect_chain.erase(int(attacker.uid));return false
 	if charging[side]<0 and slot>=0:attacker.moves[slot].pp-=1
 	if side==0:observed_move=id
 	if move.get("charge",false) and field.weather!="sun" and charging[side]<0:
-		charging[side]=slot;say("%s absorbe la lumière." % title(attacker),"%s absorbed light." % title(attacker,"en"));return
+		charging[side]=slot;say("%s absorbe la lumière." % title(attacker),"%s absorbed light." % title(attacker,"en"));return false
 	charging[side]=-1
 	if move.has("weather"):
 		field.set_weather(move.weather);say("Climat : %s (5 tours)." % move.weather,"Weather: %s (5 turns)." % move.weather)
 	if move.has("terrain"):
 		field.set_terrain(move.terrain);say("Terrain : %s (5 tours)." % move.terrain,"Terrain: %s (5 turns)." % move.terrain)
 	say("%s utilise %s." % [title(attacker),Catalog.name_of(id)],"%s used %s." % [title(attacker,"en"),Catalog.name_of(id,"en")])
+	if move.get("protect",false):
+		var chain: int=int(protect_chain.get(int(attacker.uid),0))
+		var success: bool=protect_has_following_action and (chain==0 or rng.randf()<pow(1.0/3.0,mini(chain,6)))
+		if success:
+			protected[int(attacker.uid)]=true;protect_chain[int(attacker.uid)]=mini(chain+1,6)
+			say("%s se protège." % title(attacker),"%s protected itself." % title(attacker,"en"))
+		else:protect_chain.erase(int(attacker.uid));say("Abri échoue.","Protect failed.")
+		return false
+	if move.get("helping_hand",false):
+		# The doubles subclass resolves the ally; solo has no ally to support.
+		if get("double_mode")!=true:say("Pas d'allié à soutenir.","There is no ally to support.");return false
+	return true
+func target_is_opponent() -> bool:return true
+func resolve_hit(side: int, move: Dictionary, id: String) -> void:
+	var attacker:=current(side);var defender:=current(1-side)
 	var self_target: bool=move.get("self",false)
-	if not self_target and field.terrain=="psychic" and grounded(1-side) and int(move.priority)>0:say("Le terrain bloque la priorité.","The terrain blocks priority.");return
+	if not self_target and defender.hp<=0:say("Pas de cible disponible.","There is no available target.");return
+	if not self_target and target_is_opponent() and field.terrain=="psychic" and grounded(1-side) and int(move.priority)>0:say("Le terrain bloque la priorité.","The terrain blocks priority.");return
+	if not self_target and protected.has(int(defender.uid)):
+		say("%s bloque l’attaque avec Abri." % title(defender),"%s blocked the move with Protect." % title(defender,"en"));return
 	if not self_target and move.type=="electric" and ability(1-side)=="lightning-rod":stage_change(1-side,"special_attack",1);say("Paratonnerre absorbe l'attaque.","Lightning Rod absorbed the move.");return
 	if not self_target and move.type=="fire" and ability(1-side)=="flash-fire":stages[1-side].flash_fire=true;say("Torche absorbe l'attaque.","Flash Fire absorbed the move.");return
 	var accuracy_stage: int=clampi(int(stages[side].get("accuracy",0))-int(stages[1-side].get("evasion",0)),-6,6)
@@ -205,6 +236,7 @@ func end_turn() -> void:
 		if mon.hp>0 and field.weather=="sand" and not types(side).any(func(type: String):return type in ["rock","ground","steel"]):mon.hp=maxi(0,int(mon.hp)-maxi(1,Mon.stats(mon).hp/16))
 		if mon.hp>0 and mon.item=="leftovers":mon.hp=mini(Mon.stats(mon).hp,int(mon.hp)+maxi(1,Mon.stats(mon).hp/16))
 		check_berry(side)
+	protected.clear();helping.clear()
 	for ended: String in field.tick():say("Fin du champ/climat : %s." % ended,"Field/weather ended: %s." % ended)
 	adventure.exploration.record_deaths(adventure.team)
 func capture_value(item: String) -> float:
@@ -273,13 +305,13 @@ func check_faints() -> void:
 			say("Défaite : retour au point de soins du labo (-100 ₽ maximum).","Defeat: returned to the laboratory healing point (up to ₽100 lost).")
 func execute(command: Dictionary) -> bool:
 	if not valid_command(command):return false
-	events=[];turn+=1;flinched=[false,false]
+	events=[];turn+=1;flinched=[false,false];protect_has_following_action=true
 	var enemy_command:=choose_enemy_command()
 	var enemy_slot: int=int(enemy_command.get("slot",-1))
 	if command.get("mega",false):mega(0)
 	if adventure.exploration.difficulty=="hard" and can_mega(1):mega(1)
 	if enemy_command.kind=="switch":
-		switch_enemy(int(enemy_command.index))
+		switch_enemy(int(enemy_command.index));protect_has_following_action=false
 		match command.kind:
 			"move":attack(0,int(command.slot))
 			"switch":switch_player(int(command.index))
@@ -290,19 +322,20 @@ func execute(command: Dictionary) -> bool:
 		end_turn();check_faints();return true
 	match command.kind:
 		"run":finish("escaped");say("Tu prends la fuite.","You escaped.");return true
-		"switch":switch_player(int(command.index));attack(1,enemy_slot)
+		"switch":switch_player(int(command.index));protect_has_following_action=false;attack(1,enemy_slot)
 		"item":
 			adventure.use(command.item,int(adventure.team[int(command.index)].uid))
-			say("Objet utilisé : %s." % Catalog.name_of(command.item),"Used %s." % Catalog.name_of(command.item,"en"));attack(1,enemy_slot)
+			say("Objet utilisé : %s." % Catalog.name_of(command.item),"Used %s." % Catalog.name_of(command.item,"en"));protect_has_following_action=false;attack(1,enemy_slot)
 		"ball":
 			if try_capture(command.item):return true
-			attack(1,enemy_slot)
+			protect_has_following_action=false;attack(1,enemy_slot)
 		"move":
 			var slot: int=int(command.slot)
 			var priority: int=int(move_for(0,slot).priority);var enemy_priority: int=int(move_for(1,enemy_slot).priority)
 			var first: int=0
 			if enemy_priority>priority or (enemy_priority==priority and (stat(1,"speed")>stat(0,"speed") or (stat(1,"speed")==stat(0,"speed") and rng.randf()<0.5))):first=1
 			attack(first,slot if first==0 else enemy_slot)
+			protect_has_following_action=false
 			if current(0).hp>0 and current(1).hp>0:attack(1-first,enemy_slot if first==0 else slot)
 	end_turn();check_faints();return true
 
@@ -313,6 +346,7 @@ func finish(outcome: String) -> void:
 			var old_max: int=Mon.stats(mon).hp
 			mon.erase("battle_form")
 			mon.hp=0 if mon.hp==0 else maxi(1,Mon.stats(mon).hp-(old_max-int(mon.hp)))
+	protected.clear();helping.clear();protect_chain.clear()
 	active=false;result=outcome;adventure.in_battle=false
 
 func types(side: int) -> Array:return current(side).get("battle_form",Catalog.species(current(side).species)).types
@@ -334,6 +368,7 @@ func enter_field(side: int) -> void:
 		"electric-surge":field.set_terrain("electric");say("Créa-Élec : terrain électrique.","Electric Surge: Electric Terrain.")
 		"grassy-surge":field.set_terrain("grass")
 func switch_enemy(index: int) -> void:
+	protected.erase(int(current(1).uid));protect_chain.erase(int(current(1).uid));helping.erase(int(current(1).uid))
 	enemy_index=index;stages[1]={};confusion[1]=0;charging[1]=-1;enter_field(1)
 	say("L'adversaire envoie %s." % title(current(1)),"The opponent sent out %s." % title(current(1),"en"))
 func desired_support(mon: Dictionary) -> String:

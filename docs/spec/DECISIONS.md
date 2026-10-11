@@ -135,3 +135,9 @@ Provenance : conversation du 11 octobre 2026, « ok je valide le fonctionnement 
 ## D53 — prochain bloc solo : réglages de confort
 
 Suite technique dans les exigences déjà demandées K5/L3/Q16 : commandes clavier personnalisables, volumes Général/Musique/Effets avec sons de calibration originaux, taille des textes. Préférences individuelles séparées de la campagne, conservées au chargement et entre sessions. Échap reste un retour permanent, Entrée/Espace des confirmations permanentes, F3 réservé au laboratoire ; conflits de touches entre commandes refusés. Valeurs de laboratoire à éprouver, pas une validation exhaustive d'accessibilité ou de contrôle manette. Format de campagne5 inchangé, aucun travail réseau ni nouvelle règle narrative.
+
+## D54 — poursuite autonome sans nouveau retour Windows
+
+Provenance : conversation du 11 octobre 2026, « pour l'instant je peux pas tester donc avance en autonomie sur les blocs ». Bloc10 confort livré mais toujours **à tester par le propriétaire** ; D52 reste la dernière validation Windows reçue. Continuer les systèmes solo du cahier, sans solliciter d'interaction ni développer Nuzlocke/Soul-link/réseau.
+
+Lot technique suivant (bloc11, trois sous-blocs regroupés) : protection temporaire Abri en simple/double ; attaques de zone et ciblage allié en double ; Coup d'Main et interface de test isolée. Référence N27/Q15 : règles officielles, pas nouvelles règles produit. Catalogue de laboratoire17 espèces,42 attaques, paramètres issus des CSV PokéAPI déjà épinglés. Les cibles et comportements sont confrontés à Poképédia. Format de campagne5 inchangé, états de combat jamais sérialisés. Aucun choix du Pokédex final ni nouvelle île/art/scénario. L'essai tactique utilise une aventure séparée pour éviter de remplacer l'équipe ou dépenser les ressources du propriétaire.

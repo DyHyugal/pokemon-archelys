@@ -236,6 +236,8 @@ func _build_ui() -> void:
 	_button(stack,"Essai soleil / IA difficile",func():_start_support_test("sun"))
 	_button(stack,"Essai terrain / IA difficile",func():_start_support_test("electric"))
 	_button(stack,"Essai combat double",_start_double_test)
+	_button(stack,"Essai zones / Abri / soutien (sans sauvegarde)",_start_tactics_test)
+	_button(stack,"Terminer l’essai tactique",_stop_tactics_test)
 	_button(stack,"Kit Méga (équipe niveau 36 provisoire)",_mega_kit)
 	_button(stack,"Réapprovisionner les consommables du labo",func():
 		if pokemon_battle.active:return
@@ -562,6 +564,8 @@ func _begin_pokemon_battle(opponents: Array,trainer_id: String="") -> bool:
 	return true
 
 func _battle_finished(outcome: String) -> void:
+	if pokemon_battle.get("sandbox")==true:
+		Session.submit_axis(Vector2.ZERO);message.text="Essai terminé : campagne conservée / Sandbox ended: campaign preserved";return
 	Session.submit_axis(Vector2.ZERO)
 	if outcome=="lost":
 		Session.campaign.adventure.exploration.enter("village")
@@ -648,3 +652,17 @@ func _mega_kit() -> void:
 	var owner: RefCounted=Session.campaign.adventure
 	if owner.exploration.nuzlocke=="on":message.text="Kit technique désactivé pendant le défi";return
 	if owner.grant_mega_kit():message.text="Kit Méga : Pokémon compatibles existants équipés ; pierres aussi dans le sac. Attaquer → cocher Méga. / Existing compatible Pokémon equipped; stones also in Bag. Fight → tick Mega."
+
+func _start_tactics_test() -> void:
+	if battle_panel.visible or pause_menu.visible or dialogue.active or cinematic.active or Session.active_network:return
+	var trial: RefCounted=Session.campaign.adventure.get_script().new();trial.initialize()
+	trial.team=[Mon.make("blastoise",50,1),Mon.make("venusaur",50,2),Mon.make("charizard",50,3)];trial.next_uid=4;trial.cap=100
+	for entry: Dictionary in [{"index":0,"moves":["surf","protect","rock-slide","water-pulse"]},{"index":1,"moves":["helping-hand","protect","razor-leaf","growth"]},{"index":2,"moves":["flamethrower","protect","rock-slide","helping-hand"]}]:
+		trial.team[int(entry.index)].moves=[]
+		for id: String in entry.moves:trial.team[int(entry.index)].moves.append({"id":id,"pp":int(Catalog.move(id).pp)})
+	pokemon_battle=DoubleBattle.new();pokemon_battle.sandbox=true
+	if not pokemon_battle.begin(trial,[Mon.make("raticate",50,900000),Mon.make("raichu",50,900001)]):return
+	Session.submit_axis(Vector2.ZERO);battle_panel.open(pokemon_battle,locale)
+func _stop_tactics_test() -> void:
+	if pokemon_battle.active and pokemon_battle.get("sandbox")==true:
+		pokemon_battle.finish("escaped");battle_panel.event_index=pokemon_battle.events.size();battle_panel.render()

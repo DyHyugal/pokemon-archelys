@@ -84,3 +84,9 @@ Retour explicite Windows : **Pokédex, cinématique/galerie, emplacements/autosa
 Bloc10 développé : touches clavier reconfigurables avec refus des conflits et retour Échap permanent ; volumes Général/Musique/Effets réels avec calibration originale ; texte16/20/24 et préférences locales conservées indépendamment de la campagne5. Test technique réalisé, **nouvelle validation Windows attendue**, pas de musique finale ni manette/accessibilité exhaustive. [Rapport](development/LOT_CONFORT.md).
 
 Livraison bloc10 : [lab-d9b3d8d](https://github.com/DyHyugal/pokemon-archelys/releases/tag/lab-d9b3d8d), CI verte/ZIP vérifié.46nouveaux contrôles réussis (21services,25scène), suite antérieure également réussie. Test Windows ciblé du confort attendu ; aucune attente répétée sur les fonctionnalités déjà validées par D52.
+
+## D54 : bloc11 — combat tactique solo
+
+Poursuite autonome autorisée pendant l'indisponibilité du propriétaire. **Bloc10 reste non validé Windows** ; blocs7–9 et Méga restent validés selon D52.
+
+Abri, Surf/Éboulement/Tranch'Herbe et baisses de statistiques de zone, ciblage allié volontaire, Coup d'Main : développés et contrôlés sur le laboratoire. UI FR/EN avec cibles explicites, essai tactique à équipe temporaire, sortie sans modifier la campagne. Catalogue17 espèces/42 attaques, CT légales dans le résumé, campagne5 inchangée. [Portée et preuves](development/LOT_COMBAT_TACTIQUE.md). Pas une conformité exhaustive9G : redirection, choix d'objets en double, IA double avancée et attaques/talents hors catalogue restent à développer. Le rendu, les sons et le fonctionnement Windows des nouveaux blocs attendent un retour ultérieur, sans sollicitation immédiate.

@@ -44,11 +44,64 @@ Une signature reconnue exige un certificat de signature de code ou un service
 de signature autorisé. Aucun n'est configuré pour ce projet actuellement.
 Une signature auto-signée ne suffit pas pour être reconnue sur ton PC.
 
+BLOC11 — PROTECTION, ZONES ET SOUTIEN
+
+Tu ne peux pas tester pour l'instant : ce LIRE-MOI garde le parcours pour
+plus tard. Le confort10 ci-dessous reste à valider ; blocs7–9 et Méga ont
+déjà été validés et ne demandent pas de nouvelle série de tests.
+Même EXE, moteur portable inchangé, campagne5 conservée.
+
+ESSAI SANS MODIFIER TA PARTIE
+Activer Outils labo avec F3 et cliquer Essai zones / Abri / soutien
+(sans sauvegarde). L'écran indique ESSAI SANS SAUVEGARDE. L'équipe temporaire
+est Tortank, Florizarre et Dracaufeu niveau50 ; ta vraie équipe, ton argent,
+ton sac et ton Pokédex ne sont pas remplacés. Les nouveaux boutons indiquent
+clairement qui sera touché. Les textes avancent toujours manuellement.
+
+Choisir Surf pour Tortank, puis Abri pour Florizarre. Les choix attendent
+tous les deux avant le tour. Florizarre utilise Abri avant Surf : il reste
+protégé, les adversaires sont touchés. Surf ne touche pas son utilisateur,
+mais touche l'allié non protégé. Recommencer sans Abri permet de le constater.
+
+Choisir Éboulement : il touche les deux adversaires sans toucher l'allié.
+Tranch'Herbe fait également partie des attaques visant les adversaires.
+Une attaque de zone consomme un seul PP, avec précision et effets distincts
+par cible. Si plusieurs cibles vivantes sont présentes, dégâts réduits à75%.
+Abri répété peut échouer : ce n'est pas un bug, ses chances sont divisées
+par3 à chaque réussite successive, jusqu'à1/729. Il expire à la fin du tour
+et ne supprime pas les dégâts résiduels comme le poison. Abri échoue aussi
+si son utilisateur est le dernier Pokémon à agir pendant le tour.
+
+Choisir Surf pour Tortank puis Coup d'Main pour Florizarre : le soutien se
+fait avant l'attaque et augmente sa puissance de50% pour ce tour. L'allié
+subit Surf s'il n'utilise pas Abri. Coup d'Main ne fonctionne pas en simple.
+Les attaques individuelles comme Vibraqua permettent aussi de cibler ALLIÉ :
+attention, ce choix inflige réellement des dégâts à ton allié.
+
+Le bouton Terminer l'essai sans changer la partie sort du combat. Relancer
+l'essai le remet à zéro. Une victoire ou défaite dans cet essai ne change
+pas la vraie campagne. Pas de sauvegarde possible en plein combat.
+Ces mécaniques fonctionnent aussi hors essai ; les CT compatibles sont
+disponibles depuis le résumé, sans nouvelles attaques imposées aux Pokémon
+de tes anciennes sauvegardes. Le catalogue est désormais17 espèces/42attaques.
+
+À NOTER PLUS TARD
+Version : lab-{short_commit}
+Surf + allié protégé / non protégé : OK / problème
+Éboulement et Tranch'Herbe ciblent les adversaires : OK / problème
+Coup d'Main avant l'attaque : OK / problème
+PP, textes manuels, cibles FR/EN : OK / problème
+Sortie/relance de l'essai sans changer la vraie partie : OK / problème
+
+Ce lot ne termine pas tout le moteur9G : redirection, objets en double,
+IA double avancée et interactions hors catalogue restent à développer.
+Nuzlocke, Soul-link et réseau restent reportés.
+
 BLOC10 — COMMANDES, VOLUMES ET LISIBILITÉ
 
 Tu as validé le Pokédex, les cinématiques, les emplacements/autosave et la Méga
 sur lab-04a2317. Ils sont conservés : pas besoin de refaire leurs parcours.
-Ce build ajoute un bloc de réglages locaux. Même nom EXE, même moteur officiel
+Le bloc10, déjà livré mais pas encore testé, ajoute des réglages locaux. Même nom EXE, même moteur officiel
 non modifié et PCK séparé. Format de campagne5 inchangé, fichiers conservés.
 Nuzlocke, Soul-link et multijoueur restent reportés, sans test demandé.
 

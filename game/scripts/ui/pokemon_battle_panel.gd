@@ -105,12 +105,15 @@ func render_team(forced: bool) -> void:
 
 func double_cards() -> String:
 	var text: String=t("Combat double • tour %d", "Double battle • turn %d") % battle.turn
+	if battle.get("sandbox")==true:text+=t(" • ESSAI SANS SAUVEGARDE"," • UNSAVED SANDBOX")
 	for side: int in [1,0]:
 		var slots: Array=battle.enemy_slots if side==1 else battle.player_slots
 		var members: Array=battle.enemies if side==1 else battle.adventure.team
 		for slot: int in range(2):
 			var mon: Dictionary=members[int(slots[slot])]
 			text+="\n%s %d : %s • %d/%d PV" % [t("Adversaire","Opponent") if side==1 else t("Équipe","Party"),slot+1,name_of(mon.species),mon.hp,Mon.stats(mon).hp]
+			if battle.protected.has(int(mon.uid)):text+=t(" • Abri"," • Protect")
+			if battle.helping.has(int(mon.uid)):text+=t(" • Coup d’Main"," • Helping Hand")
 	text+="\nClimat / Weather: %s (%d) • Terrain: %s (%d)" % [battle.field.weather,battle.field.weather_turns,battle.field.terrain,battle.field.terrain_turns]
 	return text
 func render_double() -> void:
@@ -123,14 +126,28 @@ func render_double() -> void:
 	if battle.charging[0]>=0:choices=[battle.charging[0]]
 	if choices.is_empty():choices=[-1]
 	for slot: int in choices:
+		var move: Dictionary=battle.move_for(0,slot)
+		var target_kind: String=move.get("target","self" if move.get("self",false) else "single")
+		if target_kind!="single":
+			var command: Dictionary={"kind":"move","slot":slot,"target":0,"mega":mega_selected}
+			var caption: String={"self":t("soi-même","self"),"opponents":t("tous les adversaires","all opponents"),"all-adjacent":t("adversaires ET allié","opponents AND ally"),"ally":t("allié","ally")}.get(target_kind,"")
+			button("%s • %d PP → %s" % [name_of(battle.move_id(0,slot)),battle.current(0).moves[slot].pp if slot>=0 else 0,caption],func():execute(command),battle.valid_command(command))
+			continue
 		for target: int in range(2):
-			var move_slot: int=slot;var target_slot: int=target
-			var command: Dictionary={"kind":"move","slot":move_slot,"target":target_slot,"mega":mega_selected}
+			var command: Dictionary={"kind":"move","slot":slot,"target":target,"target_side":1,"mega":mega_selected}
 			var enemy: Dictionary=battle.enemies[int(battle.enemy_slots[target])]
 			button("%s → %s [%d]" % [name_of(battle.move_id(0,slot)),name_of(enemy.species),target+1],func():execute(command),battle.valid_command(command))
+		if slot==-1:continue
+		var ally_target: int=1-battle.selected_player
+		var ally: Dictionary=battle.adventure.team[int(battle.player_slots[ally_target])]
+		var ally_command: Dictionary={"kind":"move","slot":slot,"target":ally_target,"target_side":0,"mega":mega_selected}
+		button("%s → %s %s" % [name_of(battle.move_id(0,slot)),t("ALLIÉ","ALLY"),name_of(ally.species)],func():execute(ally_command),battle.valid_command(ally_command))
 	for index: int in range(battle.adventure.team.size()):
 		var next_index: int=index
 		if battle.valid_switch(index):button(t("Changer : ","Switch: ")+name_of(battle.adventure.team[index].species),func():execute({"kind":"switch","index":next_index}))
+
+	if battle.get("sandbox")==true:
+		button(t("Terminer l’essai sans changer la partie","End sandbox without changing campaign"),func():battle.finish("escaped");event_index=battle.events.size();render())
 
 func render_mega_toggle() -> void:
 	var mon: Dictionary=battle.current(0)

@@ -69,3 +69,11 @@ Ces trois blocs forment un seul build et un seul parcours de test. Le correctif 
 ### D52/D53 : bloc 10 — confort après validation de D51
 
 D52 valide fonctionnellement les blocs7–9 et la Méga sous Windows. Bloc10 : personnalisation des touches clavier (déplacement/interagir/menu/sac/journal), trois volumes et sons d'essai originaux, taille des textes16/20/24. Une seule livraison avec parcours groupé. Réutiliser la touche d'interaction dans dialogues, combats et cinématiques ; garder les retours sûrs et les confirmations manuelles. Préférences locales séparées de toutes les sauvegardes, sans changement de schéma ni dépendance. Audio final, personnalisation graphique du héros, assets et mapping de production restent distincts ; manette et accessibilité avancée ne sont pas prétendues terminées.
+
+### D54 : bloc11 — interactions de combat, trois sous-blocs dans un seul lot
+
+11a. Abri : priorité4, protection jusqu'à la fin du tour, répétitions à succès décroissant, dégâts résiduels conservés, état lié à l'individu et effacé au changement.
+11b. Zones : Surf touche adversaires et allié, Éboulement/Tranch'Herbe/Rugissement/Mimi-Queue ciblent les adversaires ; PP/action unique, précision/immunités/effets par cible, réduction0,75 si plusieurs cibles présentes. Ciblage volontaire de l'allié pour les attaques individuelles.
+11c. Soutien : Coup d'Main, priorité5 et puissance renforcée pour l'allié durant le tour ; boutons de cible explicites et arène d'essai temporaire séparée de la campagne.
+
+Le confort10 reste à tester et figure dans le même LIRE-MOI ; aucun test intermédiaire demandé. Après ce lot : poursuivre les acquisitions solo (œufs/reproduction/fossiles) sur les règles établies, puis les interactions de combat encore manquantes et l'IA double ; vérifier les sources et critères avant chaque implémentation. La personnalisation visuelle et les îles de production attendent les choix d'assets, le scénario et le catalogue finaux. Pas de réseau ni de modes défi.

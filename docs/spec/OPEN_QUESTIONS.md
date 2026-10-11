@@ -14,3 +14,5 @@ Les 51 réponses sont reçues et transcrites dans REPONSES_N01_N51.md. Ne plus p
 - N50 : ouverture à l'open source sous condition de liberté d'usage ; recommandation MIT pour code original à expliquer, aucune licence des assets/Nintendo implicitement accordée.
 
 Multijoueur (rattrapage séparé, profils, hôte, votes, échanges, Soul-link) spécifié par les réponses mais toujours reporté. Les autres choix confirmés sont dans les réponses et le cahier actualisé.
+
+Suivi D54 : bloc10 confort non testé Windows pour le moment ; le propriétaire autorise la suite autonome. Ce retour n'ajoute aucune question produit ni validation artistique. Bloc11 approfondit uniquement les règles officielles déjà demandées ; ses tests manuels attendront la disponibilité du propriétaire.

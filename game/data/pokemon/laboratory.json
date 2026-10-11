@@ -525,6 +525,7 @@
       "pp": 40,
       "priority": 0,
       "stage": "attack",
+      "target": "opponents",
       "type": "normal"
     },
     "growth": {
@@ -540,6 +541,21 @@
       "pp": 20,
       "priority": 0,
       "self": true,
+      "type": "normal"
+    },
+    "helping-hand": {
+      "accuracy": 0,
+      "category": "status",
+      "contact": false,
+      "helping_hand": true,
+      "names": {
+        "en": "Helping Hand",
+        "fr": "Coup d’Main"
+      },
+      "power": 0,
+      "pp": 20,
+      "priority": 5,
+      "target": "ally",
       "type": "normal"
     },
     "hydro-pump": {
@@ -584,6 +600,21 @@
       "priority": 0,
       "status": "poison",
       "type": "poison"
+    },
+    "protect": {
+      "accuracy": 0,
+      "category": "status",
+      "contact": false,
+      "names": {
+        "en": "Protect",
+        "fr": "Abri"
+      },
+      "power": 0,
+      "pp": 10,
+      "priority": 4,
+      "protect": true,
+      "self": true,
+      "type": "normal"
     },
     "psychic-terrain": {
       "accuracy": 0,
@@ -640,7 +671,23 @@
       "power": 55,
       "pp": 25,
       "priority": 0,
+      "target": "opponents",
       "type": "grass"
+    },
+    "rock-slide": {
+      "accuracy": 90,
+      "category": "physical",
+      "contact": false,
+      "flinch": 30,
+      "names": {
+        "en": "Rock Slide",
+        "fr": "Éboulement"
+      },
+      "power": 75,
+      "pp": 10,
+      "priority": 0,
+      "target": "opponents",
+      "type": "rock"
     },
     "sandstorm": {
       "accuracy": 0,
@@ -800,6 +847,20 @@
       "type": "fire",
       "weather": "sun"
     },
+    "surf": {
+      "accuracy": 100,
+      "category": "special",
+      "contact": false,
+      "names": {
+        "en": "Surf",
+        "fr": "Surf"
+      },
+      "power": 90,
+      "pp": 15,
+      "priority": 0,
+      "target": "all-adjacent",
+      "type": "water"
+    },
     "tackle": {
       "accuracy": 100,
       "category": "physical",
@@ -826,6 +887,7 @@
       "pp": 30,
       "priority": 0,
       "stage": "defense",
+      "target": "opponents",
       "type": "normal"
     },
     "thunder-shock": {
@@ -1089,6 +1151,10 @@
           "move": "water-pulse"
         },
         {
+          "level": 20,
+          "move": "protect"
+        },
+        {
           "level": 25,
           "move": "rain-dance"
         },
@@ -1099,8 +1165,12 @@
       ],
       "learnset_version_group": 20,
       "machines": [
+        "helping-hand",
         "hydro-pump",
-        "rain-dance"
+        "protect",
+        "rain-dance",
+        "rock-slide",
+        "surf"
       ],
       "minimum_level": 36,
       "names": {
@@ -1182,6 +1252,8 @@
       "learnset_version_group": 20,
       "machines": [
         "grassy-terrain",
+        "helping-hand",
+        "protect",
         "seed-bomb",
         "solar-beam",
         "sunny-day"
@@ -1254,6 +1326,9 @@
       "machines": [
         "fire-fang",
         "flamethrower",
+        "helping-hand",
+        "protect",
+        "rock-slide",
         "solar-beam",
         "sunny-day",
         "will-o-wisp"
@@ -1332,6 +1407,9 @@
       "machines": [
         "fire-fang",
         "flamethrower",
+        "helping-hand",
+        "protect",
+        "rock-slide",
         "sunny-day",
         "will-o-wisp"
       ],
@@ -1406,6 +1484,9 @@
       "machines": [
         "fire-fang",
         "flamethrower",
+        "helping-hand",
+        "protect",
+        "rock-slide",
         "sunny-day",
         "will-o-wisp"
       ],
@@ -1470,8 +1551,10 @@
       "machines": [
         "flamethrower",
         "hydro-pump",
+        "protect",
         "rain-dance",
         "sandstorm",
+        "surf",
         "thunder-wave",
         "thunderbolt"
       ],
@@ -1556,6 +1639,8 @@
       "learnset_version_group": 20,
       "machines": [
         "grassy-terrain",
+        "helping-hand",
+        "protect",
         "seed-bomb",
         "solar-beam",
         "sunny-day"
@@ -1672,6 +1757,7 @@
       "learnset_version_group": 20,
       "machines": [
         "flamethrower",
+        "protect",
         "solar-beam",
         "sunny-day",
         "will-o-wisp"
@@ -1751,7 +1837,10 @@
       "learnset_version_group": 20,
       "machines": [
         "electric-terrain",
+        "helping-hand",
+        "protect",
         "rain-dance",
+        "surf",
         "thunder-wave",
         "thunderbolt"
       ],
@@ -1825,7 +1914,10 @@
       "learnset_version_group": 20,
       "machines": [
         "electric-terrain",
+        "helping-hand",
+        "protect",
         "rain-dance",
+        "surf",
         "thunder-wave",
         "thunderbolt"
       ],
@@ -1884,6 +1976,7 @@
       ],
       "learnset_version_group": 19,
       "machines": [
+        "protect",
         "thunder-wave",
         "thunderbolt"
       ],
@@ -1947,6 +2040,7 @@
       ],
       "learnset_version_group": 19,
       "machines": [
+        "protect",
         "thunder-wave",
         "thunderbolt"
       ],
@@ -2013,6 +2107,10 @@
           "move": "water-pulse"
         },
         {
+          "level": 18,
+          "move": "protect"
+        },
+        {
           "level": 21,
           "move": "rain-dance"
         },
@@ -2023,8 +2121,11 @@
       ],
       "learnset_version_group": 20,
       "machines": [
+        "helping-hand",
         "hydro-pump",
-        "rain-dance"
+        "protect",
+        "rain-dance",
+        "surf"
       ],
       "names": {
         "en": "Squirtle",
@@ -2100,6 +2201,8 @@
       "learnset_version_group": 20,
       "machines": [
         "grassy-terrain",
+        "helping-hand",
+        "protect",
         "seed-bomb",
         "solar-beam",
         "sunny-day"
@@ -2169,6 +2272,7 @@
       "learnset_version_group": 20,
       "machines": [
         "flamethrower",
+        "protect",
         "sunny-day",
         "will-o-wisp"
       ],
@@ -2235,6 +2339,10 @@
           "move": "water-pulse"
         },
         {
+          "level": 20,
+          "move": "protect"
+        },
+        {
           "level": 25,
           "move": "rain-dance"
         },
@@ -2245,8 +2353,11 @@
       ],
       "learnset_version_group": 20,
       "machines": [
+        "helping-hand",
         "hydro-pump",
-        "rain-dance"
+        "protect",
+        "rain-dance",
+        "surf"
       ],
       "minimum_level": 16,
       "names": {
