@@ -1,4 +1,5 @@
 extends RefCounted
+const Fossils=preload("res://scripts/domain/fossils.gd")
 const Mon=preload("res://scripts/domain/pokemon.gd")
 const Catalog=preload("res://scripts/domain/pokemon_catalog.gd")
 const Exploration=preload("res://scripts/domain/exploration.gd")
@@ -31,6 +32,19 @@ func render(page: String) -> void:
 					menu.button(row,t("Acheter × %d","Buy × %d") % count,func():transaction(id,quantity,false))
 				menu.button(row,t("Vendre × 1 (moitié du prix)","Sell × 1 (half price)"),func():transaction(id,1,true))
 		elif state.location=="center":
+			menu.label(t("Restauration de fossiles — service provisoire du laboratoire, Pokémon niveau5.","Fossil restoration — temporary laboratory service, level5 Pokémon."))
+			if state.nuzlocke=="on":menu.label(t("Fossiles indisponibles en défi : intégration des quotas reportée.","Fossils unavailable in challenge mode: quota integration deferred."))
+			if not owner.fossil_samples_received:
+				var samples: Button=menu.button(menu.body,t("Labo : recevoir trois fossiles d'essai (une fois)","Lab: receive three sample fossils (once)"),func():
+					var ok: bool=Fossils.grant_samples(owner);menu.render()
+					menu.feedback.text=t("Fossiles ajoutés au sac.","Fossils added to bag.") if ok else t("Réception impossible ; sac inchangé.","Cannot receive; bag unchanged."))
+				samples.disabled=not Fossils.available(owner)
+			for item: String in Fossils.RECIPES:
+				var fossil: String=item
+				var restore: Button=menu.button(menu.body,t("Restaurer : %s × %d → %s","Restore: %s × %d → %s") % [Catalog.name_of(item,menu.locale),owner.bag.get(item,0),Catalog.name_of(Fossils.RECIPES[item],menu.locale)],func():
+					var result: Dictionary=Fossils.restore_fossil(owner,fossil);menu.render()
+					menu.feedback.text=t("%s reçu → %s","Received %s → %s") % [Catalog.name_of(result.species,menu.locale),result.result] if result.result in ["team","pc"] else t("Restauration impossible ; aucun fossile perdu.","Restoration unavailable; no fossil lost."))
+				restore.disabled=not Fossils.available(owner) or int(owner.bag.get(item,0))<=0
 			menu.button(menu.body,t("Soigner l'équipe","Heal party"),func():owner.heal_team();menu.render();menu.feedback.text=t("Soins terminés. Aucun Pokémon mort en défi n'est ressuscité.","Healing complete. Dead challenge Pokémon are never revived."))
 		else:menu.label(t("Achats disponibles seulement dans la boutique.","Purchases are available only inside the shop."))
 	elif page=="rules":

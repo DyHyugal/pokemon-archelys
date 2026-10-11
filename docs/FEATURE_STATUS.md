@@ -112,3 +112,7 @@ Livraison bloc12 première partie : [lab-bd216d3](https://github.com/DyHyugal/po
 ## Changement de périmètre D58
 
 **Reproduction / héritages : RETIRÉS**, décision propriétaire du11 octobre2026. Travail local annulé avant commit/livraison ; code du jeu et données identiques à lab-bd216d3. Œufs cadeaux/incubation/éclosion conservés. Fossiles toujours à développer, prochain bloc solo. Les mentions antérieures « reproduction à développer » sont remplacées par cette décision.
+
+## Bloc fossiles D59
+
+**Implémenté et testé localement** : restauration de3 fossiles au Centre, échantillons uniques, coût d'un objet après livraison seulement, destination équipe/PC, origine village et Pokédex, sauvegardes compatibles en lecture, anciennes campagnes sans drapeau acceptées.23 assertions spécifiques et suite complète réussies. Catalogue provisoire22 espèces/43 attaques ; pas de nouveaux modèles. Nuzlocke indisponible pour ce service tant que ses quotas sont reportés. Niveau5/gratuité/distribution d'essai non définitifs. Validation Windows attendue ; D52 reste la dernière validation propriétaire. Reproduction retirée selon D58.

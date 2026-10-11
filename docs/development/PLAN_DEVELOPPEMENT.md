@@ -93,3 +93,7 @@ Réception unique de cadeaux d'essai → incubation persistée par marche effect
 ### D58 — roadmap corrigée
 
 La reproduction et les héritages sont supprimés à la demande du propriétaire. Cela remplace les suites précédemment indiquées après le bloc œufs. Prochain bloc : restauration des fossiles, avec un petit catalogue de laboratoire sourcé et une transaction sans perte d'objet si l'équipe/PC est plein. Les œufs cadeaux restent disponibles. Les demandes historiques de reproduction ne sont plus à réaliser.
+
+### D59 — fossiles, lot solo livré techniquement
+
+Service au Centre → échantillons uniques dans le sac → restauration transactionnelle → équipe/PC → résumé/Pokédex/combats Showdown → sauvegarde. Évolutions40 pour les deux familles à deux stades. Suite : audit du catalogue et des interactions de combat/IA dans le périmètre solo ; pas reprise de reproduction, défis ou réseau. Les décisions artistiques/catalogue final/scénario ne sont pas déduites de cet essai.

@@ -20,3 +20,5 @@ Suivi D54 : bloc10 confort non testé Windows pour le moment ; le propriétaire 
 D56 clôt le choix moteur D55 : intégration Showdown explicitement autorisée par le propriétaire. Conditions MIT expliquées ; aucune modification de licence du code original ni permission sur assets Pokémon implicite. Validation Windows de la future distribution Node et règles des contenus personnalisés à traiter lors de l'intégration, sans rouvrir les choix produit déjà répondus. Étude : `docs/development/ETUDE_MOTEUR_SHOWDOWN.md`.
 
 D58 : reproduction et héritages supprimés explicitement du périmètre. Aucun choix de compatibilité/parents/objets de reproduction n'est donc nécessaire. Œufs cadeaux conservés ; fossiles restent prévus.
+
+D59 : fossiles intégrés pour essai solo au Centre du village. Lieu narratif final, niveau/prix/distribution restent à définir lors de la production des îles ; paramètres du laboratoire explicitement provisoires. N31 reste une règle confirmée pour le futur défi, pas une question à rouvrir ; restauration bloquée en Nuzlocke tant que ses quotas ne sont pas intégrés. Aucun nouveau test de défi/multi requis.

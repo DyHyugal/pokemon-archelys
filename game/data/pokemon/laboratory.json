@@ -1,5 +1,9 @@
 {
   "abilities": {
+    "battle-armor": {
+      "en": "Battle Armor",
+      "fr": "Armurbaston"
+    },
     "blaze": {
       "en": "Blaze",
       "fr": "Brasier"
@@ -44,6 +48,10 @@
       "en": "Overgrow",
       "fr": "Engrais"
     },
+    "pressure": {
+      "en": "Pressure",
+      "fr": "Pression"
+    },
     "rain-dish": {
       "en": "Rain Dish",
       "fr": "Cuvette"
@@ -52,9 +60,17 @@
       "en": "Rattled",
       "fr": "Phobique"
     },
+    "rock-head": {
+      "en": "Rock Head",
+      "fr": "Tête de Roc"
+    },
     "run-away": {
       "en": "Run Away",
       "fr": "Fuite"
+    },
+    "shell-armor": {
+      "en": "Shell Armor",
+      "fr": "Coque Armure"
     },
     "solar-power": {
       "en": "Solar Power",
@@ -79,6 +95,14 @@
     "tough-claws": {
       "en": "Tough Claws",
       "fr": "Griffe Dure"
+    },
+    "unnerve": {
+      "en": "Unnerve",
+      "fr": "Tension"
+    },
+    "weak-armor": {
+      "en": "Weak Armor",
+      "fr": "Armurouillée"
     }
   },
   "chart": {
@@ -264,6 +288,12 @@
         "fr": "Dracaufite Y"
       }
     },
+    "dome-fossil": {
+      "names": {
+        "en": "Dome Fossil",
+        "fr": "Fossile Dôme"
+      }
+    },
     "fire-stone": {
       "names": {
         "en": "Fire Stone",
@@ -276,6 +306,12 @@
         "fr": "Super Ball"
       }
     },
+    "helix-fossil": {
+      "names": {
+        "en": "Helix Fossil",
+        "fr": "Fossile Nautile"
+      }
+    },
     "leftovers": {
       "names": {
         "en": "Leftovers",
@@ -286,6 +322,12 @@
       "names": {
         "en": "Lucky Egg",
         "fr": "Œuf Chance"
+      }
+    },
+    "old-amber": {
+      "names": {
+        "en": "Old Amber",
+        "fr": "Vieil Ambre"
       }
     },
     "oran-berry": {
@@ -687,6 +729,19 @@
       "pp": 10,
       "priority": 0,
       "target": "opponents",
+      "type": "rock"
+    },
+    "rollout": {
+      "accuracy": 90,
+      "category": "physical",
+      "contact": false,
+      "names": {
+        "en": "Rollout",
+        "fr": "Roulade"
+      },
+      "power": 30,
+      "pp": 20,
+      "priority": 0,
       "type": "rock"
     },
     "sandstorm": {
@@ -1108,6 +1163,61 @@
     }
   },
   "species": {
+    "aerodactyl": {
+      "abilities": [
+        "rock-head",
+        "pressure",
+        "unnerve"
+      ],
+      "ability": "rock-head",
+      "base_exp": 180,
+      "catch_rate": 45,
+      "effort": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "growth": "slow",
+      "learnset": [
+        {
+          "level": 1,
+          "move": "bite"
+        },
+        {
+          "level": 20,
+          "move": "rock-slide"
+        }
+      ],
+      "learnset_version_group": 20,
+      "machines": [
+        "fire-fang",
+        "flamethrower",
+        "protect",
+        "rain-dance",
+        "rock-slide",
+        "sandstorm",
+        "sunny-day"
+      ],
+      "names": {
+        "en": "Aerodactyl",
+        "fr": "Ptéra"
+      },
+      "stats": [
+        80,
+        105,
+        65,
+        60,
+        75,
+        130
+      ],
+      "types": [
+        "rock",
+        "flying"
+      ]
+    },
     "blastoise": {
       "abilities": [
         "torrent",
@@ -1664,6 +1774,120 @@
         "poison"
       ]
     },
+    "kabuto": {
+      "abilities": [
+        "swift-swim",
+        "battle-armor",
+        "weak-armor"
+      ],
+      "ability": "swift-swim",
+      "base_exp": 71,
+      "catch_rate": 45,
+      "effort": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "evolution": {
+        "level": 40,
+        "target": "kabutops"
+      },
+      "growth": "medium",
+      "learnset": [
+        {
+          "level": 5,
+          "move": "scratch"
+        },
+        {
+          "level": 41,
+          "move": "protect"
+        }
+      ],
+      "learnset_version_group": 20,
+      "machines": [
+        "hydro-pump",
+        "protect",
+        "rain-dance",
+        "rock-slide",
+        "sandstorm",
+        "surf"
+      ],
+      "names": {
+        "en": "Kabuto",
+        "fr": "Kabuto"
+      },
+      "stats": [
+        30,
+        80,
+        90,
+        55,
+        45,
+        55
+      ],
+      "types": [
+        "rock",
+        "water"
+      ]
+    },
+    "kabutops": {
+      "abilities": [
+        "swift-swim",
+        "battle-armor",
+        "weak-armor"
+      ],
+      "ability": "swift-swim",
+      "base_exp": 173,
+      "catch_rate": 45,
+      "effort": [
+        0,
+        2,
+        0,
+        0,
+        0,
+        0
+      ],
+      "growth": "medium",
+      "learnset": [
+        {
+          "level": 1,
+          "move": "scratch"
+        },
+        {
+          "level": 43,
+          "move": "protect"
+        }
+      ],
+      "learnset_version_group": 20,
+      "machines": [
+        "hydro-pump",
+        "protect",
+        "rain-dance",
+        "rock-slide",
+        "sandstorm",
+        "surf"
+      ],
+      "minimum_level": 40,
+      "names": {
+        "en": "Kabutops",
+        "fr": "Kabutops"
+      },
+      "previous": "kabuto",
+      "stats": [
+        60,
+        115,
+        105,
+        65,
+        70,
+        80
+      ],
+      "types": [
+        "rock",
+        "water"
+      ]
+    },
     "magikarp": {
       "abilities": [
         "swift-swim",
@@ -1777,6 +2001,152 @@
       ],
       "types": [
         "fire"
+      ]
+    },
+    "omanyte": {
+      "abilities": [
+        "swift-swim",
+        "shell-armor",
+        "weak-armor"
+      ],
+      "ability": "swift-swim",
+      "base_exp": 71,
+      "catch_rate": 45,
+      "effort": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "evolution": {
+        "level": 40,
+        "target": "omastar"
+      },
+      "growth": "medium",
+      "learnset": [
+        {
+          "level": 1,
+          "move": "withdraw"
+        },
+        {
+          "level": 5,
+          "move": "rollout"
+        },
+        {
+          "level": 15,
+          "move": "water-gun"
+        },
+        {
+          "level": 41,
+          "move": "protect"
+        },
+        {
+          "level": 50,
+          "move": "surf"
+        },
+        {
+          "level": 60,
+          "move": "hydro-pump"
+        }
+      ],
+      "learnset_version_group": 20,
+      "machines": [
+        "hydro-pump",
+        "protect",
+        "rain-dance",
+        "rock-slide",
+        "sandstorm",
+        "surf"
+      ],
+      "names": {
+        "en": "Omanyte",
+        "fr": "Amonita"
+      },
+      "stats": [
+        35,
+        40,
+        100,
+        90,
+        55,
+        35
+      ],
+      "types": [
+        "rock",
+        "water"
+      ]
+    },
+    "omastar": {
+      "abilities": [
+        "swift-swim",
+        "shell-armor",
+        "weak-armor"
+      ],
+      "ability": "swift-swim",
+      "base_exp": 173,
+      "catch_rate": 45,
+      "effort": [
+        0,
+        0,
+        2,
+        0,
+        0,
+        0
+      ],
+      "growth": "medium",
+      "learnset": [
+        {
+          "level": 1,
+          "move": "withdraw"
+        },
+        {
+          "level": 1,
+          "move": "rollout"
+        },
+        {
+          "level": 15,
+          "move": "water-gun"
+        },
+        {
+          "level": 43,
+          "move": "protect"
+        },
+        {
+          "level": 56,
+          "move": "surf"
+        },
+        {
+          "level": 70,
+          "move": "hydro-pump"
+        }
+      ],
+      "learnset_version_group": 20,
+      "machines": [
+        "hydro-pump",
+        "protect",
+        "rain-dance",
+        "rock-slide",
+        "sandstorm",
+        "surf"
+      ],
+      "minimum_level": 40,
+      "names": {
+        "en": "Omastar",
+        "fr": "Amonistar"
+      },
+      "previous": "omanyte",
+      "stats": [
+        70,
+        60,
+        125,
+        115,
+        70,
+        55
+      ],
+      "types": [
+        "rock",
+        "water"
       ]
     },
     "pikachu": {

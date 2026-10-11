@@ -15,6 +15,7 @@ var cap: int=10
 var money: int=3000
 var victories: Dictionary={}
 var pending: Array=[]
+var fossil_samples_received: bool=false
 var initialized: bool=false
 var in_battle: bool=false
 var encounter_steps: float=0.0
@@ -136,9 +137,10 @@ func wild(level: int=-1, species_id: String="") -> Dictionary:
 	mon.nature=Mon.NATURES[rng.randi_range(0,24)];mon.hp=Mon.stats(mon).hp
 	return mon
 func snapshot() -> Dictionary:
-	return {"nursery":nursery.snapshot(),"records":records.snapshot(),"team":team.duplicate(true),"boxes":boxes.duplicate(true),"bag":bag.duplicate(true),"next_uid":next_uid,"cap":cap,"money":money,"victories":victories.duplicate(true),"pending":pending.duplicate(true),"initialized":initialized,"exploration":exploration.snapshot()}
+	return {"fossil_samples_received":fossil_samples_received,"nursery":nursery.snapshot(),"records":records.snapshot(),"team":team.duplicate(true),"boxes":boxes.duplicate(true),"bag":bag.duplicate(true),"next_uid":next_uid,"cap":cap,"money":money,"victories":victories.duplicate(true),"pending":pending.duplicate(true),"initialized":initialized,"exploration":exploration.snapshot()}
 static func validate(value: Variant) -> bool:
 	if not value is Dictionary:return false
+	if value.has("fossil_samples_received") and not value.fossil_samples_received is bool:return false
 	if value.has("nursery") and not Nursery.validate(value.nursery):return false
 	if value.has("records") and not Records.validate(value.records):return false
 	if value.has("exploration") and not Exploration.validate(value.exploration):return false
@@ -182,6 +184,7 @@ static func validate(value: Variant) -> bool:
 	return true
 func restore(value: Dictionary) -> bool:
 	if not validate(value):return false
+	fossil_samples_received=value.get("fossil_samples_received",false)
 	nursery=Nursery.new()
 	if value.has("nursery"):nursery.restore(value.nursery)
 	records=Records.new()

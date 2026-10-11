@@ -1,4 +1,4 @@
-ARCHÉLYS — LABORATOIRE ŒUFS + SHOWDOWN
+ARCHÉLYS — LABORATOIRE FOSSILES + ŒUFS + SHOWDOWN
 Version : lab-{short_commit}
 Commit : {commit}
 
@@ -18,16 +18,24 @@ Si le simulateur est indisponible ou plante, le combat est refusé/annulé ;
 la campagne est restaurée. Il n'y a pas de moteur de secours silencieux.
 
 CE QUI CHANGE
+Nouveau service au Centre du village : restauration de Fossile Nautile
+(Amonita), Fossile Dôme (Kabuto) et Vieil Ambre (Ptéra). Le laboratoire fournit
+une fois les trois objets. Le fossile est consommé seulement après réception
+du Pokémon dans l’équipe ou le PC ; si le stockage est plein, il est conservé.
+Niveau5, service gratuit et lieu/distribution sont des paramètres provisoires.
+Le Pokédex indique la restauration ; Amonita et Kabuto évoluent au niveau40.
+Aucun nouveau modèle graphique. Défis et multijoueur restent reportés.
+
 Nouveau menu Œufs / Incubateur : trois cadeaux uniques, incubation par marche
 et éclosion confirmée vers équipe ou PC. Caractéristiques fixées à réception.
 Incubateur séparé de l’équipe et durée20m sont des paramètres d’essai, pas les
-règles finales de reproduction. Reproduction et fossiles restent à développer.
+règles finales des œufs cadeaux. La reproduction a été retirée du projet.
 
 Les combats Pokémon simples et doubles utilisent maintenant Showdown, avec
 les règles9G et les Méga historiques. Attaques, dégâts, priorités, précision,
 statuts, talents, objets tenus, climats et terrains sont résolus par ce moteur.
 L'en-tête de combat indique « Moteur : Showdown ». Le catalogue visible reste
-provisoire :17 espèces/42 attaques. Les données complètes du simulateur ne
+provisoire :22 espèces/43 attaques. Les données complètes du simulateur ne
 signifient pas que les500 Pokémon et leurs modèles sont déjà dans le jeu.
 
 Les captures, le sac, l'EXP, les apprentissages, les évolutions et les caps
@@ -39,6 +47,27 @@ avec poseur/bénéficiaire/renouvellement ; ce n'est pas encore l'IA finale.
 Multi, raids, Nuzlocke et Soul-link restent reportés.
 
 PARCOURS DE TEST GROUPÉ
+
+Entrer au Centre du village par sa porte puis ouvrir Menu → Vie quotidienne.
+Cliquer « Labo : recevoir trois fossiles d’essai (une fois) ». Vérifier dans le
+sac les trois objets, sauvegarder puis charger : ils restent présents et le
+cadeau ne peut pas être repris. Revenir au service et restaurer chaque objet.
+Vérifier Amonita, Kabuto et Ptéra niveau5 dans l’équipe, puis dans le résumé et
+le Pokédex. Chaque restauration retire exactement un objet, jamais un autre.
+Si l’équipe est pleine, le prochain Pokémon arrive au PC. Si équipe et PC sont
+pleins, aucun fossile ne doit être perdu ; libérer une place puis réessayer.
+Le service est disponible seulement au Centre, hors combat et hors défi actif.
+
+Mettre un Pokémon restauré en tête de l’équipe et faire un combat sauvage :
+attaques, PP et retour d’état doivent fonctionner avec Showdown. Amonita utilise
+Roulade (attaque qui se poursuit plusieurs tours), ce verrouillage est normal.
+Sauvegarder, quitter et charger : Pokémon, objets consommés et cadeau reçu
+restent conservés. Vérifier aussi les boutons de restauration en anglais.
+Le taux chromatique configuré s’applique à la restauration suivante. Les essais
+d’évolution40 peuvent attendre une progression permettant ce niveau.
+Garder une copie de l’ancienne sauvegarde ; une nouvelle campagne contenant
+ces espèces n’est pas compatible avec les anciennes versions du laboratoire.
+
 
 Dans le menu Œufs / Incubateur, recevoir un œuf puis fermer le menu et marcher
 hors des herbes pour éviter les combats. Revenir au menu : la marche restante

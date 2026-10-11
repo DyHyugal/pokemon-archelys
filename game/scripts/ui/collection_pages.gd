@@ -1,4 +1,5 @@
 extends RefCounted
+const Fossils=preload("res://scripts/domain/fossils.gd")
 const Catalog=preload("res://scripts/domain/pokemon_catalog.gd")
 const Mon=preload("res://scripts/domain/pokemon.gd")
 const Records=preload("res://scripts/domain/journey_records.gd")
@@ -27,6 +28,10 @@ func dex() -> void:
   menu.label(t("Types : ","Types: ")+" / ".join(entry.types.map(func(id: String):return Catalog.text("type_names",id,menu.locale))))
   var places:=Records.habitats(selected)
   menu.label(t("Rencontres sauvages du laboratoire : ","Laboratory wild encounters: ")+(t("Herbes du village","Village grass") if "village" in places else "")+(" · " if places.size()>1 else "")+(t("Pêche dans la crique","Cove fishing") if "cove" in places else "") if not places.is_empty() else t("Aucune rencontre sauvage pour cette forme dans le laboratoire.","No wild encounter for this form in the laboratory."))
+  for fossil: String in Fossils.RECIPES:
+   var base: String=Fossils.RECIPES[fossil]
+   if selected==base or entry.get("previous","")==base:
+    menu.label(t("Obtention : restauration de %s au Centre du village%s.","Acquisition: restore %s at the village Center%s.") % [Catalog.name_of(fossil,menu.locale),t(" puis évolution niveau40"," then evolve at level40") if selected!=base else ""])
   menu.label(t("Les stades sauvages suivent le niveau de la rencontre ; les zones ne garantissent pas une apparition immédiate.","Wild evolution stages follow encounter level; a location does not guarantee an immediate encounter."))
   if history.caught.has(selected):
    menu.label(t("Statistiques de base","Base stats"))
