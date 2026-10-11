@@ -97,3 +97,14 @@ La reproduction et les héritages sont supprimés à la demande du propriétaire
 ### D59 — fossiles, lot solo livré techniquement
 
 Service au Centre → échantillons uniques dans le sac → restauration transactionnelle → équipe/PC → résumé/Pokédex/combats Showdown → sauvegarde. Évolutions40 pour les deux familles à deux stades. Suite : audit du catalogue et des interactions de combat/IA dans le périmètre solo ; pas reprise de reproduction, défis ou réseau. Les décisions artistiques/catalogue final/scénario ne sont pas déduites de cet essai.
+
+## Proposition de lots plus conséquents après D59 — D60
+
+Cadence : un ZIP et un parcours owner pour chaque ensemble terminé, avec contrôles locaux/CI intermédiaires. Aucun mini-build pour chaque attaque, objet ou écran. Reproduction retirée ; multi/raids/défis reportés. Dernière validation Windows reçue D52.
+
+1. **Combat solo complet sur le catalogue d'essai** : audit du raccordement Godot/Showdown (actions forcées, tours multiples, KO/remplacements, sac/capture/retour d'état), approfondissement de l'IA simple/double avec informations visibles seulement, interface des cibles/états/champs/tours et scénarios représentatifs isolés. Livrable : un ensemble de combats couvrant ces parcours, sans réimplémenter les dégâts/statuts officiels déjà résolus par Showdown. Pas promesse de catalogue final ou conformité exhaustive à tous les formats.
+2. **Aventure solo continue de démonstration** : plusieurs zones provisoires reliées, interactions/événements/journal, progression avec combat de boss et déblocage, retours/chargement cohérents, équipement/boutique/PC au service du parcours. Réutiliser et compléter les systèmes existants plutôt que présenter les mêmes fonctionnalités comme nouvelles. Livrable : parcours représentatif de bout en bout ; casting/récit/niveaux provisoires explicitement balisés, aucune île narrative finale.
+3. **Quartier graphique représentatif FHD** : bâtiments/sols/eau/végétation/éclairage et avatar d'essai cohérents, animations/transitions représentatives et mesures de fluidité ; assets à provenance enregistrée. Présenter des comparatifs puis intégrer le style approuvé. Livrable : petite zone de référence, pas une refonte simultanée de tout l'archipel ; approbation artistique toujours nécessaire.
+4. **Première tranche du vrai jeu** : prologue/première ville/première route/épreuve, dialogues et journal FR/EN, rencontres et économie, sauvegardes et mise en scène. Condition préalable : validation du quartier/style, du contenu narratif concerné et des espèces/assets de cette tranche. Livrable : première aventure jouable avec le rendu retenu. L'ensemble des îles ne démarre pas automatiquement.
+
+Ordre recommandé :1→2→3→4. Des préparatifs de l'art peuvent accompagner les systèmes indépendants ; aucun résultat provisoire n'est considéré comme une validation owner.

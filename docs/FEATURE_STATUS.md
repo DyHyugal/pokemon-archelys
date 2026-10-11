@@ -8,7 +8,7 @@ Les statuts portent sur les preuves, pas sur l’enthousiasme ou la présence da
 | Git main/develop | PRÉPARÉ | Branches initialisées ; vérifier push remote |
 | Moteur Godot/Blender | LABORATOIRE TESTÉ | Godot 4.6.3, Blender 4.3.2 ; adéquation finale non validée |
 | Assets 3D animés | PROTOTYPE ORIGINAL TESTÉ | Mannequin GLB, sept os/une animation ; aucun Pokémon intégré |
-| Combat 9G + exceptions | SHOWDOWN INTÉGRÉ ET TESTÉ LOCALEMENT | D56 : simple/double, Méga, attaques/talents/objets/champs via simulateur ; catalogue17/42, conformité des règles originales à éprouver |
+| Combat 9G + exceptions | SHOWDOWN INTÉGRÉ ET TESTÉ LOCALEMENT | D56 : simple/double, Méga, attaques/talents/objets/champs via simulateur ; catalogue22/43 après D59, conformité des règles originales à éprouver |
 | IA difficile | POLITIQUE SHOWDOWN À VUES LIMITÉES TESTÉE | Poseur → bénéficiaire de talent/type → renouvellement ; aucun set/choix adverses cachés ; stratégie experte non finalisée |
 | Coopération 2/3 | REPORTÉ — ESSAI LOCALHOST CONSERVÉ | Trois processus ENet ; pas d’Internet ni combat réseau |
 | Raids phasés/simultanés | DEMANDÉ | R01 ; règles détaillées ouvertes |
