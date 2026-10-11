@@ -74,3 +74,5 @@ Nuzlocke/Soul-link : **reportés, non prioritaires et non validés Windows** ; a
 Suite autorisée pendant que le correctif Méga reste à tester. Pokédex provisoire vu/obtenu, filtres et localisations légales ; timeline de caméra/texte manuelle FR/EN et galerie de replay ; trois emplacements solo et autosave distincte, récupération backup, migration5 préservant les originaux1/2/3/4. Développés et testés techniquement, **validation Windows propriétaire attendue**. Correctif Méga inclus.
 
 Pas de scénario final ou animation narrative produits, pas de nouveaux assets, catalogue17 espèces inchangé. Les exigences de reproduction/fossiles/personnalisation/audio/commandes et interactions9G non couvertes demeurent à développer. Nuzlocke/Soul-link/multijoueur reportés. [Portée et preuves](development/LOT_COLLECTION_CINEMA_SAVES.md).
+
+Livraison D51 : [lab-04a2317](https://github.com/DyHyugal/pokemon-archelys/releases/tag/lab-04a2317), CI verte et ZIP publié vérifié. 216 assertions de domaine, 27 contrôles du nouveau parcours et autres scènes du socle réussis. Validation Windows du lot et de la Méga attendue, sans test des modes reportés.

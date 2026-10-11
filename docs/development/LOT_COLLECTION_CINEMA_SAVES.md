@@ -29,3 +29,9 @@ Format5 lit1/2/3/4. Ancienne manuelle préservée octet pour octet en `.vN.backu
 Le PCK exporté est rendu sous Linux/Mesa et les nouvelles pages/cadrages sont inspectés. Cela ne valide pas Windows sur le PC du propriétaire, ni les graphismes de production. La qualité artistique reste à retravailler ; le thème de village seul est retenu. Un seul LIRE-MOI rassemble les essais des nouveaux systèmes et la Méga si elle n'a pas encore été vérifiée. La portée globale limitée de combat9G du lot D49 demeure inchangée.
 
 Preuves locales du lot : [journal](validation/collection-checks.log), [Pokédex](validation/collection-dex.png), [timeline](validation/collection-cinematic.png), [emplacements](validation/collection-saves.png). La suite obligatoire est réussie : 216 assertions de domaine, 27 contrôles du nouveau parcours de scène et les autres scènes/imports du socle. Export Windows et rendu du PCK contrôlés ; essai Windows du propriétaire encore attendu.
+
+## Livraison vérifiée
+
+Source `04a2317c0ea0d8ed19a1b28a1900cad8e4c5eb63`, préversion [lab-04a2317](https://github.com/DyHyugal/pokemon-archelys/releases/tag/lab-04a2317). [CI réussie](https://github.com/DyHyugal/pokemon-archelys/actions/runs/38155110664), 52 secondes. ZIP public téléchargé et contrôlé : CRC, manifeste/commit, empreintes EXE/PCK, LIRE-MOI du lot, notices et documentation embarquée. EXE officiel inchangé par rapport au laboratoire portable précédemment validé Windows. Aucune signature ajoutée, aucun merge automatique.
+
+[Télécharger Windows](https://github.com/DyHyugal/pokemon-archelys/releases/download/lab-04a2317/Archelys-Laboratoire-Windows.zip). SHA256 ZIP : `e447a0564610e7f414025730afaaa378a19f8bffe48c90dea6f1ec27395b136b`. PCK : `703959c10c3e2cc280af425f52063211c1934cd4119b95101a805512f58ff053`. Essai propriétaire de ce lot et de la Méga encore attendus.
