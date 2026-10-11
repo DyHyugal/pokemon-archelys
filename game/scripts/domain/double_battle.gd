@@ -1,4 +1,5 @@
 extends "res://scripts/domain/pokemon_battle.gd"
+## Legacy comparison fixture only; never instantiated by the playable world.
 ## Four actors, one turn: single/area attacks, ally support and Protect.
 var double_mode: bool=true
 var sandbox: bool=false

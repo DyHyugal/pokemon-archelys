@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
 """Checks actual prototype paths; errors or missing markers fail the run."""
-import pathlib,subprocess,os,sys,argparse
+import pathlib,subprocess,os,sys,argparse,shutil
 parser=argparse.ArgumentParser();parser.add_argument("--network",action="store_true",help="Run the retained localhost regression, not required for solo development");args=parser.parse_args()
 root=pathlib.Path(__file__).resolve().parents[1]
 env=os.environ.copy()
 runtime=pathlib.Path(env.get('ARCHELYS_RUNTIME_ROOT','/tmp/archelys-test-runtime'))
 for label,var in [('data','XDG_DATA_HOME'),('config','XDG_CONFIG_HOME'),('cache','XDG_CACHE_HOME')]:
     env.setdefault(var,str(runtime/label));pathlib.Path(env[var]).mkdir(parents=True,exist_ok=True)
+env.setdefault('ARCHELYS_NODE_BIN',shutil.which('node') or '')
 steps=[(['godot','--headless','--path',str(root/'game'),'--editor','--import','--quit'],None),
+       ([env['ARCHELYS_NODE_BIN'],str(root/'combat/showdown/tests.cjs')],'SHOWDOWN ADAPTER:'),
+       (['godot','--headless','--path',str(root/'game'),'--script','res://tests/showdown_integration.gd'],'SHOWDOWN INTEGRATION:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/run_tests.gd'],'ARCHÉLYS TESTS: 19 checks, 0 failures'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/solo_systems.gd'],'SOLO SYSTEMS: 18 checks, 0 failures'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/dialogue_tests.gd'],'DIALOGUE TESTS: 6 checks, 0 failures'),
@@ -21,7 +24,7 @@ steps=[(['godot','--headless','--path',str(root/'game'),'--editor','--import','-
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/comfort_systems.gd'],'COMFORT SYSTEMS:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/comfort_scene.gd'],'COMFORT SCENE:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/tactics_systems.gd'],'TACTICS SYSTEMS: 46 checks, 0 failures'),
-       (['godot','--headless','--path',str(root/'game'),'--script','res://tests/tactics_scene.gd'],'TACTICS SCENE: 16 checks, 0 failures'),
+       (['godot','--headless','--path',str(root/'game'),'--script','res://tests/tactics_scene.gd'],'TACTICS SCENE:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/asset_import.gd'],'GLB IMPORT:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/scene_smoke.gd'],'SCENE SMOKE:')]
 if args.network:

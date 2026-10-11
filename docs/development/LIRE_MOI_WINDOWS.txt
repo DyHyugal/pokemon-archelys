@@ -1,190 +1,93 @@
-ARCHÉLYS — LABORATOIRE TECHNIQUE WINDOWS
-
-VERSION DE CE BUILD
+ARCHÉLYS — LABORATOIRE SHOWDOWN
 Version : lab-{short_commit}
-Commit source : {commit}
-Moteur : Godot 4.6.3
-Exécutable : Archelys-Laboratoire.exe — nom fixe pour toutes les versions.
-Signature éditeur : absente. L'empreinte SHA256 ci-dessous contrôle l'intégrité,
-mais ne constitue pas une signature numérique reconnue par Windows.
-SHA256 de l'exécutable : {exe_sha256}
-SHA256 des données PCK : {pck_sha256}
+Commit : {commit}
 
-INSTALLATION ET BLOCAGE WINDOWS
-Décompresser entièrement le ZIP dans un dossier, puis ouvrir
-Archelys-Laboratoire.exe. Aucune installation de Godot n'est nécessaire.
-Il s'agit d'un prototype Windows 64 bits, pas d'une ROM.
-Cette variante portable contient un moteur Godot non modifié et un fichier
-Archelys-Laboratoire.pck séparé contenant le jeu. Garder les deux fichiers
-dans le même dossier ; ne pas lancer l'EXE depuis l'intérieur du ZIP.
-Aucune signature reconnue ni autorisation Windows n'est ajoutée.
-Le Contrôle intelligent des applications peut donc encore bloquer le lancement.
+LANCEMENT
+Extraire tout le ZIP dans un dossier puis ouvrir Archelys-Laboratoire.exe.
+Garder le PCK, les dossiers showdown et runtime à côté de l'EXE.
+Aucune installation de Godot ou Node, aucun compte ni Internet nécessaires.
+Le nom de l'EXE reste fixe. Les sauvegardes et paramètres gardent leurs chemins.
+Le moteur Godot est toujours le binaire officiel non modifié ; le dossier
+runtime ajoute Node officiel pour le simulateur local. Cette nouvelle
+composition du ZIP doit encore être validée sur Windows.
 
-PREMIER TEST DE CETTE LIVRAISON
-Essayer d'abord de lancer normalement Archelys-Laboratoire.exe, sans modifier
-les réglages de sécurité Windows. Si Windows le bloque encore, noter simplement
-« lancement bloqué par le Contrôle intelligent » : les tests en jeu attendront.
-S'il démarre, vérifier le parcours complet ci-dessous. Le propriétaire a
-confirmé que la variante portable précédente lançait le jeu sans avertissement
-sur son PC. Le moteur de ce build reste identique ; les données ont évolué.
+Si Windows bloque le lancement ou le processus Node, noter le nom de la
+protection et le message ; ne pas désactiver les protections du PC.
+La vérification des empreintes des binaires n'est pas une signature Windows.
+Si le simulateur est indisponible ou plante, le combat est refusé/annulé ;
+la campagne est restaurée. Il n'y a pas de moteur de secours silencieux.
 
+CE QUI CHANGE
+Les combats Pokémon simples et doubles utilisent maintenant Showdown, avec
+les règles9G et les Méga historiques. Attaques, dégâts, priorités, précision,
+statuts, talents, objets tenus, climats et terrains sont résolus par ce moteur.
+L'en-tête de combat indique « Moteur : Showdown ». Le catalogue visible reste
+provisoire :17 espèces/42 attaques. Les données complètes du simulateur ne
+signifient pas que les500 Pokémon et leurs modèles sont déjà dans le jeu.
 
-Si l'écran indique « Windows a protégé votre ordinateur » et propose
-« Informations complémentaires », cliquer dessus puis « Exécuter quand même »
-si tu choisis d'exécuter ce build téléchargé depuis la release du dépôt.
-Une autre possibilité, quand Windows la propose : clic droit sur le fichier,
-Propriétés, cocher « Débloquer », puis Appliquer. Cela ne signe pas le programme.
+Les captures, le sac, l'EXP, les apprentissages, les évolutions et les caps
+restent des règles de l'aventure. L'EXP/EV des adversaires vaincus sont
+attribués au retour de combat, pour conserver un état cohérent entre moteurs.
+Pas de sauvegarde pendant le combat. Les textes avancent manuellement.
+L'IA utilise ses propres équipes et les informations adverses visibles,
+avec poseur/bénéficiaire/renouvellement ; ce n'est pas encore l'IA finale.
+Multi, raids, Nuzlocke et Soul-link restent reportés.
 
-Ces options ne sont pas disponibles dans tous les cas. Smart App Control,
-une politique d'entreprise ou une détection antivirus sont des situations
-différentes : ne pas désactiver globalement la protection. Dans ce cas, noter
-le texte exact de l'écran et le nom de la protection pour diagnostiquer le blocage.
+PARCOURS DE TEST GROUPÉ
 
-Une signature reconnue exige un certificat de signature de code ou un service
-de signature autorisé. Aucun n'est configuré pour ce projet actuellement.
-Une signature auto-signée ne suffit pas pour être reconnue sur ton PC.
+Commencer par lancer normalement le jeu depuis le dossier extrait. Charger
+une sauvegarde existante et vérifier équipe, sac, langue et réglages de caméra.
+Faire un combat sauvage dans les herbes ou en pêchant : le déplacement et les
+menus d'exploration doivent rester bloqués, les textes attendre une nouvelle
+pression de confirmation, les PP diminuer une fois par utilisation effective.
+Fuir puis consulter le résumé : PV/statuts/PP doivent correspondre au combat,
+sans soin automatique. Tester une Potion sur un membre blessé, y compris sur
+le banc : une seule Potion consommée, et l'adversaire joue durant ce tour.
 
-BLOC11 — PROTECTION, ZONES ET SOUTIEN
+Essayer ensuite une capture après avoir affaibli un Pokémon sauvage. Vérifier
+son arrivée dans l'équipe ou le PC si l'équipe est pleine, ses PV/statuts,
+l'inventaire des Balls et le Pokédex. Sauvegarder hors combat, quitter et
+relancer : équipe, PC, objets, langue et réglages doivent rester conservés.
+Le Pokémon capturé n'est pas remis automatiquement à pleine santé.
 
-Tu ne peux pas tester pour l'instant : ce LIRE-MOI garde le parcours pour
-plus tard. Le confort10 ci-dessous reste à valider ; blocs7–9 et Méga ont
-déjà été validés et ne demandent pas de nouvelle série de tests.
-Même EXE, moteur portable inchangé, campagne5 conservée.
+Dans les outils labo (F3), le Kit Méga équipe les individus compatibles.
+En combat simple, choisir Attaquer puis cocher Méga avant l'attaque.
+Dracaufeu Y doit méga-évoluer et déclencher le soleil. Changer de Pokémon puis
+revenir ne rend pas une seconde Méga possible. La forme normale revient à
+la sortie du combat ; la pierre tenue reste disponible pour le combat suivant.
 
-ESSAI SANS MODIFIER TA PARTIE
-Activer Outils labo avec F3 et cliquer Essai zones / Abri / soutien
-(sans sauvegarde). L'écran indique ESSAI SANS SAUVEGARDE. L'équipe temporaire
-est Tortank, Florizarre et Dracaufeu niveau50 ; ta vraie équipe, ton argent,
-ton sac et ton Pokédex ne sont pas remplacés. Les nouveaux boutons indiquent
-clairement qui sera touché. Les textes avancent toujours manuellement.
+Toujours via F3, lancer « Essai zones / Abri / soutien (sans sauvegarde) ».
+Il utilise une campagne séparée et ne remplace pas ta partie. Choisir Surf
+pour Tortank puis Abri pour Florizarre : le tour attend les deux choix,
+Florizarre est protégé. Recommencer avec une autre attaque pour Florizarre :
+Surf doit aussi blesser l'allié. Éboulement vise seulement les adversaires.
+Tester Surf + Coup d'Main pour vérifier le soutien avant l'attaque de zone.
+Abri répété peut échouer selon les règles ; ce n'est pas un bug d'affichage.
+Le bouton Terminer l'essai retourne à la vraie campagne sans la modifier.
 
-Choisir Surf pour Tortank, puis Abri pour Florizarre. Les choix attendent
-tous les deux avant le tour. Florizarre utilise Abri avant Surf : il reste
-protégé, les adversaires sont touchés. Surf ne touche pas son utilisateur,
-mais touche l'allié non protégé. Recommencer sans Abri permet de le constater.
+Tester aussi un changement volontaire et un remplacement après K.O. :
+le remplacement obligatoire ne doit pas offrir un tour gratuit d'attaque.
+En double, si deux actifs tombent et qu'il ne reste qu'un seul remplaçant,
+il doit pouvoir entrer sans bloquer le combat. Victoire contre un dresseur
+scénaristique : palier et argent attribués une seule fois, cap non décroissant.
 
-Choisir Éboulement : il touche les deux adversaires sans toucher l'allié.
-Tranch'Herbe fait également partie des attaques visant les adversaires.
-Une attaque de zone consomme un seul PP, avec précision et effets distincts
-par cible. Si plusieurs cibles vivantes sont présentes, dégâts réduits à75%.
-Abri répété peut échouer : ce n'est pas un bug, ses chances sont divisées
-par3 à chaque réussite successive, jusqu'à1/729. Il expire à la fin du tour
-et ne supprime pas les dégâts résiduels comme le poison. Abri échoue aussi
-si son utilisateur est le dernier Pokémon à agir pendant le tour.
+Les réglages de confort du précédent lot restent à vérifier si ce n'est pas
+encore fait : touches, volumes Général/Musique/Effets, tailles de texte et
+conservation des réglages au chargement. Ne pas tester les modes reportés.
 
-Choisir Surf pour Tortank puis Coup d'Main pour Florizarre : le soutien se
-fait avant l'attaque et augmente sa puissance de50% pour ce tour. L'allié
-subit Surf s'il n'utilise pas Abri. Coup d'Main ne fonctionne pas en simple.
-Les attaques individuelles comme Vibraqua permettent aussi de cibler ALLIÉ :
-attention, ce choix inflige réellement des dégâts à ton allié.
+RETOUR UTILE
+Version lab-{short_commit} ; lancement et sauvegarde existante ; combat
+simple/capture/sac ; Méga ; Surf avec/sans Abri et Coup d'Main ; K.O. et
+remplacement ; retour sauvegarde ; fluidité et textes manuels.
+Pour un problème : contexte, action choisie, résultat attendu et constaté.
 
-Le bouton Terminer l'essai sans changer la partie sort du combat. Relancer
-l'essai le remet à zéro. Une victoire ou défaite dans cet essai ne change
-pas la vraie campagne. Pas de sauvegarde possible en plein combat.
-Ces mécaniques fonctionnent aussi hors essai ; les CT compatibles sont
-disponibles depuis le résumé, sans nouvelles attaques imposées aux Pokémon
-de tes anciennes sauvegardes. Le catalogue est désormais17 espèces/42attaques.
+ÉTAT ET LICENCES
+Les tests automatisés sont exécutés sous Linux ; la validation Windows de
+cette intégration attend ton retour. Le quartier reste un prototype visuel,
+pas une île finale. Les licences Showdown et ts-chacha20 se trouvent dans
+showdown, celle de Node dans runtime ; celles de Godot et PokéAPI à la racine.
+Elles ne donnent aucun droit supplémentaire sur les marques/assets Pokémon.
 
-À NOTER PLUS TARD
-Version : lab-{short_commit}
-Surf + allié protégé / non protégé : OK / problème
-Éboulement et Tranch'Herbe ciblent les adversaires : OK / problème
-Coup d'Main avant l'attaque : OK / problème
-PP, textes manuels, cibles FR/EN : OK / problème
-Sortie/relance de l'essai sans changer la vraie partie : OK / problème
-
-Ce lot ne termine pas tout le moteur9G : redirection, objets en double,
-IA double avancée et interactions hors catalogue restent à développer.
-Nuzlocke, Soul-link et réseau restent reportés.
-
-BLOC10 — COMMANDES, VOLUMES ET LISIBILITÉ
-
-Tu as validé le Pokédex, les cinématiques, les emplacements/autosave et la Méga
-sur lab-04a2317. Ils sont conservés : pas besoin de refaire leurs parcours.
-Le bloc10, déjà livré mais pas encore testé, ajoute des réglages locaux. Même nom EXE, même moteur officiel
-non modifié et PCK séparé. Format de campagne5 inchangé, fichiers conservés.
-Nuzlocke, Soul-link et multijoueur restent reportés, sans test demandé.
-
-OUVRIR LES NOUVEAUX RÉGLAGES
-Menu → Paramètres. Utiliser la molette dans le contenu de droite pour atteindre
-Lisibilité, Volumes puis Commandes clavier. La navigation de gauche défile
-séparément. Langue, caméra et vitesse restent disponibles en haut.
-
-TEXTE PLUS GRAND
-Choisir Texte16,20 ou24px. Vérifier les libellés et boutons du menu, puis une
-conversation avec le guide et un message de combat. Les corps de texte
-changent également dans la cinématique ; les titres et certains panneaux
-ayant une taille propre gardent leur style. Le menu et les actions de combat
-peuvent défiler quand le texte prend plus de place. Revenir à16 si préféré.
-Il s'agit d'un premier réglage de lisibilité, pas de toutes les fonctions
-d'accessibilité ni d'un changement d'assets graphiques.
-
-VOLUMES ET SONS D'ESSAI
-Les trois curseurs règlent Général, Musique et Effets. Général affecte les
-deux catégories ; chaque catégorie a ensuite son propre volume. Zéro coupe
-le son, remonter le curseur le réactive.
-
-Cliquer Écouter la mélodie d'essai, puis Écouter le son d'effet. La mélodie dure
-1,6seconde, l'effet0,35seconde ; recliquer pour réécouter après un réglage.
-Vérifier qu'Effets à0 coupe l'effet mais garde la mélodie, Musique à0 fait
-l'inverse, et Général à0 coupe les deux. Monter les curseurs pour retrouver
-les sons. Le bouton Arrêter et la fermeture du menu arrêtent les essais.
-Les échantillons sont originaux, synthétisés pour calibrer les réglages :
-ce ne sont pas les musiques ni bruitages finaux. Leur provenance est dans
-LABORATORY_AUDIO.md. En vitesse4×, la mélodie garde sa hauteur et sa durée.
-L'écoute réelle attend ton retour Windows ; les tests techniques vérifient
-les données, lecteurs, gains et bus sans prétendre écouter à ta place.
-
-CHANGER LES TOUCHES
-Cliquer Interagir / texte suivant puis appuyer sur F, par exemple. Fermer le
-menu et vérifier que F permet d'interagir avec le guide et d'avancer ses
-textes. La même touche sert aux messages de combat et aux cinématiques.
-L'ancienne E ne doit plus avancer les textes après cette modification.
-Une touche maintenue ne doit pas passer plusieurs phrases automatiquement.
-Entrée/Espace restent disponibles pour confirmer les interfaces, ainsi que
-l'ancienne confirmation A dans les textes. Échap garde toujours le retour.
-
-Changer ensuite Aller à gauche, par exemple vers K : cette touche remplace
-les anciens alias de cette action, elle ne s'ajoute pas aux trois touches.
-Un conflit avec une autre commande est refusé, y compris ses valeurs par
-défaut. Les touches réservées (Échap, Entrée, Espace, F3) sont refusées pour
-une nouvelle affectation. Lettres physiques A–Z, chiffres, flèches, Tab,
-Maj/Ctrl sont proposées dans ce premier bloc ; pas de combos ni de manette.
-Échap pendant la saisie annule le changement et laisse les paramètres ouverts.
-La touche de Menu peut changer, mais Échap reste toujours disponible.
-
-Les touches sont PHYSIQUES : la position du clavier prévaut pour éviter de
-changer le comportement en passant AZERTY/QWERTY. Les noms affichés suivent
-les codes physiques Godot ; ils peuvent donc différer de la lettre imprimée.
-Les flèches et les alias de déplacement initiaux sont conservés tant qu'une
-action n'a pas été reconfigurée. Le reset restaure seulement les touches,
-sans changer les volumes, la taille du texte, la langue ou la caméra.
-
-CONSERVER LES RÉGLAGES
-Ces réglages sont enregistrés automatiquement, sans sauvegarder la partie.
-Fermer et relancer l'EXE : volumes, texte et touches doivent revenir. Charger
-une ancienne partie ou un autre emplacement ne doit pas les modifier.
-Vérifier ce point avec une sauvegarde existante, sans recommencer l'aventure.
-
-Dossier : %APPDATA%\Godot\app_userdata\Archélys — laboratoire technique\
-Le nouveau fichier comfort.json conserve touches/volumes/taille. Langue/caméra
-restent dans preferences.json et la vitesse dans laboratory_speed.json.
-Les campagnes et autosaves ne changent pas de format ou de chemin dans ce lot.
-L'emplacement1 conserve laboratory_campaign.json ; les autres emplacements et
-leurs .auto.json/.backup restent utilisables. Ne pas supprimer les campagnes
-pour réinitialiser des commandes : le bouton Reset touches suffit.
-
-RETOUR CIBLÉ SUR CE BLOC
-Version : lab-{short_commit}
-Texte16/20/24 et défilement : OK / problème
-Volumes séparés, mute, sons d'essai et vitesse : OK / problème
-Touches monde/dialogue/combat : OK / problème
-Conflits, annulation et reset des touches : OK / problème
-Relance/chargement sans perte des réglages : OK / problème
-Autre remarque :
-
-NOTICES DU MOTEUR
-Godot 4.6.3, licence MIT ; notices incluses dans Godot-LICENSE.txt et
-Godot-COPYRIGHT.txt (sources officielles du tag 4.6.3-stable).
-
-Données de référence PokéAPI : notice BSD dans PokeAPI-LICENSE.txt.
+Empreinte SHA256 EXE Godot : {exe_sha256}
+Empreinte SHA256 PCK : {pck_sha256}
+Le manifest.json donne également la version et l'empreinte du runtime Node.

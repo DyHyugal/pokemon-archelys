@@ -5,6 +5,10 @@ func check(ok: bool,label: String) -> void:
 	if not ok:failures+=1;push_error(label)
 func key(code: Key,pressed: bool=true,echo: bool=false) -> void:
 	var event:=InputEventKey.new();event.keycode=code;event.physical_keycode=code;event.pressed=pressed;event.echo=echo;root.push_input(event,true)
+func settle(world: Node) -> void:
+	var deadline: int=Time.get_ticks_msec()+12000
+	while world.pokemon_battle.busy and Time.get_ticks_msec()<deadline:await create_timer(0.01).timeout
+	check(not world.pokemon_battle.busy and world.pokemon_battle.last_error.is_empty(),"Showdown response arrives without simulator error")
 func _initialize() -> void:call_deferred("run")
 func run() -> void:
 	var scene: PackedScene=load("res://main.tscn");var world: Node=scene.instantiate();world.preferences_path="user://tests_pokemon_scene_preferences.json";DirAccess.remove_absolute(world.preferences_path);root.add_child(world)
@@ -25,6 +29,7 @@ func run() -> void:
 	for step: int in range(10):await physics_frame
 	movement.pressed=false;Input.parse_input_event(movement.duplicate())
 	check(world.battle_panel.visible and world.pokemon_battle.active and world.pokemon_battle.trainer=="","Grass movement triggers wild battle UI")
+	await settle(world)
 	var stopped: Array=session.campaign.players[1].position.duplicate();var index: int=world.battle_panel.event_index
 	key(KEY_E,true,true);check(world.battle_panel.event_index==index,"Held confirmation cannot skip battle text")
 	movement.pressed=true;Input.parse_input_event(movement.duplicate())
@@ -37,6 +42,7 @@ func run() -> void:
 	var pp: int=world.pokemon_battle.current(0).moves[0].pp
 	for control: Node in world.battle_panel.actions.get_children():
 		if control is Button and not control is CheckButton and control.text.contains("PP"):control.pressed.emit();break
+	await settle(world)
 	check(world.pokemon_battle.turn==1 and world.pokemon_battle.current(0).moves[0].pp==pp-1,"Actual move button resolves command and PP")
 	world.battle_panel.execute({"kind":"run"})
 	while world.battle_panel.visible:key(KEY_E);key(KEY_E,false)
@@ -46,6 +52,7 @@ func run() -> void:
 	while a.team.size()<6:a.add(Mon.make("rattata",8,a.next_uid))
 	var enemy:=Mon.make("rattata",8,900000);enemy.hp=1;enemy.status="sleep";enemy.status_turns=3
 	world._begin_pokemon_battle([enemy]);world.pokemon_battle.rng.seed=1
+	await settle(world)
 	while world.battle_panel.event_index<world.pokemon_battle.events.size():key(KEY_E);key(KEY_E,false)
 	world.battle_panel.choice_page="bag";world.battle_panel.render();world.battle_panel.actions.get_child(1).pressed.emit()
 	while world.battle_panel.visible:key(KEY_E);key(KEY_E,false)

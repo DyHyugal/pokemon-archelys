@@ -4,6 +4,9 @@ var failures: int=0
 func check(ok: bool,label: String) -> void:
 	if not ok:failures+=1;push_error(label)
 func drain(world: Node) -> void:
+	var deadline: int=Time.get_ticks_msec()+12000
+	while world.pokemon_battle.busy and Time.get_ticks_msec()<deadline:await create_timer(0.01).timeout
+	check(not world.pokemon_battle.busy and world.pokemon_battle.last_error.is_empty(),"Showdown response arrives without simulator error")
 	while world.battle_panel.event_index<world.pokemon_battle.events.size():world.battle_panel.advance()
 func _initialize() -> void:call_deferred("run")
 func run() -> void:
@@ -22,7 +25,7 @@ func run() -> void:
 	world._travel("center");a.team[0].hp=1;world._contextual_action("nurse");check(a.team[0].hp>1,"Center interaction heals real team")
 	world._travel("cove");world._contextual_action("fish")
 	check(world.pokemon_battle.active and world.pokemon_battle.current(1).species=="magikarp","Fishing launches real legal-stage encounter")
-	drain(world);world.battle_panel.execute({"kind":"run"});drain(world)
+	await drain(world);world.battle_panel.execute({"kind":"run"});await drain(world)
 	check(not world.battle_panel.visible,"Fishing encounter returns cleanly to exploration")
 	check(not session._can_step(Vector2(4,-2),Vector2(4,-4)),"Water movement blocked before Surf")
 	world._contextual_action("surf");check(not a.exploration.cleared.has("surf"),"Surf interaction cannot bypass story lock")
@@ -43,12 +46,12 @@ func run() -> void:
 	world.pause_menu.travel_requested.emit("cove",true);check(a.exploration.location=="cove" and not world.pause_menu.visible,"Map flight travels to visited destination and closes modal")
 	world._travel("village");world._mega_kit();check(a.team.size()==6 and a.team[3].item=="venusaurite","Technical Mega kit integrates legal forms and stones")
 	world._start_support_test("electric");check(world.battle_panel.visible and world.pokemon_battle.field.terrain=="","Terrain test launches through actual controls")
-	world.pokemon_battle.finish("won");drain(world)
-	world._start_double_test();drain(world)
+	world.pokemon_battle.finish("won");await drain(world)
+	world._start_double_test();await drain(world)
 	check(world.battle_panel.cards.text.contains("double") and world.battle_panel.actions.get_child_count()>=4,"Double UI shows four actors and target controls")
 	click_double_move(world);check(world.pokemon_battle.turn==0 and world.pokemon_battle.queued.size()==1,"First double button queues action")
-	click_double_move(world);check(world.pokemon_battle.turn==1,"Second double button resolves global turn")
-	world.pokemon_battle.finish("won");drain(world)
+	click_double_move(world);await drain(world);check(world.pokemon_battle.turn==1,"Second double button resolves global turn")
+	world.pokemon_battle.finish("won");await drain(world)
 	Engine.time_scale=1.0
 	print("EXPLORATION SCENE: shop/center/doors, saved interior, fishing/Surf, field collisions/climb, map/Fly, graphical alternatives and actual double controls; %d failures" % failures)
 	quit(1 if failures else 0)

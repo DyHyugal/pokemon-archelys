@@ -1,5 +1,6 @@
 extends RefCounted
-## Solo command simulation. No renderer, networking or knowledge of future inputs.
+## Legacy laboratory engine retained for comparison tests only.
+## Playable Pokémon combats use services/showdown_battle.gd; do not add new mechanics here.
 const Mon=preload("res://scripts/domain/pokemon.gd")
 const Catalog=preload("res://scripts/domain/pokemon_catalog.gd")
 const Field=preload("res://scripts/domain/battle_field.gd")

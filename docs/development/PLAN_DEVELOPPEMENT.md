@@ -81,3 +81,7 @@ Le confort10 reste à tester et figure dans le même LIRE-MOI ; aucun test inter
 ### D55 : étude d'un socle de combat existant
 
 La suite des interactions maison prévue après D54 est à réexaminer : l'[étude Showdown](ETUDE_MOTEUR_SHOWDOWN.md) recommande un simulateur existant plutôt que la duplication exhaustive des règles. Proposition, sans migration déjà réalisée : format/licences → adaptateur local asynchrone → parité des parcours solo et persistance → ZIP Windows avec runtime portable → interface/IA filtrée → extension du catalogue. Conserver l'aventure, les menus et préférences Godot ; reprendre les règles pertinentes de Tactica après audit, sans porter sa ROM. Réseau, raids et modes défi restent reportés. Cette recommandation n'est pas une nouvelle décision propriétaire.
+
+### D56 : migration autorisée et exécutée
+
+D56 valide explicitement la base Showdown. Lot : adaptateur asynchrone et format, raccordement simple/double, parité des parcours solo et sauvegardes, runtime Windows portable. Les mécaniques nouvelles de combat doivent désormais s'appuyer sur ce moteur ; ne plus étendre les calculs maison. Après playtest de ce lot : approfondir IA et présentation, puis contenus/catalogue selon les choix propriétaires, sans rouvrir le chantier réseau ou les modes reportés.

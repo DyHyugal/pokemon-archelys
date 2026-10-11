@@ -30,7 +30,12 @@ func name_of(id: String) -> String:return Catalog.name_of(id,locale)
 func button(text: String,action: Callable,enabled: bool=true) -> Button:
 	var control:=Button.new();control.text=text;control.custom_minimum_size.y=40;control.disabled=not enabled;actions.add_child(control);control.pressed.connect(action);return control
 func open(simulator: RefCounted,language: String) -> void:
-	battle=simulator;locale=language;visible=true;event_index=0;choice_page="main";mega_selected=false;render()
+	if battle!=null and battle.has_signal("changed") and battle.changed.is_connected(_battle_changed):battle.changed.disconnect(_battle_changed)
+	battle=simulator
+	if battle.has_signal("changed"):battle.changed.connect(_battle_changed)
+	locale=language;visible=true;event_index=0;choice_page="main";mega_selected=false;render()
+func _battle_changed() -> void:
+	event_index=0;render()
 func execute(command: Dictionary) -> void:
 	if command.kind=="move" and mega_selected:command.mega=true
 	if not battle.execute(command):return
@@ -53,9 +58,12 @@ func render() -> void:
 	cards.text=t("Adversaire : %s Nv.%d • %d/%d PV %s\n\nÉquipe : %s Nv.%d • %d/%d PV %s\nTour %d • %s", "Opponent: %s Lv.%d • %d/%d HP %s\n\nParty: %s Lv.%d • %d/%d HP %s\nTurn %d • %s") % [name_of(enemy.species),enemy.level,enemy.hp,Mon.stats(enemy).hp,Catalog.text("status_names",enemy.status,locale),name_of(player.species),player.level,player.hp,Mon.stats(player).hp,Catalog.text("status_names",player.status,locale),battle.turn,t("sauvage","wild") if battle.trainer.is_empty() else t("dresseur","trainer")]
 	cards.text+="\nClimat / Weather: %s (%d) • Terrain: %s (%d)" % [battle.field.weather,battle.field.weather_turns,battle.field.terrain,battle.field.terrain_turns]
 	if battle.get("double_mode")==true:cards.text=double_cards()
+	if battle.has_signal("changed"):cards.text+=t("\nMoteur : Showdown • règles 9G", "\nEngine: Showdown • Gen IX rules")
 	if event_index<battle.events.size():
 		message.text=battle.events[event_index][locale]
 		button(t("Continuer • %s / Entrée","Continue • %s / Enter") % (comfort.caption("interact") if comfort!=null else "E"),advance).grab_focus();return
+	if battle.get("busy")==true:
+		message.text=t("Showdown résout le combat…", "Showdown is resolving the battle…");return
 	if not battle.active:
 		visible=false;finished.emit(battle.result);return
 	message.text=t("Que veux-tu faire ?","What will you do?")
@@ -77,7 +85,7 @@ func render() -> void:
 			else:
 				for i: int in range(player.moves.size()):
 					var slot: int=i;var move: Dictionary=Catalog.move(player.moves[i].id)
-					button("%s • %s • %d/%d PP" % [name_of(player.moves[i].id),Catalog.text("type_names",move.type,locale),player.moves[i].pp,move.pp],func():execute({"kind":"move","slot":slot}),player.moves[i].pp>0)
+					button("%s • %s • %d/%d PP" % [name_of(player.moves[i].id),Catalog.text("type_names",move.type,locale),player.moves[i].pp,move.pp],func():execute({"kind":"move","slot":slot}),slot in battle.available_moves(0))
 			back()
 		"team":render_team(false);back()
 		"bag":

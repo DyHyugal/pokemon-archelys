@@ -1,7 +1,7 @@
 extends Node3D
 
-const PokemonBattle=preload("res://scripts/domain/pokemon_battle.gd")
-const DoubleBattle=preload("res://scripts/domain/double_battle.gd")
+const PokemonBattle=preload("res://scripts/services/showdown_battle.gd")
+const DoubleBattle=preload("res://scripts/services/showdown_battle.gd")
 const BattlePanel=preload("res://scripts/ui/pokemon_battle_panel.gd")
 const Catalog=preload("res://scripts/domain/pokemon_catalog.gd")
 const Mon=preload("res://scripts/domain/pokemon.gd")
@@ -558,7 +558,7 @@ func _begin_trainer(id: String) -> void:
 func _begin_pokemon_battle(opponents: Array,trainer_id: String="") -> bool:
 	if dialogue.active or pause_menu.visible or cinematic.active or Session.active_network:return false
 	pokemon_battle=PokemonBattle.new()
-	if not pokemon_battle.begin(Session.campaign.adventure,opponents,trainer_id):return false
+	if not pokemon_battle.begin(Session.campaign.adventure,opponents,trainer_id):message.text="Showdown indisponible : vérifier le dossier complet du jeu / Showdown unavailable: keep the complete game folder";return false
 	Session.submit_axis(Vector2.ZERO)
 	battle_panel.open(pokemon_battle,locale)
 	return true
@@ -644,7 +644,7 @@ func _start_support_test(support: String) -> void:
 	_begin_pokemon_battle(opponents,"weather-test" if support=="sun" else "terrain-test")
 func _start_double_test() -> void:
 	if battle_panel.visible or pause_menu.visible or dialogue.active or cinematic.active or Session.active_network:return
-	pokemon_battle=DoubleBattle.new()
+	pokemon_battle=DoubleBattle.new();pokemon_battle.double_mode=true
 	if not pokemon_battle.begin(Session.campaign.adventure,[Mon.make("rattata",8,900000),Mon.make("pikachu",8,900001)]):message.text="Deux Pokémon aptes nécessaires / Two ready Pokémon required";return
 	Session.submit_axis(Vector2.ZERO);battle_panel.open(pokemon_battle,locale)
 func _mega_kit() -> void:
@@ -660,7 +660,7 @@ func _start_tactics_test() -> void:
 	for entry: Dictionary in [{"index":0,"moves":["surf","protect","rock-slide","water-pulse"]},{"index":1,"moves":["helping-hand","protect","razor-leaf","growth"]},{"index":2,"moves":["flamethrower","protect","rock-slide","helping-hand"]}]:
 		trial.team[int(entry.index)].moves=[]
 		for id: String in entry.moves:trial.team[int(entry.index)].moves.append({"id":id,"pp":int(Catalog.move(id).pp)})
-	pokemon_battle=DoubleBattle.new();pokemon_battle.sandbox=true
+	pokemon_battle=DoubleBattle.new();pokemon_battle.double_mode=true;pokemon_battle.sandbox=true
 	if not pokemon_battle.begin(trial,[Mon.make("raticate",50,900000),Mon.make("raichu",50,900001)]):return
 	Session.submit_axis(Vector2.ZERO);battle_panel.open(pokemon_battle,locale)
 func _stop_tactics_test() -> void:

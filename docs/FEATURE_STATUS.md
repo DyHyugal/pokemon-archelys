@@ -95,4 +95,8 @@ Livraison D54 : [lab-53f5baa](https://github.com/DyHyugal/pokemon-archelys/relea
 
 ## Étude D55 — base de combat
 
-Showdown : **FAISABILITÉ TESTÉE, NON INTÉGRÉ**. 25 sondes du simulateur, 6 contrôles de liaison locale Godot ; suite amont ciblée61 réussis/2 ignorés. Recommandation et conditions MIT dans [l'étude](development/ETUDE_MOTEUR_SHOWDOWN.md). Aucun changement du moteur actuel ou de la release ; Windows avec Node non testé. Tactica consulté en lecture seule, aucun code importé. IA stratégique, adaptations de campagne et format Archélys restent à développer si cette base est adoptée.
+D55, état historique avant D56 : Showdown **FAISABILITÉ TESTÉE, NON INTÉGRÉ**. 25 sondes du simulateur, 6 contrôles de liaison locale Godot ; suite amont ciblée61 réussis/2 ignorés. Recommandation et conditions MIT dans [l'étude](development/ETUDE_MOTEUR_SHOWDOWN.md). Aucun changement du moteur actuel ou de la release ; Windows avec Node non testé. Tactica consulté en lecture seule, aucun code importé. IA stratégique, adaptations de campagne et format Archélys restent à développer si cette base est adoptée.
+
+## D56 — combat Showdown
+
+**DÉVELOPPÉ ET TESTÉ LOCALEMENT, WINDOWS À VALIDER** : combats Pokémon jouables simples/doubles raccordés au simulateur local, états de campagne et PP préservés, runtime portable, panne avec restauration ; [rapport](development/INTEGRATION_SHOWDOWN.md). Format9G + Méga, catalogue17/42 conservé. IA à vues limitées intégrée, stratégie experte encore incomplète. Ancien moteur seulement en comparaison ; aucun code Tactica importé. Réseau/raids/défis restent reportés.
