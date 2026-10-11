@@ -155,3 +155,9 @@ Provenance : demande explicite du propriétaire, « procède à l'intégration d
 Provenance : demande propriétaire « ok je te laisse continuer sur les blocs alors »,11 octobre2026. Poursuite autorisée ; aucune nouvelle validation Windows déduite. D52 reste la dernière validation reçue. Bloc12 acquisitions, première partie : cadeaux d'œufs, incubation par déplacement et éclosion, sauvegarde comprise. N40 impose de fixer les caractéristiques à la création de l'œuf.
 
 Paramètres purement techniques de laboratoire : trois cadeaux uniques (starters1G déjà autorisés comme fixtures), incubateur séparé de l'équipe,20m de marche et éclosion confirmée dans le menu. Aucun choix des starters finaux, distribution narrative ou durée officielle. La reproduction, héritages/compatibilités et restauration des fossiles ne sont pas implémentés dans cette partie. Nuzlocke/Soul-link et réseau restent reportés.
+
+## D58 — suppression du bloc reproduction
+
+Provenance : demande explicite du propriétaire,11 octobre2026 : « la reproduction n'a pas d'intéret puisse que les IV, le shiny et les capacités sont gérables […] retire ce bloc de repro ». La reproduction et ses héritages sont retirés du périmètre et de la roadmap, en remplacement de la demande antérieure sur ce sujet. Le travail local commencé n'a pas été livré et est annulé : aucun système de parents, sexe, groupes d'œufs, héritage IV/talents/attaques ni nouveaux cadeaux de parents intégré.
+
+Le bloc déjà livré des œufs cadeaux/incubation/éclosion est conservé ; cette décision ne le retire pas. Les fossiles restent le prochain bloc d'acquisitions. Aucun nouveau retour de validation Windows déduit de cette décision.

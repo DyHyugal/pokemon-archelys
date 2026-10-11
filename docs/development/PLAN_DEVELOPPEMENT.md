@@ -89,3 +89,7 @@ D56 valide explicitement la base Showdown. Lot : adaptateur asynchrone et format
 ### D57 — bloc12 acquisitions, partie œufs
 
 Réception unique de cadeaux d'essai → incubation persistée par marche effective → confirmation d'éclosion → équipe ou PC. L'incubateur séparé protège l'interface Showdown des entités non combattantes. Paramètres temporaires documentés, pas comportement final des œufs de l'équipe. Ensuite : reproduction/héritage avec données biologiques sourcées, puis fossiles avec petit catalogue technique et restauration transactionnelle. Pas de développement multi/défis pendant ce lot.
+
+### D58 — roadmap corrigée
+
+La reproduction et les héritages sont supprimés à la demande du propriétaire. Cela remplace les suites précédemment indiquées après le bloc œufs. Prochain bloc : restauration des fossiles, avec un petit catalogue de laboratoire sourcé et une transaction sans perte d'objet si l'équipe/PC est plein. Les œufs cadeaux restent disponibles. Les demandes historiques de reproduction ne sont plus à réaliser.
