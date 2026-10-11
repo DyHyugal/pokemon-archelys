@@ -1,137 +1,83 @@
-ARCHÉLYS — LABORATOIRE FOSSILES + ŒUFS + SHOWDOWN
+ARCHÉLYS — AVENTURE / COMBAT / VISUELS / OUVERTURE PROPOSÉE
 Version : lab-{short_commit}
 Commit : {commit}
 
 LANCEMENT
-Extraire tout le ZIP dans un dossier puis ouvrir Archelys-Laboratoire.exe.
-Garder le PCK, les dossiers showdown et runtime à côté de l'EXE.
-Aucune installation de Godot ou Node, aucun compte ni Internet nécessaires.
-Le nom de l'EXE reste fixe. Les sauvegardes et paramètres gardent leurs chemins.
-Le moteur Godot est toujours le binaire officiel non modifié ; le dossier
-runtime ajoute Node officiel pour le simulateur local. Cette nouvelle
-composition du ZIP doit encore être validée sur Windows.
-
-Si Windows bloque le lancement ou le processus Node, noter le nom de la
-protection et le message ; ne pas désactiver les protections du PC.
-La vérification des empreintes des binaires n'est pas une signature Windows.
-Si le simulateur est indisponible ou plante, le combat est refusé/annulé ;
-la campagne est restaurée. Il n'y a pas de moteur de secours silencieux.
+Extraire tout le ZIP puis ouvrir Archelys-Laboratoire.exe ; garder son PCK
+et les dossiers showdown/runtime à côté. Aucun compte, installation ou Internet
+nécessaire. Nom EXE fixe, binaire officiel Godot inchangé ; non signé par nous.
+En cas de blocage, noter le message et la protection sans les désactiver.
 
 CE QUI CHANGE
-Nouveau service au Centre du village : restauration de Fossile Nautile
-(Amonita), Fossile Dôme (Kabuto) et Vieil Ambre (Ptéra). Le laboratoire fournit
-une fois les trois objets. Le fossile est consommé seulement après réception
-du Pokémon dans l’équipe ou le PC ; si le stockage est plein, il est conservé.
-Niveau5, service gratuit et lieu/distribution sont des paramètres provisoires.
-Le Pokédex indique la restauration ; Amonita et Kabuto évoluent au niveau40.
-Aucun nouveau modèle graphique. Défis et multijoueur restent reportés.
-
-Nouveau menu Œufs / Incubateur : trois cadeaux uniques, incubation par marche
-et éclosion confirmée vers équipe ou PC. Caractéristiques fixées à réception.
-Incubateur séparé de l’équipe et durée20m sont des paramètres d’essai, pas les
-règles finales des œufs cadeaux. La reproduction a été retirée du projet.
-
-Les combats Pokémon simples et doubles utilisent maintenant Showdown, avec
-les règles9G et les Méga historiques. Attaques, dégâts, priorités, précision,
-statuts, talents, objets tenus, climats et terrains sont résolus par ce moteur.
-L'en-tête de combat indique « Moteur : Showdown ». Le catalogue visible reste
-provisoire :22 espèces/43 attaques. Les données complètes du simulateur ne
-signifient pas que les500 Pokémon et leurs modèles sont déjà dans le jeu.
-
-Les captures, le sac, l'EXP, les apprentissages, les évolutions et les caps
-restent des règles de l'aventure. L'EXP/EV des adversaires vaincus sont
-attribués au retour de combat, pour conserver un état cohérent entre moteurs.
-Pas de sauvegarde pendant le combat. Les textes avancent manuellement.
-L'IA utilise ses propres équipes et les informations adverses visibles,
-avec poseur/bénéficiaire/renouvellement ; ce n'est pas encore l'IA finale.
-Multi, raids, Nuzlocke et Soul-link restent reportés.
+Menu Aventure, prologue FR/EN, sentier et épreuve reliés au village, balise,
+boss Showdown, épilogue, progression et récompenses persistantes. L'ouverture
+est une proposition jouable, pas le scénario ou la première île finalisés.
+L'IA difficile coordonne mieux les poseurs et partenaires en double, tient
+compte des dégâts de zone sur ses alliés et du soutien/Abri. Champs/durées et
+restrictions d'attaque affichés plus clairement. Pas de lecture des choix ou
+des sets cachés adverses ; stratégie experte pas encore garantie.
+Trois comparatifs FHD enrichis et capture du sentier dans Comparatifs.
+Le mannequin et les primitives restent provisoires ; aucune variante validée.
+Catalogue22 espèces/43 attaques inchangé. Œufs cadeaux/fossiles conservés.
+Reproduction retirée ; multi/raids/Nuzlocke/Soul-link non prioritaires.
 
 PARCOURS DE TEST GROUPÉ
+Garder une copie des anciennes sauvegardes avant d'écrire avec cette version.
+Charger normalement : équipe/PC/sac et préférences langue/caméra conservés.
+Les anciennes campagnes démarrent le nouveau parcours sans drapeaux acquis.
+Ne pas réutiliser un ancien binaire pour lire une sauvegarde des nouvelles zones.
 
-Entrer au Centre du village par sa porte puis ouvrir Menu → Vie quotidienne.
-Cliquer « Labo : recevoir trois fossiles d’essai (une fois) ». Vérifier dans le
-sac les trois objets, sauvegarder puis charger : ils restent présents et le
-cadeau ne peut pas être repris. Revenir au service et restaurer chaque objet.
-Vérifier Amonita, Kabuto et Ptéra niveau5 dans l’équipe, puis dans le résumé et
-le Pokédex. Chaque restauration retire exactement un objet, jamais un autre.
-Si l’équipe est pleine, le prochain Pokémon arrive au PC. Si équipe et PC sont
-pleins, aucun fossile ne doit être perdu ; libérer une place puis réessayer.
-Le service est disponible seulement au Centre, hors combat et hors défi actif.
+Au village, ouvrir Menu → Aventure et commencer le prologue. Les textes
+attendent chaque confirmation et bloquent les déplacements. Fermer et reprendre
+si nécessaire. Vérifier cinq Balls et trois Potions supplémentaires dans le
+Sac ; ce cadeau ne doit être donné qu'une fois. Le Journal donne l'objectif.
+La langue choisie dans Paramètres s'applique aussi aux nouveaux dialogues.
 
-Mettre un Pokémon restauré en tête de l’équipe et faire un combat sauvage :
-attaques, PP et retour d’état doivent fonctionner avec Showdown. Amonita utilise
-Roulade (attaque qui se poursuit plusieurs tours), ce verrouillage est normal.
-Sauvegarder, quitter et charger : Pokémon, objets consommés et cadeau reçu
-restent conservés. Vérifier aussi les boutons de restauration en anglais.
-Le taux chromatique configuré s’applique à la restauration suivante. Les essais
-d’évolution40 peuvent attendre une progression permettant ce niveau.
-Garder une copie de l’ancienne sauvegarde ; une nouvelle campagne contenant
-ces espèces n’est pas compatible avec les anciennes versions du laboratoire.
+Aller à la sortie nord du village (au fond, près du centre du bord de zone)
+et interagir pour entrer sur le sentier. Il est fermé avant le prologue.
+Les herbes sont au nord-ouest : faire une rencontre/capture et vérifier retour
+des PV/statuts/PP et inventaire. Activer la balise à l'est ; sans elle, la porte
+nord du sentier vers l'épreuve reste fermée. Sauvegarder ici, quitter et charger :
+zone, position, balise et objectif doivent être conservés. Centre/boutique/PC
+restent accessibles en revenant au village par la sortie sud du sentier.
 
+Dans l'épreuve, parler au gardien au fond. Il combat avec deux Pokémon niveau10.
+Se soigner et préparer l'équipe au Centre si nécessaire ; une ancienne équipe
+très puissante peut rendre ce test facile. Victoire :500 pièces une seule fois
+et cap au moins18, jamais inférieur à un cap déjà supérieur. Ouvrir Aventure
+pour l'épilogue puis revenir au village par les sorties sud. Sauvegarder/charger
+et reparler au gardien : aucune deuxième récompense. Une défaite retourne au
+village et permet de retenter l'épreuve. Vérifier le Journal et la galerie des
+scènes vues ; les scènes non découvertes ne doivent pas y être proposées.
 
-Dans le menu Œufs / Incubateur, recevoir un œuf puis fermer le menu et marcher
-hors des herbes pour éviter les combats. Revenir au menu : la marche restante
-doit diminuer. Sauvegarder à mi-parcours, quitter et charger : même avancement.
-Le temps passé dans les menus, dialogues ou combats ne doit pas incuber.
-Après20m, confirmer l’éclosion : un Pokémon niveau1 apparaît dans l’équipe ou
-le PC, avec les caractéristiques conservées ; aucun second cadeau de la même
-espèce ni seconde éclosion possible. Vérifier résumé/Pokédex puis sauvegarder
-et recharger. Essayer également le menu en anglais. Aucun œuf ne combat.
+Pour les combats, vérifier textes manuels, champs/durées, sac/Potion sur banc,
+changement et remplacement après KO. Les attaques forcées par le moteur peuvent
+restreindre la liste : c'est normal, elles doivent néanmoins rester jouables.
+Le Kit Méga de F3 reste compatible : Attaquer puis case Méga, une fois par combat.
+F3 → Essai zones/Abri/soutien utilise une partie isolée : Surf+Abri protège
+l'allié, Surf sans Abri peut le blesser ; Coup d'Main renforce le partenaire.
+Terminer l'essai revient à la vraie campagne sans la remplacer.
 
-
-Commencer par lancer normalement le jeu depuis le dossier extrait. Charger
-une sauvegarde existante et vérifier équipe, sac, langue et réglages de caméra.
-Faire un combat sauvage dans les herbes ou en pêchant : le déplacement et les
-menus d'exploration doivent rester bloqués, les textes attendre une nouvelle
-pression de confirmation, les PP diminuer une fois par utilisation effective.
-Fuir puis consulter le résumé : PV/statuts/PP doivent correspondre au combat,
-sans soin automatique. Tester une Potion sur un membre blessé, y compris sur
-le banc : une seule Potion consommée, et l'adversaire joue durant ce tour.
-
-Essayer ensuite une capture après avoir affaibli un Pokémon sauvage. Vérifier
-son arrivée dans l'équipe ou le PC si l'équipe est pleine, ses PV/statuts,
-l'inventaire des Balls et le Pokédex. Sauvegarder hors combat, quitter et
-relancer : équipe, PC, objets, langue et réglages doivent rester conservés.
-Le Pokémon capturé n'est pas remis automatiquement à pleine santé.
-
-Dans les outils labo (F3), le Kit Méga équipe les individus compatibles.
-En combat simple, choisir Attaquer puis cocher Méga avant l'attaque.
-Dracaufeu Y doit méga-évoluer et déclencher le soleil. Changer de Pokémon puis
-revenir ne rend pas une seconde Méga possible. La forme normale revient à
-la sortie du combat ; la pierre tenue reste disponible pour le combat suivant.
-
-Toujours via F3, lancer « Essai zones / Abri / soutien (sans sauvegarde) ».
-Il utilise une campagne séparée et ne remplace pas ta partie. Choisir Surf
-pour Tortank puis Abri pour Florizarre : le tour attend les deux choix,
-Florizarre est protégé. Recommencer avec une autre attaque pour Florizarre :
-Surf doit aussi blesser l'allié. Éboulement vise seulement les adversaires.
-Tester Surf + Coup d'Main pour vérifier le soutien avant l'attaque de zone.
-Abri répété peut échouer selon les règles ; ce n'est pas un bug d'affichage.
-Le bouton Terminer l'essai retourne à la vraie campagne sans la modifier.
-
-Tester aussi un changement volontaire et un remplacement après K.O. :
-le remplacement obligatoire ne doit pas offrir un tour gratuit d'attaque.
-En double, si deux actifs tombent et qu'il ne reste qu'un seul remplaçant,
-il doit pouvoir entrer sans bloquer le combat. Victoire contre un dresseur
-scénaristique : palier et argent attribués une seule fois, cap non décroissant.
-
-Les réglages de confort du précédent lot restent à vérifier si ce n'est pas
-encore fait : touches, volumes Général/Musique/Effets, tailles de texte et
-conservation des réglages au chargement. Ne pas tester les modes reportés.
+Parcourir village/sentier/épreuve à ta résolution habituelle puis comparer les
+images A/B/C. Noter fluidité, lisibilité, caméra/zoom et ce qui te plaît ou non
+sur bâtiments/sols/eau/végétation. Le rendu Linux a été mesuré sur CPU logiciel,
+pas sur une carte graphique Windows : aucune promesse de60FPS pour ce build.
+Les menus Sac, Équipe/PC, Pokédex, Paramètres, Œufs et Vie quotidienne sont
+conservés. Au Centre, les cadeaux de fossiles et leur restauration restent
+uniques/transactionnels : si équipe/PC pleins, aucun fossile perdu.
 
 RETOUR UTILE
-Version lab-{short_commit} ; lancement et sauvegarde existante ; combat
-simple/capture/sac ; Méga ; Surf avec/sans Abri et Coup d'Main ; K.O. et
-remplacement ; retour sauvegarde ; fluidité et textes manuels.
-Pour un problème : contexte, action choisie, résultat attendu et constaté.
+Version lab-{short_commit} ; lancement ; parcours prologue→sentier→balise→boss
+→épilogue ; sauvegarde à mi-parcours et récompense unique ; combat/Méga ;
+fluidité et préférence graphique. Un seul retour groupé suffit.
+Pour un problème : lieu, action, attendu, observé ; pas besoin de tester les
+modes reportés. Les textes et les contenus provisoires peuvent être critiqués.
 
 ÉTAT ET LICENCES
-Les tests automatisés sont exécutés sous Linux ; la validation Windows de
-cette intégration attend ton retour. Le quartier reste un prototype visuel,
-pas une île finale. Les licences Showdown et ts-chacha20 se trouvent dans
-showdown, celle de Node dans runtime ; celles de Godot et PokéAPI à la racine.
-Elles ne donnent aucun droit supplémentaire sur les marques/assets Pokémon.
-
+Tests automatisés sous Linux réussis ; validation Windows de ce lot attendue.
+Showdown MIT et dépendances dans showdown, Node dans runtime, Godot/PokéAPI à
+la racine. Géométrie/shader originaux ; aucun nouvel asset officiel intégré.
+Ces licences n'accordent pas de droits sur les marques/assets Pokémon.
 Empreinte SHA256 EXE Godot : {exe_sha256}
 Empreinte SHA256 PCK : {pck_sha256}
-Le manifest.json donne également la version et l'empreinte du runtime Node.
+Versions et empreintes complémentaires dans manifest.json.

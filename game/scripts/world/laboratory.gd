@@ -95,6 +95,12 @@ func capture_frame(path: String) -> void:
 				if child is CanvasLayer:child.visible=false
 			var caption:=CanvasLayer.new();add_child(caption)
 			var title:=Label.new();title.text="ARCHÉLYS • COMPARATIF %s • prototype non validé" % ["A — côtier sobre","B — chaleureux","C — contemporain"][visual_variant];title.position=Vector2(28,24);title.add_theme_font_size_override("font_size",28);caption.add_child(title)
+	for arg: String in OS.get_cmdline_user_args():
+		if arg.begins_with("--location="):
+			Session.campaign.adventure.exploration.enter(arg.trim_prefix("--location="));_rebuild_location()
+			get_viewport().size=Vector2i(1920,1080);camera.size=24
+			for child: Node in get_children():
+				if child is CanvasLayer:child.visible=false
 	if "--capture-menu" in OS.get_cmdline_user_args(): _open_menu("settings")
 	if "--capture-team" in OS.get_cmdline_user_args():
 		_open_menu("team");pause_menu.adventure_pages.selected_uid=int(Session.campaign.adventure.team[0].uid);pause_menu.render()
@@ -143,29 +149,7 @@ func _build_world() -> void:
 	light.light_energy = 0.65
 	light.shadow_enabled = true
 	add_child(light)
-	_box(Vector3(85,0.2,85), Vector3(0,-0.65,0), Color("3ba8ba"))
-	_box(Vector3(33,0.4,25), Vector3(0,-0.3,0), Color("e1c48c"))
-	_box(Vector3(29,0.1,21), Vector3(0,-0.05,0), Color("86ad6b"))
-	_box(Vector3(4,0.03,20), Vector3(0,0.025,0), Color("d4ba87"))
-	_box(Vector3(23,0.03,3), Vector3(0,0.026,3), Color("d4ba87"))
-	for pos: Vector2 in World.HOUSES:
-		_box(Vector3(3.2,2.6,2.8), Vector3(pos.x,1.3,pos.y), Color("f0dcc0"))
-		var roof := PrismMesh.new()
-		roof.size = Vector3(3.7,1.4,3.2)
-		_mesh(roof, Vector3(pos.x,3.3,pos.y), Color("be695a"))
-		_box(Vector3(0.8,1.65,0.07), Vector3(pos.x,0.85,pos.y+1.44), Color("66554b"))
-		for offset: float in [-0.95,0.95]:
-			_box(Vector3(0.65,0.65,0.08),Vector3(pos.x+offset,1.6,pos.y+1.45),Color("569eb8"))
-	for pos: Vector2 in World.TREES:
-		var trunk := CylinderMesh.new()
-		trunk.top_radius=0.2; trunk.bottom_radius=0.28; trunk.height=3.5
-		_mesh(trunk,Vector3(pos.x,1.75,pos.y),Color("93785b"))
-		for index: int in range(5):
-			var leaf := _box(Vector3(0.8,0.15,3.3),Vector3(pos.x,3.5,pos.y),Color("3e8061"))
-			leaf.rotation.y = float(index) * TAU/5.0
-	var mountain := CylinderMesh.new()
-	mountain.top_radius = 0.8; mountain.bottom_radius=6.0; mountain.height=6.0
-	_mesh(mountain,Vector3(0,3,-16),Color("555965"))
+	var town:=VisualDistrict.new();world_geometry.add_child(town);town.build(0)
 	_box(Vector3(5.5,0.07,1.4),Vector3(0,0.08,-8.0),Color("74cabc"))
 	camera = Camera3D.new()
 	camera.projection=Camera3D.PROJECTION_ORTHOGONAL
@@ -348,14 +332,20 @@ func _autosave_if_safe(force: bool=false) -> void:
 	else:message.text="Autosauvegarde / Autosave : %s" % error_string(error)
 
 func _play_scene(id: String,replay: bool=false) -> void:
-	if Session.active_network or pokemon_battle.active or dialogue.active or cinematic.active or Session.campaign.adventure.exploration.location!="village":return
+	if Session.active_network or pokemon_battle.active or dialogue.active or cinematic.active:return
+	var owner: RefCounted=Session.campaign.adventure
+	var entry: Dictionary=Cinematic.library().get(id,{})
+	if entry.is_empty() or (entry.get("location","village")!="any" and owner.exploration.location!=entry.get("location","village")):return
+	if id=="slice-prologue" and not owner.journey.flags.has("briefing"):return
+	if id=="slice-ending" and not owner.journey.flags.has("boss"):return
 	if not cinematic.begin(id,Session.campaign.adventure.records,replay):return
 	cinematic_zoom=camera.size;cinematic_hud_visible=gameplay_layer.visible;gameplay_layer.hide();pause_menu.close();Session.submit_axis(Vector2.ZERO);_render_shot()
 func _render_shot() -> void:
 	cinematic_panel.render(cinematic,locale)
 	if not cinematic.active:
 		if shot_tween:shot_tween.kill()
-		gameplay_layer.visible=cinematic_hud_visible;camera.size=cinematic_zoom;last_walk_position=_local_position();_open_menu("cinema");return
+		Session.campaign.adventure.journey.finish(Session.campaign.adventure)
+		gameplay_layer.visible=cinematic_hud_visible;camera.size=cinematic_zoom;last_walk_position=_local_position();_open_menu("journey" if cinematic.id.begins_with("slice-") else "cinema");return
 	var shot: Dictionary=cinematic.current();var point: Array=shot.focus;var focus:=Vector3(point[0],point[1],point[2])
 	if shot_tween:shot_tween.kill()
 	shot_tween=create_tween().set_parallel(true)
@@ -446,6 +436,8 @@ func _open_interaction(id: String) -> bool:
 		return false
 	active_interaction=id
 	var record: Dictionary=interaction_records[id]
+	if id=="guide" and Session.campaign.adventure.journey.flags.has("briefing"):
+		record={"fr":{"speaker":"Vyna — dialogue proposé","lines":[Session.campaign.adventure.journey.objective("fr"),"Reviens au village pour soigner et préparer ton équipe. Le journal conserve notre prochaine étape."]},"en":{"speaker":"Vyna — proposed dialogue","lines":[Session.campaign.adventure.journey.objective("en"),"Return to the village to heal and prepare your party. The journal keeps track of our next step."]}}
 	if id=="crate" and not Session.campaign.laboratory.complete("crate"):
 		record={"fr":{"speaker":"Caisse de test","lines":["La caisse est déjà vide."]},"en":{"speaker":"Test crate","lines":["The crate is already empty."]}}
 	return dialogue.begin(record,locale)
@@ -529,7 +521,7 @@ func _process(_delta: float) -> void:
 	_track_encounters(focus)
 	if battle_panel.visible:axis=Vector2.ZERO
 	exploration_help.text="Herbes : nord-ouest • Soins : cube bleu • Dresseurs : cubes rouges\nMenu → Équipe / Résumé / PC • F3 : entraînement technique" if locale=="fr" else "Grass: northwest • Healing: blue cube • Trainers: red cubes\nMenu → Party / Summary / PC • F3: laboratory training"
-	if displayed_location!="village":exploration_help.text="%s • E / Entrée : interaction • Échap : menu" % displayed_location
+	if displayed_location!="village":exploration_help.text="%s • E / Entrée : interaction • Échap : menu\n%s" % [displayed_location,Session.campaign.adventure.journey.objective(locale)]
 	exploration_help.text=exploration_help.text.replace("E / Entrée",comfort.caption("interact")+" / Entrée").replace("E / Enter",comfort.caption("interact")+" / Enter")
 	menu_button.text="Menu • "+comfort.caption("menu")
 	Session.submit_axis(axis)
@@ -540,7 +532,7 @@ func _track_encounters(position_now: Vector3) -> void:
 	var distance: float=position_now.distance_to(last_walk_position)
 	last_walk_position=position_now
 	Session.campaign.adventure.nursery.walk(distance,Session.active_network or pause_menu.visible or dialogue.active or battle_panel.visible or cinematic.active or pokemon_battle.active)
-	if Session.campaign.adventure.exploration.location!="village" or Session.active_network or pause_menu.visible or dialogue.active or battle_panel.visible or cinematic.active or distance>1.0:return
+	if Session.campaign.adventure.exploration.location not in ["village","trail"] or Session.active_network or pause_menu.visible or dialogue.active or battle_panel.visible or cinematic.active or distance>1.0:return
 	if position_now.x>=-9 and position_now.x<=-3 and position_now.z>=-7 and position_now.z<=-4:
 		Session.campaign.adventure.encounter_steps+=distance
 		if Session.campaign.adventure.encounter_steps>=3.5:
@@ -568,6 +560,7 @@ func _battle_finished(outcome: String) -> void:
 	if pokemon_battle.get("sandbox")==true:
 		Session.submit_axis(Vector2.ZERO);message.text="Essai terminé : campagne conservée / Sandbox ended: campaign preserved";return
 	Session.submit_axis(Vector2.ZERO)
+	if outcome=="won" and pokemon_battle.trainer=="slice-boss":message.text="Épreuve gagnée — conclusion dans le menu Aventure / Trial won — ending in Adventure menu"
 	if outcome=="lost":
 		Session.campaign.adventure.exploration.enter("village")
 		Session.campaign.players[1].position=[0.0,0.0,2.0];Session.latest=Session.campaign.snapshot()
@@ -578,7 +571,7 @@ func _battle_finished(outcome: String) -> void:
 func _travel(target: String,flight: bool=false) -> void:
 	if Session.active_network or pokemon_battle.active or cinematic.active or dialogue.active:return
 	if not Session.campaign.adventure.travel(target,flight):
-		message.text="Destination non visitée / Vol non débloqué";return
+		message.text="Destination fermée : consulter le menu Aventure / Destination locked: check Adventure menu";return
 	Session.campaign.players[1].position=[0.0,0.0,5.0]
 	Session.submit_axis(Vector2.ZERO);Session.latest=Session.campaign.snapshot();last_walk_position=_local_position()
 	if pause_menu.visible:pause_menu.close()
@@ -587,6 +580,22 @@ func _contextual_action(id: String) -> bool:
 	var owner: RefCounted=Session.campaign.adventure
 	var location: String=owner.exploration.location
 	match id:
+		"journey-gate":_travel("trail")
+		"trial-gate":_travel("trial")
+		"exit-trial":_travel("trail")
+		"beacon":
+			if owner.journey.beacon(owner):message.text="Balise activée : épreuve ouverte / Beacon active: trial open"
+			else:message.text="Balise déjà activée / Beacon already active"
+		"slice-boss":
+			if owner.journey.flags.has("boss"):message.text="Épreuve terminée — menu Aventure / Trial complete — Adventure menu"
+			elif owner.journey.flags.has("beacon"):
+				var opponents: Array=[]
+				for species: String in ["vulpix","bulbasaur"]:
+					var mon: Dictionary=Mon.make(species,10,900000+opponents.size())
+					if species=="vulpix":mon.ability="drought"
+					else:mon.ability="chlorophyll"
+					opponents.append(mon)
+				_begin_pokemon_battle(opponents,"slice-boss")
 		"center-door":_travel("center")
 		"shop-door":_travel("shop")
 		"pier":_travel("cove")
@@ -614,7 +623,9 @@ func _rebuild_location() -> void:
 		for child: Node in get_children():
 			if child is WorldEnvironment or child is DirectionalLight3D:child.free()
 		_build_world();return
-	if displayed_location=="district":
+	if displayed_location in ["trail","trial"]:
+		var district:=VisualDistrict.new();world_geometry.add_child(district);district.build_route(displayed_location)
+	elif displayed_location=="district":
 		var district:=VisualDistrict.new();world_geometry.add_child(district);district.build(visual_variant)
 	elif displayed_location in ["center","shop"]:
 		_box(Vector3(12,0.3,14),Vector3(0,-0.2,1),Color("b8aa89"))

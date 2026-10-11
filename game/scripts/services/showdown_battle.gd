@@ -18,7 +18,7 @@ var imported: Dictionary={}
 var last_error: String=""
 var pending_item: String=""
 func begin(owner: RefCounted,opponents: Array,trainer_id: String="") -> bool:
- if active or owner.in_battle or opponents.is_empty() or trainer_id not in ["","trainer-1","trainer-2","weather-test","terrain-test"]:return false
+ if active or owner.in_battle or opponents.is_empty() or trainer_id not in ["","trainer-1","trainer-2","weather-test","terrain-test","slice-boss"]:return false
  var ready: Array=[]
  var seen: Array=[]
  for mon: Dictionary in owner.team+opponents:
@@ -241,6 +241,7 @@ func finish(outcome: String) -> void:
   enemy_index=previous
  if outcome=="won" and trainer in ["trainer-1","trainer-2"] and not adventure.victories.has(trainer):
   adventure.victories[trainer]=true;adventure.raise_cap(18 if trainer=="trainer-1" else 36);adventure.money+=300
+ if outcome=="won":adventure.journey.won(adventure,trainer)
  if outcome=="won":say("Victoire ! Cap actuel : %d." % adventure.cap,"Victory! Current level cap: %d." % adventure.cap)
  super.finish(outcome)
  busy=false;queued.clear()

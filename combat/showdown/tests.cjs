@@ -92,4 +92,27 @@ function start(player,enemy,mode='singles',extra={}){const a=new Adapter();const
  a.act({choice:'move 1'});const view=a.aiView();view.terrain='';view.own.find(p=>p.uid===9).fainted=true;view.own.find(p=>p.uid===9).hp=0;
  check(choose(view,Dex)==='switch 3','Expired terrain renews through backup setter instead of another DPS');a.close();
 }
+
+{
+ const {a}=start([mon('raticate',1,['tackle']),mon('raticate',2,['tackle'])],[mon('raichu',9,['electric-terrain','thunderbolt']),mon('raichu',10,['electric-terrain','thunderbolt'])],'doubles',{difficulty:'hard'});
+ const choice=choose(a.aiView(),Dex);
+ check(choice.split(', ').filter(c=>c==='move 1').length===1,'Doubles coordinate one setter instead of repeating identical terrain');
+ a.close();
+}
+{
+ const {a}=start([mon('raticate',1,['tackle']),mon('raticate',2,['tackle'])],[mon('blastoise',9,['surf','water-pulse']),mon('charizard',10,['flamethrower'],{hp:1})],'doubles',{difficulty:'hard'});
+ check(choose(a.aiView(),Dex).startsWith('move 2'),'Hard AI avoids Surf into critically wounded vulnerable ally');
+ a.close();
+}
+{
+ const {a}=start([mon('raticate',1,['tackle']),mon('raticate',2,['tackle'])],[mon('blastoise',9,['surf']),mon('venusaur',10,['protect','tackle'])],'doubles',{difficulty:'hard'});
+ check(choose(a.aiView(),Dex).includes(', move 1'),'Own planned Surf coordinates ally Protect without reading player choices');
+ const view=a.aiView();check(!('stats' in view.enemies[0])&&!('ability' in view.enemies[0]),'Stronger policy keeps hidden enemy stats and ability outside boundary');
+ a.close();
+}
+{
+ const {a}=start([mon('raticate',1,['tackle'])],[mon('omanyte',9,['rollout','withdraw'])]);
+ const s=a.act({choice:'move 1'});
+ check(s.logs.some(l=>l.includes('Rollout')),'Imported fossil Rollout resolves in real simulator');a.close();
+}
 console.log(`SHOWDOWN ADAPTER: ${checks} checks, 0 failures`);

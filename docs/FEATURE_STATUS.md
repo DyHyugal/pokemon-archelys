@@ -9,16 +9,16 @@ Les statuts portent sur les preuves, pas sur l’enthousiasme ou la présence da
 | Moteur Godot/Blender | LABORATOIRE TESTÉ | Godot 4.6.3, Blender 4.3.2 ; adéquation finale non validée |
 | Assets 3D animés | PROTOTYPE ORIGINAL TESTÉ | Mannequin GLB, sept os/une animation ; aucun Pokémon intégré |
 | Combat 9G + exceptions | SHOWDOWN INTÉGRÉ ET TESTÉ LOCALEMENT | D56 : simple/double, Méga, attaques/talents/objets/champs via simulateur ; catalogue22/43 après D59, conformité des règles originales à éprouver |
-| IA difficile | POLITIQUE SHOWDOWN À VUES LIMITÉES TESTÉE | Poseur → bénéficiaire de talent/type → renouvellement ; aucun set/choix adverses cachés ; stratégie experte non finalisée |
+| IA difficile | POLITIQUE SHOWDOWN À VUES LIMITÉES TESTÉE | Poseur → bénéficiaire de talent/type → renouvellement ; coordination double/Abri/risque allié (D61) ; aucun set/choix adverses cachés ; stratégie experte non finalisée |
 | Coopération 2/3 | REPORTÉ — ESSAI LOCALHOST CONSERVÉ | Trois processus ENet ; pas d’Internet ni combat réseau |
 | Raids phasés/simultanés | DEMANDÉ | R01 ; règles détaillées ouvertes |
 | Sauvegardes et migration | SOLO SCHÉMA 5 TESTÉ | Slots/autosave/Pokédex/scènes, lecture v1/v2/v3/v4 et copies originales ; réseau reporté |
 | Soul-link | REPORTÉ | D50 : non prioritaire, aucun test Windows acquis |
-| Région et scénario | EN CADRAGE | Thèmes et synopsis, pas de maps |
+| Région et scénario | OUVERTURE PROPOSÉE JOUABLE | D61 : village/sentier/épreuve/épilogue persistants FR/EN ; îles et contenu final non approuvés |
 | Résumé IV/EV/natures/PC | SOCLE VALIDÉ WINDOWS | lab-2816c71, D48 ; extensions CT/talents/Méga du nouveau lot à retester |
 | Actions terrain | LABORATOIRE DÉVELOPPÉ ET TESTÉ | Obstacles/collisions, Surf, Escalade et Vol carte ; déblocages provisoires, Flash sans grotte à tester |
 | Wiki joueurs | PRÉPARÉ LOCAL | Rubriques documentaires ; non publié |
-| Exports Windows | PORTABLE VALIDÉ JUSQU’À lab-04a2317 | D52 : blocs7–9 et Méga validés ; bloc10 à tester |
+| Exports Windows | PORTABLE VALIDÉ JUSQU’À lab-04a2317 | D52 : blocs7–9 et Méga validés ; lots postérieurs à D52 à tester |
 | FR/EN complets | DEMANDÉ | C25 |
 | Réponses Q01–Q16 | TRANSCRITES | Classeur et JSON conservés ; décisions D22–D33 |
 | Scénario complet et casting | PROPOSÉS | Documents V0.1, approbation owner attendue |
@@ -118,3 +118,7 @@ Livraison bloc12 première partie : [lab-bd216d3](https://github.com/DyHyugal/po
 **Implémenté et testé localement** : restauration de3 fossiles au Centre, échantillons uniques, coût d'un objet après livraison seulement, destination équipe/PC, origine village et Pokédex, sauvegardes compatibles en lecture, anciennes campagnes sans drapeau acceptées.23 assertions spécifiques et suite complète réussies. Catalogue provisoire22 espèces/43 attaques ; pas de nouveaux modèles. Nuzlocke indisponible pour ce service tant que ses quotas sont reportés. Niveau5/gratuité/distribution d'essai non définitifs. Validation Windows attendue ; D52 reste la dernière validation propriétaire. Reproduction retirée selon D58.
 
 Livraison fossiles : [lab-1830ec4](https://github.com/DyHyugal/pokemon-archelys/releases/tag/lab-1830ec4), CI verte, ZIP et empreintes publiés. Preuve dans `docs/development/verification/FOSSILS_2026-10-11.txt`. README embarqué mis à jour ; même EXE portable. Validation Windows attendue.
+
+## Livraison groupée D61
+
+Combat/IA, parcours solo et maquette d'ouverture : développés et tests locaux réussis. Comparatifs FHD originaux actualisés, sentier ajouté ; direction artistique non validée. Mesure llvmpipe logiciel5,3fps à1920×1080, ne décrit pas un GPU joueur. Preuves et limites : [rapport](development/LOT_AVENTURE_IA_VISUELS.md). Dernière validation owner D52 ; aucun nouveau retour Windows acquis.

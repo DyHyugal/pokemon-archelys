@@ -29,7 +29,7 @@ func _initialize() -> void:
  for index: int in range(a.pending.size()-1,-1,-1):
   if a.pending[index].kind=="evolution":a.resolve_choice(index,0)
  check(a.records.caught.has("ivysaur") and a.records.caught.has("bulbasaur"),"Level evolution history preserved")
- check(Records.habitats("gyarados")==["cove"] and Records.habitats("raichu").is_empty() and Records.habitats("venusaur")==["village"],"Habitats share legal encounter stages and item evolutions do not spawn")
+ check(Records.habitats("gyarados")==["cove"] and Records.habitats("raichu").is_empty() and Records.habitats("venusaur")==["village","trail"],"Habitats share legal encounter stages and item evolutions do not spawn")
  var bad:=a.records.snapshot();bad.seen.erase("bulbasaur")
  check(not Records.validate(bad),"Obtained must be seen")
  bad=a.records.snapshot();bad.scenes["unknown"]=true;check(not Records.validate(bad),"Unknown cinematic identifiers rejected")

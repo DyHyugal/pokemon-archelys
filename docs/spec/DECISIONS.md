@@ -171,3 +171,9 @@ Catalogue technique étendu à22 espèces/43 attaques (Amonita/Amonistar, Kabuto
 ## D60 — augmenter la taille des lots
 
 Provenance : demande propriétaire du11 octobre2026 : « c'est quoi les prochains bloc ? essaye de les faire un peu plus conséquent ». Regrouper les prochains travaux en livraisons comportant plusieurs sous-chantiers et un seul parcours owner par lot. Ce retour ne valide pas Windows les fossiles ni les propositions artistiques/narratives. Le découpage ci-dessous est une proposition technique de suite, pas l'autorisation de produire les îles ou de choisir le catalogue final.
+
+## D61 — les quatre lots en autonomie
+
+Provenance : propriétaire, « ok alors enchaine ses 4 blocs en autonomie stp »,11 octobre2026. Réaliser ensemble combat/IA, aventure continue, référence graphique FHD et préparation de l'ouverture. Une seule livraison et un parcours owner. Cette autorisation ne choisit pas une variante graphique, des espèces définitives ou les propositions narratives encore ouvertes. Le quatrième lot est donc une **ouverture jouable proposée**, pas une première île de production approuvée. D52 reste le dernier retour Windows de validation.
+
+Exécution : politique IA coordonnée en double (poseurs, dégâts alliés, Abri/soutien), présentation des champs ; village→sentier→épreuve→épilogue avec journal, cinématiques FR/EN, fournitures et récompense uniques, sauvegarde. Comparatifs procéduraux FHD enrichis, avatar original conservé ; dialogues Vyna explicitement proposés. Catalogue22/43 et Showdown épinglés inchangés. Format5 conserve la lecture des campagnes sans état d'aventure ; sauvegardes originales préservées. Reproduction retirée, multi/raids/défis reportés. Voir LOT_AVENTURE_IA_VISUELS.md pour preuves et limites.

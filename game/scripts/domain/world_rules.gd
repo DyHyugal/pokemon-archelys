@@ -10,12 +10,28 @@ static func interaction_points() -> Dictionary:
 
 static func local_points(location: String) -> Dictionary:
 	match location:
+		"trail":return {"exit":Vector3(0,0,8),"beacon":Vector3(6,0,-2),"trial-gate":Vector3(0,0,-8)}
+		"trial":return {"exit-trial":Vector3(0,0,8),"slice-boss":Vector3(0,0,-4)}
 		"center":return {"exit":Vector3(0,0,7),"nurse":Vector3(0,0,-3)}
 		"shop":return {"exit":Vector3(0,0,7),"counter":Vector3(0,0,-3)}
 		"cove":return {"exit":Vector3(0,0,7),"fish":Vector3(0,0,-3),"surf":Vector3(4,0,-3)}
 		"district":return {"exit":Vector3(0,0,7),"visuals":Vector3(0,0,3)}
-	return {"center-door":Vector3(-8,0,2.2),"shop-door":Vector3(8,0,2.2),"pier":Vector3(0,0,9),"district-gate":Vector3(0,0,-9),"cut":Vector3(-11,0,3),"rock-smash":Vector3(11,0,3),"strength":Vector3(11,0,6),"climb":Vector3(-11,0,8)}
+	return {"journey-gate":Vector3(0,0,-6),"center-door":Vector3(-8,0,2.2),"shop-door":Vector3(8,0,2.2),"pier":Vector3(0,0,9),"district-gate":Vector3(0,0,-9),"cut":Vector3(-11,0,3),"rock-smash":Vector3(11,0,3),"strength":Vector3(11,0,6),"climb":Vector3(-11,0,8)}
 static func local_walkable(pos: Vector2,location: String) -> bool:
+	if location in ["trail","trial"]:
+		if absf(pos.x)>12 or absf(pos.y)>10:return false
+		if location=="trail":
+			for side: int in [-1,1]:
+				for z: int in [-7,1,7]:
+					if pos.distance_to(Vector2(side*10,z))<0.7:return false
+			for rock: Vector2 in [Vector2(-7,-2),Vector2(8,4)]:
+				if pos.distance_to(rock)<1.6:return false
+		elif location=="trial":
+			for x: int in [-6,6]:
+				for z: int in [-7,2]:
+					if pos.distance_to(Vector2(x,z))<0.65:return false
+			if pos.distance_to(Vector2(0,-4))<0.45:return false
+		return true
 	if location in ["center","shop"]:return absf(pos.x)<5.5 and pos.y>-5 and pos.y<8
 	if location=="cove":return absf(pos.x)<7 and pos.y<9 and (pos.y>=-2 or (absf(pos.x)<1 and pos.y>=-3))
 	if location=="district":

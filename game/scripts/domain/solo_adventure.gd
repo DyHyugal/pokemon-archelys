@@ -3,6 +3,8 @@ const Mon=preload("res://scripts/domain/pokemon.gd")
 const Catalog=preload("res://scripts/domain/pokemon_catalog.gd")
 const Exploration=preload("res://scripts/domain/exploration.gd")
 const Records=preload("res://scripts/domain/journey_records.gd")
+const Journey=preload("res://scripts/domain/journey.gd")
+var journey:=Journey.new()
 const Nursery=preload("res://scripts/domain/nursery.gd")
 var nursery:=Nursery.new()
 var records:=Records.new()
@@ -137,9 +139,10 @@ func wild(level: int=-1, species_id: String="") -> Dictionary:
 	mon.nature=Mon.NATURES[rng.randi_range(0,24)];mon.hp=Mon.stats(mon).hp
 	return mon
 func snapshot() -> Dictionary:
-	return {"fossil_samples_received":fossil_samples_received,"nursery":nursery.snapshot(),"records":records.snapshot(),"team":team.duplicate(true),"boxes":boxes.duplicate(true),"bag":bag.duplicate(true),"next_uid":next_uid,"cap":cap,"money":money,"victories":victories.duplicate(true),"pending":pending.duplicate(true),"initialized":initialized,"exploration":exploration.snapshot()}
+	return {"journey":journey.snapshot(),"fossil_samples_received":fossil_samples_received,"nursery":nursery.snapshot(),"records":records.snapshot(),"team":team.duplicate(true),"boxes":boxes.duplicate(true),"bag":bag.duplicate(true),"next_uid":next_uid,"cap":cap,"money":money,"victories":victories.duplicate(true),"pending":pending.duplicate(true),"initialized":initialized,"exploration":exploration.snapshot()}
 static func validate(value: Variant) -> bool:
 	if not value is Dictionary:return false
+	if value.has("journey") and not Journey.validate(value.journey):return false
 	if value.has("fossil_samples_received") and not value.fossil_samples_received is bool:return false
 	if value.has("nursery") and not Nursery.validate(value.nursery):return false
 	if value.has("records") and not Records.validate(value.records):return false
@@ -184,6 +187,8 @@ static func validate(value: Variant) -> bool:
 	return true
 func restore(value: Dictionary) -> bool:
 	if not validate(value):return false
+	journey=Journey.new()
+	if value.has("journey"):journey.restore(value.journey)
 	fossil_samples_received=value.get("fossil_samples_received",false)
 	nursery=Nursery.new()
 	if value.has("nursery"):nursery.restore(value.nursery)
@@ -227,7 +232,9 @@ func purchase(item: String, quantity: int, sell: bool=false) -> bool:
 func travel(target: String, flight: bool=false) -> bool:
 	if in_battle:return false
 	if flight and (target not in exploration.visited or target not in ["village","cove","district"] or not exploration.field_unlocked("fly",victories)):return false
-	return exploration.enter(target)
+	if not journey.can_enter(self,target):return false
+	if not exploration.enter(target):return false
+	journey.entered(target);return true
 func teach_machine(uid: int, move_id: String, slot: int) -> bool:
 	if in_battle:return false
 	var mon:=find(uid)

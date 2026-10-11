@@ -108,3 +108,9 @@ Cadence : un ZIP et un parcours owner pour chaque ensemble terminé, avec contr�
 4. **Première tranche du vrai jeu** : prologue/première ville/première route/épreuve, dialogues et journal FR/EN, rencontres et économie, sauvegardes et mise en scène. Condition préalable : validation du quartier/style, du contenu narratif concerné et des espèces/assets de cette tranche. Livrable : première aventure jouable avec le rendu retenu. L'ensemble des îles ne démarre pas automatiquement.
 
 Ordre recommandé :1→2→3→4. Des préparatifs de l'art peuvent accompagner les systèmes indépendants ; aucun résultat provisoire n'est considéré comme une validation owner.
+
+## D61 — exécution groupée des quatre lots
+
+Combat/IA et affichage → route persistante et règles de progression → enrichissement/rendus FHD → ouverture proposée FR/EN. Ces quatre chantiers sont développés et vérifiés techniquement dans un seul build. La condition artistique/narrative du lot4 demeure : la production de la vraie première île attend l'approbation ; le parcours livré est sa maquette jouable. Aucun développement réseau/défis/reproduction.
+
+Après ce build : recueillir un retour groupé Windows sur parcours/sauvegarde/combats et une critique des comparatifs ; corriger les écarts observés avant extension. Choisir ensuite style, espèces/assets et dialogues de l'ouverture, puis remplacer progressivement les fixtures. Voir LOT_AVENTURE_IA_VISUELS.md. Ne pas annoncer le moteur complet ou la fidélité exhaustive sur la seule base de ces tests.

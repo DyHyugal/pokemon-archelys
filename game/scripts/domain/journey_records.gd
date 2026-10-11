@@ -4,7 +4,7 @@ const Catalog=preload("res://scripts/domain/pokemon_catalog.gd")
 var seen: Dictionary={}
 var caught: Dictionary={}
 var scenes: Dictionary={}
-const SCENES=["lab-tour","lab-note"]
+const SCENES=["lab-tour","lab-note","slice-prologue","slice-ending"]
 func observe(id: String, owned: bool=false) -> void:
  if not Catalog.data().species.has(id):return
  seen[id]=true
@@ -32,6 +32,7 @@ static func habitats(id: String) -> Array:
   for level: int in range(2,101):
    if Catalog.legal_species(base,level)==id:
     if "village" not in result:result.append("village")
+    if "trail" not in result:result.append("trail")
     break
  for level: int in range(2,Catalog.FISH_MAX_LEVEL+1):
   if Catalog.legal_species(Catalog.FISH_BASE,level)==id:

@@ -107,7 +107,7 @@ func run()->void:
 	if world.locale!="fr" or world.camera.size!=13.0 or world.Preferences.read(world.preferences_path).camera_size!=13.0:
 		push_error("Settings controls failed to persist language/camera");quit(1);return
 	world.pause_menu.buttons.journal.pressed.emit()
-	if world.pause_menu.page!="journal" or "✓ Parler au guide" not in world.pause_menu.body.get_child(1).text:
+	if world.pause_menu.page!="journal" or not world.pause_menu.body.get_children().any(func(node: Node):return node is Label and "✓ Parler au guide" in node.text):
 		push_error("Journal menu did not reflect saved objectives");quit(1);return
 	world.pause_menu.buttons.save.pressed.emit()
 	session.campaign.laboratory=session.campaign.LabProgress.new()

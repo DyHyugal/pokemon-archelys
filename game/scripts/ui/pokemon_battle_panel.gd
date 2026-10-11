@@ -56,7 +56,7 @@ func render() -> void:
 	for child: Node in actions.get_children():actions.remove_child(child);child.queue_free()
 	var player: Dictionary=battle.current(0);var enemy: Dictionary=battle.current(1)
 	cards.text=t("Adversaire : %s Nv.%d • %d/%d PV %s\n\nÉquipe : %s Nv.%d • %d/%d PV %s\nTour %d • %s", "Opponent: %s Lv.%d • %d/%d HP %s\n\nParty: %s Lv.%d • %d/%d HP %s\nTurn %d • %s") % [name_of(enemy.species),enemy.level,enemy.hp,Mon.stats(enemy).hp,Catalog.text("status_names",enemy.status,locale),name_of(player.species),player.level,player.hp,Mon.stats(player).hp,Catalog.text("status_names",player.status,locale),battle.turn,t("sauvage","wild") if battle.trainer.is_empty() else t("dresseur","trainer")]
-	cards.text+="\nClimat / Weather: %s (%d) • Terrain: %s (%d)" % [battle.field.weather,battle.field.weather_turns,battle.field.terrain,battle.field.terrain_turns]
+	cards.text+="\n"+field_caption()
 	if battle.get("double_mode")==true:cards.text=double_cards()
 	if battle.has_signal("changed"):cards.text+=t("\nMoteur : Showdown • règles 9G", "\nEngine: Showdown • Gen IX rules")
 	if event_index<battle.events.size():
@@ -67,6 +67,8 @@ func render() -> void:
 	if not battle.active:
 		visible=false;finished.emit(battle.result);return
 	message.text=t("Que veux-tu faire ?","What will you do?")
+	if battle.has_signal("changed") and battle.available_moves(0).size()==1 and player.moves.size()>1:
+		message.text+=t("\nUne seule attaque disponible : vérifie le verrouillage ou les PP.","\nOnly one move available: check locking or PP.")
 	if battle.get("double_mode")==true:
 		render_double();return
 	if player.hp<=0:
@@ -122,7 +124,7 @@ func double_cards() -> String:
 			text+="\n%s %d : %s • %d/%d PV" % [t("Adversaire","Opponent") if side==1 else t("Équipe","Party"),slot+1,name_of(mon.species),mon.hp,Mon.stats(mon).hp]
 			if battle.protected.has(int(mon.uid)):text+=t(" • Abri"," • Protect")
 			if battle.helping.has(int(mon.uid)):text+=t(" • Coup d’Main"," • Helping Hand")
-	text+="\nClimat / Weather: %s (%d) • Terrain: %s (%d)" % [battle.field.weather,battle.field.weather_turns,battle.field.terrain,battle.field.terrain_turns]
+	text+="\n"+field_caption()
 	return text
 func render_double() -> void:
 	cards.text=double_cards()
@@ -172,3 +174,8 @@ func render_mega_toggle() -> void:
 	toggle.text=t("Méga-évolution","Mega Evolution")+(" — "+reason if reason!="" else "")
 	toggle.disabled=not ready;toggle.set_pressed_no_signal(mega_selected);actions.add_child(toggle)
 	toggle.toggled.connect(func(value: bool):mega_selected=value;render())
+
+func field_caption() -> String:
+	var weather: String={"sun":t("Soleil","Sun"),"rain":t("Pluie","Rain"),"snow":t("Neige","Snow"),"sand":t("Tempête de sable","Sandstorm")}.get(battle.field.weather,t("Aucun","None"))
+	var terrain: String={"electric":t("Électrique","Electric"),"grass":t("Herbu","Grassy"),"misty":t("Brumeux","Misty"),"psychic":t("Psychique","Psychic")}.get(battle.field.terrain,t("Aucun","None"))
+	return t("Climat : %s (%d tours) • Terrain : %s (%d tours)","Weather: %s (%d turns) • Terrain: %s (%d turns)") % [weather,battle.field.weather_turns,terrain,battle.field.terrain_turns]

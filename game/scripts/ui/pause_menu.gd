@@ -101,10 +101,10 @@ func render() -> void:
 	clear(navigation); clear(body); buttons.clear()
 	var pages := ["home","bag","journal","settings"]
 	if adventure!=null:
-		pages.append_array(["team","pc","choices","map","services","rules","dex","cinema","saves","nursery"])
+		pages.append_array(["team","pc","choices","map","services","rules","dex","cinema","saves","nursery","journey"])
 		adventure_pages.adventure=adventure
 	var names := [tr_text("Pause","Pause"),tr_text("Sac","Bag"),tr_text("Journal","Journal"),tr_text("Paramètres","Settings")]
-	if adventure!=null:names.append_array([tr_text("Équipe / Résumé","Party / Summary"),"PC",tr_text("Apprentissages (%d)","Learning (%d)") % adventure.pending.size(),tr_text("Carte / Vol","Map / Fly"),tr_text("Vie quotidienne","Daily services"),tr_text("Règles / Difficulté","Rules / Difficulty"),"Pokédex",tr_text("Cinématiques","Cinematics"),tr_text("Sauvegardes","Save slots"),tr_text("Œufs / Incubateur","Eggs / Incubator")])
+	if adventure!=null:names.append_array([tr_text("Équipe / Résumé","Party / Summary"),"PC",tr_text("Apprentissages (%d)","Learning (%d)") % adventure.pending.size(),tr_text("Carte / Vol","Map / Fly"),tr_text("Vie quotidienne","Daily services"),tr_text("Règles / Difficulté","Rules / Difficulty"),"Pokédex",tr_text("Cinématiques","Cinematics"),tr_text("Sauvegardes","Save slots"),tr_text("Œufs / Incubateur","Eggs / Incubator"),tr_text("Aventure","Adventure")])
 	for index: int in range(pages.size()):
 		var target: String=pages[index]
 		buttons[target]=button(navigation,names[index],func(): page=target; feedback.text=""; render())
@@ -138,9 +138,22 @@ E / Enter: interact in the world"))
 			adventure_pages.render(page)
 		"map","services","rules":exploration_pages.render(page)
 		"dex","cinema","saves":collection_pages.render(page)
+		"journey":
+			label(tr_text("Ouverture proposée d'Archélys — contenu et rendu à valider.","Proposed Archelys opening — content and visuals awaiting approval."))
+			label(adventure.journey.objective(locale))
+			if not adventure.journey.flags.has("briefing"):
+				var start: Button=button(body,tr_text("Commencer le prologue","Start prologue"),func():
+					if adventure.journey.begin(adventure):scene_requested.emit("slice-prologue",false))
+				start.disabled=adventure.exploration.location!="village"
+			elif not adventure.records.scenes.has("slice-prologue"):
+				button(body,tr_text("Reprendre le prologue","Resume prologue"),func():scene_requested.emit("slice-prologue",false))
+			if adventure.journey.flags.has("boss") and not adventure.journey.flags.has("ending"):
+				button(body,tr_text("Voir la conclusion","Watch ending"),func():scene_requested.emit("slice-ending",false))
+			label(tr_text("Parcours : village → sentier → épreuve → retour. Équipe et sauvegarde actuelles conservées. Les objets de départ ne sont donnés qu'une fois.","Route: village → trail → trial → return. Current party and save retained. Starting supplies are granted only once."))
 		"nursery":
 			adventure_pages.render_nursery()
 		"journal":
+			if adventure!=null:label(adventure.journey.objective(locale))
 			label(tr_text("Objectifs du laboratoire", "Laboratory objectives"))
 			var ids := ["guide","sign","crate"]
 			var tasks := [tr_text("Parler au guide","Talk to the guide"),tr_text("Lire le panneau au nord-ouest","Read the northwest sign"),tr_text("Ouvrir la caisse au sud-est","Open the southeast crate")]

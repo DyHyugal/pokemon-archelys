@@ -1,20 +1,154 @@
 {
- "lab-tour": {
-  "names":{"fr":"Visite mise en scène — essai technique","en":"Staged tour — technical test"},
-  "replayable":true,"skippable":false,
-  "steps":[
-   {"focus":[0,0,0],"size":19,"fr":"Une vue d'ensemble du laboratoire. Cette scène vérifie les cadrages ; elle ne raconte pas l'histoire d'Archélys.","en":"An overview of the laboratory. This scene tests camera shots; it does not tell Archelys' story."},
-   {"focus":[-6,0,-5],"size":13,"fr":"Les herbes abritent des rencontres. Les textes attendent une nouvelle pression, même à vitesse élevée.","en":"Wild encounters live in the grass. Text waits for a new press, even at high speed."},
-   {"focus":[7,0,0],"size":15,"fr":"Le village relie les services et les zones d'exploration. Les bâtiments restent des modèles provisoires.","en":"The village connects services and exploration areas. Buildings remain provisional models."},
-   {"focus":[0,0,0],"size":16,"fr":"La visite est terminée. Elle sera disponible dans la galerie ; ton équipe et tes objets restent inchangés.","en":"The tour is over. It will be available in the gallery; your party and items remain unchanged."}
-  ]
- },
- "lab-note": {
-  "names":{"fr":"Scène secondaire — essai du passage","en":"Secondary scene — skip test"},
-  "replayable":false,"skippable":true,
-  "steps":[
-   {"focus":[0,0,0],"size":16,"fr":"Une scène secondaire peut être passée avec Échap. Elle n'est pas ajoutée à la galerie de replay.","en":"A secondary scene may be skipped with Escape. It is not added to the replay gallery."},
-   {"focus":[0,0,0],"size":16,"fr":"Fin de cette note de laboratoire.","en":"End of this laboratory note."}
-  ]
- }
+  "lab-tour": {
+    "names": {
+      "fr": "Visite mise en scène — essai technique",
+      "en": "Staged tour — technical test"
+    },
+    "replayable": true,
+    "skippable": false,
+    "steps": [
+      {
+        "focus": [
+          0,
+          0,
+          0
+        ],
+        "size": 19,
+        "fr": "Une vue d'ensemble du laboratoire. Cette scène vérifie les cadrages ; elle ne raconte pas l'histoire d'Archélys.",
+        "en": "An overview of the laboratory. This scene tests camera shots; it does not tell Archelys' story."
+      },
+      {
+        "focus": [
+          -6,
+          0,
+          -5
+        ],
+        "size": 13,
+        "fr": "Les herbes abritent des rencontres. Les textes attendent une nouvelle pression, même à vitesse élevée.",
+        "en": "Wild encounters live in the grass. Text waits for a new press, even at high speed."
+      },
+      {
+        "focus": [
+          7,
+          0,
+          0
+        ],
+        "size": 15,
+        "fr": "Le village relie les services et les zones d'exploration. Les bâtiments restent des modèles provisoires.",
+        "en": "The village connects services and exploration areas. Buildings remain provisional models."
+      },
+      {
+        "focus": [
+          0,
+          0,
+          0
+        ],
+        "size": 16,
+        "fr": "La visite est terminée. Elle sera disponible dans la galerie ; ton équipe et tes objets restent inchangés.",
+        "en": "The tour is over. It will be available in the gallery; your party and items remain unchanged."
+      }
+    ]
+  },
+  "lab-note": {
+    "names": {
+      "fr": "Scène secondaire — essai du passage",
+      "en": "Secondary scene — skip test"
+    },
+    "replayable": false,
+    "skippable": true,
+    "steps": [
+      {
+        "focus": [
+          0,
+          0,
+          0
+        ],
+        "size": 16,
+        "fr": "Une scène secondaire peut être passée avec Échap. Elle n'est pas ajoutée à la galerie de replay.",
+        "en": "A secondary scene may be skipped with Escape. It is not added to the replay gallery."
+      },
+      {
+        "focus": [
+          0,
+          0,
+          0
+        ],
+        "size": 16,
+        "fr": "Fin de cette note de laboratoire.",
+        "en": "End of this laboratory note."
+      }
+    ]
+  },
+  "slice-prologue": {
+    "names": {
+      "fr": "Archélys — ouverture proposée",
+      "en": "Archelys — proposed opening"
+    },
+    "replayable": true,
+    "skippable": false,
+    "location": "village",
+    "steps": [
+      {
+        "focus": [
+          0,
+          0,
+          0
+        ],
+        "size": 18,
+        "fr": "Proposition jouable — les décors et dialogues de cette ouverture attendent ta validation. L’archipel vit sous occupation ; ton père est emprisonné.",
+        "en": "Playable proposal — this opening’s scenery and dialogue await approval. The archipelago is occupied; your father is imprisoned."
+      },
+      {
+        "focus": [
+          3,
+          0,
+          3
+        ],
+        "size": 13,
+        "fr": "Vyna : « On ne peut pas changer tout l’archipel aujourd’hui. Mais on peut commencer par ce sentier et comprendre ce qui nous attend. »",
+        "en": "Vyna: ‘We cannot change the whole archipelago today. But we can start with this trail and find out what lies ahead.’"
+      },
+      {
+        "focus": [
+          0,
+          0,
+          -6
+        ],
+        "size": 16,
+        "fr": "Tu reçois cinq Poké Balls et trois Potions. Le sentier au nord conduit à une balise, puis à une épreuve. Prépare ton équipe au village avant de partir.",
+        "en": "You receive five Poké Balls and three Potions. The northern trail leads to a beacon, then a trial. Prepare your party in the village before leaving."
+      }
+    ]
+  },
+  "slice-ending": {
+    "names": {
+      "fr": "Archélys — fin de tranche proposée",
+      "en": "Archelys — proposed slice ending"
+    },
+    "replayable": true,
+    "skippable": false,
+    "location": "any",
+    "steps": [
+      {
+        "focus": [
+          0,
+          0,
+          -4
+        ],
+        "size": 16,
+        "fr": "Le gardien d’essai s’incline. Ce combat vérifie une étape d’aventure, pas le boss définitif de l’île. Le plafond passe à18 sans réduire un plafond déjà supérieur.",
+        "en": "The test keeper yields. This battle tests an adventure milestone, not the island’s final boss. The ceiling rises to18 without lowering a higher ceiling."
+      },
+      {
+        "focus": [
+          0,
+          0,
+          3
+        ],
+        "size": 18,
+        "fr": "Vyna : « Un premier passage ouvert. La prochaine étape demandera plus qu’une bonne équipe. On fera le chemin ensemble. » Cette suite demeure une proposition à développer après validation du rendu et du scénario.",
+        "en": "Vyna: ‘One passage opened. The next step will need more than a good party. We will walk it together.’ Further development awaits visual and story approval."
+      }
+    ]
+  }
 }

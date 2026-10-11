@@ -22,3 +22,5 @@ D56 clôt le choix moteur D55 : intégration Showdown explicitement autorisée p
 D58 : reproduction et héritages supprimés explicitement du périmètre. Aucun choix de compatibilité/parents/objets de reproduction n'est donc nécessaire. Œufs cadeaux conservés ; fossiles restent prévus.
 
 D59 : fossiles intégrés pour essai solo au Centre du village. Lieu narratif final, niveau/prix/distribution restent à définir lors de la production des îles ; paramètres du laboratoire explicitement provisoires. N31 reste une règle confirmée pour le futur défi, pas une question à rouvrir ; restauration bloquée en Nuzlocke tant que ses quotas ne sont pas intégrés. Aucun nouveau test de défi/multi requis.
+
+D61 : ouverture village/sentier/épreuve jouable en proposition. Les textes Vyna, niveaux, adversaires et récompenses sont des fixtures à approuver avec les assets ; aucun nouveau choix final implicite. Comparatifs FHD actualisés A/B/C et sentier ; aucune variante sélectionnée. La mesure Linux utilise llvmpipe logiciel : la fluidité Windows/GPU reste à mesurer lors du parcours groupé.

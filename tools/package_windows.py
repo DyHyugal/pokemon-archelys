@@ -24,14 +24,14 @@ manifest={'commit':args.commit,'godot':'4.6.3','stage':'technical-laboratory',
           'showdown':provenance,'distribution':'portable-external-pck-with-offline-showdown','unmodified_godot_template':True,
           'windows_execution':'not validated on Windows','network_validation':'deferred; prior lab-09897ca tested on localhost only'}
 (folder/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
-(folder/'release-notes.md').write_text('Bloc fossiles : Fossile Nautile/Amonita, Fossile Dôme/Kabuto, Vieil Ambre/Ptéra. Échantillons uniques au Centre, restauration transactionnelle vers équipe/PC, sauvegarde et Pokédex. Catalogue provisoire22 espèces/43 attaques, évolutions40. Niveau5/gratuité/distribution d’essai non définitifs.\n\nŒufs cadeaux et Showdown conservés ; reproduction retirée. Même EXE portable, runtime hors ligne et consignes de test groupées dans LIRE-MOI. Défis/multi/raids reportés ; validation Windows de ce lot attendue.\n',encoding='utf-8')
+(folder/'release-notes.md').write_text('Lot groupé D61 : IA simple/double à informations visibles, présentation des champs ; aventure persistante village/sentier/épreuve/épilogue FR/EN ; comparatifs FHD originaux enrichis. Ouverture proposée, direction artistique et scénario final non approuvés. Catalogue22/43, œufs et fossiles conservés ; reproduction retirée, multi/raids/défis reportés. Même EXE portable et Showdown hors ligne. Un parcours de test dans LIRE-MOI ; validation Windows attendue.\n',encoding='utf-8')
 archive=folder/'Archelys-Laboratoire-Windows.zip'
 with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as z:
     for file in [exe,pck,folder/'LIRE-MOI.txt',folder/'manifest.json',root/'docs/licenses/Godot-LICENSE.txt',root/'docs/licenses/Godot-COPYRIGHT.txt',root/'docs/licenses/PokeAPI-LICENSE.txt',root/'docs/licenses/LABORATORY_AUDIO.md']:z.write(file,file.name)
     for directory in [simulator,node_runtime]:
         for file in sorted(directory.rglob('*')):
             if file.is_file():z.write(file,file.relative_to(folder))
-    for file in sorted((root/'docs/design/comparatifs').glob('quartier-*.png')):z.write(file,'Comparatifs/'+file.name)
+    for file in sorted((root/'docs/design/comparatifs').glob('*.png')):z.write(file,'Comparatifs/'+file.name)
     z.write(root/'docs/design/PROPOSITIONS_NOMS_ET_DIVINITES.md','Documentation/Propositions-noms-et-divinites.md')
     z.write(root/'docs/sources/Questions-restantes-Archelys.xlsx','Documentation/Questions-restantes-Archelys.xlsx')
 with zipfile.ZipFile(archive) as z:assert z.testzip() is None

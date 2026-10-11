@@ -27,7 +27,8 @@ func dex() -> void:
   menu.label(Catalog.name_of(selected,menu.locale)+(" ✓" if history.caught.has(selected) else ""))
   menu.label(t("Types : ","Types: ")+" / ".join(entry.types.map(func(id: String):return Catalog.text("type_names",id,menu.locale))))
   var places:=Records.habitats(selected)
-  menu.label(t("Rencontres sauvages du laboratoire : ","Laboratory wild encounters: ")+(t("Herbes du village","Village grass") if "village" in places else "")+(" · " if places.size()>1 else "")+(t("Pêche dans la crique","Cove fishing") if "cove" in places else "") if not places.is_empty() else t("Aucune rencontre sauvage pour cette forme dans le laboratoire.","No wild encounter for this form in the laboratory."))
+  var habitat_names: Dictionary={"village":t("Herbes du village","Village grass"),"trail":t("Herbes du sentier","Trail grass"),"cove":t("Pêche dans la crique","Cove fishing")}
+  menu.label(t("Rencontres sauvages : ","Wild encounters: ")+" · ".join(places.map(func(id: String):return habitat_names.get(id,id))) if not places.is_empty() else t("Aucune rencontre sauvage pour cette forme dans le laboratoire.","No wild encounter for this form in the laboratory."))
   for fossil: String in Fossils.RECIPES:
    var base: String=Fossils.RECIPES[fossil]
    if selected==base or entry.get("previous","")==base:
@@ -56,11 +57,12 @@ func cinema() -> void:
  if menu.adventure.exploration.location!="village":menu.label(t("Reviens au village pour lancer ces cadrages de laboratoire.","Return to the village to start these laboratory shots."))
  for id: String in Cinematic.library():
   var entry: Dictionary=Cinematic.library()[id]
+  if id.begins_with("slice-") and not menu.adventure.records.scenes.has(id):continue
   var watched: bool=menu.adventure.records.scenes.has(id)
   if watched and not entry.replayable:
    menu.label(entry.names[menu.locale]+t(" — terminée, non rejouable"," — completed, not replayable"));continue
   var control: Button=menu.button(menu.body,(t("Rejouer : ","Replay: ") if watched else t("Découvrir : ","Discover: "))+entry.names[menu.locale],func():menu.scene_requested.emit(id,watched))
-  control.disabled=menu.adventure.exploration.location!="village"
+  control.disabled=entry.get("location","village")!="any" and menu.adventure.exploration.location!=entry.get("location","village")
  menu.label(t("Scène principale : progression manuelle, impossible à passer. Scène secondaire : Échap pour passer ; aucun replay. La galerie conserve les scènes débloquées dans chaque sauvegarde.","Main scene: manual progress, cannot be skipped. Secondary scene: Escape to skip; no replay. Unlocked scenes are kept in each save."))
 func request(action: String,slot: int) -> void:
  if action in ["save","new"]:
