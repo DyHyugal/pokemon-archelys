@@ -1,6 +1,6 @@
 # Jouer au laboratoire technique
 
-Une [prerelease Windows de laboratoire](https://github.com/DyHyugal/pokemon-archelys/releases/tag/lab-b52bd14) est disponible. [Télécharger le ZIP](https://github.com/DyHyugal/pokemon-archelys/releases/download/lab-b52bd14/Archelys-Laboratoire-Windows.zip), le décompresser entièrement et ouvrir Archelys-Laboratoire.exe ; aucune installation de Godot n’est nécessaire.
+Une [prerelease Windows de laboratoire](https://github.com/DyHyugal/pokemon-archelys/releases/tag/lab-2d171c7) est disponible. [Télécharger le ZIP](https://github.com/DyHyugal/pokemon-archelys/releases/download/lab-2d171c7/Archelys-Laboratoire-Windows.zip), le décompresser entièrement et ouvrir Archelys-Laboratoire.exe ; aucune installation de Godot n’est nécessaire.
 
 Il s’agit d’un essai de faisabilité avec décors et mannequin provisoires. Aucun Pokémon final ni histoire n’est disponible ; le premier build a été essayé avec succès sous Windows par le propriétaire. Chaque build suivant reste à tester. Ce n’est pas la démo de la première île ni une validation du rendu final.
 
@@ -11,3 +11,5 @@ Les sauvegardes des premiers prototypes peuvent être réinitialisées. Le labor
 Cette page est une source documentaire du dépôt ; elle n’est pas encore publiée automatiquement dans un wiki joueurs.
 
 Cette suite solo ajoute une caméra rapprochée avec réglage de distance et un PNJ guide dont les phrases avancent manuellement. La sauvegarde du premier laboratoire reste utilisable. Les contrôles techniques et la CI passent ; le nouveau rendu attend ton retour.
+
+Le nom `Archelys-Laboratoire.exe` reste fixe. Chaque ZIP inclut un LIRE-MOI indiquant sa version, les changements, les tests précis et les résultats attendus. L’exécutable demeure non signé : aucune identité/certificat de signature de code n’est configuré ; les possibilités de lancement dépendent du message de protection affiché par Windows.

@@ -33,3 +33,5 @@ Retour acquis sur le premier build : lancement, déplacement, fluidité, sauvega
 Chaque ZIP contient désormais un LIRE-MOI avec version, commit, empreinte de l’exécutable, changements, tests à effectuer et modèle de retour. Sa source est [LIRE_MOI_WINDOWS.txt](LIRE_MOI_WINDOWS.txt) ; le packaging injecte les informations du build. Son changement déclenche la CI et une nouvelle release. Le nom `Archelys-Laboratoire.exe` reste identique, seul le tag de release change.
 
 L’exécutable est toujours non signé : aucun certificat/service de signature de code n’est disponible. Le LIRE-MOI distingue SmartScreen, qui peut proposer « Informations complémentaires → Exécuter quand même », des protections qui ne proposent pas cette option. Aucune désactivation globale de la sécurité n’est demandée.
+
+Livraison `lab-2d171c7` : ZIP publié téléchargé, empreintes ZIP/EXE et intégrité vérifiées ; LIRE-MOI versionné et nom fixe confirmés. Le répertoire de certificats Authenticode de l’exécutable est vide, conformément au statut non signé. Le build précédent a été signalé bloqué par Windows : aucune nouvelle exécution Windows validée ici.
