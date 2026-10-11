@@ -3,7 +3,17 @@ extends Node3D
 const World = preload("res://scripts/domain/world_rules.gd")
 const Store = preload("res://scripts/services/save_store.gd")
 const Dialogue = preload("res://scripts/domain/dialogue.gd")
-const GUIDE_POSITION := Vector3(3, 0, 3)
+const Preferences = preload("res://scripts/services/preferences_store.gd")
+const TARGETS = World.INTERACTIONS
+var preferences_path: String = Preferences.PATH
+var preferences: Dictionary = {}
+var interaction_records: Dictionary = {}
+var active_interaction: String = ""
+var journal_text: Label
+var inventory_text: Label
+var language_button: Button
+var crate_mesh: MeshInstance3D
+const GUIDE_POSITION = TARGETS.guide
 const CAMERA_OFFSET := Vector3(0, 17, 18)
 var dialogue := Dialogue.new()
 var dialogue_record: Dictionary = {}
@@ -24,10 +34,14 @@ var battle := Battle.new()
 const SAVE_PATH := "user://laboratory_campaign.json"
 
 func _ready() -> void:
+	preferences = Preferences.read(preferences_path)
+	locale = preferences.language
 	_build_world()
 	_build_ui()
 	_start_battle()
-	dialogue_record = JSON.parse_string(FileAccess.get_file_as_string("res://data/dialogues/laboratory_guide.json"))
+	for id: String in TARGETS:
+		interaction_records[id] = JSON.parse_string(FileAccess.get_file_as_string("res://data/dialogues/laboratory_%s.json" % id))
+	dialogue_record = interaction_records.guide
 	for arg: String in OS.get_cmdline_user_args():
 		if arg.begins_with("--capture="):
 			capture_frame.call_deferred(arg.trim_prefix("--capture="))
@@ -99,7 +113,7 @@ func _build_world() -> void:
 	_box(Vector3(5.5,0.07,1.4),Vector3(0,0.08,-8.0),Color("74cabc"))
 	camera = Camera3D.new()
 	camera.projection=Camera3D.PROJECTION_ORTHOGONAL
-	camera.size=16.0
+	camera.size=float(preferences.camera_size)
 	camera.position=CAMERA_OFFSET
 	add_child(camera)
 	camera.look_at(Vector3.ZERO)
@@ -113,6 +127,9 @@ func _build_world() -> void:
 	label.font_size = 28
 	label.pixel_size = 0.004
 	guide.add_child(label)
+	_box(Vector3(0.2,1.4,0.2), TARGETS.sign+Vector3(0,0.7,0),Color("66554b"))
+	_box(Vector3(1.6,0.8,0.15),TARGETS.sign+Vector3(0,1.5,0),Color("f0dcc0"))
+	crate_mesh = _box(Vector3(1.2,0.8,1.2),TARGETS.crate+Vector3(0,0.4,0),Color("be895a"))
 
 func _build_ui() -> void:
 	var layer:=CanvasLayer.new();add_child(layer)
@@ -123,8 +140,10 @@ func _build_ui() -> void:
 	status=Label.new();stack.add_child(status)
 	var camera_label := Label.new();camera_label.text="Distance caméra (proche ← → loin)";stack.add_child(camera_label)
 	var zoom := HSlider.new();zoom.min_value=12;zoom.max_value=22;zoom.step=0.5;zoom.value=camera.size;stack.add_child(zoom)
-	zoom.value_changed.connect(func(value: float):camera.size=value)
-	_button(stack,"Dialogue FR / EN",func():locale="en" if locale=="fr" else "fr")
+	zoom.value_changed.connect(func(value: float):
+		camera.size=value
+		_persist_preferences())
+	language_button = _button(stack,"Langue des dialogues : Français",func():_set_locale("en" if locale=="fr" else "fr"))
 	var network_toggle := CheckButton.new();network_toggle.text="Afficher l’ancien essai réseau (reporté)";stack.add_child(network_toggle)
 	var network_tools := VBoxContainer.new();network_tools.visible=false;stack.add_child(network_tools)
 	network_toggle.toggled.connect(func(enabled: bool):network_tools.visible=enabled)
@@ -143,10 +162,25 @@ func _build_ui() -> void:
 	dialogue_speaker=Label.new();conversation.add_child(dialogue_speaker)
 	dialogue_text=Label.new();dialogue_text.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;dialogue_text.custom_minimum_size=Vector2(780,90);conversation.add_child(dialogue_text)
 	var next_hint := Label.new();next_hint.text="A / E / Entrée • phrase suivante / next line";conversation.add_child(next_hint)
+	var overview := PanelContainer.new();overview.position=Vector2(460,16);overview.custom_minimum_size=Vector2(420,0);layer.add_child(overview)
+	var overview_stack := VBoxContainer.new();overview.add_child(overview_stack)
+	journal_text=Label.new();journal_text.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;journal_text.custom_minimum_size.x=400;overview_stack.add_child(journal_text)
+	inventory_text=Label.new();overview_stack.add_child(inventory_text)
 	log_box=RichTextLabel.new();log_box.custom_minimum_size=Vector2(430,115);stack.add_child(log_box)
 
-func _button(parent: Node, text: String, action: Callable) -> void:
+func _button(parent: Node, text: String, action: Callable) -> Button:
 	var button:=Button.new();button.text=text;button.pressed.connect(action);parent.add_child(button)
+	return button
+
+func _set_locale(value: String) -> void:
+	locale=value
+	_persist_preferences()
+
+func _persist_preferences() -> void:
+	preferences={"language":locale,"camera_size":camera.size}
+	var error := Preferences.write(preferences, preferences_path)
+	if error!=OK and message:
+		message.text="Préférences : %s" % error_string(error)
 
 func _save() -> void:
 	if not multiplayer.is_server():
@@ -186,6 +220,25 @@ func _input(event: InputEvent) -> void:
 	if dialogue.active:
 		_unhandled_key_input(event)
 
+func _nearest_interaction() -> String:
+	var nearest: String = ""
+	var distance: float = 2.2
+	for id: String in TARGETS:
+		var current: float = _local_position().distance_to(TARGETS[id])
+		if current <= distance:
+			distance=current
+			nearest=id
+	return nearest
+
+func _open_interaction(id: String) -> bool:
+	if id not in TARGETS or Session.active_network:
+		return false
+	active_interaction=id
+	var record: Dictionary=interaction_records[id]
+	if id=="crate" and not Session.campaign.laboratory.complete("crate"):
+		record={"fr":{"speaker":"Caisse de test","lines":["La caisse est déjà vide."]},"en":{"speaker":"Test crate","lines":["The crate is already empty."]}}
+	return dialogue.begin(record,locale)
+
 func _unhandled_key_input(event: InputEvent) -> void:
 	if not event is InputEventKey or not event.pressed or event.echo:
 		return
@@ -193,15 +246,28 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		return
 	if dialogue.active:
 		dialogue.advance()
-	elif _local_position().distance_to(GUIDE_POSITION) <= 2.2:
-		dialogue.begin(dialogue_record, locale)
+		if not dialogue.active:
+			Session.campaign.laboratory.complete(active_interaction)
 	else:
-		return
+		var target := _nearest_interaction()
+		if target.is_empty() or not _open_interaction(target):
+			return
 	Session.submit_axis(Vector2.ZERO)
 	dialogue_panel.visible = dialogue.active
 	dialogue_speaker.text = dialogue.speaker
 	dialogue_text.text = dialogue.current_line()
 	get_viewport().set_input_as_handled()
+
+func _update_overview() -> void:
+	var progress = Session.campaign.laboratory
+	var lines: Array[String]=["Journal • objectifs de laboratoire" if locale=="fr" else "Journal • laboratory objectives"]
+	var names: Array=["Parler au guide","Lire le panneau au nord-ouest","Ouvrir la caisse au sud-est"] if locale=="fr" else ["Talk to the guide","Read the northwest sign","Open the southeast crate"]
+	for index: int in range(3):
+		lines.append(("✓ " if progress.completed.has(progress.OBJECTIVES[index]) else "○ ")+names[index])
+	journal_text.text="\n".join(lines)
+	inventory_text.text=("Sac • jeton de test : %d" if locale=="fr" else "Bag • test token: %d") % progress.tokens
+	language_button.text="Langue des dialogues : Français" if locale=="fr" else "Dialogue language: English"
+	(crate_mesh.material_override as StandardMaterial3D).albedo_color=Color("75695a") if progress.tokens else Color("be895a")
 
 func _process(_delta: float) -> void:
 	var value: Dictionary=Session.latest
@@ -249,6 +315,7 @@ func _process(_delta: float) -> void:
 	var focus := _local_position()
 	camera.position = focus + CAMERA_OFFSET
 	camera.look_at(focus)
-	interaction_hint.text = ("A / E / Entrée : parler au guide" if locale=="fr" else "A / E / Enter: talk to the guide") if focus.distance_to(GUIDE_POSITION)<=2.2 and not dialogue.active else ""
+	interaction_hint.text = ("E / Entrée : interagir" if locale=="fr" else "E / Enter: interact") if not _nearest_interaction().is_empty() and not dialogue.active else ""
+	_update_overview()
 	Session.submit_axis(axis)
 	status.text="Joueurs %d/%d • étape %d • cap factice %d" % [players.size(),value.get("participants",1),value.get("progress",0),value.get("level_cap",10)]

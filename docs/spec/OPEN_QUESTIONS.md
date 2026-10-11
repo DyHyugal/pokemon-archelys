@@ -35,3 +35,5 @@ Signature demandée : certificat de signature de code/service de signature autor
 Étude disponible : `docs/development/SIGNATURE_WINDOWS_ET_OPTIONS_GRATUITES.md`. SignPath Foundation gratuit sous conditions, Store MSIX gratuit après acceptation, export Web proposé pour les tests. Aucun choix de licence, candidature ni achat réalisé. Microsoft Artifact Signing Public Trust ne prend actuellement en charge les particuliers que dans USA/Canada ; vérifier résidence/statut avant toute souscription.
 
 Le propriétaire demande un essai gratuit non signé (D41). Une variante moteur Godot non modifié + PCK séparé est préparée ; son lancement avec Contrôle intelligent actif attend le retour Windows. Elle ne tranche pas la signature de la distribution finale.
+
+Retour D42 : le propriétaire confirme le lancement de lab-477caad sans avertissement et les contrôles solo OK. La compatibilité universelle du moteur non signé reste non garantie ; aucune signature payante nécessaire pour poursuivre ses tests actuels. D43 demande des lots plus complets et la persistance de langue.

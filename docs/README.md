@@ -35,3 +35,5 @@
 - [Suite solo et retour de test propriétaire](development/SUITE_SOLO_2026-10-11.md)
 
 - [Signature Windows : options gratuites et coûts vérifiables](development/SIGNATURE_WINDOWS_ET_OPTIONS_GRATUITES.md)
+
+- [Lot solo : préférences, interactions, journal et sac](development/LOT_SOLO_PREFERENCES_JOURNAL.md)

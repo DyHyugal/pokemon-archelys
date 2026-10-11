@@ -45,3 +45,7 @@ FR/EN complets, playtests solo/coop, équilibrage, performances PC de référenc
 Une tâche → critères d’acceptation → courte branche de travail → tests adaptés et build si pertinent → mise à jour des preuves → PR vers develop → validation des jalons sur main. Une seule branche temporaire active par défaut. La branche actuelle réunit le cadrage et le laboratoire de cette session ; elle n’est pas encore fusionnée dans develop.
 
 Le questionnaire restant contient des choix avant le système concerné ; ses 51 réponses ne sont pas toutes nécessaires pour déplacer un avatar dans le laboratoire. En cas d’inconnue, utiliser un comportement d’essai explicitement balisé, pas une règle finale supposée.
+
+## Cadence après D43
+
+Livrer des lots cohérents plutôt qu’une fonctionnalité isolée par ZIP. Les contrôles locaux/CI restent systématiques ; le LIRE-MOI rassemble un parcours owner pour toutes les nouveautés. Premier lot : préférence langue/zoom, interactions, journal, sac et migration. La production des îles et les données Pokémon choisies restent conditionnées aux arbitrages et à la direction artistique.

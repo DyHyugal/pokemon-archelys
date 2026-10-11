@@ -93,9 +93,9 @@ func _physics_process(delta: float) -> void:
 		var pos: Array = record.position
 		var next_x := clampf(float(pos[0]) + axis.x * 5.0 * delta, -14.0, 14.0)
 		var next_z := clampf(float(pos[2]) + axis.y * 5.0 * delta, -10.0, 10.0)
-		if World.walkable(Vector2(next_x, float(pos[2]))):
+		if World.can_step(Vector2(float(pos[0]),float(pos[2])),Vector2(next_x,float(pos[2]))):
 			pos[0] = next_x
-		if World.walkable(Vector2(float(pos[0]), next_z)):
+		if World.can_step(Vector2(float(pos[0]),float(pos[2])),Vector2(float(pos[0]),next_z)):
 			pos[2] = next_z
 	if campaign.all_at_gate():
 		if not gate_latched and campaign.progress == 0:

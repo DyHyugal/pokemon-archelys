@@ -2,6 +2,9 @@ class_name CampaignModel
 extends RefCounted
 
 # Sandbox rules: no production game design or story is encoded here.
+const LabProgress = preload("res://scripts/domain/laboratory_progress.gd")
+var laboratory := LabProgress.new()
+
 var participant_count: int = 1
 var progress: int = 0
 var level_cap: int = 10
@@ -36,11 +39,13 @@ func advance() -> bool:
 
 func snapshot() -> Dictionary:
 	# Network IDs are transient; persistence is prototype-only.
-	return {"schema": 1, "participants": participant_count, "progress": progress,
+	return {"schema": 2, "laboratory": laboratory.snapshot(), "participants": participant_count, "progress": progress,
 		"level_cap": level_cap, "players": players.duplicate(true)}
 
 static func validate(data: Dictionary) -> bool:
-	if data.get("schema") != 1:
+	if data.get("schema") != 1 and data.get("schema") != 2:
+		return false
+	if data.get("schema") == 2 and not LabProgress.validate(data.get("laboratory")):
 		return false
 	for key: String in ["participants", "progress", "level_cap"]:
 		if not data.has(key) or not (data[key] is int or data[key] is float):
@@ -72,6 +77,9 @@ static func validate(data: Dictionary) -> bool:
 func restore(data: Dictionary) -> bool:
 	if not validate(data):
 		return false
+	laboratory = LabProgress.new()
+	if data.get("schema") == 2:
+		laboratory.restore(data.laboratory)
 	participant_count = int(data.participants)
 	progress = int(data.progress)
 	level_cap = int(data.level_cap)

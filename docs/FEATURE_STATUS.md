@@ -23,8 +23,11 @@ Les statuts portent sur les preuves, pas sur l’enthousiasme ou la présence da
 | Réponses Q01–Q16 | TRANSCRITES | Classeur et JSON conservés ; décisions D22–D33 |
 | Scénario complet et casting | PROPOSÉS | Documents V0.1, approbation owner attendue |
 | Règles Soul-link | PROPOSÉES | Mode facultatif ; détails à valider |
+| Préférences langue/caméra | DÉVELOPPÉ ET TESTÉ | Stockage automatique indépendant, conservation au chargement et nouvelle scène ; nouveau build Windows à retester |
+| Journal et sac | SOCLE DE TEST DÉVELOPPÉ | Trois objectifs de laboratoire, caisse unique/jeton et sauvegarde ; pas de scénario/catalogue final |
+| Migration save 1→2 | TESTÉE LOCALEMENT | Position/progression conservées, original .v1.backup préservé ; retest Windows attendu |
 | Dialogues PNJ | SOCLE SOLO TESTÉ | PNJ de laboratoire, proximité, avance manuelle, blocage du déplacement, données FR/EN ; pas de scénario final |
-| Distribution portable EXE + PCK | EXPORT TESTÉ TECHNIQUEMENT | EXE identique au template officiel ; PCK chargé/rendu sous Linux ; lancement Windows avec Contrôle intelligent en attente |
+| Distribution portable EXE + PCK | EXPORT TESTÉ TECHNIQUEMENT | EXE identique au template officiel ; PCK chargé/rendu sous Linux ; lab-477caad lancé sans avertissement chez le propriétaire ; nouvelle variante à retester |
 | Signature Windows | DEMANDÉE — NON DISPONIBLE | Aucun certificat/service de signature ; build non signé, avertissement Windows signalé par owner |
 | LIRE-MOI par build | PRÉPARÉ | Version/commit/hash injectés, tests owner précis et diagnostic de blocage Windows ; nom EXE fixe |
 | Caméra rapprochée | MODIFIÉE ET TESTÉE TECHNIQUEMENT | Taille 22→16, suivi joueur et réglage de zoom ; préférence visuelle owner attendue |

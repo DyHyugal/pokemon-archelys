@@ -9,6 +9,7 @@ for label,var in [('data','XDG_DATA_HOME'),('config','XDG_CONFIG_HOME'),('cache'
     env.setdefault(var,str(runtime/label));pathlib.Path(env[var]).mkdir(parents=True,exist_ok=True)
 steps=[(['godot','--headless','--path',str(root/'game'),'--editor','--import','--quit'],None),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/run_tests.gd'],'ARCHÉLYS TESTS: 19 checks, 0 failures'),
+       (['godot','--headless','--path',str(root/'game'),'--script','res://tests/solo_systems.gd'],'SOLO SYSTEMS: 18 checks, 0 failures'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/dialogue_tests.gd'],'DIALOGUE TESTS: 6 checks, 0 failures'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/asset_import.gd'],'GLB IMPORT:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/scene_smoke.gd'],'SCENE SMOKE:')]

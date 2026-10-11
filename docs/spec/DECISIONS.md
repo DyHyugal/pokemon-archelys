@@ -80,3 +80,12 @@ Le nom était déjà fixe sur les premiers ZIP : `Archelys-Laboratoire.exe`, con
 | D41 | Essayer une distribution gratuite non signée pour la version de test, avec retour du propriétaire sur le lancement | Conversation : « essayons la distribution gratuite pour la version de test » |
 
 Choix technique pour cet essai : moteur officiel Godot non modifié et données de jeu dans un PCK séparé. Ce conditionnement ne signe pas le moteur et ne garantit pas une autorisation du Contrôle intelligent. Nom EXE fixe et LIRE-MOI par version conservés ; aucune modification des protections Windows demandée pour mesurer le résultat.
+
+## Validation portable et cadence de développement
+
+| ID | Décision | Provenance |
+|---|---|---|
+| D42 | Variante portable lab-477caad confirmée Windows : pas d’avertissement, dialogue FR/EN, save, duel/reset et fluidité OK | Retour explicite du propriétaire |
+| D43 | Corriger la persistance de langue signalée ; poursuivre par lots de plusieurs fonctionnalités avec playtests moins fréquents | Demande explicite du propriétaire |
+
+D42 est un constat sur son PC, pas une garantie sur tous les PC. Le moteur non modifié est conservé. Prochain lot solo : préférences persistantes, interactions panneau/caisse, sac de test et journal sauvegardé ; ce contenu technique ne valide aucun scénario ou catalogue final. Les contrôles automatisés restent réalisés à chaque lot, les demandes de retour owner sont regroupées.

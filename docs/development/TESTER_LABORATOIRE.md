@@ -20,7 +20,7 @@ Sous Windows, dossier habituel : `%APPDATA%\Godot\app_userdata\Archélys — lab
 
 Godot 4.6.3 et Python 3. Installer outils Linux vérifiés via `python3 tools/bootstrap_godot.py --prefix /tmp/archelys-godot --templates` ; téléchargement templates volumineux (~1,2 Go). Ajouter le sous-dossier bin au PATH et définir XDG_DATA_HOME sur le sous-dossier data. Blender n’est nécessaire que pour régénérer le mannequin.
 
-Depuis le dépôt : `python3 tools/check_prototype.py`. Cela importe le projet, exécute les 19 contrôles du socle, 6 contrôles de dialogue, l’import animé et la scène fonctionnelle solo. Le test scène vérifie aussi proximité PNJ, avance manuelle, déplacement suspendu et suivi caméra. `--network` active en supplément l’ancienne régression ENet ; elle n’est pas requise pour poursuivre le solo. Les logs avec erreurs ou marqueurs manquants font échouer le contrôle, même si Godot rend un code 0.
+Depuis le dépôt : `python3 tools/check_prototype.py`. Cela importe le projet, exécute les 19 contrôles du socle, 18 contrôles progression/préférences/migration, 6 contrôles de dialogue, l’import animé et la scène fonctionnelle solo. Le test scène vérifie aussi proximité PNJ, avance manuelle, déplacement suspendu et suivi caméra. `--network` active en supplément l’ancienne régression ENet ; elle n’est pas requise pour poursuivre le solo. Les logs avec erreurs ou marqueurs manquants font échouer le contrôle, même si Godot rend un code 0.
 
 Export : `godot --headless --path game --export-release Windows "$PWD/builds/Archelys-Laboratoire.exe"`, puis `python3 tools/package_windows.py --commit <sha>`. Les builds et caches restent hors Git ; le workflow publie une prerelease après contrôles réussis.
 
@@ -45,3 +45,5 @@ Premier test demandé : lancer normalement, sans modifier les protections Window
 Contrôles locaux : intégrité ZIP et empreintes EXE/PCK ; EXE identique au template vérifié ; lancement du PCK exporté avec le moteur Godot Linux de même version et capture réelle OpenGL. Ce dernier test valide le chargement des ressources, pas l’exécution de l’EXE sous Windows ni une autorisation par le Contrôle intelligent. Aucun nouveau test multijoueur.
 
 Livraison portable : [ZIP lab-477caad](https://github.com/DyHyugal/pokemon-archelys/releases/download/lab-477caad/Archelys-Laboratoire-Windows.zip). Archive publiée téléchargée et vérifiée : CRC, SHA256 ZIP/EXE/PCK, correspondance EXE au moteur officiel et présence du LIRE-MOI/notices. Le manifeste indique explicitement une distribution portable non signée.
+
+Lot après D43 : préférences automatiquement conservées au relancement, interactions guide/panneau/caisse, journal et jeton persistants. Save schéma 2 ; schéma 1 lu et original préservé dans `.v1.backup` lors de la première sauvegarde convertie. Le parcours complet du lot est dans le LIRE-MOI livré. Les anciens builds ne lisent pas le schéma 2 ; restaurer une copie originale pour revenir en arrière.

@@ -24,8 +24,9 @@ PREMIER TEST DE CETTE LIVRAISON
 Essayer d'abord de lancer normalement Archelys-Laboratoire.exe, sans modifier
 les réglages de sécurité Windows. Si Windows le bloque encore, noter simplement
 « lancement bloqué par le Contrôle intelligent » : les tests en jeu attendront.
-S'il démarre, vérifier les tests ci-dessous. Cette variante change uniquement
-l'emballage du jeu, pas ses mécaniques. La sauvegarde Windows reste compatible.
+S'il démarre, vérifier le parcours complet ci-dessous. Le propriétaire a
+confirmé que la variante portable précédente lançait le jeu sans avertissement
+sur son PC. Le moteur de ce build reste identique ; les données ont évolué.
 
 
 Si l'écran indique « Windows a protégé votre ordinateur » et propose
@@ -43,49 +44,58 @@ Une signature reconnue exige un certificat de signature de code ou un service
 de signature autorisé. Aucun n'est configuré pour ce projet actuellement.
 Une signature auto-signée ne suffit pas pour être reconnue sur ton PC.
 
-CE QUI CHANGE PAR RAPPORT AU PREMIER LABORATOIRE
-Caméra rapprochée (taille 16 au lieu de 22) avec suivi du personnage et curseur
-de distance. PNJ guide près du départ, dialogue manuel en français ou anglais.
-Déplacement suspendu pendant le dialogue. Combat factice en duel solo.
-Anciennes commandes réseau masquées : le multijoueur est reporté.
-Cette livraison sépare le moteur et les données, pour conserver le même
-exécutable lors des mises à jour de contenu à moteur/export identiques.
-Elle ne modifie pas les systèmes de jeu de la suite solo lab-b52bd14.
+CE QUI CHANGE DANS CE LOT
+Langue des dialogues et distance caméra enregistrées automatiquement.
+Elles restent conservées au chargement et au relancement du jeu.
+Le bouton de langue indique désormais la langue sélectionnée.
+Interactions avec un guide, un panneau et une caisse.
+Sac de test avec un jeton ; la caisse ne le donne qu'une seule fois.
+Journal avec trois objectifs de laboratoire, persistants dans la campagne.
+Lecture des sauvegardes anciennes et copie originale conservée avant conversion.
+Moteur portable identique ; aucun achat de certificat ni changement de Windows.
+Ce sont des systèmes de test : pas le scénario final, pas un catalogue d'objets
+Pokémon terminé, pas encore un moteur de combat 9G.
 
-TESTS À FAIRE SUR CETTE VERSION
+PARCOURS DE TEST DU LOT — UN SEUL RETOUR POUR L'ENSEMBLE
 
-CAMÉRA — marcher dans plusieurs directions. Le personnage doit rester visible.
-Ajuster le curseur « Distance caméra » : à gauche, il apparaît plus grand ;
-à droite, on voit davantage du décor. Dire si la distance par défaut est
-confortable, encore trop loin ou trop près. Aucune valeur finale imposée.
+PRÉFÉRENCES — passer les dialogues en anglais et ajuster la caméra.
+Charger la partie : les choix actuels doivent rester conservés.
+Fermer complètement le jeu puis le rouvrir : anglais et distance choisie doivent
+revenir automatiquement, avant même de charger une campagne.
+La langue concerne les dialogues et le panneau journal/sac ; toute l'interface
+n'est pas encore traduite. La phrase déjà ouverte garde sa langue jusqu'à la fin.
 
-DIALOGUE — aller près du guide à droite du départ et appuyer sur E ou Entrée.
-Une phrase doit apparaître. Sans appuyer, elle doit rester affichée.
-Essayer de marcher : le personnage doit rester sur place pendant l'échange.
-Appuyer sur E/Entrée pour afficher exactement la phrase suivante ; maintenir
-la touche ne doit pas faire défiler plusieurs phrases. À la fin des trois
-phrases, le dialogue se ferme et le déplacement redevient possible.
-À distance du guide, E ne doit pas ouvrir la conversation.
-A fonctionne aussi, mais E évite le conflit avec le déplacement WASD.
+EXPLORATION — E ou Entrée près d'un objet ouvre son interaction.
+Guide à droite du départ ; panneau au nord-ouest (-3,-3) ; caisse au sud-est (6,6).
+Les coordonnées servent seulement à repérer les objets dans ce laboratoire.
+À distance, E ne doit rien ouvrir. Le personnage s'arrête pendant les textes.
+Une phrase doit attendre une nouvelle pression ; maintenir la touche ne doit
+pas faire défiler toutes les phrases. Après fermeture, le déplacement reprend.
 
-LANGUE — terminer le dialogue, cliquer une fois sur « Dialogue FR / EN »,
-puis reparler au guide : ses trois phrases doivent être en anglais.
-Recliquer puis reparler : elles doivent être en français. Le reste du panneau
-n'est pas encore entièrement traduit. Le changement s'applique au prochain dialogue.
+JOURNAL — terminer les trois phrases du guide, puis lire les deux du panneau.
+Leurs objectifs passent de cercle à coche. Ouvrir la caisse complète le troisième.
+Le journal est une mini-boucle technique, sans engagement sur le scénario final.
 
-SAUVEGARDE — cliquer « Sauvegarder le laboratoire », marcher ailleurs,
-puis « Charger » : retrouver la position sauvegardée. La sauvegarde du premier
-laboratoire reste compatible ; aucun effacement demandé. Le dialogue, le duel
-factice et les préférences caméra/langue ne sont pas sauvegardés.
+SAC — la caisse ajoute exactement un jeton de test et devient plus sombre.
+L'ouvrir à nouveau affiche qu'elle est vide ; le sac doit rester à un jeton.
+Le jeton n'est pas utilisable : il sert à éprouver récompenses et persistance.
 
-COMBAT FACTICE — cliquer « Simuler un tour de combat » : seulement J1 et Boss
-agissent, les PV du boss diminuent. « Réinitialiser le combat » remet le duel
-au départ. Ce test ne valide pas encore un moteur Pokémon 9G.
+SAUVEGARDE — après les objectifs, cliquer Sauvegarder, puis marcher ailleurs.
+Cliquer Charger : retrouver position, coches du journal et jeton.
+Fermer puis rouvrir le jeu et cliquer Charger : retrouver aussi ces états.
+Rouvrir la caisse après chargement ne doit pas donner un second jeton.
+La campagne ne se charge pas automatiquement au lancement ; les préférences, oui.
 
-CONTRÔLE RAPIDE — lancement sans erreur, commandes ZQSD/WASD/flèches,
-maisons et arbres bloquant le passage, fluidité sans régression visible.
-Le premier laboratoire avait passé ces contrôles sur le PC du propriétaire.
-Ce nouveau build doit être lancé à son tour : la CI ne remplace pas ce test Windows.
+ANCIENNE SAVE — si tu avais une sauvegarde du laboratoire précédent, la charger
+sans l'effacer : position et palier restent, journal/sac nouveaux sont vides.
+Le format devient version 2 lors de ta prochaine sauvegarde. Une copie originale
+version 1 est conservée dans laboratory_campaign.json.v1.backup.
+Les anciens builds ne savent pas lire la nouvelle version 2 ; utiliser cette
+copie pour revenir en arrière, en préservant d'abord tes fichiers.
+
+COMBAT ET FLUIDITÉ — vérifier rapidement le duel factice et son reset,
+le déplacement ZQSD/WASD/flèches et les obstacles. Caméra suivie et réglable.
+Le duel reste transitoire ; aucun test de mécaniques Pokémon complètes demandé.
 
 AUCUN TEST MULTIJOUEUR DEMANDÉ. Ne pas passer du temps sur connexion,
 copies de sauvegardes ou trois fenêtres. L'ancien essai, s'il est affiché,
@@ -96,8 +106,11 @@ Version : lab-{short_commit}
 Lancement : OK / bloqué (message exact)
 Caméra : confortable / trop loin / trop près ; valeur préférée si ajustée
 Dialogue : OK / problème (ouverture, attente, touche maintenue, déplacement)
-Langue FR/EN : OK / problème
-Sauvegarde : OK / problème
+Langue/zoom après relancement : OK / problème
+Panneau et journal : OK / problème
+Caisse unique et sac : OK / problème
+Sauvegarde position/journal/sac : OK / problème
+Ancienne save : OK / non testée / problème
 Duel factice : OK / problème
 Fluidité et obstacles : OK / problème
 Autre remarque :
@@ -107,6 +120,8 @@ Dossier habituel sous Windows :
 %APPDATA%\Godot\app_userdata\Archélys — laboratoire technique\
 Fichier : laboratory_campaign.json
 Copie précédente : laboratory_campaign.json.backup
+Original version 1 : laboratory_campaign.json.v1.backup
+Préférences indépendantes : preferences.json (langue et distance caméra)
 Pour restaurer : fermer le jeu, préserver la save actuelle, puis copier
 la backup vers le nom laboratory_campaign.json.
 Décors et mannequin provisoires ; aucun Pokémon officiel ni scénario final.
