@@ -16,3 +16,5 @@ Les 51 réponses sont reçues et transcrites dans REPONSES_N01_N51.md. Ne plus p
 Multijoueur (rattrapage séparé, profils, hôte, votes, échanges, Soul-link) spécifié par les réponses mais toujours reporté. Les autres choix confirmés sont dans les réponses et le cahier actualisé.
 
 Suivi D54 : bloc10 confort non testé Windows pour le moment ; le propriétaire autorise la suite autonome. Ce retour n'ajoute aucune question produit ni validation artistique. Bloc11 approfondit uniquement les règles officielles déjà demandées ; ses tests manuels attendront la disponibilité du propriétaire.
+
+D55 : migration du moteur de combat vers Showdown recommandée et techniquement éprouvée hors jeu, pas encore adoptée par le propriétaire. Conditions MIT expliquées ; aucune modification de licence du code original ni permission sur assets Pokémon implicite. Validation Windows de la future distribution Node et règles des contenus personnalisés à traiter lors de l'intégration, sans rouvrir les choix produit déjà répondus. Étude : `docs/development/ETUDE_MOTEUR_SHOWDOWN.md`.

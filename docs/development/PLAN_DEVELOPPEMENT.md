@@ -77,3 +77,7 @@ D52 valide fonctionnellement les blocs7–9 et la Méga sous Windows. Bloc10 : p
 11c. Soutien : Coup d'Main, priorité5 et puissance renforcée pour l'allié durant le tour ; boutons de cible explicites et arène d'essai temporaire séparée de la campagne.
 
 Le confort10 reste à tester et figure dans le même LIRE-MOI ; aucun test intermédiaire demandé. Après ce lot : poursuivre les acquisitions solo (œufs/reproduction/fossiles) sur les règles établies, puis les interactions de combat encore manquantes et l'IA double ; vérifier les sources et critères avant chaque implémentation. La personnalisation visuelle et les îles de production attendent les choix d'assets, le scénario et le catalogue finaux. Pas de réseau ni de modes défi.
+
+### D55 : étude d'un socle de combat existant
+
+La suite des interactions maison prévue après D54 est à réexaminer : l'[étude Showdown](ETUDE_MOTEUR_SHOWDOWN.md) recommande un simulateur existant plutôt que la duplication exhaustive des règles. Proposition, sans migration déjà réalisée : format/licences → adaptateur local asynchrone → parité des parcours solo et persistance → ZIP Windows avec runtime portable → interface/IA filtrée → extension du catalogue. Conserver l'aventure, les menus et préférences Godot ; reprendre les règles pertinentes de Tactica après audit, sans porter sa ROM. Réseau, raids et modes défi restent reportés. Cette recommandation n'est pas une nouvelle décision propriétaire.

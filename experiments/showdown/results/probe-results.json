@@ -1,0 +1,33 @@
+{
+  "checks": 25,
+  "passed": 25,
+  "node": "v24.19.0",
+  "upstream": "942cda71d14bf0618bd57991708a2e2734b6daba",
+  "evidence": [
+    "gen9 doubles creates four actors without a server",
+    "battle format excludes Tera and Dynamax",
+    "Protect precedes Surf and shields the ally",
+    "Surf damages both opponents, not the caster",
+    "spread consumes one PP from a no-PP-Up moveset",
+    "Surf really damages its unprotected ally",
+    "Helping Hand is resolved before the damage",
+    "historical Mega is available under gen9 rules",
+    "Mega Y transforms and creates sun",
+    "second compatible Pokémon cannot Mega again",
+    "removed Hidden Power executes in gen9 custom format",
+    "entry ability sets weather without scripted duplication",
+    "weather expires after five actual turns",
+    "Electric Terrain prevents sleep for grounded targets",
+    "Follow Me redirects an attack away from the intended ally",
+    "Lightning Rod redirects and raises the correct actor stat",
+    "Protect fails for last actor, even on first use",
+    "serialization retains damaged HP, status and depleted PP",
+    "serialization retains status and PP specifically",
+    "restoring state preserves deterministic continuation",
+    "illegal command is rejected without resolving a turn",
+    "six-actor technical format is supported with gen9 mechanics",
+    "six actors share a single turn resolution",
+    "official stream exposes own private move requests",
+    "opponent stream does not reveal unrevealed Surf"
+  ]
+}
