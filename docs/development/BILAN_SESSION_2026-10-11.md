@@ -29,3 +29,13 @@ Lire le questionnaire et les trois propositions ; essais owner de l’export si 
 Les travaux sont conservés dans Git. Aucune activité autonome future n’est garantie après la fin de la session de l’assistant.
 
 [Capture réelle du laboratoire](validation/laboratoire.png), [logs des contrôles](validation/prototype-checks.log) et [preuves structurées](validation/evidence.json).
+
+## Publication confirmée
+
+[CI GitHub réussie](https://github.com/DyHyugal/pokemon-archelys/actions/runs/38105074345) pour le commit 09897ca. Les contrôles, export Windows et publication ont terminé avec succès.
+
+[Prerelease laboratoire](https://github.com/DyHyugal/pokemon-archelys/releases/tag/lab-09897ca) et [ZIP Windows](https://github.com/DyHyugal/pokemon-archelys/releases/download/lab-09897ca/Archelys-Laboratoire-Windows.zip). Archive distante téléchargée et vérifiée : SHA-256, CRC et manifeste de l’exe. Cela ne constitue pas un test d’exécution Windows.
+
+La CI mentionne la transition des actions Node 20 vers Node 24 ; ce sont des warnings, pas des échecs. La mise à jour de ces actions pourra être traitée avec les dépendances, sans prétendre nécessaire une nouvelle architecture.
+
+Git HTTPS permet de pousser ; l’API GitHub répond 403 depuis cet environnement. La branche docs/cadrage-valide est prête à revue mais n’est pas fusionnée dans develop ; aucune PR n’a pu être créée par cette API. Les sources et la prerelease sont accessibles indépendamment de cette intégration.

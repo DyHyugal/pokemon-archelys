@@ -14,5 +14,11 @@
     "multi-PC LAN",
     "production Pokemon combat engine",
     "final art direction"
-  ]
+  ],
+  "github_actions_run": "https://github.com/DyHyugal/pokemon-archelys/actions/runs/38105074345",
+  "ci": "success",
+  "release": "lab-09897ca",
+  "release_commit": "09897cad500567dd16489f46d59db341263a1dda",
+  "windows_zip_sha256": "6ad231b9f544a0d84e5ccf46e0e56f698e94bfbf32cca64ca2942ea116d4c7a9",
+  "remote_zip_verification": "SHA256, CRC, embedded executable hash"
 }
