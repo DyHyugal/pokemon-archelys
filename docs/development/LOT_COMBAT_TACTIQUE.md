@@ -33,3 +33,11 @@ Les mêmes règles s'appliquent aux vrais combats simple/double hors arène d'es
 Sous-ensemble de combat : pas toutes les capacités contournant Abri, pas toutes les subtilités d'arrondi officiel, pas de redirection, pas de choix d'objets en double, pas d'IA double avancée, pas de raids. Les talents et interactions non présents dans le catalogue ne sont pas simulés. Équilibrage et retour Windows/graphique restent à faire ; ne pas conclure « moteur9G terminé ».
 
 Validation locale finale : `tools/check_prototype.py` entièrement réussi,283 assertions de domaine/services au total dont46 nouvelles,16 nouvelles vérifications de scène et parcours antérieurs conservés. Export Windows réussi ; trois vues du PCK exporté réellement lancées sous Godot/Linux et inspectées (zones, soutien, anglais, texte24). Captures dans `validation/tactics-area.png`, `tactics-support.png`, `tactics-english.png`. Avertissement V-Sync du pilote Mesa de rendu virtuel, sans erreur de script ; ce contrôle ne remplace pas un lancement Windows ni un playtest owner.
+
+## Livraison vérifiée
+
+Source `53f5baacc8476a461a9c899dbe09978c562f4556`, [release lab-53f5baa](https://github.com/DyHyugal/pokemon-archelys/releases/tag/lab-53f5baa), [ZIP Windows](https://github.com/DyHyugal/pokemon-archelys/releases/download/lab-53f5baa/Archelys-Laboratoire-Windows.zip). [CI38162985509](https://github.com/DyHyugal/pokemon-archelys/actions/runs/38162985509) réussie en1min03s, validations et publication.
+
+ZIP publié re-téléchargé : SHA256 `1c2d5598bcac695abee155d546bae4dd91d9271692f73a51907f4d53d952af7f`, conforme aux sommes publiées ; CRC et manifest/commit contrôlés, empreintes EXE/PCK conformes. EXE identique au moteur portable déjà testé : `91724f15024a3a545e28ccd83134403d31ce2323a38e51c95e4dfa282f732ab6`. LIRE-MOI blocs10–11, notices et documentation annexes présents. Sources sauvegardées sur `docs/cadrage-valide`, aucune fusion automatique. Bloc10 et bloc11 demeurent à tester Windows par le propriétaire ; pas de demande intermédiaire ni de validation artistique supposée.
+
+Le PCK extrait du ZIP publié a également été démarré et rendu sous Godot/Linux, vue tactique française24px inspectée, sans erreur de script. Le seul avertissement concerne le V-Sync du pilote virtuel. Trace : `validation/tactics-published-render.log`.
