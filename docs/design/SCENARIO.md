@@ -19,3 +19,7 @@ L’ordre envisagé est d’atteindre l’île céleste puis de confronter tous 
 Cartographier les chapitres par île, poser les motifs des personnages et les limites du pouvoir céleste, donner à chaque compagnon un arc, définir la résolution de la captivité du père et les conséquences de la libération. Le futur synopsis doit expliciter pourquoi le régime autorise ou ne peut empêcher l’ascension du héros.
 
 Aucun dialogue, décès, légendaire gardien ou identité de dirigeant n’est inventé comme décision finale ici.
+
+## Complément Q
+
+Silver est désormais confirmé antagoniste Rocket (Q03). Le nouveau [scénario complet proposé](SCENARIO_PROPOSITION_V01.md) intègre Q01–Q16 ; ce document initial reste un synopsis de provenance. Le [casting](CASTING_PROPOSITION.md) n’est pas encore validé.

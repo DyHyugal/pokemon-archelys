@@ -1,0 +1,104 @@
+[
+  [
+    "ID",
+    "QUESTION",
+    "TA RÉPONSE",
+    "THÈME"
+  ],
+  [
+    "Q01",
+    "Garde-t-on bien les cinq îles thématiques (tropicale/volcanique, mystique, hivernale, draconique, high-tech), plus l’île céleste et le repaire Æther ? Dans quel ordre visite-t-on les îles principales, et où commence-t-on ?",
+    "Oui on garde ces iles là, l'odre n'a pas d'importance donc je te laisse la liberté de choisir (sauf l'ile draconique qui se débloque biome par biome au fil de l'avancé) et on commence sur l'ile tropicale",
+    "Région"
+  ],
+  [
+    "Q02",
+    "La Team RR contrôle les îles habitées mais pas l’île draconique ni l’île céleste : est-ce bien cela ? Qu’est-ce qui l’empêche de contrôler l’île draconique : Pokémon trop puissants, accès protégé, habitants résistants, autre ?",
+    "Oui c'est bien cela\nLe peuple et les pokémons de l'ile draconique sont trop puissant pour être controllable, les sbires sont impuissant face à eux et seul es dirigeant de la team RR peuvent les combattres sauf que les pokémons se rebellent dès que les dirigeants de la team RR quitte l'ile donc la team RR a fini par abandonné l'idée de controller cette ile tant qu'il n'ont pas le controle de l'ile céleste",
+    "Scénario"
+  ],
+  [
+    "Q03",
+    "Silver fait-il partie des dirigeants ennemis, aide-t-il les héros, ou reste-t-il absent ? Souhaites-tu décider toi-même de tous les dirigeants, ou recevoir une proposition de casting ?",
+    "Oui il en fait parti, c'est un antagoniste et représentant de la team rocket au sein de la team RR à la place de Giovanni\nFais moi une proposition de casting mais idéalement il faudrait créer un personnage (descendant directe des représentants des teams méchantes de chaque opus présent dans la team RR de USUL + team manquantes qui pourrait ajouté un plus genre par exemple pas la team chelou de SwSh)",
+    "Personnages"
+  ],
+  [
+    "Q04",
+    "Veux-tu que je propose le pouvoir de l’île céleste, les étapes de la libération du père et le synopsis détaillé pour ta validation ? Y a-t-il des événements que tu veux absolument imposer ou éviter ?",
+    "Oui fais moi la proposition du scénario complet à partir des éléments que je t'ai donné et des déroulé des jeux officiels (inspiration uniquement et schéma de déroulement concernant les jeux officiels)",
+    "Scénario"
+  ],
+  [
+    "Q05",
+    "Combien d’arènes ou d’épreuves souhaites-tu avant le boss de chaque île ? Pour le Défi divin : combien de combats successifs et peut-on changer son équipe ou quitter entre deux combats ?",
+    "J'ai déjà répondu, ça dépend du nombre de biome \n1 biome = 1 boss/champion\nil faut a minima une arène par ile et un défi hors repère RR et ile céleste\ndéfi divin : c'est l'équivalent du conseil 4 et de la ligue pokémon donc 4 combat très difficile avec un temps de pause entre chaque combat pour se heal, changer les items et les ct, etc...! non on ne peu pas quitter l'ile céleste une fois le défi commencé",
+    "Progression"
+  ],
+  [
+    "Q06",
+    "Le journal indiquera toujours la prochaine destination. Malgré cela, veux-tu garder certaines scènes importantes impossibles à passer, ou laisser toutes les scènes passables après un avertissement ?",
+    "Non on garde les cinématiques sans possibilité de passer, les scènes non importantes ou moyennement importantes elles sont passable",
+    "Dialogues"
+  ],
+  [
+    "Q07",
+    "Les formats de raid (boss successifs ou plusieurs boss simultanés) sont-ils fixés pour chaque île, ou tirés au sort ? Recommandation à valider : format fixe par île pour apprendre les combats et faciliter l’équilibrage.",
+    "fixé pour chaque ile mais fait la répartition de manière aléatoire et équitable entre chaque ile (je veux pas avoir un type de raid sur les 3 premières iles et un autre type de raid sur les iles restantes)",
+    "Raids"
+  ],
+  [
+    "Q08",
+    "Un boss agit-il une seule fois par tour comme un Pokémon normal ? Peut-on lui infliger sommeil, gel et autres statuts normalement ? Veux-tu des PV augmentés ? Je peux proposer un ensemble de règles avant essai.",
+    "Même règles que pour les raid terracristal par contre PV augmentés et résistances augmenté aussi (comme les raids dynamax et terracristal)",
+    "Raids"
+  ],
+  [
+    "Q09",
+    "Avec trois alliés actifs, veux-tu que les attaques visant tous les adversaires touchent les trois, et que les attaques comme Séisme puissent aussi toucher les deux alliés ? Je peux fournir une table complète de ciblage à valider.",
+    "c'est compliqué de priver les pokémons de leurs stab genre seisme pour un carchakrok parce que sa risque de one shot ses mates donc non pas de friendly fire pendant les raids",
+    "Raids"
+  ],
+  [
+    "Q10",
+    "Une campagne créée pour 2 ou 3 joueurs garde-t-elle toujours ces mêmes places, ou peut-on ajouter/retirer un joueur plus tard ? Qui peut remplacer un participant parti définitivement ?",
+    "Oui on peu réajuster une campagne multi et n'importe qui peu rejoindre, libre à chacun de gérer son aventure avec ses proches/amis, si ça les fait kiffer d'attendre 3h qu'un nouveau les rattrapes en devant speedrun le jeu bah tant pis pour eux",
+    "Groupe coop"
+  ],
+  [
+    "Q11",
+    "Lors d’un combat non scénaristique prévu à plusieurs, si un ami est absent, le rival IA le remplace-t-il ? Les étapes scénaristiques attendent tous les joueurs, comme déjà décidé.",
+    "Si ça nécessite la présence des 3 joueurs alors attente des 3 joueurs pour lancer le combat ou alors mettre une option \"continuer avec un bot ou attendre le(s joueur(s) manquant(s) ?\"",
+    "Coop normale"
+  ],
+  [
+    "Q12",
+    "Combien de temps laisser pour choisir une action : 60 s, 120 s ou autre ? Si un joueur ne répond pas, faut-il attendre, choisir une action automatiquement ou annuler le combat ?",
+    "60s c'est bien et choix automatique a la fin du décompte si pas d'actions sélectioné",
+    "Tours coop"
+  ],
+  [
+    "Q13",
+    "Après la victoire, chacun tente-t-il sa capture indépendamment ? Si un joueur rate, peut-il refaire le raid ? Une capture garantie des légendaires est-elle souhaitée ou conservons-nous les probabilités normales ?",
+    "Alors on peu mettre des raid non légendaire comme épreuve et effectivement les raids seront refaisable tant que le pokémon n'est pas capturé, chacun fait sa capture indépendamment (comme raid terracristal et raid dynamax)\naprès le raid qui sera difficile on met la capture garanti",
+    "Captures de raid"
+  ],
+  [
+    "Q14",
+    "Souhaites-tu que je prépare une proposition de règles complète (capture ratée, doublons, cadeaux, lien par zone, arrivées/départs de joueurs) ? On conservera les KO liés et la restauration libre déjà validés.",
+    "Oui prépare les règles que tu voudrais me proposer et je dirais oui ou non mais le soul link n'est pas une obligation pour le mode multi hein faut pas obliger les joueurs a faire des défi, s'ils veulent juste chill sans se prendre la tête ils peuvent faire leur aventure sans level cap et sans défi type soul-link",
+    "Soul-link"
+  ],
+  [
+    "Q15",
+    "Valides-tu Écarlate/Violet avec DLC comme référence précise de combat, avec les exceptions déjà décidées (Méga historique et attaques retirées à réintroduire) ? Les deltas peuvent-ils avoir une Méga si leur forme classique en a une ?",
+    "Oui et oui les delta auront une mega (pas tous) mais je te ferais la liste",
+    "Combat 9G"
+  ],
+  [
+    "Q16",
+    "Modification des IV/EV/natures dans le résumé : gratuite dès le départ ou débloquée plus tard ? En dehors des combats uniquement ? Quels réglages doivent rester désactivables dans une campagne difficile ?",
+    "oui gratuite dès le départ, en dehors des combats uniquement\nla difficulté doit être modifiable, taux de shiny, vitesse de jeu, sons, commandes, globalement tout",
+    "Édition Pokémon"
+  ]
+]

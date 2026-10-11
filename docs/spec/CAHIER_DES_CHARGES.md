@@ -8,7 +8,7 @@ Nouvel archipel distinct d’Alola, utilisant USUL comme référence de structur
 
 ## Région et durée
 
-Thèmes demandés : tropical/volcanique, mystique (Fée/Ténèbres/Psy/Spectre), hivernal, draconique et high-tech. S’ajoutent une île céleste de fin de parcours et un ancien Paradis Æther transformé en repaire. Cela suggère six îles thématiques plus Æther, mais nombre, forme et connexions doivent être confirmés. L’île draconique devient accessible après la première île et s’ouvre biome par biome selon la progression. Parcours principal imposé, liberté d’exploration locale. Départ tropical/volcanique envisagé, pas fixé. Sources E1–E4, C02–C03.
+Thèmes demandés : tropical/volcanique, mystique (Fée/Ténèbres/Psy/Spectre), hivernal, draconique et high-tech. S’ajoutent une île céleste de fin de parcours et un ancien Paradis Æther transformé en repaire. Six îles thématiques plus le site Æther sont confirmés (Q01). L’ordre des îles est confié au développeur pour proposition ; connexions et biomes à détailler. L’île draconique devient accessible après la première île et s’ouvre biome par biome selon la progression. Parcours principal imposé, liberté d’exploration locale. Départ sur l’île tropicale/volcanique confirmé (Q01). Sources E1–E4, C02–C03.
 
 Durée indicative : environ 15 h avec exploration modérée, 10–12 h en rush et 20 h ou plus en prenant son temps. Elle sera réévaluée selon le contenu ; postgame envisagé de 5–10 h sans engagement. Sources A4, R/C33.
 
@@ -16,17 +16,17 @@ Durée indicative : environ 15 h avec exploration modérée, 10–12 h en rush e
 
 Le héros, 18 ans, habite la région ; son père est prisonnier du groupe ennemi. Trois compagnons du même âge : Vyna, volontaire et connaissant les bases ; Raidon, hyperactif et tête brûlée ; Hyu, réservé et logique, stratège plus confirmé. Héros peu bavard mais doté de dialogues. Le groupe cherche à empêcher la conquête mondiale et à gagner la puissance nécessaire pour libérer la région. Sources C06–C07.
 
-Le groupe inspiré de Rainbow Rocket domine publiquement la région, bloque entrées/sorties et impose taxes et restrictions commerciales. Ses dirigeants sont principalement des descendants inventés de chefs des anciennes teams, désireux de réussir là où leurs parents ont échoué. Leur objectif et leurs méthodes se révèlent progressivement. Silver est évoqué comme descendant existant, sans rôle validé. Sources C04–C07.
+Le groupe inspiré de Rainbow Rocket domine publiquement la région, bloque entrées/sorties et impose taxes et restrictions commerciales. Ses dirigeants sont principalement des descendants inventés de chefs des anciennes teams, désireux de réussir là où leurs parents ont échoué. Leur objectif et leurs méthodes se révèlent progressivement. Silver est confirmé antagoniste et représentant Rocket à la place de Giovanni (Q03). Sources C04–C07.
 
 Le Défi divin sur l’île céleste attribue un titre de gardien à défendre. L’ordre envisagé est île céleste puis confrontation finale au repaire Æther ; le détail reste un synopsis à approuver. Les portails célestes et l’Ultra-Dimension sont disponibles en postgame. Sources C07, C03.
 
-Récit linéaire, scènes généralement passables ; traitement des scènes clés à préciser. Cinématiques débloquées rejouables, scènes ordinaires non rejouables. Journal des objectifs pour ne pas perdre la destination. Pas de voix ; sons et quelques cinématiques si leur coût reste acceptable. Sources G5, D5.
+Récit linéaire ; cinématiques non passables, scènes secondaires ou moyennement importantes passables (Q06). Cinématiques débloquées rejouables, scènes ordinaires non rejouables. Journal des objectifs pour ne pas perdre la destination. Pas de voix ; sons et quelques cinématiques si leur coût reste acceptable. Sources G5, D5.
 
 ## Combat et progression
 
 Tour par tour, règles 9G avec exceptions documentées : Méga des règles historiques de combat au tour par tour, une par joueur et combat, sans seconde Méga après son KO. Réintroduction d’attaques absentes avec leur dernière version pertinente, dont Puissance Cachée ; liste et interactions à auditer. Neige 9G recommandée, choix confié au développeur mais non éprouvé. Sources I1–I2, C17.
 
-Arènes et épreuves hybrides ; un combat de boss légendaire par île. La coopération adapte le nombre de légendaires à 1/2/3 joueurs. Deux formats demandés : phases successives contre un légendaire et affrontement simultané jusqu’à 3 contre 3. Répartition par île ou aléatoire non décidée ; cibles, dégâts de zone, statistiques de raid et phases à spécifier. Sources H1–H2, C12, C26, R01.
+Arènes et épreuves hybrides ; un combat de boss légendaire par île. La coopération adapte le nombre de légendaires à 1/2/3 joueurs. Deux formats demandés : phases successives contre un légendaire et affrontement simultané jusqu’à 3 contre 3. Répartition fixée par île, répartie de manière équilibrée avec alternance des formats à proposer (Q07) ; cibles, dégâts de zone, statistiques de raid et phases à spécifier. Sources H1–H2, C12, C26, R01.
 
 Caps communs à la campagne, non décroissants ; boss du même événement au même palier. Reprise de comportements Tactica par réimplémentation, notamment IA difficile non omnisciente ; table des informations connues à définir. Styles de combat, soins et animations configurables ; difficulté commune en coop. Sources C18, I4–I5, C27.
 
@@ -70,3 +70,17 @@ Prototypes : recommencement autorisé avec avertissement. Alpha publique : migra
 2. Essais ciblés réseau/combats/sauvegardes et petite scène graphique, avant d’engager la première île.
 3. Validation séparée des résultats techniques et du rendu par le propriétaire.
 4. Construction progressive de la première île puis jalons suivants, avec suivi des changements de périmètre.
+
+## Complément confirmé Q01–Q16
+
+Les réponses Q sont des décisions explicites qui complètent le cahier approuvé ; les propositions de scénario et de règles annexes restent à valider séparément.
+
+- RR occupe les îles habitées mais pas la réserve draconique ni l’île céleste. La résistance locale et les Pokémon draconiques rendent impossible une occupation durable par les sbires (Q02).
+- Un biome correspond à un boss/champion ; au minimum une arène et un défi par île ordinaire, hors repaire et île céleste. Ne pas confondre ces combats avec le boss légendaire final. Défi divin : quatre combats très difficiles, pause pour soins/objets/CT, pas de départ de l’île pendant l’épreuve. Place du gardien final par rapport aux quatre combats à préciser (Q05).
+- Raids : inspiration Dynamax/Téracristal, PV et résistances augmentés demandés ; pas de friendly fire en raid. Ne pas supposer que les règles officielles augmentent systématiquement les statistiques Défense/Défense Spéciale, ni importer la Téracristallisation ou un déroulement asynchrone sans décision (Q08–Q09).
+- Campagne coop réajustable ; un nouveau joueur peut rejoindre mais doit rattraper l’histoire. La séparation de ce rattrapage et de la sauvegarde commune reste à concevoir avant code (Q10).
+- Combat coop ordinaire avec absent : proposer attente ou bot. Combat scénaristique : tous présents. Délai de choix 60 secondes, action automatique à expiration ; politique automatique à proposer (Q11–Q12).
+- Épreuves de raid non légendaires possibles ; capture individuelle garantie après victoire, légendaires capturables seulement postgame. Refaire le raid tant que la capture n’est pas faite ; répétabilité après capture à décider (Q13).
+- Soul-link optionnel, jamais imposé au multijoueur ; caps désactivables et modes chill permis. Régime des options partagé par campagne à préciser, sans transformer désactivation du cap en baisse du palier stocké (Q14).
+- Référence combat : Écarlate/Violet avec DLC, exceptions Méga et anciennes attaques. Certaines formes delta auront une Méga, sélection fournie par le propriétaire (Q15).
+- IV/EV/natures gratuits dans le résumé dès le départ, uniquement hors combat. Difficulté, shiny, vitesse, audio et commandes modifiables. Distinguer réglages individuels de présentation et paramètres communs de campagne ; vitesse graphique ne doit pas accélérer les tours d’un seul client (Q16).

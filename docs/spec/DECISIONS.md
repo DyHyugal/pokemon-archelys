@@ -27,3 +27,22 @@ Décisions explicites transcrites ; le cahier V0.1 a été approuvé le 11 octob
 | D21 | Cahier des charges V0.1 approuvé ; questions explicitement ouvertes non tranchées | Conversation du 11 octobre 2026 : « je confirme le cahier des charges » |
 
 Recommandations non assimilées à une approbation : neige 9G, première approche LAN/direct, nombre final d’îles, disposition des boss, version Godot, licence du code, synchronisation automatique du wiki. Elles attendent étude ou arbitrage.
+
+## Complément Q — décisions explicites
+
+| ID | Décision | Provenance |
+|---|---|---|
+| D22 | Six îles thématiques plus site Æther ; départ tropical, ordre confié pour proposition | Q01 |
+| D23 | Îles draconique et céleste hors occupation ; résistance draconique empêche occupation durable | Q02 |
+| D24 | Silver antagoniste Rocket ; casting et scénario complets à proposer | Q03–Q04 |
+| D25 | Boss/champion par biome ; arène et défi minimum par île ordinaire ; quatre combats divins sans quitter l’île | Q05 |
+| D26 | Cinématiques non passables, scènes secondaires passables | Q06 |
+| D27 | Formats raid fixes par île, répartition équilibrée ; PV/résistances renforcés ; pas de friendly fire | Q07–Q09 |
+| D28 | Campagne réajustable, nouveaux membres autorisés avec rattrapage | Q10 |
+| D29 | Attente ou bot pour combat non scénaristique ; délai 60 s puis action automatique | Q11–Q12 |
+| D30 | Captures raid individuelles garanties, raids rejouables avant capture | Q13 |
+| D31 | Soul-link et caps facultatifs, aventure chill permise | Q14 |
+| D32 | Référence Écarlate/Violet DLC ; deltas Méga selon future liste owner | Q15 |
+| D33 | Édition IV/EV/natures gratuite initialement, hors combat ; options modifiables | Q16 |
+
+Ces décisions n’approuvent pas encore les noms d’îles, nouveaux dirigeants, scénario proposé, formule des résistances ni les règles Soul-link détaillées.

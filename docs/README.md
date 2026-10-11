@@ -15,3 +15,10 @@
 - [État des fonctionnalités](FEATURE_STATUS.md)
 - [Questionnaires sources](sources/README.md)
 - [Préparation du wiki joueurs](wiki/README.md)
+
+## Propositions après les réponses Q
+
+- [Scénario complet — spoilers dev, à valider](design/SCENARIO_PROPOSITION_V01.md)
+- [Casting RR proposé](design/CASTING_PROPOSITION.md)
+- [Soul-link facultatif : règles proposées](design/SOUL_LINK_PROPOSITION.md)
+- [Raids : décisions et précisions](design/RAIDS_CADRAGE.md)

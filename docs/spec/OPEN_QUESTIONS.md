@@ -1,33 +1,25 @@
-# Questions ouvertes
+# Questions ouvertes — après réponses Q01–Q16
 
-Ces points ne bloquent pas la rédaction du cadrage. Ils doivent être résolus avant la mise en œuvre du système concerné. Ne pas inventer la réponse.
+Le cahier V0.1 est approuvé et Q01–Q16 sont conservées dans docs/sources. Les questions déjà répondues ne sont pas remises en attente. Les points ci-dessous sont des précisions ou des validations de propositions, pas un nouveau questionnaire complet.
 
-## Avant scénario détaillé
+## Trois choix nécessaires avant architecture finale
 
-- Confirmer la synthèse : cinq thèmes d’îles + île céleste + site Æther ; ordre, île de départ et connexions.
-- Expliquer pourquoi l’île draconique et céleste échappent au contrôle annoncé de toute la région.
-- Fixer le rôle de Silver, l’identité des dirigeants, la source de puissance céleste et le sort final du père.
-- Nombre d’arènes/épreuves avant les boss, ordre des défis divins, soins et défenses du titre.
-- Huit arènes Ultra-Dimension en postgame confirmées ; architecture et récit de ce contenu à concevoir.
-- Contradiction à résoudre : scènes clés impossibles à passer versus journal garantissant de ne pas perdre les objectifs.
+1. **Raids :** conserver le tour par tour collectif et reprendre seulement la résistance/les phases des raids officiels, ou reproduire aussi timer, scripts, purge et boucliers des raids Téracristal ? Proposition détaillée dans RAIDS_CADRAGE.md, aucune Téracristallisation implicite.
+2. **Nouveau joueur :** la campagne est commune et tous attendent aux scènes ; pourtant le nouvel arrivant doit rattraper individuellement l’histoire. Option A : rejoint le chapitre de la campagne, récapitulatif et équipe adaptée, sans replay obligatoire. Option B : rejoue les chapitres précédents dans une progression séparée avant de rejoindre le groupe ; davantage de développement. Q10 exprime un rattrapage : ne pas choisir A silencieusement.
+3. **Défi divin :** les quatre combats comprennent-ils le dieu/gardien final, ou s’agit-il de quatre adversaires puis un cinquième combat ? Le dernier exemple de scénario propose quatre au total, à valider.
 
-## Avant prototype combat et réseau
+## Propositions produit à valider
 
-- Raid par phases et simultané : répartition fixe par île ou tirage aléatoire ? Le choix doit être sauvegardé pour la reproductibilité.
-- Cibles, attaques de zone, dégâts aux alliés, effets/talents pour 3 actifs par camp ; HP, actions et immunités des boss ; passage des phases.
-- Taille de campagne fixée ou modifiable, identités des joueurs attendus, arrivée d’un nouveau joueur et changement d’hôte.
-- Remplacement rival IA quand un joueur manque à un combat normal, sans autoriser scénario en son absence.
-- Délai d’action, conséquence de délai dépassé et périmètre du retour avant combat en cas de déconnexion ; captures et objets déjà validés ailleurs ne doivent pas être annulés.
-- Attribution des captures de raid ; chances individuelles et moment d’enregistrement ; échanges atomiques, KO liés Soul-link pendant plusieurs combats simultanés.
-- Soul-link : capture manquée, doublons, genres/types éventuels, cadeaux, lien par zone ou par rang, remplaçants et pertes simultanées. Il n’existe pas une règle universelle unique à importer sans validation.
-- Éventuelle invisibilité de certaines commandes pendant PvP pour éviter de révéler une action à l’adversaire via le spectateur.
-- Référence 9G exacte, catalogue des attaques réintroduites et exceptions ; Méga des deltas ; mutations IV/EV hors combat et conditions de disponibilité.
+- Scénario complet et casting ; noms proposés, pouvoirs, arcs des compagnons, ordre des îles et événements du père ne sont pas approuvés par défaut.
+- Règles Soul-link optionnelles : clause doublons, capture manquée, cadeaux/shiny, arrivée/départ, désactivation et fin du défi.
+- Répartition exacte des formats par île ; amplification des HP/résistances et traitement des statuts ; Méga delta selon liste owner future.
+- Action automatique après 60 secondes : cible et choix conservés si partiels ; règle en cas d’absence totale de choix. Préparer une proposition déterministe sans donner au joueur une IA omnisciente.
+- Options globales modifiables seulement entre combats ou également pendant ; shiny sur génération des rencontres futures, vitesse client purement visuelle ; paramètres partagés réservés à l’hôte à proposer.
+- Répétabilité d’un raid après capture et conduite si offre de capture refusée ou interrompue.
+- Nombre et carte des biomes : règle biome = boss/champion confirmée ; au moins arène + défi hors céleste/repaire. Ne pas redemander cette règle, définir son application concrète sur les cartes.
 
-## Avant production graphique et livraison
+## Études techniques autonomes
 
-- Bibliothèque réellement disponible, licences, formats et qualité des modèles animés ; coût des 9 Fakemons et des variantes.
-- Version du moteur et renderer après essai ; matériel de référence pour le minimum, budget performance.
-- Charte visuelle, thèmes de couleurs, exactitude des noms FR/EN, musique et sons.
-- Plongée et île sous-marine : estimation et décision de périmètre avant ajout.
-- Synchronisation du wiki, hébergement, licence du code et actifs originaux ; séparation des spoilers publics.
-- Invitation Internet sans configuration, coût/limites de relais, serveur dédié : décider après un essai vérifiable.
+Inventaire assets et licences ; bases/moteur ; essais réseau, invitations, export Windows et performances ; sauvegardes atomiques et rollback ciblé ; échanges sans duplication ; Soul-link concurrent ; catalogue des attaques ; sécurité des informations PvP ; wiki bilingue et spoilers. Détails dans TECHNICAL_VALIDATION.md.
+
+Plongée/île sous-marine : étude de coût, décision d’ajout après proposition, qualité inchangée. Aucun délai de production ni disponibilité de modèles ne sont supposés.

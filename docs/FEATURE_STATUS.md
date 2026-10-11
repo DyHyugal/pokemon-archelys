@@ -20,3 +20,6 @@ Les statuts portent sur les preuves, pas sur l’enthousiasme ou la présence da
 | Wiki joueurs | PRÉPARÉ LOCAL | Rubriques documentaires ; non publié |
 | Exports Windows | DEMANDÉ | R02 ; aucun exe disponible |
 | FR/EN complets | DEMANDÉ | C25 |
+| Réponses Q01–Q16 | TRANSCRITES | Classeur et JSON conservés ; décisions D22–D33 |
+| Scénario complet et casting | PROPOSÉS | Documents V0.1, approbation owner attendue |
+| Règles Soul-link | PROPOSÉES | Mode facultatif ; détails à valider |
