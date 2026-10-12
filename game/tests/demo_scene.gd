@@ -33,7 +33,9 @@ func run() -> void:
  await process_frame;await process_frame
  var session: Node=root.get_node("Session");var before: Dictionary=session.campaign.adventure.snapshot()
  var game: Node=world.demo_game;game.save_path="user://tests_demo_scene.json" if folder.is_empty() else "user://tests_demo_render.json";DirAccess.remove_absolute(game.save_path)
+ world.camera.size=17
  check(game.open(world) and game.active and not world.world_geometry.visible,"Demo opens while preserving laboratory")
+ check(game.world.camera.size==17,"Demo restores saved camera distance")
  game.new_demo();await process_frame
  await shot(game,"00-starters")
  check(game.modal.find_child("Starter_charmander",true,false)!=null,"Actual starter selector available")

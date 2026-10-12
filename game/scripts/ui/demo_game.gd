@@ -49,7 +49,7 @@ func open(owner: Node3D) -> bool:
   if child is CanvasLayer and child!=self:old_visibility[child]=child.visible
  for node: Node in old_visibility:node.hide()
  owner.get_node("/root/Session").submit_axis(Vector2.ZERO)
- world=World.new();owner.add_child(world);world.build(state);world.configure_labels(owner.comfort.data.world_labels)
+ world=World.new();owner.add_child(world);world.build(state);world.camera.size=owner.camera.size;world.configure_labels(owner.comfort.data.world_labels)
  menu=preload("res://scripts/ui/pause_menu.gd").new();menu.demo_mode=true;menu.adventure=state.campaign.adventure;menu.comfort=owner.comfort;owner.add_child(menu)
  menu.layer=40;menu.panel.theme=owner.ui_theme
  menu.save_requested.connect(save_game);menu.load_requested.connect(load_game)
