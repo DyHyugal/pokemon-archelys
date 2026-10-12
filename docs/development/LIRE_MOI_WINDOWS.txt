@@ -1,3 +1,35 @@
+ARCHÉLYS — JOURNAL, CARTE LOCALE ET TROIS PARTIES DE DÉMO
+Version : lab-{short_commit}
+Commit : {commit}
+
+Extrais tout le ZIP et lance Archelys-Laboratoire.exe, nom inchangé. Garde
+le PCK, showdown et runtime ensemble. Tes anciennes sauvegardes sont conservées.
+
+CE LOT À TESTER EN UNE FOIS
+À l’accueil, choisis l’un des trois emplacements. L’emplacement1 reprend la
+sauvegarde de démo précédente. Crée une partie dans un autre emplacement :
+le premier doit rester intact. Dans Échap → Sauvegardes, sauvegarde puis essaie
+le chargement d’une autre partie et la restauration de sa copie précédente.
+La copie .backup conserve la dernière sauvegarde remplacée, pas toutes les versions.
+Les boutons de chargement/création affichent une confirmation ; une progression
+non sauvegardée peut être remplacée. Le fichier principal corrompu peut être
+récupéré depuis la copie valide proposée à l’accueil. Pas besoin d’effacer tes saves.
+
+J (ou ta touche reconfigurée) ouvre le journal : suis la balise, le dresseur,
+puis le retour auprès de Vyna. Les cases doivent refléter les étapes réalisées.
+Échap → Carte locale indique ta position en rouge et le prochain objectif en or.
+Ce plan concerne le lieu actuel ; ce n’est pas la carte finale ni une téléportation.
+
+Entre au Centre, à la boutique et à la maison : sortir doit te ramener devant
+la bonne porte. À proximité d’une interaction, son nom et la touche apparaissent.
+Change la langue dans Paramètres : les menus de démo doivent changer immédiatement.
+Après conclusion auprès de Vyna, le journal doit indiquer que la démo est terminée.
+
+Le lot ajoute du gameplay/ergonomie. Les graphismes actuels restent des maquettes
+rejetées comme qualité finale ; aucun asset Meshy n’est encore intégré.
+Documentation/Exploration-sauves-demo.md détaille ces blocs.
+
+--- PARCOURS DE DÉMO ET LOTS PRÉCÉDENTS ---
 ARCHÉLYS — DÉMO JOUABLE DU HAVRE
 Version : lab-{short_commit}
 Commit : {commit}

@@ -11,6 +11,7 @@ env.setdefault('ARCHELYS_NODE_BIN',shutil.which('node') or '')
 steps=[(['godot','--headless','--path',str(root/'game'),'--editor','--import','--quit'],None),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/demo_scene.gd'],'DEMO SCENE:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/demo_contracts.gd'],'DEMO CONTRACTS:'),
+       (['godot','--headless','--path',str(root/'game'),'--script','res://tests/demo_navigation.gd'],'DEMO NAVIGATION:'),
        ([env['ARCHELYS_NODE_BIN'],str(root/'combat/showdown/tests.cjs')],'SHOWDOWN ADAPTER:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/showdown_integration.gd'],'SHOWDOWN INTEGRATION:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/battle_options.gd'],'BATTLE OPTIONS:'),

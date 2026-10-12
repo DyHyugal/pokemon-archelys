@@ -15,3 +15,5 @@ Le wiki est une présentation joueurs à préparer à partir de sources versionn
 Les retours explicites de conversation postérieurs aux questionnaires prévalent sur leur sujet : D35–D37 confirment le premier test Windows et placent le solo avant les travaux multijoueurs.
 
 D69 autorise la démo intégrée en autonomie, avec référence DS/USUL en FHD. Les concepts sont approuvés ; les assets remodélisés et leur fidélité restent à éprouver. Voir DECISIONS et LOT_DEMO_HAVRE.
+
+D70 : essai Meshy Pro d’un mois choisi par le propriétaire ; qualité finale des assets D69 rejetée. Continuer les fonctionnalités solo en autonomie, sans assimiler le choix d’un outil à une validation des modèles générés.

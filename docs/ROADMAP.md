@@ -5,7 +5,7 @@
 | J0 | Dépôt, questionnaires, V0.1, règles et liste des inconnues | Cahier V0.1 approuvé le 11 octobre 2026 ; questions ouvertes à traiter |
 | J1 | Évaluation moteur/bases, import assets, combat/réseau/save minimal | Laboratoire initial testé ; validations finales restantes |
 | J2 | Petite scène visuelle jouable et ZIP Windows | Premier export validé sous Windows par owner ; caméra et dialogue ajoutés ; direction finale à valider |
-| J3 | Première île : graphiques, événements et boucle jouable | Non commencé ; après validations J1/J2 |
+| J3 | Première île : graphiques, événements et boucle jouable | Proposition jouable et démo du havre développées ; finition graphique rejetée, essai Meshy choisi ; île finale non terminée |
 | J4 | Autres îles, biomes draconiques et progression du scénario | Non commencé |
 | J5 | Île céleste, repaire, postgame, Ultra-Dimension | Non commencé ; découpage à préciser |
 | J6 | Alpha publique, migrations, playtests solo/coop, équilibrage, FR/EN | Non commencé |
@@ -16,3 +16,7 @@ Pas de date imposée. Pas de durée de production inventée avant les essais. Le
 Backlog à étudier : plongée/île sous-marine, Linux/Android, invitations simplifiées, serveur dédié, autres activités. MMO, transfert solo↔coop et monde ouvert ne sont pas des engagements V1.
 
 Priorité actualisée D36 : solo d’abord, multijoueur après. Préserver la séparation des règles et de la présentation ; les validations réseau ne bloquent plus les étapes solo. Coop au jalon V1 à réévaluer au retour de ce chantier.
+
+## D70 — guidage et sauvegardes de la démo
+
+Journal, carte locale, trois parties indépendantes/copies précédentes et continuité des interactions développés et contrôlés. Graphismes finaux suspendus à un essai d’assets Meshy ; aucune validation artistique acquise. Voir [le lot](development/LOT_EXPLORATION_SAUVES_DEMO.md).

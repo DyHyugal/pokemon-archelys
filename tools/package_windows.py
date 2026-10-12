@@ -24,7 +24,7 @@ manifest={'commit':args.commit,'godot':'4.6.3','stage':'technical-laboratory',
           'showdown':provenance,'distribution':'portable-external-pck-with-offline-showdown','unmodified_godot_template':True,
           'windows_execution':'not validated on Windows','network_validation':'deferred; prior lab-09897ca tested on localhost only'}
 (folder/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
-(folder/'release-notes.md').write_text('D69 : démo du havre, starter unique, avatar personnalisable, ville et sentier, PNJ/quêtes/services, arène Pokémon avec Showdown. Sauvegarde séparée. Recherche runtime des exports corrigée. Graphismes encore provisoires en dessous de la cible DS/FHD. Parcours de test dans LIRE-MOI. EXE portable au nom fixe.\n',encoding='utf-8')
+(folder/'release-notes.md').write_text('D70 : journal d’objectifs, carte locale, trois sauvegardes de démo avec copie précédente/récupération, retours devant les portes et interactions contextuelles. Anciennes saves conservées, EXE au nom fixe. Gameplay solo, aucun asset Meshy intégré ; rendu actuel rejeté comme qualité finale. Parcours groupé dans LIRE-MOI.\n',encoding='utf-8')
 archive=folder/'Archelys-Laboratoire-Windows.zip'
 with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as z:
     for file in [exe,pck,folder/'LIRE-MOI.txt',folder/'manifest.json',root/'docs/licenses/Godot-LICENSE.txt',root/'docs/licenses/Godot-COPYRIGHT.txt',root/'docs/licenses/PokeAPI-LICENSE.txt',root/'docs/licenses/LABORATORY_AUDIO.md']:z.write(file,file.name)
@@ -37,6 +37,8 @@ with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as z:
     z.write(root/'docs/design/ATLAS_PROPOSE_2026-10-12.md','Documentation/Atlas-graphique.md')
     z.write(root/'docs/design/CONCEPT_PROMPTS_2026-10-12.json','Documentation/Concept-briefs.json')
     z.write(root/'docs/development/LOT_ATLAS_SERVICES_10_BLOCS.md','Documentation/Atlas-services-10-blocs.md')
+    z.write(root/'docs/design/MESHY_PREMIER_LOT.md','Documentation/Meshy-premier-lot.md')
+    z.write(root/'docs/development/LOT_EXPLORATION_SAUVES_DEMO.md','Documentation/Exploration-sauves-demo.md')
     z.write(root/'docs/development/LOT_DEMO_HAVRE.md','Documentation/Lot-demo-havre.md')
     z.write(root/'game/assets/demo/provenance.json','Documentation/Demo-assets-provenance.json')
     z.write(root/'docs/design/ASSETS_3D_D68.md','Documentation/Assets3D.md')

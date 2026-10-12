@@ -188,3 +188,10 @@ Demande owner du 12 octobre 2026 : monde, graphismes et services réunis dans un
 
 
 Voir [LOT_DEMO_HAVRE](development/LOT_DEMO_HAVRE.md). Développé et contrôlé techniquement, retour Windows/visuel attendu. Noms, starters, équilibrage et rendu restent provisoires ; cible graphique demandée pas encore atteinte.
+
+
+## D70 — Meshy choisi pour essai, poursuite des blocs solo
+
+Propriétaire, 12 octobre 2026 : « Meshy Pro pendant un mois […] Continue sur les autres blocs en autonomie ». Les assets D69 sont rejetés comme qualité finale ; concepts D67/D68 conservés. Essai Meshy choisi, modèle exporté/textures pas encore fournis. Aucun asset payant généré ou importé dans ce lot.
+
+Journal, carte locale, trois parties de démo et continuité des portes/interactions développés et testés localement. [Portée, sauvegardes et limites](development/LOT_EXPLORATION_SAUVES_DEMO.md). Playtest Windows et validation visuelle distincts ; multi/raids/défis reportés, reproduction retirée.

@@ -4,7 +4,7 @@
 
 ## Vision et rôle du propriétaire
 
-Nouvel archipel distinct d’Alola, utilisant USUL comme référence de structure, avec une nouvelle distribution et un récit sombre. Priorités : graphismes, scénario et combats difficiles. Le propriétaire assure direction créative, arbitrages de périmètre et validation finale ; autonomie technique après les validations convenues. Aucun délai contractuel ni budget supplémentaire annoncé au-delà de l’abonnement Plus. Aucune production professionnelle de centaines de modèles n’est garantie par cet abonnement. Sources A1–A5, D2, C04, C30.
+Nouvel archipel distinct d’Alola, utilisant USUL comme référence de structure, avec une nouvelle distribution et un récit sombre. Priorités : graphismes, scénario et combats difficiles. Le propriétaire assure direction créative, arbitrages de périmètre et validation finale ; autonomie technique après les validations convenues. Aucun délai contractuel. Depuis D70, un essai Meshy Pro d’un mois est choisi par le propriétaire pour préparer les assets ; le budget de production global reste non défini. Aucune production professionnelle de centaines de modèles n’est garantie par cet abonnement. Sources A1–A5, D2, C04, C30.
 
 ## Région et durée
 

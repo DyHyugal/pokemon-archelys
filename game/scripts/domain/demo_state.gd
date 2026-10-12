@@ -58,9 +58,13 @@ func save(path: String) -> Error:
  var check: Variant=JSON.parse_string(FileAccess.get_file_as_string(path+".tmp"))
  if not validate(check):return ERR_INVALID_DATA
  if FileAccess.file_exists(path):
-  var error: int=DirAccess.copy_absolute(path,path+".backup")
-  if error!=OK:return error
+  var previous:=JSON.new()
+  # A corrupt primary must never replace a valid recovery copy.
+  if previous.parse(FileAccess.get_file_as_string(path))==OK and validate(previous.data):
+   var error: int=DirAccess.copy_absolute(path,path+".backup")
+   if error!=OK:return error
  return DirAccess.rename_absolute(path+".tmp",path)
 func objective(lang: String) -> String:
+ if flags.has("complete"):return "Démo terminée : explore et prépare ton équipe." if lang=="fr" else "Demo complete: explore and prepare your party."
  var index: int=0 if starter.is_empty() else (1 if not flags.has("survey") else (2 if not flags.has("trainer") else 3))
  return ["Choisis ton premier Pokémon.","Parle à Vyna, puis relève la balise du sentier.","Affronte le dresseur du sentier ; soins et boutique au havre.","Retourne voir Vyna au havre pour conclure la démo."][index] if lang=="fr" else ["Choose your first Pokémon.","Talk to Vyna, then survey the trail beacon.","Battle the trail trainer; healing and shop in town.","Return to Vyna in town to finish the demo."][index]
