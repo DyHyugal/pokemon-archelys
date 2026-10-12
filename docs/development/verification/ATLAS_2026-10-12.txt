@@ -1,0 +1,71 @@
+ARCHÉLYS D67 — vérification du lot de dix blocs,12 octobre2026
+SPOILERS DEV. Preuves techniques ; aucune validation Windows owner ajoutée.
+
+Source : 98344d5ab1678b417328357a8dca9f402d89a6fd
+Branche : docs/cadrage-valide ; pas de merge main/develop, pas de nouvelle branche.
+
+Commandes :
+PATH=/workspace/.archelys-runtime/bin:$PATH ARCHELYS_RUNTIME_ROOT=/workspace/.archelys-runtime python tools/check_prototype.py
+Godot4.6.3 / Node24.19.0 / Showdown942cda71d14bf0618bd57991708a2e2734b6daba.
+Toutes les étapes exécutées, zéro erreur de script. Contrôles à nombre explicite : 1035 ; d'autres scènes/imports ont un marqueur sans compteur.
+SHOWDOWN ADAPTER: 70 checks, 0 failures
+SHOWDOWN INTEGRATION: 33 checks, 0 failures
+BATTLE OPTIONS: 44 checks, 0 failures
+BATTLE READABILITY: 52 checks, 0 failures
+ATLAS SERVICES: 39 checks, 0 failures
+ATLAS SCENE: 134 checks, 0 failures
+ISLAND SYSTEMS: 108 checks, 0 failures
+ISLAND SCENE: 46 checks, 0 failures
+ARCHÉLYS TESTS: 19 checks, 0 failures
+JOURNEY SYSTEMS: 17 checks, 0 failures
+JOURNEY SCENE: 14 checks, 0 failures
+FOSSIL SYSTEMS: 23 checks, 0 failures
+NURSERY SYSTEMS: 18 checks, 0 failures
+SOLO SYSTEMS: 18 checks, 0 failures
+DIALOGUE TESTS: 6 checks, 0 failures
+POKEMON SYSTEMS: 71 checks, 0 failures
+EXPLORATION COMBAT: 70 checks, 0 failures
+COLLECTION SYSTEMS: 32 checks, 0 failures
+COLLECTION SCENE: 27 checks, 0 failures
+STORAGE SYSTEMS: 31 checks, 0 failures
+STORAGE SCENE: 16 checks, 0 failures
+PRESENTATION SYSTEMS: 17 checks, 0 failures
+PRESENTATION SCENE: 13 checks, 0 failures
+COMFORT SYSTEMS: 21 checks, 0 failures
+COMFORT SCENE: 26 checks, 0 failures
+TACTICS SYSTEMS: 46 checks, 0 failures
+TACTICS SCENE: 24 checks, 0 failures
+ALL PROTOTYPE CHECKS PASSED
+
+Rendu : Xorg:99, OpenGL Compatibility, Mesa25.0.7 llvmpipe logiciel.
+Script atlas_scene avec --atlas-proof :148 contrôles,0échec,9PNG :
+7 maquettes studio (sites habités proposés), boutique vêtements et paramètres.
+Viewport et fenêtre1920×1080 vérifiés. Images dans docs/design/comparatifs/atlas-*.png.
+Modes fenêtre/sans bordure/plein écran appliqués puis restaurés.
+Pilote : warning V-Sync non supporté, cadence/synchronisation matérielle non mesurées.
+Aucune prétention de fluidité Windows ou GPU de jeu.
+
+Export Windows release réussi, zéro erreur de script dans le journal.
+Package :423 fichiers,7PNG Concepts et provenance, anciens lots inclus.
+Nom fixe Archelys-Laboratoire.exe : SHA identique au template Godot officiel.
+Node.exe : SHA vérifié contre la provenance du téléchargement officiel.
+Archive testzip sans erreur ; manifest identifie source/runtime/absence de signature propriétaire.
+Hash LOCAL du ZIP (l'archive CI peut différer, voir son SHA256SUMS.txt) :
+d50dc940abd8ec191df9a654c38e8489fdbaed31abf6fa2a6a807b99c8be825d  Archelys-Laboratoire-Windows.zip
+
+EXE SHA256 : 91724f15024a3a545e28ccd83134403d31ce2323a38e51c95e4dfa282f732ab6
+PCK SHA256 : 6d3e3c4ced30e9a5bf4f7b044594b0a65f8b4afe9b40529c28df8c3d109ad16f
+
+Limites :28 maquettes modulaires, pas28 zones connectées ni graphismes finaux.
+Concepts générés proposés, sans assets extraits de jeux. Catalogue22/43inchangé.
+Manette synthétique testée, matériel physique/Windows et sélection artistique à tester.
+Anciennes campagnes/préférences lisibles, pas de reset ; reproduction supprimée,
+multi/raids/défis reportés. Retour Windows réellement validé : D52.
+
+CI : Success, source98344d5, validation/export/publication terminés.
+https://github.com/DyHyugal/pokemon-archelys/actions/runs/38238869515
+Release publique : ZIP et SHA256SUMS vérifiés dans les assets,12 octobre2026.
+https://github.com/DyHyugal/pokemon-archelys/releases/tag/lab-98344d5
+Téléchargement :
+https://github.com/DyHyugal/pokemon-archelys/releases/download/lab-98344d5/Archelys-Laboratoire-Windows.zip
+SHA CI : consulter le SHA256SUMS livré, distinct du hash LOCAL ci-dessus.
