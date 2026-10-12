@@ -1,5 +1,7 @@
 # Registre des décisions
 
+Complément après D73 : le propriétaire demande un fichier Excel de prompts pour chaque asset prévisible de la première île, avec zone, déclinaison, prompt et commentaire. [Catalogue préparatoire](../design/PROMPTS_PREMIERE_ILE.md) : ne vaut ni validation de nouvelles tenues/designs ni production de modèles. Pokédex/starters/divinité toujours à recevoir.
+
 Décisions explicites transcrites ; le cahier V0.1 a été approuvé le 11 octobre 2026. Les exemples de noms et d’espèces ne valent pas choix définitif.
 
 | ID | Décision | Provenance |
