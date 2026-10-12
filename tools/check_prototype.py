@@ -50,5 +50,8 @@ for command,marker in steps:
     result=subprocess.run(command,env=env,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True,timeout=60)
     print(result.stdout,flush=True)
     if result.returncode or 'SCRIPT ERROR:' in result.stdout or '\nERROR:' in result.stdout or (marker and marker not in result.stdout):
+        if env.get('GITHUB_ACTIONS')=='true':
+            details=(' '.join(command)+'\n'+result.stdout[-6000:]).replace('%','%25').replace('\r','%0D').replace('\n','%0A')
+            print('::error title=Prototype check failed::'+details,flush=True)
         raise SystemExit('Prototype check failed: '+' '.join(command))
 print('ALL PROTOTYPE CHECKS PASSED')
