@@ -11,7 +11,7 @@ func picker(id: String,caption: String,values: Array,current: String,action: Cal
  for value: String in values:control.add_item(value)
  control.select(values.find(current));menu.body.add_child(control)
  control.item_selected.connect(func(index: int):
-  if not menu.adventure.in_battle:action.call(values[index]);game.save_game())
+  if not menu.adventure.in_battle:action.call(values[index]);game.persist_auto())
 func render(page: String) -> void:
  var a: RefCounted=menu.adventure;var settings: RefCounted=a.exploration
  if page=="rules":
@@ -21,7 +21,7 @@ func render(page: String) -> void:
   for id: String in ["bag_healing","cap_enabled"]:
    var field: String=id;var control:=CheckButton.new();control.name="Rule_"+id;control.text=t("Soins du sac autorisés en combat","Allow bag healing in battle") if id=="bag_healing" else t("Plafond de niveau actif","Level cap enabled");control.set_pressed_no_signal(settings.get(id));menu.body.add_child(control)
    control.toggled.connect(func(v: bool):
-    if not a.in_battle:settings.set(field,v);game.save_game())
+    if not a.in_battle:settings.set(field,v);game.persist_auto())
   picker("DemoExperience",t("Multiplicateur EXP","XP multiplier"),["1","2","3","4","5"],str(settings.exp_multiplier),func(v: String):settings.exp_multiplier=int(v))
   picker("DemoShinyOdds",t("Chance chromatique des nouvelles rencontres : 1/N","New encounter shiny odds: 1/N"),["4096","1024","256","64","1"],str(settings.shiny_odds),func(v: String):settings.shiny_odds=int(v))
   label(t("Réactiver le cap ne diminue aucun niveau. Les soins hors combat restent autorisés. Modes Nuzlocke/Soul-link reportés.","Re-enabling the cap never lowers levels. Out-of-battle healing remains allowed. Nuzlocke/Soul-link deferred."))
@@ -35,11 +35,11 @@ func render(page: String) -> void:
  elif page=="nursery":
   label(t("Œuf cadeau d’essai : espèces et distribution définitives en attente. Aucune reproduction.","Test gift egg: final species and distribution pending. No breeding."))
   var id: String=Content.data().gift_egg
-  var receive: Button=game.button(menu.body,t("Recevoir l’œuf cadeau de %s","Receive gift %s egg") % Catalog.name_of(id,game.locale),func():a.nursery.receive(a,id);game.save_game();menu.render(),"ReceiveDemoEgg");receive.disabled=id in a.nursery.received
+  var receive: Button=game.button(menu.body,t("Recevoir l’œuf cadeau de %s","Receive gift %s egg") % Catalog.name_of(id,game.locale),func():a.nursery.receive(a,id);game.persist_auto();menu.render(),"ReceiveDemoEgg");receive.disabled=id in a.nursery.received
   for egg: Dictionary in a.nursery.eggs:
    var uid: int=int(egg.mon.uid);label(t("Œuf #%d • %.1f m restants","Egg #%d • %.1f m remaining") % [uid,egg.remaining])
    var hatch: Button=game.button(menu.body,t("Faire éclore #%d","Hatch #%d") % uid,func():
-    var result: String=a.nursery.hatch(a,uid);game.save_game();menu.render();menu.feedback.text=t("Éclosion : ","Hatching: ")+result,"HatchDemo%d" % uid);hatch.disabled=egg.remaining>0
+    var result: String=a.nursery.hatch(a,uid);game.persist_auto();menu.render();menu.feedback.text=t("Éclosion : ","Hatching: ")+result,"HatchDemo%d" % uid);hatch.disabled=egg.remaining>0
  elif page=="photo":
   label(t("Cadrage autour du héros de démo, sans déplacement. PNG à la résolution courante.","Frame the demo hero without moving. PNG at current resolution."))
   game.button(menu.body,t("Ouvrir Photo","Open Photo"),func():game.start_photo(),"OpenDemoPhoto")
@@ -53,5 +53,5 @@ func item_page(id: String) -> void:
   var uid: int=int(mon.uid)
   if held or usable:
    game.button(menu.body,(t("Équiper : ","Equip: ") if held else t("Utiliser sur : ","Use on: "))+Catalog.name_of(mon.species,game.locale),func():
-    var ok: bool=a.equip(uid,id) if held else a.use(id,uid);game.save_game();item_page(id);menu.feedback.text=t("Action effectuée.","Action completed.") if ok else t("Aucun effet ou objet absent ; sac conservé.","No effect or item absent; bag preserved."),"ItemTarget%d" % uid)
+    var ok: bool=a.equip(uid,id) if held else a.use(id,uid);game.persist_auto();item_page(id);menu.feedback.text=t("Action effectuée.","Action completed.") if ok else t("Aucun effet ou objet absent ; sac conservé.","No effect or item absent; bag preserved."),"ItemTarget%d" % uid)
  game.button(menu.body,t("Retour au sac","Back to bag"),func():menu.render(),"BackToDemoBag")

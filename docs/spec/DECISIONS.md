@@ -245,3 +245,8 @@ Journal, carte locale, trois parties de démo et continuité des portes/interact
 ## D71 — dix blocs autonomes, sélection Pokémon attendue
 
 Propriétaire : « idéalement 10 […] en autonomie […] pokédex et starters demain », 12 octobre 2026. Autorise la poursuite des systèmes solo avec fixtures ; aucune sélection finale implicite. Dix blocs développés et contrôlés : [portée et limites](../development/LOT_DEMO_DIX_SYSTEMES.md). Graphismes de maquette conservés, rejetés comme rendu final ; registre d’assets vide. Pokédex/starters futurs restent à recevoir. Aucun playtest Windows supplémentaire déduit.
+
+
+## D72 — lot autonome de douze blocs
+
+Propriétaire, 12 octobre 2026 : « enchaine sur les 10/20 prochains blocs […] 20 […] jouable ». Poursuite solo autonome avec fixtures, sans figer Pokédex, starters ni modèles Meshy attendus. Douze blocs intégrés : expédition, actions contextuelles, Vol, services locaux, Pokédex de démo, scènes/replay, autosave séparée, archives portables, diagnostic des sauvegardes, inspection GLB, préflight de contenu et lisibilité du combat. [Portée et limites](../development/LOT_DEMO_PROGRESSION_SERVICES.md). Développé/testé techniquement ; playtest Windows et choix artistiques restent distincts.

@@ -5,7 +5,7 @@ const Catalog=preload("res://scripts/domain/pokemon_catalog.gd")
 var seen: Dictionary={}
 var caught: Dictionary={}
 var scenes: Dictionary={}
-const SCENES=["lab-tour","lab-note","slice-prologue","slice-ending","isle-arrival","isle-liberation"]
+const SCENES=["lab-tour","lab-note","slice-prologue","slice-ending","isle-arrival","isle-liberation","demo-arrival","demo-return"]
 func observe(id: String, owned: bool=false) -> void:
  if not Catalog.data().species.has(id):return
  seen[id]=true

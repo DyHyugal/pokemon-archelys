@@ -57,7 +57,8 @@ func build(state: RefCounted) -> void:
  for n: Node in geometry.get_children():geometry.remove_child(n);n.queue_free()
  blockers.clear();points.clear()
  if location=="town":town()
- elif location=="trail":trail()
+ elif location=="trail":
+  trail();expedition(state)
  else:interior()
  hero.position=state.position;Style.apply(hero,state.campaign.adventure.appearance);configure_labels(show_labels);follow()
 func cliff(at: Vector3,radius: float,height: float) -> void:
@@ -134,6 +135,16 @@ func trail() -> void:
   for z: int in [-15,-8,0,7]:OldKit.place(geometry,"palm",Vector3(x,0,z),1.15)
  for x: int in [-14,14]:
   for z: int in [-12,4]:OldKit.place(geometry,"rock",Vector3(x,0,z),2)
+func expedition(state: RefCounted) -> void:
+ var fixtures: Dictionary={"cut":Vector3(-5,0,2),"rock-smash":Vector3(-6,0,-12),"strength":Vector3(8,0,-12)}
+ for action: String in fixtures:
+  var flag: String=preload("res://scripts/domain/demo_expedition.gd").ACTIONS[action]
+  if not state.flags.has(flag):
+   var at: Vector3=fixtures[action];points[action]=at
+   OldKit.place(geometry,"palm" if action=="cut" else "rock",at,.65 if action=="cut" else .7)
+   blockers.append(Rect2(Vector2(at.x-.5,at.z-.5),Vector2(1,1)))
+ points['expedition-cache']=Vector3(-9,0,-3)
+ OldKit.place(geometry,"bench",points['expedition-cache'],.6)
 func interior() -> void:
  box(Vector3(18,.12,20),Vector3(0,-.06,0),"bdaf91");box(Vector3(18,3.5,.25),Vector3(0,1.75,-10),"ece6d8")
  for side: int in [-1,1]:box(Vector3(.25,3.5,20),Vector3(side*9,1.75,0),"ece6d8")

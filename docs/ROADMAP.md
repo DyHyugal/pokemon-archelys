@@ -24,3 +24,7 @@ Journal, carte locale, trois parties indépendantes/copies précédentes et cont
 ## D71 — dix systèmes solo, données finales attendues
 
 Contenu configurable, règles, chromatique, sac, incubateur, fossiles, photo, pêche, conditions de combat et pipeline GLB intégrés dans la démo. Source/limites : [rapport](development/LOT_DEMO_DIX_SYSTEMES.md). Catalogue22espèces reste provisoire ; pas de nouveau Pokédex ou starter final, pas de modèle Meshy livré.
+
+## D72 — démo intégrée : douze blocs
+
+Expédition et actions contextuelles, Vol, services sur place, Pokédex, scènes/replay, autosave séparée, export/import, diagnostic des saves, visionneuse de GLB, préflight contenu et combat lisible développés. [Détails](development/LOT_DEMO_PROGRESSION_SERVICES.md). Suite : sélection owner du Pokédex/starters, premier export Meshy éprouvé dans la visionneuse et une rue, parcours groupé Windows. La première île complète et les graphismes finaux restent à produire ; aucune extension multi/raids/défis.

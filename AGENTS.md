@@ -43,3 +43,5 @@ D69 : demande explicite de démo intégrée (ville, PNJ, starters, combats, pers
 D70 : Meshy Pro choisi pour essai d’un mois ; les assets primitifs D69 sont rejetés comme rendu final. Continuer les blocs solo en autonomie en conservant les concepts validés. Pas de production massive de nouveaux modèles primitifs. Aucun modèle Meshy fourni pour l’instant ; préserver séparation décors/gameplay et sauvegardes.
 
 D71 : dix blocs autonomes demandés ; Pokédex et starters seront fournis ensuite. Ne pas les choisir à la place du propriétaire. Tables de démo clairement provisoires et sauvegardes historiques conservées. Voir LOT_DEMO_DIX_SYSTEMES.md.
+
+D72 : poursuite autonome de 10 à 20 blocs autorisée ; lot de douze blocs solo documenté dans LOT_DEMO_PROGRESSION_SERVICES.md. Conserver les saves, distinction atelier/démo, fixtures et sélection owner en attente. Pas de validation Windows/visuelle implicite.

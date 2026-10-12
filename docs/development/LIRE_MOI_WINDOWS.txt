@@ -1,3 +1,51 @@
+ARCHÉLYS — DOUZE BLOCS DE DÉMO INTÉGRÉE (D72)
+Version : lab-{short_commit}
+Commit : {commit}
+
+Extrais le dossier complet et lance Archelys-Laboratoire.exe, nom fixe.
+Sauvegardes conservées, pas besoin de recommencer. Les décors restent des
+maquettes ; aucun export Meshy encore reçu. Pokédex et starters provisoires.
+
+UN SEUL PARCOURS GROUPÉ POUR CE LOT
+Au havre, parle à Vyna pour une scène manuelle ; E/Entrée ou Continuer pour
+chaque plan. Sur le sentier, relève la balise puis interagis avec les trois
+obstacles Coupe/Éclate-Roc/Force. Aucune espèce ni attaque compatible requise.
+Récupère les relevés puis rapporte-les au professeur sur la place. Le cadeau
+est de cinq Balls, une seule fois ; si le sac est plein, tu peux revenir.
+Journal indique ces étapes facultatives.
+
+Après victoire contre le dresseur et retour à Vyna, termine la scène de
+conclusion. Carte locale permet alors Vol vers havre/sentier déjà visités.
+Scènes de démo permet de revoir les scènes achevées au havre, sans récompense.
+Les scènes et déblocages doivent rester après sauvegarde et chargement.
+
+Le PC et le dépôt depuis le résumé nécessitent d’être dans le Centre.
+Vie quotidienne propose les services du lieu : achats/ventes/vêtements à
+la boutique, fossiles et soins au Centre. Les opérations sont conservées
+dans l’auto quand tu fermes le menu si elle est activée. Vérifie le sac après un achat puis un rechargement.
+
+Pokédex : recherche une espèce découverte, filtre vues/obtenues et ouvre sa
+fiche. Les habitats sont ceux de cette démo : herbes du sentier ou pêche au
+havre, avec niveaux configurés ; aucun nom inconnu révélé par recherche.
+En combat, climat/terrain ont un fond lisible ; cartes niveau/PV FR/EN et
+couleurs des jauges. Les messages attendent toujours une confirmation.
+
+Sauvegardes : autosave maintenant séparée du point manuel, fichier .auto.
+Tu peux la désactiver et charger une auto après confirmation. À l’accueil,
+Continuer l’autosauvegarde et le point manuel sont distincts. Si auto OFF,
+pense à Sauvegarder explicitement avant de quitter. Exporte une
+partie JSON puis importe-la après avoir sauvegardé : confirmation avant
+remplacement et ancienne copie valide conservée. Un fichier incompatible
+est refusé sans changer la partie. Ouvrir le dossier montre les fichiers
+réels. Les sélecteurs et le bouton Windows restent à vérifier sur ton PC.
+L’export porte sur la campagne ; préférences globales langue/audio/caméra
+restent dans leur fichier indépendant.
+
+Modèles importés : registre vide tant que tes GLB Meshy ne sont pas fournis.
+Après import, ce menu proposera provenance, dimensions et vue 3D tournante.
+Documentation/Demo-progression-services.md donne les douze blocs et limites.
+
+--- PARCOURS DES LOTS PRÉCÉDENTS ---
 ARCHÉLYS — DIX SYSTÈMES SOLO SUPPLÉMENTAIRES
 Version : lab-{short_commit}
 Commit : {commit}

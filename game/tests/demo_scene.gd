@@ -11,6 +11,7 @@ func check(ok: bool,label: String) -> void:
 func _initialize() -> void:call_deferred("run")
 func finish_dialogue(game: Node) -> void:
  while not game.dialogue_lines.is_empty():game.advance_dialogue()
+ while game.scene.active:game.advance_scene()
 func settle(game: Node) -> void:
  var end: int=Time.get_ticks_msec()+12000
  while game.battle.busy and Time.get_ticks_msec()<end:await create_timer(.01).timeout

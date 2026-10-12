@@ -21,13 +21,24 @@ func _ready() -> void:
  for bar: ProgressBar in [player_hp,enemy_hp]:
   var fill:=StyleBoxFlat.new();fill.bg_color=Color("79b674");fill.set_corner_radius_all(6);bar.add_theme_stylebox_override("fill",fill)
   var background:=StyleBoxFlat.new();background.bg_color=Color("dce4d1");background.set_corner_radius_all(6);bar.add_theme_stylebox_override("background",background)
- field_label=Label.new();field_label.position=Vector2(28,150);field_label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;field_label.custom_minimum_size.x=650;add_child(field_label)
+ var field_panel:=PanelContainer.new();field_panel.position=Vector2(28,145);field_panel.custom_minimum_size=Vector2(500,60);add_child(field_panel)
+ field_label=Label.new();field_label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;field_label.custom_minimum_size.x=480;field_panel.add_child(field_label)
  visible=false
 func render() -> void:
  super.render()
  if not battle:return
  field_label.text=field_caption()
  var p: Dictionary=battle.current(0);var e: Dictionary=battle.current(1)
- enemy_label.text="%s • Nv.%d\n%s" % [name_of(e.species),e.level,Catalog.text("status_names",e.status,locale)]
- player_label.text="%s • Nv.%d • %d/%d PV\n%s" % [name_of(p.species),p.level,p.hp,Mon.stats(p).hp,Catalog.text("status_names",p.status,locale)]
+ enemy_label.text=("%s • Nv.%d\n%s" if locale=="fr" else "%s • Lv.%d\n%s") % [name_of(e.species),e.level,Catalog.text("status_names",e.status,locale)]
+ player_label.text=("%s • Nv.%d • %d/%d PV\n%s" if locale=="fr" else "%s • Lv.%d • %d/%d HP\n%s") % [name_of(p.species),p.level,p.hp,Mon.stats(p).hp,Catalog.text("status_names",p.status,locale)]
  enemy_hp.max_value=Mon.stats(e).hp;enemy_hp.value=e.hp;player_hp.max_value=Mon.stats(p).hp;player_hp.value=p.hp
+
+func _process(_delta: float) -> void:
+ if not visible:return
+ var width: float=get_viewport().get_visible_rect().size.x
+ var action_width: float=clampf(width*.28,280,390)
+ action_panel.offset_left=-action_width;panel.offset_right=-action_width-20
+ for bar: ProgressBar in [enemy_hp,player_hp]:
+  var ratio: float=bar.value/maxf(1,bar.max_value)
+  var fill: StyleBoxFlat=bar.get_theme_stylebox("fill")
+  fill.bg_color=Color("d86161") if ratio<=.2 else (Color("d0ae53") if ratio<=.5 else Color("79b674"))

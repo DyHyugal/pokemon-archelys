@@ -57,6 +57,7 @@ func cinema() -> void:
  menu.label(t("Essais de mise en scène : aucun scénario final ni cinématique d'île.","Staging tests: no final story or island cinematic."))
  if menu.adventure.exploration.location!="village":menu.label(t("Reviens au village pour lancer ces cadrages de laboratoire.","Return to the village to start these laboratory shots."))
  for id: String in Cinematic.library():
+  if id.begins_with("demo-"):continue
   var entry: Dictionary=Cinematic.library()[id]
   if id.begins_with("slice-") and not menu.adventure.records.scenes.has(id):continue
   var watched: bool=menu.adventure.records.scenes.has(id)

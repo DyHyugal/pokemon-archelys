@@ -232,5 +232,67 @@
       }
     ],
     "location": "any"
+  },
+  "demo-arrival": {
+    "names": {
+      "fr": "Le havre — proposition",
+      "en": "The haven — proposal"
+    },
+    "location": "any",
+    "replayable": true,
+    "skippable": false,
+    "steps": [
+      {
+        "focus": [
+          0,
+          0,
+          0
+        ],
+        "size": 15,
+        "fr": "Vyna : les contrôles RR empêchent les habitants de quitter l’île. Nous devons d’abord rétablir la balise du sentier.",
+        "en": "Vyna: RR checkpoints stop residents leaving the island. First, we must restore the trail beacon."
+      },
+      {
+        "focus": [
+          4,
+          0,
+          0
+        ],
+        "size": 15,
+        "fr": "Le professeur prépare ton équipe. Le Centre et la boutique sont accessibles autour de la place.",
+        "en": "The professor helps prepare your party. The Center and shop are open around the plaza."
+      }
+    ]
+  },
+  "demo-return": {
+    "names": {
+      "fr": "Le sentier rétabli — proposition",
+      "en": "Trail restored — proposal"
+    },
+    "location": "any",
+    "replayable": true,
+    "skippable": false,
+    "steps": [
+      {
+        "focus": [
+          -3,
+          0,
+          2
+        ],
+        "size": 15,
+        "fr": "Vyna : le sentier est sûr. Ce n’est qu’un début ; les autres biomes et la libération de l’île restent à construire.",
+        "en": "Vyna: the trail is safe. This is only the beginning; the other biomes and island liberation remain to be built."
+      },
+      {
+        "focus": [
+          0,
+          0,
+          -14
+        ],
+        "size": 15,
+        "fr": "Tu peux désormais utiliser Vol depuis la carte vers les étapes visitées de cette démo.",
+        "en": "You can now use Fly from the map to visited stops in this demo."
+      }
+    ]
   }
 }

@@ -24,7 +24,7 @@ manifest={'commit':args.commit,'godot':'4.6.3','stage':'technical-laboratory',
           'showdown':provenance,'distribution':'portable-external-pck-with-offline-showdown','unmodified_godot_template':True,
           'windows_execution':'not validated on Windows','network_validation':'deferred; prior lab-09897ca tested on localhost only'}
 (folder/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
-(folder/'release-notes.md').write_text('D71 : dix systèmes solo intégrés dans la démo (contenu configurable, règles, chromatique, sac, incubateur, fossiles, photo, pêche, conditions de combat, pipeline GLB). Œuf Chance/Showdown corrigé. Sauvegardes conservées ; Pokédex et starters finaux attendus, aucun asset Meshy intégré. Parcours groupé dans LIRE-MOI.\n',encoding='utf-8')
+(folder/'release-notes.md').write_text('D72 : douze blocs de démo intégrée — expédition, actions contextuelles, Vol, services locaux, Pokédex, scènes/replay, autosave séparée, archives portables, diagnostic des saves, inspection GLB, préflight contenu, combat lisible. Sauvegardes conservées. Pokédex/starters finaux et exports Meshy attendus. Parcours groupé dans LIRE-MOI.\n',encoding='utf-8')
 archive=folder/'Archelys-Laboratoire-Windows.zip'
 with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as z:
     for file in [exe,pck,folder/'LIRE-MOI.txt',folder/'manifest.json',root/'docs/licenses/Godot-LICENSE.txt',root/'docs/licenses/Godot-COPYRIGHT.txt',root/'docs/licenses/PokeAPI-LICENSE.txt',root/'docs/licenses/LABORATORY_AUDIO.md']:z.write(file,file.name)
@@ -38,6 +38,7 @@ with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as z:
     z.write(root/'docs/design/CONCEPT_PROMPTS_2026-10-12.json','Documentation/Concept-briefs.json')
     z.write(root/'docs/development/LOT_ATLAS_SERVICES_10_BLOCS.md','Documentation/Atlas-services-10-blocs.md')
     z.write(root/'docs/design/MESHY_PREMIER_LOT.md','Documentation/Meshy-premier-lot.md')
+    z.write(root/'docs/development/LOT_DEMO_PROGRESSION_SERVICES.md','Documentation/Demo-progression-services.md')
     z.write(root/'docs/development/LOT_DEMO_DIX_SYSTEMES.md','Documentation/Demo-dix-systemes.md')
     z.write(root/'docs/design/IMPORT_ASSETS_LOCAUX.md','Documentation/Import-assets-locaux.md')
     z.write(root/'docs/development/LOT_EXPLORATION_SAUVES_DEMO.md','Documentation/Exploration-sauves-demo.md')

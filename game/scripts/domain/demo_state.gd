@@ -1,5 +1,6 @@
 extends RefCounted
 const Content=preload("res://scripts/domain/demo_content.gd")
+const Expedition=preload("res://scripts/domain/demo_expedition.gd")
 const Campaign=preload("res://scripts/domain/campaign.gd")
 const Mon=preload("res://scripts/domain/pokemon.gd")
 const Records=preload("res://scripts/domain/journey_records.gd")
@@ -10,6 +11,7 @@ var starter: String=""
 var location: String="town"
 var position:=Vector3(0,0,10)
 var flags: Dictionary={}
+var autosave: bool=true
 func _init() -> void:
  campaign.add_player(1,"Démo");campaign.adventure.initialize();campaign.adventure.island.start(campaign.adventure)
 func choose(id: String) -> bool:
@@ -27,7 +29,7 @@ func travel(id: String) -> bool:
  if campaign.adventure.exploration.location not in campaign.adventure.exploration.visited:campaign.adventure.exploration.visited.append(campaign.adventure.exploration.location)
  return true
 func snapshot() -> Dictionary:
- return {"format":"archelys-demo-1","campaign":campaign.snapshot(),"starter":starter,"location":location,"position":[position.x,position.y,position.z],"flags":flags.duplicate()}
+ return {"format":"archelys-demo-1","campaign":campaign.snapshot(),"starter":starter,"location":location,"position":[position.x,position.y,position.z],"flags":flags.duplicate(),"autosave":autosave}
 static func validate(v: Variant) -> bool:
  if not v is Dictionary or v.get("format")!="archelys-demo-1" or (not v.get("starter") is String or preload("res://scripts/domain/pokemon_catalog.gd").species(v.starter).is_empty()) or v.get("location") not in LOCATIONS or not v.get("flags") is Dictionary:return false
  if not v.get("campaign") is Dictionary or not Campaign.validate(v.campaign) or int(v.campaign.participants)!=1:return false
@@ -41,14 +43,19 @@ static func validate(v: Variant) -> bool:
  if v.location in ["center","shop","home"] and (absf(x)>8.5 or absf(z)>9.5):return false
  if v.campaign.adventure.exploration.location!={"town":"isle-port","trail":"isle-jungle","center":"isle-center","shop":"isle-shop","home":"isle-port"}[v.location]:return false
  for id: Variant in v.flags:
-  if id not in ["trainer","survey","supplies","complete"] or v.flags[id]!=true:return false
+  if id not in ["trainer","survey","supplies","complete"]+Expedition.FLAGS or v.flags[id]!=true:return false
+ if not v.get("autosave",true) is bool:return false
+ if v.flags.has("cache-opened") and not Expedition.ACTIONS.values().all(func(flag: String):return v.flags.has(flag)):return false
+ if v.flags.has("expedition-reward") and not v.flags.has("cache-opened"):return false
+ for flag: String in Expedition.ACTIONS.values():
+  if v.flags.has(flag) and not v.flags.has("survey"):return false
  if v.flags.has("complete") and not (v.flags.has("trainer") and v.flags.has("survey")):return false
  return true
 func restore(v: Dictionary) -> bool:
  if not validate(v):return false
  var c:=Campaign.new()
  if not c.restore(v.campaign):return false
- campaign=c;starter=v.starter;location=v.location;position=Vector3(v.position[0],0,v.position[2]);flags=v.flags.duplicate();return true
+ campaign=c;starter=v.starter;location=v.location;position=Vector3(v.position[0],0,v.position[2]);flags=v.flags.duplicate();autosave=v.get("autosave",true);return true
 func save(path: String) -> Error:
  if starter.is_empty() or campaign.adventure.in_battle:return ERR_BUSY
  var v:=snapshot()

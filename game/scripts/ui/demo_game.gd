@@ -1,5 +1,9 @@
 extends CanvasLayer
 signal finished
+const Extended=preload("res://scripts/ui/demo_extended_pages.gd")
+const Expedition=preload("res://scripts/domain/demo_expedition.gd")
+const Archive=preload("res://scripts/services/demo_archive.gd")
+const Cinematic=preload("res://scripts/domain/cinematic.gd")
 const Content=preload("res://scripts/domain/demo_content.gd")
 const Systems=preload("res://scripts/ui/demo_system_pages.gd")
 const Slots=preload("res://scripts/services/demo_slots.gd")
@@ -13,6 +17,12 @@ const Style=preload("res://scripts/world/demo_actor_style.gd")
 const Battle=preload("res://scripts/services/showdown_battle.gd")
 const BattlePanel=preload("res://scripts/ui/demo_battle_panel.gd")
 const Stage=preload("res://scripts/world/demo_battle_stage.gd")
+var scene:=Cinematic.new()
+var scene_camera:=Transform3D()
+var scene_size: float=18
+var dex_query: String=""
+var dex_filter: int=0
+var archive_picker: FileDialog
 var active: bool=false
 var owner_world: Node3D
 var state:=State.new()
@@ -73,7 +83,10 @@ func open(owner: Node3D) -> bool:
   if kind=="stop":owner.lab_audio.stop_previews()
   else:owner.lab_audio.preview(kind))
  menu.speed_changed.connect(func(value: float):Engine.time_scale=value)
- menu.closed.connect(func():owner.lab_audio.stop_previews();if state.starter.is_empty():starter_screen())
+ menu.closed.connect(func():
+  owner.lab_audio.stop_previews()
+  if state.starter.is_empty():starter_screen()
+  else:persist_auto())
  battle_panel=BattlePanel.new();battle_panel.comfort=owner.comfort;owner.add_child(battle_panel);battle_panel.finished.connect(battle_finished)
  for child: Node in battle_panel.get_children():
   if child is Control:child.theme=owner.ui_theme
@@ -84,6 +97,7 @@ func open(owner: Node3D) -> bool:
 func welcome() -> void:
  var column:=popup(t("ARCHÉLYS — Démo du havre tropical\nUne ville, un sentier et un premier défi. Sauvegarde distincte de l'atelier.","ARCHÉLYS — Tropical haven demo\nOne town, one trail and a first challenge. Save separate from workshop."))
  button(column,t("Emplacement %d — changer","Slot %d — change") % active_slot,slot_picker,"SelectDemoSlot")
+ if not Slots.read_auto(save_path,active_slot).is_empty():button(column,t("Continuer l’autosauvegarde","Continue autosave"),func():apply_archive(Slots.read_auto(save_path,active_slot),active_slot),"ContinueDemoAuto").grab_focus()
  if not Slots.read(save_path,active_slot).is_empty():button(column,t("Continuer la démo sauvegardée","Continue saved demo"),load_game,"ContinueDemo").grab_focus()
  if not Slots.read(save_path,active_slot,true).is_empty():button(column,t("Restaurer la copie précédente","Restore previous copy"),func():load_slot(active_slot,true),"RecoverDemo")
  button(column,t("Nouvelle aventure de démo","New demo adventure"),func():
@@ -148,17 +162,22 @@ func interact(id: String="") -> void:
   "exit":travel("town")
   "vyna":
    if state.flags.has("trainer") and state.flags.has("survey"):
-    state.flags.complete=true;save_game();talk([t("Le sentier est sécurisé ! Merci. Cette portion de la première île se termine ici ; tu peux continuer à explorer, capturer et préparer ton équipe.","The trail is safe! Thank you. This first island slice ends here; keep exploring, catching and preparing your party.")])
+    state.flags.complete=true;persist_auto()
+    if not state.campaign.adventure.records.scenes.has("demo-return"):play_scene("demo-return")
+    else:talk([t("Le sentier est rétabli. Vol est disponible depuis la carte locale.","The trail is restored. Fly is available from the local map.")])
+   elif not state.campaign.adventure.records.scenes.has("demo-arrival"):play_scene("demo-arrival")
    else:talk([t("La balise du sentier ne répond plus. Va la relever au nord, puis affronte le dresseur qui garde le passage. Soins et provisions sont disponibles au havre.","The trail beacon has stopped responding. Survey it to the north, then battle the trainer guarding the path. Healing and supplies are available in town.")])
   "professor":
    var column:=popup(t("Professeur — préparation de l’équipe","Professor — party preparation"))
    button(column,t("Œuf cadeau / incubateur (essai)","Gift egg / incubator (test)"),func():open_menu("nursery"),"ProfessorIncubator")
+   button(column,t("Remettre les relevés du sentier","Turn in trail field notes"),func():
+    var ok: bool=Expedition.reward(state);persist_auto();talk([t("Relevés reçus : cinq Poké Balls !","Notes received: five Poké Balls!") if ok else t("Explore les trois obstacles du sentier et relève la cache. Récompense unique ; place nécessaire dans le sac.","Explore the three trail obstacles and survey the cache. One-time reward; bag space required.")]),"ExpeditionReward")
    button(column,t("Conseils","Advice"),func():talk([t("Tu peux consulter ton partenaire et modifier ses IV, EV et sa nature dans Équipe / Résumé. Les trois starters de cette démo restent provisoires.","View your partner and edit IVs, EVs and nature in Party / Summary. This demo's three starters remain provisional.")]),"ProfessorAdvice")
    button(column,t("Retour","Back"),clear_modal)
   "resident":talk([t("Le port vit grâce aux jardins de la jungle et aux sources de la montagne. Notre ville reste ouverte malgré les contrôles au-delà du sentier.","The harbor lives from jungle gardens and mountain springs. Our town remains open despite controls beyond the trail.")])
   "fossils":open_menu("services")
   "fish":begin_battle([state.campaign.adventure.wild(int(Content.data().fishing_level),Content.data().fishing)])
-  "nurse":state.campaign.adventure.heal_team();save_game();talk([t("Ton équipe est soignée et ses PP restaurés.","Your party is healed and its PP restored.")])
+  "nurse":state.campaign.adventure.heal_team();persist_auto();talk([t("Ton équipe est soignée et ses PP restaurés.","Your party is healed and its PP restored.")])
   "merchant":open_menu("services")
   "clothier":open_menu("wardrobe")
   "pc":open_menu("pc")
@@ -167,13 +186,20 @@ func interact(id: String="") -> void:
    if not state.flags.has("supplies"):
     var a: RefCounted=state.campaign.adventure
     if int(a.bag.get("poke-ball",0))+3<=999 and int(a.bag.get("potion",0))+2<=999:
-     a.bag['poke-ball']=int(a.bag.get('poke-ball',0))+3;a.bag.potion=int(a.bag.get('potion',0))+2;state.flags.supplies=true;save_game()
+     a.bag['poke-ball']=int(a.bag.get('poke-ball',0))+3;a.bag.potion=int(a.bag.get('potion',0))+2;state.flags.supplies=true;persist_auto()
    talk([t("La caisse contient des provisions pour le sentier. Réception unique : trois Balls et deux Potions.","The crate contains trail supplies. One-time gift: three Balls and two Potions.")])
-  "survey":state.flags.survey=true;save_game();talk([t("Balise relevée. Le dresseur attend plus loin dans le sentier.","Beacon surveyed. The trainer waits farther along the trail.")])
+  "survey":state.flags.survey=true;persist_auto();talk([t("Balise relevée. Le dresseur attend plus loin dans le sentier.","Beacon surveyed. The trainer waits farther along the trail.")])
   "trainer":
    if not state.flags.has("survey"):talk([t("Relève d'abord la balise à l'ouest du sentier.","Survey the beacon west of the trail first.")])
    elif state.flags.has("trainer"):talk([t("Bien joué ! Retourne voir Vyna au havre.","Well done! Return to Vyna in town.")])
    else:begin_battle(Content.opponents(),"demo-trainer")
+  "cut","rock-smash","strength":
+   var ok: bool=Expedition.perform(state,id)
+   if ok:world.build(state);persist_auto()
+   talk([t("Passage dégagé grâce au déblocage scénaristique. Aucun Pokémon compatible requis.","Passage cleared using the story unlock. No compatible Pokémon required.") if ok else t("Rétablis d’abord la balise pour débloquer cette action.","Restore the beacon first to unlock this action.")])
+  "expedition-cache":
+   var ok: bool=Expedition.open_cache(state);persist_auto()
+   talk([t("Relevés récupérés. Remets-les au professeur sur la place.","Notes recovered. Bring them to the professor on the plaza.") if ok else t("Dégage les trois obstacles pour accéder aux relevés ; récupération unique.","Clear the three obstacles to access the notes; collect once.")])
   "grass":begin_battle([state.campaign.adventure.wild(int(Content.data().wild_level),Content.data().wild[state.campaign.adventure.rng.randi_range(0,Content.data().wild.size()-1)])])
 func travel(id: String) -> void:
  var previous: String=state.location
@@ -181,7 +207,7 @@ func travel(id: String) -> void:
  if id=="town":
   if previous in ["center","shop","home"]:state.position=World.TOWN_BUILDINGS[previous]+Vector3(0,0,3.5)
   elif previous=="trail":state.position=Vector3(0,0,-21)
- world.build(state);steps=0;save_game()
+ world.build(state);steps=0;persist_auto()
 func begin_battle(enemies: Array,trainer: String="") -> bool:
  if state.starter.is_empty() or modal or menu.visible or battle_panel.visible:return false
  battle=Battle.new()
@@ -193,7 +219,7 @@ func battle_finished(result: String) -> void:
  if arena:arena.queue_free();arena=null
  world.show();world.camera.current=true;hud.show();feedback.show();contextual.show()
  if result=="lost":state.travel("center");world.build(state)
- feedback.text=t("Combat terminé : ","Battle finished: ")+result;steps=0;save_game()
+ feedback.text=t("Combat terminé : ","Battle finished: ")+result;steps=0;persist_auto()
 func save_game() -> void:
  if not active or loaded_slot==0 or state.starter.is_empty() or (battle and battle.active):return
  var error: int=state.save(slot_path(loaded_slot));last_save=Time.get_ticks_msec()
@@ -219,7 +245,7 @@ func _process(delta: float) -> void:
  if state.location=="trail" and state.position.x>3 and state.position.x<9 and state.position.z> -7 and state.position.z< -1:
   steps+=walked
   if steps>6:steps=0;interact("grass")
- if not state.starter.is_empty() and Time.get_ticks_msec()-last_save>60000:save_game()
+ if state.autosave and not state.starter.is_empty() and Time.get_ticks_msec()-last_save>60000:auto_save()
 func _input(event: InputEvent) -> void:
  if not active:return
  if owner_world.photo_mode.active:
@@ -237,7 +263,8 @@ func _input(event: InputEvent) -> void:
    elif not modal:open_menu()
    get_viewport().set_input_as_handled();return
   if event.button_index==JOY_BUTTON_A and not menu.visible:
-   if not dialogue_lines.is_empty():advance_dialogue();get_viewport().set_input_as_handled()
+   if scene.active:advance_scene();get_viewport().set_input_as_handled()
+   elif not dialogue_lines.is_empty():advance_dialogue();get_viewport().set_input_as_handled()
    elif not modal:interact();get_viewport().set_input_as_handled()
   return
  if not event is InputEventKey or not event.pressed or event.echo:return
@@ -247,6 +274,7 @@ func _input(event: InputEvent) -> void:
  if menu.visible:
   if menu.handle_key(event):get_viewport().set_input_as_handled()
   return
+ if scene.active and owner_world.comfort.confirming(event):advance_scene();get_viewport().set_input_as_handled();return
  if not dialogue_lines.is_empty() and owner_world.comfort.confirming(event):advance_dialogue();get_viewport().set_input_as_handled();return
  if modal:return
  if owner_world.comfort.matches(event,"menu"):open_menu();get_viewport().set_input_as_handled()
@@ -254,10 +282,10 @@ func _input(event: InputEvent) -> void:
  elif owner_world.comfort.matches(event,"bag"):open_menu("bag");get_viewport().set_input_as_handled()
  elif owner_world.comfort.matches(event,"interact") or event.keycode==KEY_ENTER:interact();get_viewport().set_input_as_handled()
 func _notification(what: int) -> void:
- if what==NOTIFICATION_WM_CLOSE_REQUEST and active:save_game()
+ if what==NOTIFICATION_WM_CLOSE_REQUEST and active:persist_auto()
 func close() -> void:
  if not active or owner_world.photo_mode.active or (battle and battle.active):return
- save_game();active=false;clear_modal();hide()
+ persist_auto();active=false;clear_modal();hide()
  for child: Node in [hud,feedback,contextual]:remove_child(child);child.queue_free()
  world.queue_free();menu.queue_free();battle_panel.queue_free()
  for node: Node in old_visibility:
@@ -265,11 +293,15 @@ func close() -> void:
  old_camera.current=true;get_viewport().msaa_3d=saved_msaa;old_visibility.clear();finished.emit()
 
 func render_demo_page(page: String,body: Node) -> void:
+ if page in ["dex","pc","services","cinema","assets"]:Extended.new(self).render(page);return
  if page in ["rules","photo","nursery","bag"]:Systems.new(self).render(page);return
  if page=="journal":
   var objective:=Label.new();objective.text=state.objective(locale);objective.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;body.add_child(objective)
   for task: Dictionary in Guidance.tasks(state,locale):
    var row:=Label.new();row.text=("✓ " if task.done else "○ ")+task.text;body.add_child(row)
+  for action: String in Expedition.ACTIONS:
+   var row:=Label.new();row.text=("✓ " if state.flags.has(Expedition.ACTIONS[action]) else "○ ")+Guidance.title(action,locale);body.add_child(row)
+  var side:=Label.new();side.text=t("Optionnel : dégager les trois obstacles, récupérer les relevés, puis les remettre au professeur (5 Balls, une fois).","Optional: clear three obstacles, collect notes, then turn them in to the professor (5 Balls, once).");side.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;body.add_child(side)
   button(body,t("Voir la carte locale","View local map"),func():menu.page="map";menu.render(),"OpenLocalMap")
  elif page=="map":
   var map:=LocalMap.new();map.world=world;map.state=state;map.target=Guidance.target(state);map.locale=locale;body.add_child(map)
@@ -278,10 +310,15 @@ Plan local du lieu actuel, sans déplacement automatique.","Red: you · Gold: ob
 Local plan of the current area; no automatic travel.");legend.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;body.add_child(legend)
   for id: String in world.points:
    var row:=Label.new();row.text=("→ " if id==map.target else "• ")+Guidance.title(id,locale);body.add_child(row)
+  for id: String in ["town","trail"]:
+   var target: String=id
+   var fly: Button=button(body,t("Vol : ","Fly: ")+t("Havre","Haven") if id=="town" else t("Vol : sentier","Fly: trail"),func():fly_to(target),"Fly_"+id);fly.disabled=not Expedition.can_fly(state,id)
+  var notice:=Label.new();notice.text=t("Vol débloqué après le retour à Vyna ; destinations visitées uniquement. Aucun Pokémon requis.","Fly unlocks after returning to Vyna; visited destinations only. No Pokémon required.");notice.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;body.add_child(notice)
  elif page=="saves":
-  var label:=Label.new();label.text=t("Partie active : emplacement %d. Autosauvegarde toutes les 60 s d'exploration.
-La copie précédente .backup est conservée pour chaque emplacement.","Active save: slot %d. Autosave every 60 seconds of exploration.
-Previous .backup copy retained for each slot.") % active_slot;label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;body.add_child(label)
+  var label:=Label.new();label.text=t("Partie active : emplacement %d. Autosauvegarde séparée toutes les 60 s d'exploration (si activée).
+La copie précédente .backup est conservée pour chaque emplacement.","Active save: slot %d. Separate autosave every 60 seconds of exploration (if enabled).
+Previous .backup copy retained for each slot.") % loaded_slot;label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;body.add_child(label)
+  Extended.new(self).render("saves")
   button(body,t("Sauvegarder la partie active","Save active game"),save_game,"SaveActiveDemo")
   for index: int in range(1,Slots.COUNT+1):
    var key: int=index;var data: Dictionary=Slots.read(save_path,key)
@@ -310,3 +347,57 @@ func confirm_new_slot(index: int) -> void:
 func start_photo() -> bool:
  if not active or (battle and battle.active) or modal:return false
  return owner_world.photo_mode.start(owner_world,world.camera,world.hero)
+
+func fly_to(target: String) -> bool:
+ if not Expedition.can_fly(state,target):return false
+ menu.close();travel(target);return true
+func auto_save() -> void:
+ if modal or menu.visible:return
+ persist_auto()
+func persist_auto(force: bool=false) -> void:
+ if (not state.autosave and not force) or loaded_slot==0 or state.starter.is_empty() or (battle and battle.active):return
+ var error: int=state.save(Slots.auto_path(save_path,loaded_slot));last_save=Time.get_ticks_msec()
+ if error!=OK:feedback.text=t("Autosauvegarde : ","Autosave: ")+error_string(error)
+func confirm_auto(index: int) -> void:
+ menu.visible=false;var column:=popup(t("Charger l’autosauvegarde %d ? La progression non sauvegardée sera remplacée.","Load autosave %d? Unsaved progress will be replaced.") % index)
+ button(column,t("Confirmer","Confirm"),func():
+  var data: Dictionary=Slots.read_auto(save_path,index)
+  if data.is_empty():clear_modal();open_menu("saves");return
+  apply_archive(data,index),"ConfirmDemoAuto")
+ button(column,t("Annuler","Cancel"),func():open_menu("saves"))
+func apply_archive(data: Dictionary,index: int) -> bool:
+ if (battle and battle.active) or not state.restore(data):return false
+ active_slot=index;loaded_slot=index;clear_modal();menu.visible=false;menu.adventure=state.campaign.adventure;world.build(state);steps=0;last_save=Time.get_ticks_msec();return true
+func archive_dialog(importing: bool) -> void:
+ if battle and battle.active:return
+ archive_picker=FileDialog.new();archive_picker.use_native_dialog=true;archive_picker.access=FileDialog.ACCESS_FILESYSTEM;archive_picker.file_mode=FileDialog.FILE_MODE_OPEN_FILE if importing else FileDialog.FILE_MODE_SAVE_FILE;archive_picker.filters=PackedStringArray(["*.json ; Archélys demo save"]);add_child(archive_picker)
+ archive_picker.current_file="Archelys-demo.json" if not importing else ""
+ archive_picker.file_selected.connect(func(path: String):
+  if importing:confirm_import(path)
+  else:menu.feedback.text=t("Export : ","Export: ")+error_string(Archive.export_file(state,path))
+  archive_picker.queue_free();archive_picker=null)
+ archive_picker.canceled.connect(func():archive_picker.queue_free();archive_picker=null)
+ archive_picker.popup_centered_ratio(.7)
+func confirm_import(path: String) -> void:
+ var data: Dictionary=Archive.read_file(path)
+ if data.is_empty():menu.feedback.text=t("Import refusé : fichier invalide ou incompatible. Partie conservée.","Import rejected: invalid or incompatible file. Current save preserved.");return
+ menu.visible=false;var column:=popup(t("Importer cette partie dans l’emplacement actif %d ? La progression non sauvegardée sera remplacée ; l’ancien fichier valide restera en copie précédente. Le fichier source sera conservé.","Import this save into active slot %d? Unsaved progress will be replaced; the previous valid file will remain as a backup. Source file preserved.") % loaded_slot)
+ button(column,t("Confirmer","Confirm"),func():
+  var candidate:=State.new()
+  if not candidate.restore(data):return
+  var error: int=candidate.save(slot_path(loaded_slot))
+  if error==OK:apply_archive(data,loaded_slot)
+  else:clear_modal();open_menu("saves");menu.feedback.text=error_string(error),"ConfirmDemoImport")
+ button(column,t("Annuler","Cancel"),func():open_menu("saves"))
+func play_scene(id: String,replay: bool=false) -> bool:
+ if state.location!="town" or (battle and battle.active) or not scene.begin(id,state.campaign.adventure.records,replay):return false
+ menu.visible=false;scene_camera=world.camera.transform;scene_size=world.camera.size;render_scene();return true
+func render_scene() -> void:
+ var step: Dictionary=scene.current();var focus:=Vector3(step.focus[0],step.focus[1],step.focus[2])
+ world.camera.position=focus+Vector3(0,13,15);world.camera.look_at(focus+Vector3(0,1,0));world.camera.size=step.size
+ var column:=popup(step[locale]);button(column,t("Continuer • E / Entrée","Continue • E / Enter"),advance_scene,"NextScene").grab_focus()
+func advance_scene() -> void:
+ if not scene.active:return
+ scene.advance()
+ if scene.active:render_scene()
+ else:world.camera.transform=scene_camera;world.camera.size=scene_size;clear_modal();persist_auto()

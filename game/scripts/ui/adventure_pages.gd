@@ -45,10 +45,11 @@ func render_team() -> void:
 	var index: int=adventure.team.find(mon)
 	if index>=0:
 		if index>0:menu.button(menu.body,t("Placer en tête","Move to lead"),func():adventure.reorder(index,0);refresh())
-		menu.button(menu.body,t("Déposer au PC","Deposit in PC"),func():
-			var ok: bool=adventure.deposit(index)
+		var deposit_button: Button=menu.button(menu.body,t("Déposer au PC","Deposit in PC"),func():
+			var ok: bool=(not menu.demo_mode or adventure.exploration.location=="isle-center") and adventure.deposit(index)
 			if ok:selected_uid=0;summary_from="team";refresh()
 			menu.feedback.text=t("Déposé au PC.","Deposited in PC.") if ok else t("Garde au moins un Pokémon apte au combat dans l'équipe.","Keep at least one battle-ready Pokémon in the party."))
+		deposit_button.name="DepositInPC";deposit_button.disabled=menu.demo_mode and adventure.exploration.location!="isle-center"
 	menu.label(t("Édition gratuite, hors combat — appliquer pour confirmer","Free editing, outside battle — apply to confirm"))
 	var grid:=GridContainer.new();grid.columns=4;menu.body.add_child(grid)
 	for heading: String in [t("Statistique","Stat"),t("Valeur réelle","Actual value"),"IV (0–31)","EV (0–252)"]:

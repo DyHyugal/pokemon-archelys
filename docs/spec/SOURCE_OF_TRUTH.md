@@ -19,3 +19,5 @@ D69 autorise la démo intégrée en autonomie, avec référence DS/USUL en FHD. 
 D70 : essai Meshy Pro d’un mois choisi par le propriétaire ; qualité finale des assets D69 rejetée. Continuer les fonctionnalités solo en autonomie, sans assimiler le choix d’un outil à une validation des modèles générés.
 
 D71 autorise idéalement dix blocs solo supplémentaires en autonomie. La sélection du Pokédex et des starters reste au propriétaire et n’a pas encore été fournie.
+
+D72 autorise un lot autonome de 10 à 20 blocs. Douze blocs intégrés dans la démo ; aucun nouveau choix final de scénario, Pokédex, starters ou assets. Voir LOT_DEMO_PROGRESSION_SERVICES et VERIFICATION_D72.
