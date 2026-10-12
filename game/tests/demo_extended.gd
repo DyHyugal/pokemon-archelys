@@ -45,7 +45,7 @@ func run() -> void:
  check(exported==OK and roundtrip.restore(Archive.read_file(archive_path)) and roundtrip.snapshot()==state.snapshot(),"Actual exported file round-trip")
  var f:=FileAccess.open(archive_path+".bad",FileAccess.WRITE);f.store_string('{"format":"unknown"}');f.close()
  check(Archive.read_file(archive_path+".bad").is_empty() and Archive.inspect(archive_path+".bad").status=="invalid","Malformed imported save refused")
- check(Dex.habitats("magikarp")[0].method=="fishing" and Dex.habitats("bulbasaur").is_empty(),"Demo habitats describe real pools, no lab-only habitats")
+ check(Dex.habitats("magikarp")[0].method=="fishing" and not Dex.habitats("bulbasaur").is_empty() and Dex.habitats("bulbasaur").all(func(place: Dictionary):return place.place=="canopy"),"Demo habitats describe real pools, no lab-only habitats")
  var history: RefCounted=state.campaign.adventure.records
  check(Dex.roster(history,0,"pika","en").is_empty(),"Search never reveals undiscovered species")
  history.observe("pikachu",true);check(Dex.roster(history,2,"pika","en")==["pikachu"],"Known species search and ownership filter")

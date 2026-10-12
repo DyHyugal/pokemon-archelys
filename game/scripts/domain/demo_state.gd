@@ -1,11 +1,15 @@
 extends RefCounted
+const Chapter=preload("res://scripts/domain/demo_chapter.gd")
 const Content=preload("res://scripts/domain/demo_content.gd")
 const Expedition=preload("res://scripts/domain/demo_expedition.gd")
 const Campaign=preload("res://scripts/domain/campaign.gd")
 const Mon=preload("res://scripts/domain/pokemon.gd")
 const Records=preload("res://scripts/domain/journey_records.gd")
 const STARTERS=["bulbasaur","charmander","squirtle"]
-const LOCATIONS=["town","trail","center","shop","home"]
+const BASE_LOCATIONS=["town","trail","center","shop","home"]
+const LOCATIONS=BASE_LOCATIONS+Chapter.LOCATIONS
+const NAMESPACES={"town":"isle-port","trail":"isle-jungle","center":"isle-center","shop":"isle-shop","home":"isle-port","canopy":"demo-canopy","springs":"demo-springs","post":"demo-post"}
+var chapter:=Chapter.new()
 var campaign:=Campaign.new()
 var starter: String=""
 var location: String="town"
@@ -22,28 +26,44 @@ func choose(id: String) -> bool:
  a.add(Mon.make(id,int(Content.data().starter_level),1));starter=id;a.exploration.location="isle-port"
  if "isle-port" not in a.exploration.visited:a.exploration.visited.append("isle-port")
  return true
-func travel(id: String) -> bool:
+func travel(id: String,flight: bool=false) -> bool:
  if id not in LOCATIONS or starter.is_empty() or campaign.adventure.in_battle:return false
+ if id in Chapter.LOCATIONS or location in Chapter.LOCATIONS:
+  if flight and id in ["town","trail"]:
+   if not Expedition.can_fly(self,id):return false
+  elif not chapter.can_enter(self,id,flight):return false
  location=id;position=Vector3(0,0,10) if id=="town" else Vector3(0,0,9)
- campaign.adventure.exploration.location={"town":"isle-port","trail":"isle-jungle","center":"isle-center","shop":"isle-shop","home":"isle-port"}[id]
+ campaign.adventure.exploration.location=NAMESPACES[id]
+ chapter.surfing=false
+ if id in Chapter.LOCATIONS and id not in chapter.visited:chapter.visited.append(id)
  if campaign.adventure.exploration.location not in campaign.adventure.exploration.visited:campaign.adventure.exploration.visited.append(campaign.adventure.exploration.location)
  return true
 func snapshot() -> Dictionary:
- return {"format":"archelys-demo-1","campaign":campaign.snapshot(),"starter":starter,"location":location,"position":[position.x,position.y,position.z],"flags":flags.duplicate(),"autosave":autosave}
+ return {"format":"archelys-demo-1","campaign":campaign.snapshot(),"starter":starter,"location":location,"position":[position.x,position.y,position.z],"flags":flags.duplicate(),"autosave":autosave,"chapter":chapter.snapshot()}
 static func validate(v: Variant) -> bool:
  if not v is Dictionary or v.get("format")!="archelys-demo-1" or (not v.get("starter") is String or preload("res://scripts/domain/pokemon_catalog.gd").species(v.starter).is_empty()) or v.get("location") not in LOCATIONS or not v.get("flags") is Dictionary:return false
  if not v.get("campaign") is Dictionary or not Campaign.validate(v.campaign) or int(v.campaign.participants)!=1:return false
+ if not v.campaign.get("adventure") is Dictionary or not v.campaign.adventure.get("exploration") is Dictionary or not v.campaign.adventure.get("records") is Dictionary:return false
  if not v.get("position") is Array or v.position.size()!=3:return false
  for x: Variant in v.position:
   if (not x is int and not x is float) or not is_finite(float(x)) or absf(float(x))>50:return false
  if float(v.position[1])!=0:return false
  var x: float=float(v.position[0]);var z: float=float(v.position[2])
  if v.location=="town" and (x< -25 or x>25 or z< -24 or z>15):return false
- if v.location=="trail" and (absf(x)>14 or z< -18 or z>13):return false
+ if v.location in ["trail"]+Chapter.LOCATIONS and (absf(x)>14 or z< -18 or z>13):return false
  if v.location in ["center","shop","home"] and (absf(x)>8.5 or absf(z)>9.5):return false
- if v.campaign.adventure.exploration.location!={"town":"isle-port","trail":"isle-jungle","center":"isle-center","shop":"isle-shop","home":"isle-port"}[v.location]:return false
+ if v.campaign.adventure.exploration.location!=NAMESPACES[v.location]:return false
  for id: Variant in v.flags:
   if id not in ["trainer","survey","supplies","complete"]+Expedition.FLAGS or v.flags[id]!=true:return false
+ if not Chapter.validate(v.get("chapter",{"flags":{},"visited":[]})):return false
+ var progress: Dictionary=v.get("chapter",{"flags":{},"visited":[]})
+ for tier: Variant in progress.get("ceilings",{}).values():
+  if int(v.campaign.adventure.cap)<int(tier):return false
+ if progress.flags.has("started") and (not v.flags.has("complete") or not v.campaign.adventure.records.scenes.has("demo-return")):return false
+ if v.campaign.adventure.records.scenes.has("demo-canopy-briefing") and not progress.flags.has("started"):return false
+ if v.campaign.adventure.records.scenes.has("demo-checkpoint-report") and not progress.flags.has("reported"):return false
+ if v.location in Chapter.LOCATIONS and v.location not in progress.visited:return false
+ if Chapter.is_water(v.location,Vector2(x,z)) and not progress.flags.has("keeper"):return false
  if not v.get("autosave",true) is bool:return false
  if v.flags.has("cache-opened") and not Expedition.ACTIONS.values().all(func(flag: String):return v.flags.has(flag)):return false
  if v.flags.has("expedition-reward") and not v.flags.has("cache-opened"):return false
@@ -55,7 +75,7 @@ func restore(v: Dictionary) -> bool:
  if not validate(v):return false
  var c:=Campaign.new()
  if not c.restore(v.campaign):return false
- campaign=c;starter=v.starter;location=v.location;position=Vector3(v.position[0],0,v.position[2]);flags=v.flags.duplicate();autosave=v.get("autosave",true);return true
+ campaign=c;starter=v.starter;location=v.location;position=Vector3(v.position[0],0,v.position[2]);flags=v.flags.duplicate();autosave=v.get("autosave",true);chapter.restore(v.get("chapter",{"flags":{},"visited":[]}));return true
 func save(path: String) -> Error:
  if starter.is_empty() or campaign.adventure.in_battle:return ERR_BUSY
  var v:=snapshot()
@@ -73,6 +93,10 @@ func save(path: String) -> Error:
    if error!=OK:return error
  return DirAccess.rename_absolute(path+".tmp",path)
 func objective(lang: String) -> String:
+ if chapter.flags.has("started"):
+  if not campaign.adventure.records.scenes.has("demo-canopy-briefing"):return "Reprends la présentation du chapitre avec Vyna." if lang=="fr" else "Resume the chapter briefing with Vyna."
+  if chapter.flags.has("reported") and not campaign.adventure.records.scenes.has("demo-checkpoint-report"):return "Reprends la scène du rapport avec Vyna." if lang=="fr" else "Resume the report scene with Vyna."
+  return chapter.objective(lang)
  if flags.has("complete"):return "Démo terminée : explore et prépare ton équipe." if lang=="fr" else "Demo complete: explore and prepare your party."
  var index: int=0 if starter.is_empty() else (1 if not flags.has("survey") else (2 if not flags.has("trainer") else 3))
  return ["Choisis ton premier Pokémon.","Parle à Vyna, puis relève la balise du sentier.","Affronte le dresseur du sentier ; soins et boutique au havre.","Retourne voir Vyna au havre pour conclure la démo."][index] if lang=="fr" else ["Choose your first Pokémon.","Talk to Vyna, then survey the trail beacon.","Battle the trail trainer; healing and shop in town.","Return to Vyna in town to finish the demo."][index]

@@ -250,3 +250,8 @@ Propriétaire : « idéalement 10 […] en autonomie […] pokédex et starters 
 ## D72 — lot autonome de douze blocs
 
 Propriétaire, 12 octobre 2026 : « enchaine sur les 10/20 prochains blocs […] 20 […] jouable ». Poursuite solo autonome avec fixtures, sans figer Pokédex, starters ni modèles Meshy attendus. Douze blocs intégrés : expédition, actions contextuelles, Vol, services locaux, Pokédex de démo, scènes/replay, autosave séparée, archives portables, diagnostic des sauvegardes, inspection GLB, préflight de contenu et lisibilité du combat. [Portée et limites](../development/LOT_DEMO_PROGRESSION_SERVICES.md). Développé/testé techniquement ; playtest Windows et choix artistiques restent distincts.
+
+
+## D73 — dix blocs de prolongement
+
+Owner : « Ok enchaine sur les 10 prochjains blocs », 12 octobre 2026. Poursuite autonome du solo avec fixtures. Canopée/sources/poste secondaire, contrôle RR, relais, championne climat, responsables au palier commun, Surf, camp, rencontres/habitats, carte/guidage et scènes/reprise : [lot détaillé](../development/LOT_DEMO_CANOPY_DIX_BLOCS.md). Développé/testé techniquement, pas de validation Windows/graphique déduite. Pokédex/starters et Meshy toujours attendus ; noms/équilibrage/récit proposés, divinité et libération de l’île non implémentées par ce lot.

@@ -15,7 +15,7 @@ func run() -> void:
  check(not s.choose("mewtwo") and s.choose("squirtle") and not s.choose("bulbasaur"),"Only one legal starter")
  check(s.save(path)==OK,"Fresh starter campaign saves")
  var original: Dictionary=s.snapshot()
- for id: String in State.LOCATIONS:
+ for id: String in State.BASE_LOCATIONS:
   check(s.travel(id) and State.validate(s.snapshot()),"Each real destination creates valid save: "+id)
  check(s.save(path)==OK and State.validate(JSON.parse_string(FileAccess.get_file_as_string(path+".backup"))),"Atomic save retains valid previous backup")
  var clone:=State.new();check(clone.restore(original) and clone.snapshot()==original,"Complete round trip")

@@ -7,6 +7,7 @@ var transport: Node
 var busy: bool=false
 var double_mode: bool=false
 var sandbox: bool=false
+var progression_handler: Callable
 var player_slots: Array=[0,1]
 var enemy_slots: Array=[0,1]
 var selected_player: int=0
@@ -225,6 +226,7 @@ func finish(outcome: String) -> void:
  if outcome=="won" and trainer in ["trainer-1","trainer-2"] and not adventure.victories.has(trainer):
   adventure.victories[trainer]=true;adventure.raise_cap(18 if trainer=="trainer-1" else 36);adventure.money+=300
  if outcome=="won":adventure.journey.won(adventure,trainer);adventure.island.won(adventure,trainer)
+ if outcome=="won" and progression_handler.is_valid():progression_handler.call(trainer)
  if outcome=="won":say("Victoire ! Cap actuel : %d." % adventure.cap,"Victory! Current level cap: %d." % adventure.cap)
  super.finish(outcome)
  if outcome=="lost":
@@ -246,4 +248,4 @@ func choose_shift(index: int=-1) -> bool:
  events=[]
  return _send({"op":"shift","uid":0 if index==-1 else int(adventure.team[index].uid)})
 
-func adventure_ids() -> Array:return preload("res://scripts/domain/island.gd").BATTLES.keys()
+func adventure_ids() -> Array:return preload("res://scripts/domain/island.gd").BATTLES.keys()+preload("res://scripts/domain/demo_chapter.gd").IDS

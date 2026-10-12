@@ -5,6 +5,7 @@ static func habitats(id: String) -> Array:
  var v:=Content.data();var out: Array=[]
  if id in v.get("wild",[]):out.append({"place":"trail","method":"grass","level":v.wild_level})
  if id==v.get("fishing",""):out.append({"place":"town","method":"fishing","level":v.fishing_level})
+ out.append_array(preload("res://scripts/domain/demo_chapter.gd").habitats(id))
  return out
 static func roster(records: RefCounted,filter: int,query: String,locale: String) -> Array:
  var out: Array=[]

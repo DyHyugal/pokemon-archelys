@@ -14,7 +14,7 @@ func render(page: String) -> void:
  if page=="dex":dex()
  elif page=="cinema":
   menu.label(t("Scènes de démo : propositions, progression manuelle, relecture sans récompense.","Demo scenes: proposals, manual progression, replay without rewards."))
-  for id: String in ["demo-arrival","demo-return"]:
+  for id: String in ["demo-arrival","demo-return","demo-canopy-briefing","demo-checkpoint-report"]:
    if not a.records.scenes.has(id):continue
    var scene_id: String=id
    var replay: Button=game.button(menu.body,preload("res://scripts/domain/cinematic.gd").library()[id].names[game.locale],func():game.play_scene(scene_id,true),"Replay_"+id);replay.disabled=game.state.location!="town"
@@ -54,7 +54,7 @@ func details(id: String) -> void:
  menu.label(" / ".join(Catalog.species(id).types.map(func(type: String):return Catalog.text("type_names",type,game.locale))))
  var habitats: Array=Dex.habitats(id)
  for place: Dictionary in habitats:
-  menu.label((t("Sentier · hautes herbes · Nv.%d","Trail · tall grass · Lv.%d") if place.method=="grass" else t("Jetée du havre · pêche · Nv.%d","Haven dock · fishing · Lv.%d")) % int(place.level))
+  menu.label("%s · %s · %s%d–%d" % [preload("res://scripts/domain/demo_chapter.gd").name_of(place.place,game.locale),t("herbes","grass") if place.method=="grass" else t("pêche","fishing"),t("Nv.","Lv."),int(place.get("minimum",place.level)),int(place.get("maximum",place.level))])
  if habitats.is_empty():menu.label(t("Pas de rencontre sauvage dans cette portion de démo.","No wild encounter in this demo slice."))
  if id in preload("res://scripts/domain/demo_content.gd").data().starters:menu.label(t("Partenaire de départ provisoire.","Provisional starter partner."))
  if id==preload("res://scripts/domain/demo_content.gd").data().gift_egg:menu.label(t("Œuf cadeau du professeur, une fois par partie.","Professor's gift egg, once per save."))

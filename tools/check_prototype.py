@@ -14,6 +14,7 @@ steps=[(['godot','--headless','--path',str(root/'game'),'--editor','--import','-
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/demo_navigation.gd'],'DEMO NAVIGATION:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/demo_services.gd'],'DEMO SERVICES:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/demo_extended.gd'],'DEMO EXTENDED:'),
+       (['godot','--headless','--path',str(root/'game'),'--script','res://tests/demo_chapter.gd'],'DEMO CHAPTER:'),
        ([sys.executable,str(root/'tools/check_demo_content.py')],'DEMO CONTENT:'),
        ([sys.executable,str(root/'tools/check_demo_content_contracts.py')],'DEMO CONTENT CONTRACTS:'),
        ([sys.executable,str(root/'tools/check_demo_asset_import.py')],'DEMO ASSET IMPORT:'),

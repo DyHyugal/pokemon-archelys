@@ -1,5 +1,8 @@
 extends CanvasLayer
 signal finished
+const Chapter=preload("res://scripts/domain/demo_chapter.gd")
+const ChapterUI=preload("res://scripts/ui/demo_chapter_controller.gd")
+const RegionMap=preload("res://scripts/ui/demo_region_map.gd")
 const Extended=preload("res://scripts/ui/demo_extended_pages.gd")
 const Expedition=preload("res://scripts/domain/demo_expedition.gd")
 const Archive=preload("res://scripts/services/demo_archive.gd")
@@ -67,7 +70,7 @@ func open(owner: Node3D) -> bool:
   if child is CanvasLayer and child!=self:old_visibility[child]=child.visible
  for node: Node in old_visibility:node.hide()
  owner.get_node("/root/Session").submit_axis(Vector2.ZERO)
- world=World.new();owner.add_child(world);world.build(state);world.camera.size=owner.camera.size;world.configure_labels(owner.comfort.data.world_labels)
+ world=World.new();world.locale=locale;owner.add_child(world);world.build(state);world.camera.size=owner.camera.size;world.configure_labels(owner.comfort.data.world_labels)
  menu=preload("res://scripts/ui/pause_menu.gd").new();menu.demo_mode=true;menu.adventure=state.campaign.adventure;menu.comfort=owner.comfort;owner.add_child(menu)
  menu.layer=40;menu.panel.theme=owner.ui_theme
  menu.save_requested.connect(save_game);menu.load_requested.connect(load_game)
@@ -76,7 +79,7 @@ func open(owner: Node3D) -> bool:
   Style.apply(world.hero,state.campaign.adventure.appearance)
   if is_instance_valid(preview_actor):Style.apply(preview_actor,state.campaign.adventure.appearance))
  menu.language_changed.connect(func(value: String):
-  locale=value;owner._set_locale(value);menu.sync(locale,world.camera.size,state.campaign.laboratory))
+  locale=value;world.locale=value;world.configure_labels(world.show_labels);owner._set_locale(value);menu.sync(locale,world.camera.size,state.campaign.laboratory))
  menu.camera_changed.connect(func(value: float):world.camera.size=value;owner.camera.size=value;owner._persist_preferences())
  menu.comfort_changed.connect(func():owner._apply_comfort();world.configure_labels(owner.comfort.data.world_labels))
  menu.audio_preview_requested.connect(func(kind: String):
@@ -154,6 +157,7 @@ func advance_dialogue() -> void:dialogue_index+=1;render_dialogue()
 func interact(id: String="") -> void:
  if state.starter.is_empty() or menu.visible or battle_panel.visible or modal:return
  if id.is_empty():id=world.nearest()
+ if ChapterUI.new(self).interact(id):return
  match id:
   "door-center":travel("center")
   "door-shop":travel("shop")
@@ -164,7 +168,7 @@ func interact(id: String="") -> void:
    if state.flags.has("trainer") and state.flags.has("survey"):
     state.flags.complete=true;persist_auto()
     if not state.campaign.adventure.records.scenes.has("demo-return"):play_scene("demo-return")
-    else:talk([t("Le sentier est rétabli. Vol est disponible depuis la carte locale.","The trail is restored. Fly is available from the local map.")])
+    else:ChapterUI.new(self).vyna()
    elif not state.campaign.adventure.records.scenes.has("demo-arrival"):play_scene("demo-arrival")
    else:talk([t("La balise du sentier ne répond plus. Va la relever au nord, puis affronte le dresseur qui garde le passage. Soins et provisions sont disponibles au havre.","The trail beacon has stopped responding. Survey it to the north, then battle the trainer guarding the path. Healing and supplies are available in town.")])
   "professor":
@@ -201,9 +205,9 @@ func interact(id: String="") -> void:
    var ok: bool=Expedition.open_cache(state);persist_auto()
    talk([t("Relevés récupérés. Remets-les au professeur sur la place.","Notes recovered. Bring them to the professor on the plaza.") if ok else t("Dégage les trois obstacles pour accéder aux relevés ; récupération unique.","Clear the three obstacles to access the notes; collect once.")])
   "grass":begin_battle([state.campaign.adventure.wild(int(Content.data().wild_level),Content.data().wild[state.campaign.adventure.rng.randi_range(0,Content.data().wild.size()-1)])])
-func travel(id: String) -> void:
+func travel(id: String,flight: bool=false) -> void:
  var previous: String=state.location
- if not state.travel(id):return
+ if not state.travel(id,flight):return
  if id=="town":
   if previous in ["center","shop","home"]:state.position=World.TOWN_BUILDINGS[previous]+Vector3(0,0,3.5)
   elif previous=="trail":state.position=Vector3(0,0,-21)
@@ -211,6 +215,7 @@ func travel(id: String) -> void:
 func begin_battle(enemies: Array,trainer: String="") -> bool:
  if state.starter.is_empty() or modal or menu.visible or battle_panel.visible:return false
  battle=Battle.new()
+ battle.progression_handler=func(id: String):state.chapter.won(state,id)
  if not battle.begin(state.campaign.adventure,enemies,trainer):feedback.text=t("Combat non lancé : ","Battle not started: ")+battle.last_error;return false
  world.hide();arena=Stage.new();owner_world.add_child(arena);arena.battle=battle;arena.locale=locale;arena.animations=owner_world.comfort.data.combat_animations and not owner_world.comfort.data.reduced_motion
  battle_panel.animations_enabled=arena.animations;battle_panel.open(battle,locale);hud.hide();feedback.hide();contextual.hide();return true
@@ -218,7 +223,10 @@ func battle_finished(result: String) -> void:
  if battle and result=="won" and battle.trainer=="demo-trainer":state.flags.trainer=true;state.campaign.adventure.money=mini(999999,state.campaign.adventure.money+250)
  if arena:arena.queue_free();arena=null
  world.show();world.camera.current=true;hud.show();feedback.show();contextual.show()
- if result=="lost":state.travel("center");world.build(state)
+ if result=="lost":
+  # Defeat is a deliberate return to the haven, not a normal walking portal.
+  state.location="town";state.travel("center")
+ world.build(state)
  feedback.text=t("Combat terminé : ","Battle finished: ")+result;steps=0;persist_auto()
 func save_game() -> void:
  if not active or loaded_slot==0 or state.starter.is_empty() or (battle and battle.active):return
@@ -235,16 +243,16 @@ func load_game() -> void:
 func _process(delta: float) -> void:
  if not active:return
  if owner_world.photo_mode.active:return
- hud.text="ARCHÉLYS • "+t("Havre tropical","Tropical haven")+"\n"+state.objective(locale)+"\n"+t("E / Entrée : interagir • Échap : menu","E / Enter: interact • Escape: menu")
+ hud.text="ARCHÉLYS • "+Chapter.name_of(state.location,locale)+"\n"+state.objective(locale)+"\n"+t("E / Entrée : interagir • Échap : menu","E / Enter: interact • Escape: menu")
  contextual.text=""
  if modal or menu.visible or battle_panel.visible:return
  var nearby: String=world.nearest()
  if not nearby.is_empty():contextual.text=owner_world.comfort.caption("interact")+" / "+t("Entrée","Enter")+" — "+Guidance.title(nearby,locale)
  var old: Vector3=state.position;world.move_hero(owner_world.comfort.axis(),delta,state)
  var walked: float=old.distance_to(state.position);state.campaign.adventure.nursery.walk(walked)
- if state.location=="trail" and state.position.x>3 and state.position.x<9 and state.position.z> -7 and state.position.z< -1:
+ if state.location in ["trail","canopy"] and state.position.x>3 and state.position.x<9 and ((state.position.z> -7 and state.position.z< -1) if state.location=="trail" else (state.position.z> -1 and state.position.z<5)):
   steps+=walked
-  if steps>6:steps=0;interact("grass")
+  if steps>6:steps=0;interact("grass" if state.location=="trail" else "chapter-grass")
  if state.autosave and not state.starter.is_empty() and Time.get_ticks_msec()-last_save>60000:auto_save()
 func _input(event: InputEvent) -> void:
  if not active:return
@@ -299,20 +307,26 @@ func render_demo_page(page: String,body: Node) -> void:
   var objective:=Label.new();objective.text=state.objective(locale);objective.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;body.add_child(objective)
   for task: Dictionary in Guidance.tasks(state,locale):
    var row:=Label.new();row.text=("✓ " if task.done else "○ ")+task.text;body.add_child(row)
+  if state.chapter.flags.has("started"):
+   for task: Dictionary in state.chapter.tasks(locale):
+    var row:=Label.new();row.text=("✓ " if task.done else "○ ")+task.text;body.add_child(row)
+   for id: String in state.chapter.ceilings:
+    var row:=Label.new();row.text=t("Palier enregistré %s : %d","Recorded ceiling %s: %d") % [Guidance.title({"demo-roadblock":"roadblock","demo-spring-keeper":"spring-keeper","demo-post-a":"post-a","demo-post-b":"post-b"}[id],locale),state.chapter.ceilings[id]];body.add_child(row)
   for action: String in Expedition.ACTIONS:
    var row:=Label.new();row.text=("✓ " if state.flags.has(Expedition.ACTIONS[action]) else "○ ")+Guidance.title(action,locale);body.add_child(row)
   var side:=Label.new();side.text=t("Optionnel : dégager les trois obstacles, récupérer les relevés, puis les remettre au professeur (5 Balls, une fois).","Optional: clear three obstacles, collect notes, then turn them in to the professor (5 Balls, once).");side.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;body.add_child(side)
   button(body,t("Voir la carte locale","View local map"),func():menu.page="map";menu.render(),"OpenLocalMap")
  elif page=="map":
+  var region:=RegionMap.new();region.state=state;region.locale=locale;body.add_child(region)
   var map:=LocalMap.new();map.world=world;map.state=state;map.target=Guidance.target(state);map.locale=locale;body.add_child(map)
   var legend:=Label.new();legend.text=t("Rouge : toi · Or : objectif · Bleu : interaction
 Plan local du lieu actuel, sans déplacement automatique.","Red: you · Gold: objective · Blue: interaction
 Local plan of the current area; no automatic travel.");legend.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;body.add_child(legend)
   for id: String in world.points:
    var row:=Label.new();row.text=("→ " if id==map.target else "• ")+Guidance.title(id,locale);body.add_child(row)
-  for id: String in ["town","trail"]:
+  for id: String in ["town","trail"]+Chapter.LOCATIONS:
    var target: String=id
-   var fly: Button=button(body,t("Vol : ","Fly: ")+t("Havre","Haven") if id=="town" else t("Vol : sentier","Fly: trail"),func():fly_to(target),"Fly_"+id);fly.disabled=not Expedition.can_fly(state,id)
+   var fly: Button=button(body,t("Vol : ","Fly: ")+Chapter.name_of(id,locale),func():fly_to(target),"Fly_"+id);fly.disabled=not Expedition.can_fly(state,id)
   var notice:=Label.new();notice.text=t("Vol débloqué après le retour à Vyna ; destinations visitées uniquement. Aucun Pokémon requis.","Fly unlocks after returning to Vyna; visited destinations only. No Pokémon required.");notice.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;body.add_child(notice)
  elif page=="saves":
   var label:=Label.new();label.text=t("Partie active : emplacement %d. Autosauvegarde séparée toutes les 60 s d'exploration (si activée).
@@ -350,7 +364,7 @@ func start_photo() -> bool:
 
 func fly_to(target: String) -> bool:
  if not Expedition.can_fly(state,target):return false
- menu.close();travel(target);return true
+ menu.close();travel(target,true);return true
 func auto_save() -> void:
  if modal or menu.visible:return
  persist_auto()

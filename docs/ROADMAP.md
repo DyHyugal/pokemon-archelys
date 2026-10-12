@@ -28,3 +28,7 @@ Contenu configurable, règles, chromatique, sac, incubateur, fossiles, photo, p�
 ## D72 — démo intégrée : douze blocs
 
 Expédition et actions contextuelles, Vol, services sur place, Pokédex, scènes/replay, autosave séparée, export/import, diagnostic des saves, visionneuse de GLB, préflight contenu et combat lisible développés. [Détails](development/LOT_DEMO_PROGRESSION_SERVICES.md). Suite : sélection owner du Pokédex/starters, premier export Meshy éprouvé dans la visionneuse et une rue, parcours groupé Windows. La première île complète et les graphismes finaux restent à produire ; aucune extension multi/raids/défis.
+
+## D73 — continuation canopée / sources / contrôle RR
+
+Dix blocs intégrés à la campagne de démo existante : [portée](development/LOT_DEMO_CANOPY_DIX_BLOCS.md). Trois zones nouvelles, quatre combats de dresseurs natifs, services/guidage et sauvegardes. Ce poste est une intervention secondaire RR ; raid, divinité, caldeira et libération finale restent à construire. Maquettes uniquement, Pokédex/starters/exports Meshy attendus.

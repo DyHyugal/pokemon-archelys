@@ -2,6 +2,8 @@ extends Node3D
 const State=preload("res://scripts/domain/demo_state.gd")
 const Style=preload("res://scripts/world/demo_actor_style.gd")
 const OldKit=preload("res://scripts/world/asset_kit.gd")
+const Chapter=preload("res://scripts/domain/demo_chapter.gd")
+var chapter: RefCounted
 var blockers: Array[Rect2]=[]
 var points: Dictionary={}
 var hero: Node3D
@@ -11,9 +13,12 @@ var location: String=""
 var avatar_preview: Dictionary={}
 const TOWN_BUILDINGS={"center":Vector3(-15,0,-2),"shop":Vector3(14,0,-12),"home":Vector3(-16,0,8),"arcade":Vector3(0,0,-14),"villa":Vector3(14,0,0)}
 var show_labels: bool=true
+var locale: String="fr"
 func configure_labels(enabled: bool) -> void:
  show_labels=enabled
- for label: Node in geometry.find_children("*","Label3D",true,false):label.visible=enabled
+ for label: Node in geometry.find_children("*","Label3D",true,false):
+  label.visible=enabled
+  if label.has_meta("caption_id"):label.text=preload("res://scripts/domain/demo_guidance.gd").title(str(label.get_meta("caption_id")),locale)
 func surface_shader(node: Node3D) -> void:
  for part: Node in node.find_children("*","MeshInstance3D",true,false):
   if not part.name.contains("Stucco") and not part.name.contains("Sandstone"):continue
@@ -47,18 +52,23 @@ func npc(id: String,at: Vector3,shirt: int) -> void:
  var o: Node3D=asset("trainer",at)
  var look: Dictionary=preload("res://scripts/domain/appearance.gd").DEFAULT.duplicate();look.shirt=shirt;look.style=1;look.skin=shirt%4;Style.apply(o,look);o.name="NPC_"+id
  blockers.append(Rect2(Vector2(at.x-.35,at.z-.35),Vector2(.7,.7)))
- var label:=Label3D.new();label.text={"vyna":"Vyna","professor":"Professeur","resident":"Habitant","trainer":"Dresseur","nurse":"Soins","merchant":"Boutique","clothier":"Vêtements","fossils":"Fossiles"}.get(id,id);label.position=at+Vector3(0,2.12,0);label.font_size=28;label.pixel_size=.005;label.billboard=BaseMaterial3D.BILLBOARD_ENABLED;label.visible=show_labels;geometry.add_child(label)
+ var label:=Label3D.new();label.text={"vyna":"Vyna","professor":"Professeur","resident":"Habitant","trainer":"Dresseur","nurse":"Soins","merchant":"Boutique","clothier":"Vêtements","fossils":"Fossiles"}.get(id,id);label.position=at+Vector3(0,2.12,0);label.set_meta("caption_id",id);label.font_size=28;label.pixel_size=.005;label.billboard=BaseMaterial3D.BILLBOARD_ENABLED;label.visible=show_labels;geometry.add_child(label)
 func _ready() -> void:
  geometry=Node3D.new();add_child(geometry)
  hero=load("res://assets/demo/trainer.glb").instantiate();add_child(hero)
  camera=Camera3D.new();camera.projection=Camera3D.PROJECTION_ORTHOGONAL;camera.size=18;add_child(camera);camera.current=true
 func build(state: RefCounted) -> void:
- location=state.location
+ location=state.location;chapter=state.chapter
+ chapter.surfing=chapter.flags.has("keeper") and Chapter.is_water(location,Vector2(state.position.x,state.position.z))
  for n: Node in geometry.get_children():geometry.remove_child(n);n.queue_free()
  blockers.clear();points.clear()
  if location=="town":town()
  elif location=="trail":
   trail();expedition(state)
+  if state.chapter.flags.has("started"):
+   points["go-canopy"]=Vector3(0,0,-17)
+   npc("roadblock",Vector3(-3.5,0,-15),3)
+ elif location in Chapter.LOCATIONS:preload("res://scripts/world/demo_chapter_world.gd").build(self,state)
  else:interior()
  hero.position=state.position;Style.apply(hero,state.campaign.adventure.appearance);configure_labels(show_labels);follow()
 func cliff(at: Vector3,radius: float,height: float) -> void:
@@ -94,7 +104,7 @@ func town() -> void:
   var at: Vector3=TOWN_BUILDINGS[id];asset("villa" if id=="home" else id,at,.9);blockers.append(Rect2(Vector2(at.x-3.4,at.z-2.3),Vector2(6.8,4.6)))
   if id in ["center","shop","home"]:
    points["door-"+id]=at+Vector3(0,0,3.3)
-   var sign:=Label3D.new();sign.text={"center":"CENTRE","shop":"BOUTIQUE","home":"MAISON"}[id];sign.position=at+Vector3(0,2.8,2.5);sign.font_size=28;sign.pixel_size=.007;sign.billboard=BaseMaterial3D.BILLBOARD_ENABLED;geometry.add_child(sign)
+   var sign:=Label3D.new();sign.text={"center":"CENTRE","shop":"BOUTIQUE","home":"MAISON"}[id];sign.position=at+Vector3(0,2.8,2.5);sign.set_meta("caption_id","door-"+id);sign.font_size=28;sign.pixel_size=.007;sign.billboard=BaseMaterial3D.BILLBOARD_ENABLED;geometry.add_child(sign)
  asset("clocktower",Vector3(-7,0,-5),.8);blockers.append(Rect2(Vector2(-8.3,-6.3),Vector2(2.6,2.6)))
  npc("vyna",Vector3(-3,0,2),2);npc("professor",Vector3(4,0,0),0);npc("resident",Vector3(-12,0,11),3)
  points["fish"]=Vector3(11,0,14);points["gate"]=Vector3(0,0,-23);points["supplies"]=Vector3(6,0,7)
@@ -169,8 +179,9 @@ func interior() -> void:
 func can_walk(at: Vector3) -> bool:
  if location=="town":
   if at.x< -25 or at.x>25 or at.z< -24 or at.z>15:return false
-  if at.x>9 and at.x<18 and at.z>8 and not (at.x>10 and at.x<12):return false
- elif location=="trail":
+  if Chapter.is_water(location,Vector2(at.x,at.z)) and not chapter.surfing:return false
+ elif location in ["trail"]+Chapter.LOCATIONS:
+  if Chapter.is_water(location,Vector2(at.x,at.z)) and not chapter.surfing:return false
   if absf(at.x)>14 or at.z< -18 or at.z>13:return false
  elif absf(at.x)>8.5 or absf(at.z)>9.5:return false
  for r: Rect2 in blockers:
@@ -185,6 +196,7 @@ func move_hero(axis: Vector2,delta: float,state: RefCounted) -> void:
   if can_walk(next):state.position=next
   next=state.position+Vector3(0,0,motion.z/steps)
   if can_walk(next):state.position=next
+ if Chapter.is_water(location,Vector2(old.x,old.z)) and not Chapter.is_water(location,Vector2(state.position.x,state.position.z)):chapter.surfing=false
  hero.position=state.position
  var animator: AnimationPlayer=hero.find_child("AnimationPlayer",true,false)
  if old.distance_to(state.position)>.0001:
@@ -195,8 +207,10 @@ func move_hero(axis: Vector2,delta: float,state: RefCounted) -> void:
 func follow() -> void:
  camera.position=hero.position+Vector3(0,13,15);camera.look_at(hero.position+Vector3(0,1,0))
 func nearest() -> String:
+ var at: Vector2=Vector2(hero.position.x,hero.position.z)
  var id: String="";var distance: float=2.1
  for key: String in points:
   var d: float=hero.position.distance_to(points[key])
   if d<distance:id=key;distance=d
+ if id.is_empty() and not chapter.surfing and Chapter.at_shore(location,at):return "surf"
  return id

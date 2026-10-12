@@ -45,3 +45,5 @@ D70 : Meshy Pro choisi pour essai d’un mois ; les assets primitifs D69 sont re
 D71 : dix blocs autonomes demandés ; Pokédex et starters seront fournis ensuite. Ne pas les choisir à la place du propriétaire. Tables de démo clairement provisoires et sauvegardes historiques conservées. Voir LOT_DEMO_DIX_SYSTEMES.md.
 
 D72 : poursuite autonome de 10 à 20 blocs autorisée ; lot de douze blocs solo documenté dans LOT_DEMO_PROGRESSION_SERVICES.md. Conserver les saves, distinction atelier/démo, fixtures et sélection owner en attente. Pas de validation Windows/visuelle implicite.
+
+D73 : dix blocs autonomes suivants autorisés, continuation proposée de la démo. Lire LOT_DEMO_CANOPY_DIX_BLOCS.md ; cap boss = ace, administrateurs du même poste au même palier, pas de décroissance. Conserver reprise de saves et séparation atelier/démo ; cartes/niveaux/équipes/placements encore provisoires. Pas de nouveau test multi/raid/défi, pas de validation artistique implicite.

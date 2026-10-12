@@ -3,7 +3,7 @@ extends RefCounted
 const Island=preload("res://scripts/domain/island.gd")
 const Mon=preload("res://scripts/domain/pokemon.gd")
 const PRICES={"poke-ball":200,"great-ball":600,"potion":200,"antidote":200,"paralyze-heal":200,"oran-berry":80,"thunder-stone":3000,"fire-stone":3000}
-static var LOCATIONS: Array=["village","center","shop","cove","district","trail","trial"]+Island.LOCATIONS
+static var LOCATIONS: Array=["village","center","shop","cove","district","trail","trial"]+Island.LOCATIONS+["demo-canopy","demo-springs","demo-post"]
 var location: String="village"
 var visited: Array=["village"]
 var cleared: Dictionary={}

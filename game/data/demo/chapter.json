@@ -1,0 +1,13 @@
+{
+ "status":"temporary-demo-fixtures",
+ "battles": {
+  "demo-roadblock":{"location":"trail","flag":"roadblock","cap":12,"money":150,"team":[{"species":"rattata","level":10,"role":"dps"},{"species":"pikachu","level":12,"role":"dps"}]},
+  "demo-spring-keeper":{"location":"springs","flag":"keeper","cap":14,"money":200,"team":[{"species":"vulpix","level":12,"role":"setter","ability":"drought","moves":["ember","sunny-day","protect"]},{"species":"bulbasaur","level":12,"role":"beneficiary","ability":"chlorophyll","moves":["razor-leaf","solar-beam","protect"]},{"species":"vulpix","level":14,"role":"setter","ability":"drought","moves":["ember","sunny-day","protect"]}]},
+  "demo-post-a":{"location":"post","flag":"admin-a","cap":16,"money":250,"team":[{"species":"rattata","level":14,"role":"dps"},{"species":"charmeleon","level":16,"role":"dps"}]},
+  "demo-post-b":{"location":"post","flag":"admin-b","cap":16,"money":250,"team":[{"species":"pikachu","level":14,"role":"dps"},{"species":"wartortle","level":16,"role":"dps"}]}
+ },
+ "encounters": {
+  "canopy":{"method":"grass","bases":["bulbasaur","pikachu","rattata"],"minimum":8,"maximum":10},
+  "springs":{"method":"fishing","bases":["magikarp"],"minimum":18,"maximum":22}
+ }
+}

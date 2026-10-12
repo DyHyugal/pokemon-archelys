@@ -294,5 +294,67 @@
         "en": "You can now use Fly from the map to visited stops in this demo."
       }
     ]
+  },
+  "demo-canopy-briefing": {
+    "names": {
+      "fr": "La canopée — proposition",
+      "en": "The canopy — proposal"
+    },
+    "location": "any",
+    "replayable": true,
+    "skippable": false,
+    "steps": [
+      {
+        "focus": [
+          -3,
+          0,
+          2
+        ],
+        "size": 15,
+        "fr": "Vyna : le contrôle au nord du sentier bloque l’accès aux relais. Hyu et Raidon surveillent les chemins suivants.",
+        "en": "Vyna: the checkpoint north of the trail blocks the relays. Hyu and Raidon watch the following paths."
+      },
+      {
+        "focus": [
+          0,
+          0,
+          -14
+        ],
+        "size": 16,
+        "fr": "Les étapes sont enregistrées. La carte et le journal indiquent où reprendre.",
+        "en": "Milestones are saved. The map and journal show where to continue."
+      }
+    ]
+  },
+  "demo-checkpoint-report": {
+    "names": {
+      "fr": "Rapport du poste — proposition",
+      "en": "Checkpoint report — proposal"
+    },
+    "location": "any",
+    "replayable": true,
+    "skippable": false,
+    "steps": [
+      {
+        "focus": [
+          -3,
+          0,
+          2
+        ],
+        "size": 15,
+        "fr": "Vyna : le poste secondaire est neutralisé. Ce chapitre de démo se termine ici ; la divinité, la caldeira et la libération de l’île restent à construire.",
+        "en": "Vyna: the secondary checkpoint is neutralized. This demo chapter ends here; divinity, caldera and island liberation remain to be built."
+      },
+      {
+        "focus": [
+          0,
+          0,
+          -14
+        ],
+        "size": 16,
+        "fr": "Les étapes sont enregistrées. La carte et le journal indiquent où reprendre.",
+        "en": "Milestones are saved. The map and journal show where to continue."
+      }
+    ]
   }
 }

@@ -17,4 +17,5 @@ static func reward(state: RefCounted) -> bool:
  if a.in_battle or not state.flags.has("cache-opened") or state.flags.has("expedition-reward") or int(a.bag.get("poke-ball",0))+5>999:return false
  a.bag['poke-ball']=int(a.bag.get('poke-ball',0))+5;state.flags['expedition-reward']=true;return true
 static func can_fly(state: RefCounted,target: String) -> bool:
+ if target in preload("res://scripts/domain/demo_chapter.gd").LOCATIONS:return state.chapter.can_enter(state,target,true)
  return not state.campaign.adventure.in_battle and state.flags.has("complete") and target in ["town","trail"] and {"town":"isle-port","trail":"isle-jungle"}[target] in state.campaign.adventure.exploration.visited

@@ -1,3 +1,53 @@
+ARCHÉLYS — DIX BLOCS : SUITE DU HAVRE (D73)
+Version : lab-{short_commit}
+Commit : {commit}
+
+Extrais le dossier complet, garde EXE/PCK/runtime/showdown ensemble et lance
+Archelys-Laboratoire.exe. Nom inchangé. Aucune remise à zéro nécessaire.
+Les graphismes restent des maquettes ; Pokédex/starters et Meshy attendus.
+
+UN PARCOURS GROUPÉ POUR CE LOT
+Continue la démo précédente (auto ou point manuel). Si le sentier est fini,
+termine sa scène de retour puis reparle à Vyna : Continuer vers la canopée.
+Sinon termine d’abord balise/dresseur/retour. La nouvelle présentation est
+manuelle. Au nord du sentier, affronte le contrôle RR, puis prends le passage
+vers la canopée. La victoire ouvre le chemin et le cap12 proposé.
+
+Dans la canopée, parle à Hyu et réactive les relais ouest et est. Le camp soigne
+PV/PP. Le PC reste au Centre. Le passage nord vers les sources s’ouvre après
+les deux relais. Herbes de la canopée : rencontres8–10. Aux sources, la pêche
+propose Magicarpe18–19 et Léviator20–22, donc parfois au-dessus de ton cap :
+niveaux d’essai, pas équilibrage final. Les modèles manquants sont indiqués.
+Pokédex montre les méthodes et niveaux réellement possibles dans ces lieux.
+
+La championne utilise soleil/Sécheresse et Chlorophylle, avec un second poseur.
+Victoire : cap14 et autorisation de Surf. Interagis près d’une rive puis
+traverse le bassin sans Pokémon compatible. Surf s’applique aux bassins et à
+la baie du havre ; le quai reste sec et la pêche reste accessible. Sur terre,
+le mode s’arrête. Sauvegarde dans l’eau, recharge : la traversée doit rester
+possible. Dans le bassin de la canopée, la cache donne trois Super Balls,
+une fois ; un sac plein doit conserver la récompense à récupérer plus tard.
+Pas encore de monture/animation de nage finale.
+
+Depuis la canopée, rejoins le poste secondaire RR et parle à Raidon.
+Affronte les deux responsables dans cet ordre. Leurs équipes14/16 se basent
+sur la championne12/14 +2. Les deux partagent16 : pas de +2 supplémentaire
+au second. Un cap déjà supérieur ne descend jamais. Une défaite débite la
+pénalité d’essai100₽ et ramène au Centre, sans compléter le combat perdu.
+
+Carte locale montre maintenant les connexions et l’objectif ; Vol permet
+les retours vers les lieux réellement visités. Retourne au havre et fais
+le rapport à Vyna. Si tu quittes pendant une scène, Vyna propose de la reprendre.
+Le journal et les paliers doivent rester après save/load ; galerie de scènes
+sans nouvelle récompense. Ce rapport termine le chapitre, pas l’île complète :
+divinité, caldeira, raid et libération restent à construire.
+
+Les règles/sac/résumés et les sauvegardes/export/import précédents restent
+accessibles. Auto OFF : sauvegarde manuellement avant de quitter. Pas de test
+multi, raid ou Nuzlocke/Soul-link demandé. Documentation/Demo-canopy-dix-blocs.md
+détaille la portée et les limites. Aucun nouveau rendu final implicitement validé.
+
+--- PARCOURS DES LOTS PRÉCÉDENTS ---
 ARCHÉLYS — DOUZE BLOCS DE DÉMO INTÉGRÉE (D72)
 Version : lab-{short_commit}
 Commit : {commit}

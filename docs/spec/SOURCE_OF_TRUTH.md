@@ -21,3 +21,5 @@ D70 : essai Meshy Pro d’un mois choisi par le propriétaire ; qualité finale 
 D71 autorise idéalement dix blocs solo supplémentaires en autonomie. La sélection du Pokédex et des starters reste au propriétaire et n’a pas encore été fournie.
 
 D72 autorise un lot autonome de 10 à 20 blocs. Douze blocs intégrés dans la démo ; aucun nouveau choix final de scénario, Pokédex, starters ou assets. Voir LOT_DEMO_PROGRESSION_SERVICES et VERIFICATION_D72.
+
+D73 autorise dix blocs autonomes suivants : extension proposée de la démo existante vers canopée, sources et poste secondaire. Aucun nouvel arbitrage final ou playtest owner déduit. Voir LOT_DEMO_CANOPY_DIX_BLOCS et VERIFICATION_D73.
