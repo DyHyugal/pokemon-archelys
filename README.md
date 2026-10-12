@@ -8,7 +8,7 @@ Le nom de travail est Pokémon Archélys. Le rendu cible est une 3D stylisée ne
 
 La [documentation de conception sur develop](https://github.com/DyHyugal/pokemon-archelys/tree/develop/docs) contient le cahier des charges V0.1 à relire, les décisions, la roadmap et les réponses aux questionnaires.
 
-Les [propositions graphiques des six îles et du site Æther](docs/design/ATLAS_PROPOSE_2026-10-12.md) comprennent sept planches de quatre vues. Elles servent de direction artistique proposée, distincte du rendu procédural actuel.
+Les [propositions graphiques des six îles et du site Æther](docs/design/ATLAS_PROPOSE_2026-10-12.md) comprennent sept planches de quatre vues. Elles ont été approuvées comme direction artistique (D68), distincte des modèles provisoires intégrés.
 
 ## Branches
 
@@ -30,7 +30,7 @@ Le [nouveau lot exploration/règles/comparatifs](https://github.com/DyHyugal/pok
 
 Les combats du laboratoire utilisent maintenant [Showdown intégré](docs/development/INTEGRATION_SHOWDOWN.md), un simulateur local sous MIT. Pour développer : Node24.19.0, `python tools/prepare_showdown.py`, puis `python tools/check_prototype.py`. Le ZIP joueur contient le runtime ; aucune installation ni connexion nécessaire. La validation Windows de ce nouveau lot reste distincte des tests locaux.
 
-**Dernière livraison : [Windows lab-5aca1d2](https://github.com/DyHyugal/pokemon-archelys/releases/download/lab-5aca1d2/Archelys-Laboratoire-Windows.zip)** — concepts approuvés,21assets3D originaux, avatar/PNJ animés et28visites à pied des six îles et Æther. Nouveaux modèles au havre/laboratoire, sauvegardes conservées. [CI réussie](https://github.com/DyHyugal/pokemon-archelys/actions/runs/38242602495). Premier kit de test, régions représentatives et modèles à valider en jeu ; parcours dans le LIRE-MOI.
+**Dernière livraison : [Démo Windows lab-ea06c88](https://github.com/DyHyugal/pokemon-archelys/releases/download/lab-ea06c88/Archelys-Laboratoire-Windows.zip)** — ville tropicale, sentier, trois intérieurs, PNJ, starter unique, personnalisation avec aperçu, services et combats Showdown avec arène3D. Sauvegarde de démo séparée de l’atelier. Recherche du runtime des exports corrigée et distance de caméra conservée. [CI réussie](https://github.com/DyHyugal/pokemon-archelys/actions/runs/38256124102). Parcours groupé dans le LIRE-MOI ; [périmètre et limites](docs/development/LOT_DEMO_HAVRE.md). Le rendu reste provisoire et en dessous de la cible DS/USUL modernisée en FHD ; l’île complète et la finition finale ne sont pas livrées.
 
 Le [lot groupé aventure/IA/visuels](docs/development/LOT_AVENTURE_IA_VISUELS.md) relie village, sentier, épreuve et épilogue, avec sauvegarde et récompenses uniques. Il enrichit les comparatifs FHD ; scénario et direction artistique proposés restent à approuver. Le LIRE-MOI du ZIP contient le parcours de test complet.
 
