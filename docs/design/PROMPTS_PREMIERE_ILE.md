@@ -1,5 +1,7 @@
 # Prompts des assets de la première île
 
+Pour la reconstruction Image vers 3D, utiliser maintenant les [35 références individuelles avec leur Excel](ASSETS_ISOLES_PREMIERE_ILE.md). Les planches de zones restent des références artistiques ; ce nouveau lot fournit un asset par PNG.
+
 Les [quatre planches de référence de la première île](canvas-premiere-ile/LIRE-MOI.md) couvrent seize vues et expliquent leur utilisation avec ces prompts. Elles servent à préparer les objets isolés, pas à reconstruire une ville entière en un modèle.
 
 SPOILERS DEV. Catalogue préparatoire demandé par le propriétaire après D73 ; aucun modèle généré/importé et aucun changement du jeu ou des sauvegardes dans cette tâche.

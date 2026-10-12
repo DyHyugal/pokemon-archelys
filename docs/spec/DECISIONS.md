@@ -1,5 +1,7 @@
 # Registre des décisions
 
+Complément graphique après D73 : le propriétaire demande explicitement les références « une asset à chaque fois ». [35 modèles maîtres en images individuelles](../design/ASSETS_ISOLES_PREMIERE_ILE.md) préparés avec prompts et catalogue ; aucune validation de modèles 3D, avatar, rendu en jeu ou détails architecturaux déduite de cette demande.
+
 Complément après D73 : le propriétaire demande un fichier Excel de prompts pour chaque asset prévisible de la première île, avec zone, déclinaison, prompt et commentaire. [Catalogue préparatoire](../design/PROMPTS_PREMIERE_ILE.md) : ne vaut ni validation de nouvelles tenues/designs ni production de modèles. Pokédex/starters/divinité toujours à recevoir.
 
 Décisions explicites transcrites ; le cahier V0.1 a été approuvé le 11 octobre 2026. Les exemples de noms et d’espèces ne valent pas choix définitif.
