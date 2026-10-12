@@ -84,6 +84,8 @@ func render_team() -> void:
 	for ability: String in Catalog.species(mon.species).get("abilities",[]):
 		var id: String=ability
 		menu.button(menu.body,Catalog.text("abilities",id,menu.locale),func():adventure.set_ability(selected_uid,id);refresh())
+	var shiny:=CheckButton.new();shiny.name="SummaryShiny";shiny.text=t("Chromatique","Shiny");shiny.set_pressed_no_signal(mon.get("shiny",false));menu.body.add_child(shiny)
+	shiny.toggled.connect(func(value: bool):adventure.set_shiny(selected_uid,value))
 	move_pages.render(mon)
 func render_pc() -> void:
 	menu.storage_pages.render()

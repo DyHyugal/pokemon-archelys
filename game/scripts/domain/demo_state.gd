@@ -1,4 +1,5 @@
 extends RefCounted
+const Content=preload("res://scripts/domain/demo_content.gd")
 const Campaign=preload("res://scripts/domain/campaign.gd")
 const Mon=preload("res://scripts/domain/pokemon.gd")
 const Records=preload("res://scripts/domain/journey_records.gd")
@@ -12,11 +13,11 @@ var flags: Dictionary={}
 func _init() -> void:
  campaign.add_player(1,"Démo");campaign.adventure.initialize();campaign.adventure.island.start(campaign.adventure)
 func choose(id: String) -> bool:
- if id not in STARTERS or not starter.is_empty() or campaign.adventure.in_battle:return false
+ if id not in Content.data().get("starters",[]) or not starter.is_empty() or campaign.adventure.in_battle:return false
  var a: RefCounted=campaign.adventure
  a.team=[];a.boxes=[];a.storage_slots={};a.next_uid=1;a.pending=[];a.records=Records.new()
  a.bag={"poke-ball":8,"potion":4,"lucky-egg":1};a.money=600;a.cap=10
- a.add(Mon.make(id,6,1));starter=id;a.exploration.location="isle-port"
+ a.add(Mon.make(id,int(Content.data().starter_level),1));starter=id;a.exploration.location="isle-port"
  if "isle-port" not in a.exploration.visited:a.exploration.visited.append("isle-port")
  return true
 func travel(id: String) -> bool:
@@ -28,7 +29,7 @@ func travel(id: String) -> bool:
 func snapshot() -> Dictionary:
  return {"format":"archelys-demo-1","campaign":campaign.snapshot(),"starter":starter,"location":location,"position":[position.x,position.y,position.z],"flags":flags.duplicate()}
 static func validate(v: Variant) -> bool:
- if not v is Dictionary or v.get("format")!="archelys-demo-1" or v.get("starter") not in STARTERS or v.get("location") not in LOCATIONS or not v.get("flags") is Dictionary:return false
+ if not v is Dictionary or v.get("format")!="archelys-demo-1" or (not v.get("starter") is String or preload("res://scripts/domain/pokemon_catalog.gd").species(v.starter).is_empty()) or v.get("location") not in LOCATIONS or not v.get("flags") is Dictionary:return false
  if not v.get("campaign") is Dictionary or not Campaign.validate(v.campaign) or int(v.campaign.participants)!=1:return false
  if not v.get("position") is Array or v.position.size()!=3:return false
  for x: Variant in v.position:

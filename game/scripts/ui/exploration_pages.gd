@@ -22,7 +22,8 @@ func render(page: String) -> void:
 			fly.disabled=not (state.field_unlocked("fly",owner.victories) and id in state.visited)
 	elif page=="services":
 		menu.label(t("Lieu actuel : %s • Argent : %d ₽","Current location: %s • Money: ₽%d") % [state.location,owner.money])
-		menu.label(t("Centre et boutique : entre par les portes du village. La jetée au sud mène à la crique ; le passage nord au quartier visuel. Interagis avec E / Entrée.","Center and shop: enter through the village doors. The south pier leads to the cove; the north passage to the visual district. Interact with E / Enter."))
+		if menu.demo_mode:menu.label(t("Services de la démo : boutique et Centre du havre.","Demo services: haven shop and Center."))
+		else:menu.label(t("Centre et boutique : entre par les portes du village. La jetée au sud mène à la crique ; le passage nord au quartier visuel. Interagis avec E / Entrée.","Center and shop: enter through the village doors. The south pier leads to the cove; the north passage to the visual district. Interact with E / Enter."))
 		if state.location in ["shop","isle-shop"]:
 			menu.commerce_pages.shop()
 		elif state.location in ["center","isle-center"]:

@@ -5,6 +5,10 @@ const readline = require('node:readline');
 const {Battle, Dex} = require('./upstream/dist/sim');
 const {choose} = require('./policy.cjs');
 const catalog = require('./catalog.json');
+// Showdown omits overworld EXP items from its battle catalogue. Register the
+// inert held item so upstream Knock Off/Trick and item persistence still apply.
+// Its EXP multiplier remains an adventure rule, not a battle damage effect.
+if (!Dex.data.Items.luckyegg) Dex.data.Items.luckyegg={name:'Lucky Egg',num:231,gen:2};
 const VERSION = 1;
 const statKeys = ['hp','atk','def','spa','spd','spe'];
 const statuses = {'':'',burn:'brn',poison:'psn',paralysis:'par',sleep:'slp',freeze:'frz'};

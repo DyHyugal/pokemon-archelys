@@ -195,3 +195,8 @@ Voir [LOT_DEMO_HAVRE](development/LOT_DEMO_HAVRE.md). Développé et contrôlé 
 Propriétaire, 12 octobre 2026 : « Meshy Pro pendant un mois […] Continue sur les autres blocs en autonomie ». Les assets D69 sont rejetés comme qualité finale ; concepts D67/D68 conservés. Essai Meshy choisi, modèle exporté/textures pas encore fournis. Aucun asset payant généré ou importé dans ce lot.
 
 Journal, carte locale, trois parties de démo et continuité des portes/interactions développés et testés localement. [Portée, sauvegardes et limites](development/LOT_EXPLORATION_SAUVES_DEMO.md). Playtest Windows et validation visuelle distincts ; multi/raids/défis reportés, reproduction retirée.
+
+
+## D71 — dix blocs autonomes, sélection Pokémon attendue
+
+Propriétaire : « idéalement 10 […] en autonomie […] pokédex et starters demain », 12 octobre 2026. Autorise la poursuite des systèmes solo avec fixtures ; aucune sélection finale implicite. Dix blocs développés et contrôlés : [portée et limites](development/LOT_DEMO_DIX_SYSTEMES.md). Graphismes de maquette conservés, rejetés comme rendu final ; registre d’assets vide. Pokédex/starters futurs restent à recevoir. Aucun playtest Windows supplémentaire déduit.

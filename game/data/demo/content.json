@@ -1,0 +1,11 @@
+{
+  "status": "temporary-demo-fixtures",
+  "starters": ["bulbasaur", "charmander", "squirtle"],
+  "starter_level": 6,
+  "wild": ["rattata", "pikachu"],
+  "wild_level": 5,
+  "fishing": "magikarp",
+  "fishing_level": 5,
+  "gift_egg": "squirtle",
+  "trainer": [{"species":"rattata","level":6},{"species":"pikachu","level":7}]
+}

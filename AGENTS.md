@@ -41,3 +41,5 @@ D68 : le propriétaire approuve les sept planches D67 et demande explicitement l
 D69 : demande explicite de démo intégrée (ville, PNJ, starters, combats, personnalisation et services), cible DS/USUL en FHD. Production de cette portion autorisée en autonomie ; campagne démo séparée. Ne pas annoncer qualité finale ou île complète. Voir LOT_DEMO_HAVRE.md.
 
 D70 : Meshy Pro choisi pour essai d’un mois ; les assets primitifs D69 sont rejetés comme rendu final. Continuer les blocs solo en autonomie en conservant les concepts validés. Pas de production massive de nouveaux modèles primitifs. Aucun modèle Meshy fourni pour l’instant ; préserver séparation décors/gameplay et sauvegardes.
+
+D71 : dix blocs autonomes demandés ; Pokédex et starters seront fournis ensuite. Ne pas les choisir à la place du propriétaire. Tables de démo clairement provisoires et sauvegardes historiques conservées. Voir LOT_DEMO_DIX_SYSTEMES.md.

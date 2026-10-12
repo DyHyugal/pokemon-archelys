@@ -15,6 +15,14 @@ function mon(species,uid,moves,extra={}){
 }
 function start(player,enemy,mode='singles',extra={}){const a=new Adapter();const s=a.start({player,enemy,mode,seed:[1,2,3,4],...extra});return {a,s};}
 {
+ const {a,s}=start([mon('blastoise',1,['surf'],{item:'lucky-egg'})],[mon('magikarp',9,['splash'])]);
+ check(s.player[0].item==='lucky-egg','Lucky Egg imports as a real held item');
+ const next=a.act({choice:'move 1'});check(next.player[0].item==='lucky-egg','Lucky Egg remains held across turns');
+ check(a.b.p1.pokemon[0].getItem().exists,'Upstream item mechanics see Lucky Egg');
+ check(a.b.p1.pokemon[0].takeItem().id==='luckyegg' && a.state().player[0].item==='', 'Lucky Egg is removable by upstream item mechanics and removal exports');a.close();
+}
+
+{
  const p=mon('blastoise',1,['surf','protect'],{hp:70,status:'poison',moves:[{id:'surf',pp:3},{id:'protect',pp:10}]});
  const {a,s}=start([p],[mon('raticate',9,['tackle'])]);
  check(s.player[0].hp===70&&s.player[0].status==='poison','Initial condition preserved');

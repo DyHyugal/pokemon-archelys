@@ -342,3 +342,9 @@ func purchase_wardrobe(field: String,value: int) -> bool:
 	if in_battle or exploration.location!="isle-shop" or field not in ["shirt","pants"] or value<0 or value>=Appearance.COLORS[field].size() or money<100 or appearance[field]==value:return false
 	if not set_appearance(field,value):return false
 	money-=100;return true
+
+func set_shiny(uid: int,value: bool) -> bool:
+	if in_battle:return false
+	var mon: Dictionary=find(uid)
+	if mon.is_empty():return false
+	mon.shiny=value;return true

@@ -130,7 +130,7 @@ func render() -> void:
 	if adventure!=null:names.append_array([tr_text("Équipe / Résumé","Party / Summary"),"PC",tr_text("Apprentissages (%d)","Learning (%d)") % adventure.pending.size(),tr_text("Carte / Vol","Map / Fly"),tr_text("Vie quotidienne","Daily services"),tr_text("Règles / Difficulté","Rules / Difficulty"),"Pokédex",tr_text("Cinématiques","Cinematics"),tr_text("Sauvegardes","Save slots"),tr_text("Œufs / Incubateur","Eggs / Incubator"),tr_text("Aventure","Adventure"),tr_text("Personnage","Character"),tr_text("Photo","Photo"),tr_text("Île proposée","Proposed island"),tr_text("Atlas / Studio","Atlas / Studio"),tr_text("Boutique de vêtements","Clothing shop")])
 	if demo_mode:
 		for i: int in range(pages.size()-1,-1,-1):
-			if pages[i] not in ["home","bag","journal","map","saves","settings","team","pc","choices","services","dex","appearance","wardrobe"]:pages.remove_at(i);names.remove_at(i)
+			if pages[i] not in ["home","bag","journal","map","saves","settings","team","pc","choices","services","dex","appearance","wardrobe","rules","photo","nursery"]:pages.remove_at(i);names.remove_at(i)
 	if demo_mode:names[pages.find("map")]=tr_text("Carte locale","Local map")
 	for index: int in range(pages.size()):
 		var target: String=pages[index]
@@ -139,7 +139,7 @@ func render() -> void:
 	buttons.load=button(navigation,tr_text("Charger","Load"),func(): load_requested.emit())
 	buttons.resume=button(navigation,tr_text("Reprendre • Échap","Resume • Esc"),close)
 	title.text=names[pages.find(page)]
-	if demo_mode and page in ["journal","map","saves"] and demo_pages_renderer.is_valid():
+	if demo_mode and page in ["journal","map","saves","rules","photo","nursery","bag"] and demo_pages_renderer.is_valid():
 		demo_pages_renderer.call(page,body);buttons[page].grab_focus();return
 	match page:
 		"wardrobe":commerce_pages.wardrobe()

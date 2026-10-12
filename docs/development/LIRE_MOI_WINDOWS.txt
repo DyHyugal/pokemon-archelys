@@ -1,3 +1,41 @@
+ARCHÉLYS — DIX SYSTÈMES SOLO SUPPLÉMENTAIRES
+Version : lab-{short_commit}
+Commit : {commit}
+
+EXE au nom fixe Archelys-Laboratoire.exe ; extrais le dossier complet. Tes
+sauvegardes sont conservées, aucun recommencement requis pour les nouveaux menus.
+
+PARCOURS GROUPÉ — À TESTER QUAND TU ES DISPONIBLE
+Échap → Règles/Difficulté : règle difficulté, style Défini/Choix, soins du sac,
+EXP, cap et chance shiny. Sauvegarde/recharge pour vérifier la persistence.
+Désactiver puis réactiver le cap ne doit pas diminuer les niveaux.
+
+Équipe/Résumé : change le flag chromatique et un talent légal. Les textures
+chromatiques finales restent à produire. Dans Sac, sélectionne Potion puis
+un membre blessé ; sur une équipe soignée, aucun objet ne doit être consommé.
+Équipe l’Œuf Chance directement depuis le sac, puis lance un combat : le
+blocage Showdown pour cet objet est corrigé.
+
+Parle au professeur sur la place : œuf cadeau/incubateur. Le cadeau Carapuce
+est une fixture unique, aucune reproduction. Marche puis reviens au menu
+Œufs/Incubateur pour l’éclosion. Identité, progression et cadeau sont sauvegardés.
+Au Centre, parle au chercheur à gauche : fossiles d’essai et restauration.
+Même cadeau non duplicable ; aucune perte de fossile si le rangement est plein.
+
+Échap → Photo : cadre le héros, exporte un PNG puis reviens par Échap/B ou
+le bouton. Position et caméra doivent revenir, interface absente du PNG.
+Sur la jetée du havre, interagis pour pêcher : rencontre sauvage réelle.
+Magicarpe est un placeholder de catalogue ; faute de modèle, son nom est
+indiqué avec « modèle en attente ». Les conditions climat/terrain sont visibles
+pendant le combat. Les textes restent manuels ; pas d’animations d’attaques finales.
+
+Les starters, Pokédex, équipes et objets distribués sont TOUJOURS PROVISOIRES.
+Leur configuration est séparée des services. Aucun nouveau modèle Meshy intégré.
+Les bâtiments actuels restent des maquettes rejetées comme rendu final.
+Documentation/Demo-dix-systemes.md détaille les dix blocs et leurs limites.
+Le guide d’import GLB explique la préparation des futurs fichiers Meshy.
+
+--- PARCOURS DES LOTS PRÉCÉDENTS ---
 ARCHÉLYS — JOURNAL, CARTE LOCALE ET TROIS PARTIES DE DÉMO
 Version : lab-{short_commit}
 Commit : {commit}

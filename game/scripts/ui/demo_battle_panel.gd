@@ -1,4 +1,5 @@
 extends "res://scripts/ui/pokemon_battle_panel.gd"
+var field_label: Label
 var enemy_label: Label
 var player_label: Label
 var enemy_hp: ProgressBar
@@ -20,10 +21,12 @@ func _ready() -> void:
  for bar: ProgressBar in [player_hp,enemy_hp]:
   var fill:=StyleBoxFlat.new();fill.bg_color=Color("79b674");fill.set_corner_radius_all(6);bar.add_theme_stylebox_override("fill",fill)
   var background:=StyleBoxFlat.new();background.bg_color=Color("dce4d1");background.set_corner_radius_all(6);bar.add_theme_stylebox_override("background",background)
+ field_label=Label.new();field_label.position=Vector2(28,150);field_label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;field_label.custom_minimum_size.x=650;add_child(field_label)
  visible=false
 func render() -> void:
  super.render()
  if not battle:return
+ field_label.text=field_caption()
  var p: Dictionary=battle.current(0);var e: Dictionary=battle.current(1)
  enemy_label.text="%s • Nv.%d\n%s" % [name_of(e.species),e.level,Catalog.text("status_names",e.status,locale)]
  player_label.text="%s • Nv.%d • %d/%d PV\n%s" % [name_of(p.species),p.level,p.hp,Mon.stats(p).hp,Catalog.text("status_names",p.status,locale)]

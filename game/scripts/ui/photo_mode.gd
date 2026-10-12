@@ -1,5 +1,6 @@
 extends CanvasLayer
 signal finished
+var focus_override: Node3D
 var world: Node3D
 var camera: Camera3D
 var active:=false
@@ -19,15 +20,15 @@ func text(fr: String,en: String) -> String:return fr if world.locale=="fr" else 
 func _ready() -> void:
  layer=30;visible=false
  panel=PanelContainer.new();panel.position=Vector2(20,20);panel.custom_minimum_size.x=330;add_child(panel)
-func start(owner: Node3D) -> bool:
+func start(owner: Node3D,view: Camera3D=null,focus: Node3D=null) -> bool:
  if active or owner.atlas_studio.active or owner.get_node("/root/Session").active_network or owner.pokemon_battle.active or owner.battle_panel.visible or owner.cinematic.active or owner.dialogue.active:return false
- world=owner;camera=owner.camera;original_transform=camera.transform;original_size=camera.size
+ world=owner;camera=owner.camera if view==null else view;focus_override=focus;original_transform=camera.transform;original_size=camera.size
  owner.get_node("/root/Session").submit_axis(Vector2.ZERO)
  layers.clear();labels.clear()
  for node: Node in owner.get_children():
   if node is CanvasLayer and node!=self:layers[node]=node.visible;node.hide()
  for node: Node in owner.find_children("*","Label3D",true,false):labels[node]=node.visible;node.hide()
- active=true;visible=true;distance=8;angle=0;elevation=1;render();frame();return true
+ active=true;visible=true;distance=8 if focus_override==null else 4;angle=0 if focus_override==null else 90;elevation=1;render();frame();return true
 func slider(parent: Node,caption: String,from: float,to: float,value: float,changed: Callable) -> void:
  var label:=Label.new();label.text=caption;parent.add_child(label)
  var control:=HSlider.new();control.min_value=from;control.max_value=to;control.step=0.5;control.value=value;parent.add_child(control);control.value_changed.connect(changed)
@@ -45,7 +46,7 @@ func render() -> void:
  feedback.text=text("La partie ne se déplace pas. Les décors animés restent animés. Export à la résolution courante, interface masquée.","Campaign movement is locked. Animated scenery stays animated. Export uses the current resolution and hides the UI.")
 func frame() -> void:
  if not active:return
- var focus: Vector3=world._local_position()+Vector3(0,elevation,0)
+ var focus: Vector3=(world._local_position() if focus_override==null else focus_override.global_position)+Vector3(0,elevation,0)
  var radians: float=deg_to_rad(angle)
  camera.position=focus+Vector3(sin(radians)*distance,distance*0.7,cos(radians)*distance)
  camera.look_at(focus);camera.size=distance
@@ -82,4 +83,6 @@ func close() -> void:
   if is_instance_valid(node):node.visible=layers[node]
  for node: Node in labels:
   if is_instance_valid(node):node.visible=labels[node]
- layers.clear();labels.clear();world.get_node("/root/Session").submit_axis(Vector2.ZERO);world.last_walk_position=world._local_position();finished.emit()
+ layers.clear();labels.clear();world.get_node("/root/Session").submit_axis(Vector2.ZERO);
+ if focus_override==null:world.last_walk_position=world._local_position()
+ focus_override=null;finished.emit()

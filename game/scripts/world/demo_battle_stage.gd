@@ -1,5 +1,6 @@
 extends Node3D
 const Catalog=preload("res://scripts/domain/pokemon_catalog.gd")
+var locale: String="fr"
 var camera: Camera3D
 var models: Array[Node3D]=[]
 var species: Array[String]=["",""]
@@ -25,7 +26,7 @@ func refresh() -> void:
    if ResourceLoader.exists(path):models[i].add_child(load(path).instantiate())
    else:
     # Species outside this demo's five-model roster stay explicitly identified.
-    var label:=Label3D.new();label.text=Catalog.name_of(id,"fr");label.billboard=BaseMaterial3D.BILLBOARD_ENABLED;label.position.y=1;models[i].add_child(label)
+    var label:=Label3D.new();label.text=Catalog.name_of(id,locale)+(" — modèle en attente" if locale=="fr" else " — model pending");label.billboard=BaseMaterial3D.BILLBOARD_ENABLED;label.position.y=1;models[i].add_child(label)
    species[i]=id
   models[i].visible=int(mon.hp)>0
 func _process(delta: float) -> void:

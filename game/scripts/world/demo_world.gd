@@ -30,7 +30,9 @@ func orb(pos: Vector3,scale_value: Vector3,color: String) -> MeshInstance3D:
  var mesh:=SphereMesh.new();mesh.radius=1;mesh.height=2
  var o:=MeshInstance3D.new();o.mesh=mesh;o.position=pos;o.scale=scale_value;o.material_override=mat(color);geometry.add_child(o);return o
 func asset(id: String,pos: Vector3,scale_value: float=1.0) -> Node3D:
- var o: Node3D=load("res://assets/demo/"+id+".glb").instantiate();o.position=pos;o.scale=Vector3.ONE*scale_value;geometry.add_child(o);surface_shader(o);return o
+ var o: Node3D=preload("res://scripts/services/imported_assets.gd").instantiate(id)
+ if o==null:o=load("res://assets/demo/"+id+".glb").instantiate();surface_shader(o)
+ o.position=pos;o.scale*=scale_value;geometry.add_child(o);return o
 func terrain(poly: PackedVector2Array,height: float,color: String) -> void:
  var vertices:=PackedVector3Array()
  for p: Vector2 in poly:vertices.append(Vector3(p.x,height,p.y))
@@ -45,7 +47,7 @@ func npc(id: String,at: Vector3,shirt: int) -> void:
  var o: Node3D=asset("trainer",at)
  var look: Dictionary=preload("res://scripts/domain/appearance.gd").DEFAULT.duplicate();look.shirt=shirt;look.style=1;look.skin=shirt%4;Style.apply(o,look);o.name="NPC_"+id
  blockers.append(Rect2(Vector2(at.x-.35,at.z-.35),Vector2(.7,.7)))
- var label:=Label3D.new();label.text={"vyna":"Vyna","professor":"Professeur","resident":"Habitant","trainer":"Dresseur","nurse":"Soins","merchant":"Boutique","clothier":"Vêtements"}.get(id,id);label.position=at+Vector3(0,2.12,0);label.font_size=28;label.pixel_size=.005;label.billboard=BaseMaterial3D.BILLBOARD_ENABLED;label.visible=show_labels;geometry.add_child(label)
+ var label:=Label3D.new();label.text={"vyna":"Vyna","professor":"Professeur","resident":"Habitant","trainer":"Dresseur","nurse":"Soins","merchant":"Boutique","clothier":"Vêtements","fossils":"Fossiles"}.get(id,id);label.position=at+Vector3(0,2.12,0);label.font_size=28;label.pixel_size=.005;label.billboard=BaseMaterial3D.BILLBOARD_ENABLED;label.visible=show_labels;geometry.add_child(label)
 func _ready() -> void:
  geometry=Node3D.new();add_child(geometry)
  hero=load("res://assets/demo/trainer.glb").instantiate();add_child(hero)
@@ -94,7 +96,7 @@ func town() -> void:
    var sign:=Label3D.new();sign.text={"center":"CENTRE","shop":"BOUTIQUE","home":"MAISON"}[id];sign.position=at+Vector3(0,2.8,2.5);sign.font_size=28;sign.pixel_size=.007;sign.billboard=BaseMaterial3D.BILLBOARD_ENABLED;geometry.add_child(sign)
  asset("clocktower",Vector3(-7,0,-5),.8);blockers.append(Rect2(Vector2(-8.3,-6.3),Vector2(2.6,2.6)))
  npc("vyna",Vector3(-3,0,2),2);npc("professor",Vector3(4,0,0),0);npc("resident",Vector3(-12,0,11),3)
- points["gate"]=Vector3(0,0,-23);points["supplies"]=Vector3(6,0,7)
+ points["fish"]=Vector3(11,0,14);points["gate"]=Vector3(0,0,-23);points["supplies"]=Vector3(6,0,7)
  box(Vector3(.7,.6,.6),points.supplies+Vector3(0,.3,0),"927150")
  # Stone seawall, wooden dock, small boat, planted terraces and background cliffs.
  for x: int in range(-25,8,3):box(Vector3(2.75,.65,.4),Vector3(x,.325,15.5),"a69e88")
@@ -137,7 +139,7 @@ func interior() -> void:
  for side: int in [-1,1]:box(Vector3(.25,3.5,20),Vector3(side*9,1.75,0),"ece6d8")
  points["exit"]=Vector3(0,0,9)
  if location=="center":
-  box(Vector3(9,.9,1.2),Vector3(0,.45,-4),"749faa");npc("nurse",Vector3(0,0,-5),1);points.pc=Vector3(5,0,-2)
+  box(Vector3(9,.9,1.2),Vector3(0,.45,-4),"749faa");npc("nurse",Vector3(0,0,-5),1);npc("fossils",Vector3(-5,0,-2),3);points.pc=Vector3(5,0,-2)
   box(Vector3(1,1.4,.6),Vector3(5,.7,-2),"4a606b");box(Vector3(.8,.5,.04),Vector3(5,1,-1.65),"9bd7d9")
  elif location=="shop":
   box(Vector3(8,.9,1.2),Vector3(0,.45,-4),"a08768");npc("merchant",Vector3(0,0,-5),0);npc("clothier",Vector3(-5,0,-2),2)

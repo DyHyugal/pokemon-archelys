@@ -1,5 +1,7 @@
 extends CanvasLayer
 signal finished
+const Content=preload("res://scripts/domain/demo_content.gd")
+const Systems=preload("res://scripts/ui/demo_system_pages.gd")
 const Slots=preload("res://scripts/services/demo_slots.gd")
 const Guidance=preload("res://scripts/domain/demo_guidance.gd")
 const LocalMap=preload("res://scripts/ui/demo_map.gd")
@@ -96,18 +98,22 @@ func slot_picker() -> void:
   var detail: String=Catalog.name_of(data.starter,locale) if not data.is_empty() else t("vide / invalide","empty / invalid")
   button(column,t("Emplacement %d : %s","Slot %d: %s") % [key,detail],func():active_slot=key;welcome(),"PickSlot%d" % key)
 func new_demo() -> void:
+ if Content.data().is_empty():
+  var column:=popup(t("Configuration de démo invalide : vérifier les espèces et niveaux dans data/demo/content.json.","Invalid demo configuration: check species and levels in data/demo/content.json."));button(column,t("Retour","Back"),welcome);return
  loaded_slot=active_slot
  state=State.new();state.campaign.adventure.appearance=owner_world.get_node("/root/Session").campaign.adventure.appearance.duplicate()
  state.campaign.adventure.appearance.style=0;menu.adventure=state.campaign.adventure;world.build(state);starter_screen()
 func starter_screen() -> void:
  world.build(state)
  var column:=popup(t("Choisis ton premier Pokémon — sélection provisoire pour la démo. Tu peux personnaliser ton personnage avant de partir.","Choose your first Pokémon — provisional demo roster. Customize your character before setting off."))
- for id: String in State.STARTERS:
+ for id: String in Content.data().starters:
   var key: String=id
-  button(column,Catalog.name_of(id,locale)+" • Nv.6",func():choose_starter(key),"Starter_"+id)
+  button(column,Catalog.name_of(id,locale)+" • Nv.%d" % int(Content.data().starter_level),func():choose_starter(key),"Starter_"+id)
  button(column,t("Personnaliser mon personnage","Customize my character"),func():clear_modal();open_menu("appearance"))
  # Actual models on the starter plaza, not species-name placeholders.
- for i: int in range(3):world.asset("pokemon-"+State.STARTERS[i],Vector3(-2+i*2,0,-2),.7)
+ for i: int in range(Content.data().starters.size()):
+  var path: String="res://assets/demo/pokemon-"+Content.data().starters[i]+".glb"
+  if ResourceLoader.exists(path):world.asset("pokemon-"+Content.data().starters[i],Vector3(-2+i*2,0,-2),.7)
 func choose_starter(id: String) -> bool:
  if not state.choose(id):return false
  clear_modal();world.build(state);save_game();talk([t("Ton partenaire est prêt ! Vyna t'attend près de la place. E / Entrée : interagir. Échap : menu.","Your partner is ready! Vyna waits by the plaza. E / Enter: interact. Escape: menu.")]);return true
@@ -144,8 +150,14 @@ func interact(id: String="") -> void:
    if state.flags.has("trainer") and state.flags.has("survey"):
     state.flags.complete=true;save_game();talk([t("Le sentier est sécurisé ! Merci. Cette portion de la première île se termine ici ; tu peux continuer à explorer, capturer et préparer ton équipe.","The trail is safe! Thank you. This first island slice ends here; keep exploring, catching and preparing your party.")])
    else:talk([t("La balise du sentier ne répond plus. Va la relever au nord, puis affronte le dresseur qui garde le passage. Soins et provisions sont disponibles au havre.","The trail beacon has stopped responding. Survey it to the north, then battle the trainer guarding the path. Healing and supplies are available in town.")])
-  "professor":talk([t("Tu peux consulter ton partenaire et modifier ses IV, EV et sa nature dans Équipe / Résumé. Les trois starters de cette démo restent provisoires.","View your partner and edit IVs, EVs and nature in Party / Summary. This demo's three starters remain provisional.")])
+  "professor":
+   var column:=popup(t("Professeur — préparation de l’équipe","Professor — party preparation"))
+   button(column,t("Œuf cadeau / incubateur (essai)","Gift egg / incubator (test)"),func():open_menu("nursery"),"ProfessorIncubator")
+   button(column,t("Conseils","Advice"),func():talk([t("Tu peux consulter ton partenaire et modifier ses IV, EV et sa nature dans Équipe / Résumé. Les trois starters de cette démo restent provisoires.","View your partner and edit IVs, EVs and nature in Party / Summary. This demo's three starters remain provisional.")]),"ProfessorAdvice")
+   button(column,t("Retour","Back"),clear_modal)
   "resident":talk([t("Le port vit grâce aux jardins de la jungle et aux sources de la montagne. Notre ville reste ouverte malgré les contrôles au-delà du sentier.","The harbor lives from jungle gardens and mountain springs. Our town remains open despite controls beyond the trail.")])
+  "fossils":open_menu("services")
+  "fish":begin_battle([state.campaign.adventure.wild(int(Content.data().fishing_level),Content.data().fishing)])
   "nurse":state.campaign.adventure.heal_team();save_game();talk([t("Ton équipe est soignée et ses PP restaurés.","Your party is healed and its PP restored.")])
   "merchant":open_menu("services")
   "clothier":open_menu("wardrobe")
@@ -161,8 +173,8 @@ func interact(id: String="") -> void:
   "trainer":
    if not state.flags.has("survey"):talk([t("Relève d'abord la balise à l'ouest du sentier.","Survey the beacon west of the trail first.")])
    elif state.flags.has("trainer"):talk([t("Bien joué ! Retourne voir Vyna au havre.","Well done! Return to Vyna in town.")])
-   else:begin_battle([Mon.make("rattata",6,900000),Mon.make("pikachu",7,900001)],"demo-trainer")
-  "grass":begin_battle([state.campaign.adventure.wild(5,"rattata" if state.campaign.adventure.rng.randi_range(0,1)==0 else "pikachu")])
+   else:begin_battle(Content.opponents(),"demo-trainer")
+  "grass":begin_battle([state.campaign.adventure.wild(int(Content.data().wild_level),Content.data().wild[state.campaign.adventure.rng.randi_range(0,Content.data().wild.size()-1)])])
 func travel(id: String) -> void:
  var previous: String=state.location
  if not state.travel(id):return
@@ -174,7 +186,7 @@ func begin_battle(enemies: Array,trainer: String="") -> bool:
  if state.starter.is_empty() or modal or menu.visible or battle_panel.visible:return false
  battle=Battle.new()
  if not battle.begin(state.campaign.adventure,enemies,trainer):feedback.text=t("Combat non lancé : ","Battle not started: ")+battle.last_error;return false
- world.hide();arena=Stage.new();owner_world.add_child(arena);arena.battle=battle;arena.animations=owner_world.comfort.data.combat_animations and not owner_world.comfort.data.reduced_motion
+ world.hide();arena=Stage.new();owner_world.add_child(arena);arena.battle=battle;arena.locale=locale;arena.animations=owner_world.comfort.data.combat_animations and not owner_world.comfort.data.reduced_motion
  battle_panel.animations_enabled=arena.animations;battle_panel.open(battle,locale);hud.hide();feedback.hide();contextual.hide();return true
 func battle_finished(result: String) -> void:
  if battle and result=="won" and battle.trainer=="demo-trainer":state.flags.trainer=true;state.campaign.adventure.money=mini(999999,state.campaign.adventure.money+250)
@@ -196,6 +208,7 @@ func load_game() -> void:
  clear_modal();menu.close();menu.adventure=state.campaign.adventure;world.build(state);steps=0
 func _process(delta: float) -> void:
  if not active:return
+ if owner_world.photo_mode.active:return
  hud.text="ARCHÉLYS • "+t("Havre tropical","Tropical haven")+"\n"+state.objective(locale)+"\n"+t("E / Entrée : interagir • Échap : menu","E / Enter: interact • Escape: menu")
  contextual.text=""
  if modal or menu.visible or battle_panel.visible:return
@@ -209,6 +222,10 @@ func _process(delta: float) -> void:
  if not state.starter.is_empty() and Time.get_ticks_msec()-last_save>60000:save_game()
 func _input(event: InputEvent) -> void:
  if not active:return
+ if owner_world.photo_mode.active:
+  if event is InputEventJoypadButton and event.pressed and event.button_index in [JOY_BUTTON_B,JOY_BUTTON_START]:owner_world.photo_mode.close();get_viewport().set_input_as_handled()
+  else:owner_world.photo_mode.handle_key(event)
+  return
  if event is InputEventJoypadButton and event.pressed:
   if battle_panel.visible:
    if event.button_index==JOY_BUTTON_A and battle_panel.event_index<battle.events.size():battle_panel.advance();get_viewport().set_input_as_handled()
@@ -239,7 +256,7 @@ func _input(event: InputEvent) -> void:
 func _notification(what: int) -> void:
  if what==NOTIFICATION_WM_CLOSE_REQUEST and active:save_game()
 func close() -> void:
- if not active or (battle and battle.active):return
+ if not active or owner_world.photo_mode.active or (battle and battle.active):return
  save_game();active=false;clear_modal();hide()
  for child: Node in [hud,feedback,contextual]:remove_child(child);child.queue_free()
  world.queue_free();menu.queue_free();battle_panel.queue_free()
@@ -248,6 +265,7 @@ func close() -> void:
  old_camera.current=true;get_viewport().msaa_3d=saved_msaa;old_visibility.clear();finished.emit()
 
 func render_demo_page(page: String,body: Node) -> void:
+ if page in ["rules","photo","nursery","bag"]:Systems.new(self).render(page);return
  if page=="journal":
   var objective:=Label.new();objective.text=state.objective(locale);objective.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;body.add_child(objective)
   for task: Dictionary in Guidance.tasks(state,locale):
@@ -288,3 +306,7 @@ func confirm_new_slot(index: int) -> void:
  var column:=popup(t("Nouvelle partie dans l'emplacement %d ? Sa dernière sauvegarde sera conservée en .backup à la première sauvegarde.","New game in slot %d? Its last save will be retained as .backup at the first save.") % index)
  button(column,t("Commencer","Start"),func():active_slot=index;new_demo(),"ConfirmNewSlot").grab_focus()
  button(column,t("Annuler","Cancel"),func():open_menu("saves"))
+
+func start_photo() -> bool:
+ if not active or (battle and battle.active) or modal:return false
+ return owner_world.photo_mode.start(owner_world,world.camera,world.hero)

@@ -20,3 +20,7 @@ Priorité actualisée D36 : solo d’abord, multijoueur après. Préserver la s�
 ## D70 — guidage et sauvegardes de la démo
 
 Journal, carte locale, trois parties indépendantes/copies précédentes et continuité des interactions développés et contrôlés. Graphismes finaux suspendus à un essai d’assets Meshy ; aucune validation artistique acquise. Voir [le lot](development/LOT_EXPLORATION_SAUVES_DEMO.md).
+
+## D71 — dix systèmes solo, données finales attendues
+
+Contenu configurable, règles, chromatique, sac, incubateur, fossiles, photo, pêche, conditions de combat et pipeline GLB intégrés dans la démo. Source/limites : [rapport](development/LOT_DEMO_DIX_SYSTEMES.md). Catalogue22espèces reste provisoire ; pas de nouveau Pokédex ou starter final, pas de modèle Meshy livré.
