@@ -1,4 +1,4 @@
-> État courant D72 : démo jouable havre/sentier/intérieurs, 22 espèces de fixtures, Showdown intégré, douze blocs supplémentaires. Les tableaux initiaux ci-dessous décrivent les étapes historiques du laboratoire ; les sections datées D69–D72 précisent l’état de la démo. Graphismes finaux et îles complètes à produire.
+> État courant D73 : havre/sentier et trois zones nouvelles connectées (canopée, sources, poste RR), 22 espèces de fixtures, Showdown intégré et dix blocs de continuation. Les tableaux initiaux décrivent les étapes historiques ; les sections D69–D73 précisent la démo. Graphismes finaux, divinité/raid et île complète à produire.
 
 # État des fonctionnalités
 
@@ -214,3 +214,5 @@ Livraison D72 : source `a732c7c`, CI [38307537252](https://github.com/DyHyugal/p
 ## D73 — dix blocs de prolongement
 
 Owner : « Ok enchaine sur les 10 prochjains blocs », 12 octobre 2026. Poursuite autonome du solo avec fixtures. Canopée/sources/poste secondaire, contrôle RR, relais, championne climat, responsables au palier commun, Surf, camp, rencontres/habitats, carte/guidage et scènes/reprise : [lot détaillé](development/LOT_DEMO_CANOPY_DIX_BLOCS.md). Développé/testé techniquement, pas de validation Windows/graphique déduite. Pokédex/starters et Meshy toujours attendus ; noms/équilibrage/récit proposés, divinité et libération de l’île non implémentées par ce lot.
+
+Livraison D73 : source `8da0f6f`, CI [38313303857](https://github.com/DyHyugal/pokemon-archelys/actions/runs/38313303857) réussie, ZIP `lab-8da0f6f` publié. [Preuves et reprise](development/VERIFICATION_D73.md). Aucun nouveau retour Windows/graphique owner déduit.
