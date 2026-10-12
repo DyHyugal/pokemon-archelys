@@ -1,10 +1,11 @@
 extends RefCounted
 ## Personal discovery history, independent of views and encounter generation.
+const Island=preload("res://scripts/domain/island.gd")
 const Catalog=preload("res://scripts/domain/pokemon_catalog.gd")
 var seen: Dictionary={}
 var caught: Dictionary={}
 var scenes: Dictionary={}
-const SCENES=["lab-tour","lab-note","slice-prologue","slice-ending"]
+const SCENES=["lab-tour","lab-note","slice-prologue","slice-ending","isle-arrival","isle-liberation"]
 func observe(id: String, owned: bool=false) -> void:
  if not Catalog.data().species.has(id):return
  seen[id]=true
@@ -37,4 +38,8 @@ static func habitats(id: String) -> Array:
  for level: int in range(2,Catalog.FISH_MAX_LEVEL+1):
   if Catalog.legal_species(Catalog.FISH_BASE,level)==id:
    result.append("cove");break
+ for location: String in Island.POOLS:
+  for base: String in Island.POOLS[location]:
+   for level: int in range(8,15 if location=="isle-jungle" else 19):
+    if Catalog.legal_species(base,level)==id and location not in result:result.append(location)
  return result

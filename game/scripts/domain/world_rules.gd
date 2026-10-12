@@ -1,6 +1,7 @@
 class_name WorldRules
 extends RefCounted
 
+const Island=preload("res://scripts/domain/island.gd")
 const INTERACTIONS := {"guide":Vector3(3,0,3), "sign":Vector3(-3,0,-3), "crate":Vector3(6,0,6)}
 
 const SERVICE_POINTS={"healing":Vector3(0,0,3),"trainer-1":Vector3(6,0,-4),"trainer-2":Vector3(10,0,-4)}
@@ -9,6 +10,7 @@ static func interaction_points() -> Dictionary:
 	var points:=INTERACTIONS.duplicate();points.merge(SERVICE_POINTS);return points
 
 static func local_points(location: String) -> Dictionary:
+	if location in Island.LOCATIONS:return Island.points(location)
 	match location:
 		"trail":return {"exit":Vector3(0,0,8),"beacon":Vector3(6,0,-2),"trial-gate":Vector3(0,0,-8)}
 		"trial":return {"exit-trial":Vector3(0,0,8),"slice-boss":Vector3(0,0,-4)}
@@ -18,6 +20,7 @@ static func local_points(location: String) -> Dictionary:
 		"district":return {"exit":Vector3(0,0,7),"visuals":Vector3(0,0,3)}
 	return {"journey-gate":Vector3(0,0,-6),"center-door":Vector3(-8,0,2.2),"shop-door":Vector3(8,0,2.2),"pier":Vector3(0,0,9),"district-gate":Vector3(0,0,-9),"cut":Vector3(-11,0,3),"rock-smash":Vector3(11,0,3),"strength":Vector3(11,0,6),"climb":Vector3(-11,0,8)}
 static func local_walkable(pos: Vector2,location: String) -> bool:
+	if location in Island.LOCATIONS:return Island.walkable(pos,location)
 	if location in ["trail","trial"]:
 		if absf(pos.x)>12 or absf(pos.y)>10:return false
 		if location=="trail":

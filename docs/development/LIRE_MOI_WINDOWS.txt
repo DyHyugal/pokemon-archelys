@@ -1,4 +1,4 @@
-ARCHÉLYS — OPTIONS COMBAT / DÉFAITE + LOTS SOLO PRÉCÉDENTS
+ARCHÉLYS — PREMIÈRE ÎLE PROPOSÉE, DOUZE BLOCS + LOTS PRÉCÉDENTS
 Version : lab-{short_commit}
 Commit : {commit}
 
@@ -9,6 +9,14 @@ nécessaire. Nom EXE fixe, binaire officiel Godot inchangé ; non signé par nou
 En cas de blocage, noter le message et la protection sans les désactiver.
 
 CE QUI CHANGE
+Douze blocs de première île proposés : chapitre/save, huit zones avec intérieurs,
+collisions et chemins, arrivée/dialogues FR/EN, biomes et habitats du Pokédex,
+combats Showdown, relais, quête botaniste, caches, services/défaite locale,
+carte/Vol/objectifs et libération/replay. Noms, graphismes, scénario, niveaux,
+équipes et récompenses PROVISOIRES : nous les adapterons après tes retours.
+Aucun reset de ton équipe ; nouvel emplacement conseillé pour tester les niveaux.
+Les deux admins sont au même palier22 ; cap antérieur supérieur conservé.
+
 Règles : styles Défini / Choix, soins du sac en combat ON/OFF.
 Choix propose un changement gratuit après le KO adverse en dresseur SIMPLE,
 avec une réserve apte et ton actif vivant. Pas en sauvage/double/dernier ennemi.
@@ -60,6 +68,37 @@ Catalogue22 espèces/43 attaques inchangé. Œufs cadeaux/fossiles conservés.
 Reproduction retirée ; multi/raids/Nuzlocke/Soul-link non prioritaires.
 
 PARCOURS DE TEST GROUPÉ
+
+PREMIÈRE ÎLE — PARCOURS PRINCIPAL À TESTER
+Pause → Aventure → Explorer la première île proposée, ou onglet Île proposée.
+Ouvrir l'île : équipe actuelle conservée. Un nouveau slot permet de juger les
+niveaux ; une ancienne équipe puissante rendra le parcours facile.
+Au havre, parler à Vyna (E/Entrée) et confirmer la scène d'arrivée. Parler au
+botaniste pour accepter sa quête facultative. Centre à gauche, boutique à droite.
+Battre le contrôle RR au nord, puis suivre le panneau vers la jungle. Activer
+les deux relais, dans n'importe quel ordre ; chercher les trois fleurs/relevés.
+Les caches proposent des fournitures une fois ; les prendre de nouveau ne doit
+rien dupliquer. Sauvegarder dans la jungle puis charger et vérifier la progression.
+Aller au sanctuaire à l'est et gagner le combat du gardien. Revenir à la jungle,
+continuer au nord dans la caldeira ; contourner le bassin de lave par les côtés.
+Traverser la galerie et entrer dans le poste RR. Deux admins, même palier22,
+préparation/soins via les menus et retour au havre possibles entre les combats.
+Après le second, onglet Île proposée → Voir la libération, textes manuels.
+Vol vers les lieux extérieurs déjà visités devient disponible dans ce menu,
+sans Pokémon compatible. Revenir au havre : drapeaux/dialogue changés.
+Retourner au botaniste avec trois relevés : un Pikachu d'essai rejoint équipe/PC,
+une seule fois. Plein = récompense conservée jusqu'à une place disponible.
+Tester boutique, Centre, save/load final, et si possible FR/EN depuis Paramètres.
+Perdre un combat sur cette île doit conduire à son Centre, pas au laboratoire.
+Une nouvelle save dans ces zones ne doit pas être relue dans une ancienne version.
+
+RETOURS DE CONCEPTION
+Noter disposition/longueur des trajets, lisibilité des panneaux, ambiance,
+rythme/texte, puzzle, quête et difficulté sur une partie fraîche. Les décors et
+mannequins sont des maquettes ; les graphismes finaux restent à produire.
+Les cinq vues sont dans Comparatifs/ile-*.png ; bilan et douze blocs dans
+Documentation/Premiere-ile-12-blocs.md (SPOILERS DEV).
+
 
 NOUVEAU PARCOURS OPTIONS / DÉFAITE
 Dans Règles, choisir Choix et désactiver les soins du sac. Sauvegarder/recharger :

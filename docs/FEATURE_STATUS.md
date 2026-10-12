@@ -146,3 +146,7 @@ Messages publics FR/EN, historique paginé sans messages futurs, fiches d'attaqu
 ## D65 — styles, soins et retour au Centre
 
 Lot solo : Défini/Choix, remplacement gratuit orchestré par Showdown, soins du sac ON/OFF et défaite au Centre avec pénalité unique. Champs optionnels campagne5, anciennes sauvegardes compatibles ; aucun nouveau quota de soins ni règle de raid. Développé et testé :29 nouveaux contrôles bridge,44 contrôles domaine/menus/disque,45 sous rendu GL avec PNG ; suite complète réussie. Windows à tester. [Portée et limites](development/LOT_OPTIONS_COMBAT_DEFAITE.md). Animations configurables restent à développer, D52 dernière validation propriétaire.
+
+## D66 — première île proposée, douze blocs
+
+B01–B12 développés : chapitre persistant, huit zones dont intérieurs, collisions/chemins, dialogues FR/EN et arrivée, rencontres/Dex par biomes, quatre combats Showdown, relais, quête botaniste, caches, services/défaite locale, carte/Vol et guidance, libération/replay. **Proposition jouable**, pas première île finale ni validation graphique. 103 contrôles domaine/chemins,46 contrôles scène et suite complète réussis ;51 sous GL avec cinq captures. Preuve de publication dans [le rapport](development/LOT_PREMIERE_ILE_12_BLOCS.md). Dernier retour Windows D52 ; nouveau parcours à tester. Réseau/raids/défis reportés ; reproduction retirée.

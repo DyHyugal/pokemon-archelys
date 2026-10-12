@@ -10,6 +10,7 @@ func render(page: String) -> void:
 	var owner: RefCounted=menu.adventure
 	var state: RefCounted=owner.exploration
 	if page=="map":
+		menu.button(menu.body,t("Carte de la première île proposée","Map of the proposed first island"),func():menu.page="island";menu.render())
 		menu.label(t("Carte du laboratoire — géographie provisoire, pas l'archipel final.","Laboratory map — placeholder geography, not the final archipelago."))
 		var diagram:=GridContainer.new();diagram.columns=3;menu.body.add_child(diagram)
 		for text: String in ["",t("Quartier visuel","Visual district"),"",t("Village / Centre / Boutique","Village / Center / Shop"),"↔",t("Crique / Pêche","Cove / Fishing")]:
@@ -22,7 +23,7 @@ func render(page: String) -> void:
 	elif page=="services":
 		menu.label(t("Lieu actuel : %s • Argent : %d ₽","Current location: %s • Money: ₽%d") % [state.location,owner.money])
 		menu.label(t("Centre et boutique : entre par les portes du village. La jetée au sud mène à la crique ; le passage nord au quartier visuel. Interagis avec E / Entrée.","Center and shop: enter through the village doors. The south pier leads to the cove; the north passage to the visual district. Interact with E / Enter."))
-		if state.location=="shop":
+		if state.location in ["shop","isle-shop"]:
 			for item: String in Exploration.PRICES:
 				var id: String=item
 				menu.label("%s × %d • %d ₽" % [Catalog.name_of(id,menu.locale),owner.bag.get(id,0),Exploration.PRICES[id]])
@@ -31,7 +32,7 @@ func render(page: String) -> void:
 					var quantity: int=count
 					menu.button(row,t("Acheter × %d","Buy × %d") % count,func():transaction(id,quantity,false))
 				menu.button(row,t("Vendre × 1 (moitié du prix)","Sell × 1 (half price)"),func():transaction(id,1,true))
-		elif state.location=="center":
+		elif state.location in ["center","isle-center"]:
 			menu.label(t("Restauration de fossiles — service provisoire du laboratoire, Pokémon niveau5.","Fossil restoration — temporary laboratory service, level5 Pokémon."))
 			if state.nuzlocke=="on":menu.label(t("Fossiles indisponibles en défi : intégration des quotas reportée.","Fossils unavailable in challenge mode: quota integration deferred."))
 			if not owner.fossil_samples_received:
@@ -76,5 +77,5 @@ func choice(title: String,values: Array,current: String,action: Callable) -> voi
 	picker.select(values.find(current));menu.body.add_child(picker)
 	picker.item_selected.connect(func(index: int):action.call(values[index]))
 func transaction(item: String,count: int,sell: bool) -> void:
-	var ok: bool=menu.adventure.exploration.location=="shop" and menu.adventure.purchase(item,count,sell)
+	var ok: bool=menu.adventure.exploration.location in ["shop","isle-shop"] and menu.adventure.purchase(item,count,sell)
 	menu.render();menu.feedback.text=t("Transaction effectuée.","Transaction completed.") if ok else t("Transaction refusée : argent, quantité ou place insuffisants. Aucun objet ni argent perdu.","Transaction rejected: insufficient money, quantity or space. No items or money lost.")

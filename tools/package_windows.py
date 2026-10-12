@@ -24,7 +24,7 @@ manifest={'commit':args.commit,'godot':'4.6.3','stage':'technical-laboratory',
           'showdown':provenance,'distribution':'portable-external-pck-with-offline-showdown','unmodified_godot_template':True,
           'windows_execution':'not validated on Windows','network_validation':'deferred; prior lab-09897ca tested on localhost only'}
 (folder/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
-(folder/'release-notes.md').write_text('D65 : options Défini/Choix, changement gratuit natif Showdown, soins du sac ON/OFF et défaite au Centre avec pénalité unique. Réglages persistants compatibles avec anciennes campagnes5, vrais tests de pièges/talents/KO/remplacements et parcours UI/disque. D61–D64 conservés, un seul parcours dans LIRE-MOI. Catalogue22/43 et EXE portable inchangé ; animations graphiques finales restent à développer. Multi/raids/défis reportés, reproduction retirée. Validation Windows attendue.\n',encoding='utf-8')
+(folder/'release-notes.md').write_text('D66 : douze blocs de première île proposée, huit zones, collisions, arrivée/dialogues FR/EN, biomes/Dex, quatre combats Showdown, relais, quête botaniste, caches, services/défaite, carte/Vol et libération/replay. Chapitre/save compatible en lecture, cadeaux uniques équipe/PC, admins au même cap22. Noms/lore/graphismes/équipes/économie provisoires ; aucun reset automatique. Lots antérieurs inclus. Même EXE portable, parcours groupé dans LIRE-MOI et rapport SPOILERS DEV dans Documentation. Playtest Windows et retours de conception attendus.\n',encoding='utf-8')
 archive=folder/'Archelys-Laboratoire-Windows.zip'
 with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as z:
     for file in [exe,pck,folder/'LIRE-MOI.txt',folder/'manifest.json',root/'docs/licenses/Godot-LICENSE.txt',root/'docs/licenses/Godot-COPYRIGHT.txt',root/'docs/licenses/PokeAPI-LICENSE.txt',root/'docs/licenses/LABORATORY_AUDIO.md']:z.write(file,file.name)
@@ -32,6 +32,7 @@ with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as z:
         for file in sorted(directory.rglob('*')):
             if file.is_file():z.write(file,file.relative_to(folder))
     for file in sorted((root/'docs/design/comparatifs').glob('*.png')):z.write(file,'Comparatifs/'+file.name)
+    z.write(root/'docs/development/LOT_PREMIERE_ILE_12_BLOCS.md','Documentation/Premiere-ile-12-blocs.md')
     z.write(root/'docs/design/PROPOSITIONS_NOMS_ET_DIVINITES.md','Documentation/Propositions-noms-et-divinites.md')
     z.write(root/'docs/sources/Questions-restantes-Archelys.xlsx','Documentation/Questions-restantes-Archelys.xlsx')
 with zipfile.ZipFile(archive) as z:assert z.testzip() is None

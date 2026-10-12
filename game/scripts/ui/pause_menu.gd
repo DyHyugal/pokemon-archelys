@@ -1,4 +1,6 @@
 extends CanvasLayer
+const IslandPages=preload("res://scripts/ui/island_pages.gd")
+var island_pages: RefCounted
 ## Presentation only: campaign and preferences remain owned by services.
 const StoragePages=preload("res://scripts/ui/storage_pages.gd")
 var storage_pages: RefCounted
@@ -46,6 +48,7 @@ var feedback: Label
 var buttons: Dictionary = {}
 
 func _ready() -> void:
+	island_pages=IslandPages.new(self)
 	adventure_pages=AdventurePages.new(self)
 	storage_pages=StoragePages.new(self)
 	exploration_pages=ExplorationPages.new(self)
@@ -109,10 +112,10 @@ func render() -> void:
 	clear(navigation); clear(body); buttons.clear()
 	var pages := ["home","bag","journal","settings"]
 	if adventure!=null:
-		pages.append_array(["team","pc","choices","map","services","rules","dex","cinema","saves","nursery","journey","appearance","photo"])
+		pages.append_array(["team","pc","choices","map","services","rules","dex","cinema","saves","nursery","journey","appearance","photo","island"])
 		adventure_pages.adventure=adventure
 	var names := [tr_text("Pause","Pause"),tr_text("Sac","Bag"),tr_text("Journal","Journal"),tr_text("Paramètres","Settings")]
-	if adventure!=null:names.append_array([tr_text("Équipe / Résumé","Party / Summary"),"PC",tr_text("Apprentissages (%d)","Learning (%d)") % adventure.pending.size(),tr_text("Carte / Vol","Map / Fly"),tr_text("Vie quotidienne","Daily services"),tr_text("Règles / Difficulté","Rules / Difficulty"),"Pokédex",tr_text("Cinématiques","Cinematics"),tr_text("Sauvegardes","Save slots"),tr_text("Œufs / Incubateur","Eggs / Incubator"),tr_text("Aventure","Adventure"),tr_text("Personnage","Character"),tr_text("Photo","Photo")])
+	if adventure!=null:names.append_array([tr_text("Équipe / Résumé","Party / Summary"),"PC",tr_text("Apprentissages (%d)","Learning (%d)") % adventure.pending.size(),tr_text("Carte / Vol","Map / Fly"),tr_text("Vie quotidienne","Daily services"),tr_text("Règles / Difficulté","Rules / Difficulty"),"Pokédex",tr_text("Cinématiques","Cinematics"),tr_text("Sauvegardes","Save slots"),tr_text("Œufs / Incubateur","Eggs / Incubator"),tr_text("Aventure","Adventure"),tr_text("Personnage","Character"),tr_text("Photo","Photo"),tr_text("Île proposée","Proposed island")])
 	for index: int in range(pages.size()):
 		var target: String=pages[index]
 		buttons[target]=button(navigation,names[index],func(): page=target; feedback.text=""; render())
@@ -121,6 +124,7 @@ func render() -> void:
 	buttons.resume=button(navigation,tr_text("Reprendre • Échap","Resume • Esc"),close)
 	title.text=names[pages.find(page)]
 	match page:
+		"island":island_pages.render()
 		"appearance":style_pages.render()
 		"photo":
 			label(tr_text("Cadrage libre autour du personnage, sans déplacer la partie. Export PNG à la résolution de la fenêtre. Disponible seulement en exploration solo.","Free framing around your character without moving the campaign. PNG export at the window resolution. Available only in solo exploration."))
@@ -151,6 +155,7 @@ E / Enter: interact in the world"))
 		"map","services","rules":exploration_pages.render(page)
 		"dex","cinema","saves":collection_pages.render(page)
 		"journey":
+			button(body,tr_text("Explorer la première île proposée","Explore the proposed first island"),func():page="island";render())
 			label(tr_text("Ouverture proposée d'Archélys — contenu et rendu à valider.","Proposed Archelys opening — content and visuals awaiting approval."))
 			label(adventure.journey.objective(locale))
 			if not adventure.journey.flags.has("briefing"):
@@ -165,7 +170,9 @@ E / Enter: interact in the world"))
 		"nursery":
 			adventure_pages.render_nursery()
 		"journal":
-			if adventure!=null:label(adventure.journey.objective(locale))
+			if adventure!=null:
+				label(adventure.journey.objective(locale))
+				if adventure.island.flags.has("started"):label(adventure.island.objective(locale))
 			label(tr_text("Objectifs du laboratoire", "Laboratory objectives"))
 			var ids := ["guide","sign","crate"]
 			var tasks := [tr_text("Parler au guide","Talk to the guide"),tr_text("Lire le panneau au nord-ouest","Read the northwest sign"),tr_text("Ouvrir la caisse au sud-est","Open the southeast crate")]

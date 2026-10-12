@@ -150,5 +150,87 @@
         "en": "Vyna: ‘One passage opened. The next step will need more than a good party. We will walk it together.’ Further development awaits visual and story approval."
       }
     ]
+  },
+  "isle-arrival": {
+    "names": {
+      "fr": "Arrivée au havre — proposition",
+      "en": "Arrival at haven — proposal"
+    },
+    "replayable": true,
+    "skippable": false,
+    "steps": [
+      {
+        "focus": [
+          0,
+          0,
+          0
+        ],
+        "size": 16,
+        "fr": "Cette île tropicale ne nous accueille plus : RR prélève les livraisons du port.",
+        "en": "This tropical island no longer welcomes us: RR seizes port deliveries."
+      },
+      {
+        "focus": [
+          0,
+          0,
+          -2
+        ],
+        "size": 15,
+        "fr": "Vyna : deux relais alimentent le sanctuaire et la caldeira. Commençons par dégager le contrôle au nord.",
+        "en": "Vyna: two relays power the sanctuary and caldera. First, clear the northern checkpoint."
+      },
+      {
+        "focus": [
+          0,
+          0,
+          -4
+        ],
+        "size": 14,
+        "fr": "Les habitants peuvent encore soigner l’équipe. Le botaniste cherche trois relevés dans la jungle.",
+        "en": "Residents can still heal your party. The botanist needs three surveys from the jungle."
+      }
+    ],
+    "location": "isle-port"
+  },
+  "isle-liberation": {
+    "names": {
+      "fr": "Libération de l’île — proposition",
+      "en": "Island liberation — proposal"
+    },
+    "replayable": true,
+    "skippable": false,
+    "steps": [
+      {
+        "focus": [
+          0,
+          0,
+          0
+        ],
+        "size": 16,
+        "fr": "Le poste RR cesse de détourner l’énergie. Les habitants reprennent le port.",
+        "en": "The RR outpost stops diverting power. Residents reclaim the port."
+      },
+      {
+        "focus": [
+          0,
+          0,
+          -2
+        ],
+        "size": 15,
+        "fr": "Vyna : ce n’est qu’un poste secondaire. La prochaine île nous rapprochera du prisonnier que nous cherchons.",
+        "en": "Vyna: this is only a secondary outpost. The next island brings us closer to the prisoner we seek."
+      },
+      {
+        "focus": [
+          0,
+          0,
+          -4
+        ],
+        "size": 14,
+        "fr": "Fin de la proposition jouable. Vol et exploration libre débloqués ; aucun nom ou casting final n’est imposé.",
+        "en": "End of the playable proposal. Fly and free exploration unlocked; no final name or casting imposed."
+      }
+    ],
+    "location": "any"
   }
 }

@@ -1,4 +1,5 @@
 extends RefCounted
+const Island=preload("res://scripts/domain/island.gd")
 const Fossils=preload("res://scripts/domain/fossils.gd")
 const Catalog=preload("res://scripts/domain/pokemon_catalog.gd")
 const Mon=preload("res://scripts/domain/pokemon.gd")
@@ -28,7 +29,7 @@ func dex() -> void:
   menu.label(t("Types : ","Types: ")+" / ".join(entry.types.map(func(id: String):return Catalog.text("type_names",id,menu.locale))))
   var places:=Records.habitats(selected)
   var habitat_names: Dictionary={"village":t("Herbes du village","Village grass"),"trail":t("Herbes du sentier","Trail grass"),"cove":t("Pêche dans la crique","Cove fishing")}
-  menu.label(t("Rencontres sauvages : ","Wild encounters: ")+" · ".join(places.map(func(id: String):return habitat_names.get(id,id))) if not places.is_empty() else t("Aucune rencontre sauvage pour cette forme dans le laboratoire.","No wild encounter for this form in the laboratory."))
+  menu.label(t("Rencontres sauvages : ","Wild encounters: ")+" · ".join(places.map(func(id: String):return habitat_names.get(id,Island.name_of(id,menu.locale)))) if not places.is_empty() else t("Aucune rencontre sauvage pour cette forme dans le laboratoire.","No wild encounter for this form in the laboratory."))
   for fossil: String in Fossils.RECIPES:
    var base: String=Fossils.RECIPES[fossil]
    if selected==base or entry.get("previous","")==base:

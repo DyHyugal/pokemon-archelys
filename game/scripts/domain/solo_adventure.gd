@@ -1,4 +1,6 @@
 extends RefCounted
+const Island=preload("res://scripts/domain/island.gd")
+var island:=Island.new()
 const Mon=preload("res://scripts/domain/pokemon.gd")
 const Catalog=preload("res://scripts/domain/pokemon_catalog.gd")
 const Exploration=preload("res://scripts/domain/exploration.gd")
@@ -145,15 +147,17 @@ func wild(level: int=-1, species_id: String="") -> Dictionary:
 	return mon
 func snapshot() -> Dictionary:
 	_sync_storage()
-	return {"storage_slots":storage_slots.duplicate(),"appearance":appearance.duplicate(),"journey":journey.snapshot(),"fossil_samples_received":fossil_samples_received,"nursery":nursery.snapshot(),"records":records.snapshot(),"team":team.duplicate(true),"boxes":boxes.duplicate(true),"bag":bag.duplicate(true),"next_uid":next_uid,"cap":cap,"money":money,"victories":victories.duplicate(true),"pending":pending.duplicate(true),"initialized":initialized,"exploration":exploration.snapshot()}
+	return {"island":island.snapshot(),"storage_slots":storage_slots.duplicate(),"appearance":appearance.duplicate(),"journey":journey.snapshot(),"fossil_samples_received":fossil_samples_received,"nursery":nursery.snapshot(),"records":records.snapshot(),"team":team.duplicate(true),"boxes":boxes.duplicate(true),"bag":bag.duplicate(true),"next_uid":next_uid,"cap":cap,"money":money,"victories":victories.duplicate(true),"pending":pending.duplicate(true),"initialized":initialized,"exploration":exploration.snapshot()}
 static func validate(value: Variant) -> bool:
 	if not value is Dictionary:return false
+	if value.has("island") and not Island.validate(value.island):return false
 	if value.has("journey") and not Journey.validate(value.journey):return false
 	if value.has("appearance") and not Appearance.validate(value.appearance):return false
 	if value.has("fossil_samples_received") and not value.fossil_samples_received is bool:return false
 	if value.has("nursery") and not Nursery.validate(value.nursery):return false
 	if value.has("records") and not Records.validate(value.records):return false
 	if value.has("exploration") and not Exploration.validate(value.exploration):return false
+	if value.get("exploration",{}).get("location","") in Island.LOCATIONS and not value.get("island",{}).get("flags",{}).has("started"):return false
 	if not value.get("initialized") is bool or not value.get("team") is Array or not value.get("boxes") is Array or not value.get("bag") is Dictionary or not value.get("pending") is Array or not value.get("victories") is Dictionary:return false
 	if value.team.size()>6 or value.boxes.size()>240 or not Mon.integer(value.get("next_uid"),1,1000000) or not Mon.integer(value.get("cap"),10,100) or not Mon.integer(value.get("money"),0,999999):return false
 	if value.initialized and value.team.is_empty():return false
@@ -196,6 +200,8 @@ static func validate(value: Variant) -> bool:
 func restore(value: Dictionary) -> bool:
 	if not validate(value):return false
 	appearance=Appearance.normalized(value.appearance) if value.has("appearance") else Appearance.DEFAULT.duplicate()
+	island=Island.new()
+	if value.has("island"):island.restore(value.island)
 	journey=Journey.new()
 	if value.has("journey"):journey.restore(value.journey)
 	fossil_samples_received=value.get("fossil_samples_received",false)
@@ -241,7 +247,9 @@ func purchase(item: String, quantity: int, sell: bool=false) -> bool:
 	return true
 func travel(target: String, flight: bool=false) -> bool:
 	if in_battle:return false
-	if flight and (target not in exploration.visited or target not in ["village","cove","district"] or not exploration.field_unlocked("fly",victories)):return false
+	if target in Island.LOCATIONS or exploration.location in Island.LOCATIONS:
+		if not island.can_enter(self,target,flight):return false
+	elif flight and (target not in exploration.visited or target not in ["village","cove","district"] or not exploration.field_unlocked("fly",victories)):return false
 	if not journey.can_enter(self,target):return false
 	if not exploration.enter(target):return false
 	journey.entered(target);return true

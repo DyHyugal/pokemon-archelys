@@ -5,6 +5,8 @@ const DoubleBattle=preload("res://scripts/services/showdown_battle.gd")
 const BattlePanel=preload("res://scripts/ui/pokemon_battle_panel.gd")
 const Catalog=preload("res://scripts/domain/pokemon_catalog.gd")
 const Mon=preload("res://scripts/domain/pokemon.gd")
+const Island=preload("res://scripts/domain/island.gd")
+const IslandVisual=preload("res://scripts/world/island_visual.gd")
 const VisualDistrict=preload("res://scripts/world/visual_district.gd")
 const Comfort=preload("res://scripts/services/comfort_store.gd")
 const LabAudio=preload("res://scripts/services/laboratory_audio.gd")
@@ -264,7 +266,7 @@ func _build_ui() -> void:
 	pause_menu.load_requested.connect(func():_load();_sync_menu();pause_menu.feedback.text=message.text)
 	battle_panel=BattlePanel.new();battle_panel.comfort=comfort;add_child(battle_panel)
 	battle_panel.finished.connect(_battle_finished)
-	exploration_help=Label.new();exploration_help.position=Vector2(460,16);layer.add_child(exploration_help)
+	exploration_help=Label.new();exploration_help.add_theme_color_override("font_outline_color",Color.BLACK);exploration_help.add_theme_constant_override("outline_size",2);exploration_help.position=Vector2(460,16);layer.add_child(exploration_help)
 	var saved_speed: Variant=JSON.parse_string(FileAccess.get_file_as_string("user://laboratory_speed.json")) if FileAccess.file_exists("user://laboratory_speed.json") else 1
 	if Mon.integer(saved_speed,1,4):pause_menu.speed=float(saved_speed);Engine.time_scale=float(saved_speed)
 	pause_menu.speed_changed.connect(func(value: float):
@@ -351,6 +353,8 @@ func _play_scene(id: String,replay: bool=false) -> void:
 	var owner: RefCounted=Session.campaign.adventure
 	var entry: Dictionary=Cinematic.library().get(id,{})
 	if entry.is_empty() or (entry.get("location","village")!="any" and owner.exploration.location!=entry.get("location","village")):return
+	if id=="isle-arrival" and not owner.island.flags.has("started"):return
+	if id=="isle-liberation" and not owner.island.flags.has("admin-b"):return
 	if id=="slice-prologue" and not owner.journey.flags.has("briefing"):return
 	if id=="slice-ending" and not owner.journey.flags.has("boss"):return
 	if not cinematic.begin(id,Session.campaign.adventure.records,replay):return
@@ -360,7 +364,8 @@ func _render_shot() -> void:
 	if not cinematic.active:
 		if shot_tween:shot_tween.kill()
 		Session.campaign.adventure.journey.finish(Session.campaign.adventure)
-		gameplay_layer.visible=cinematic_hud_visible;camera.size=cinematic_zoom;last_walk_position=_local_position();_open_menu("journey" if cinematic.id.begins_with("slice-") else "cinema");return
+		if Session.campaign.adventure.island.liberate(Session.campaign.adventure):_rebuild_location()
+		gameplay_layer.visible=cinematic_hud_visible;camera.size=cinematic_zoom;last_walk_position=_local_position();_open_menu("island" if cinematic.id.begins_with("isle-") else ("journey" if cinematic.id.begins_with("slice-") else "cinema"));return
 	var shot: Dictionary=cinematic.current();var point: Array=shot.focus;var focus:=Vector3(point[0],point[1],point[2])
 	if shot_tween:shot_tween.kill()
 	shot_tween=create_tween().set_parallel(true)
@@ -436,7 +441,7 @@ func _nearest_interaction() -> String:
 	var distance: float = 2.2
 	var location: String=Session.campaign.adventure.exploration.location
 	var targets: Dictionary=World.local_points(location).duplicate()
-	if location=="village":targets.merge(TARGETS);targets.merge(ACTION_TARGETS)
+	if location=="village":targets.merge(TARGETS);targets.merge(ACTION_TARGETS);targets["island-ferry"]=Vector3(-5,0,8)
 	for id: String in targets:
 		if id=="climb" and _local_position().y>0:targets[id]=Vector3(-11,3,9)
 		var current: float = _local_position().distance_to(targets[id])
@@ -489,6 +494,8 @@ func _update_overview() -> void:
 	var names: Array=["Parler au guide","Lire le panneau au nord-ouest","Ouvrir la caisse au sud-est"] if locale=="fr" else ["Talk to the guide","Read the northwest sign","Open the southeast crate"]
 	for index: int in range(3):
 		lines.append(("✓ " if progress.completed.has(progress.OBJECTIVES[index]) else "○ ")+names[index])
+	if Session.campaign.adventure.exploration.location in Island.LOCATIONS:
+		lines=[Island.name_of(Session.campaign.adventure.exploration.location,locale),Session.campaign.adventure.island.objective(locale)]
 	journal_text.text="\n".join(lines)
 	inventory_text.text=("Sac • jeton de test : %d" if locale=="fr" else "Bag • test token: %d") % progress.tokens
 	language_button.text="Langue des dialogues : Français" if locale=="fr" else "Dialogue language: English"
@@ -544,7 +551,8 @@ func _process(_delta: float) -> void:
 	_track_encounters(focus)
 	if battle_panel.visible:axis=Vector2.ZERO
 	exploration_help.text="Herbes : nord-ouest • Soins : cube bleu • Dresseurs : cubes rouges\nMenu → Équipe / Résumé / PC • F3 : entraînement technique" if locale=="fr" else "Grass: northwest • Healing: blue cube • Trainers: red cubes\nMenu → Party / Summary / PC • F3: laboratory training"
-	if displayed_location!="village":exploration_help.text="%s • E / Entrée : interaction • Échap : menu\n%s" % [displayed_location,Session.campaign.adventure.journey.objective(locale)]
+	if displayed_location in Island.LOCATIONS:exploration_help.text="%s • %s\n%s" % [Island.name_of(displayed_location,locale),("E / Entrée : interaction • Échap : menu" if locale=="fr" else "E / Enter: interact • Esc: menu"),Session.campaign.adventure.island.objective(locale)]
+	elif displayed_location!="village":exploration_help.text="%s • E / Entrée : interaction • Échap : menu\n%s" % [displayed_location,Session.campaign.adventure.journey.objective(locale)]
 	exploration_help.text=exploration_help.text.replace("E / Entrée",comfort.caption("interact")+" / Entrée").replace("E / Enter",comfort.caption("interact")+" / Enter")
 	menu_button.text="Menu • "+comfort.caption("menu")
 	Session.submit_axis(axis)
@@ -556,12 +564,13 @@ func _track_encounters(position_now: Vector3) -> void:
 	var distance: float=position_now.distance_to(last_walk_position)
 	last_walk_position=position_now
 	Session.campaign.adventure.nursery.walk(distance,Session.active_network or pause_menu.visible or dialogue.active or battle_panel.visible or cinematic.active or pokemon_battle.active)
-	if Session.campaign.adventure.exploration.location not in ["village","trail"] or Session.active_network or pause_menu.visible or dialogue.active or battle_panel.visible or cinematic.active or distance>1.0:return
-	if position_now.x>=-9 and position_now.x<=-3 and position_now.z>=-7 and position_now.z<=-4:
+	if Session.campaign.adventure.exploration.location not in ["village","trail"]+Island.LOCATIONS or Session.active_network or pause_menu.visible or dialogue.active or battle_panel.visible or cinematic.active or distance>1.0:return
+	var location: String=Session.campaign.adventure.exploration.location
+	if (location in ["village","trail"] and position_now.x>=-9 and position_now.x<=-3 and position_now.z>=-7 and position_now.z<=-4) or Island.grass(position_now,location):
 		Session.campaign.adventure.encounter_steps+=distance
 		if Session.campaign.adventure.encounter_steps>=3.5:
 			Session.campaign.adventure.encounter_steps=0
-			_begin_pokemon_battle([Session.campaign.adventure.wild()])
+			_begin_pokemon_battle([Island.wild(Session.campaign.adventure) if location in Island.LOCATIONS else Session.campaign.adventure.wild()])
 
 func _begin_trainer(id: String) -> void:
 	var adventure: RefCounted=Session.campaign.adventure
@@ -586,7 +595,7 @@ func _battle_finished(outcome: String) -> void:
 	Session.submit_axis(Vector2.ZERO)
 	if outcome=="won" and pokemon_battle.trainer=="slice-boss":message.text="Épreuve gagnée — conclusion dans le menu Aventure / Trial won — ending in Adventure menu"
 	if outcome=="lost":
-		Session.campaign.adventure.exploration.enter("center")
+		Session.campaign.adventure.exploration.enter("isle-center" if Session.campaign.adventure.exploration.location in Island.LOCATIONS else "center")
 		Session.campaign.players[1].position=[0.0,0.0,5.0];Session.latest=Session.campaign.snapshot();_rebuild_location()
 	last_walk_position=_local_position()
 	Session.campaign.adventure.encounter_steps=0
@@ -604,6 +613,9 @@ func _contextual_action(id: String) -> bool:
 	if photo_mode.active:return false
 	var owner: RefCounted=Session.campaign.adventure
 	var location: String=owner.exploration.location
+	if id=="island-ferry":_open_menu("journey");return true
+	if id.begins_with("i-"):
+		return _island_action(id)
 	match id:
 		"journey-gate":_travel("trail")
 		"trial-gate":_travel("trial")
@@ -643,6 +655,8 @@ func _rebuild_location() -> void:
 	_apply_appearance()
 	world_geometry.free();world_geometry=Node3D.new();add_child(world_geometry)
 	displayed_location=Session.campaign.adventure.exploration.location
+	if displayed_location in Island.LOCATIONS:
+		var isle:=IslandVisual.new();world_geometry.add_child(isle);isle.build_island(displayed_location,Session.campaign.adventure.island,locale);return
 	if displayed_location=="village":
 		world_geometry.free()
 		camera.free()
@@ -707,3 +721,30 @@ func _stop_tactics_test() -> void:
 
 func _apply_appearance() -> void:
 	for avatar: Node3D in avatars.values():AvatarStyle.apply(avatar,Session.campaign.adventure.appearance)
+
+func _island_action(id: String) -> bool:
+	var a: RefCounted=Session.campaign.adventure
+	if a.exploration.location not in Island.LOCATIONS or id not in Island.points(a.exploration.location):return false
+	var key: String=id.trim_prefix("i-")
+	if key.begins_with("go-"):_travel(key.trim_prefix("go-"));return true
+	if key in ["vyna","resident","botanist"]:
+		if key=="botanist":
+			a.island.accept_quest(a)
+			var gift: String=a.island.gift(a)
+			if gift in ["team","pc"]:message.text="Compagnon reçu / Companion received → "+gift
+		var record: Dictionary=a.island.dialogue(key,locale)
+		if key=="vyna" and not a.records.scenes.has("isle-arrival"):_play_scene("isle-arrival",false)
+		else:
+			active_interaction="";dialogue.begin(record,locale);dialogue_panel.visible=true;dialogue_speaker.text=dialogue.speaker;dialogue_text.text=dialogue.current_line()
+		return true
+	if key=="nurse":a.heal_team();message.text="Équipe soignée / Party healed";return true
+	if key=="counter":_open_menu("services");return true
+	if key in Island.CACHES:message.text="Réserve reçue / Supplies received" if a.island.cache(a,key) else "Réserve vide ou sac plein / Empty cache or bag full";_rebuild_location();return true
+	if key in Island.SAMPLES:message.text="Relevé enregistré / Survey recorded" if a.island.collect(a,key) else "Accepter la quête ou relevé déjà pris / Accept quest or survey already taken";return true
+	if key in ["relay-west","relay-east"]:a.island.relay(a,key);_rebuild_location();message.text=a.island.objective(locale);return true
+	if key in Island.BATTLES:
+		var foes: Array=a.island.opponents(a,key)
+		if not foes.is_empty():_begin_pokemon_battle(foes,key)
+		else:message.text="Combat terminé ou condition manquante / Battle completed or missing prerequisite"
+		return true
+	return false

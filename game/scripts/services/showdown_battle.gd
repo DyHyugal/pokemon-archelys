@@ -24,7 +24,7 @@ func say(fr: String,en: String) -> void:
  var entry: Dictionary={"fr":fr,"en":en,"sequence":history.size(),"turn":turn}
  events.append(entry);history.append(entry.duplicate(true))
 func begin(owner: RefCounted,opponents: Array,trainer_id: String="") -> bool:
- if active or owner.in_battle or opponents.is_empty() or trainer_id not in ["","trainer-1","trainer-2","weather-test","terrain-test","slice-boss"]:return false
+ if active or owner.in_battle or opponents.is_empty() or trainer_id not in ["","trainer-1","trainer-2","weather-test","terrain-test","slice-boss"]+adventure_ids():return false
  var ready: Array=[]
  var seen: Array=[]
  for mon: Dictionary in owner.team+opponents:
@@ -224,7 +224,7 @@ func finish(outcome: String) -> void:
   enemy_index=previous
  if outcome=="won" and trainer in ["trainer-1","trainer-2"] and not adventure.victories.has(trainer):
   adventure.victories[trainer]=true;adventure.raise_cap(18 if trainer=="trainer-1" else 36);adventure.money+=300
- if outcome=="won":adventure.journey.won(adventure,trainer)
+ if outcome=="won":adventure.journey.won(adventure,trainer);adventure.island.won(adventure,trainer)
  if outcome=="won":say("Victoire ! Cap actuel : %d." % adventure.cap,"Victory! Current level cap: %d." % adventure.cap)
  super.finish(outcome)
  if outcome=="lost":
@@ -245,3 +245,5 @@ func choose_shift(index: int=-1) -> bool:
  if busy or not active or shift_offer.is_empty() or (index!=-1 and not valid_switch(index)):return false
  events=[]
  return _send({"op":"shift","uid":0 if index==-1 else int(adventure.team[index].uid)})
+
+func adventure_ids() -> Array:return preload("res://scripts/domain/island.gd").BATTLES.keys()
