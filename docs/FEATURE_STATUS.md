@@ -150,3 +150,20 @@ Lot solo : Défini/Choix, remplacement gratuit orchestré par Showdown, soins du
 ## D66 — première île proposée, douze blocs
 
 B01–B12 développés : chapitre persistant, huit zones dont intérieurs, collisions/chemins, dialogues FR/EN et arrivée, rencontres/Dex par biomes, quatre combats Showdown, relais, quête botaniste, caches, services/défaite locale, carte/Vol et guidance, libération/replay. **Proposition jouable**, pas première île finale ni validation graphique. 103 contrôles domaine/chemins,46 contrôles scène et suite complète réussis ;51 sous GL avec cinq captures. Preuve de publication dans [le rapport](development/LOT_PREMIERE_ILE_12_BLOCS.md). Dernier retour Windows D52 ; nouveau parcours à tester. Réseau/raids/défis reportés ; reproduction retirée.
+
+## D67 — dix blocs supplémentaires
+
+| Bloc | État de livraison | Limite |
+|---|---|---|
+| Atlas six îles + Æther /28sites | PROPOSITION INTÉGRÉE | Noms descriptifs et premiers lieux habités, pas carte finale |
+| Studio3D isolé | MAQUETTES PROCÉDURALES TESTABLES | Pas28zones jouables, aucun déblocage en campagne |
+| Boutique vêtements | PALETTES D'ESSAI | Haut/pantalon100₽ au havre ; modèles finalisés ultérieurs |
+| Donneur d'œuf | PNJ PHYSIQUE | Cadeau Carapuce unique commun à l'incubateur existant |
+| Commerce quantités | UI AVEC CONFIRMATION | Refus atomique, pas catalogue/économie finaux |
+| Fenêtre/FHD/FPS/vsync | PRÉFÉRENCES PC | Résolution d'affichage, pas mesure de fluidité Windows |
+| Manette standard | ROUTAGE INTÉGRÉ | A/B/Start/X/Y et stick/croix ; manette physique à tester |
+| Effets combat optionnels | TRANSITION UI | Ne remplace pas modèles/animations d'attaques |
+| Lisibilité/mouvements réduits | PRÉFÉRENCES INTÉGRÉES | Repères3D, caméra/décors, dialogue adapté aux dimensions |
+| Coupe/Éclate-Roc/Force île | OBSTACLES NARRATIFS | Trois fixtures persistantes sans Pokémon compatible |
+
+Concepts : docs/design/ATLAS_PROPOSE_2026-10-12.md, sept PNG avec source/empreintes. Vérification du lot : docs/development/LOT_ATLAS_SERVICES_10_BLOCS.md et dossier verification. Tests techniques distincts de la validation propriétaire ; D52 reste le dernier retour Windows acquis.

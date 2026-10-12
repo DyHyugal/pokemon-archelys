@@ -119,4 +119,5 @@ func _can_step(origin: Vector2,destination: Vector2) -> bool:
 			var point: Vector3=World.local_points(location)[id]
 			if not campaign.adventure.exploration.cleared.has(id) and destination.distance_to(Vector2(point.x,point.z))<0.7:return false
 		return World.can_step(origin,destination)
+	if campaign.adventure.island.blocked(destination,location):return false
 	return World.local_walkable(destination,location)

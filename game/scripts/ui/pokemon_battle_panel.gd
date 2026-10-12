@@ -2,6 +2,9 @@ extends CanvasLayer
 signal finished(result: String)
 const Mon=preload("res://scripts/domain/pokemon.gd")
 const Catalog=preload("res://scripts/domain/pokemon_catalog.gd")
+var animations_enabled: bool=true
+var text_tween: Tween
+var animated_event: String=""
 var comfort: RefCounted
 var battle: RefCounted
 var locale: String="fr"
@@ -36,7 +39,7 @@ func open(simulator: RefCounted,language: String) -> void:
 	if battle!=null and battle.has_signal("changed") and battle.changed.is_connected(_battle_changed):battle.changed.disconnect(_battle_changed)
 	battle=simulator
 	if battle.has_signal("changed"):battle.changed.connect(_battle_changed)
-	locale=language;visible=true;event_index=0;choice_page="main";mega_selected=false;journal_open=false;journal_page=0;render()
+	animated_event="";locale=language;visible=true;event_index=0;choice_page="main";mega_selected=false;journal_open=false;journal_page=0;render()
 func _battle_changed() -> void:
 	event_index=0;journal_open=false;render()
 func execute(command: Dictionary) -> void:
@@ -59,6 +62,8 @@ func handle_key(event: InputEvent) -> bool:
 		return true
 	return event.echo
 func render() -> void:
+	if text_tween:text_tween.kill()
+	message.modulate=Color.WHITE
 	for child: Node in actions.get_children():actions.remove_child(child);child.queue_free()
 	var player: Dictionary=battle.current(0);var enemy: Dictionary=battle.current(1)
 	cards.text=t("Adversaire : %s Nv.%d • %d/%d PV %s\n\nÉquipe : %s Nv.%d • %d/%d PV %s\nTour %d • %s", "Opponent: %s Lv.%d • %d/%d HP %s\n\nParty: %s Lv.%d • %d/%d HP %s\nTurn %d • %s") % [name_of(enemy.species),enemy.level,enemy.hp,Mon.stats(enemy).hp,Catalog.text("status_names",enemy.status,locale),name_of(player.species),player.level,player.hp,Mon.stats(player).hp,Catalog.text("status_names",player.status,locale),battle.turn,t("sauvage","wild") if battle.trainer.is_empty() else t("dresseur","trainer")]
@@ -69,6 +74,10 @@ func render() -> void:
 		render_journal();return
 	if event_index<battle.events.size():
 		message.text=battle.events[event_index][locale]
+		var token: String="%s/%s/%s" % [battle.get_instance_id(),battle.turn,battle.events[event_index].get("sequence",event_index)]
+		if animations_enabled and token!=animated_event:
+			message.modulate.a=0.65;text_tween=create_tween();text_tween.tween_property(message,"modulate:a",1.0,0.15)
+		animated_event=token
 		message.text+=t("\nMessage %d / %d — avance manuelle","\nMessage %d / %d — manual advance") % [event_index+1,battle.events.size()]
 		button(t("Continuer • %s / Entrée","Continue • %s / Enter") % (comfort.caption("interact") if comfort!=null else "E"),advance).grab_focus()
 		journal_button();return

@@ -1,0 +1,13 @@
+extends RefCounted
+## Proposed visual catalogue. Not completed chapters or final city names.
+const REGIONS={
+ "tropical":{"names":["Tropicale / volcanique","Tropical / volcanic"],"occupied":true,"colors":["d2c69f","e9e1ca","4a8c8c","427a5c"],"sites":[["Panorama tropical et volcan","Tropical panorama and volcano"],["Port à arcades","Arcaded harbor"],["Village de basalte","Basalt village"],["Raffinerie géothermique RR","RR geothermal refinery"]]},
+ "mystic":{"names":["Mystique","Mystic"],"occupied":true,"colors":["6c788b","b7b4cf","4c4869","747aa0"],"sites":[["Forêt et lac brumeux","Forest and misty lake"],["Ville des ponts","Bridge town"],["Village des lanternes","Lantern village"],["Observatoire occupé RR","RR occupied observatory"]]},
+ "winter":{"names":["Hivernale","Winter"],"occupied":true,"colors":["e3eef0","bdc9d2","4a698b","658184"],"sites":[["Fjord et glacier","Fjord and glacier"],["Port nordique","Northern harbor"],["Village des sources chaudes","Hot spring village"],["Station minière RR","RR mining station"]]},
+ "dragon":{"names":["Réserve draconique","Draconic reserve"],"occupied":false,"colors":["b7a382","9e8a72","705543","568774"],"sites":[["Réserve à biomes","Multi-biome reserve"],["Village des falaises","Cliff village"],["Village de l'oasis","Oasis village"],["Portes des biomes sacrés","Sacred biome gateways"]]},
+ "tech":{"names":["High-tech","High-tech"],"occupied":true,"colors":["96b8bf","d6e7ec","43748b","4aa89e"],"sites":[["Réseau énergétique côtier","Coastal energy grid"],["Métropole des terrasses","Terraced metropolis"],["Quartier marémoteur","Tidal power district"],["Tour de contrôle RR","RR control tower"]]},
+ "celestial":{"names":["Céleste","Celestial"],"occupied":false,"colors":["c2dcdf","e6e0c6","9b936b","75b5b6"],"sites":[["Terrasses sur les nuages","Terraces over clouds"],["Ville sanctuaire","Sanctuary town"],["Refuge de la falaise","Cliff refuge"],["Quatre portes et sanctuaire central","Four gates and central sanctuary"]]},
+ "aether":{"names":["Ancien Æther / repaire principal","Former Aether / main lair"],"occupied":true,"colors":["65a9b6","eceee9","546971","8ba69a"],"sites":[["Plateforme artificielle","Artificial platform"],["Campus saisi","Seized campus"],["Quartier des chercheurs","Researchers' district"],["Commandement et prison RR","RR command and prison"]]}}
+static func label(id: String,language: String) -> String:return REGIONS[id].names[0 if language=="fr" else 1]
+static func site(id: String,index: int,language: String) -> String:return REGIONS[id].sites[index][0 if language=="fr" else 1]
+static func valid(id: String,index: int) -> bool:return REGIONS.has(id) and index>=0 and index<4

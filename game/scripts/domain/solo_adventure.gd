@@ -337,3 +337,8 @@ func reorder_moves(uid: int,from: int,to: int) -> bool:
 func set_battle_options(style: String,healing: bool) -> bool:
 	if in_battle or style not in ["set","shift"]:return false
 	exploration.battle_style=style;exploration.bag_healing=healing;return true
+
+func purchase_wardrobe(field: String,value: int) -> bool:
+	if in_battle or exploration.location!="isle-shop" or field not in ["shirt","pants"] or value<0 or value>=Appearance.COLORS[field].size() or money<100 or appearance[field]==value:return false
+	if not set_appearance(field,value):return false
+	money-=100;return true

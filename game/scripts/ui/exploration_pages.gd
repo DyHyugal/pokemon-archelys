@@ -24,14 +24,7 @@ func render(page: String) -> void:
 		menu.label(t("Lieu actuel : %s • Argent : %d ₽","Current location: %s • Money: ₽%d") % [state.location,owner.money])
 		menu.label(t("Centre et boutique : entre par les portes du village. La jetée au sud mène à la crique ; le passage nord au quartier visuel. Interagis avec E / Entrée.","Center and shop: enter through the village doors. The south pier leads to the cove; the north passage to the visual district. Interact with E / Enter."))
 		if state.location in ["shop","isle-shop"]:
-			for item: String in Exploration.PRICES:
-				var id: String=item
-				menu.label("%s × %d • %d ₽" % [Catalog.name_of(id,menu.locale),owner.bag.get(id,0),Exploration.PRICES[id]])
-				var row:=HBoxContainer.new();menu.body.add_child(row)
-				for count: int in [1,5]:
-					var quantity: int=count
-					menu.button(row,t("Acheter × %d","Buy × %d") % count,func():transaction(id,quantity,false))
-				menu.button(row,t("Vendre × 1 (moitié du prix)","Sell × 1 (half price)"),func():transaction(id,1,true))
+			menu.commerce_pages.shop()
 		elif state.location in ["center","isle-center"]:
 			menu.label(t("Restauration de fossiles — service provisoire du laboratoire, Pokémon niveau5.","Fossil restoration — temporary laboratory service, level5 Pokémon."))
 			if state.nuzlocke=="on":menu.label(t("Fossiles indisponibles en défi : intégration des quotas reportée.","Fossils unavailable in challenge mode: quota integration deferred."))

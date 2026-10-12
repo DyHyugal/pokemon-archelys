@@ -13,6 +13,8 @@ steps=[(['godot','--headless','--path',str(root/'game'),'--editor','--import','-
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/showdown_integration.gd'],'SHOWDOWN INTEGRATION:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/battle_options.gd'],'BATTLE OPTIONS:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/battle_readability.gd'],'BATTLE READABILITY:'),
+       (['godot','--headless','--path',str(root/'game'),'--script','res://tests/atlas_services.gd'],'ATLAS SERVICES:'),
+       (['godot','--headless','--path',str(root/'game'),'--script','res://tests/atlas_scene.gd'],'ATLAS SCENE:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/island_systems.gd'],'ISLAND SYSTEMS:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/island_scene.gd'],'ISLAND SCENE:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/run_tests.gd'],'ARCHÉLYS TESTS: 19 checks, 0 failures'),

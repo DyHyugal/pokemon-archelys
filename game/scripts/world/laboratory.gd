@@ -13,6 +13,9 @@ const LabAudio=preload("res://scripts/services/laboratory_audio.gd")
 const AvatarStyle=preload("res://scripts/world/avatar_style.gd")
 const InterfaceStyle=preload("res://scripts/ui/interface_style.gd")
 const PhotoMode=preload("res://scripts/ui/photo_mode.gd")
+const AtlasStudio=preload("res://scripts/ui/atlas_studio.gd")
+var display_preferences:=preload("res://scripts/services/display_preferences.gd").new()
+var atlas_studio: CanvasLayer
 var photo_mode: CanvasLayer
 var comfort:=Comfort.new()
 var lab_audio: Node
@@ -234,10 +237,10 @@ func _build_ui() -> void:
 		for id: String in ["poke-ball","great-ball","potion","antidote","paralyze-heal"]:Session.campaign.adventure.bag[id]=20)
 	message=Label.new();message.position=Vector2(20,640);message.text="";layer.add_child(message)
 	interaction_hint=Label.new();interaction_hint.position=Vector2(20,675);layer.add_child(interaction_hint)
-	dialogue_panel=PanelContainer.new();dialogue_panel.position=Vector2(460,510);dialogue_panel.custom_minimum_size=Vector2(800,190);dialogue_panel.visible=false;layer.add_child(dialogue_panel)
+	dialogue_panel=PanelContainer.new();dialogue_panel.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE);dialogue_panel.offset_left=460;dialogue_panel.offset_right=-20;dialogue_panel.offset_top=-210;dialogue_panel.offset_bottom=-20;dialogue_panel.visible=false;layer.add_child(dialogue_panel)
 	var conversation := VBoxContainer.new();dialogue_panel.add_child(conversation)
 	dialogue_speaker=Label.new();conversation.add_child(dialogue_speaker)
-	dialogue_text=Label.new();dialogue_text.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;dialogue_text.custom_minimum_size=Vector2(780,90);conversation.add_child(dialogue_text)
+	dialogue_text=Label.new();dialogue_text.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;dialogue_text.custom_minimum_size=Vector2(0,90);conversation.add_child(dialogue_text)
 	dialogue_hint=Label.new();conversation.add_child(dialogue_hint)
 	var overview := PanelContainer.new();overview.position=Vector2(460,16);overview.custom_minimum_size=Vector2(420,0);layer.add_child(overview)
 	var overview_stack := VBoxContainer.new();overview.add_child(overview_stack)
@@ -264,6 +267,8 @@ func _build_ui() -> void:
 	pause_menu.camera_changed.connect(func(value: float):camera.size=value;_persist_preferences())
 	pause_menu.save_requested.connect(func():_save();pause_menu.feedback.text=message.text)
 	pause_menu.load_requested.connect(func():_load();_sync_menu();pause_menu.feedback.text=message.text)
+	atlas_studio=AtlasStudio.new();add_child(atlas_studio);atlas_studio.finished.connect(func():_open_menu("atlas"))
+	pause_menu.atlas_requested.connect(func(region: String,site: int):atlas_studio.open(self,region,site))
 	battle_panel=BattlePanel.new();battle_panel.comfort=comfort;add_child(battle_panel)
 	battle_panel.finished.connect(_battle_finished)
 	exploration_help=Label.new();exploration_help.add_theme_color_override("font_outline_color",Color.BLACK);exploration_help.add_theme_constant_override("outline_size",2);exploration_help.position=Vector2(460,16);layer.add_child(exploration_help)
@@ -282,6 +287,9 @@ func _button(parent: Node, text: String, action: Callable) -> Button:
 	return button
 
 func _apply_comfort() -> void:
+	display_preferences.apply(comfort.data,get_window())
+	battle_panel.animations_enabled=comfort.data.combat_animations and not comfort.data.reduced_motion
+	_apply_world_comfort()
 	InterfaceStyle.apply(ui_theme,comfort.data.get("theme","dark"))
 	ui_theme.default_font_size=int(comfort.data.text_size)
 	for type: String in ["Label","Button","CheckButton","CheckBox","OptionButton","ItemList","LineEdit","TextEdit","SpinBox","PopupMenu"]:ui_theme.set_font_size("font_size",type,int(comfort.data.text_size))
@@ -291,6 +299,14 @@ func _apply_comfort() -> void:
 			if control is Control:control.theme=ui_theme
 	dialogue_hint.text="%s / Entrée • phrase suivante / next line" % comfort.caption("interact")
 	if lab_audio:lab_audio.apply(comfort.data)
+
+func _apply_world_comfort() -> void:
+	if world_geometry:_comfort_nodes(world_geometry)
+	for avatar: Node3D in avatars.values():_comfort_nodes(avatar)
+func _comfort_nodes(node: Node) -> void:
+	if node is Label3D:node.visible=comfort.data.world_labels
+	if node is VisualDistrict:node.set_process(not comfort.data.reduced_motion)
+	for child: Node in node.get_children():_comfort_nodes(child)
 
 func _set_locale(value: String) -> void:
 	locale=value
@@ -303,6 +319,7 @@ func _persist_preferences() -> void:
 		message.text="Préférences : %s" % error_string(error)
 
 func _save() -> void:
+	if atlas_studio.active:return
 	if photo_mode.active:return
 	if pokemon_battle.active or cinematic.active:return
 	if not multiplayer.is_server():
@@ -314,6 +331,7 @@ func _load() -> void:
 	_slot_action("load",slots.active)
 
 func _slot_action(action: String,slot: int) -> void:
+	if atlas_studio.active:return
 	if photo_mode.active:return
 	if action not in ["save","new","load","auto","backup"]:return
 	if photo_mode.active or Session.active_network or pokemon_battle.active or cinematic.active or dialogue.active:return
@@ -337,6 +355,7 @@ func _slot_action(action: String,slot: int) -> void:
 	_sync_menu();pause_menu.feedback.text=message.text
 
 func _autosave_if_safe(force: bool=false) -> void:
+	if atlas_studio.active:return
 	if photo_mode.active:return
 	if not slots.autosave or Session.active_network or pokemon_battle.active or battle_panel.visible or cinematic.active or dialogue.active or pause_menu.visible:return
 	var now:=Time.get_ticks_msec()
@@ -349,6 +368,7 @@ func _autosave_if_safe(force: bool=false) -> void:
 	else:message.text="Autosauvegarde / Autosave : %s" % error_string(error)
 
 func _play_scene(id: String,replay: bool=false) -> void:
+	if atlas_studio.active:return
 	if photo_mode.active or Session.active_network or pokemon_battle.active or dialogue.active or cinematic.active:return
 	var owner: RefCounted=Session.campaign.adventure
 	var entry: Dictionary=Cinematic.library().get(id,{})
@@ -368,6 +388,8 @@ func _render_shot() -> void:
 		gameplay_layer.visible=cinematic_hud_visible;camera.size=cinematic_zoom;last_walk_position=_local_position();_open_menu("island" if cinematic.id.begins_with("isle-") else ("journey" if cinematic.id.begins_with("slice-") else "cinema"));return
 	var shot: Dictionary=cinematic.current();var point: Array=shot.focus;var focus:=Vector3(point[0],point[1],point[2])
 	if shot_tween:shot_tween.kill()
+	if comfort.data.reduced_motion:
+		camera.position=focus+CAMERA_OFFSET;camera.size=float(shot.size);return
 	shot_tween=create_tween().set_parallel(true)
 	shot_tween.tween_property(camera,"position",focus+CAMERA_OFFSET,0.6)
 	shot_tween.tween_property(camera,"size",float(shot.size),0.6)
@@ -379,12 +401,14 @@ func _skip_scene() -> void:
 	if cinematic.skip():_render_shot()
 
 func _start_battle() -> void:
+	if atlas_studio.active or photo_mode.active:return
 	battle.begin({
 		"J1":{"side":0,"hp":100,"speed":55,"power":18},
 		"Boss":{"side":1,"hp":100,"speed":40,"power":25}},false)
 	if log_box:log_box.text="Combat factice : duel solo.\nAucune règle 9G complète ni IA Tactica ici."
 
 func _turn() -> void:
+	if atlas_studio.active or photo_mode.active:return
 	var actions:Array=[]
 	for actor:String in ["J1"]:actions.append({"actor":actor,"target":"Boss"})
 	actions.append({"actor":"Boss","target":"J1"})
@@ -403,6 +427,7 @@ func _sync_menu() -> void:
 	pause_menu.sync(locale,camera.size,Session.campaign.laboratory)
 
 func _open_menu(page: String = "home") -> void:
+	if atlas_studio.active:return
 	if photo_mode.active:return
 	if dialogue.active or battle_panel.visible or cinematic.active: return
 	Session.submit_axis(Vector2.ZERO)
@@ -410,6 +435,14 @@ func _open_menu(page: String = "home") -> void:
 	pause_menu.open(page)
 
 func _input(event: InputEvent) -> void:
+	if event is InputEventJoypadButton:
+		var code: int=preload("res://scripts/services/controller_input.gd").key_for(event,self)
+		if code!=0:
+			var mapped:=InputEventKey.new();mapped.keycode=code;mapped.physical_keycode=code;mapped.pressed=true;_input(mapped);get_viewport().set_input_as_handled()
+		return
+	if atlas_studio.active:
+		if event is InputEventKey and event.pressed and not event.echo and event.keycode==KEY_ESCAPE:atlas_studio.close();get_viewport().set_input_as_handled()
+		return
 	if photo_mode.active:
 		if event is InputEventKey and event.keycode==KEY_ESCAPE:
 			photo_mode.handle_key(event);get_viewport().set_input_as_handled()
@@ -451,6 +484,7 @@ func _nearest_interaction() -> String:
 	return nearest
 
 func _open_interaction(id: String) -> bool:
+	if atlas_studio.active:return false
 	if photo_mode.active:return false
 	if pokemon_battle.active or pause_menu.visible or cinematic.active:return false
 	if _contextual_action(id):return false
@@ -502,6 +536,7 @@ func _update_overview() -> void:
 	if is_instance_valid(crate_mesh):(crate_mesh.material_override as StandardMaterial3D).albedo_color=Color("75695a") if progress.tokens else Color("be895a")
 
 func _process(_delta: float) -> void:
+	if atlas_studio.active:Session.submit_axis(Vector2.ZERO);return
 	if displayed_location!=Session.campaign.adventure.exploration.location:_rebuild_location()
 	var value: Dictionary=Session.latest
 	var players: Dictionary=value.get("players",{})
@@ -527,7 +562,7 @@ func _process(_delta: float) -> void:
 			label.position.y = 2.0
 			label.font_size = 32
 			label.pixel_size = 0.004
-			avatar.add_child(label)
+			avatar.add_child(label);label.visible=comfort.data.world_labels
 		var pos:Array=players[id].position
 		var next_position := Vector3(float(pos[0]),float(pos[1]),float(pos[2]))
 		var movement: Vector3 = next_position - avatars[id].position
@@ -582,6 +617,7 @@ func _begin_trainer(id: String) -> void:
 	_begin_pokemon_battle(opponents,id)
 
 func _begin_pokemon_battle(opponents: Array,trainer_id: String="") -> bool:
+	if atlas_studio.active:return false
 	if photo_mode.active or dialogue.active or pause_menu.visible or cinematic.active or Session.active_network:return false
 	pokemon_battle=PokemonBattle.new()
 	if not pokemon_battle.begin(Session.campaign.adventure,opponents,trainer_id):message.text="Showdown indisponible : vérifier le dossier complet du jeu / Showdown unavailable: keep the complete game folder";return false
@@ -602,6 +638,7 @@ func _battle_finished(outcome: String) -> void:
 	if not Session.campaign.adventure.pending.is_empty():_open_menu("choices")
 
 func _travel(target: String,flight: bool=false) -> void:
+	if atlas_studio.active:return
 	if photo_mode.active or Session.active_network or pokemon_battle.active or cinematic.active or dialogue.active:return
 	if not Session.campaign.adventure.travel(target,flight):
 		message.text="Destination fermée : consulter le menu Aventure / Destination locked: check Adventure menu";return
@@ -610,6 +647,7 @@ func _travel(target: String,flight: bool=false) -> void:
 	if pause_menu.visible:pause_menu.close()
 	_rebuild_location()
 func _contextual_action(id: String) -> bool:
+	if atlas_studio.active:return false
 	if photo_mode.active:return false
 	var owner: RefCounted=Session.campaign.adventure
 	var location: String=owner.exploration.location
@@ -656,13 +694,13 @@ func _rebuild_location() -> void:
 	world_geometry.free();world_geometry=Node3D.new();add_child(world_geometry)
 	displayed_location=Session.campaign.adventure.exploration.location
 	if displayed_location in Island.LOCATIONS:
-		var isle:=IslandVisual.new();world_geometry.add_child(isle);isle.build_island(displayed_location,Session.campaign.adventure.island,locale);return
+		var isle:=IslandVisual.new();world_geometry.add_child(isle);isle.build_island(displayed_location,Session.campaign.adventure.island,locale);_apply_world_comfort();return
 	if displayed_location=="village":
 		world_geometry.free()
 		camera.free()
 		for child: Node in get_children():
 			if child is WorldEnvironment or child is DirectionalLight3D:child.free()
-		_build_world();return
+		_build_world();_apply_world_comfort();return
 	if displayed_location in ["trail","trial"]:
 		var district:=VisualDistrict.new();world_geometry.add_child(district);district.build_route(displayed_location)
 	elif displayed_location=="district":
@@ -681,7 +719,10 @@ func _rebuild_location() -> void:
 	for id: String in World.local_points(displayed_location):
 		var hint:=Label3D.new();hint.text=id;hint.position=World.local_points(displayed_location)[id]+Vector3(0,1.2,0);hint.font_size=26;hint.pixel_size=0.004;world_geometry.add_child(hint)
 
+	_apply_world_comfort()
+
 func _start_support_test(support: String) -> void:
+	if atlas_studio.active or photo_mode.active:return
 	if pause_menu.visible or battle_panel.visible or dialogue.active or cinematic.active or Session.active_network:return
 	var owner: RefCounted=Session.campaign.adventure
 	owner.exploration.difficulty="hard"
@@ -695,17 +736,20 @@ func _start_support_test(support: String) -> void:
 		# Electric Terrain is a legal reusable Gen IX TM in this test catalogue.
 	_begin_pokemon_battle(opponents,"weather-test" if support=="sun" else "terrain-test")
 func _start_double_test() -> void:
+	if atlas_studio.active or photo_mode.active:return
 	if battle_panel.visible or pause_menu.visible or dialogue.active or cinematic.active or Session.active_network:return
 	pokemon_battle=DoubleBattle.new();pokemon_battle.double_mode=true
 	if not pokemon_battle.begin(Session.campaign.adventure,[Mon.make("rattata",8,900000),Mon.make("pikachu",8,900001)]):message.text="Deux Pokémon aptes nécessaires / Two ready Pokémon required";return
 	Session.submit_axis(Vector2.ZERO);battle_panel.open(pokemon_battle,locale)
 func _mega_kit() -> void:
+	if atlas_studio.active or photo_mode.active:return
 	if battle_panel.visible or pause_menu.visible or dialogue.active or cinematic.active:return
 	var owner: RefCounted=Session.campaign.adventure
 	if owner.exploration.nuzlocke=="on":message.text="Kit technique désactivé pendant le défi";return
 	if owner.grant_mega_kit():message.text="Kit Méga : Pokémon compatibles existants équipés ; pierres aussi dans le sac. Attaquer → cocher Méga. / Existing compatible Pokémon equipped; stones also in Bag. Fight → tick Mega."
 
 func _start_tactics_test() -> void:
+	if atlas_studio.active or photo_mode.active:return
 	if battle_panel.visible or pause_menu.visible or dialogue.active or cinematic.active or Session.active_network:return
 	var trial: RefCounted=Session.campaign.adventure.get_script().new();trial.initialize()
 	trial.team=[Mon.make("blastoise",50,1),Mon.make("venusaur",50,2),Mon.make("charizard",50,3)];trial.next_uid=4;trial.cap=100
@@ -723,6 +767,7 @@ func _apply_appearance() -> void:
 	for avatar: Node3D in avatars.values():AvatarStyle.apply(avatar,Session.campaign.adventure.appearance)
 
 func _island_action(id: String) -> bool:
+	if atlas_studio.active or photo_mode.active or dialogue.active or cinematic.active or pokemon_battle.active:return false
 	var a: RefCounted=Session.campaign.adventure
 	if a.exploration.location not in Island.LOCATIONS or id not in Island.points(a.exploration.location):return false
 	var key: String=id.trim_prefix("i-")
@@ -737,7 +782,14 @@ func _island_action(id: String) -> bool:
 		else:
 			active_interaction="";dialogue.begin(record,locale);dialogue_panel.visible=true;dialogue_speaker.text=dialogue.speaker;dialogue_text.text=dialogue.current_line()
 		return true
+	if key in Island.OBSTACLES:
+		message.text="Passage ouvert / Path cleared" if a.island.clear_field(a,key) else "Scénario requis ou déjà ouvert / Story unlock required or already cleared"
+		_rebuild_location();return true
 	if key=="nurse":a.heal_team();message.text="Équipe soignée / Party healed";return true
+	if key=="clothier":_open_menu("wardrobe");return true
+	if key=="eggkeeper":
+		if a.exploration.nuzlocke!="on":a.nursery.receive(a,"squirtle")
+		_open_menu("nursery");return true
 	if key=="counter":_open_menu("services");return true
 	if key in Island.CACHES:message.text="Réserve reçue / Supplies received" if a.island.cache(a,key) else "Réserve vide ou sac plein / Empty cache or bag full";_rebuild_location();return true
 	if key in Island.SAMPLES:message.text="Relevé enregistré / Survey recorded" if a.island.collect(a,key) else "Accepter la quête ou relevé déjà pris / Accept quest or survey already taken";return true

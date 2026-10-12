@@ -1,4 +1,4 @@
-ARCHÉLYS — PREMIÈRE ÎLE PROPOSÉE, DOUZE BLOCS + LOTS PRÉCÉDENTS
+ARCHÉLYS — ATLAS, SERVICES ET CONFORT : DIX BLOCS + LOTS PRÉCÉDENTS
 Version : lab-{short_commit}
 Commit : {commit}
 
@@ -8,7 +8,31 @@ et les dossiers showdown/runtime à côté. Aucun compte, installation ou Intern
 nécessaire. Nom EXE fixe, binaire officiel Godot inchangé ; non signé par nous.
 En cas de blocage, noter le message et la protection sans les désactiver.
 
-CE QUI CHANGE
+CE QUI CHANGE — NOUVEAU LOT DE DIX BLOCS
+Atlas proposé des six îles + ancien Æther (28 sites). Studio de maquettes 3D
+séparé de la campagne, rotation et zoom. Sept planches graphiques de quatre vues
+sont dans Concepts : illustrations de direction artistique, PAS rendu actuel
+ni villes définitivement choisies. Une vue d'île, deux propositions de lieux
+habités et un repère par planche, pas inventaire final de toutes les villes.
+Le prototype jouable reste l'île tropicale du menu Île proposée.
+
+Boutique de vêtements au havre : palettes haut/pantalon,100₽ d'essai, achat
+confirmé. L'éditeur gratuit reste disponible. PNJ d'œuf au Centre du havre :
+Carapuce unique, même cadeau que l'incubateur du laboratoire, pas deux exemplaires.
+Boutiques : quantités1–99 puis confirmation achat/vente, refus sans transaction
+partielle. Affichage local : fenêtre/sans bordure/plein écran,720p/900p/FHD,
+limite FPS/vsync. Manette standard : stick/croix, A interaction/confirmation,
+B retour, Start menu, X sac, Y journal. B revient à Pause depuis une rubrique,
+puis ferme Pause au second appui. Remappage manette non intégré.
+
+Repères3D et réduction des mouvements configurables ; dialogue adapté au cadre.
+Transition des textes combat optionnelle, jamais passage automatique à x4.
+Trois obstacles sur l'île : Coupe (jungle), Éclate-Roc (galerie), Force (caldeira).
+Coupe/Éclate-Roc après contrôle RR, Force après gardien ; aucune espèce/attaque
+requise, état et collisions sauvegardés. Ce sont des fixtures locales, pas les
+emplacements/déblocages définitifs de l'archipel. Anciennes saves compatibles.
+
+LOTS PRÉCÉDENTS INCLUS
 Douze blocs de première île proposés : chapitre/save, huit zones avec intérieurs,
 collisions et chemins, arrivée/dialogues FR/EN, biomes et habitats du Pokédex,
 combats Showdown, relais, quête botaniste, caches, services/défaite locale,
@@ -27,7 +51,8 @@ Centres, soins hors combat ou objets tenus. Réglages conservés dans la campagn
 Anciennes parties : Défini et soins autorisés, comportement antérieur conservé.
 Défaite : perte de100₽ maximum (essai), soins puis retour au vrai Centre après
 les textes. Aucun prélèvement répété. L'essai tactique garde son isolation.
-Animations graphiques finales/configurables toujours à développer.
+Transition des textes configurable dans Paramètres ; animations d’attaques et
+modèles Pokémon finaux toujours à développer.
 
 Messages de combat FR/EN lisibles : statuts, variations de statistiques/crans,
 efficacité/critique, talents/objets révélés, climat/terrain. Les effets inconnus
@@ -67,7 +92,40 @@ Le mannequin et les primitives restent provisoires ; aucune variante validée.
 Catalogue22 espèces/43 attaques inchangé. Œufs cadeaux/fossiles conservés.
 Reproduction retirée ; multi/raids/Nuzlocke/Soul-link non prioritaires.
 
-PARCOURS DE TEST GROUPÉ
+PARCOURS DE TEST GROUPÉ — CE NOUVEAU LOT
+Un seul retour suffit pour le lot complet ; note le lieu et le geste en cas de bug.
+
+Ouvre Atlas/Studio. Choisis chaque île puis les lieux proposés, tourne et zoome.
+B/Échap revient à l'atlas. Vérifie que retour/caméra, équipe, argent, position
+et progression sont conservés. Compare les PNG du dossier Concepts avec les
+maquettes : les volumes sont rudimentaires ; donne ensuite tes préférences sur
+architecture, palettes et disposition, sans devoir valider chaque image maintenant.
+
+Sur l'île proposée, entre dans la Boutique du havre. Au comptoir, choisis3 Balls,
+vérifie quantité/prix dans la confirmation puis annule ; rien ne doit changer.
+Recommence et confirme, puis teste une vente avec quantité supérieure au stock.
+Au PNJ Vêtements, achète une palette puis vérifie le mannequin et recharge la
+save. Au Centre, parle au donneur d'œuf : cadeau dans Incubateur, jamais doublé
+après une seconde interaction ou recharge. Déjà reçu au labo = aucun doublon.
+
+Dans Paramètres, essaie720p/FHD, fenêtre/plein écran/sans bordure et retour.
+Vérifie les menus, dialogues et les réglages conservés au prochain lancement.
+Teste distance caméra existante, texte20/24px, repères3D masqués et mouvements
+réduits. Lancer une cinématique garde les textes manuels mais supprime le trajet
+animé de caméra si mouvements réduits. Active/désactive la transition des textes
+combat : aucun avancement sans confirmation, même à x4.
+
+Si tu as une manette, teste stick/croix, A devant un PNJ, Start, X/Y en exploration,
+B retour, navigation croix+A dans menus, combat et messages. Clavier toujours
+possible. Connexion/remappage de matériels spécifiques à confirmer sur ton PC.
+
+Après le contrôle RR de l'île : A devant le tronc à droite dans la jungle.
+Après le gardien : Force sur rocher à gauche dans caldeira ; Éclate-Roc sur
+rocher à droite dans galerie. Un essai avant déblocage doit refuser. Recharger
+après ouverture ne doit pas rétablir un obstacle, et on doit marcher à sa place.
+Aucun Pokémon compatible ni attaque apprise nécessaire. Parcours principal
+ci-dessous pour débloquer ces essais si la sauvegarde n'a pas encore progressé.
+
 
 PREMIÈRE ÎLE — PARCOURS PRINCIPAL À TESTER
 Pause → Aventure → Explorer la première île proposée, ou onglet Île proposée.

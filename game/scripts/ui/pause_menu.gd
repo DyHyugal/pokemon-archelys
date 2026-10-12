@@ -1,4 +1,9 @@
 extends CanvasLayer
+signal atlas_requested(region: String,site: int)
+const CommercePages=preload("res://scripts/ui/commerce_pages.gd")
+var commerce_pages: RefCounted
+const AtlasPages=preload("res://scripts/ui/atlas_pages.gd")
+var atlas_pages: RefCounted
 const IslandPages=preload("res://scripts/ui/island_pages.gd")
 var island_pages: RefCounted
 ## Presentation only: campaign and preferences remain owned by services.
@@ -49,6 +54,8 @@ var buttons: Dictionary = {}
 
 func _ready() -> void:
 	island_pages=IslandPages.new(self)
+	atlas_pages=AtlasPages.new(self)
+	commerce_pages=CommercePages.new(self)
 	adventure_pages=AdventurePages.new(self)
 	storage_pages=StoragePages.new(self)
 	exploration_pages=ExplorationPages.new(self)
@@ -102,6 +109,7 @@ func open(target: String = "home") -> void:
 	page=target; visible=true; feedback.text=""; render()
 
 func close() -> void:
+	commerce_pages.pending={}
 	comfort_pages.capture_action=""
 	visible=false
 	var focus := get_viewport().gui_get_focus_owner()
@@ -109,13 +117,14 @@ func close() -> void:
 	closed.emit()
 
 func render() -> void:
+	if page not in ["services","wardrobe"]:commerce_pages.pending={}
 	clear(navigation); clear(body); buttons.clear()
 	var pages := ["home","bag","journal","settings"]
 	if adventure!=null:
-		pages.append_array(["team","pc","choices","map","services","rules","dex","cinema","saves","nursery","journey","appearance","photo","island"])
+		pages.append_array(["team","pc","choices","map","services","rules","dex","cinema","saves","nursery","journey","appearance","photo","island","atlas","wardrobe"])
 		adventure_pages.adventure=adventure
 	var names := [tr_text("Pause","Pause"),tr_text("Sac","Bag"),tr_text("Journal","Journal"),tr_text("Paramètres","Settings")]
-	if adventure!=null:names.append_array([tr_text("Équipe / Résumé","Party / Summary"),"PC",tr_text("Apprentissages (%d)","Learning (%d)") % adventure.pending.size(),tr_text("Carte / Vol","Map / Fly"),tr_text("Vie quotidienne","Daily services"),tr_text("Règles / Difficulté","Rules / Difficulty"),"Pokédex",tr_text("Cinématiques","Cinematics"),tr_text("Sauvegardes","Save slots"),tr_text("Œufs / Incubateur","Eggs / Incubator"),tr_text("Aventure","Adventure"),tr_text("Personnage","Character"),tr_text("Photo","Photo"),tr_text("Île proposée","Proposed island")])
+	if adventure!=null:names.append_array([tr_text("Équipe / Résumé","Party / Summary"),"PC",tr_text("Apprentissages (%d)","Learning (%d)") % adventure.pending.size(),tr_text("Carte / Vol","Map / Fly"),tr_text("Vie quotidienne","Daily services"),tr_text("Règles / Difficulté","Rules / Difficulty"),"Pokédex",tr_text("Cinématiques","Cinematics"),tr_text("Sauvegardes","Save slots"),tr_text("Œufs / Incubateur","Eggs / Incubator"),tr_text("Aventure","Adventure"),tr_text("Personnage","Character"),tr_text("Photo","Photo"),tr_text("Île proposée","Proposed island"),tr_text("Atlas / Studio","Atlas / Studio"),tr_text("Boutique de vêtements","Clothing shop")])
 	for index: int in range(pages.size()):
 		var target: String=pages[index]
 		buttons[target]=button(navigation,names[index],func(): page=target; feedback.text=""; render())
@@ -124,6 +133,8 @@ func render() -> void:
 	buttons.resume=button(navigation,tr_text("Reprendre • Échap","Resume • Esc"),close)
 	title.text=names[pages.find(page)]
 	match page:
+		"wardrobe":commerce_pages.wardrobe()
+		"atlas":atlas_pages.render()
 		"island":island_pages.render()
 		"appearance":style_pages.render()
 		"photo":

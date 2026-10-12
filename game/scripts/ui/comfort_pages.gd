@@ -34,6 +34,7 @@ func render() -> void:
  for kind: String in ["music","effects"]:
   menu.button(menu.body,t("Écouter la mélodie d'essai","Play test melody") if kind=="music" else t("Écouter le son d'effet","Play test effect"),func():menu.audio_preview_requested.emit(kind))
  menu.button(menu.body,t("Arrêter les sons d'essai","Stop test sounds"),func():menu.audio_preview_requested.emit("stop"))
+ preload("res://scripts/ui/display_pages.gd").new(menu).render()
  menu.label(t("Commandes clavier","Keyboard controls"))
  menu.label(t("Choisis une commande, puis appuie sur une touche physique. Échap annule et reste toujours disponible pour revenir au menu. Entrée/Espace gardent la confirmation des interfaces ; F3 reste réservé au laboratoire. Les doublons entre commandes sont refusés.","Choose an action, then press a physical key. Escape cancels and always remains available to return to the menu. Enter/Space retain interface confirmation; F3 remains reserved for the lab. Conflicting action bindings are rejected."))
  for action: String in Comfort.ACTIONS:

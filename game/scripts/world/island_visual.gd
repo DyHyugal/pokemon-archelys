@@ -51,6 +51,11 @@ func build_island(location: String,state: RefCounted,language: String) -> void:
   box(Vector3(6,0.04,3),Vector3(-6,0.03,-5.5),"457b55" if location!="isle-cave" else "737b72")
  for id: String in Island.points(location):
   var at: Vector3=Island.points(location)[id]
+  if id.trim_prefix("i-") in Island.OBSTACLES:
+   if state.cleared.has(id.trim_prefix("i-")):continue
+   var obstacle: Dictionary=Island.OBSTACLES[id.trim_prefix("i-")]
+   if obstacle.action=="cut":box(Vector3(1.5,0.7,0.8),at+Vector3(0,0.35,0),"84634e")
+   else:sphere(0.75,at+Vector3(0,0.6,0),"7b817d")
   var text: String=caption(id,language)
   if id.begins_with("i-go-"):
    cylinder(0.28,1.4,at+Vector3(0,0.7,0),"9a805b")
@@ -59,7 +64,7 @@ func build_island(location: String,state: RefCounted,language: String) -> void:
    sphere(0.26,at+Vector3(0,0.25,0),"598752");sphere(0.12,at+Vector3(0,0.55,0),"d5a9d8")
   elif id.contains("cache"):
    box(Vector3(0.8,0.65,0.7),at+Vector3(0,0.325,0),"81745c" if state.caches.has(id.trim_prefix("i-")) else "d8ac65")
-  elif id in ["i-vyna","i-resident","i-botanist","i-isle-checkpoint","i-isle-keeper","i-isle-admin-a","i-isle-admin-b","i-nurse","i-counter"]:
+  elif id in ["i-vyna","i-resident","i-botanist","i-isle-checkpoint","i-isle-keeper","i-isle-admin-a","i-isle-admin-b","i-nurse","i-counter","i-clothier","i-eggkeeper"]:
    var npc: Node3D=load("res://assets/prototypes/mannequin.glb").instantiate();npc.position=at;add_child(npc)
   var label:=Label3D.new();label.text=text;label.position=at+Vector3(0,1.8,0);label.font_size=32;label.pixel_size=0.008;label.billboard=BaseMaterial3D.BILLBOARD_ENABLED;add_child(label)
  if location=="isle-port":
@@ -72,8 +77,9 @@ func palm(at: Vector2) -> void:
  for i: int in range(4):
   var leaf:=sphere(0.7,Vector3(at.x+cos(i*PI/2)*0.6,2.8,at.y+sin(i*PI/2)*0.6),"448269");leaf.scale=Vector3(1.6,0.4,1.5);leaves.append(leaf)
 static func caption(id: String,language: String) -> String:
+ if id.trim_prefix("i-") in Island.OBSTACLES:return Island.OBSTACLES[id.trim_prefix("i-")].action
  if id.begins_with("i-go-"):return Island.name_of(id.trim_prefix("i-go-"),language)
- var names: Dictionary={"i-vyna":["Vyna — proposition","Vyna — proposal"],"i-resident":["Habitant","Resident"],"i-botanist":["Botaniste / quête","Botanist / quest"],"i-nurse":["Soins gratuits","Free healing"],"i-counter":["Boutique","Shop"],"i-relay-west":["Relais ouest","West relay"],"i-relay-east":["Relais est","East relay"],"i-isle-checkpoint":["Contrôle RR","RR checkpoint"],"i-isle-keeper":["Gardien proposé","Proposed keeper"],"i-isle-admin-a":["Admin RR A","RR admin A"],"i-isle-admin-b":["Admin RR B","RR admin B"]}
+ var names: Dictionary={"i-vyna":["Vyna — proposition","Vyna — proposal"],"i-resident":["Habitant","Resident"],"i-botanist":["Botaniste / quête","Botanist / quest"],"i-nurse":["Soins gratuits","Free healing"],"i-counter":["Boutique","Shop"],"i-clothier":["Vêtements","Clothing"],"i-eggkeeper":["Œuf cadeau","Gift egg"],"i-relay-west":["Relais ouest","West relay"],"i-relay-east":["Relais est","East relay"],"i-isle-checkpoint":["Contrôle RR","RR checkpoint"],"i-isle-keeper":["Gardien proposé","Proposed keeper"],"i-isle-admin-a":["Admin RR A","RR admin A"],"i-isle-admin-b":["Admin RR B","RR admin B"]}
  if names.has(id):return names[id][0 if language=="fr" else 1]
  if id.contains("sample"):return "Relevé / Survey"
  if id.contains("cache"):return "Réserve / Supply cache"

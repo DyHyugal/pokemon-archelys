@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-12",
+  "tool": "image_gen.imagegen",
+  "purpose": "Concept proposals, not game screenshots or final 3D assets",
+  "boards": [
+    {
+      "id": "tropicale",
+      "title": "Île tropicale / volcanique",
+      "theme": "lush tropical island with an ACTIVE basalt volcano, turquoise lagoons, dense jungle and terraced red volcanic cliffs. Main town: elegant coastal harbor with cream plaster houses, teal tile roofs, shaded arcades and palm lined waterfront; second town: volcanic foothill village of basalt, warm timber and terraced geothermal gardens. RR secondary base: disguised geothermal refinery integrated into black cliffs, discreet red security markings, intimidating but functional, not giant villain skulls. Green/teal/ochre/charcoal palette."
+    },
+    {
+      "id": "mystique",
+      "title": "Île mystique",
+      "theme": "misty temperate island devoted to ghost dark psychic fairy themes, ancient forest, luminous wetlands and a crescent shaped coast. Main town: refined lakeside town with dark slate roofs, muted purple flowers, warm window lights and stone bridges; second town: forest sanctuary village with pale timber homes and restrained violet lanterns. RR secondary base: appropriated old observatory and archive, geometric black metal structures threaded into historic stone, discreet red scanners. Atmospheric twilight but navigable clear streets, avoid gothic horror clichés."
+    },
+    {
+      "id": "hivernale",
+      "title": "Île hivernale",
+      "theme": "snowy alpine island with glacier valleys, fjords and aurora, actual mountain topography. Main town: northern port with durable slate stone bases and warm timber houses, cobalt roofs, generous window lights; second town: mountain village terraced on a slope around a hot spring, avalanche resistant structures and covered paths. RR secondary base: fortified ice mining station carved into a glacier, industrial blue steel against ice, restrained red security lights. Snow soft shading, no overly cute toy-town."
+    },
+    {
+      "id": "draconique",
+      "title": "Réserve draconique",
+      "theme": "wild sacred DRACONIC reserve island with distinct desert canyon, forest, snowy mountains, volcanic ridge and storm battered coast. Main settlement: rugged cliff village of local tough practical inhabitants, stone and massive timber with wind shelters, no modern metropolis. Second settlement: oasis caravan village with broad natural rock arches and stepped dwellings. Major site: ancient biome gateway sanctuary embedded in huge mountains, dragon-like silhouettes only abstract architecture, no actual Pokemon designs. NO Rainbow Rocket presence, NO occupying military, NO red enemy banners."
+    },
+    {
+      "id": "hightech",
+      "title": "Île high-tech",
+      "theme": "coherent futuristic inhabited island with integrated clean energy grid and dense urban core, refined retro-futurism inspired by sophisticated Japanese game urban design. Main city: light gray buildings with layered terraces, glass, cyan circuits, public tram line, broad pedestrian streets and roof gardens; second town: tidal power coastal district, bridges, turbine structures and compact worker housing. RR secondary base: ominous network control tower inside a civic megastructure, angular dark steel and narrow red access lights. Clean cyan/white/graphite palette, not generic cyberpunk neon chaos."
+    },
+    {
+      "id": "celeste",
+      "title": "Île céleste",
+      "theme": "sacred island in the sky over immense cloud sea, floating ancient terraces connected by solid bridges, grounded fantasy construction using pale stone, warm gold and sky blue. Main hub: dignified sanctuary town with gardens, small human scale houses and open plazas; second hub: refuge built along a cliff above clouds, a modest stone retreat with covered walkways. Major site: monumental divine challenge citadel with FOUR distinct guardian entrances arranged around a central FIFTH sanctum, elegant angular stone, no actual deity or Pokemon design. NO RR occupation, NO enemy flags, not a tacky angel palace."
+    },
+    {
+      "id": "aether",
+      "title": "Ancien Æther / repaire principal RR",
+      "theme": "artificial offshore island formerly a bright modern scientific ecological campus, converted into headquarters by RR. Panorama: white ring platforms, geometric glass domes, research gardens and enormous ocean facing central command spine. Main civic zone: seized research campus with restrained black security overlays and red access barriers; second habitable zone: workers research lodging district with rooftop gardens and signs of occupation. Main lair: severe underground command/prison entrance under the original white biomedical architecture, visible layered structure and controlled pathways, no gore, no literal famous logos, no skull fortress. White teal black red palette, contrast original idealism with current authoritarian conversion."
+    }
+  ]
+}

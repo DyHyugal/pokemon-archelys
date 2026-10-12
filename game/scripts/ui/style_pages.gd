@@ -20,4 +20,4 @@ func render() -> void:
    else:menu.feedback.text=menu.tr_text("Modification indisponible.","Change unavailable."))
  menu.button(menu.body,menu.tr_text("Revenir au personnage d'essai initial","Restore initial test character"),func():
   if not menu.adventure.in_battle:menu.adventure.appearance=Appearance.DEFAULT.duplicate();menu.appearance_changed.emit();menu.render())
- menu.label(menu.tr_text("Ferme le menu pour voir le résultat, ou ouvre Photo pour cadrer de près. Sauvegarde pour garder ces choix. Les boutiques de vêtements et les assets finaux ne sont pas encore produits.","Close the menu to see the result, or use Photo for a close view. Save to retain these choices. Clothing shops and final assets are not produced yet."))
+ menu.label(menu.tr_text("Ferme le menu pour voir le résultat, ou ouvre Photo pour cadrer de près. Sauvegarde pour garder ces choix. La boutique du havre propose des palettes d'essai ; les assets finaux restent à produire.","Close the menu to see the result, or use Photo for a close view. Save to retain these choices. The haven shop offers test palettes; final assets are still pending."))

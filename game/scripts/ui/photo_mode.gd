@@ -20,7 +20,7 @@ func _ready() -> void:
  layer=30;visible=false
  panel=PanelContainer.new();panel.position=Vector2(20,20);panel.custom_minimum_size.x=330;add_child(panel)
 func start(owner: Node3D) -> bool:
- if active or owner.get_node("/root/Session").active_network or owner.pokemon_battle.active or owner.battle_panel.visible or owner.cinematic.active or owner.dialogue.active:return false
+ if active or owner.atlas_studio.active or owner.get_node("/root/Session").active_network or owner.pokemon_battle.active or owner.battle_panel.visible or owner.cinematic.active or owner.dialogue.active:return false
  world=owner;camera=owner.camera;original_transform=camera.transform;original_size=camera.size
  owner.get_node("/root/Session").submit_axis(Vector2.ZERO)
  layers.clear();labels.clear()

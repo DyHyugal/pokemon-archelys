@@ -8,6 +8,8 @@ Le nom de travail est Pokémon Archélys. Le rendu cible est une 3D stylisée ne
 
 La [documentation de conception sur develop](https://github.com/DyHyugal/pokemon-archelys/tree/develop/docs) contient le cahier des charges V0.1 à relire, les décisions, la roadmap et les réponses aux questionnaires.
 
+Les [propositions graphiques des six îles et du site Æther](docs/design/ATLAS_PROPOSE_2026-10-12.md) comprennent sept planches de quatre vues. Elles servent de direction artistique proposée, distincte du rendu procédural actuel.
+
 ## Branches
 
 `main` accueille les jalons validés ; `develop` assemble le prochain jalon. Une seule branche de travail temporaire est active par défaut, puis supprimée après intégration. L’initialisation de main est documentaire et ne représente pas une version jouable validée.

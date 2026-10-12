@@ -11,11 +11,13 @@ const FLAGS=["started","checkpoint","relay-west","relay-east","keeper","admin-a"
 const CACHES={"port-cache":{"location":"isle-port","items":{"poke-ball":5}},"jungle-cache":{"location":"isle-jungle","items":{"potion":2}},"cave-cache":{"location":"isle-cave","items":{"great-ball":3}}}
 const SAMPLES={"sample-a":Vector3(-8,0,-5),"sample-b":Vector3(8,0,-5),"sample-c":Vector3(7,0,5)}
 const BATTLES={"isle-checkpoint":{"location":"isle-port","species":["rattata","pikachu"],"levels":[10,12],"cap":14,"flag":"checkpoint"},"isle-keeper":{"location":"isle-shrine","species":["vulpix","bulbasaur","squirtle"],"levels":[16,16,18],"cap":18,"flag":"keeper"},"isle-admin-a":{"location":"isle-base","species":["raticate","charmeleon"],"levels":[20,22],"cap":22,"flag":"admin-a"},"isle-admin-b":{"location":"isle-base","species":["raichu","wartortle"],"levels":[20,22],"cap":22,"flag":"admin-b"}}
+const OBSTACLES={"field-cut":{"location":"isle-jungle","action":"cut","flag":"checkpoint","position":Vector3(3,0,5),"radius":0.8},"field-rock-smash":{"location":"isle-cave","action":"rock-smash","flag":"checkpoint","position":Vector3(5,0,3),"radius":0.8},"field-strength":{"location":"isle-caldera","action":"strength","flag":"keeper","position":Vector3(-6,0,3),"radius":0.8}}
+var cleared: Dictionary={}
 var flags: Dictionary={}
 var collected: Dictionary={}
 var caches: Dictionary={}
 static func name_of(location: String,lang: String) -> String:return NAMES.get(location,[location,location])[0 if lang=="fr" else 1]
-func snapshot() -> Dictionary:return {"flags":flags.duplicate(),"collected":collected.duplicate(),"caches":caches.duplicate()}
+func snapshot() -> Dictionary:return {"flags":flags.duplicate(),"collected":collected.duplicate(),"caches":caches.duplicate(),"cleared":cleared.duplicate()}
 static func validate(value: Variant) -> bool:
  if not value is Dictionary:return false
  for field: String in ["flags","collected","caches"]:
@@ -23,6 +25,9 @@ static func validate(value: Variant) -> bool:
   var keys: Array=FLAGS if field=="flags" else (SAMPLES.keys() if field=="collected" else CACHES.keys())
   for key: Variant in value[field]:
    if key not in keys or value[field][key]!=true:return false
+ if not value.get("cleared",{}) is Dictionary:return false
+ for id: Variant in value.get("cleared",{}):
+  if id not in OBSTACLES or value.cleared[id]!=true or not value.flags.has(OBSTACLES[id].flag):return false
  var f: Dictionary=value.flags
  if not f.has("started") and (not f.is_empty() or not value.collected.is_empty() or not value.caches.is_empty()):return false
  if f.has("keeper") and not (f.has("checkpoint") and f.has("relay-west") and f.has("relay-east")):return false
@@ -32,7 +37,7 @@ static func validate(value: Variant) -> bool:
  if f.has("gift") and (not f.has("quest") or value.collected.size()!=3):return false
  if not value.collected.is_empty() and not f.has("quest"):return false
  return true
-func restore(value: Dictionary) -> void:flags=value.flags.duplicate();collected=value.collected.duplicate();caches=value.caches.duplicate()
+func restore(value: Dictionary) -> void:flags=value.flags.duplicate();collected=value.collected.duplicate();caches=value.caches.duplicate();cleared=value.get("cleared",{}).duplicate()
 func start(owner: RefCounted) -> bool:
  if owner.in_battle or owner.exploration.nuzlocke=="on" or not owner.initialized or flags.has("started"):return false
  flags.started=true;return true
@@ -124,14 +129,16 @@ static func points(location: String) -> Dictionary:
  for i: int in range(ROUTES[location].size()):result["i-go-"+ROUTES[location][i]]=POSITIONS[location][i]
  match location:
   "isle-port":result.merge({"i-vyna":Vector3(3,0,3),"i-resident":Vector3(-4,0,4),"i-botanist":Vector3(7,0,4),"i-isle-checkpoint":Vector3(3,0,-6),"i-port-cache":Vector3(-10,0,6)})
-  "isle-center":result["i-nurse"]=Vector3(0,0,-3)
-  "isle-shop":result["i-counter"]=Vector3(0,0,-3)
+  "isle-center":result["i-nurse"]=Vector3(0,0,-3);result["i-eggkeeper"]=Vector3(4,0,-3)
+  "isle-shop":result["i-counter"]=Vector3(0,0,-3);result["i-clothier"]=Vector3(-4,0,-3)
   "isle-jungle":
    result.merge({"i-relay-west":Vector3(-6,0,0),"i-relay-east":Vector3(6,0,0),"i-jungle-cache":Vector3(-10,0,5)})
    for id: String in SAMPLES:result["i-"+id]=SAMPLES[id]
   "isle-cave":result["i-cave-cache"]=Vector3(-6,0,-2)
   "isle-shrine":result["i-isle-keeper"]=Vector3(0,0,-4)
   "isle-base":result.merge({"i-isle-admin-a":Vector3(-4,0,-4),"i-isle-admin-b":Vector3(4,0,-4)})
+ for id: String in OBSTACLES:
+  if OBSTACLES[id].location==location:result["i-"+id]=OBSTACLES[id].position
  return result
 static func walkable(pos: Vector2,location: String) -> bool:
  if absf(pos.x)>14 or absf(pos.y)>10:return false
@@ -154,3 +161,14 @@ static func wild(owner: RefCounted) -> Dictionary:
  if pool.is_empty():return {}
  var level: int=mini(owner.cap,14 if owner.exploration.location=="isle-jungle" else 18)
  return owner.wild(maxi(8,level),pool[owner.rng.randi_range(0,pool.size()-1)])
+
+func clear_field(owner: RefCounted,id: String) -> bool:
+ if owner.in_battle or id not in OBSTACLES or cleared.has(id):return false
+ var data: Dictionary=OBSTACLES[id]
+ if owner.exploration.location!=data.location or not flags.has(data.flag):return false
+ cleared[id]=true;return true
+func blocked(position: Vector2,location: String) -> bool:
+ for id: String in OBSTACLES:
+  var data: Dictionary=OBSTACLES[id]
+  if data.location==location and not cleared.has(id) and position.distance_to(Vector2(data.position.x,data.position.z))<float(data.radius):return true
+ return false

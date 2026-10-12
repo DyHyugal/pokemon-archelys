@@ -4,16 +4,20 @@ const Mon=preload("res://scripts/domain/pokemon.gd")
 const KEYS={"left":[KEY_A,KEY_Q,KEY_LEFT],"right":[KEY_D,KEY_RIGHT],"up":[KEY_W,KEY_Z,KEY_UP],"down":[KEY_S,KEY_DOWN],"interact":[KEY_E],"menu":[KEY_ESCAPE],"bag":[KEY_I],"journal":[KEY_J]}
 const ACTIONS=["left","right","up","down","interact","menu","bag","journal"]
 const PATH="user://comfort.json"
+const EXTRA={"window_mode":"windowed","resolution":"1280x720","fps_limit":0,"vsync":true,"combat_animations":true,"reduced_motion":false,"world_labels":true}
 var path: String
 var data: Dictionary={"keys":{},"master":80,"music":70,"effects":80,"text_size":16,"theme":"dark"}
 func _init(file_path: String=PATH) -> void:
  path=file_path
+ data.merge(EXTRA,true)
  if FileAccess.file_exists(path):
   var parser:=JSON.new()
   if parser.parse(FileAccess.get_file_as_string(path))==OK and validate(parser.data):
    data=parser.data.duplicate(true)
    data.theme=parser.data.get("theme","dark")
+   for field: String in EXTRA:data[field]=parser.data.get(field,EXTRA[field])
    for field: String in ["master","music","effects","text_size"]:data[field]=int(data[field])
+   data.fps_limit=int(data.fps_limit)
    for action: String in data.keys:data.keys[action]=int(data.keys[action])
 static func allowed_key(code: int) -> bool:
  return (code>=KEY_A and code<=KEY_Z) or (code>=KEY_0 and code<=KEY_9) or code in [KEY_TAB,KEY_UP,KEY_DOWN,KEY_LEFT,KEY_RIGHT,KEY_SHIFT,KEY_CTRL]
@@ -23,6 +27,10 @@ static func validate(value: Variant) -> bool:
  for field: String in ["master","music","effects"]:
   if not Mon.integer(value.get(field),0,100):return false
  if not Mon.integer(value.get("text_size"),16,24) or int(value.text_size) not in [16,20,24]:return false
+ if value.get("window_mode","windowed") not in ["windowed","borderless","fullscreen"] or value.get("resolution","1280x720") not in ["1280x720","1600x900","1920x1080"]:return false
+ if not Mon.integer(value.get("fps_limit",0),0,120) or int(value.get("fps_limit",0)) not in [0,30,60,120]:return false
+ for field: String in ["vsync","combat_animations","reduced_motion","world_labels"]:
+  if not value.get(field,EXTRA[field]) is bool:return false
  var used: Array=[]
  for action: Variant in value.keys:
   if action not in ACTIONS or not Mon.integer(value.keys[action],1,1<<24) or not allowed_key(int(value.keys[action])) or value.keys[action] in used:return false
@@ -69,7 +77,17 @@ func axis() -> Vector2:
    if action=="right":result.x+=1
    if action=="up":result.y-=1
    if action=="down":result.y+=1
+ var pads: Array=Input.get_connected_joypads()
+ if not pads.is_empty():
+  var pad: int=pads[0]
+  var stick:=Vector2(Input.get_joy_axis(pad,JOY_AXIS_LEFT_X),Input.get_joy_axis(pad,JOY_AXIS_LEFT_Y))
+  result+=preload("res://scripts/services/controller_input.gd").stick(stick)
+  result+=Vector2(int(Input.is_joy_button_pressed(pad,JOY_BUTTON_DPAD_RIGHT))-int(Input.is_joy_button_pressed(pad,JOY_BUTTON_DPAD_LEFT)),int(Input.is_joy_button_pressed(pad,JOY_BUTTON_DPAD_DOWN))-int(Input.is_joy_button_pressed(pad,JOY_BUTTON_DPAD_UP)))
  return result.limit_length()
 
 func set_theme(value: String) -> Error:
  var next:=data.duplicate(true);next.theme=value;return update(next)
+
+func set_option(field: String,value: Variant) -> Error:
+ if field not in EXTRA:return ERR_INVALID_PARAMETER
+ var next:=data.duplicate(true);next[field]=value;return update(next)
