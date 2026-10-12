@@ -54,6 +54,7 @@ func run() -> void:
  for i: int in range(1,4):
   for suffix: String in ["",".backup",".auto",".auto.backup"]:DirAccess.remove_absolute(Slots.path(game.save_path,i)+suffix)
  game.open(owner);game.new_demo();game.choose_starter("squirtle");clear_text(game)
+ check(Slots.read_auto(game.save_path,1).starter=="squirtle","New starter replaces previous slot autosave consistently")
  game.interact("vyna");check(game.scene.active and not game.state.campaign.adventure.records.scenes.has("demo-arrival"),"Actual Vyna starts uns skippable manual scene")
  var step: int=game.scene.index;game._process(.1);check(game.scene.index==step and not game.scene.skip(),"No elapsed-time advance or skip")
  await shot("01-arrival");clear_text(game);check(game.state.campaign.adventure.records.scenes.has("demo-arrival"),"Scene saved only when completed")
@@ -99,6 +100,7 @@ func run() -> void:
  game.confirm_import(archive_path);check(game.modal.find_child("ConfirmDemoImport",true,false)!=null,"Import requires concrete confirmation")
  game.modal.find_child("ConfirmDemoImport",true,false).pressed.emit();check(game.state.starter=="squirtle" and game.state.flags.has("expedition-reward"),"Confirmed imported expedition restores")
  check(not Slots.read(game.save_path,1,true).is_empty(),"Import retains previous valid disk copy")
+ check(Slots.read_auto(game.save_path,1).flags.has("expedition-reward"),"Imported campaign replaces stale autosave consistently")
  game.menu.close();clear_text(game)
  check(game.begin_battle([Mon.make("rattata",5,900000)]),"Actual battle still opens after portable import")
  var deadline: int=Time.get_ticks_msec()+12000

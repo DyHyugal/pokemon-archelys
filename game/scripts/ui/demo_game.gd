@@ -130,7 +130,7 @@ func starter_screen() -> void:
   if ResourceLoader.exists(path):world.asset("pokemon-"+Content.data().starters[i],Vector3(-2+i*2,0,-2),.7)
 func choose_starter(id: String) -> bool:
  if not state.choose(id):return false
- clear_modal();world.build(state);save_game();talk([t("Ton partenaire est prêt ! Vyna t'attend près de la place. E / Entrée : interagir. Échap : menu.","Your partner is ready! Vyna waits by the plaza. E / Enter: interact. Escape: menu.")]);return true
+ clear_modal();world.build(state);save_game();persist_auto(true);talk([t("Ton partenaire est prêt ! Vyna t'attend près de la place. E / Entrée : interagir. Échap : menu.","Your partner is ready! Vyna waits by the plaza. E / Enter: interact. Escape: menu.")]);return true
 func add_avatar_preview(body: Node) -> void:
  var viewport:=SubViewport.new();viewport.size=Vector2i(360,400);viewport.own_world_3d=true;viewport.render_target_update_mode=SubViewport.UPDATE_ALWAYS;body.add_child(viewport)
  var scene:=Node3D.new();viewport.add_child(scene)
@@ -386,7 +386,7 @@ func confirm_import(path: String) -> void:
   var candidate:=State.new()
   if not candidate.restore(data):return
   var error: int=candidate.save(slot_path(loaded_slot))
-  if error==OK:apply_archive(data,loaded_slot)
+  if error==OK:apply_archive(data,loaded_slot);persist_auto(true)
   else:clear_modal();open_menu("saves");menu.feedback.text=error_string(error),"ConfirmDemoImport")
  button(column,t("Annuler","Cancel"),func():open_menu("saves"))
 func play_scene(id: String,replay: bool=false) -> bool:
