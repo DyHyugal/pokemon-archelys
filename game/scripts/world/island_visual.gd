@@ -1,5 +1,7 @@
 extends "res://scripts/world/visual_district.gd"
 ## Original blockout. Geometry matches island authoritative blockers.
+const Kit=preload("res://scripts/world/asset_kit.gd")
+const AvatarStyle=preload("res://scripts/world/avatar_style.gd")
 const Island=preload("res://scripts/domain/island.gd")
 func build_island(location: String,state: RefCounted,language: String) -> void:
  var underground: bool=location in ["isle-cave","isle-base"]
@@ -14,9 +16,7 @@ func build_island(location: String,state: RefCounted,language: String) -> void:
  if location=="isle-port":
   box(Vector3(20,0.025,3),Vector3(0,0.02,0),"ceb998")
   for x: int in [-8,8]:
-   box(Vector3(4.2,2.8,3.6),Vector3(x,1.4,-3),"e8e3cc")
-   box(Vector3(5,0.3,4.3),Vector3(x,3,-3),"447d86" if x<0 else "a17058")
-   box(Vector3(1.2,2,0.12),Vector3(x,1,-1.15),"3d6066")
+   Kit.place(self,"house-tropical",Vector3(x,0,-3),0.93)
   for at: Vector2 in [Vector2(-12,-7),Vector2(12,-7),Vector2(-12,7)]:palm(at)
  if location=="isle-jungle":
   for x: int in [-11,11]:
@@ -26,8 +26,7 @@ func build_island(location: String,state: RefCounted,language: String) -> void:
    cylinder(0.5,0.6,at+Vector3(0,0.3,0),"716f64")
    sphere(0.28,at+Vector3(0,1,0),"77e4c8" if state.flags.has(id) else "cf885e")
  if location=="isle-caldera":
-  cylinder(3.4,1.1,Vector3(0,0.55,0),"675e59")
-  cylinder(2.8,0.12,Vector3(0,1.12,0),"e78648")
+  Kit.place(self,"landmark-tropical",Vector3.ZERO,0.55)
   for side: int in [-1,1]:box(Vector3(3,0.03,20),Vector3(side*6,0.025,0),"bdac94")
  if location=="isle-cave":
   for side: int in [-1,1]:box(Vector3(0.8,4,23),Vector3(side*9.8,2,0),"575b61")
@@ -66,6 +65,7 @@ func build_island(location: String,state: RefCounted,language: String) -> void:
    box(Vector3(0.8,0.65,0.7),at+Vector3(0,0.325,0),"81745c" if state.caches.has(id.trim_prefix("i-")) else "d8ac65")
   elif id in ["i-vyna","i-resident","i-botanist","i-isle-checkpoint","i-isle-keeper","i-isle-admin-a","i-isle-admin-b","i-nurse","i-counter","i-clothier","i-eggkeeper"]:
    var npc: Node3D=load("res://assets/prototypes/mannequin.glb").instantiate();npc.position=at;add_child(npc)
+   var outfit: Dictionary=preload("res://scripts/domain/appearance.gd").DEFAULT.duplicate();outfit.shirt=1 if id.contains("admin") or id.contains("checkpoint") else (2 if id.contains("botanist") else 0);outfit.style=1;AvatarStyle.apply(npc,outfit)
   var label:=Label3D.new();label.text=text;label.position=at+Vector3(0,1.8,0);label.font_size=32;label.pixel_size=0.008;label.billboard=BaseMaterial3D.BILLBOARD_ENABLED;add_child(label)
  if location=="isle-port":
   for x: int in [-3,3]:
@@ -73,9 +73,7 @@ func build_island(location: String,state: RefCounted,language: String) -> void:
    box(Vector3(1.2,0.9,0.08),Vector3(x,2,-5),"63c0b0" if state.flags.has("liberated") else "a84c48")
  set_process(true)
 func palm(at: Vector2) -> void:
- cylinder(0.22,2.8,Vector3(at.x,1.4,at.y),"957653")
- for i: int in range(4):
-  var leaf:=sphere(0.7,Vector3(at.x+cos(i*PI/2)*0.6,2.8,at.y+sin(i*PI/2)*0.6),"448269");leaf.scale=Vector3(1.6,0.4,1.5);leaves.append(leaf)
+ Kit.place(self,"palm",Vector3(at.x,0,at.y))
 static func caption(id: String,language: String) -> String:
  if id.trim_prefix("i-") in Island.OBSTACLES:return Island.OBSTACLES[id.trim_prefix("i-")].action
  if id.begins_with("i-go-"):return Island.name_of(id.trim_prefix("i-go-"),language)

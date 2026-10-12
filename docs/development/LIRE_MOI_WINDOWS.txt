@@ -1,4 +1,4 @@
-ARCHÉLYS — ATLAS, SERVICES ET CONFORT : DIX BLOCS + LOTS PRÉCÉDENTS
+ARCHÉLYS — ASSETS 3D ET VISITES À PIED DES RÉGIONS + LOTS PRÉCÉDENTS
 Version : lab-{short_commit}
 Commit : {commit}
 
@@ -8,11 +8,43 @@ et les dossiers showdown/runtime à côté. Aucun compte, installation ou Intern
 nécessaire. Nom EXE fixe, binaire officiel Godot inchangé ; non signé par nous.
 En cas de blocage, noter le message et la protection sans les désactiver.
 
-CE QUI CHANGE — NOUVEAU LOT DE DIX BLOCS
+CE QUI CHANGE — NOUVEAU KIT GRAPHIQUE
+Concepts approuvés : premier kit3D original intégré,21GLB Blender. Sept maisons,
+sept repères, six props, avatar animé avec yeux/cheveux/habits/chaussures/sac.
+Nouveaux modèles au havre et laboratoire, héros/PNJ, palettes de ta partie
+conservées. Coiffure0 = courts naturels ; profils de visite séparés de ta partie.
+Atlas propose28scènes représentatives visitables à pied. Elles ne débloquent
+pas la campagne et n'ont pas les quêtes/intérieurs de toutes les îles.
+Concepts contient les planches approuvées, Comparatifs les captures du prototype.
+Sources et détails dans Documentation/Assets3D.md et Lot-assets-visites.md.
+
+PARCOURS À TESTER — CE KIT
+Menu → Atlas/Studio → région → lieu → Visiter à pied. Essaie les sept régions,
+puis les autres lieux. Marche avec tes touches habituelles ou stick ; rotation
+et zoom restent disponibles. Ne traverse pas une maison/un PNJ ni le bord de
+la scène. Retour B/Échap : position, équipe, argent et progression de ta partie
+restent identiques. Réouvre une visite pour vérifier qu'elle est utilisable.
+
+Dans la visite, sélectionne les profils d'avatar (exploratrice/botaniste/RR) et
+regarde visage, cheveux, vêtements, sac, chaussures et animation de marche.
+Ce changement ne remplace pas ton personnage en campagne. Dans Personnage,
+essaie les palettes/coiffures/visage, ferme le menu ou ouvre Photo pour voir de
+près, sauvegarde et recharge : ces choix de campagne doivent être conservés.
+
+Sur l'île jouable, retourne au havre, à la jungle et à la caldeira : modèles
+intégrés et PNJ doivent rester compatibles avec les portes/actions/combat.
+Signale les défauts d'échelle, couleurs, raccords, visages, collisions/caméra,
+clipping et fluidité, avec région/lieu et geste. Première intégration modulaire,
+pas reconstruction complète au détail des illustrations. PNJ de visites sont
+décoratifs, corps commun aux profils ; modèles Pokémon/animations d'attaques
+et intérieurs des nouvelles régions restent à réaliser.
+
+LOTS PRÉCÉDENTS : ATLAS, SERVICES ET CONFORT
+
 Atlas proposé des six îles + ancien Æther (28 sites). Studio de maquettes 3D
 séparé de la campagne, rotation et zoom. Sept planches graphiques de quatre vues
-sont dans Concepts : illustrations de direction artistique, PAS rendu actuel
-ni villes définitivement choisies. Une vue d'île, deux propositions de lieux
+sont dans Concepts : illustrations de direction artistique approuvée ; les modèles intégrés
+restent des prototypes, les villes/noms ne sont pas tous définitivement choisis. Une vue d'île, deux propositions de lieux
 habités et un repère par planche, pas inventaire final de toutes les villes.
 Le prototype jouable reste l'île tropicale du menu Île proposée.
 

@@ -24,7 +24,7 @@ manifest={'commit':args.commit,'godot':'4.6.3','stage':'technical-laboratory',
           'showdown':provenance,'distribution':'portable-external-pck-with-offline-showdown','unmodified_godot_template':True,
           'windows_execution':'not validated on Windows','network_validation':'deferred; prior lab-09897ca tested on localhost only'}
 (folder/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
-(folder/'release-notes.md').write_text('D67 : dix blocs solo atlas/studio, vêtements, PNJ œuf, commerce quantités, affichage, manette, transitions combat, lisibilité/mouvements réduits et obstacles narratifs. Sept planches de concepts (28 vues) dans Concepts, distinctes des maquettes procédurales. Rapport et parcours groupé dans Documentation/LIRE-MOI ; anciennes sauvegardes conservées, toutes les livraisons antérieures incluses. Même EXE officiel portable inchangé. Propositions non approuvées, playtest Windows et manette physique attendus.\n',encoding='utf-8')
+(folder/'release-notes.md').write_text('D68 : concepts approuvés, premier kit3D21GLB original et avatar animé intégrés. Visites à pied des28sites représentatifs des six îles et Æther, profils de personnage séparés de la campagne, maisons/volcans et PNJ du havre/laboratoire améliorés. Sauvegardes/équipe conservées. Concepts, captures et parcours groupé dans le ZIP. Maquettes graphiques à tester, pas archipel narratif complet ; même EXE portable.\n',encoding='utf-8')
 archive=folder/'Archelys-Laboratoire-Windows.zip'
 with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as z:
     for file in [exe,pck,folder/'LIRE-MOI.txt',folder/'manifest.json',root/'docs/licenses/Godot-LICENSE.txt',root/'docs/licenses/Godot-COPYRIGHT.txt',root/'docs/licenses/PokeAPI-LICENSE.txt',root/'docs/licenses/LABORATORY_AUDIO.md']:z.write(file,file.name)
@@ -37,6 +37,9 @@ with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as z:
     z.write(root/'docs/design/ATLAS_PROPOSE_2026-10-12.md','Documentation/Atlas-graphique.md')
     z.write(root/'docs/design/CONCEPT_PROMPTS_2026-10-12.json','Documentation/Concept-briefs.json')
     z.write(root/'docs/development/LOT_ATLAS_SERVICES_10_BLOCS.md','Documentation/Atlas-services-10-blocs.md')
+    z.write(root/'docs/design/ASSETS_3D_D68.md','Documentation/Assets3D.md')
+    z.write(root/'docs/development/LOT_ASSETS_VISITES.md','Documentation/Lot-assets-visites.md')
+    z.write(root/'game/assets/archipelago/provenance.json','Documentation/Assets-provenance.json')
     z.write(root/'docs/development/LOT_PREMIERE_ILE_12_BLOCS.md','Documentation/Premiere-ile-12-blocs.md')
     z.write(root/'docs/design/PROPOSITIONS_NOMS_ET_DIVINITES.md','Documentation/Propositions-noms-et-divinites.md')
     z.write(root/'docs/sources/Questions-restantes-Archelys.xlsx','Documentation/Questions-restantes-Archelys.xlsx')

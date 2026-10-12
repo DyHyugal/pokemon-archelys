@@ -170,6 +170,7 @@ func _build_world() -> void:
 	var guide: Node3D = load("res://assets/prototypes/mannequin.glb").instantiate()
 	guide.position = GUIDE_POSITION
 	world_geometry.add_child(guide)
+	var guide_look: Dictionary=preload("res://scripts/domain/appearance.gd").DEFAULT.duplicate();guide_look.shirt=2;guide_look.skin=0;guide_look.style=1;AvatarStyle.apply(guide,guide_look)
 	var label := Label3D.new()
 	label.text = "Guide • PNJ de test"
 	label.position.y = 2.2
@@ -181,7 +182,8 @@ func _build_world() -> void:
 	_box(Vector3(3,3,2),Vector3(-11,1.5,9),Color("777969"))
 	_box(Vector3(6,0.07,3),Vector3(-6,0.08,-5.5),Color("39794f"))
 	for id: String in ACTION_TARGETS:
-		var marker:=_box(Vector3(1,1,1),ACTION_TARGETS[id]+Vector3(0,0.5,0),Color("65c6db") if id=="healing" else Color("bd5757"))
+		var outfit: Dictionary=preload("res://scripts/domain/appearance.gd").DEFAULT.duplicate();outfit.shirt=2 if id=="healing" else (1 if id=="trainer-1" else 3);outfit.style=1
+		var marker: Node3D=preload("res://scripts/world/asset_kit.gd").trainer(world_geometry,ACTION_TARGETS[id],outfit)
 		var hint:=Label3D.new();hint.text="Soins / Heal" if id=="healing" else ("Dresseur / Trainer 1" if id=="trainer-1" else "Dresseur / Trainer 2");hint.position.y=1.7;hint.font_size=22;hint.pixel_size=0.004;marker.add_child(hint)
 	for id: String in World.local_points("village"):
 		var point: Vector3=World.local_points("village")[id]

@@ -17,3 +17,5 @@ Pour chaque asset : auteur, source, licence/autorisation, redistribution, attrib
 Critères du petit essai : raccords, échelle, transparence, textures lisibles, eau, éclairage, fenêtres, collisions, locomotion, caméra, absence de défauts visibles. Le propriétaire valide le rendu ; l’équipe ne déduit pas « beau » de la seule résolution.
 
 D66/D67 autorisent désormais une première île jouable proposée et des concepts des autres îles sans validation préalable. Cela remplace l'attente pour les **propositions**, pas pour la sélection d'assets finaux. Voir ATLAS_PROPOSE_2026-10-12.md : sept planches générées,28 études de volumes, kit modulaire à produire après retour artistique. Ne pas confondre illustrations et rendu intégré.
+
+D68 : sept planches approuvées, kit modulaire original et avatar animé intégrés au prototype. La sélection des concepts est acquise ; le rendu des meshes se teste en jeu. Voir ASSETS_3D_D68.md pour inventaire, sources et limites. Proportions de jeune dresseur, visage anime, vêtements/sac ; pas de copie d'un personnage officiel. L'approbation des illustrations n'est pas une validation automatique de la fidélité du rendu3D.

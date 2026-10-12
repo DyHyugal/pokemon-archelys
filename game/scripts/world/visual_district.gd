@@ -25,37 +25,13 @@ func build(value: int) -> void:
 	# A modular building: foundation, bevel-like steps, pillars, inset openings,
 	# double pitched roof and frame. Dimensions are identical in all variants.
 	for at: Vector2 in [Vector2(-8,0),Vector2(8,0),Vector2(-8,6)]:
-		box(Vector3(3.8,0.25,3.4),Vector3(at.x,0.125,at.y),"666d69")
-		box(Vector3(3.3,2.6,2.9),Vector3(at.x,1.5,at.y),p.wall)
-		box(Vector3(1.2,0.15,0.6),Vector3(at.x,0.075,at.y+1.7),p.path)
-		box(Vector3(1,1.85,0.12),Vector3(at.x,1.03,at.y+1.5),"304d56")
-		for x: float in [-1.1,1.1]:
-			box(Vector3(0.85,0.85,0.12),Vector3(at.x+x,1.65,at.y+1.5),"cad3c2")
-			box(Vector3(0.66,0.66,0.13),Vector3(at.x+x,1.65,at.y+1.52),"4a7180")
-			box(Vector3(0.06,0.66,0.15),Vector3(at.x+x,1.65,at.y+1.54),p.wall)
-			box(Vector3(0.66,0.06,0.15),Vector3(at.x+x,1.65,at.y+1.54),p.wall)
-		for x: float in [-1.7,1.7]:box(Vector3(0.16,2.7,0.16),Vector3(at.x+x,1.55,at.y+1.5),"8a735a")
-		for angle: float in ([-0.45,0.45] if variant!=2 else [0.0]):
-			var roof:=box(Vector3(2.15 if variant!=2 else 4.1,0.16,3.8),Vector3(at.x+((-0.94 if angle<0 else 0.94) if variant!=2 else 0),3.15,at.y),p.roof);roof.rotation.z=-angle
-		if variant!=2:box(Vector3(0.35,0.28,3.9),Vector3(at.x,3.6,at.y),p.roof)
-		else:
-			box(Vector3(4.2,0.12,1.25),Vector3(at.x,2.4,at.y+1.75),p.roof)
-			for x: float in [-1.85,1.85]:box(Vector3(0.08,2.5,0.08),Vector3(at.x+x,1.25,at.y+2),"5c7580")
-		if variant==1:
-			box(Vector3(0.5,1.1,0.6),Vector3(at.x-1,3.3,at.y-0.8),p.wall)
-			box(Vector3(0.65,0.12,0.75),Vector3(at.x-1,3.9,at.y-0.8),p.roof)
-		for x: float in [-2.1,2.1]:
-			box(Vector3(0.8,0.4,0.75),Vector3(at.x+x,0.2,at.y+1.4),"8a735a")
-			sphere(0.48,Vector3(at.x+x,0.67,at.y+1.4),p.leaf)
+		preload("res://scripts/world/asset_kit.gd").place(self,"house-tropical",Vector3(at.x,0,at.y),0.8)
 	for at: Vector2 in [Vector2(-12,-5),Vector2(12,-5),Vector2(10,7),Vector2(-4,7)]:
 		var trunk:=CylinderMesh.new();trunk.top_radius=0.16;trunk.bottom_radius=0.25;trunk.height=2.9;shape(trunk,Vector3(at.x,1.45,at.y),"846a50")
 		for i: int in range(5):
 			var angle: float=i*TAU/5
 			var leaf:=sphere(0.8,Vector3(at.x+cos(angle)*0.65,3.0,at.y+sin(angle)*0.65),p.leaf);leaf.scale=Vector3(1.1,0.55,1.8);leaf.rotation.y=-angle;leaves.append(leaf)
-	# Terraced volcanic silhouette with a visible crater, no imported texture.
-	for tier: int in range(4):
-		var rock:=CylinderMesh.new();rock.top_radius=5.5-tier*1.1;rock.bottom_radius=6.3-tier*1.1;rock.height=1.4;rock.radial_segments=24;shape(rock,Vector3(0,0.7+tier*1.25,-16),"5d6264")
-	var crater:=CylinderMesh.new();crater.top_radius=1.6;crater.bottom_radius=1.6;crater.height=0.12;shape(crater,Vector3(0,5.15,-16),"a35e46")
+	preload("res://scripts/world/asset_kit.gd").place(self,"landmark-tropical",Vector3(0,0,-16))
 	for side: int in [-1,1]:
 		for z: int in range(-8,9,4):
 			box(Vector3(0.13,2.2,0.13),Vector3(side*3,1.1,z),"475d62")
@@ -80,16 +56,6 @@ func detail() -> void:
 	# Cut stone paths, short grass borders, framed glass and wood shutters.
 	for z: int in range(-9,10,2):
 		for x: float in [-1.5,0,1.5]:box(Vector3(1.42,0.025,1.86),Vector3(x,0.05,z),"d8ccb6")
-	for at: Vector2 in [Vector2(-8,0),Vector2(8,0),Vector2(-8,6)]:
-		for x: float in [-1.1,1.1]:
-			for side: int in [-1,1]:
-				var shutter:=box(Vector3(0.18,0.85,0.08),Vector3(at.x+x+side*0.54,1.65,at.y+1.54),p.roof)
-				for line: int in range(5):box(Vector3(0.18,0.025,0.1),shutter.position+Vector3(0,line*0.16-0.32,0.03),"64857f")
-			box(Vector3(1.15,0.18,0.35),Vector3(at.x+x,1.1,at.y+1.6),"8b7357")
-			for flower: int in range(4):sphere(0.095,Vector3(at.x+x-0.4+flower*0.25,1.28,at.y+1.7),"e9a39a")
-		for step: int in range(3):box(Vector3(1.3+step*0.2,0.07,0.25),Vector3(at.x,0.12-step*0.025,at.y+1.65+step*0.25),"aba795")
-		for column: int in range(6):
-			box(Vector3(0.055,0.6,0.08),Vector3(at.x-0.38+column*0.15,0.9,at.y+1.57),"77918c")
 	# Flowering borders stay outside walkable paths.
 	for side: int in [-1,1]:
 		for z: int in range(-7,9,3):

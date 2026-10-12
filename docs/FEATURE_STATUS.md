@@ -167,3 +167,16 @@ B01–B12 développés : chapitre persistant, huit zones dont intérieurs, colli
 | Coupe/Éclate-Roc/Force île | OBSTACLES NARRATIFS | Trois fixtures persistantes sans Pokémon compatible |
 
 Concepts : docs/design/ATLAS_PROPOSE_2026-10-12.md, sept PNG avec source/empreintes. Vérification du lot : docs/development/LOT_ATLAS_SERVICES_10_BLOCS.md et dossier verification. Tests techniques distincts de la validation propriétaire ; D52 reste le dernier retour Windows acquis.
+
+## D68 — kit graphique et visites
+
+| Fonction | État | Preuve / limite |
+|---|---|---|
+| Sept concepts des régions D67 | APPROUVÉS OWNER | D68 explicite |
+| Kit Blender21GLB | GÉNÉRÉ ET INTÉGRÉ | Sept maisons/sept repères/six props/un avatar, source .blend et empreintes |
+| Héros et PNJ | PROTOTYPES ANIMÉS INTÉGRÉS | Sept os, marche, visage/cheveux/vêtements/sac ; personnalisation sauvegardée conservée |
+|28visites à pied | PROTOTYPE GRAPHIQUE | Six îles+Æther depuis Atlas, déplacement/collision indépendants de campagne |
+| Havre / laboratoire | MODÈLES AMÉLIORÉS | Maisons, volcans et PNJ remplacés ; gameplay/progression conservés |
+| Fidélité artistique / Windows | À VALIDER EN JEU | Illustrations approuvées, modèle3D encore prototype ; aucun test owner supplémentaire déduit |
+
+Documentation : docs/design/ASSETS_3D_D68.md et docs/development/LOT_ASSETS_VISITES.md. Les îles de campagne complètes, intérieurs des nouvelles régions et assets Pokémon/combats animés restent à construire.

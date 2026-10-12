@@ -1,6 +1,6 @@
 # Archélys — atlas graphique proposé, 12 octobre 2026
 
-SPOILERS DEV. Sept planches générées dans le chat à la demande du propriétaire (D67). Chaque planche présente quatre vues, dans l'ordre : panorama, premier lieu habité, second lieu habité, repère majeur. **Ce sont des propositions de direction artistique, pas des captures du jeu, des plans de villes complets ou des meshes prêts à importer.** Les deux lieux habités ne limitent pas le nombre final de villes. Noms ci-dessous descriptifs et provisoires.
+SPOILERS DEV. Sept planches générées dans le chat à la demande du propriétaire (D67), puis explicitement approuvées comme direction artistique (D68). Chaque planche présente quatre vues, dans l'ordre : panorama, premier lieu habité, second lieu habité, repère majeur. **Ce sont des propositions de direction artistique, pas des captures du jeu, des plans de villes complets ou des meshes prêts à importer.** Les deux lieux habités ne limitent pas le nombre final de villes. Noms ci-dessous descriptifs et provisoires.
 
 | Région | Premier lieu habité | Second lieu habité | Repère majeur |
 |---|---|---|---|
@@ -50,4 +50,4 @@ Après choix artistique : extraire un kit modulaire d'une seule ville (murs, toi
 
 ## Provenance
 
-Illustrations originales générées avec l'outil image_gen.imagegen pour cette demande, sans extraction de jeux ni utilisation de fichiers artistiques externes dans la génération. PNG copiés sans modification ; empreintes/source dans concepts/provenance.json, briefs dans CONCEPT_PROMPTS_2026-10-12.json. Distribution ici comme documents de travail, sans présumer d'exclusivité ou de droits sur l'univers Pokémon. Elles n'ajoutent aucune licence aux modèles officiels éventuels. Aucune image n'est présentée comme dessin approuvé par le propriétaire.
+Illustrations originales générées avec l'outil image_gen.imagegen pour cette demande, sans extraction de jeux ni utilisation de fichiers artistiques externes dans la génération. PNG copiés sans modification ; empreintes/source dans concepts/provenance.json, briefs dans CONCEPT_PROMPTS_2026-10-12.json. Distribution ici comme documents de travail, sans présumer d'exclusivité ou de droits sur l'univers Pokémon. Elles n'ajoutent aucune licence aux modèles officiels éventuels. Les sept planches sont approuvées en D68 ; le rendu des meshes intégrés reste à valider en jeu.

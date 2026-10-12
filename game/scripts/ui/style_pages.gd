@@ -11,7 +11,7 @@ func render() -> void:
   var count: int=Appearance.COLORS[field].size() if Appearance.COLORS.has(field) else (3 if field=="style" else 2)
   for i: int in range(count):
    var text: String=menu.tr_text("Palette %d","Palette %d") % (i+1)
-   if field=="style":text=[menu.tr_text("Sans cheveux","No hair"),menu.tr_text("Courts","Short"),menu.tr_text("Mi-longs","Medium")][i]
+   if field=="style":text=[menu.tr_text("Courts naturels","Natural short"),menu.tr_text("Courts relevés","Raised short"),menu.tr_text("Mi-longs","Medium")][i]
    if field=="face":text=[menu.tr_text("Neutre","Neutral"),menu.tr_text("Yeux plissés","Narrow eyes")][i]
    choices.add_item(text)
   choices.select(int(menu.adventure.appearance[field]));menu.body.add_child(choices)
