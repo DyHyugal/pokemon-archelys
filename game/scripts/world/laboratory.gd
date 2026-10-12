@@ -776,6 +776,8 @@ func _start_tactics_test() -> void:
 	if battle_panel.visible or pause_menu.visible or dialogue.active or cinematic.active or Session.active_network:return
 	var trial: RefCounted=Session.campaign.adventure.get_script().new();trial.initialize()
 	trial.team=[Mon.make("blastoise",50,1),Mon.make("venusaur",50,2),Mon.make("charizard",50,3)];trial.next_uid=4;trial.cap=100
+	# Teaching fixture: keep the first turn available even after two critical hits.
+	trial.team[0].ev=[252,0,0,0,252,0];trial.team[0].hp=Mon.stats(trial.team[0]).hp
 	for entry: Dictionary in [{"index":0,"moves":["surf","protect","rock-slide","water-pulse"]},{"index":1,"moves":["helping-hand","protect","razor-leaf","growth"]},{"index":2,"moves":["flamethrower","protect","rock-slide","helping-hand"]}]:
 		trial.team[int(entry.index)].moves=[]
 		for id: String in entry.moves:trial.team[int(entry.index)].moves.append({"id":id,"pp":int(Catalog.move(id).pp)})

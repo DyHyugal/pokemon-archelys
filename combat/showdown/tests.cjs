@@ -23,6 +23,19 @@ function start(player,enemy,mode='singles',extra={}){const a=new Adapter();const
 }
 
 {
+ // Seed 55 reproduces two enemy critical hits and a forced replacement, not an AI/Protect bug.
+ const allies=bulk=>[mon('blastoise',1,['surf','protect','rock-slide','water-pulse'],bulk?{ev:[252,0,0,0,252,0],hp:178}:{}),mon('venusaur',2,['helping-hand','protect','razor-leaf','growth']),mon('charizard',3,['flamethrower'])];
+ const foes=()=>[mon('raticate',900000,['tackle','tail-whip','quick-attack','bite']),mon('raichu',900001,['thunder-wave','quick-attack','double-team','spark'])];
+ for(const bulk of [false,true]){
+  const a=new Adapter();a.start({mode:'doubles',difficulty:'normal',seed:[55,2,3,4],player:allies(bulk),enemy:foes()});
+  const t=a.act({choice:'move 1, move 2'});
+  check(t.player[1].hp===147,'Protect remains correct under reproduced critical-hit seed');
+  check(bulk?t.turn===1&&t.player[0].hp>0:t.turn===0&&!!t.request.forceSwitch?.[0], 'Teaching fixture avoids random forced replacement on the first turn');
+  a.close();
+ }
+}
+
+{
  const p=mon('blastoise',1,['surf','protect'],{hp:70,status:'poison',moves:[{id:'surf',pp:3},{id:'protect',pp:10}]});
  const {a,s}=start([p],[mon('raticate',9,['tackle'])]);
  check(s.player[0].hp===70&&s.player[0].status==='poison','Initial condition preserved');

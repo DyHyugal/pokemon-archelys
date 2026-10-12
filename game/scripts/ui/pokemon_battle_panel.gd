@@ -154,6 +154,8 @@ func double_cards() -> String:
 	return text
 func render_double() -> void:
 	cards.text=double_cards()
+	if battle.get("sandbox")==true:
+		button(t("Terminer l’essai sans changer la partie","End sandbox without changing campaign"),func():battle.finish("escaped");event_index=battle.events.size();render())
 	if battle.replacement_needed():message.text=t("Remplacement obligatoire", "Replacement required");render_team(true);return
 	if battle.current(0).hp<=0:battle.next_actor()
 	message.text=t("Choisir pour %s (position %d). Les deux choix sont verrouillés avant le tour.","Choose for %s (position %d). Both choices are locked before the turn.") % [name_of(battle.current(0).species),battle.selected_player+1]
@@ -185,8 +187,7 @@ func render_double() -> void:
 		var next_index: int=index
 		if battle.valid_switch(index):button(t("Changer : ","Switch: ")+name_of(battle.adventure.team[index].species),func():execute({"kind":"switch","index":next_index}))
 
-	if battle.get("sandbox")==true:
-		button(t("Terminer l’essai sans changer la partie","End sandbox without changing campaign"),func():battle.finish("escaped");event_index=battle.events.size();render())
+
 
 func render_mega_toggle() -> void:
 	var mon: Dictionary=battle.current(0)

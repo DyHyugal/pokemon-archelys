@@ -46,6 +46,10 @@ func run() -> void:
  check(world.pokemon_battle.events.any(func(e: Dictionary):return e.en.contains("Helping Hand")),"Support UI resolves Helping Hand on correct ally")
  await drain(world);world._stop_tactics_test()
  check(campaign.snapshot()==before,"Repeated/reset sandbox remains isolated including exit callback")
+ world._start_tactics_test();await drain(world)
+ # The native force-switch request is a UI boundary; sandbox exit must remain present.
+ world.pokemon_battle.request["forceSwitch"]=[true,false];world.pokemon_battle.adventure.team[0].hp=0;world.battle_panel.render()
+ check(press(world,"Terminer l’essai") and not world.pokemon_battle.active,"Sandbox exit accessible while replacement required")
  world._start_tactics_test();await drain(world);world.pokemon_battle.finish("lost");world.battle_panel.render()
  check(campaign.snapshot()==before,"Sandbox defeat never teleports or debits actual owner campaign")
  Engine.time_scale=1

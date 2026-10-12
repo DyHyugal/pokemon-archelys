@@ -30,3 +30,9 @@ L’export/import conserve la campagne, l’équipe, le rangement, les règles e
 `tools/check_prototype.py` exécute les régressions existantes, le nouveau parcours intégré `demo_extended.gd`, le préflight et ses refus. Le parcours couvre actions avant/après scénario, absence de Pokémon compatible, collisions supprimées, récompense pleine/non duplicable, visibilité Pokédex, services, scènes/replay, séparation auto/manuelle, refus d’import, confirmation/restauration et isolation de l’atelier. Le même parcours est rendu en OpenGL à 1920×1080, avec captures réelles de scène, sauvegardes, Pokédex, visionneuse et combat. Linux llvmpipe ne valide pas les performances GPU Windows.
 
 Les résultats exacts, commit, CI et téléchargement sont consignés après publication dans VERIFICATION_D72.md. Le parcours propriétaire est inclus dans LIRE-MOI.txt du ZIP. Pas de nouveau test manuel exigé pendant ce travail autonome.
+
+## Régression trouvée par la CI
+
+La première CI de la source 876f3c2 réussit ; celle de la synchronisation auto 3f7eb21 échoue dans l’ancien `tactics_scene.gd`. Reproduction avec le moteur natif et graine `[55,2,3,4]` : Abri protège correctement Florizarre, mais Étincelle puis Charge critiques mettent Tortank K.O., imposent un remplacement et laissent le compteur au tour précédent. Le test attendait un tour ouvert et ses assertions suivantes échouaient en cascade. Aucun défaut d’Abri ou de Showdown constaté.
+
+La fixture pédagogique donne maintenant des EV PV/Défense Spéciale à Tortank pour conserver un premier tour utilisable. La sortie de l’essai tactique est aussi disponible lorsque le panneau demande un remplacement obligatoire. Une régression native de la graine fautive couvre l’ancien KO et la résistance de la nouvelle fixture ; un contrôle UI vérifie la sortie pendant un remplacement. Aucune règle générale de dégâts, critique ou combat officiel modifiée, aucun rééquilibrage définitif du jeu.
