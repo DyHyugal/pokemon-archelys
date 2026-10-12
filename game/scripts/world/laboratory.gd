@@ -15,6 +15,7 @@ const InterfaceStyle=preload("res://scripts/ui/interface_style.gd")
 const PhotoMode=preload("res://scripts/ui/photo_mode.gd")
 const AtlasStudio=preload("res://scripts/ui/atlas_studio.gd")
 var display_preferences:=preload("res://scripts/services/display_preferences.gd").new()
+var demo_game: CanvasLayer
 var atlas_studio: CanvasLayer
 var photo_mode: CanvasLayer
 var comfort:=Comfort.new()
@@ -91,6 +92,8 @@ func _ready() -> void:
 	for id: String in TARGETS:
 		interaction_records[id] = JSON.parse_string(FileAccess.get_file_as_string("res://data/dialogues/laboratory_%s.json" % id))
 	dialogue_record = interaction_records.guide
+	if "--demo-runtime-check" in OS.get_cmdline_user_args():_demo_runtime_check.call_deferred()
+	elif OS.has_feature("template") and "--script" not in OS.get_cmdline_args():demo_game.open.call_deferred(self)
 	for arg: String in OS.get_cmdline_user_args():
 		if arg.begins_with("--capture="):
 			capture_frame.call_deferred(arg.trim_prefix("--capture="))
@@ -269,6 +272,8 @@ func _build_ui() -> void:
 	pause_menu.camera_changed.connect(func(value: float):camera.size=value;_persist_preferences())
 	pause_menu.save_requested.connect(func():_save();pause_menu.feedback.text=message.text)
 	pause_menu.load_requested.connect(func():_load();_sync_menu();pause_menu.feedback.text=message.text)
+	demo_game=preload("res://scripts/ui/demo_game.gd").new();add_child(demo_game)
+	_button(stack,"Jouer la démo du havre / Play haven demo",func():demo_game.open(self))
 	atlas_studio=AtlasStudio.new();add_child(atlas_studio);atlas_studio.finished.connect(func():_open_menu("atlas"))
 	pause_menu.atlas_requested.connect(func(region: String,site: int):atlas_studio.open(self,region,site))
 	battle_panel=BattlePanel.new();battle_panel.comfort=comfort;add_child(battle_panel)
@@ -321,6 +326,7 @@ func _persist_preferences() -> void:
 		message.text="Préférences : %s" % error_string(error)
 
 func _save() -> void:
+	if demo_game.active:return
 	if atlas_studio.active:return
 	if photo_mode.active:return
 	if pokemon_battle.active or cinematic.active:return
@@ -329,10 +335,12 @@ func _save() -> void:
 	message.text="Sauvegarde : %s" % error_string(slots.write(Session.campaign.snapshot()))
 
 func _load() -> void:
+	if demo_game.active:return
 	if photo_mode.active:return
 	_slot_action("load",slots.active)
 
 func _slot_action(action: String,slot: int) -> void:
+	if demo_game.active:return
 	if atlas_studio.active:return
 	if photo_mode.active:return
 	if action not in ["save","new","load","auto","backup"]:return
@@ -357,6 +365,7 @@ func _slot_action(action: String,slot: int) -> void:
 	_sync_menu();pause_menu.feedback.text=message.text
 
 func _autosave_if_safe(force: bool=false) -> void:
+	if demo_game.active:return
 	if atlas_studio.active:return
 	if photo_mode.active:return
 	if not slots.autosave or Session.active_network or pokemon_battle.active or battle_panel.visible or cinematic.active or dialogue.active or pause_menu.visible:return
@@ -370,6 +379,7 @@ func _autosave_if_safe(force: bool=false) -> void:
 	else:message.text="Autosauvegarde / Autosave : %s" % error_string(error)
 
 func _play_scene(id: String,replay: bool=false) -> void:
+	if demo_game.active:return
 	if atlas_studio.active:return
 	if photo_mode.active or Session.active_network or pokemon_battle.active or dialogue.active or cinematic.active:return
 	var owner: RefCounted=Session.campaign.adventure
@@ -403,6 +413,7 @@ func _skip_scene() -> void:
 	if cinematic.skip():_render_shot()
 
 func _start_battle() -> void:
+	if demo_game!=null and demo_game.active:return
 	if atlas_studio.active or photo_mode.active:return
 	battle.begin({
 		"J1":{"side":0,"hp":100,"speed":55,"power":18},
@@ -429,6 +440,7 @@ func _sync_menu() -> void:
 	pause_menu.sync(locale,camera.size,Session.campaign.laboratory)
 
 func _open_menu(page: String = "home") -> void:
+	if demo_game.active:return
 	if atlas_studio.active:return
 	if photo_mode.active:return
 	if dialogue.active or battle_panel.visible or cinematic.active: return
@@ -437,6 +449,7 @@ func _open_menu(page: String = "home") -> void:
 	pause_menu.open(page)
 
 func _input(event: InputEvent) -> void:
+	if demo_game.active:return
 	if event is InputEventJoypadButton:
 		var code: int=preload("res://scripts/services/controller_input.gd").key_for(event,self)
 		if code!=0:
@@ -486,6 +499,7 @@ func _nearest_interaction() -> String:
 	return nearest
 
 func _open_interaction(id: String) -> bool:
+	if demo_game!=null and demo_game.active:return false
 	if atlas_studio.active:return false
 	if photo_mode.active:return false
 	if pokemon_battle.active or pause_menu.visible or cinematic.active:return false
@@ -538,6 +552,7 @@ func _update_overview() -> void:
 	if is_instance_valid(crate_mesh):(crate_mesh.material_override as StandardMaterial3D).albedo_color=Color("75695a") if progress.tokens else Color("be895a")
 
 func _process(_delta: float) -> void:
+	if demo_game.active:Session.submit_axis(Vector2.ZERO);return
 	if atlas_studio.active:Session.submit_axis(Vector2.ZERO);return
 	if displayed_location!=Session.campaign.adventure.exploration.location:_rebuild_location()
 	var value: Dictionary=Session.latest
@@ -619,10 +634,11 @@ func _begin_trainer(id: String) -> void:
 	_begin_pokemon_battle(opponents,id)
 
 func _begin_pokemon_battle(opponents: Array,trainer_id: String="") -> bool:
+	if demo_game.active:return false
 	if atlas_studio.active:return false
 	if photo_mode.active or dialogue.active or pause_menu.visible or cinematic.active or Session.active_network:return false
 	pokemon_battle=PokemonBattle.new()
-	if not pokemon_battle.begin(Session.campaign.adventure,opponents,trainer_id):message.text="Showdown indisponible : vérifier le dossier complet du jeu / Showdown unavailable: keep the complete game folder";return false
+	if not pokemon_battle.begin(Session.campaign.adventure,opponents,trainer_id):message.text="Combat non lancé / Battle not started : "+pokemon_battle.last_error;return false
 	Session.submit_axis(Vector2.ZERO)
 	battle_panel.open(pokemon_battle,locale)
 	return true
@@ -640,6 +656,7 @@ func _battle_finished(outcome: String) -> void:
 	if not Session.campaign.adventure.pending.is_empty():_open_menu("choices")
 
 func _travel(target: String,flight: bool=false) -> void:
+	if demo_game!=null and demo_game.active:return
 	if atlas_studio.active:return
 	if photo_mode.active or Session.active_network or pokemon_battle.active or cinematic.active or dialogue.active:return
 	if not Session.campaign.adventure.travel(target,flight):
@@ -649,6 +666,7 @@ func _travel(target: String,flight: bool=false) -> void:
 	if pause_menu.visible:pause_menu.close()
 	_rebuild_location()
 func _contextual_action(id: String) -> bool:
+	if demo_game.active:return false
 	if atlas_studio.active:return false
 	if photo_mode.active:return false
 	var owner: RefCounted=Session.campaign.adventure
@@ -724,6 +742,7 @@ func _rebuild_location() -> void:
 	_apply_world_comfort()
 
 func _start_support_test(support: String) -> void:
+	if demo_game!=null and demo_game.active:return
 	if atlas_studio.active or photo_mode.active:return
 	if pause_menu.visible or battle_panel.visible or dialogue.active or cinematic.active or Session.active_network:return
 	var owner: RefCounted=Session.campaign.adventure
@@ -738,6 +757,7 @@ func _start_support_test(support: String) -> void:
 		# Electric Terrain is a legal reusable Gen IX TM in this test catalogue.
 	_begin_pokemon_battle(opponents,"weather-test" if support=="sun" else "terrain-test")
 func _start_double_test() -> void:
+	if demo_game!=null and demo_game.active:return
 	if atlas_studio.active or photo_mode.active:return
 	if battle_panel.visible or pause_menu.visible or dialogue.active or cinematic.active or Session.active_network:return
 	pokemon_battle=DoubleBattle.new();pokemon_battle.double_mode=true
@@ -751,6 +771,7 @@ func _mega_kit() -> void:
 	if owner.grant_mega_kit():message.text="Kit Méga : Pokémon compatibles existants équipés ; pierres aussi dans le sac. Attaquer → cocher Méga. / Existing compatible Pokémon equipped; stones also in Bag. Fight → tick Mega."
 
 func _start_tactics_test() -> void:
+	if demo_game!=null and demo_game.active:return
 	if atlas_studio.active or photo_mode.active:return
 	if battle_panel.visible or pause_menu.visible or dialogue.active or cinematic.active or Session.active_network:return
 	var trial: RefCounted=Session.campaign.adventure.get_script().new();trial.initialize()
@@ -769,6 +790,7 @@ func _apply_appearance() -> void:
 	for avatar: Node3D in avatars.values():AvatarStyle.apply(avatar,Session.campaign.adventure.appearance)
 
 func _island_action(id: String) -> bool:
+	if demo_game!=null and demo_game.active:return false
 	if atlas_studio.active or photo_mode.active or dialogue.active or cinematic.active or pokemon_battle.active:return false
 	var a: RefCounted=Session.campaign.adventure
 	if a.exploration.location not in Island.LOCATIONS or id not in Island.points(a.exploration.location):return false
@@ -802,3 +824,18 @@ func _island_action(id: String) -> bool:
 		else:message.text="Combat terminé ou condition manquante / Battle completed or missing prerequisite"
 		return true
 	return false
+
+func _demo_runtime_check() -> void:
+	# Isolated exported-runtime probe: no player save or campaign changes.
+	var state:=preload("res://scripts/domain/demo_state.gd").new()
+	state.choose("squirtle")
+	var probe:=preload("res://scripts/services/showdown_battle.gd").new()
+	var started: bool=probe.begin(state.campaign.adventure,[preload("res://scripts/domain/pokemon.gd").make("rattata",5,900000)])
+	var deadline: int=Time.get_ticks_msec()+12000
+	while probe.busy and Time.get_ticks_msec()<deadline:await get_tree().create_timer(.01).timeout
+	var base: String=probe.transport.runtime_base if probe.transport!=null else ""
+	var valid: bool=started and not probe.busy and probe.last_error.is_empty() and not probe.available_moves(0).is_empty() and OS.has_feature("template") and base==OS.get_executable_path().get_base_dir()
+	var f:=FileAccess.open("user://demo-runtime-check.json",FileAccess.WRITE)
+	if f:f.store_string(JSON.stringify({"ok":valid,"template":OS.has_feature("template"),"standalone":OS.has_feature("standalone"),"base":base,"error":probe.last_error}));f.close()
+	probe.finish("escaped")
+	get_tree().quit(0 if valid else 1)

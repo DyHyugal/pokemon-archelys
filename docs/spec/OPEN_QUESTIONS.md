@@ -38,3 +38,11 @@ D66 autorise explicitement la première île sous forme de proposition jouable s
 D67 : sept planches graphiques et28 sites volumétriques proposés, sans nouvelle question bloquante. Après test groupé : retenir/modifier les palettes, silhouettes, urbanisme et repères, puis produire le kit modulaire d'une ville. Deux lieux habités par région ne figent pas le nombre de villes. Tarifs vêtements100₽, cadeau Carapuce et déblocages locaux d'obstacles restent des fixtures à adapter. Options d'affichage et transitions UI testables, animations d'attaques/modèles définitifs encore ouverts. Manette physique et Windows à tester.
 
 D68 clôt la sélection des sept concepts D67 : ils sont explicitement validés et la génération/intégration est autorisée. Retour à recevoir sur les modèles en jeu, proportions et silhouettes des avatars, collisions/caméra et fidélité aux planches. Pas de nouvelle question bloquante ; les noms, catalogue final, scénario des autres îles et détails de production restent distincts. Visites disponibles dans Atlas/Studio ; pas de campagne complète sur ces îles encore.
+
+
+## D69 — démo intégrée et cible DS en FHD
+
+Demande owner du 12 octobre 2026 : monde, graphismes et services réunis dans une démo jouable d'une portion de la première île. Référence graphique : personnages Pokémon DS/USUL, décor net en FHD, concepts D67 approuvés. Autonomie autorisée, propositions à ajuster après playtest ; aucune validation visuelle implicite.
+
+
+Voir [LOT_DEMO_HAVRE](../development/LOT_DEMO_HAVRE.md). Développé et contrôlé techniquement, retour Windows/visuel attendu. Noms, starters, équilibrage et rendu restent provisoires ; cible graphique demandée pas encore atteinte.

@@ -1,3 +1,41 @@
+ARCHÉLYS — DÉMO JOUABLE DU HAVRE
+Version : lab-{short_commit}
+Commit : {commit}
+
+Extrais tout le ZIP, puis lance Archelys-Laboratoire.exe. Garde le PCK et les
+dossiers showdown/runtime ensemble. L'accueil de la démo s'ouvre directement.
+Nouvelle aventure propose un seul starter ; Continuer recharge uniquement la
+partie de démo. Retour à l'atelier conserve tes anciennes parties.
+
+PARCOURS DE TEST GROUPÉ
+Choisis ton starter, puis ouvre Échap → Personnage pour personnaliser l'avatar.
+Déplace-toi avec ZQSD/WASD ou les flèches ; E/Entrée devant un PNJ ou une porte.
+Parle à Vyna sur la place. Explore le Centre, la boutique et la maison ; vérifie
+les soins, l'achat confirmé, le sac, le PC et la personnalisation. Ouvre le sac
+pour consulter les objets ; la caisse sur la place ne donne son cadeau qu'une fois.
+
+Prends le sentier au nord, relève la balise, puis affronte le dresseur. Les hautes
+herbes déclenchent aussi des rencontres : attaque, capture ou fuite. Les messages
+de combat restent manuels. Après victoire, retourne voir Vyna pour conclure.
+Sauvegarde, ferme, relance puis Continue : starter, position, objets, progression
+et apparence doivent revenir. La sauvegarde de démo est séparée de l'atelier.
+Dans Paramètres, ajuste la distance de caméra et la résolution (dont 1920x1080).
+
+Vérifie collisions, visibilité des commandes, déplacement/manette, proportions
+et fluidité. Note lieu + action pour chaque anomalie. Ce premier rendu reprend
+le thème crème/turquoise du concept, mais n'atteint pas encore la finition DS/FHD
+souhaitée : ce n'est ni l'île complète ni une validation graphique finale.
+
+Showdown : recherche du runtime corrigée pour les exports Godot4. Un échec doit
+maintenant donner une raison précise ; journal showdown-diagnostic.log dans les
+données utilisateur du jeu. Ne supprime pas les dossiers du ZIP. Aucun besoin
+d'Internet pendant le jeu. EXE au nom fixe, binaire officiel inchangé, non signé
+par nous. Dernier playtest Windows validé avant cette livraison : D52.
+
+Documentation/Lot-demo-havre.md détaille le périmètre et les limites.
+Comparatifs/demo-*.png contient les captures du moteur, pas les illustrations.
+
+--- INSTRUCTIONS DES LOTS ANTÉRIEURS (ATELIER) ---
 ARCHÉLYS — ASSETS 3D ET VISITES À PIED DES RÉGIONS + LOTS PRÉCÉDENTS
 Version : lab-{short_commit}
 Commit : {commit}

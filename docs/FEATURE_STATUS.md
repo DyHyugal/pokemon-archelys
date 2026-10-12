@@ -180,3 +180,11 @@ Concepts : docs/design/ATLAS_PROPOSE_2026-10-12.md, sept PNG avec source/emprein
 | Fidélité artistique / Windows | À VALIDER EN JEU | Illustrations approuvées, modèle3D encore prototype ; aucun test owner supplémentaire déduit |
 
 Documentation : docs/design/ASSETS_3D_D68.md et docs/development/LOT_ASSETS_VISITES.md. Les îles de campagne complètes, intérieurs des nouvelles régions et assets Pokémon/combats animés restent à construire.
+
+
+## D69 — démo intégrée et cible DS en FHD
+
+Demande owner du 12 octobre 2026 : monde, graphismes et services réunis dans une démo jouable d'une portion de la première île. Référence graphique : personnages Pokémon DS/USUL, décor net en FHD, concepts D67 approuvés. Autonomie autorisée, propositions à ajuster après playtest ; aucune validation visuelle implicite.
+
+
+Voir [LOT_DEMO_HAVRE](development/LOT_DEMO_HAVRE.md). Développé et contrôlé techniquement, retour Windows/visuel attendu. Noms, starters, équilibrage et rendu restent provisoires ; cible graphique demandée pas encore atteinte.

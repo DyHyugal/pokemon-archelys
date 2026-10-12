@@ -1,0 +1,105 @@
+{
+  "generator": "tools/create_demo_assets.py",
+  "blender": "4.3.2",
+  "assets": [
+    {
+      "file": "game/assets/demo/trainer.glb",
+      "source": "art/source/demo/trainer.blend",
+      "author": "Original geometry by tools/create_demo_assets.py",
+      "license": "Original file geometry; Pokemon character designs remain respective rights holders; demo redistribution requested by owner",
+      "sha256": "07af999743aabb516af9b0c46d23767f082e4da4371e60b83119ee637cd22f31",
+      "source_sha256": "4f1ce949131582edbd4870c552caa12235216ed204c623604965ce986c722a19",
+      "vertices": 6193
+    },
+    {
+      "file": "game/assets/demo/arcade.glb",
+      "source": "art/source/demo/arcade.blend",
+      "author": "Original geometry by tools/create_demo_assets.py",
+      "license": "Original file geometry; Pokemon character designs remain respective rights holders; demo redistribution requested by owner",
+      "sha256": "82031d8c45bc85d51c65c6e104a449ef6c51781772ead43e6d1e206910d97191",
+      "source_sha256": "b289b2d05cf2833bf1c31bbd137b7b3e14031cadf5d154b8d66f72015c35b6c1",
+      "vertices": 2174
+    },
+    {
+      "file": "game/assets/demo/center.glb",
+      "source": "art/source/demo/center.blend",
+      "author": "Original geometry by tools/create_demo_assets.py",
+      "license": "Original file geometry; Pokemon character designs remain respective rights holders; demo redistribution requested by owner",
+      "sha256": "f98e057a5595d6e20f7df8d0c60b60dda03722d17128f8e770943bcd08028985",
+      "source_sha256": "f13618a9a73b9addc9889877102962ff80dbe8525784bdd62ba65807777586c1",
+      "vertices": 1726
+    },
+    {
+      "file": "game/assets/demo/shop.glb",
+      "source": "art/source/demo/shop.blend",
+      "author": "Original geometry by tools/create_demo_assets.py",
+      "license": "Original file geometry; Pokemon character designs remain respective rights holders; demo redistribution requested by owner",
+      "sha256": "62e224423a178d072c3668bc7f33184d40b3890788f98e3b0c4055feced04e5a",
+      "source_sha256": "75b98c213a9ebe94dd6ccbf5fa73307be0af50bac2d4cf164980b49f910c7952",
+      "vertices": 2118
+    },
+    {
+      "file": "game/assets/demo/villa.glb",
+      "source": "art/source/demo/villa.blend",
+      "author": "Original geometry by tools/create_demo_assets.py",
+      "license": "Original file geometry; Pokemon character designs remain respective rights holders; demo redistribution requested by owner",
+      "sha256": "fc5f028395284779adbd9696ec9864757527096d791cf8a117c27cf1a7342e14",
+      "source_sha256": "d394f1cd58654eecf9d427f8e3c01292a57fa63389f27f538cc5dd6a4a73692f",
+      "vertices": 1670
+    },
+    {
+      "file": "game/assets/demo/clocktower.glb",
+      "source": "art/source/demo/clocktower.blend",
+      "author": "Original geometry by tools/create_demo_assets.py",
+      "license": "Original file geometry; Pokemon character designs remain respective rights holders; demo redistribution requested by owner",
+      "sha256": "cffe61b8a2d38104b220f69edb81b264f5a2c7c4b54f2078dd88504a8eaeae8c",
+      "source_sha256": "43402e9ade14295a8bd41a3ad93fd42483906fe1049aec0979392d0be5d724eb",
+      "vertices": 966
+    },
+    {
+      "file": "game/assets/demo/pokemon-bulbasaur.glb",
+      "source": "art/source/demo/pokemon-bulbasaur.blend",
+      "author": "Original geometry by tools/create_demo_assets.py",
+      "license": "Original file geometry; Pokemon character designs remain respective rights holders; demo redistribution requested by owner",
+      "sha256": "bcf06b80117685669cdd9aa0ef11aa95f14c67a6084edf0aa0a6c0a1f34f2544",
+      "source_sha256": "1f6456da04476b9d7f50da9190dc32a6be73ef3028ea94cbe3245d85df2d9fee",
+      "vertices": 3570
+    },
+    {
+      "file": "game/assets/demo/pokemon-charmander.glb",
+      "source": "art/source/demo/pokemon-charmander.blend",
+      "author": "Original geometry by tools/create_demo_assets.py",
+      "license": "Original file geometry; Pokemon character designs remain respective rights holders; demo redistribution requested by owner",
+      "sha256": "f3ac6917d42dbed1fb6d8003162e4d37f59fb9283682418e493f4c7ee61e0984",
+      "source_sha256": "562b0fa978a0fb26ba4f09bdc4cdc805764ccc70b103cc1d8e9ccea8d599e094",
+      "vertices": 2450
+    },
+    {
+      "file": "game/assets/demo/pokemon-squirtle.glb",
+      "source": "art/source/demo/pokemon-squirtle.blend",
+      "author": "Original geometry by tools/create_demo_assets.py",
+      "license": "Original file geometry; Pokemon character designs remain respective rights holders; demo redistribution requested by owner",
+      "sha256": "b56be311dd630bb5d0af0f3032d32806a99b5c2e1144ff338601bbfced4c133e",
+      "source_sha256": "f1b1784f1adc34bd2a5fe83bdff712c782e4ae4873bc26258dfc0ff0d6119a51",
+      "vertices": 2442
+    },
+    {
+      "file": "game/assets/demo/pokemon-pikachu.glb",
+      "source": "art/source/demo/pokemon-pikachu.blend",
+      "author": "Original geometry by tools/create_demo_assets.py",
+      "license": "Original file geometry; Pokemon character designs remain respective rights holders; demo redistribution requested by owner",
+      "sha256": "4f981c648da0c0a43fe579b61777edbd7286d6dc4b26fd8394fba57f190d6924",
+      "source_sha256": "ad4f162a71841ab8ccf12ff3f44db80efe18b84f490b125d24de4aa8906c3089",
+      "vertices": 2486
+    },
+    {
+      "file": "game/assets/demo/pokemon-rattata.glb",
+      "source": "art/source/demo/pokemon-rattata.blend",
+      "author": "Original geometry by tools/create_demo_assets.py",
+      "license": "Original file geometry; Pokemon character designs remain respective rights holders; demo redistribution requested by owner",
+      "sha256": "12cbd0d4cced2c2b7997eb61c892996d4fa509e47678a2fe2c0610681b37fcac",
+      "source_sha256": "8da6b22fcc9a9a069f899dc4eee1d1af8f9d968f1d449e5e62a19918e064da00",
+      "vertices": 2442
+    }
+  ]
+}

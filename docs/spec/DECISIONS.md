@@ -225,3 +225,11 @@ Provenance : propriétaire,12 octobre2026 : « je valide les concepts graphiques
 Production :21GLB originaux depuis Blender4.3.2, sources .blend et générateur conservés. Sept bâtiments, sept grands repères, six props, un avatar à sept os/marche. Avatar avec yeux/cheveux/vêtements/chaussures/sac, palette campagne existante préservée ; PNJ variés, quatre profils de visite. Aucun modèle officiel extrait ou nouvelle espèce Pokémon ajouté. Nouvelle version du rendu de coiffure0 : cheveux courts naturels au lieu du mannequin sans ajout ; données d'apparence conservées.
 
 Atlas : visites à pied des28lieux représentatifs des six îles et d'Æther, collisions locales et caméra, sans déblocage narratif ni déplacement du vrai joueur. La campagne actuelle garde ses lieux/progression, avec nouveaux bâtiments au havre, volcans et avatar/PNJ intégrés. Ces visites ne sont pas sept îles de campagne complètes connectées ni de nouvelles quêtes. Sources/sauvegardes conservées, réglages et équipe inchangés, aucune branche supplémentaire. Build Windows groupé avec instructions de visite et captures réelles. Validation en jeu owner du kit/avatars encore attendue ; dernière validation fonctionnelle Windows D52.
+
+
+## D69 — démo intégrée et cible DS en FHD
+
+Demande owner du 12 octobre 2026 : monde, graphismes et services réunis dans une démo jouable d'une portion de la première île. Référence graphique : personnages Pokémon DS/USUL, décor net en FHD, concepts D67 approuvés. Autonomie autorisée, propositions à ajuster après playtest ; aucune validation visuelle implicite.
+
+
+Voir [LOT_DEMO_HAVRE](../development/LOT_DEMO_HAVRE.md). Développé et contrôlé techniquement, retour Windows/visuel attendu. Noms, starters, équilibrage et rendu restent provisoires ; cible graphique demandée pas encore atteinte.

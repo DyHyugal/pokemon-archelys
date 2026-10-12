@@ -24,20 +24,20 @@ func say(fr: String,en: String) -> void:
  var entry: Dictionary={"fr":fr,"en":en,"sequence":history.size(),"turn":turn}
  events.append(entry);history.append(entry.duplicate(true))
 func begin(owner: RefCounted,opponents: Array,trainer_id: String="") -> bool:
- if active or owner.in_battle or opponents.is_empty() or trainer_id not in ["","trainer-1","trainer-2","weather-test","terrain-test","slice-boss"]+adventure_ids():return false
+ if active or owner.in_battle or opponents.is_empty() or trainer_id not in ["","trainer-1","trainer-2","weather-test","terrain-test","slice-boss","demo-trainer"]+adventure_ids():last_error="Combat déjà actif ou adversaire invalide";return false
  var ready: Array=[]
  var seen: Array=[]
  for mon: Dictionary in owner.team+opponents:
-  if int(mon.uid) in seen:return false
+  if int(mon.uid) in seen:last_error="Identités Pokémon dupliquées";return false
   seen.append(int(mon.uid))
  for mon: Dictionary in opponents:
-  if not Mon.validate(mon) or mon.hp<=0:return false
+  if not Mon.validate(mon) or mon.hp<=0:last_error="Équipe adverse invalide";return false
  for i: int in range(owner.team.size()):
   if owner.team[i].hp>0 and owner.exploration.can_heal(owner.team[i]):ready.append(i)
- if ready.size()<(2 if double_mode else 1) or opponents.size()<(2 if double_mode else 1):return false
+ if ready.size()<(2 if double_mode else 1) or opponents.size()<(2 if double_mode else 1):last_error="Aucun Pokémon apte (ou deux Pokémon nécessaires en double)";return false
  transport=Transport.new()
  Engine.get_main_loop().root.add_child(transport)
- if not transport.start():transport.queue_free();last_error="Showdown runtime missing";return false
+ if not transport.start():last_error=transport.last_error;transport.queue_free();transport=null;return false
  saved_campaign=owner.snapshot();adventure=owner;enemies=opponents.duplicate(true);trainer=trainer_id
  player_index=int(ready[0]);enemy_index=0;player_slots=ready.slice(0,2);enemy_slots=[0,1]
  active=true;owner.in_battle=true;result="";turn=0;events=[];history=[];participants={current(0).uid:true};defeated=[]

@@ -41,6 +41,8 @@ var panel: Control
 var title: Label
 var body: VBoxContainer
 var navigation: VBoxContainer
+var demo_mode: bool=false
+var preview_renderer: Callable
 var page: String = "home"
 var locale: String = "fr"
 var tokens: int = 0
@@ -125,6 +127,9 @@ func render() -> void:
 		adventure_pages.adventure=adventure
 	var names := [tr_text("Pause","Pause"),tr_text("Sac","Bag"),tr_text("Journal","Journal"),tr_text("Paramètres","Settings")]
 	if adventure!=null:names.append_array([tr_text("Équipe / Résumé","Party / Summary"),"PC",tr_text("Apprentissages (%d)","Learning (%d)") % adventure.pending.size(),tr_text("Carte / Vol","Map / Fly"),tr_text("Vie quotidienne","Daily services"),tr_text("Règles / Difficulté","Rules / Difficulty"),"Pokédex",tr_text("Cinématiques","Cinematics"),tr_text("Sauvegardes","Save slots"),tr_text("Œufs / Incubateur","Eggs / Incubator"),tr_text("Aventure","Adventure"),tr_text("Personnage","Character"),tr_text("Photo","Photo"),tr_text("Île proposée","Proposed island"),tr_text("Atlas / Studio","Atlas / Studio"),tr_text("Boutique de vêtements","Clothing shop")])
+	if demo_mode:
+		for i: int in range(pages.size()-1,-1,-1):
+			if pages[i] not in ["home","bag","settings","team","pc","choices","services","dex","appearance","wardrobe"]:pages.remove_at(i);names.remove_at(i)
 	for index: int in range(pages.size()):
 		var target: String=pages[index]
 		buttons[target]=button(navigation,names[index],func(): page=target; feedback.text=""; render())
@@ -209,6 +214,8 @@ E / Enter: interact in the world"))
 	if page=="settings":comfort_pages.render()
 	if page=="pc" and body.has_node("StorageInspect"):body.get_node("StorageInspect").grab_focus()
 	else:buttons[page].grab_focus()
+
+	if demo_mode and page=="appearance" and preview_renderer.is_valid():preview_renderer.call(body)
 
 func show_item() -> void:
 	item_details.text=tr_text("Jeton de test
