@@ -28,7 +28,7 @@ Le [nouveau lot exploration/règles/comparatifs](https://github.com/DyHyugal/pok
 
 Les combats du laboratoire utilisent maintenant [Showdown intégré](docs/development/INTEGRATION_SHOWDOWN.md), un simulateur local sous MIT. Pour développer : Node24.19.0, `python tools/prepare_showdown.py`, puis `python tools/check_prototype.py`. Le ZIP joueur contient le runtime ; aucune installation ni connexion nécessaire. La validation Windows de ce nouveau lot reste distincte des tests locaux.
 
-**Dernière livraison : [Windows lab-9ff4c8d](https://github.com/DyHyugal/pokemon-archelys/releases/download/lab-9ff4c8d/Archelys-Laboratoire-Windows.zip)** — styles Défini/Choix, soins du sac configurables et retour au Centre après défaite ; lots précédents conservés, même EXE et parcours groupé dans LIRE-MOI. [CI réussie](https://github.com/DyHyugal/pokemon-archelys/actions/runs/38179922894). Validation Windows des nouveaux lots attendue.
+**Dernière livraison : [Windows lab-c824b39](https://github.com/DyHyugal/pokemon-archelys/releases/download/lab-c824b39/Archelys-Laboratoire-Windows.zip)** — première île proposée en douze blocs, huit lieux, progression/combats/relais/quête/services/Vol/libération, avec anciens lots conservés. Même EXE, bilan et cinq vues dans le ZIP. [CI réussie](https://github.com/DyHyugal/pokemon-archelys/actions/runs/38234469937). Prototype visuel/narratif et Windows à tester.
 
 Le [lot groupé aventure/IA/visuels](docs/development/LOT_AVENTURE_IA_VISUELS.md) relie village, sentier, épreuve et épilogue, avec sauvegarde et récompenses uniques. Il enrichit les comparatifs FHD ; scénario et direction artistique proposés restent à approuver. Le LIRE-MOI du ZIP contient le parcours de test complet.
 
@@ -39,3 +39,5 @@ Le [gros bloc gestion des équipes](docs/development/LOT_GESTION_EQUIPES.md) app
 Le [lot lisibilité des combats](docs/development/LOT_LISIBILITE_COMBATS.md) traduit les événements connus, permet de relire les messages déjà présentés et détaille les attaques sans consommer d’action. Les confirmations manuelles sont conservées, y compris à vitesse×4.
 
 Le [lot options de combat et défaite](docs/development/LOT_OPTIONS_COMBAT_DEFAITE.md) ajoute les styles classiques, les soins du sac ON/OFF et corrige le retour au Centre. Showdown résout les remplacements et effets d’entrée ; les options sont enregistrées dans la campagne.
+
+La [première île proposée en douze blocs](docs/development/LOT_PREMIERE_ILE_12_BLOCS.md) se lance dans **Aventure → Explorer la première île proposée**. Elle conserve l’équipe ; nouvel emplacement conseillé pour juger les niveaux. Bilan SPOILERS DEV, cinq captures et parcours groupé inclus dans le ZIP.
