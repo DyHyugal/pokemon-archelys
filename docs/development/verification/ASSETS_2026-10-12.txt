@@ -1,0 +1,74 @@
+ARCHÉLYS D68 — kit graphique et visites,12 octobre2026
+SPOILERS DEV. Concepts approuvés par le propriétaire ; modèles en jeu à tester.
+Source : 5aca1d26822622268e003d6125000d820d971851
+Branche docs/cadrage-valide ; pas de branche supplémentaire ou merge.
+
+Production : Blender4.3.2,21exports GLB originaux et21sources .blend.
+7bâtiments,7repères,6props,1avatar avec rig7os et animation marche.
+SHA256 sources/exports vérifiés, provenance.json dans game/assets/archipelago.
+Aucun modèle/texture officiel extrait, aucune nouvelle espèce Pokémon.
+
+Suite complète : python tools/check_prototype.py, Godot4.6.3/Node24.19.0,
+Showdown942cda71d14bf0618bd57991708a2e2734b6daba inchangés.
+Toutes les étapes passent, aucun zéro-test substitué à la suite.
+SHOWDOWN ADAPTER: 70 checks, 0 failures
+SHOWDOWN INTEGRATION: 33 checks, 0 failures
+BATTLE OPTIONS: 44 checks, 0 failures
+BATTLE READABILITY: 52 checks, 0 failures
+ATLAS SERVICES: 39 checks, 0 failures
+ATLAS SCENE: 134 checks, 0 failures
+ARCHIPELAGO ASSETS: 75 checks, 0 failures
+ISLAND SYSTEMS: 108 checks, 0 failures
+ISLAND SCENE: 46 checks, 0 failures
+ARCHÉLYS TESTS: 19 checks, 0 failures
+JOURNEY SYSTEMS: 17 checks, 0 failures
+JOURNEY SCENE: 14 checks, 0 failures
+FOSSIL SYSTEMS: 23 checks, 0 failures
+NURSERY SYSTEMS: 18 checks, 0 failures
+SOLO SYSTEMS: 18 checks, 0 failures
+DIALOGUE TESTS: 6 checks, 0 failures
+POKEMON SYSTEMS: 71 checks, 0 failures
+EXPLORATION COMBAT: 70 checks, 0 failures
+COLLECTION SYSTEMS: 32 checks, 0 failures
+COLLECTION SCENE: 27 checks, 0 failures
+STORAGE SYSTEMS: 31 checks, 0 failures
+STORAGE SCENE: 16 checks, 0 failures
+PRESENTATION SYSTEMS: 17 checks, 0 failures
+PRESENTATION SCENE: 13 checks, 0 failures
+COMFORT SYSTEMS: 21 checks, 0 failures
+COMFORT SCENE: 26 checks, 0 failures
+TACTICS SYSTEMS: 46 checks, 0 failures
+TACTICS SCENE: 24 checks, 0 failures
+ALL PROTOTYPE CHECKS PASSED
+
+Contrôle final ciblé du nouveau script :75contrôles,0échec.
+Rendu :105contrôles,0échec,15PNG1920×1080, Xorg:99/OpenGL/Mesa25.0.7 llvmpipe logiciel.
+7vues générales+7visites à pied+gros plan personnage. Aucun SCRIPT ERROR/ERROR.
+Warning pilote : V-Sync matériel non supporté, pas mesure de fluidité Windows.
+Présence réelle des modèles, rig, collisions bâtiments/PNJ, profil local, marche
+sans mutation de la campagne, restauration caméra/HUD/environnement vérifiés.
+
+Export Windows release réussi ; mêmes EXE officiel et Node.exe, hashes du
+package vérifiés. PCK externe, aucune nouvelle signature propriétaire annoncée.
+Archive testzip OK, 441 fichiers, taille locale111159507octets.
+Hash ZIP LOCAL (le ZIP CI peut différer, utiliser son fichier SHA) :
+344979a8b6560e5c9ece5dc7283c3025460bc63d0147833a0018a7c7945f148e  Archelys-Laboratoire-Windows.zip
+
+EXE SHA256 : 91724f15024a3a545e28ccd83134403d31ce2323a38e51c95e4dfa282f732ab6
+PCK SHA256 : 509f2fbc5ff7153e7029f4b6421ba1d772c3a11022ff9e5ecd7df11f29bc6e6d
+
+Limites : un corps partagé par les profils ; premier kit, pas fidélité exacte
+aux illustrations détaillées. Visites représentatives, pas archipel narratif
+entier connecté. PNJ décoratifs dans visites, nouvelle campagne non débloquée.
+Intérieurs supplémentaires, course/faciales/attaques et modèles Pokémon encore
+à réaliser. Sauvegardes/équipe conservées ; coiffure0 devient courte naturelle.
+Concepts validés D68, playtest des modèles Windows/manette physique attendu.
+Dernier playtest Windows fonctionnel effectivement validé : D52.
+
+CI : Success, source5aca1d2, validation/export/publication terminés.
+https://github.com/DyHyugal/pokemon-archelys/actions/runs/38242602495
+Release publique ZIP+SHA256SUMS vérifiée,12 octobre2026.
+https://github.com/DyHyugal/pokemon-archelys/releases/tag/lab-5aca1d2
+Téléchargement :
+https://github.com/DyHyugal/pokemon-archelys/releases/download/lab-5aca1d2/Archelys-Laboratoire-Windows.zip
+Le hash CI est celui du SHA256SUMS livré, distinct du hash LOCAL ci-dessus.
