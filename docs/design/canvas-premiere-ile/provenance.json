@@ -1,0 +1,74 @@
+{
+  "status": "Concepts de production proposés, pas captures du jeu ou modèles 3D ; validation visuelle owner distincte",
+  "tool": "image_gen.imagegen",
+  "reference": "docs/design/concepts/01-tropicale.png (D67/D68 approuvée)",
+  "method": "Nouvelle planche par famille avec référence artistique, quatre panneaux par image. Originaux copiés sans modification. Aucun modèle officiel extrait.",
+  "direction": "Port crème/turquoise/bois ; jungle lisible ; village basalte/bois ; géothermie et volcan actif ; RR anthracite/rouge discret. Tentative de traitement anime JRPG : illustration détaillée à simplifier selon camera réelle, pas promesse du rendu final.",
+  "provenance_rights": "Illustrations générées pour la demande du propriétaire, documents de travail ; aucune licence de designs Pokémon ni garantie d’exclusivité implicitement accordée.",
+  "boards": [
+    {
+      "file": "01-port-cote-sentier-canopee.png",
+      "source": "/workspace/generated_images/exec-bb129cee-5af3-40ec-8bef-9587dc33d81b.png",
+      "sha256": "19d9655372904142eb16e1f30b820b78319c527bdf409d52fe9647f568c8423f",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "panels_order": "haut gauche, haut droite, bas gauche, bas droite",
+      "panels": [
+        "Havre tropical",
+        "Côte et quai",
+        "Sentier tropical",
+        "Canopée des relais"
+      ]
+    },
+    {
+      "file": "02-village-sources-caldeira-galerie.png",
+      "source": "/workspace/generated_images/exec-e3ad3a71-d522-448d-b310-a5db83f2b548.png",
+      "sha256": "ec830520fc984497ce10512470b78777ab6ac678a97aaefa40f0bff7a6963327",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "panels_order": "haut gauche, haut droite, bas gauche, bas droite",
+      "panels": [
+        "Village volcanique",
+        "Sources géothermiques",
+        "Caldeira et ascension",
+        "Galerie de basalte"
+      ]
+    },
+    {
+      "file": "03-interieurs-services.png",
+      "source": "/workspace/generated_images/exec-3c5af430-c268-4d9e-be71-c357d90dec46.png",
+      "sha256": "620cc86bc1a47dadfa99d4f8687c06dd25b1865d3723ce5874bdcbc374688a63",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "panels_order": "haut gauche, haut droite, bas gauche, bas droite",
+      "panels": [
+        "Centre de soins",
+        "Laboratoire",
+        "Boutique et tenues",
+        "Maison du protagoniste"
+      ]
+    },
+    {
+      "file": "04-sanctuaire-poste-raffinerie.png",
+      "source": "/workspace/generated_images/exec-2e1f844c-7ae0-4963-9661-3d44fe24eda5.png",
+      "sha256": "17af8cb7690ee682d6b6c0939f0270ce0dcd6b7e2425f4793b17c9f0cced74a3",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "panels_order": "haut gauche, haut droite, bas gauche, bas droite",
+      "panels": [
+        "Sanctuaire de la divinité",
+        "Poste RR local",
+        "Raffinerie géothermique",
+        "Salle des admins"
+      ]
+    }
+  ]
+}

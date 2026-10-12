@@ -1,5 +1,7 @@
 # Prompts des assets de la première île
 
+Les [quatre planches de référence de la première île](canvas-premiere-ile/LIRE-MOI.md) couvrent seize vues et expliquent leur utilisation avec ces prompts. Elles servent à préparer les objets isolés, pas à reconstruire une ville entière en un modèle.
+
 SPOILERS DEV. Catalogue préparatoire demandé par le propriétaire après D73 ; aucun modèle généré/importé et aucun changement du jeu ou des sauvegardes dans cette tâche.
 
 [Télécharger le classeur Excel](https://raw.githubusercontent.com/DyHyugal/pokemon-archelys/refs/heads/docs/cadrage-valide/docs/design/Prompts-assets-premiere-ile-Archelys.xlsx)
