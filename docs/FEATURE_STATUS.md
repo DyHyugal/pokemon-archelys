@@ -207,3 +207,5 @@ Propriétaire : « idéalement 10 […] en autonomie […] pokédex et starters 
 ## D72 — lot autonome de douze blocs
 
 Propriétaire, 12 octobre 2026 : « enchaine sur les 10/20 prochains blocs […] 20 […] jouable ». Poursuite solo autonome avec fixtures, sans figer Pokédex, starters ni modèles Meshy attendus. Douze blocs intégrés : expédition, actions contextuelles, Vol, services locaux, Pokédex de démo, scènes/replay, autosave séparée, archives portables, diagnostic des sauvegardes, inspection GLB, préflight de contenu et lisibilité du combat. [Portée et limites](development/LOT_DEMO_PROGRESSION_SERVICES.md). Développé/testé techniquement ; playtest Windows et choix artistiques restent distincts.
+
+Livraison D72 : source `a732c7c`, CI [38307537252](https://github.com/DyHyugal/pokemon-archelys/actions/runs/38307537252) réussie, ZIP `lab-a732c7c` publié. [Vérification et test groupé](development/VERIFICATION_D72.md). Retour Windows/visuel propriétaire toujours attendu ; aucun lot suivant validé implicitement.
