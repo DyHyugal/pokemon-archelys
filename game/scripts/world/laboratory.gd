@@ -94,7 +94,7 @@ func _ready() -> void:
 	dialogue_record = interaction_records.guide
 	if "--demo-runtime-check" in OS.get_cmdline_user_args():_demo_runtime_check.call_deferred()
 	elif OS.has_feature("template") and "--script" not in OS.get_cmdline_args():
-		demo_game.use_hd2d=true;demo_game.open.call_deferred(self)
+		demo_game.enable_drawn();demo_game.open.call_deferred(self)
 	for arg: String in OS.get_cmdline_user_args():
 		if arg.begins_with("--capture="):
 			capture_frame.call_deferred(arg.trim_prefix("--capture="))
@@ -274,7 +274,7 @@ func _build_ui() -> void:
 	pause_menu.save_requested.connect(func():_save();pause_menu.feedback.text=message.text)
 	pause_menu.load_requested.connect(func():_load();_sync_menu();pause_menu.feedback.text=message.text)
 	demo_game=preload("res://scripts/ui/demo_game.gd").new();add_child(demo_game)
-	_button(stack,"Démo 2D HD / HD 2D demo",func():demo_game.use_hd2d=true;demo_game.open(self))
+	_button(stack,"Démo 2D dessinée / Drawn 2D demo",func():demo_game.enable_drawn();demo_game.open(self))
 	atlas_studio=AtlasStudio.new();add_child(atlas_studio);atlas_studio.finished.connect(func():_open_menu("atlas"))
 	pause_menu.atlas_requested.connect(func(region: String,site: int):atlas_studio.open(self,region,site))
 	battle_panel=BattlePanel.new();battle_panel.comfort=comfort;add_child(battle_panel)

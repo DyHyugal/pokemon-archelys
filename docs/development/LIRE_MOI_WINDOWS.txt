@@ -1,3 +1,57 @@
+ARCHÉLYS — DÉMO 2D DESSINÉE, STYLE B (D79)
+Version : lab-{short_commit}
+Commit : {commit}
+
+Extrais le ZIP entier et lance Archelys-Laboratoire.exe (nom fixe).
+Conserve EXE, PCK, runtime et showdown ensemble : tout fonctionne hors ligne.
+La démo dessinée s’ouvre directement. Depuis l’atelier : Démo 2D dessinée.
+
+La direction du dessin B est approuvée. Ce build transforme l’essai visuel
+fixe en petite portion jouable : havre, maison, Centre, boutique et sentier.
+Ce n’est pas une île complète. Les décors sont des fonds 2D dessinés,
+avec collisions et PNJ séparés ; aucun décor Tripo dans cette portion.
+Le héros reste statique pendant ses déplacements, volontairement pour cet essai.
+Les PNJ utilisent la même base avec une veste de couleur différente.
+
+PARCOURS DE TEST UNIQUE
+Commence une partie et choisis un starter (choix provisoires de démo).
+Marche avec les touches habituelles ; Maj/RB pour courir, E/Entrée pour
+interagir, Échap pour ouvrir le menu. Parle à Vyna et au professeur.
+Approche les trois portes, appuie sur E : maison, Centre et boutique.
+Teste soins et PC au Centre, achats à la boutique, puis vérifie le sac.
+Sors : tu dois retrouver la porte correspondante du havre.
+
+Va au nord de la place pour rejoindre le sentier. Relève la balise,
+affronte le dresseur et explore les hautes herbes : attaque, capture/fuite.
+Les combats utilisent Showdown, avec interface et illustrations 2D fixes.
+Six espèces provisoires ont une illustration ; les autres affichent leur
+nom, sans emprunter frauduleusement la forme d’une autre espèce.
+Les deux côtés emploient des illustrations de face, pas encore des dos animés.
+Les messages restent à avancer manuellement.
+
+Reviens voir Vyna pour terminer cette portion. La canopée et les autres
+zones ne font pas partie de cette version graphique : limite explicite.
+Les actions contextuelles optionnelles enlèvent leur petit marqueur et
+leur blocage, pas les rochers/arbres peints dans le fond.
+
+Paramètres → distance caméra : teste le zoom à ta résolution habituelle
+et en 1920×1080 si disponible. Vérifie lisibilité et proportions.
+Les façades, comptoirs, végétation de bord et eau sont infranchissables.
+Les fonds sont précomposés : pas encore de passage derrière les arbres,
+de décor destructible peint, ni de kit complet d’assets réutilisables.
+Personnalisation et animation du héros restent à réaliser pour ce style.
+
+SAUVEGARDES
+Ce prototype graphique a ses propres trois emplacements : les anciennes
+sauvegardes de l’atelier et de la démo précédente restent intactes.
+Sauvegarde, ferme, relance et continue : équipe, sac, position et progression
+à retrouver. Aucun test multi, raid ou Nuzlocke demandé.
+
+Un seul retour sur le parcours et le rendu : scène qui pose problème,
+proportions, incohérences et fluidité. Captures-Dessinees contient les vraies
+captures de cette version. Les anciens parcours ci-dessous sont historiques.
+
+--- PARCOURS HISTORIQUE D78 ---
 ARCHÉLYS — PROTOTYPE FANGAME 2D HD (D78)
 Version : lab-{short_commit}
 Commit : {commit}

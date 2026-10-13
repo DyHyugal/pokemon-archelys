@@ -5,6 +5,9 @@ const OldKit=preload("res://scripts/world/asset_kit.gd")
 const Scenery=preload("res://scripts/world/tripo_scenery.gd")
 const Chapter=preload("res://scripts/domain/demo_chapter.gd")
 var logic_only: bool=false
+var drawn: bool=false
+var drawn_walk: Array=[]
+const Drawn=preload("res://scripts/world/drawn_layouts.gd")
 var chapter: RefCounted
 var blockers: Array[Rect2]=[]
 var points: Dictionary={}
@@ -96,6 +99,23 @@ func build(state: RefCounted) -> void:
  hero.position=state.position;Style.apply(hero,state.campaign.adventure.appearance);configure_labels(show_labels);follow()
 func build_logic(state: RefCounted) -> void:
  for node: Node in geometry.get_children():geometry.remove_child(node);node.queue_free()
+ if drawn:
+  var map: Dictionary=Drawn.layout(location);points.clear();blockers.clear();drawn_walk=map.walk
+  for id: String in map.points:points[id]=Drawn.vector(map.points[id])
+  for row: Array in map.blockers:blockers.append(Drawn.rect(row))
+  for row: Dictionary in map.npcs:
+   # Counter staff are visually behind counters; interaction is in front.
+   if row.id in ["nurse","merchant"]:continue
+   var at: Vector3=Drawn.vector(row.at);blockers.append(Rect2(at.x-.25,at.z-.25,.5,.5))
+  if location=="trail":
+   for id: String in preload("res://scripts/domain/demo_expedition.gd").ACTIONS:
+    if state.flags.has(preload("res://scripts/domain/demo_expedition.gd").ACTIONS[id]):points.erase(id)
+    else:
+     var at: Vector3=points[id];blockers.append(Rect2(at.x-.4,at.z-.4,.8,.8))
+  if not can_walk(state.position):
+   recover_position(state)
+   if not can_walk(state.position):state.position=Drawn.spawn(location)
+  hero.position=state.position;follow();return
  var data: Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/hd2d/manifest.json"))
  var layout: Dictionary=data.layouts[location];points.clear();blockers.clear()
  for id: String in layout.points:
@@ -236,6 +256,9 @@ func interior() -> void:
  # Imported furniture uses its actual rendered bounds; mirror remains procedural.
  if location=="home":blockers.append(Rect2(Vector2(3.3,-3.1),Vector2(1.4,.3)))
 func can_walk(at: Vector3) -> bool:
+ if drawn:
+  if not drawn_walk.any(func(row: Array):return Drawn.rect(row).has_point(Vector2(at.x,at.z))):return false
+  return blockers.all(func(r: Rect2):return not r.grow(.22).has_point(Vector2(at.x,at.z)))
  if location=="town":
   if at.x< -25 or at.x>25 or at.z< -24 or at.z>15:return false
   if Chapter.is_water(location,Vector2(at.x,at.z)) and not chapter.surfing:return false

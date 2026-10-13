@@ -85,3 +85,6 @@ D77 : 34 exports fournis et intégration demandée ; [début de refonte](../deve
 
 
 D78 : direction 2D HD dans l’esprit d’Insurgence/Empyrean explicitement retenue. [Prototype demandé](../development/LOT_HD2D.md) développé avec décors précalculés Tripo et terrains 2D. À apprécier : rendu réel, échelle, animation et pertinence du réemploi Tripo par rapport à des sprites dessinés. Personnalisation 2D, habillage des combats et profils PNJ définitifs restent ouverts. Ne plus poursuivre la production du monde en 3D.
+# D79 — questions graphiques après la portion dessinée
+
+La direction B et sa mise en démo sont autorisées ; ce choix n'est plus à redemander. À apprécier dans la version jouable : proportions, zoom, lisibilité, cohérence des intérieurs et parcours. À réaliser/valider ensuite : animation et directions du héros, personnalisation, designs individuels des PNJ, éléments de décor réutilisables, superpositions et habillage final des combats. Aucun blocage pour produire la petite portion demandée ; Pokédex/starters restent à recevoir.

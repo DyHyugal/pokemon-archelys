@@ -104,3 +104,7 @@ Coop future : nouveaux profils rejouent leurs chapitres séparés ; gestion hôt
 ## Priorité après retour du laboratoire D50
 
 Nuzlocke/Soul-link reportés à plus tard, sans nouvelles tâches ou demandes de playtest pour ces modes. Les règles recueillies restent conservées au backlog. Type/thème du quartier approuvé dans son principe, graphismes provisoires à remplacer/améliorer avant validation artistique des assets. Le reste du lot lab-58819aa est confirmé fonctionnel par le propriétaire, sauf le parcours d'accès Méga à corriger.
+
+## D79 — direction directement dessinée, portion de test
+
+La proposition B est retenue après capture réelle et autorisation de démo. Le monde 2D utilise du dessin direct ; convertir les modèles Tripo ne répondait pas à la direction recherchée. Havre, trois intérieurs et court sentier jouables constituent le lot de test, avec fonds précomposés et héros fixe. Aucun kit final, île entière ou animation/personnalisation achevée prétendu. Les fonctionnalités solo restent ; nouvelle sauvegarde graphique distincte. Voir LOT_2D_DESSINEE.

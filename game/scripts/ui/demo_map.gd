@@ -5,17 +5,26 @@ var state: RefCounted
 var target: String=""
 var locale: String="fr"
 var extent:=Rect2(-28,-28,56,44)
+var drawn_texture: Texture2D
 func _ready() -> void:
  custom_minimum_size=Vector2(480,310);size_flags_horizontal=Control.SIZE_EXPAND_FILL
  mouse_filter=Control.MOUSE_FILTER_IGNORE
  if state.location in ["trail"]+preload("res://scripts/domain/demo_chapter.gd").LOCATIONS:extent=Rect2(-15,-19,30,34)
  elif state.location!="town":extent=Rect2(-10,-11,20,22)
+ if world.drawn:
+  var layouts=preload("res://scripts/world/drawn_layouts.gd")
+  var map: Dictionary=layouts.layout(state.location)
+  extent=Rect2(-map.origin[0]/64.0,-map.origin[1]/48.0,map.size[0]/64.0,map.size[1]/48.0)
+  drawn_texture=load(layouts.ROOT+map.texture+".png")
+  if map.has("cell"):
+   var atlas:=AtlasTexture.new();atlas.atlas=drawn_texture;var half:=Vector2(drawn_texture.get_width(),drawn_texture.get_height())/2;atlas.region=Rect2(Vector2(map.cell[0],map.cell[1])*half,half);atlas.filter_clip=true;drawn_texture=atlas
 func project(at: Vector3) -> Vector2:
  return Vector2(18,18)+(Vector2(at.x,at.z)-extent.position)/extent.size*(size-Vector2(36,36))
 func _draw() -> void:
  if not world or not state:return
  draw_style_box(make_background(),Rect2(Vector2.ZERO,size))
- if state.location=="town":
+ if drawn_texture:draw_texture_rect(drawn_texture,Rect2(Vector2(18,18),size-Vector2(36,36)),false)
+ elif state.location=="town":
   draw_rect(Rect2(project(Vector3(-28,0,-28)),project(Vector3(28,0,16))-project(Vector3(-28,0,-28))),Color("ddd5b7"))
   draw_line(project(Vector3(0,0,-24)),project(Vector3(0,0,15)),Color("f5ead0"),20)
   draw_line(project(Vector3(-25,0,5)),project(Vector3(25,0,5)),Color("f5ead0"),12)

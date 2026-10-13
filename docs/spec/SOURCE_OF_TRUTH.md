@@ -35,3 +35,6 @@ D77 : les 34 exports du propriétaire sont explicitement autorisés à être int
 
 
 D78 remplace la direction 3D du monde par une aventure 2D HD de fangame (références Insurgence/Empyrean pour le fonctionnement, planche dessinée pour la cible artistique). Les îles et la logique restent ; Tripo peut fournir des sources de sprites. Le prototype précalculé est une méthode à éprouver, pas une validation de sa qualité finale.
+# D79 — correction de direction artistique
+
+Le propriétaire rejette le rendu précalculé Tripo de D78, préfère la proposition B directement dessinée, puis autorise sa démo après la capture Godot. Ce retour remplace l'hypothèse que convertir les GLB en sprites fournirait le rendu voulu. Voir DECISIONS D79 et LOT_2D_DESSINEE ; les anciens lots restent historiques.

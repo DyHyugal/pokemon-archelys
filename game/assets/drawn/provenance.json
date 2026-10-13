@@ -1,0 +1,15 @@
+{
+  "stage": "owner-approved-art-direction-playable-prototype",
+  "date": "2026-10-13",
+  "source": "OpenAI image_gen, generated in this conversation",
+  "reference": "Approved B comparison and actual Godot capture",
+  "files_sha256": {
+    "rooms.png": "5bd35dff6566eb1af3d4efd14c8770cd2f5f53e2325b61a20fbe503baace3dea",
+    "hero.png": "389981746b655870c2104a08949e6bf596ffefc50a63a2377479dbf587ed167f",
+    "town.png": "21f0f330436ba48ef2080d4733908750e4a6812d0cb92f707d8a92135f2703a4",
+    "pokemon.png": "86890b60332528472fb9479199260129889a9cc9b8667c690186c4610a07a5a3"
+  },
+  "modifications": "Original PNGs copied without pixel editing. Godot AtlasTexture regions select rooms/portraits; runtime shader changes NPC jacket colors. Fixed backgrounds, separate static hero. No Tripo source and no extracted official art.",
+  "rights": "Generated project art; Pokemon species/designs remain third-party intellectual property. No new third-party asset licence presumed.",
+  "scope": "Town, home, center, shop and short trail; six provisional combat portraits. No final island or animated avatar claim."
+}

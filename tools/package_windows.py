@@ -24,7 +24,7 @@ manifest={'commit':args.commit,'godot':'4.6.3','stage':'technical-laboratory',
           'showdown':provenance,'distribution':'portable-external-pck-with-offline-showdown','unmodified_godot_template':True,
           'windows_execution':'not validated on Windows','network_validation':'deferred; prior lab-09897ca tested on localhost only'}
 (folder/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
-(folder/'release-notes.md').write_text('D78 : prototype de fangame 2D HD ouvert par défaut. Sprites précalculés Tripo, sols illustrés, héros marche/course sur quatre directions, PNJ et intérieurs, règles et sauvegardes conservées. Habillage combat et personnalisation 2D restent à réaliser ; pas de rendu final prétendu. Parcours groupé et captures réelles dans le ZIP.\n',encoding='utf-8')
+(folder/'release-notes.md').write_text('D79 : démo 2D directement dessinée, style B approuvé. Havre, trois intérieurs et sentier jouables ; portes, PNJ, soins, boutique, PC, starter et combat Showdown avec portraits fixes. Sauvegardes graphiques séparées, héros statique. Petite portion de test, ni île complète ni kit final. Parcours groupé et limites dans le LIRE-MOI.\n',encoding='utf-8')
 archive=folder/'Archelys-Laboratoire-Windows.zip'
 with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as z:
     for file in [exe,pck,folder/'LIRE-MOI.txt',folder/'manifest.json',root/'docs/licenses/Godot-LICENSE.txt',root/'docs/licenses/Godot-COPYRIGHT.txt',root/'docs/licenses/PokeAPI-LICENSE.txt',root/'docs/licenses/LABORATORY_AUDIO.md']:z.write(file,file.name)
@@ -44,6 +44,9 @@ with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as z:
     z.write(root/'docs/design/IMPORT_ASSETS_LOCAUX.md','Documentation/Import-assets-locaux.md')
     z.write(root/'docs/development/LOT_EXPLORATION_SAUVES_DEMO.md','Documentation/Exploration-sauves-demo.md')
     z.write(root/'docs/development/LOT_DEMO_HAVRE.md','Documentation/Lot-demo-havre.md')
+    z.write(root/'docs/development/LOT_2D_DESSINEE.md','Documentation/Demo-dessinee.md')
+    z.write(root/'game/assets/drawn/provenance.json','Documentation/Dessin-provenance.json')
+    for file in sorted((root/'docs/development/drawn').glob('*.png')):z.write(file,'Captures-Dessinees/'+file.name)
     z.write(root/'docs/development/LOT_HD2D.md','Documentation/Prototype-HD2D.md')
     z.write(root/'game/assets/hd2d/provenance.json','Documentation/HD2D-provenance.json')
     for file in sorted((root/'docs/development/hd2d').glob('*.png')):z.write(file,'Captures-HD2D/'+file.name)

@@ -27,7 +27,10 @@ var dex_query: String=""
 var dex_filter: int=0
 var archive_picker: FileDialog
 var use_hd2d: bool=false
+var use_drawn: bool=false
+const Drawn=preload("res://scripts/world/drawn_layouts.gd")
 var hd2d_view: CanvasLayer
+var drawn_battle_view: CanvasLayer
 var active: bool=false
 var owner_world: Node3D
 var state:=State.new()
@@ -72,7 +75,7 @@ func open(owner: Node3D) -> bool:
   if child is CanvasLayer and child!=self:old_visibility[child]=child.visible
  for node: Node in old_visibility:node.hide()
  owner.get_node("/root/Session").submit_axis(Vector2.ZERO)
- world=World.new();world.logic_only=use_hd2d;world.locale=locale;owner.add_child(world);world.build(state);world.camera.size=owner.camera.size;world.configure_labels(owner.comfort.data.world_labels)
+ world=World.new();world.logic_only=use_hd2d;world.drawn=use_drawn;world.locale=locale;owner.add_child(world);world.build(state);world.camera.size=owner.camera.size;world.configure_labels(owner.comfort.data.world_labels)
  menu=preload("res://scripts/ui/pause_menu.gd").new();menu.demo_mode=true;menu.adventure=state.campaign.adventure;menu.comfort=owner.comfort;owner.add_child(menu)
  menu.layer=40;menu.panel.theme=owner.ui_theme;menu.speed=float(owner.comfort.data.game_speed)
  menu.save_requested.connect(save_game);menu.load_requested.connect(load_game)
@@ -100,10 +103,19 @@ func open(owner: Node3D) -> bool:
  hud=Label.new();hud.position=Vector2(24,18);hud.add_theme_font_size_override("font_size",19);hud.add_theme_color_override("font_outline_color",Color("1c3540"));hud.add_theme_constant_override("outline_size",4);hud.theme=owner.ui_theme;add_child(hud)
  feedback=Label.new();feedback.position=Vector2(24,100);feedback.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;feedback.custom_minimum_size.x=950;feedback.theme=owner.ui_theme;feedback.add_theme_color_override("font_outline_color",Color.BLACK);feedback.add_theme_constant_override("outline_size",3);add_child(feedback)
  contextual=Label.new();contextual.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE);contextual.offset_top=-60;contextual.offset_bottom=-18;contextual.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER;contextual.theme=owner.ui_theme;contextual.add_theme_color_override("font_outline_color",Color.BLACK);contextual.add_theme_constant_override("outline_size",4);add_child(contextual)
+ if use_drawn:
+  hud.add_theme_font_size_override("font_size",16);feedback.add_theme_font_size_override("font_size",16);feedback.position.y=87
+  var backing:=Panel.new();backing.name="DrawnHudBacking";backing.position=Vector2(12,10);backing.size=Vector2(575,115)
+  var style:=StyleBoxFlat.new();style.bg_color=Color(.06,.15,.19,.86);style.set_corner_radius_all(12);backing.add_theme_stylebox_override("panel",style);add_child(backing);move_child(backing,0)
  active=true
  if use_hd2d:
-  world.hide();hd2d_view=preload("res://scripts/world/hd2d_view.gd").new();hd2d_view.game=self;owner.add_child(hd2d_view)
+  world.hide();hd2d_view=preload("res://scripts/world/drawn_view.gd").new() if use_drawn else preload("res://scripts/world/hd2d_view.gd").new();hd2d_view.game=self;owner.add_child(hd2d_view)
+ if use_drawn:
+  drawn_battle_view=preload("res://scripts/world/drawn_battle_view.gd").new();drawn_battle_view.game=self;owner.add_child(drawn_battle_view)
  show();welcome();return true
+func enable_drawn() -> void:
+ use_hd2d=true;use_drawn=true;save_path="user://archelys_drawn_demo.json"
+ if state.location not in Drawn.BASE:state=State.new()
 func welcome() -> void:
  var column:=popup(t("ARCHÉLYS — Démo du havre tropical\nUne ville, un sentier et un premier défi. Sauvegarde distincte de l'atelier.","ARCHÉLYS — Tropical haven demo\nOne town, one trail and a first challenge. Save separate from workshop."))
  button(column,t("Emplacement %d — changer","Slot %d — change") % active_slot,slot_picker,"SelectDemoSlot")
@@ -125,7 +137,9 @@ func new_demo() -> void:
  if Content.data().is_empty():
   var column:=popup(t("Configuration de démo invalide : vérifier les espèces et niveaux dans data/demo/content.json.","Invalid demo configuration: check species and levels in data/demo/content.json."));button(column,t("Retour","Back"),welcome);return
  loaded_slot=active_slot
- state=State.new();state.campaign.adventure.appearance=owner_world.get_node("/root/Session").campaign.adventure.appearance.duplicate()
+ state=State.new()
+ if use_drawn:state.position=Drawn.spawn("town")
+ state.campaign.adventure.appearance=owner_world.get_node("/root/Session").campaign.adventure.appearance.duplicate()
  state.campaign.adventure.appearance.style=0;menu.adventure=state.campaign.adventure;world.build(state);starter_screen()
 func starter_screen() -> void:
  world.build(state)
@@ -146,7 +160,7 @@ func add_avatar_preview(body: Node) -> void:
   for field: String in ["skin","shirt","pants","hair","style","face"]:
    var control: Node=body.get_node_or_null("Appearance_"+field)
    if control is OptionButton:control.disabled=true
-  var picture:=TextureRect.new();picture.texture=load("res://assets/hd2d/hero-0-idle-0.png");picture.custom_minimum_size=Vector2(180,240);picture.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;picture.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;body.add_child(picture)
+  var picture:=TextureRect.new();picture.texture=load(Drawn.ROOT+"hero.png" if use_drawn else "res://assets/hd2d/hero-0-idle-0.png");picture.custom_minimum_size=Vector2(180,240);picture.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;picture.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;body.add_child(picture)
   var note:=Label.new();note.text=t("Prototype 2D : apparence fixe ; tes choix sauvegardés restent conservés.","2D prototype: fixed appearance; saved choices preserved.");note.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;body.add_child(note);return
  for field: String in ["style","face"]:
   var control: OptionButton=body.get_node("Appearance_"+field)
@@ -177,6 +191,7 @@ func advance_dialogue() -> void:dialogue_index+=1;render_dialogue()
 func interact(id: String="") -> void:
  if state.starter.is_empty() or menu.visible or battle_panel.visible or modal:return
  if id.is_empty():id=world.nearest()
+ if use_drawn and id=="go-canopy":talk([t("Fin de cette portion graphique : retourne au havre. La suite de l’île sera adaptée après ton retour sur cette démo.","End of this visual slice: return to town. The rest of the island will be adapted after feedback on this demo.")]);return
  if ChapterUI.new(self).interact(id):return
  match id:
   "door-center":travel("center")
@@ -188,6 +203,7 @@ func interact(id: String="") -> void:
    if state.flags.has("trainer") and state.flags.has("survey"):
     state.flags.complete=true;persist_auto()
     if not state.campaign.adventure.records.scenes.has("demo-return"):play_scene("demo-return")
+    elif use_drawn:talk([t("Cette portion de démo est terminée. Tu peux continuer à explorer le havre et le sentier, capturer des Pokémon et préparer ton équipe.","This demo slice is complete. You can keep exploring town and the trail, catching Pokemon and preparing your party.")])
     else:ChapterUI.new(self).vyna()
    elif not state.campaign.adventure.records.scenes.has("demo-arrival"):play_scene("demo-arrival")
    else:talk([t("La balise du sentier ne répond plus. Va la relever au nord, puis affronte le dresseur qui garde le passage. Soins et provisions sont disponibles au havre.","The trail beacon has stopped responding. Survey it to the north, then battle the trainer guarding the path. Healing and supplies are available in town.")])
@@ -225,9 +241,16 @@ func interact(id: String="") -> void:
    talk([t("Relevés récupérés. Remets-les au professeur sur la place.","Notes recovered. Bring them to the professor on the plaza.") if ok else t("Dégage les trois obstacles pour accéder aux relevés ; récupération unique.","Clear the three obstacles to access the notes; collect once.")])
   "grass":begin_battle([state.campaign.adventure.wild(int(Content.data().wild_level),Content.data().wild[state.campaign.adventure.rng.randi_range(0,Content.data().wild.size()-1)])])
 func travel(id: String,flight: bool=false) -> void:
+ if use_drawn and id not in Drawn.BASE:talk([t("Cette destination ne fait pas encore partie de la démo dessinée.","This destination is not yet part of the drawn demo.")]);return
  var previous: String=state.location
  if not state.travel(id,flight):return
- if id=="town":
+ if use_drawn:
+  state.position=Drawn.spawn(id)
+  if id=="town":
+   var door: String="door-"+previous
+   if Drawn.layout("town").points.has(door):state.position=Drawn.vector(Drawn.layout("town").points[door])
+   elif previous=="trail":state.position=Vector3(0,0,-7)
+ elif id=="town":
   if previous=="shop":state.position=World.shop_door_position()
   elif previous in ["center","home"]:state.position=World.TOWN_BUILDINGS[previous]+Vector3(0,0,3.5)
   elif previous=="trail":state.position=Vector3(0,0,-21)
@@ -258,6 +281,7 @@ func save_game() -> void:
 func load_game() -> void:
  if battle and battle.active:return
  var v: Dictionary=Slots.read(save_path,active_slot)
+ if use_drawn and not v.is_empty() and v.location not in Drawn.BASE:feedback.text=t("Partie située hors de cette portion graphique ; partie actuelle conservée.","Save is outside this visual slice; current game preserved.");return
  if v.is_empty() or not state.restore(v):
   if feedback:feedback.text=t("Sauvegarde absente/invalide ; partie conservée.","Save absent/invalid; current game preserved.")
   return
@@ -275,7 +299,8 @@ func _process(delta: float) -> void:
  if not nearby.is_empty():contextual.text=owner_world.comfort.caption("interact")+" / "+t("Entrée","Enter")+" — "+Guidance.title(nearby,locale)
  var old: Vector3=state.position;world.move_hero(owner_world.comfort.axis(),delta,state,owner_world.comfort.wants_run())
  var walked: float=old.distance_to(state.position);state.campaign.adventure.nursery.walk(walked)
- if state.location in ["trail","canopy"] and state.position.x>3 and state.position.x<9 and ((state.position.z> -7 and state.position.z< -1) if state.location=="trail" else (state.position.z> -1 and state.position.z<5)):
+ var in_grass: bool=Drawn.in_grass(state.location,state.position) if use_drawn else (state.location in ["trail","canopy"] and state.position.x>3 and state.position.x<9 and ((state.position.z> -7 and state.position.z< -1) if state.location=="trail" else (state.position.z> -1 and state.position.z<5)))
+ if in_grass:
   steps+=walked
   if steps>6:steps=0;interact("grass" if state.location=="trail" else "chapter-grass")
  if state.autosave and not state.starter.is_empty() and Time.get_ticks_msec()-last_save>60000:auto_save()
@@ -318,6 +343,9 @@ func _notification(what: int) -> void:
  if what==NOTIFICATION_WM_CLOSE_REQUEST and active:persist_auto()
 func close() -> void:
  if not active or owner_world.photo_mode.active or (battle and battle.active):return
+ var drawn_backing: Node=get_node_or_null("DrawnHudBacking")
+ if drawn_backing:remove_child(drawn_backing);drawn_backing.queue_free()
+ if drawn_battle_view:drawn_battle_view.queue_free();drawn_battle_view=null
  if hd2d_view:hd2d_view.queue_free();hd2d_view=null
  persist_auto();active=false;clear_modal();hide()
  for child: Node in [hud,feedback,contextual]:remove_child(child);child.queue_free()
@@ -354,7 +382,7 @@ Local plan of the current area; no automatic travel.");legend.autowrap_mode=Text
    var row:=Label.new();row.text=("→ " if id==map.target else "• ")+Guidance.title(id,locale);body.add_child(row)
   for id: String in ["town","trail"]+Chapter.LOCATIONS:
    var target: String=id
-   var fly: Button=button(body,t("Vol : ","Fly: ")+Chapter.name_of(id,locale),func():fly_to(target),"Fly_"+id);fly.disabled=not Expedition.can_fly(state,id)
+   var fly: Button=button(body,t("Vol : ","Fly: ")+Chapter.name_of(id,locale),func():fly_to(target),"Fly_"+id);fly.disabled=not Expedition.can_fly(state,id) or (use_drawn and id not in Drawn.BASE)
   var notice:=Label.new();notice.text=t("Vol débloqué après le retour à Vyna ; destinations visitées uniquement. Aucun Pokémon requis.","Fly unlocks after returning to Vyna; visited destinations only. No Pokémon required.");notice.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;body.add_child(notice)
  elif page=="saves":
   var label:=Label.new();label.text=t("Partie active : emplacement %d. Autosauvegarde séparée toutes les 60 s d'exploration (si activée).
@@ -409,6 +437,7 @@ func confirm_auto(index: int) -> void:
   apply_archive(data,index),"ConfirmDemoAuto")
  button(column,t("Annuler","Cancel"),func():open_menu("saves"))
 func apply_archive(data: Dictionary,index: int) -> bool:
+ if use_drawn and data.get("location","") not in Drawn.BASE:return false
  if (battle and battle.active) or not state.restore(data):return false
  active_slot=index;loaded_slot=index;clear_modal();menu.visible=false;menu.adventure=state.campaign.adventure;world.build(state);steps=0;last_save=Time.get_ticks_msec();return true
 func archive_dialog(importing: bool) -> void:
@@ -423,6 +452,7 @@ func archive_dialog(importing: bool) -> void:
  archive_picker.popup_centered_ratio(.7)
 func confirm_import(path: String) -> void:
  var data: Dictionary=Archive.read_file(path)
+ if use_drawn and not data.is_empty() and data.location not in Drawn.BASE:menu.feedback.text=t("Import situé hors de la démo dessinée ; partie conservée.","Import is outside the drawn demo; current game preserved.");return
  if data.is_empty():menu.feedback.text=t("Import refusé : fichier invalide ou incompatible. Partie conservée.","Import rejected: invalid or incompatible file. Current save preserved.");return
  menu.visible=false;var column:=popup(t("Importer cette partie dans l’emplacement actif %d ? La progression non sauvegardée sera remplacée ; l’ancien fichier valide restera en copie précédente. Le fichier source sera conservé.","Import this save into active slot %d? Unsaved progress will be replaced; the previous valid file will remain as a backup. Source file preserved.") % loaded_slot)
  button(column,t("Confirmer","Confirm"),func():
