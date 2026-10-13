@@ -81,7 +81,10 @@ func run() -> void:
  check(not game.world.points.has("cut") and game.world.can_walk(Vector3(-3,0,1.5)) and game.hd2d_view.stage.get_node_or_null("Obstacle_cut")==null,"Story field action removes both collider and visible marker")
  check(Layouts.in_grass("trail",Vector3(4,0,-1)) and not Layouts.in_grass("trail",Vector3(0,0,-1)),"Wild encounters match painted grass area")
  game.interact("go-canopy");check(game.state.location=="trail" and game.modal!=null,"Unpainted chapter has explicit slice boundary");finish_text(game)
- check(game.begin_battle([preload("res://scripts/domain/pokemon.gd").make("pikachu",5,900)]),"Real Showdown battle begins")
+ # Magikarp cannot paralyse or otherwise deny this first action. Pikachu's
+ # Thunder Shock can legitimately prevent a turn, making a PP-spend assertion
+ # invalid; test the command cost with an unimpeded opportunity to act.
+ check(game.begin_battle([preload("res://scripts/domain/pokemon.gd").make("magikarp",5,900)]),"Real Showdown battle begins")
  await wait_battle(game)
  while game.battle_panel.event_index<game.battle.events.size():game.battle_panel.advance()
  await process_frame;await process_frame
