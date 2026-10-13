@@ -35,7 +35,7 @@ func render(page: String) -> void:
    var entry: Dictionary=assets[id]
    menu.label("%s · %s\n%s\n%s\nSHA-256 %s" % [id,t("disponible","available") if ResourceLoader.exists(entry.path) else t("fichier absent","file missing"),entry.source,entry.rights,entry.sha256])
    var key: String=id
-   game.button(menu.body,t("Inspecter : ","Inspect: ")+id,func():preview(key),"Preview_"+id)
+   game.button(menu.body,t("Inspecter : ","Inspect: ")+str(entry.get("label",{}).get(game.locale,id)),func():preview(key),"Preview_"+id)
  elif page=="saves":saves_extra()
 func dex() -> void:
  var history: RefCounted=menu.adventure.records
@@ -76,7 +76,7 @@ func saves_extra() -> void:
   if not Slots.read_auto(game.save_path,index).is_empty():game.button(menu.body,t("Charger auto %d","Load auto %d") % index,func():game.confirm_auto(slot),"LoadDemoAuto%d" % index)
 func preview(id: String) -> void:
  menu.clear(menu.body)
- var model: Node3D=Assets.instantiate(id)
+ var model: Node3D=preload("res://scripts/world/tripo_scenery.gd").create(id.trim_prefix("pack-"),Vector2(5,5),7) if id.begins_with("pack-") else Assets.instantiate(id)
  if model==null:menu.label(t("Modèle absent ou invalide.","Missing or invalid model."));return
  preview_node(model)
 func preview_node(model: Node3D) -> void:
@@ -90,6 +90,6 @@ func preview_node(model: Node3D) -> void:
  var light:=DirectionalLight3D.new();light.rotation_degrees=Vector3(-45,-30,0);scene.add_child(light)
  var camera:=Camera3D.new();camera.position=center+Vector3(1,.7,1.4).normalized()*radius*1.3;scene.add_child(camera);camera.look_at(center);camera.current=true
  var image:=TextureRect.new();image.name="ImportedModelPreview";image.texture=viewport.get_texture();image.custom_minimum_size=Vector2(480,320);image.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;image.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;menu.body.add_child(image)
- menu.label(t("Dimensions en jeu : ","In-game dimensions: ")+str(bounds.size))
+ menu.label(t("Dimensions de cet aperçu : ","Preview dimensions: ")+str(bounds.size))
  var turn:=HSlider.new();turn.min_value=-180;turn.max_value=180;menu.body.add_child(turn);var yaw: float=model.rotation_degrees.y;turn.value_changed.connect(func(value: float):model.rotation_degrees.y=yaw+value)
  game.button(menu.body,t("Retour aux imports","Back to imports"),menu.render)

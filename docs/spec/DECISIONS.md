@@ -276,3 +276,8 @@ Propriétaire, 13 octobre 2026 : D74 fonctionne ; demande boutique plus grande e
 ## D76 — poursuite autonome du solo, pause graphique/Pokédex
 
 Propriétaire, 13 octobre 2026 : « continue tout les blocs que tu peux faire en autonomie […] un seul résumé […] partie graphique ce soir ou demain […] pokédex […] demain ». Autorise les travaux solo indépendants de ces choix, une seule livraison sans sollicitation intermédiaire. Huit blocs de continuité/commande/inventaire/progression et préflight du catalogue développés : [portée et preuves](../development/LOT_SOLO_CONTINUITE.md). Aucune nouvelle espèce, aucun nouvel asset ni scénario définitif ; schéma campagne 5 conservé. Validation Windows de ce lot à recevoir, multi/raids/défis reportés.
+
+
+## D77 — intégration des 34 modèles fournis
+
+Propriétaire, 13 octobre 2026 : « Fais l’intégration de ces modèles […] bon début de refonte graphique ». Autorise l’intégration et les adaptations de ces exports ; leur qualité finale reste à apprécier en jeu. Les 34 GLB sont placés dans les huit lieux de démo, avec pivots/échelles/orientations et collisions adaptés ; provenance conservée. [Portée et limites](../development/LOT_TRIPO_SCENERY.md). PNJ, terrains et une partie des éléments restent provisoires. Sauvegardes et catalogue conservés.

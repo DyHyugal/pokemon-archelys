@@ -8,6 +8,414 @@
       "source": "Owner-provided Tripo retopology export, 2026-10-13",
       "rights": "Provided by owner for this demo; applicable Tripo export terms not independently verified; no blanket third-party design rights inferred.",
       "sha256": "a706322609062695cf03abd18d333a88181e51a87b74ace199f2d4e79586563c"
+    },
+    "pack-fantasy-temple": {
+      "path": "res://assets/imported/pack-fantasy-temple.glb",
+      "scale": 1,
+      "rotation": 0,
+      "source": "Owner-provided generation export, 2026-10-13",
+      "rights": "Provided by owner for integration into this demo; generation service/export terms not independently verified; no blanket rights on third-party designs inferred.",
+      "sha256": "3842c5747e69f7fb23bf65088d4b653612d8293baa297a9757006dc0c9fc7c7d",
+      "label": {
+        "fr": "Temple",
+        "en": "Temple"
+      }
+    },
+    "pack-camping-tent": {
+      "path": "res://assets/imported/pack-camping-tent.glb",
+      "scale": 1,
+      "rotation": 0,
+      "source": "Owner-provided generation export, 2026-10-13",
+      "rights": "Provided by owner for integration into this demo; generation service/export terms not independently verified; no blanket rights on third-party designs inferred.",
+      "sha256": "d9ede9956ebba8a2b7d27c163a61d1b865af690904c2e414f1912f35e22f5fc1",
+      "label": {
+        "fr": "Tente du camp",
+        "en": "Camp tent"
+      }
+    },
+    "pack-rock-cave": {
+      "path": "res://assets/imported/pack-rock-cave.glb",
+      "scale": 1,
+      "rotation": 0,
+      "source": "Owner-provided generation export, 2026-10-13",
+      "rights": "Provided by owner for integration into this demo; generation service/export terms not independently verified; no blanket rights on third-party designs inferred.",
+      "sha256": "3782bcca9fc1306d42282c341945821b1394a12795df14e74e3632dd645e48a4",
+      "label": {
+        "fr": "Grotte rocheuse",
+        "en": "Rock cave"
+      }
+    },
+    "pack-steampunk-tower": {
+      "path": "res://assets/imported/pack-steampunk-tower.glb",
+      "scale": 1,
+      "rotation": 0,
+      "source": "Owner-provided generation export, 2026-10-13",
+      "rights": "Provided by owner for integration into this demo; generation service/export terms not independently verified; no blanket rights on third-party designs inferred.",
+      "sha256": "6ce2cc90c5c0bd3a14402c339eb44760ff2d1831c473e0e5b3acff9a767a790e",
+      "label": {
+        "fr": "Tour",
+        "en": "Tower"
+      }
+    },
+    "pack-stylized-archway": {
+      "path": "res://assets/imported/pack-stylized-archway.glb",
+      "scale": 1,
+      "rotation": 0,
+      "source": "Owner-provided generation export, 2026-10-13",
+      "rights": "Provided by owner for integration into this demo; generation service/export terms not independently verified; no blanket rights on third-party designs inferred.",
+      "sha256": "a6d24e53ee8d9860a4a0393ed5ad8e08569728a82539205c26d4f6ae506de385",
+      "label": {
+        "fr": "Arche",
+        "en": "Archway"
+      }
+    },
+    "pack-stylized-boat": {
+      "path": "res://assets/imported/pack-stylized-boat.glb",
+      "scale": 1,
+      "rotation": 0,
+      "source": "Owner-provided generation export, 2026-10-13",
+      "rights": "Provided by owner for integration into this demo; generation service/export terms not independently verified; no blanket rights on third-party designs inferred.",
+      "sha256": "64e8af7ae9aafe13c997155ba08798cfaeb801d29a6f81e6772af723ff17cffc",
+      "label": {
+        "fr": "Bateau",
+        "en": "Boat"
+      }
+    },
+    "pack-unknown": {
+      "path": "res://assets/imported/pack-unknown.glb",
+      "scale": 1,
+      "rotation": 0,
+      "source": "Owner-provided generation export, 2026-10-13",
+      "rights": "Provided by owner for integration into this demo; generation service/export terms not independently verified; no blanket rights on third-party designs inferred.",
+      "sha256": "76f893bb307f75fe0582307fb878305a363a8df7f3aa3cc425b54e75439e74c3",
+      "label": {
+        "fr": "Centre (fichier UUID)",
+        "en": "Center (UUID file)"
+      }
+    },
+    "pack-tree-1": {
+      "path": "res://assets/imported/pack-tree-1.glb",
+      "scale": 1,
+      "rotation": 0,
+      "source": "Owner-provided generation export, 2026-10-13",
+      "rights": "Provided by owner for integration into this demo; generation service/export terms not independently verified; no blanket rights on third-party designs inferred.",
+      "sha256": "32d8b5d43ed380052973258651a54e8e423a60c7cfa563363ef260d4cb9fe034",
+      "label": {
+        "fr": "Végétation tropicale",
+        "en": "Tropical vegetation"
+      }
+    },
+    "pack-palm-plant": {
+      "path": "res://assets/imported/pack-palm-plant.glb",
+      "scale": 1,
+      "rotation": 0,
+      "source": "Owner-provided generation export, 2026-10-13",
+      "rights": "Provided by owner for integration into this demo; generation service/export terms not independently verified; no blanket rights on third-party designs inferred.",
+      "sha256": "410adfc1605596103a61beca4c1489710809097c694f84923569fbf93e425305",
+      "label": {
+        "fr": "Fougère",
+        "en": "Fern"
+      }
+    },
+    "pack-arena-platform": {
+      "path": "res://assets/imported/pack-arena-platform.glb",
+      "scale": 1,
+      "rotation": 0,
+      "source": "Owner-provided generation export, 2026-10-13",
+      "rights": "Provided by owner for integration into this demo; generation service/export terms not independently verified; no blanket rights on third-party designs inferred.",
+      "sha256": "4bdea3ea946c6c25f8f3957dae3f3c36c00f34b61d1d4c779fde95fe8435d758",
+      "label": {
+        "fr": "Plateforme",
+        "en": "Arena platform"
+      }
+    },
+    "pack-rock-pile": {
+      "path": "res://assets/imported/pack-rock-pile.glb",
+      "scale": 1,
+      "rotation": 0,
+      "source": "Owner-provided generation export, 2026-10-13",
+      "rights": "Provided by owner for integration into this demo; generation service/export terms not independently verified; no blanket rights on third-party designs inferred.",
+      "sha256": "019ba0a1a86bddcc0179dd5df6fbadfaaff7456181a6963b7fb2777657087904",
+      "label": {
+        "fr": "Rochers",
+        "en": "Rocks"
+      }
+    },
+    "pack-gazebo": {
+      "path": "res://assets/imported/pack-gazebo.glb",
+      "scale": 1,
+      "rotation": 0,
+      "source": "Owner-provided generation export, 2026-10-13",
+      "rights": "Provided by owner for integration into this demo; generation service/export terms not independently verified; no blanket rights on third-party designs inferred.",
+      "sha256": "e1156854e5f07aaee49c63e631219d5a4b164a97204e8ce9d7a413332372a3a3",
+      "label": {
+        "fr": "Forteresse RR",
+        "en": "RR fortress"
+      }
+    },
+    "pack-arcade-console": {
+      "path": "res://assets/imported/pack-arcade-console.glb",
+      "scale": 1,
+      "rotation": 0,
+      "source": "Owner-provided generation export, 2026-10-13",
+      "rights": "Provided by owner for integration into this demo; generation service/export terms not independently verified; no blanket rights on third-party designs inferred.",
+      "sha256": "83bb0d545231fd072a4faff7f927e30bca2e2e4172641870e46cb86ff6878452",
+      "label": {
+        "fr": "Console",
+        "en": "Console"
+      }
+    },
+    "pack-ornamental-plant": {
+      "path": "res://assets/imported/pack-ornamental-plant.glb",
+      "scale": 1,
+      "rotation": 0,
+      "source": "Owner-provided generation export, 2026-10-13",
+      "rights": "Provided by owner for integration into this demo; generation service/export terms not independently verified; no blanket rights on third-party designs inferred.",
+      "sha256": "9387a3d6f0cbfe3730d80a7348c1b5ef61c74be9941fa57122243b55d02a597b",
+      "label": {
+        "fr": "Plante décorative",
+        "en": "Ornamental plant"
+      }
+    },
+    "pack-street-lamp": {
+      "path": "res://assets/imported/pack-street-lamp.glb",
+      "scale": 1,
+      "rotation": 0,
+      "source": "Owner-provided generation export, 2026-10-13",
+      "rights": "Provided by owner for integration into this demo; generation service/export terms not independently verified; no blanket rights on third-party designs inferred.",
+      "sha256": "26da65c03bddeae04090c2fccb24b23d723fe7c24cf5c71405300f46070a548c",
+      "label": {
+        "fr": "Lampadaire",
+        "en": "Street lamp"
+      }
+    },
+    "pack-bench": {
+      "path": "res://assets/imported/pack-bench.glb",
+      "scale": 1,
+      "rotation": 0,
+      "source": "Owner-provided generation export, 2026-10-13",
+      "rights": "Provided by owner for integration into this demo; generation service/export terms not independently verified; no blanket rights on third-party designs inferred.",
+      "sha256": "3da41b8029e0753c31551de8196604e8707a5d9bf3cc9f39276ae686e61f1b5c",
+      "label": {
+        "fr": "Banc",
+        "en": "Bench"
+      }
+    },
+    "pack-signpost": {
+      "path": "res://assets/imported/pack-signpost.glb",
+      "scale": 1,
+      "rotation": 0,
+      "source": "Owner-provided generation export, 2026-10-13",
+      "rights": "Provided by owner for integration into this demo; generation service/export terms not independently verified; no blanket rights on third-party designs inferred.",
+      "sha256": "0a39d0aa549e0e65515bd3f35edb2ece53da6d256e37f784ca1aa7c782acb00c",
+      "label": {
+        "fr": "Panneau",
+        "en": "Signpost"
+      }
+    },
+    "pack-toaster": {
+      "path": "res://assets/imported/pack-toaster.glb",
+      "scale": 1,
+      "rotation": 0,
+      "source": "Owner-provided generation export, 2026-10-13",
+      "rights": "Provided by owner for integration into this demo; generation service/export terms not independently verified; no blanket rights on third-party designs inferred.",
+      "sha256": "a3852b696cbe0bfa446bde3eef42e5a691cf751b944237127eef5154174b515a",
+      "label": {
+        "fr": "Appareil de comptoir",
+        "en": "Counter appliance"
+      }
+    },
+    "pack-barrier-gate": {
+      "path": "res://assets/imported/pack-barrier-gate.glb",
+      "scale": 1,
+      "rotation": 0,
+      "source": "Owner-provided generation export, 2026-10-13",
+      "rights": "Provided by owner for integration into this demo; generation service/export terms not independently verified; no blanket rights on third-party designs inferred.",
+      "sha256": "487d2680d083d4766f54bb8b5318f9165828f4ea12a46ca1238db2cc07a2dc4e",
+      "label": {
+        "fr": "Barrière RR",
+        "en": "RR barrier"
+      }
+    },
+    "pack-guard-post": {
+      "path": "res://assets/imported/pack-guard-post.glb",
+      "scale": 1,
+      "rotation": 0,
+      "source": "Owner-provided generation export, 2026-10-13",
+      "rights": "Provided by owner for integration into this demo; generation service/export terms not independently verified; no blanket rights on third-party designs inferred.",
+      "sha256": "0763b6997275e28e91e2defb60f2bd5b500f28181095d2c5ddd5136d5d62b893",
+      "label": {
+        "fr": "Poste de garde",
+        "en": "Guard post"
+      }
+    },
+    "pack-medieval-cottage": {
+      "path": "res://assets/imported/pack-medieval-cottage.glb",
+      "scale": 1,
+      "rotation": 0,
+      "source": "Owner-provided generation export, 2026-10-13",
+      "rights": "Provided by owner for integration into this demo; generation service/export terms not independently verified; no blanket rights on third-party designs inferred.",
+      "sha256": "d5d64ffc5f92b893224a9f2e43400100f7054b66853200d8a6e52c4620af9e29",
+      "label": {
+        "fr": "Maison à toit orange",
+        "en": "Orange-roof cottage"
+      }
+    },
+    "pack-palm-tree": {
+      "path": "res://assets/imported/pack-palm-tree.glb",
+      "scale": 1,
+      "rotation": 0,
+      "source": "Owner-provided generation export, 2026-10-13",
+      "rights": "Provided by owner for integration into this demo; generation service/export terms not independently verified; no blanket rights on third-party designs inferred.",
+      "sha256": "9754772aa0ed00f4dce0e862fb91c234b2f38921e223f26c908c353c7dca8ad6",
+      "label": {
+        "fr": "Palmier",
+        "en": "Palm tree"
+      }
+    },
+    "pack-rocky-cliff": {
+      "path": "res://assets/imported/pack-rocky-cliff.glb",
+      "scale": 1,
+      "rotation": 0,
+      "source": "Owner-provided generation export, 2026-10-13",
+      "rights": "Provided by owner for integration into this demo; generation service/export terms not independently verified; no blanket rights on third-party designs inferred.",
+      "sha256": "6160aed27f4a08bdb923dc2f29cdf21ef9396a7e76d7df96da26b44200f64a88",
+      "label": {
+        "fr": "Falaise",
+        "en": "Cliff"
+      }
+    },
+    "pack-tree": {
+      "path": "res://assets/imported/pack-tree.glb",
+      "scale": 1,
+      "rotation": 0,
+      "source": "Owner-provided generation export, 2026-10-13",
+      "rights": "Provided by owner for integration into this demo; generation service/export terms not independently verified; no blanket rights on third-party designs inferred.",
+      "sha256": "8f8d29a1d577fbe1e48173b4b15e0048dbe1ecc94d7f64bbdf5a0bdca12325e8",
+      "label": {
+        "fr": "Arbre",
+        "en": "Tree"
+      }
+    },
+    "pack-curved-desk": {
+      "path": "res://assets/imported/pack-curved-desk.glb",
+      "scale": 1,
+      "rotation": 0,
+      "source": "Owner-provided generation export, 2026-10-13",
+      "rights": "Provided by owner for integration into this demo; generation service/export terms not independently verified; no blanket rights on third-party designs inferred.",
+      "sha256": "31ab5551ce807a4a6986735e13cb3a46c4f4752fcf272331afc3825223e1e0f0",
+      "label": {
+        "fr": "Comptoir arrondi",
+        "en": "Curved desk"
+      }
+    },
+    "pack-traffic-barrier": {
+      "path": "res://assets/imported/pack-traffic-barrier.glb",
+      "scale": 1,
+      "rotation": 0,
+      "source": "Owner-provided generation export, 2026-10-13",
+      "rights": "Provided by owner for integration into this demo; generation service/export terms not independently verified; no blanket rights on third-party designs inferred.",
+      "sha256": "eaf51bbe06c7b3ec50cfd40a9f06063c508019412692052c5a6fcfd2bf7a76ff",
+      "label": {
+        "fr": "Barrière en bois",
+        "en": "Wood barrier"
+      }
+    },
+    "pack-stylized-cottage": {
+      "path": "res://assets/imported/pack-stylized-cottage.glb",
+      "scale": 1,
+      "rotation": 0,
+      "source": "Owner-provided generation export, 2026-10-13",
+      "rights": "Provided by owner for integration into this demo; generation service/export terms not independently verified; no blanket rights on third-party designs inferred.",
+      "sha256": "eae3bbdd1c50ce1040f4ba8e1c6bb1330d51c10dd4a0d9d9821e0b4ffde61546",
+      "label": {
+        "fr": "Maison du héros",
+        "en": "Hero home"
+      }
+    },
+    "pack-house": {
+      "path": "res://assets/imported/pack-house.glb",
+      "scale": 1,
+      "rotation": 0,
+      "source": "Owner-provided generation export, 2026-10-13",
+      "rights": "Provided by owner for integration into this demo; generation service/export terms not independently verified; no blanket rights on third-party designs inferred.",
+      "sha256": "335c632d60588b263c9bd9b2a77ed5a07162211c33c798a9e9d47e21c8b2883b",
+      "label": {
+        "fr": "Bâtiment public",
+        "en": "Public building"
+      }
+    },
+    "pack-gazebo-1": {
+      "path": "res://assets/imported/pack-gazebo-1.glb",
+      "scale": 1,
+      "rotation": 0,
+      "source": "Owner-provided generation export, 2026-10-13",
+      "rights": "Provided by owner for integration into this demo; generation service/export terms not independently verified; no blanket rights on third-party designs inferred.",
+      "sha256": "9ce1774908ffb4d9b80b742a803c4df3f5f24c07280512e551c479298aff5741",
+      "label": {
+        "fr": "Kiosque",
+        "en": "Gazebo"
+      }
+    },
+    "pack-crate": {
+      "path": "res://assets/imported/pack-crate.glb",
+      "scale": 1,
+      "rotation": 0,
+      "source": "Owner-provided generation export, 2026-10-13",
+      "rights": "Provided by owner for integration into this demo; generation service/export terms not independently verified; no blanket rights on third-party designs inferred.",
+      "sha256": "d502694a981f639db78c040471299c1421a7c6c18bf184a871e23360bc39bead",
+      "label": {
+        "fr": "Caisse",
+        "en": "Crate"
+      }
+    },
+    "pack-reception-desk": {
+      "path": "res://assets/imported/pack-reception-desk.glb",
+      "scale": 1,
+      "rotation": 0,
+      "source": "Owner-provided generation export, 2026-10-13",
+      "rights": "Provided by owner for integration into this demo; generation service/export terms not independently verified; no blanket rights on third-party designs inferred.",
+      "sha256": "deccd891ccf116a1306541c9a135d265fb02be93432e3d3d1b19e2f15f273ab7",
+      "label": {
+        "fr": "Accueil du Centre",
+        "en": "Center reception"
+      }
+    },
+    "pack-treasure-chest": {
+      "path": "res://assets/imported/pack-treasure-chest.glb",
+      "scale": 1,
+      "rotation": 0,
+      "source": "Owner-provided generation export, 2026-10-13",
+      "rights": "Provided by owner for integration into this demo; generation service/export terms not independently verified; no blanket rights on third-party designs inferred.",
+      "sha256": "a7ebc8bcf4259454fa7a4df7bc719587bd9c900483e9460aff2a855f5d661b7d",
+      "label": {
+        "fr": "Coffre",
+        "en": "Chest"
+      }
+    },
+    "pack-furniture": {
+      "path": "res://assets/imported/pack-furniture.glb",
+      "scale": 1,
+      "rotation": 0,
+      "source": "Owner-provided generation export, 2026-10-13",
+      "rights": "Provided by owner for integration into this demo; generation service/export terms not independently verified; no blanket rights on third-party designs inferred.",
+      "sha256": "2115ff3ca79cac0439feea8a94516df0fada39d4f969fe2f5caea9e4d81a9c86",
+      "label": {
+        "fr": "Mobilier du Centre",
+        "en": "Center furniture"
+      }
+    },
+    "pack-bed": {
+      "path": "res://assets/imported/pack-bed.glb",
+      "scale": 1,
+      "rotation": 0,
+      "source": "Owner-provided generation export, 2026-10-13",
+      "rights": "Provided by owner for integration into this demo; generation service/export terms not independently verified; no blanket rights on third-party designs inferred.",
+      "sha256": "5140240b85ba68993baf2da31476b524d445d8ebc98e402233a5714ad0951722",
+      "label": {
+        "fr": "Lit",
+        "en": "Bed"
+      }
     }
   }
 }

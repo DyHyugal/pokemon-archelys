@@ -11,6 +11,7 @@ env.setdefault('ARCHELYS_NODE_BIN',shutil.which('node') or '')
 steps=[(['godot','--headless','--path',str(root/'game'),'--editor','--import','--quit'],None),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/demo_scene.gd'],'DEMO SCENE:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/tripo_pilots.gd'],'TRIPO PILOTS:'),
+       (['godot','--headless','--path',str(root/'game'),'--script','res://tests/tripo_scenery.gd'],'TRIPO SCENERY:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/solo_continuity.gd'],'SOLO CONTINUITY:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/demo_contracts.gd'],'DEMO CONTRACTS:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/demo_navigation.gd'],'DEMO NAVIGATION:'),
@@ -58,7 +59,7 @@ steps=[(['godot','--headless','--path',str(root/'game'),'--editor','--import','-
 if args.network:
     steps.append(([sys.executable,str(root/'tools/check_network.py')],'NETWORK client-b: players=3, gate=true'))
 for command,marker in steps:
-    result=subprocess.run(command,env=env,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True,timeout=60)
+    result=subprocess.run(command,env=env,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True,timeout=600 if "--import" in command else 60)
     print(result.stdout,flush=True)
     if result.returncode or 'SCRIPT ERROR:' in result.stdout or '\nERROR:' in result.stdout or (marker and marker not in result.stdout):
         if env.get('GITHUB_ACTIONS')=='true':

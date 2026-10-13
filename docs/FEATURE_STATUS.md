@@ -235,3 +235,8 @@ Pilotes D74 confirmés fonctionnels par le propriétaire. Boutique agrandie de 2
 Course remappable/RB, vitesse locale persistante, cadeaux atomiques, équipement/kit Méga transactionnels, six courbes d'EXP, continuité des talents/choix/EV, poison grave Showdown et audit de catalogue intégrés. [Résultats, sauvegardes et limites](development/LOT_SOLO_CONTINUITE.md). Suite complète Linux réussie : 50 nouveaux contrôles de continuité, pont Showdown 82 contrôles et 17 erreurs de catalogue rejetées. Playtest Windows de ce lot non réalisé ; graphismes et Pokédex final attendent la reprise owner.
 
 Livraison D76 : source `41b7a45`, CI [38399952532](https://github.com/DyHyugal/pokemon-archelys/actions/runs/38399952532) réussie, ZIP `lab-41b7a45` publié et empreinte vérifiée. [Preuves et parcours](development/VERIFICATION_D76.md). Retour Windows propriétaire attendu.
+
+
+## D77 — début de refonte avec 34 exports
+
+Tous les nouveaux GLB placés dans la démo et inspectables au menu. Havre, routes, camp, sources, poste RR et intérieurs actualisés ; kit partagé repris dans certaines visites d’atelier. [Portée/captures/limites](development/LOT_TRIPO_SCENERY.md). Contrôles des imports, des empreintes et des chemins réussis ; validation artistique et Windows owner à recevoir. PNJ et terrains encore provisoires.

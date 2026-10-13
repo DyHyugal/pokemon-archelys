@@ -2,6 +2,7 @@ extends Node3D
 const State=preload("res://scripts/domain/demo_state.gd")
 const Style=preload("res://scripts/world/demo_actor_style.gd")
 const OldKit=preload("res://scripts/world/asset_kit.gd")
+const Scenery=preload("res://scripts/world/tripo_scenery.gd")
 const Chapter=preload("res://scripts/domain/demo_chapter.gd")
 var chapter: RefCounted
 var blockers: Array[Rect2]=[]
@@ -44,6 +45,12 @@ func asset(id: String,pos: Vector3,scale_value: float=1.0) -> Node3D:
  var o: Node3D=preload("res://scripts/services/imported_assets.gd").instantiate(id)
  if o==null:o=load("res://assets/demo/"+id+".glb").instantiate();surface_shader(o)
  o.position=pos;o.scale*=scale_value;geometry.add_child(o);return o
+func scenery(id: String,pos: Vector3,footprint: Vector2,height_limit: float=12.0,angle: float=0.0) -> Node3D:
+ var node:=Scenery.place(geometry,id,pos,footprint,height_limit,angle)
+ if node!=null and location in ["center","shop","home"] and id!="toaster":
+  var b:=Scenery.bounds(node)
+  blockers.append(Rect2(Vector2(b.position.x,b.position.z),Vector2(b.size.x,b.size.z)))
+ return node
 func terrain(poly: PackedVector2Array,height: float,color: String) -> void:
  var vertices:=PackedVector3Array()
  for p: Vector2 in poly:vertices.append(Vector3(p.x,height,p.y))
@@ -80,7 +87,17 @@ func build(state: RefCounted) -> void:
  # Only reposition affected characters; do not change party, flags or save schema.
  if location=="town" and shop_blocker().grow(.22).has_point(Vector2(state.position.x,state.position.z)):
   state.position=shop_door_position()
+ recover_position(state)
  hero.position=state.position;Style.apply(hero,state.campaign.adventure.appearance);configure_labels(show_labels);follow()
+func recover_position(state: RefCounted) -> void:
+ if can_walk(state.position):return
+ # Restore saves made on a newly placed prop without resetting any progression.
+ var old: Vector3=state.position
+ for ring: int in range(1,41):
+  for step: int in range(32):
+   var angle: float=step*TAU/32
+   var point:=old+Vector3(cos(angle),0,sin(angle))*(ring*.25)
+   if can_walk(point):state.position=point;return
 func cliff(at: Vector3,radius: float,height: float) -> void:
  var v:=PackedVector3Array();var normals:=PackedVector3Array();var colors:=PackedColorArray();var rings: Array=[]
  for level: int in range(4):
@@ -112,7 +129,8 @@ func town() -> void:
  var plaza:=MeshInstance3D.new();plaza.mesh=disk;plaza.position=Vector3(0,.015,0);plaza.material_override=mat("ded5bd");geometry.add_child(plaza)
  for id: String in TOWN_BUILDINGS:
   var at: Vector3=TOWN_BUILDINGS[id]
-  var building: Node3D=asset("villa" if id=="home" else id,at,.9*(SHOP_SIZE_MULTIPLIER if id=="shop" else 1.0))
+  var replacement: String={"center":"unknown","home":"stylized-cottage","arcade":"house","villa":"medieval-cottage"}.get(id,"")
+  var building: Node3D=scenery(replacement,at,Vector2(6.8,4.6),7.5) if id!="shop" else asset("shop",at,.9*SHOP_SIZE_MULTIPLIER)
   if id=="shop":
    building.name="TripoShop"
    for part: Node in building.find_children("*","MeshInstance3D",true,false):
@@ -124,44 +142,47 @@ func town() -> void:
   if id in ["center","shop","home"]:
    points["door-"+id]=shop_door_position() if id=="shop" else at+Vector3(0,0,3.3)
    var sign:=Label3D.new();sign.text={"center":"CENTRE","shop":"BOUTIQUE","home":"MAISON"}[id];sign.position=at+Vector3(0,2.8,2.5)*(SHOP_SIZE_MULTIPLIER if id=="shop" else 1.0);sign.set_meta("caption_id","door-"+id);sign.font_size=28;sign.pixel_size=.007;sign.billboard=BaseMaterial3D.BILLBOARD_ENABLED;geometry.add_child(sign)
- asset("clocktower",Vector3(-7,0,-5),.8);blockers.append(Rect2(Vector2(-8.3,-6.3),Vector2(2.6,2.6)))
+ scenery("steampunk-tower",Vector3(-7,0,-5),Vector2(2.6,2.6),8.0);blockers.append(Rect2(Vector2(-8.3,-6.3),Vector2(2.6,2.6)))
  npc("vyna",Vector3(-3,0,2),2);npc("professor",Vector3(4,0,0),0);npc("resident",Vector3(-12,0,11),3)
  points["fish"]=Vector3(11,0,14);points["gate"]=Vector3(0,0,-23);points["supplies"]=Vector3(6,0,7)
- box(Vector3(.7,.6,.6),points.supplies+Vector3(0,.3,0),"927150")
+ scenery("crate",points.supplies,Vector2(.7,.6),.8)
  # Stone seawall, wooden dock, small boat, planted terraces and background cliffs.
  for x: int in range(-25,8,3):box(Vector3(2.75,.65,.4),Vector3(x,.325,15.5),"a69e88")
  box(Vector3(2,.16,9),Vector3(11,.03,11.5),"8e7252")
  for z: int in [8,11,14]:
   for x: int in [10,12]:box(Vector3(.15,.6,.15),Vector3(x,.3,z),"7d6850")
- orb(Vector3(17,-.02,12),Vector3(1.4,.4,3),"a17d53");box(Vector3(.10,5,.10),Vector3(17,2.5,12),"8f795a")
- var sailmesh:=ImmediateMesh.new();sailmesh.surface_begin(Mesh.PRIMITIVE_TRIANGLES);sailmesh.surface_add_vertex(Vector3(17,1,12));sailmesh.surface_add_vertex(Vector3(17,4.7,12));sailmesh.surface_add_vertex(Vector3(19.3,1,12));sailmesh.surface_end()
- var sail:=MeshInstance3D.new();sail.mesh=sailmesh;sail.material_override=mat("eee8d5");sail.material_override.cull_mode=BaseMaterial3D.CULL_DISABLED;geometry.add_child(sail)
+ scenery("stylized-boat",Vector3(17,-.12,12),Vector2(3.5,6),5.0)
  for x: int in [-23,-10,8,23]:
   for z: int in [-20,6,12]:OldKit.place(geometry,"palm",Vector3(x,0,z),1.15)
  for x: int in [-6,6]:
   for z: int in [-11,8]:OldKit.place(geometry,"lamp",Vector3(x,0,z),.85)
  for x: int in [-23,23]:
-  for z: int in [-16,-5,5]:orb(Vector3(x,.35,z),Vector3(1.3,.8,1.7),"4e8264")
- for x: int in [-36,-25,-12,15,29,38]:cliff(Vector3(x,-.5,-37),8,8 if x in [-12,15] else 6)
+  for z: int in [-16,-5,5]:scenery("ornamental-plant",Vector3(x,0,z),Vector2(1.8,2),1.7)
+ for x: int in [-36,-25,-12,15,29,38]:scenery("rocky-cliff",Vector3(x,-.5,-37),Vector2(15,12),8)
  for x: int in [-26,26]:
-  for z: int in [-19,-8,3,12]:cliff(Vector3(x,-2.8,z),3.5,2.7)
- for x: int in [-22,-12,11,21]:asset("villa",Vector3(x,3.2,-30),.7)
+  for z: int in [-19,-8,3,12]:scenery("rock-pile",Vector3(x,-1,z),Vector2(5,5),3)
+ for x: int in [-22,-12,11,21]:scenery("house" if x<0 else "medieval-cottage",Vector3(x,3.2,-30),Vector2(6,4.5),7)
  box(Vector3(50,.2,6),Vector3(0,3,-30),"b9b28e")
  # Raised upper town behind the playable gate, carrying the concept's terraced skyline.
  for side: int in [-1,1]:
   for z: int in [-14,3]:
    OldKit.place(geometry,"bench",Vector3(side*6.2,0,z),.9,side*PI/2)
  for z: int in range(-20,13,4):
-  for x: int in [-5,5]:box(Vector3(.7,.25,1.1),Vector3(x,.12,z),"a19276");orb(Vector3(x,.42,z),Vector3(.55,.35,.7),"5e8967")
- OldKit.place(geometry,"landmark-tropical",Vector3(4,3,-50),2)
+  for x: int in [-5,5]:box(Vector3(.7,.25,1.1),Vector3(x,.12,z),"a19276");scenery("ornamental-plant",Vector3(x,.25,z),Vector2(1,1),.7)
+ scenery("fantasy-temple",Vector3(4,3,-49),Vector2(15,12),14)
+ scenery("stylized-archway",Vector3(0,0,-25),Vector2(7,2),6)
+ scenery("gazebo-1",Vector3(21,0,9),Vector2(4,4),5)
+ scenery("arcade-console",Vector3(0,0,-10),Vector2(1.2,.8),1.6)
+ blockers.append(Rect2(Vector2(19,7),Vector2(4,4)))
+ blockers.append(Rect2(Vector2(-.6,-10.4),Vector2(1.2,.8)))
 func trail() -> void:
  box(Vector3(44,.2,44),Vector3(0,-.1,0),"739472");box(Vector3(5,.03,33),Vector3(0,.02,-3),"d3c49e")
  points={"exit":Vector3(0,0,12),"survey":Vector3(-6,0,-7),"grass":Vector3(5,0,-4)}
  npc("trainer",Vector3(2.2,0,-12),1)
- box(Vector3(1,1.4,.8),points.survey+Vector3(0,.7,0),"92b7af")
+ scenery("signpost",points.survey,Vector2(1,.8),1.6)
  box(Vector3(6,.04,6),Vector3(6,.04,-4),"407754")
  for x: int in [-11,-8,11]:
-  for z: int in [-15,-8,0,7]:OldKit.place(geometry,"palm",Vector3(x,0,z),1.15)
+  for z: int in [-15,-8,0,7]:scenery("tree-1" if x<0 else "tree",Vector3(x,0,z),Vector2(4,4),5.5)
  for x: int in [-14,14]:
   for z: int in [-12,4]:OldKit.place(geometry,"rock",Vector3(x,0,z),2)
 func expedition(state: RefCounted) -> void:
@@ -173,28 +194,26 @@ func expedition(state: RefCounted) -> void:
    OldKit.place(geometry,"palm" if action=="cut" else "rock",at,.65 if action=="cut" else .7)
    blockers.append(Rect2(Vector2(at.x-.5,at.z-.5),Vector2(1,1)))
  points['expedition-cache']=Vector3(-9,0,-3)
- OldKit.place(geometry,"bench",points['expedition-cache'],.6)
+ scenery("treasure-chest",points['expedition-cache'],Vector2(1.4,.8),1.1)
 func interior() -> void:
  box(Vector3(18,.12,20),Vector3(0,-.06,0),"bdaf91");box(Vector3(18,3.5,.25),Vector3(0,1.75,-10),"ece6d8")
  for side: int in [-1,1]:box(Vector3(.25,3.5,20),Vector3(side*9,1.75,0),"ece6d8")
  points["exit"]=Vector3(0,0,9)
  if location=="center":
-  box(Vector3(9,.9,1.2),Vector3(0,.45,-4),"749faa");npc("nurse",Vector3(0,0,-5),1);npc("fossils",Vector3(-5,0,-2),3);points.pc=Vector3(5,0,-2)
-  box(Vector3(1,1.4,.6),Vector3(5,.7,-2),"4a606b");box(Vector3(.8,.5,.04),Vector3(5,1,-1.65),"9bd7d9")
+  scenery("reception-desk",Vector3(0,0,-4),Vector2(9,1.2),2);npc("nurse",Vector3(0,0,-5),1);npc("fossils",Vector3(-5,0,-2),3);points.pc=Vector3(5,0,-2)
+  scenery("arcade-console",Vector3(5,0,-2),Vector2(1,.6),1.8)
+  scenery("furniture",Vector3(-6,0,-6),Vector2(3,2.5),1.5)
  elif location=="shop":
-  box(Vector3(8,.9,1.2),Vector3(0,.45,-4),"a08768");npc("merchant",Vector3(0,0,-5),0);npc("clothier",Vector3(-5,0,-2),2)
+  scenery("curved-desk",Vector3(0,0,-4),Vector2(8,1.2),2);npc("merchant",Vector3(0,0,-5),0);npc("clothier",Vector3(-5,0,-2),2)
   for x: int in [-7,7]:
-   for y: int in [1,2,3]:box(Vector3(1.5,.20,3),Vector3(x,y*.7,-5),"967f61")
+   scenery("crate",Vector3(x,0,-5),Vector2(1.5,1.5),1.5)
+   scenery("crate",Vector3(x,0,-3),Vector2(1.5,1.5),1.5)
  else:
-  box(Vector3(3,.5,5),Vector3(-5,.25,-4),"657f9b");box(Vector3(2.8,.2,4.5),Vector3(-5,.6,-4),"e3d8b7");box(Vector3(4,.8,1.2),Vector3(3,.4,-7),"937e63")
+  scenery("bed",Vector3(-5,0,-4),Vector2(3,5),2);scenery("curved-desk",Vector3(3,0,-7),Vector2(4,1.2),2)
+  scenery("toaster",Vector3(3,.8,-7),Vector2(.6,.5),.5)
   points.mirror=Vector3(4,0,-3);box(Vector3(1.3,2,.12),Vector3(4,1,-3),"90acaf")
- # Furniture blockers cover both render footprint and path checks.
- if location=="home":
-  blockers.append(Rect2(Vector2(-6.5,-6.5),Vector2(3,5)));blockers.append(Rect2(Vector2(1,-7.6),Vector2(4,1.2)));blockers.append(Rect2(Vector2(3.3,-3.1),Vector2(1.4,.3)))
- else:blockers.append(Rect2(Vector2(-4.5,-4.7),Vector2(9,1.4)))
- if location=="center":blockers.append(Rect2(Vector2(4.5,-2.3),Vector2(1,.6)))
- if location=="shop":
-  for x: int in [-7,7]:blockers.append(Rect2(Vector2(x-.75,-6.5),Vector2(1.5,3)))
+ # Imported furniture uses its actual rendered bounds; mirror remains procedural.
+ if location=="home":blockers.append(Rect2(Vector2(3.3,-3.1),Vector2(1.4,.3)))
 func can_walk(at: Vector3) -> bool:
  if location=="town":
   if at.x< -25 or at.x>25 or at.z< -24 or at.z>15:return false

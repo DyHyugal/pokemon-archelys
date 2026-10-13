@@ -29,3 +29,6 @@ D74 : le retour du 13 octobre 2026 accepte l’option A (exploration 3D chibi, c
 
 
 D76 : le propriétaire autorise les blocs solo disponibles en autonomie et demande une seule livraison. Graphismes/Pokédex seront repris ensuite ; ni roster ni direction artistique supplémentaire n'est décidé dans ce lot. Voir LOT_SOLO_CONTINUITE.
+
+
+D77 : les 34 exports du propriétaire sont explicitement autorisés à être intégrés dans la démo. Affectations des modèles et rendu sont des propositions à tester ; cet envoi ne définit pas le Pokédex ni la direction finale de tous les décors.

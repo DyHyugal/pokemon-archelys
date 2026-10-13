@@ -24,7 +24,7 @@ manifest={'commit':args.commit,'godot':'4.6.3','stage':'technical-laboratory',
           'showdown':provenance,'distribution':'portable-external-pck-with-offline-showdown','unmodified_godot_template':True,
           'windows_execution':'not validated on Windows','network_validation':'deferred; prior lab-09897ca tested on localhost only'}
 (folder/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
-(folder/'release-notes.md').write_text('D76 : huit blocs solo groupés — course reconfigurable/RB, vitesse persistante, cadeaux et équipement atomiques, kit Méga sans perte, six courbes EXP, évolutions/talents/choix, poison grave Showdown et audit du futur catalogue. Sauvegardes conservées. Graphismes/Pokédex reportés ; test unique dans LIRE-MOI.\n',encoding='utf-8')
+(folder/'release-notes.md').write_text('D77 : 34 modèles Tripo fournis intégrés dans les huit lieux de la démo ; havre, végétation, intérieurs, camp, temple et poste RR. Pivots, orientations, proportions et collisions adaptés, sauvegardes conservées. Tous les modèles inspectables au menu. PNJ/terrains encore provisoires ; parcours unique et captures réelles inclus.\n',encoding='utf-8')
 archive=folder/'Archelys-Laboratoire-Windows.zip'
 with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as z:
     for file in [exe,pck,folder/'LIRE-MOI.txt',folder/'manifest.json',root/'docs/licenses/Godot-LICENSE.txt',root/'docs/licenses/Godot-COPYRIGHT.txt',root/'docs/licenses/PokeAPI-LICENSE.txt',root/'docs/licenses/LABORATORY_AUDIO.md']:z.write(file,file.name)
@@ -44,6 +44,9 @@ with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as z:
     z.write(root/'docs/design/IMPORT_ASSETS_LOCAUX.md','Documentation/Import-assets-locaux.md')
     z.write(root/'docs/development/LOT_EXPLORATION_SAUVES_DEMO.md','Documentation/Exploration-sauves-demo.md')
     z.write(root/'docs/development/LOT_DEMO_HAVRE.md','Documentation/Lot-demo-havre.md')
+    z.write(root/'docs/development/LOT_TRIPO_SCENERY.md','Documentation/Tripo-34-modeles.md')
+    z.write(root/'game/assets/tripo/scenery-provenance.json','Documentation/Tripo-34-provenance.json')
+    for file in sorted((root/'docs/development/tripo-batch').glob('*.png')):z.write(file,'Captures-Tripo/'+file.name)
     z.write(root/'docs/development/LOT_SOLO_CONTINUITE.md','Documentation/Solo-continuite.md')
     z.write(root/'docs/development/LOT_TRIPO_PILOTES.md','Documentation/Pilotes-Tripo.md')
     z.write(root/'game/assets/tripo/provenance.json','Documentation/Tripo-provenance.json')

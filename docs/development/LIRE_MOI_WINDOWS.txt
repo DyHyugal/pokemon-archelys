@@ -1,3 +1,42 @@
+ARCHÉLYS — 34 MODÈLES TRIPO INTÉGRÉS (D77)
+Version : lab-{short_commit}
+Commit : {commit}
+
+Extrais tout le ZIP et lance Archelys-Laboratoire.exe (nom fixe).
+Garde EXE/PCK/runtime/showdown ensemble. Tes sauvegardes sont conservées.
+
+PARCOURS DE TEST UNIQUE
+Continue ta démo et reviens au havre. Centre, maisons, tour, arche, bateau,
+végétation, mobilier et arrière-plan utilisent tes exports. Boutique agrandie
+et chibi animés sont conservés. Marche autour des bâtiments ; entre au Centre,
+à la boutique et à la maison, utilise leurs services puis ressors. Aucun mur
+ne doit être traversé ; une ancienne position dans un nouvel obstacle peut
+être déplacée légèrement au chargement, sans perte de progression.
+
+Visite le sentier puis, si débloqués, la canopée, les sources et le poste RR :
+tente au camp, temple et plateforme aux sources, forteresse/garde/barrières
+au poste. La barrière se contourne ; la grotte est un décor, pas une nouvelle
+porte. Ces modèles ne débloquent aucune zone ou quête automatiquement.
+
+Menu → Modèles importés permet d'inspecter les 34 modèles, même ceux dont
+la zone n'est pas encore accessible : noms lisibles, aperçu rotatif.
+Le fichier UUID est utilisé comme Centre, gazebo comme forteresse RR et
+fantasy furniture comme mobilier de soins. Affectations à ajuster si besoin.
+
+Compare les proportions au chibi, couleurs, détails et vue à ta distance
+habituelle. Paramètres permet de régler caméra/résolution ; compare ×1/×4
+et vérifie que les obstacles restent solides. Signale les ralentissements
+avec résolution et modèle de CPU/GPU. Aucune garantie de 60 FPS annoncée.
+Sauvegarde puis recharge : position libre, équipe/sac/objectifs inchangés.
+
+Un seul retour groupé suffit : lieu, objet concerné, problème de proportion,
+orientation, texture, passage ou fluidité. PNJ, sols/routes/eau et murs restent
+provisoires ; ce lot est un début de refonte, pas le rendu final de toute l'île.
+Aucun test multi/raid/Nuzlocke/Soul-link demandé. Les combats sont conservés.
+Documentation/Tripo-34-modeles.md et Captures-Tripo contiennent le bilan et
+les vues réelles. Tes exports source ne sont pas décimés ou repeints.
+
+--- PARCOURS DU LOT PRÉCÉDENT, CONSERVÉ POUR RÉFÉRENCE ---
 ARCHÉLYS — CONTINUITÉ SOLO ET PRÉPARATION DU CATALOGUE (D76)
 Version : lab-{short_commit}
 Commit : {commit}

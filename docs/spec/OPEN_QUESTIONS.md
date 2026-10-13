@@ -79,3 +79,6 @@ D75 : le retour owner confirme les pilotes D74 fonctionnels et demande un ajuste
 
 
 D76 : travaux solo autorisés en autonomie ; graphismes et Pokédex remis à la reprise par le propriétaire. Aucun arbitrage requis pour livrer le [lot de continuité](../development/LOT_SOLO_CONTINUITE.md). Sélection des espèces/starters, familles à plusieurs branches et évolutions spéciales restent ouvertes. Tests Windows/physiques distincts des contrôles automatisés.
+
+
+D77 : 34 exports fournis et intégration demandée ; [début de refonte](../development/LOT_TRIPO_SCENERY.md) préparé. Retours attendus sur proportions, placement, cohérence et fluidité du havre/routes/intérieurs. Le bâtiment UUID est proposé comme Centre ; validation finale de cette affectation distincte. Pas de nouveau choix de roster ou scénario.
