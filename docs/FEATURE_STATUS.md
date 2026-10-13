@@ -252,3 +252,5 @@ Livraison D78 : source `84cb3ff`, CI [38463267384](https://github.com/DyHyugal/p
 # D79 — portion 2D directement dessinée
 
 Direction B approuvée sur comparaison/capture statique ; [portion jouable](development/LOT_2D_DESSINEE.md) développée et vérifiée localement : 61 contrôles headless / 68 avec captures, suite du socle réussie. Havre, maison/Centre/boutique, sentier et interface Showdown illustrée. Fonds précomposés, héros fixe et PNJ provisoires ; ni île complète, ni animation/personnalisation finale, ni passage derrière les arbres. Sauvegardes isolées. Validation Windows/visuelle du nouveau build à recevoir.
+
+D79 livré : source `05e8a44`, [CI verte et ZIP vérifié](development/VERIFICATION_D79.md). Démo dessinée jouable, validation Windows/artistique propriétaire à recevoir. Aucun statut d’île complète ou d’assets finaux.
