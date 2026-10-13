@@ -43,7 +43,7 @@ func run() -> void:
  if not folder.is_empty():owner.comfort.set_option("resolution","1920x1080");owner._apply_comfort()
  var original: Dictionary=root.get_node("Session").campaign.snapshot()
  var game: Node=owner.demo_game;game.enable_drawn()
- check(game.save_path=="user://archelys_drawn_demo.json","Separate save namespace before test override")
+ check(game.save_path=="user://archelys_calibration_demo.json","Separate calibration save namespace before test override")
  game.save_path="user://drawn_tests_demo.json"
  check(game.open(owner),"Drawn demo opens")
  game.new_demo();check(game.choose_starter("charmander"),"Real provisional starter selection");finish_text(game)

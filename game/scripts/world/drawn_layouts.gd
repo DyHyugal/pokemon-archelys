@@ -2,7 +2,32 @@ extends RefCounted
 ## Coordinates shared by the painted view, collision and interaction services.
 const ROOT="res://assets/drawn/"
 const BASE=["town","home","center","shop","trail"]
+const TILE_PIXELS=64
+const HERO_HEIGHT=80
+const WALK_SPEED=2.8
+const RUN_SPEED=5.4
 static func layout(id: String) -> Dictionary:
+ var result: Dictionary=original_layout(id)
+ if id=="town":return town()
+ # Preserve the painted interior/trail geometry while converting the old
+ # rectangular 64x48 world projection to one square movement unit.
+ for key: String in ["spawn"]:result[key][2]*=.75
+ for key: String in result.points:result.points[key][2]*=.75
+ for row: Dictionary in result.npcs:row.at[2]*=.75
+ for list: String in ["walk","blockers"]:
+  for row: Array in result[list]:row[1]*=.75;row[3]*=.75
+ if result.has("grass"):result.grass[1]*=.75;result.grass[3]*=.75
+ return result
+static func town() -> Dictionary:
+ var trees: Array=[]
+ for x: float in [-10.5,-2.0,11.0]:
+  for z: float in [-7.0,2.6,6.0]:trees.append({"kind":"tree","at":[x,0,4.4 if x==-2.0 and z==2.6 else z],"width":190})
+ trees.append({"kind":"tree","at":[-5.8,0,5.8],"width":205})
+ var props: Array=[{"kind":"center","at":[-5,0,-2.65],"width":480},{"kind":"home","at":[7.36,0,-2.65],"width":416},{"kind":"shop","at":[6.375,0,4.95],"width":416}]+trees
+ var blocks: Array=[[-8.3,-5.3,6.6,2.4],[4.4,-5.3,5.9,2.4],[3.4,2.5,5.9,2.4]]
+ for row: Dictionary in trees:blocks.append([row.at[0]-.24,row.at[2]-.24,.48,.48])
+ return {"texture":"modular","size":[1536,1152],"origin":[768,576],"spawn":[0,0,2],"points":{"gate":[0,0,-8],"door-center":[-5,0,-2.4],"door-home":[6,0,-2.4],"door-shop":[4.5,0,5.2],"vyna":[1.8,0,.6],"professor":[-2.7,0,.6],"resident":[-7.4,0,.6]},"npcs":[{"id":"vyna","at":[1.8,0,.6],"color":"c18faf"},{"id":"professor","at":[-2.7,0,.6],"color":"f3e5c3"},{"id":"resident","at":[-7.4,0,.6],"color":"d3976a"}],"walk":[[-11.8,-8.9,23.6,16.7]],"blockers":blocks,"props":props}
+static func original_layout(id: String) -> Dictionary:
  var common: Dictionary={"texture":"rooms","cell":[0,0],"size":[1088,612],"origin":[544,306],"spawn":[0,0,4.5],"points":{"exit":[0,0,4.5]},"npcs":[],"walk":[[-1,2.3,2,3.0]],"blockers":[]}
  match id:
   "town":

@@ -1,3 +1,58 @@
+ARCHÉLYS — DÉMO DE CALIBRATION 2D (D81)
+Version : lab-{short_commit}
+Commit : {commit}
+
+Extrais tout le ZIP et lance Archelys-Laboratoire.exe. Conserve PCK/runtime/
+showdown ensemble. Le nom de l’EXE est fixe et le combat fonctionne hors ligne.
+Depuis l’atelier : Démo 2D dessinée.
+
+La place du havre est reconstruite avec sols, bâtiments et arbres séparés,
+dans la direction B. Personnage animé dans les quatre directions, ancrage
+aux pieds et taille commune entre extérieur et intérieur. Marche recalibrée,
+course et accélération ×4 conservées. Le rythme des poses suit la distance.
+Ce build est une petite scène de référence, pas une île terminée.
+
+PARCOURS DE TEST GROUPÉ
+Commence une partie avec un starter provisoire. Marche vers les quatre
+directions, cours avec Maj/RB, arrête-toi et essaie une diagonale. Compare
+×1 et ×4 : la vitesse réelle doit suivre l’accélération, pas seulement les poses.
+Compare la taille du héros devant une porte et dans la maison/Centre/boutique.
+Paramètres → distance caméra règle le zoom, identique pour tous les lieux.
+
+Contourne l’arbre juste à gauche de l’allée centrale, dans le jardin sud.
+Passe derrière puis devant : feuillage devant/derrière le héros selon ses
+pieds, léger effet de transparence quand il est caché. Le tronc bloque.
+Observe le feuillage : mouvement discret, sans déplacement des racines.
+Approche le bord de mer au sud : l’eau doit bouger, la berge reste fixe.
+
+Échap → Accueil → Calibration graphique : eau / lave / grille.
+Teste l’eau puis la lave : cette dernière est un APERÇU HORS SCÉNARIO,
+pas un changement du biome ni de l’histoire. La grille aide à comparer les
+proportions. Tu peux figer/réanimer le décor dans ce panneau.
+Paramètres → Réduire les mouvements doit aussi figer eau et feuillage.
+Remets l’eau et masque la grille pour apprécier le rendu normal.
+
+Parle aux PNJ, entre dans les trois bâtiments, teste soins/PC/achats/sac,
+puis visite le sentier : balise, dresseur, hautes herbes et combat Showdown.
+Les retours de porte, dialogues, progression et sauvegardes restent réels.
+Sauvegarde, quitte, relance et continue la partie.
+
+SAUVEGARDES ET LIMITES
+Nouvelle sauvegarde de calibration, trois emplacements distincts : anciennes
+parties D79 et atelier préservées. Aucun reset ni migration de tes anciens fichiers.
+Les PNJ utilisent encore la même base avec différentes vestes. Personnalisation
+finale, designs individuels, animations de course dédiées et découpage complet
+des intérieurs/sentier restent à réaliser. Course = mêmes poses, cadence adaptée.
+Les intérieurs/sentier gardent pour l’instant leurs fonds dessinés D79 ; les
+animations de végétation portent sur les arbres séparés du havre.
+
+Les règles de dimensions sont des propositions de calibration inspirées
+par les conventions étudiées, pas une extraction des sprites d’une ROM.
+Les captures réelles sont dans Captures-Calibration. Retour attendu sur taille,
+déplacement, raccords de sols, netteté, superpositions et qualité des animations.
+Aucun test multi/raid/Nuzlocke requis. Les parcours suivants sont historiques.
+
+--- PARCOURS HISTORIQUE D79 ---
 ARCHÉLYS — DÉMO 2D DESSINÉE, STYLE B (D79)
 Version : lab-{short_commit}
 Commit : {commit}

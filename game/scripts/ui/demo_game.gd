@@ -114,7 +114,7 @@ func open(owner: Node3D) -> bool:
   drawn_battle_view=preload("res://scripts/world/drawn_battle_view.gd").new();drawn_battle_view.game=self;owner.add_child(drawn_battle_view)
  show();welcome();return true
 func enable_drawn() -> void:
- use_hd2d=true;use_drawn=true;save_path="user://archelys_drawn_demo.json"
+ use_hd2d=true;use_drawn=true;save_path="user://archelys_calibration_demo.json"
  if state.location not in Drawn.BASE:state=State.new()
 func welcome() -> void:
  var column:=popup(t("ARCHÉLYS — Démo du havre tropical\nUne ville, un sentier et un premier défi. Sauvegarde distincte de l'atelier.","ARCHÉLYS — Tropical haven demo\nOne town, one trail and a first challenge. Save separate from workshop."))
@@ -147,7 +147,7 @@ func starter_screen() -> void:
  for id: String in Content.data().starters:
   var key: String=id
   button(column,Catalog.name_of(id,locale)+" • Nv.%d" % int(Content.data().starter_level),func():choose_starter(key),"Starter_"+id)
- button(column,t("Personnaliser mon personnage","Customize my character"),func():clear_modal();open_menu("appearance"))
+ button(column,t("Voir le personnage — personnalisation à venir","View character — customization pending") if use_drawn else t("Personnaliser mon personnage","Customize my character"),func():clear_modal();open_menu("appearance"))
  # Actual models on the starter plaza, not species-name placeholders.
  for i: int in range(Content.data().starters.size()):
   var path: String="res://assets/demo/pokemon-"+Content.data().starters[i]+".glb"
@@ -160,7 +160,7 @@ func add_avatar_preview(body: Node) -> void:
   for field: String in ["skin","shirt","pants","hair","style","face"]:
    var control: Node=body.get_node_or_null("Appearance_"+field)
    if control is OptionButton:control.disabled=true
-  var picture:=TextureRect.new();picture.texture=load(Drawn.ROOT+"hero.png" if use_drawn else "res://assets/hd2d/hero-0-idle-0.png");picture.custom_minimum_size=Vector2(180,240);picture.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;picture.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;body.add_child(picture)
+  var picture:=TextureRect.new();picture.texture=hd2d_view.preview_texture() if use_drawn else load("res://assets/hd2d/hero-0-idle-0.png");picture.custom_minimum_size=Vector2(180,240);picture.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;picture.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;body.add_child(picture)
   var note:=Label.new();note.text=t("Prototype 2D : apparence fixe ; tes choix sauvegardés restent conservés.","2D prototype: fixed appearance; saved choices preserved.");note.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;body.add_child(note);return
  for field: String in ["style","face"]:
   var control: OptionButton=body.get_node("Appearance_"+field)
@@ -177,11 +177,20 @@ func add_avatar_preview(body: Node) -> void:
 func open_menu(page: String="home") -> void:
  clear_modal();menu.adventure=state.campaign.adventure;menu.sync(locale,world.camera.size,state.campaign.laboratory);menu.open(page)
  if page=="home":
+  if use_drawn:button(menu.body,t("Calibration graphique : eau / lave / grille","Graphics calibration: water / lava / grid"),calibration_controls,"GraphicsCalibration")
   if not state.campaign.adventure.pending.is_empty():button(menu.body,t("Préparer les %d choix en attente","Review %d pending choices") % state.campaign.adventure.pending.size(),func():open_menu("choices"),"ReviewPendingChoices")
   button(menu.body,t("Revenir à l'atelier (démo sauvegardée)","Return to workshop (demo saved)"),close,"ExitDemo")
  if page=="appearance":
   var selector: OptionButton=menu.body.get_node("Appearance_style")
   for i: int in range(3):selector.set_item_text(i,[t("Casquette","Cap"),t("Cheveux courts","Short hair"),t("Cheveux longs","Long hair")][i])
+func calibration_controls() -> void:
+ menu.close()
+ var column:=popup(t("Calibration graphique — aperçu de matériaux, sans changement d’histoire. Les animations respectent aussi Réduire les mouvements dans les paramètres.","Graphics calibration — material previews without story changes. Animations also respect Reduce motion in settings."))
+ button(column,t("Afficher l’eau animée","Show animated water"),func():hd2d_view.set_surface_mode("water");clear_modal(),"PreviewWater")
+ button(column,t("Afficher la lave (aperçu hors scénario)","Show lava (preview outside story)"),func():hd2d_view.set_surface_mode("lava");clear_modal(),"PreviewLava")
+ button(column,t("Afficher / masquer la grille de proportions","Show / hide proportion grid"),func():hd2d_view.set_grid(not hd2d_view.grid_visible);clear_modal(),"PreviewGrid")
+ button(column,t("Animer / figer l’eau et les arbres","Animate / freeze water and trees"),func():hd2d_view.animations_enabled=not hd2d_view.animations_enabled;clear_modal(),"PreviewMotion")
+ button(column,t("Retour","Back"),clear_modal)
 func talk(lines: Array) -> void:
  dialogue_lines=lines;dialogue_index=0;render_dialogue()
 func render_dialogue() -> void:

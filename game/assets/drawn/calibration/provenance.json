@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-14",
+  "source": "image_gen in project conversation, B approved art reference",
+  "files": {
+    "kit.png": "66d198d6f65e353ac9f98d54cf9805985d2403ad890d9192fe12d3d6b30e0b27",
+    "hero-sheet.png": "5084a31c35329fee39a2195ad0aa73b0424eb1760113cbfb37ffcb04c54eed16",
+    "ground.png": "9a633d09dfe732a42af25def07f9d5588a317e8e9483f3f77ff0b6acd1ddc8a7"
+  },
+  "modifications": "Original PNGs retained. Alpha bounds measured for frame regions; Godot selects regions and normalizes foot anchors. Generated walking poses, no ROM assets extracted. Runtime water/lava and foliage shaders.",
+  "reference_code": "Essentials Game_Map / TilemapRenderer conventions studied, not copied; original Godot implementation.",
+  "rights": "Project generated graphics, no new third-party licence assumed. Protagonist/environment designs provisional."
+}

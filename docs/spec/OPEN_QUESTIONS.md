@@ -88,3 +88,5 @@ D78 : direction 2D HD dans l’esprit d’Insurgence/Empyrean explicitement rete
 # D79 — questions graphiques après la portion dessinée
 
 La direction B et sa mise en démo sont autorisées ; ce choix n'est plus à redemander. À apprécier dans la version jouable : proportions, zoom, lisibilité, cohérence des intérieurs et parcours. À réaliser/valider ensuite : animation et directions du héros, personnalisation, designs individuels des PNJ, éléments de décor réutilisables, superpositions et habillage final des combats. Aucun blocage pour produire la petite portion demandée ; Pokédex/starters restent à recevoir.
+
+D81 : autorisation reçue pour la scène de calibration ; pas de blocage owner pour sa livraison. À apprécier dans le build : taille du héros/portes, vitesse et cadence, netteté/raccords, superpositions, animation eau/feuillage. Designs individuels des PNJ, personnalisation, poses de course dédiées et découpage complet des autres zones restent ouverts. Aucun rendu final déduit des tests.

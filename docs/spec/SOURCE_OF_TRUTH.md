@@ -40,3 +40,5 @@ D78 remplace la direction 3D du monde par une aventure 2D HD de fangame (référ
 Le propriétaire rejette le rendu précalculé Tripo de D78, préfère la proposition B directement dessinée, puis autorise sa démo après la capture Godot. Ce retour remplace l'hypothèse que convertir les GLB en sprites fournirait le rendu voulu. Voir DECISIONS D79 et LOT_2D_DESSINEE ; les anciens lots restent historiques.
 
 D80 : le propriétaire fixe histoire et graphismes comme exigences immuables, exclut HeartGold et demande l’audit Essentials/Godot. L’approbation du style B n’équivaut pas à l’acceptation du prototype D79 comme qualité finale. Voir AUDIT_ESSENTIALS_GODOT ; aucune migration ni compromis graphique nouvellement approuvé.
+
+D81 : démo de calibration Godot explicitement autorisée ; proportions et animations proposées à éprouver, histoire/style B inchangés. Aucun choix Essentials ni migration implicite. La lave est une prévisualisation technique hors scénario. Voir LOT_CALIBRATION_2D.

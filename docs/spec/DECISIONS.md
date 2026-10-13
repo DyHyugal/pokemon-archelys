@@ -293,3 +293,7 @@ Propriétaire, 13 octobre 2026 : les essais A/B plaisent, préférence B avec re
 ## D80 — histoire et graphismes immuables, audit de moteur
 
 Propriétaire, 14 octobre 2026 : HeartGold retiré des candidats ; deux choix à auditer, Essentials ou Godot, en préservant les graphismes et l’histoire d’Archélys, dont le monde à plusieurs îles. La démo D79 n’est pas considérée comme un rendu final satisfaisant. [Audit documentaire et de code](../development/AUDIT_ESSENTIALS_GODOT.md) : Essentials et DS Map Studio ne forment pas une chaîne d’import native ; adaptation HD d’Essentials non éprouvée. Aucun choix de migration, nouveau build ou réduction de cible déduit.
+
+## D81 — démo de calibration Godot demandée
+
+Propriétaire, 14 octobre 2026 : demande de reprendre les conventions utiles d’Essentials/jeux Pokémon pour échelle, mouvement et animation, puis « fais la demo ». Autorise une petite portion de référence Godot, sans changement d’histoire ou de cible B. [Lot](../development/LOT_CALIBRATION_2D.md) : havre modulaire, poses sur quatre directions, métrique commune, tri des décors, mer/feuillage animés et lave en aperçu hors scénario. Intérieurs/sentier encore précomposés, PNJ provisoires ; validation artistique/Windows de ce lot à recevoir. Sauvegardes distinctes.

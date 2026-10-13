@@ -14,6 +14,7 @@ steps=[(['godot','--headless','--path',str(root/'game'),'--editor','--import','-
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/tripo_scenery.gd'],'TRIPO SCENERY:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/hd2d_scene.gd'],'HD2D SCENE:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/drawn_demo.gd'],'DRAWN DEMO:'),
+       (['godot','--headless','--path',str(root/'game'),'--script','res://tests/calibration_scene.gd'],'CALIBRATION SCENE:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/solo_continuity.gd'],'SOLO CONTINUITY:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/demo_contracts.gd'],'DEMO CONTRACTS:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/demo_navigation.gd'],'DEMO NAVIGATION:'),

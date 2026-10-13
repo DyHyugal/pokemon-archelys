@@ -6,6 +6,9 @@ var target: String=""
 var locale: String="fr"
 var extent:=Rect2(-28,-28,56,44)
 var drawn_texture: Texture2D
+var kit_texture: Texture2D
+var props: Array=[]
+var prop_bounds: Dictionary={}
 func _ready() -> void:
  custom_minimum_size=Vector2(480,310);size_flags_horizontal=Control.SIZE_EXPAND_FILL
  mouse_filter=Control.MOUSE_FILTER_IGNORE
@@ -14,7 +17,9 @@ func _ready() -> void:
  if world.drawn:
   var layouts=preload("res://scripts/world/drawn_layouts.gd")
   var map: Dictionary=layouts.layout(state.location)
-  extent=Rect2(-map.origin[0]/64.0,-map.origin[1]/48.0,map.size[0]/64.0,map.size[1]/48.0)
+  extent=Rect2(-map.origin[0]/64.0,-map.origin[1]/64.0,map.size[0]/64.0,map.size[1]/64.0)
+  if map.texture=="modular":
+   props=map.props;kit_texture=load(layouts.ROOT+"calibration/kit.png");prop_bounds=JSON.parse_string(FileAccess.get_file_as_string(layouts.ROOT+"calibration/frames.json")).kit;return
   drawn_texture=load(layouts.ROOT+map.texture+".png")
   if map.has("cell"):
    var atlas:=AtlasTexture.new();atlas.atlas=drawn_texture;var half:=Vector2(drawn_texture.get_width(),drawn_texture.get_height())/2;atlas.region=Rect2(Vector2(map.cell[0],map.cell[1])*half,half);atlas.filter_clip=true;drawn_texture=atlas
@@ -23,7 +28,16 @@ func project(at: Vector3) -> Vector2:
 func _draw() -> void:
  if not world or not state:return
  draw_style_box(make_background(),Rect2(Vector2.ZERO,size))
- if drawn_texture:draw_texture_rect(drawn_texture,Rect2(Vector2(18,18),size-Vector2(36,36)),false)
+ if kit_texture:
+  draw_rect(Rect2(Vector2(18,18),size-Vector2(36,36)),Color("8cbb70"))
+  var sea: Vector2=project(Vector3(-12,0,8));draw_rect(Rect2(sea,project(Vector3(12,0,9))-sea),Color("4fa5ba"))
+  draw_line(project(Vector3(0,0,-9)),project(Vector3(0,0,8)),Color("f5ead0"),16)
+  draw_line(project(Vector3(-11,0,0)),project(Vector3(11,0,0)),Color("f5ead0"),12)
+  for row: Dictionary in props:
+   var at: Vector2=project(Vector3(row.at[0],0,row.at[2]));var b: Array=prop_bounds[row.kind]
+   var footprint:=Vector2(row.width/64.0,float(row.width)*b[3]/b[2]/64.0)*(size-Vector2(36,36))/extent.size
+   draw_texture_rect_region(kit_texture,Rect2(at-Vector2(footprint.x/2,footprint.y),footprint),Rect2(b[0],b[1],b[2],b[3]))
+ elif drawn_texture:draw_texture_rect(drawn_texture,Rect2(Vector2(18,18),size-Vector2(36,36)),false)
  elif state.location=="town":
   draw_rect(Rect2(project(Vector3(-28,0,-28)),project(Vector3(28,0,16))-project(Vector3(-28,0,-28))),Color("ddd5b7"))
   draw_line(project(Vector3(0,0,-24)),project(Vector3(0,0,15)),Color("f5ead0"),20)

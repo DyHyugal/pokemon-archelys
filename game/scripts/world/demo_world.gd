@@ -271,6 +271,9 @@ func can_walk(at: Vector3) -> bool:
  return true
 func move_hero(axis: Vector2,delta: float,state: RefCounted,running: bool=false) -> void:
  var rate: float=preload("res://scripts/world/tripo_actor.gd").RUN_SPEED if running else preload("res://scripts/world/tripo_actor.gd").WALK_SPEED
+ if drawn:
+  rate=Drawn.RUN_SPEED if running else Drawn.WALK_SPEED
+  axis=axis.limit_length(1.0)
  var motion:=Vector3(axis.x,0,axis.y)*rate*minf(delta,.08*Engine.time_scale)
  var steps: int=maxi(1,ceili(motion.length()/.12))
  var old: Vector3=state.position
