@@ -240,3 +240,5 @@ Livraison D76 : source `41b7a45`, CI [38399952532](https://github.com/DyHyugal/p
 ## D77 — début de refonte avec 34 exports
 
 Tous les nouveaux GLB placés dans la démo et inspectables au menu. Havre, routes, camp, sources, poste RR et intérieurs actualisés ; kit partagé repris dans certaines visites d’atelier. [Portée/captures/limites](development/LOT_TRIPO_SCENERY.md). Contrôles des imports, des empreintes et des chemins réussis ; validation artistique et Windows owner à recevoir. PNJ et terrains encore provisoires.
+
+Livraison D77 : source `5887ff8`, CI [38444514302](https://github.com/DyHyugal/pokemon-archelys/actions/runs/38444514302) réussie ; ZIP `lab-5887ff8` publié, téléchargé et SHA256 vérifié. [Preuves](development/VERIFICATION_D77.md). Playtest Windows et validation artistique owner attendus.
