@@ -76,6 +76,15 @@ func saves_extra() -> void:
   if not Slots.read_auto(game.save_path,index).is_empty():game.button(menu.body,t("Charger auto %d","Load auto %d") % index,func():game.confirm_auto(slot),"LoadDemoAuto%d" % index)
 func preview(id: String) -> void:
  menu.clear(menu.body)
+ if game.use_hd2d:
+  var key: String=""
+  var expected: String=id.trim_prefix("pack-")
+  for layout: Dictionary in game.hd2d_view.data.layouts.values():
+   for prop: Dictionary in layout.props:
+    if prop.id==expected:key=prop.sprite;break
+  if key.is_empty():menu.label(t("Pas encore de sprite pour ce modèle.","No sprite for this model yet."));return
+  var picture:=TextureRect.new();picture.texture=game.hd2d_view.texture(key);picture.custom_minimum_size=Vector2(500,420);picture.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;picture.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;menu.body.add_child(picture)
+  menu.label(t("Sprite 2D précalculé pour la démo.","Pre-rendered 2D demo sprite."));game.button(menu.body,t("Retour aux imports","Back to imports"),menu.render);return
  var model: Node3D=preload("res://scripts/world/tripo_scenery.gd").create(id.trim_prefix("pack-"),Vector2(5,5),7) if id.begins_with("pack-") else Assets.instantiate(id)
  if model==null:menu.label(t("Modèle absent ou invalide.","Missing or invalid model."));return
  preview_node(model)

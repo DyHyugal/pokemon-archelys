@@ -32,3 +32,6 @@ D76 : le propriétaire autorise les blocs solo disponibles en autonomie et deman
 
 
 D77 : les 34 exports du propriétaire sont explicitement autorisés à être intégrés dans la démo. Affectations des modèles et rendu sont des propositions à tester ; cet envoi ne définit pas le Pokédex ni la direction finale de tous les décors.
+
+
+D78 remplace la direction 3D du monde par une aventure 2D HD de fangame (références Insurgence/Empyrean pour le fonctionnement, planche dessinée pour la cible artistique). Les îles et la logique restent ; Tripo peut fournir des sources de sprites. Le prototype précalculé est une méthode à éprouver, pas une validation de sa qualité finale.

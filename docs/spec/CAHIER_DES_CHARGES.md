@@ -60,7 +60,7 @@ Hébergement joueur et réseau sans service payant présupposé. LAN/direct = pr
 
 ## Graphismes et livraison
 
-D74 : exploration 3D stylisée chibi inspirée de DEPS, décors nets en 1920×1080 et caméra encadrée ; combats Pokémon en illustrations 2D avec effets partagés, animations articulées non requises. Les canvas de régions restent les références d’architecture/palette. La présentation 2D des combats reste à intégrer ; ce choix n’altère pas leurs règles Showdown. Thèmes de couleurs de l’interface demandés. Éclairage, eau, météo et mouvement de végétation selon faisabilité, pas de liste aveuglément promise. Sources C1–C5, C21–C23.
+D78 : aventure 2D HD vue du dessus, fonctionnement de fangame comme Insurgence/Empyrean, décors/personnages cohérents et nets en 1920×1080. Remplace l’exploration 3D D74. Réemploi des modèles Tripo comme sources de sprites autorisé pour un prototype à éprouver ; qualité de la planche dessinée = cible, pas résultat acquis. Combats Pokémon en illustrations 2D avec effets partagés, animations articulées non requises. Les canvas de régions restent les références d’architecture/palette. La présentation 2D des combats reste à intégrer ; ce choix n’altère pas leurs règles Showdown. Thèmes de couleurs de l’interface demandés. Éclairage, eau, météo et mouvement de végétation selon faisabilité, pas de liste aveuglément promise. Sources C1–C5, C21–C23.
 
 Godot et Blender acceptés pour essai, pas figés ni vérifiés. Modèles provisoires admis pour valider l’intégration ; inventaire de provenance et droits obligatoire. Recréation d’un modèle inspiré n’accorde pas automatiquement de droits sur l’univers ou les designs représentés. Pas de bibliothèque graphique déjà disponible. Sources B4, D1–D3, C22.
 

@@ -281,3 +281,8 @@ Propriétaire, 13 octobre 2026 : « continue tout les blocs que tu peux faire en
 ## D77 — intégration des 34 modèles fournis
 
 Propriétaire, 13 octobre 2026 : « Fais l’intégration de ces modèles […] bon début de refonte graphique ». Autorise l’intégration et les adaptations de ces exports ; leur qualité finale reste à apprécier en jeu. Les 34 GLB sont placés dans les huit lieux de démo, avec pivots/échelles/orientations et collisions adaptés ; provenance conservée. [Portée et limites](../development/LOT_TRIPO_SCENERY.md). PNJ, terrains et une partie des éléments restent provisoires. Sauvegardes et catalogue conservés.
+
+
+## D78 — abandon du rendu 3D du monde, prototype fangame 2D HD
+
+Propriétaire, 13 octobre 2026 : « partie 3D on oublie », accepte la partie droite (2D dessinée HD), puis demande une démo avec les éléments disponibles. Précise : « modèle de fangame comme insurgence ou empyrean […] gros effort sur le design ». Cible : aventure 2D, sprites/cartes/intérieurs/PNJ/combats et identité graphique soignée. Remplace D74/D77 sur le rendu du monde, sans annuler le découpage des îles ni les règles Showdown. Tripo sert de matière première pour sprites précalculés. [Prototype, sauvegardes et limites](../development/LOT_HD2D.md). Aucun rendu final implicitement validé ; apparence fixe et habillage des combats encore à produire.

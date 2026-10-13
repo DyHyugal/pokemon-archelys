@@ -242,3 +242,8 @@ Livraison D76 : source `41b7a45`, CI [38399952532](https://github.com/DyHyugal/p
 Tous les nouveaux GLB placés dans la démo et inspectables au menu. Havre, routes, camp, sources, poste RR et intérieurs actualisés ; kit partagé repris dans certaines visites d’atelier. [Portée/captures/limites](development/LOT_TRIPO_SCENERY.md). Contrôles des imports, des empreintes et des chemins réussis ; validation artistique et Windows owner à recevoir. PNJ et terrains encore provisoires.
 
 Livraison D77 : source `5887ff8`, CI [38444514302](https://github.com/DyHyugal/pokemon-archelys/actions/runs/38444514302) réussie ; ZIP `lab-5887ff8` publié, téléchargé et SHA256 vérifié. [Preuves](development/VERIFICATION_D77.md). Playtest Windows et validation artistique owner attendus.
+
+
+## D78 — présentation 2D HD jouable
+
+Nouvelle entrée Windows/démo en 2D, sprites décors/personnage, quatre directions marche/course, sols illustrés, PNJ provisoires, intérieurs et logique existante conservée. [Portée et captures réelles](development/LOT_HD2D.md). 28 contrôles headless et 34 avec captures réussis. Personnalisation fixe, photo 2D à adapter, habillage des combats à produire ; le rendu précalculé Tripo ne vaut pas reproduction exacte de l’illustration. Validation owner attendue.

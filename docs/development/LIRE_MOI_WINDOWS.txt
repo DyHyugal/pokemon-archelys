@@ -1,3 +1,46 @@
+ARCHÉLYS — PROTOTYPE FANGAME 2D HD (D78)
+Version : lab-{short_commit}
+Commit : {commit}
+
+Extrais le ZIP entier et lance Archelys-Laboratoire.exe (nom fixe).
+La démo 2D s'ouvre directement. Depuis l'atelier : Démo 2D HD.
+Continue ta partie ou utilise un emplacement libre. Aucun reset nécessaire.
+Ce test conserve îles/progression/Showdown/saves ; nouvelle présentation 2D.
+
+UN SEUL PARCOURS DE TEST
+Au havre, marche/cours (Maj ou touche configurée, RB). Regarde le personnage
+dans quatre directions ; relâcher doit arrêter l'animation. Parle à Vyna.
+Observe bâtiments/végétation/sols, approche une façade puis passe derrière
+un élément accessible : les superpositions doivent rester cohérentes.
+Entrez au Centre, à la boutique et à la maison, puis ressors. Utilise les
+services habituels et ouvre le sac. Retour à la bonne porte, aucun mur traversé.
+Les PNJ utilisent provisoirement le même chibi avec différentes couleurs.
+
+Paramètres → distance caméra ajuste le zoom 2D. Compare à ta résolution
+habituelle puis en 1920×1080 si disponible. Contrôle netteté, proportions,
+lecture des chemins et animation ; signale résolution et matériel pour la fluidité.
+Sauvegarde/recharge : position, équipe, sac et progression conservés.
+
+Le sentier et les lieux déjà débloqués restent utilisables. Les obstacles
+Coupe/Éclate-Roc/Force disparaissent avec la progression, sans Pokémon compatible.
+Un combat conserve règles et interface Showdown, textes manuels et PP ; l'habillage
+2D des combats/sprites Pokémon est encore à produire, pas d'arène 3D dans ce mode.
+Personnage → aperçu 2D fixe ; anciens choix de couleurs conservés, sélecteurs
+bloqués pendant ce prototype. Mode photo 2D à adapter : message explicite.
+
+Les décors sont des sprites précalculés de tes modèles Tripo, avec des sols
+illustrés en 2D. Ce n'est pas la reproduction exacte du concept dessiné ni
+le rendu final de toute la région. Aucun nouveau crédit Tripo utilisé.
+Le ZIP contient encore l'atelier/les anciens assets pour les régressions :
+sa taille n'est pas celle du futur jeu 2D autonome.
+
+Un seul retour : ce rendu te convient-il comme base ? Note surtout les
+éléments incohérents, proportions, superpositions et détails à reprendre.
+Captures-HD2D et Documentation/Prototype-HD2D.md montrent le rendu réel et les
+limites. Pas de test multi/raid/défi demandé. Les anciens parcours suivent
+pour référence et ne constituent pas de nouveaux tests à faire intégralement.
+
+--- PARCOURS HISTORIQUE ---
 ARCHÉLYS — 34 MODÈLES TRIPO INTÉGRÉS (D77)
 Version : lab-{short_commit}
 Commit : {commit}

@@ -82,3 +82,6 @@ D76 : travaux solo autorisés en autonomie ; graphismes et Pokédex remis à la 
 
 
 D77 : 34 exports fournis et intégration demandée ; [début de refonte](../development/LOT_TRIPO_SCENERY.md) préparé. Retours attendus sur proportions, placement, cohérence et fluidité du havre/routes/intérieurs. Le bâtiment UUID est proposé comme Centre ; validation finale de cette affectation distincte. Pas de nouveau choix de roster ou scénario.
+
+
+D78 : direction 2D HD dans l’esprit d’Insurgence/Empyrean explicitement retenue. [Prototype demandé](../development/LOT_HD2D.md) développé avec décors précalculés Tripo et terrains 2D. À apprécier : rendu réel, échelle, animation et pertinence du réemploi Tripo par rapport à des sprites dessinés. Personnalisation 2D, habillage des combats et profils PNJ définitifs restent ouverts. Ne plus poursuivre la production du monde en 3D.

@@ -4,6 +4,7 @@ const Style=preload("res://scripts/world/demo_actor_style.gd")
 const OldKit=preload("res://scripts/world/asset_kit.gd")
 const Scenery=preload("res://scripts/world/tripo_scenery.gd")
 const Chapter=preload("res://scripts/domain/demo_chapter.gd")
+var logic_only: bool=false
 var chapter: RefCounted
 var blockers: Array[Rect2]=[]
 var points: Dictionary={}
@@ -42,6 +43,8 @@ func orb(pos: Vector3,scale_value: Vector3,color: String) -> MeshInstance3D:
  var mesh:=SphereMesh.new();mesh.radius=1;mesh.height=2
  var o:=MeshInstance3D.new();o.mesh=mesh;o.position=pos;o.scale=scale_value;o.material_override=mat(color);geometry.add_child(o);return o
 func asset(id: String,pos: Vector3,scale_value: float=1.0) -> Node3D:
+ if logic_only:
+  var placeholder:=Node3D.new();placeholder.position=pos;geometry.add_child(placeholder);return placeholder
  var o: Node3D=preload("res://scripts/services/imported_assets.gd").instantiate(id)
  if o==null:o=load("res://assets/demo/"+id+".glb").instantiate();surface_shader(o)
  o.position=pos;o.scale*=scale_value;geometry.add_child(o);return o
@@ -68,11 +71,13 @@ func npc(id: String,at: Vector3,shirt: int) -> void:
  var label:=Label3D.new();label.text={"vyna":"Vyna","professor":"Professeur","resident":"Habitant","trainer":"Dresseur","nurse":"Soins","merchant":"Boutique","clothier":"Vêtements","fossils":"Fossiles"}.get(id,id);label.position=at+Vector3(0,2.12,0);label.set_meta("caption_id",id);label.font_size=28;label.pixel_size=.005;label.billboard=BaseMaterial3D.BILLBOARD_ENABLED;label.visible=show_labels;geometry.add_child(label)
 func _ready() -> void:
  geometry=Node3D.new();add_child(geometry)
- hero=preload("res://scripts/world/tripo_actor.gd").create();add_child(hero)
- camera=Camera3D.new();camera.projection=Camera3D.PROJECTION_ORTHOGONAL;camera.size=18;add_child(camera);camera.current=true
+ hero=Node3D.new() if logic_only else preload("res://scripts/world/tripo_actor.gd").create();add_child(hero)
+ camera=Camera3D.new();camera.projection=Camera3D.PROJECTION_ORTHOGONAL;camera.size=18;add_child(camera);camera.current=not logic_only
 func build(state: RefCounted) -> void:
  location=state.location;chapter=state.chapter
  chapter.surfing=chapter.flags.has("keeper") and Chapter.is_water(location,Vector2(state.position.x,state.position.z))
+ if logic_only:
+  build_logic(state);return
  for n: Node in geometry.get_children():geometry.remove_child(n);n.queue_free()
  blockers.clear();points.clear()
  if location=="town":town()
@@ -89,6 +94,22 @@ func build(state: RefCounted) -> void:
   state.position=shop_door_position()
  recover_position(state)
  hero.position=state.position;Style.apply(hero,state.campaign.adventure.appearance);configure_labels(show_labels);follow()
+func build_logic(state: RefCounted) -> void:
+ for node: Node in geometry.get_children():geometry.remove_child(node);node.queue_free()
+ var data: Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/hd2d/manifest.json"))
+ var layout: Dictionary=data.layouts[location];points.clear();blockers.clear()
+ for id: String in layout.points:
+  var p: Array=layout.points[id];points[id]=Vector3(p[0],p[1],p[2])
+ for row: Array in layout.blockers:blockers.append(Rect2(row[0],row[1],row[2],row[3]))
+ if location=="trail":
+  if not state.chapter.flags.has("started"):
+   points.erase("go-canopy");points.erase("roadblock");blockers.erase(Rect2(-3.85,-15.35,.7,.7))
+  var actions: Dictionary=preload("res://scripts/domain/demo_expedition.gd").ACTIONS
+  for action: String in actions:
+   if state.flags.has(actions[action]) and points.has(action):
+    var at: Vector3=points[action];blockers.erase(Rect2(at.x-.5,at.z-.5,1,1));points.erase(action)
+ if location=="town" and shop_blocker().grow(.22).has_point(Vector2(state.position.x,state.position.z)):state.position=shop_door_position()
+ recover_position(state);hero.position=state.position;follow()
 func recover_position(state: RefCounted) -> void:
  if can_walk(state.position):return
  # Restore saves made on a newly placed prop without resetting any progression.

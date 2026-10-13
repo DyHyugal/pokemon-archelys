@@ -26,6 +26,8 @@ var scene_size: float=18
 var dex_query: String=""
 var dex_filter: int=0
 var archive_picker: FileDialog
+var use_hd2d: bool=false
+var hd2d_view: CanvasLayer
 var active: bool=false
 var owner_world: Node3D
 var state:=State.new()
@@ -70,7 +72,7 @@ func open(owner: Node3D) -> bool:
   if child is CanvasLayer and child!=self:old_visibility[child]=child.visible
  for node: Node in old_visibility:node.hide()
  owner.get_node("/root/Session").submit_axis(Vector2.ZERO)
- world=World.new();world.locale=locale;owner.add_child(world);world.build(state);world.camera.size=owner.camera.size;world.configure_labels(owner.comfort.data.world_labels)
+ world=World.new();world.logic_only=use_hd2d;world.locale=locale;owner.add_child(world);world.build(state);world.camera.size=owner.camera.size;world.configure_labels(owner.comfort.data.world_labels)
  menu=preload("res://scripts/ui/pause_menu.gd").new();menu.demo_mode=true;menu.adventure=state.campaign.adventure;menu.comfort=owner.comfort;owner.add_child(menu)
  menu.layer=40;menu.panel.theme=owner.ui_theme;menu.speed=float(owner.comfort.data.game_speed)
  menu.save_requested.connect(save_game);menu.load_requested.connect(load_game)
@@ -98,7 +100,10 @@ func open(owner: Node3D) -> bool:
  hud=Label.new();hud.position=Vector2(24,18);hud.add_theme_font_size_override("font_size",19);hud.add_theme_color_override("font_outline_color",Color("1c3540"));hud.add_theme_constant_override("outline_size",4);hud.theme=owner.ui_theme;add_child(hud)
  feedback=Label.new();feedback.position=Vector2(24,100);feedback.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;feedback.custom_minimum_size.x=950;feedback.theme=owner.ui_theme;feedback.add_theme_color_override("font_outline_color",Color.BLACK);feedback.add_theme_constant_override("outline_size",3);add_child(feedback)
  contextual=Label.new();contextual.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE);contextual.offset_top=-60;contextual.offset_bottom=-18;contextual.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER;contextual.theme=owner.ui_theme;contextual.add_theme_color_override("font_outline_color",Color.BLACK);contextual.add_theme_constant_override("outline_size",4);add_child(contextual)
- active=true;show();welcome();return true
+ active=true
+ if use_hd2d:
+  world.hide();hd2d_view=preload("res://scripts/world/hd2d_view.gd").new();hd2d_view.game=self;owner.add_child(hd2d_view)
+ show();welcome();return true
 func welcome() -> void:
  var column:=popup(t("ARCHÉLYS — Démo du havre tropical\nUne ville, un sentier et un premier défi. Sauvegarde distincte de l'atelier.","ARCHÉLYS — Tropical haven demo\nOne town, one trail and a first challenge. Save separate from workshop."))
  button(column,t("Emplacement %d — changer","Slot %d — change") % active_slot,slot_picker,"SelectDemoSlot")
@@ -137,6 +142,12 @@ func choose_starter(id: String) -> bool:
  if not state.choose(id):return false
  clear_modal();world.build(state);save_game();persist_auto(true);talk([t("Ton partenaire est prêt ! Vyna t'attend près de la place. E / Entrée : interagir. Échap : menu.","Your partner is ready! Vyna waits by the plaza. E / Enter: interact. Escape: menu.")]);return true
 func add_avatar_preview(body: Node) -> void:
+ if use_hd2d:
+  for field: String in ["skin","shirt","pants","hair","style","face"]:
+   var control: Node=body.get_node_or_null("Appearance_"+field)
+   if control is OptionButton:control.disabled=true
+  var picture:=TextureRect.new();picture.texture=load("res://assets/hd2d/hero-0-idle-0.png");picture.custom_minimum_size=Vector2(180,240);picture.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;picture.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;body.add_child(picture)
+  var note:=Label.new();note.text=t("Prototype 2D : apparence fixe ; tes choix sauvegardés restent conservés.","2D prototype: fixed appearance; saved choices preserved.");note.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;body.add_child(note);return
  for field: String in ["style","face"]:
   var control: OptionButton=body.get_node("Appearance_"+field)
   control.disabled=true
@@ -226,8 +237,11 @@ func begin_battle(enemies: Array,trainer: String="") -> bool:
  battle=Battle.new()
  battle.progression_handler=func(id: String):state.chapter.won(state,id)
  if not battle.begin(state.campaign.adventure,enemies,trainer):feedback.text=t("Combat non lancé : ","Battle not started: ")+battle.last_error;return false
- world.hide();arena=Stage.new();owner_world.add_child(arena);arena.battle=battle;arena.locale=locale;arena.animations=owner_world.comfort.data.combat_animations and not owner_world.comfort.data.reduced_motion
- battle_panel.animations_enabled=arena.animations;battle_panel.open(battle,locale);hud.hide();feedback.hide();contextual.hide();return true
+ world.hide()
+ var animated: bool=owner_world.comfort.data.combat_animations and not owner_world.comfort.data.reduced_motion
+ if not use_hd2d:
+  arena=Stage.new();owner_world.add_child(arena);arena.battle=battle;arena.locale=locale;arena.animations=animated
+ battle_panel.animations_enabled=animated;battle_panel.open(battle,locale);hud.hide();feedback.hide();contextual.hide();return true
 func battle_finished(result: String) -> void:
  if battle and result=="won" and battle.trainer=="demo-trainer":state.flags.trainer=true;state.campaign.adventure.money=mini(999999,state.campaign.adventure.money+250)
  if arena:arena.queue_free();arena=null
@@ -304,6 +318,7 @@ func _notification(what: int) -> void:
  if what==NOTIFICATION_WM_CLOSE_REQUEST and active:persist_auto()
 func close() -> void:
  if not active or owner_world.photo_mode.active or (battle and battle.active):return
+ if hd2d_view:hd2d_view.queue_free();hd2d_view=null
  persist_auto();active=false;clear_modal();hide()
  for child: Node in [hud,feedback,contextual]:remove_child(child);child.queue_free()
  world.queue_free();menu.queue_free();battle_panel.queue_free()
@@ -312,6 +327,8 @@ func close() -> void:
  old_camera.current=true;get_viewport().msaa_3d=saved_msaa;old_visibility.clear();finished.emit()
 
 func render_demo_page(page: String,body: Node) -> void:
+ if use_hd2d and page=="photo":
+  menu.label(t("Mode photo 2D à adapter. Les réglages et anciennes photos sont conservés.","2D photo mode pending adaptation. Previous settings/photos preserved."));return
  if page in ["dex","pc","services","cinema","assets"]:Extended.new(self).render(page);return
  if page in ["rules","photo","nursery","bag"]:Systems.new(self).render(page);return
  if page=="journal":
@@ -370,6 +387,7 @@ func confirm_new_slot(index: int) -> void:
  button(column,t("Annuler","Cancel"),func():open_menu("saves"))
 
 func start_photo() -> bool:
+ if use_hd2d:return false
  if not active or (battle and battle.active) or modal:return false
  return owner_world.photo_mode.start(owner_world,world.camera,world.hero)
 

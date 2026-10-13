@@ -1,0 +1,18 @@
+{
+  "source_models": "Owner-supplied Tripo models; see ../tripo/scenery-provenance.json and ../tripo/provenance.json",
+  "sprites": "Offline Godot 4.6.3 orthographic rendering via tools/bake_hd2d.gd; original models unchanged",
+  "pavement": {
+    "source": "Image generation tool, original requested paving texture, 2026-10-13",
+    "source_sha256": "b13da5687f5e4e36d902a2785dd6574b3b68f60942da9126a4151ae2749bc142",
+    "runtime_sha256": "132f83e905dc9f8a557148b50c178b66793ee2dcc24a0edab1e40d714a473050",
+    "adaptation": "512x512 resample; mirrored repetition in 2D canvas"
+  },
+  "presentation": "Native Godot 2D sprites and polygons; generated concepts not equivalent to final implemented art",
+  "rights": "Owner provided models for demo; service terms not independently verified; no blanket Pok\u00e9mon design rights inferred.",
+  "grass": {
+    "source": "Image generation tool, original grassy ground texture, 2026-10-13",
+    "source_sha256": "146c7c8aab99d3541a31a55b3ebace8712e5294c37037cf2fd00964e82214387",
+    "runtime_sha256": "d5c9911ee1f2e49696dd1fb490f06df51493d45e5e2a3b17277d636376178b79",
+    "adaptation": "512x512 resample; mirrored repetition"
+  }
+}
