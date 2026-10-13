@@ -261,3 +261,8 @@ Propriétaire, 12 octobre 2026 : « enchaine sur les 10/20 prochains blocs […]
 ## D73 — dix blocs de prolongement
 
 Owner : « Ok enchaine sur les 10 prochjains blocs », 12 octobre 2026. Poursuite autonome du solo avec fixtures. Canopée/sources/poste secondaire, contrôle RR, relais, championne climat, responsables au palier commun, Surf, camp, rencontres/habitats, carte/guidage et scènes/reprise : [lot détaillé](../development/LOT_DEMO_CANOPY_DIX_BLOCS.md). Développé/testé techniquement, pas de validation Windows/graphique déduite. Pokédex/starters et Meshy toujours attendus ; noms/équilibrage/récit proposés, divinité et libération de l’île non implémentées par ce lot.
+
+
+## D74 — option A et pilotes Tripo
+
+Propriétaire, 13 octobre 2026 : option A acceptée (exploration 3D chibi, présentation des Pokémon en combat 2D), Tripo choisi ; exports boutique et héros fournis, puis versions retopologisées et animées. Intégration/retouches et livraison de démo explicitement demandées. [Lot et limites](../development/LOT_TRIPO_PILOTES.md). Modèles dans la démo, pas de validation artistique ou Windows implicite.

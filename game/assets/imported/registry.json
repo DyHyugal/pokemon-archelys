@@ -1,1 +1,13 @@
-{"schema":1,"assets":{}}
+{
+  "schema": 1,
+  "assets": {
+    "shop": {
+      "path": "res://assets/imported/shop.glb",
+      "scale": 6.2,
+      "rotation": 0,
+      "source": "Owner-provided Tripo retopology export, 2026-10-13",
+      "rights": "Provided by owner for this demo; applicable Tripo export terms not independently verified; no blanket third-party design rights inferred.",
+      "sha256": "a706322609062695cf03abd18d333a88181e51a87b74ace199f2d4e79586563c"
+    }
+  }
+}

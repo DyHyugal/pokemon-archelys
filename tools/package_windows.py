@@ -24,7 +24,7 @@ manifest={'commit':args.commit,'godot':'4.6.3','stage':'technical-laboratory',
           'showdown':provenance,'distribution':'portable-external-pck-with-offline-showdown','unmodified_godot_template':True,
           'windows_execution':'not validated on Windows','network_validation':'deferred; prior lab-09897ca tested on localhost only'}
 (folder/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
-(folder/'release-notes.md').write_text('D73 : dix blocs de continuation — trois zones connectées, contrôle RR, relais, championne solaire, deux responsables au palier commun, Surf contextuel, camp, rencontres légales/habitats, carte/guidage, scènes et reprises. Saves conservées. Niveaux/équipes et décors provisoires ; Pokédex/starters/Meshy attendus. Un parcours dans LIRE-MOI.\n',encoding='utf-8')
+(folder/'release-notes.md').write_text('D74 : boutique et héros Tripo retopologisés intégrés dans le havre, marche/course (Maj), racine sans dérive, prévisualisation et palettes expérimentales. Saves conservées. Coiffure/visage fixes ; autres décors encore maquettes, présentation des combats 2D à venir. Parcours et limites dans LIRE-MOI.\n',encoding='utf-8')
 archive=folder/'Archelys-Laboratoire-Windows.zip'
 with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as z:
     for file in [exe,pck,folder/'LIRE-MOI.txt',folder/'manifest.json',root/'docs/licenses/Godot-LICENSE.txt',root/'docs/licenses/Godot-COPYRIGHT.txt',root/'docs/licenses/PokeAPI-LICENSE.txt',root/'docs/licenses/LABORATORY_AUDIO.md']:z.write(file,file.name)
@@ -44,6 +44,8 @@ with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as z:
     z.write(root/'docs/design/IMPORT_ASSETS_LOCAUX.md','Documentation/Import-assets-locaux.md')
     z.write(root/'docs/development/LOT_EXPLORATION_SAUVES_DEMO.md','Documentation/Exploration-sauves-demo.md')
     z.write(root/'docs/development/LOT_DEMO_HAVRE.md','Documentation/Lot-demo-havre.md')
+    z.write(root/'docs/development/LOT_TRIPO_PILOTES.md','Documentation/Pilotes-Tripo.md')
+    z.write(root/'game/assets/tripo/provenance.json','Documentation/Tripo-provenance.json')
     z.write(root/'game/assets/demo/provenance.json','Documentation/Demo-assets-provenance.json')
     z.write(root/'docs/design/ASSETS_3D_D68.md','Documentation/Assets3D.md')
     z.write(root/'docs/development/LOT_ASSETS_VISITES.md','Documentation/Lot-assets-visites.md')

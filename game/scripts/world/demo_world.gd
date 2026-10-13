@@ -55,7 +55,7 @@ func npc(id: String,at: Vector3,shirt: int) -> void:
  var label:=Label3D.new();label.text={"vyna":"Vyna","professor":"Professeur","resident":"Habitant","trainer":"Dresseur","nurse":"Soins","merchant":"Boutique","clothier":"Vêtements","fossils":"Fossiles"}.get(id,id);label.position=at+Vector3(0,2.12,0);label.set_meta("caption_id",id);label.font_size=28;label.pixel_size=.005;label.billboard=BaseMaterial3D.BILLBOARD_ENABLED;label.visible=show_labels;geometry.add_child(label)
 func _ready() -> void:
  geometry=Node3D.new();add_child(geometry)
- hero=load("res://assets/demo/trainer.glb").instantiate();add_child(hero)
+ hero=preload("res://scripts/world/tripo_actor.gd").create();add_child(hero)
  camera=Camera3D.new();camera.projection=Camera3D.PROJECTION_ORTHOGONAL;camera.size=18;add_child(camera);camera.current=true
 func build(state: RefCounted) -> void:
  location=state.location;chapter=state.chapter
@@ -101,9 +101,18 @@ func town() -> void:
  var disk:=CylinderMesh.new();disk.top_radius=7;disk.bottom_radius=7;disk.height=.05;disk.radial_segments=64
  var plaza:=MeshInstance3D.new();plaza.mesh=disk;plaza.position=Vector3(0,.015,0);plaza.material_override=mat("ded5bd");geometry.add_child(plaza)
  for id: String in TOWN_BUILDINGS:
-  var at: Vector3=TOWN_BUILDINGS[id];asset("villa" if id=="home" else id,at,.9);blockers.append(Rect2(Vector2(at.x-3.4,at.z-2.3),Vector2(6.8,4.6)))
+  var at: Vector3=TOWN_BUILDINGS[id]
+  var building: Node3D=asset("villa" if id=="home" else id,at,.9)
+  if id=="shop":
+   building.name="TripoShop"
+   for part: Node in building.find_children("*","MeshInstance3D",true,false):
+    var original: Material=part.get_active_material(0)
+    if original is StandardMaterial3D:
+     var material: StandardMaterial3D=original.duplicate();material.roughness=.9;material.metallic=0;material.metallic_specular=.18;material.normal_scale=.35;part.material_override=material
+   blockers.append(Rect2(Vector2(at.x-2.55,at.z-2.8),Vector2(5.1,5.6)))
+  else:blockers.append(Rect2(Vector2(at.x-3.4,at.z-2.3),Vector2(6.8,4.6)))
   if id in ["center","shop","home"]:
-   points["door-"+id]=at+Vector3(0,0,3.3)
+   points["door-"+id]=at+Vector3(1.0 if id=="shop" else 0.0,0,3.3)
    var sign:=Label3D.new();sign.text={"center":"CENTRE","shop":"BOUTIQUE","home":"MAISON"}[id];sign.position=at+Vector3(0,2.8,2.5);sign.set_meta("caption_id","door-"+id);sign.font_size=28;sign.pixel_size=.007;sign.billboard=BaseMaterial3D.BILLBOARD_ENABLED;geometry.add_child(sign)
  asset("clocktower",Vector3(-7,0,-5),.8);blockers.append(Rect2(Vector2(-8.3,-6.3),Vector2(2.6,2.6)))
  npc("vyna",Vector3(-3,0,2),2);npc("professor",Vector3(4,0,0),0);npc("resident",Vector3(-12,0,11),3)
@@ -187,8 +196,9 @@ func can_walk(at: Vector3) -> bool:
  for r: Rect2 in blockers:
   if r.grow(.22).has_point(Vector2(at.x,at.z)):return false
  return true
-func move_hero(axis: Vector2,delta: float,state: RefCounted) -> void:
- var motion:=Vector3(axis.x,0,axis.y)*3.8*minf(delta,.08)/maxf(1,Engine.time_scale)
+func move_hero(axis: Vector2,delta: float,state: RefCounted,running: bool=false) -> void:
+ var rate: float=preload("res://scripts/world/tripo_actor.gd").RUN_SPEED if running else preload("res://scripts/world/tripo_actor.gd").WALK_SPEED
+ var motion:=Vector3(axis.x,0,axis.y)*rate*minf(delta,.08)/maxf(1,Engine.time_scale)
  var steps: int=maxi(1,ceili(motion.length()/.12))
  var old: Vector3=state.position
  for i: int in range(steps):
@@ -198,11 +208,9 @@ func move_hero(axis: Vector2,delta: float,state: RefCounted) -> void:
   if can_walk(next):state.position=next
  if Chapter.is_water(location,Vector2(old.x,old.z)) and not Chapter.is_water(location,Vector2(state.position.x,state.position.z)):chapter.surfing=false
  hero.position=state.position
- var animator: AnimationPlayer=hero.find_child("AnimationPlayer",true,false)
- if old.distance_to(state.position)>.0001:
-  hero.rotation.y=atan2(motion.x,motion.z)
-  if animator and not animator.is_playing():animator.play(animator.get_animation_list()[-1])
- elif animator:animator.stop()
+ var moving: bool=old.distance_to(state.position)>.0001
+ if moving:hero.rotation.y=atan2(motion.x,motion.z)
+ preload("res://scripts/world/tripo_actor.gd").animate(hero,moving,running,rate*axis.length())
  follow()
 func follow() -> void:
  camera.position=hero.position+Vector3(0,13,15);camera.look_at(hero.position+Vector3(0,1,0))

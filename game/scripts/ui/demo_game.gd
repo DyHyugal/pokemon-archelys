@@ -135,12 +135,17 @@ func choose_starter(id: String) -> bool:
  if not state.choose(id):return false
  clear_modal();world.build(state);save_game();persist_auto(true);talk([t("Ton partenaire est prêt ! Vyna t'attend près de la place. E / Entrée : interagir. Échap : menu.","Your partner is ready! Vyna waits by the plaza. E / Enter: interact. Escape: menu.")]);return true
 func add_avatar_preview(body: Node) -> void:
+ for field: String in ["style","face"]:
+  var control: OptionButton=body.get_node("Appearance_"+field)
+  control.disabled=true
+  control.tooltip_text=t("Pas encore disponible sur le pilote Tripo ; choix sauvegardé conservé.","Not yet supported by the Tripo pilot; saved choice retained.")
+ var note:=Label.new();note.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;note.text=t("Pilote Tripo : couleurs expérimentales ; coiffure/visage fixes. Marche/course intégrées ; maintenir Maj pour courir.","Tripo pilot: experimental colors; fixed hairstyle/face. Walk/run integrated; hold Shift to run.");body.add_child(note)
  var viewport:=SubViewport.new();viewport.size=Vector2i(360,400);viewport.own_world_3d=true;viewport.render_target_update_mode=SubViewport.UPDATE_ALWAYS;body.add_child(viewport)
  var scene:=Node3D.new();viewport.add_child(scene)
- preview_actor=load("res://assets/demo/trainer.glb").instantiate();scene.add_child(preview_actor);Style.apply(preview_actor,state.campaign.adventure.appearance)
+ preview_actor=preload("res://scripts/world/tripo_actor.gd").create();scene.add_child(preview_actor);Style.apply(preview_actor,state.campaign.adventure.appearance)
  var env:=WorldEnvironment.new();var settings:=Environment.new();settings.background_mode=Environment.BG_COLOR;settings.background_color=Color("dce9e8");settings.ambient_light_source=Environment.AMBIENT_SOURCE_COLOR;settings.ambient_light_energy=.7;settings.ambient_light_color=Color.WHITE;env.environment=settings;scene.add_child(env)
  var light:=DirectionalLight3D.new();light.rotation_degrees=Vector3(-35,-30,0);scene.add_child(light)
- var cam:=Camera3D.new();cam.position=Vector3(.08,1.05,2.6);cam.fov=42;scene.add_child(cam);cam.look_at(Vector3(0,.95,0));cam.current=true
+ var cam:=Camera3D.new();cam.position=Vector3(.08,1.0,3.1);cam.fov=42;scene.add_child(cam);cam.look_at(Vector3(0,.95,0));cam.current=true
  var picture:=TextureRect.new();picture.name="DemoCharacterPreview";picture.texture=viewport.get_texture();picture.custom_minimum_size=Vector2(210,240);picture.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;picture.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;body.add_child(picture);body.move_child(picture,0)
 func open_menu(page: String="home") -> void:
  clear_modal();menu.adventure=state.campaign.adventure;menu.sync(locale,world.camera.size,state.campaign.laboratory);menu.open(page)
@@ -245,10 +250,12 @@ func _process(delta: float) -> void:
  if owner_world.photo_mode.active:return
  hud.text="ARCHÉLYS • "+Chapter.name_of(state.location,locale)+"\n"+state.objective(locale)+"\n"+t("E / Entrée : interagir • Échap : menu","E / Enter: interact • Escape: menu")
  contextual.text=""
- if modal or menu.visible or battle_panel.visible:return
+ if modal or menu.visible or battle_panel.visible:
+  preload("res://scripts/world/tripo_actor.gd").animate(world.hero,false,false)
+  return
  var nearby: String=world.nearest()
  if not nearby.is_empty():contextual.text=owner_world.comfort.caption("interact")+" / "+t("Entrée","Enter")+" — "+Guidance.title(nearby,locale)
- var old: Vector3=state.position;world.move_hero(owner_world.comfort.axis(),delta,state)
+ var old: Vector3=state.position;world.move_hero(owner_world.comfort.axis(),delta,state,Input.is_key_pressed(KEY_SHIFT))
  var walked: float=old.distance_to(state.position);state.campaign.adventure.nursery.walk(walked)
  if state.location in ["trail","canopy"] and state.position.x>3 and state.position.x<9 and ((state.position.z> -7 and state.position.z< -1) if state.location=="trail" else (state.position.z> -1 and state.position.z<5)):
   steps+=walked

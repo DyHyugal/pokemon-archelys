@@ -4,7 +4,7 @@
 
 ## Vision et rôle du propriétaire
 
-Nouvel archipel distinct d’Alola, utilisant USUL comme référence de structure, avec une nouvelle distribution et un récit sombre. Priorités : graphismes, scénario et combats difficiles. Le propriétaire assure direction créative, arbitrages de périmètre et validation finale ; autonomie technique après les validations convenues. Aucun délai contractuel. Depuis D70, un essai Meshy Pro d’un mois est choisi par le propriétaire pour préparer les assets ; le budget de production global reste non défini. Aucune production professionnelle de centaines de modèles n’est garantie par cet abonnement. Sources A1–A5, D2, C04, C30.
+Nouvel archipel distinct d’Alola, utilisant USUL comme référence de structure, avec une nouvelle distribution et un récit sombre. Priorités : graphismes, scénario et combats difficiles. Le propriétaire assure direction créative, arbitrages de périmètre et validation finale ; autonomie technique après les validations convenues. Aucun délai contractuel. Depuis D74, Tripo est choisi pour préparer les assets (remplace le choix Meshy D70) ; le budget de production global reste non défini. Aucune production professionnelle de centaines de modèles n’est garantie par cet abonnement. Sources A1–A5, D2, C04, C30.
 
 ## Région et durée
 
@@ -34,7 +34,7 @@ Actions contextuelles sans Pokémon compatible ; Vol depuis la carte ; déblocag
 
 ## Pokémon et confort
 
-Environ 500 entrées, chaque stade et forme régionale compté ; Méga hors total des entrées mais dans le coût de production des modèles. Sélection et starters faits par le propriétaire. Créations envisagées : trois familles de trois stades, soit neuf Fakemons, et des formes delta, pour 50–100 créations au total. Les variantes de couleur ne suffisent pas toujours à produire une forme 3D complète. Sources C19, J2–J3.
+Environ 500 entrées, chaque stade et forme régionale compté ; Méga hors total des entrées mais dans le coût de production des illustrations/formes. Sélection et starters faits par le propriétaire. Créations envisagées : trois familles de trois stades, soit neuf Fakemons, et des formes delta, pour 50–100 créations au total. Les variantes de couleur ne suffisent pas toujours à produire une forme 3D complète. Sources C19, J2–J3.
 
 Légendaires affrontables durant l’histoire mais capturables uniquement en postgame, exemplaire pour chaque joueur. Capture de groupe et récompenses individuelles à détailler. Évolutions adaptées au solo, rencontres au stade légal, règles Tactica à expliciter. Chromatiques, fossiles, talents cachés et localisation Pokédex demandés. Sources C20, J4–J5. Reproduction et héritages retirés par D58 : personnalisation des IV, du chromatique et des capacités retenue par le propriétaire comme motif de suppression. Les œufs cadeaux restent conservés.
 
@@ -60,7 +60,7 @@ Hébergement joueur et réseau sans service payant présupposé. LAN/direct = pr
 
 ## Graphismes et livraison
 
-3D stylisée, décors nets en 1920×1080 ; références DEPS/Z-A, proportions USUL, caméra contrôlée à distance moyenne, angles dédiés aux scènes. Thèmes de couleurs de l’interface demandés. Éclairage, eau, météo et mouvement de végétation selon faisabilité, pas de liste aveuglément promise. Sources C1–C5, C21–C23.
+D74 : exploration 3D stylisée chibi inspirée de DEPS, décors nets en 1920×1080 et caméra encadrée ; combats Pokémon en illustrations 2D avec effets partagés, animations articulées non requises. Les canvas de régions restent les références d’architecture/palette. La présentation 2D des combats reste à intégrer ; ce choix n’altère pas leurs règles Showdown. Thèmes de couleurs de l’interface demandés. Éclairage, eau, météo et mouvement de végétation selon faisabilité, pas de liste aveuglément promise. Sources C1–C5, C21–C23.
 
 Godot et Blender acceptés pour essai, pas figés ni vérifiés. Modèles provisoires admis pour valider l’intégration ; inventaire de provenance et droits obligatoire. Recréation d’un modèle inspiré n’accorde pas automatiquement de droits sur l’univers ou les designs représentés. Pas de bibliothèque graphique déjà disponible. Sources B4, D1–D3, C22.
 

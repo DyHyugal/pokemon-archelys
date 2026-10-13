@@ -1,46 +1,37 @@
-ARCHÉLYS — DIX BLOCS : SUITE DU HAVRE (D73)
+ARCHÉLYS — PILOTES GRAPHIQUES TRIPO (D74)
 Version : lab-{short_commit}
 Commit : {commit}
 
-Extrais le dossier complet, garde EXE/PCK/runtime/showdown ensemble et lance
+Extrais tout le dossier, garde EXE/PCK/runtime/showdown ensemble et lance
 Archelys-Laboratoire.exe. Nom inchangé. Aucune remise à zéro nécessaire.
-Les graphismes restent des maquettes ; Pokédex/starters et Meshy attendus.
+La boutique et le héros du havre utilisent tes exports Tripo retopologisés.
+Les autres bâtiments/PNJ restent provisoires ; les combats 2D sont à venir.
 
-UN PARCOURS GROUPÉ POUR CE LOT
-Continue la démo précédente (auto ou point manuel). Si le sentier est fini,
-termine sa scène de retour puis reparle à Vyna : Continuer vers la canopée.
-Sinon termine d’abord balise/dresseur/retour. La nouvelle présentation est
-manuelle. Au nord du sentier, affronte le contrôle RR, puis prends le passage
-vers la canopée. La victoire ouvre le chemin et le cap12 proposé.
+PARCOURS DE TEST DE CE LOT
+Continue une partie de démo, ou crée une partie sur un emplacement libre.
+Si tu es ailleurs, reviens au havre. Marche jusqu’à la boutique au nord-est,
+près de la grande place. Inspecte façade/toit et taille relative au héros.
+Vérifie que les murs bloquent le passage, puis E/Entrée devant la porte :
+l’intérieur existant doit s’ouvrir. Achat et retour au havre doivent marcher.
 
-Dans la canopée, parle à Hyu et réactive les relais ouest et est. Le camp soigne
-PV/PP. Le PC reste au Centre. Le passage nord vers les sources s’ouvre après
-les deux relais. Herbes de la canopée : rencontres8–10. Aux sources, la pêche
-propose Magicarpe18–19 et Léviator20–22, donc parfois au-dessus de ton cap :
-niveaux d’essai, pas équilibrage final. Les modèles manquants sont indiqués.
-Pokédex montre les méthodes et niveaux réellement possibles dans ces lieux.
+Le héros est maintenant ton chibi. Déplace-toi dans plusieurs directions,
+relâche les touches pour arrêter ; maintiens Maj pour courir.
+Observe les jambes/bras, la rotation et l’absence de déplacement autonome
+ou de dérive après l’arrêt. Le repos est une pose fixe du clip de marche,
+pas une nouvelle animation de respiration. La vitesse pourra être ajustée
+après retour. Animation de Surf et autres actions toujours provisoire.
 
-La championne utilise soleil/Sécheresse et Chlorophylle, avec un second poseur.
-Victoire : cap14 et autorisation de Surf. Interagis près d’une rive puis
-traverse le bassin sans Pokémon compatible. Surf s’applique aux bassins et à
-la baie du havre ; le quai reste sec et la pêche reste accessible. Sur terre,
-le mode s’arrête. Sauvegarde dans l’eau, recharge : la traversée doit rester
-possible. Dans le bassin de la canopée, la cache donne trois Super Balls,
-une fois ; un sac plein doit conserver la récompense à récupérer plus tard.
-Pas encore de monture/animation de nage finale.
+Échap > Personnage : l’aperçu doit montrer le même chibi. Essaie les palettes,
+puis restaure le personnage initial. Ces couleurs utilisent des masques
+expérimentaux : signale les zones incorrectement recolorées. Coiffure/visage
+sont fixes pour ce pilote ; leurs anciennes valeurs sauvegardées restent
+conservées. Ce n’est pas encore un système complet de vêtements modulaires.
 
-Depuis la canopée, rejoins le poste secondaire RR et parle à Raidon.
-Affronte les deux responsables dans cet ordre. Leurs équipes14/16 se basent
-sur la championne12/14 +2. Les deux partagent16 : pas de +2 supplémentaire
-au second. Un cap déjà supérieur ne descend jamais. Une défaite débite la
-pénalité d’essai100₽ et ramène au Centre, sans compléter le combat perdu.
-
-Carte locale montre maintenant les connexions et l’objectif ; Vol permet
-les retours vers les lieux réellement visités. Retourne au havre et fais
-le rapport à Vyna. Si tu quittes pendant une scène, Vyna propose de la reprendre.
-Le journal et les paliers doivent rester après save/load ; galerie de scènes
-sans nouvelle récompense. Ce rapport termine le chapitre, pas l’île complète :
-divinité, caldeira, raid et libération restent à construire.
+Paramètres : ajuste la distance de caméra et teste 1920x1080 si ton écran
+le permet. Signale des ralentissements avec résolution et matériel du PC.
+Sauvegarde, recharge et vérifie position/équipe/sac et palettes. L’atelier
+reste séparé. Tu peux aussi lancer un combat pour vérifier le socle conservé.
+Pas de test multi/Nuzlocke/Soul-link demandé.
 
 Les règles/sac/résumés et les sauvegardes/export/import précédents restent
 accessibles. Auto OFF : sauvegarde manuellement avant de quitter. Pas de test

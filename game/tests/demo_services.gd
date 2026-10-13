@@ -23,7 +23,7 @@ func run() -> void:
  var data: Dictionary=Content.data();check(Content.validate(data),"Fixture content validates")
  var bad: Dictionary=data.duplicate(true);bad.wild=["not-a-species"];check(not Content.validate(bad),"Unknown future species refused explicitly")
  bad=data.duplicate(true);bad.trainer=[{"species":"charizard","level":6}];check(not Content.validate(bad),"Illegal evolution level refused")
- check(Content.opponents().size()==2 and Assets.instantiate("shop")==null,"Data teams and unregistered import fallback")
+ check(Content.opponents().size()==2 and Assets.instantiate("unregistered-test-asset")==null,"Data teams and unregistered import fallback")
  var manifest: Dictionary={"schema":1,"assets":{"shop":{"path":"res://assets/imported/shop.glb","scale":1,"rotation":0,"source":"Fixture","rights":"Original","sha256":"0".repeat(64)}}}
  check(Assets.validate(manifest),"Imported model metadata validates")
  manifest.assets.shop.path="res://assets/imported/../escape.glb";check(not Assets.validate(manifest),"Import stays in approved directory")

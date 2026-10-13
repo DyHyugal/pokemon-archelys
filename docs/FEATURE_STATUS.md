@@ -218,3 +218,8 @@ Livraison D72 : source `a732c7c`, CI [38307537252](https://github.com/DyHyugal/p
 Owner : « Ok enchaine sur les 10 prochjains blocs », 12 octobre 2026. Poursuite autonome du solo avec fixtures. Canopée/sources/poste secondaire, contrôle RR, relais, championne climat, responsables au palier commun, Surf, camp, rencontres/habitats, carte/guidage et scènes/reprise : [lot détaillé](development/LOT_DEMO_CANOPY_DIX_BLOCS.md). Développé/testé techniquement, pas de validation Windows/graphique déduite. Pokédex/starters et Meshy toujours attendus ; noms/équilibrage/récit proposés, divinité et libération de l’île non implémentées par ce lot.
 
 Livraison D73 : source `8da0f6f`, CI [38313303857](https://github.com/DyHyugal/pokemon-archelys/actions/runs/38313303857) réussie, ZIP `lab-8da0f6f` publié. [Preuves et reprise](development/VERIFICATION_D73.md). Aucun nouveau retour Windows/graphique owner déduit.
+
+
+## D74 — pilotes graphiques Tripo
+
+Boutique du havre et héros/aperçu remplacés par les exports retopologisés du propriétaire ; marche/course, racine fixe, collisions/porte et palettes expérimentales intégrées. [Portée et contrôles](development/LOT_TRIPO_PILOTES.md). Coiffure/visage fixes, autres décors encore maquettes, combats 2D non convertis dans ce lot. Playtest Windows et acceptation visuelle restent distincts.

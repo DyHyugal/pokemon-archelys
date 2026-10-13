@@ -23,3 +23,6 @@ D71 autorise idéalement dix blocs solo supplémentaires en autonomie. La sélec
 D72 autorise un lot autonome de 10 à 20 blocs. Douze blocs intégrés dans la démo ; aucun nouveau choix final de scénario, Pokédex, starters ou assets. Voir LOT_DEMO_PROGRESSION_SERVICES et VERIFICATION_D72.
 
 D73 autorise dix blocs autonomes suivants : extension proposée de la démo existante vers canopée, sources et poste secondaire. Aucun nouvel arbitrage final ou playtest owner déduit. Voir LOT_DEMO_CANOPY_DIX_BLOCS et VERIFICATION_D73.
+
+
+D74 : le retour du 13 octobre 2026 accepte l’option A (exploration 3D chibi, combats Pokémon 2D) et autorise l’intégration des pilotes Tripo fournis. Cela remplace les proportions USUL réalistes et l’attente des deux exports sur ce sujet, sans valider les modèles finaux ni toute la région.

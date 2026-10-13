@@ -1,6 +1,9 @@
 extends RefCounted
 const Appearance=preload("res://scripts/domain/appearance.gd")
 static func apply(node: Node3D,look: Dictionary) -> void:
+ if node.has_meta("tripo_pilot"):
+  preload("res://scripts/world/tripo_actor.gd").apply(node,look)
+  return
  for part: Node in node.find_children("*","MeshInstance3D",true,false):
   var field: String=""
   if part.name.begins_with("Demo_Skin"):field="skin"

@@ -50,7 +50,7 @@ func run() -> void:
   await shot(game,"01-harbor",true)
  game.open_menu("appearance")
  game.menu.body.get_node("Appearance_skin").item_selected.emit(2);game.menu.body.get_node("Appearance_style").item_selected.emit(1)
- check(game.state.campaign.adventure.appearance.skin==2 and game.world.hero.find_child("Demo_SkinHead",true,false).material_override.albedo_color==Color("794b36"),"Character controls update new DS-proportioned avatar")
+ check(game.state.campaign.adventure.appearance.skin==2 and game.world.hero.has_meta("tripo_pilot") and game.world.hero.get_meta("appearance").skin==2,"Character controls update Tripo pilot appearance without changing saved schema")
  await shot(game,"02-character")
  game.menu.close();game.world.follow()
  var old: Vector3=game.state.position

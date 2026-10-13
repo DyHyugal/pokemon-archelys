@@ -10,6 +10,7 @@ for label,var in [('data','XDG_DATA_HOME'),('config','XDG_CONFIG_HOME'),('cache'
 env.setdefault('ARCHELYS_NODE_BIN',shutil.which('node') or '')
 steps=[(['godot','--headless','--path',str(root/'game'),'--editor','--import','--quit'],None),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/demo_scene.gd'],'DEMO SCENE:'),
+       (['godot','--headless','--path',str(root/'game'),'--script','res://tests/tripo_pilots.gd'],'TRIPO PILOTS:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/demo_contracts.gd'],'DEMO CONTRACTS:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/demo_navigation.gd'],'DEMO NAVIGATION:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/demo_services.gd'],'DEMO SERVICES:'),

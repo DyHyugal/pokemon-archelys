@@ -1,0 +1,92 @@
+{
+  "shop": {
+    "source": "Owner-provided Tripo export, 2026-10-13",
+    "rights": "Provided by owner for this demo; applicable Tripo export terms not independently verified; no blanket third-party design rights inferred.",
+    "original": {
+      "vertices_per_primitive": 946121,
+      "unique_mesh_triangles": 1770822,
+      "sha256": "8b9c46c9eb9f668c7d554c5332acf6103d145dc56ee79944c34eb93cd728e86c",
+      "bytes": 55516756,
+      "meshes": 1,
+      "materials": 1,
+      "images": 3,
+      "animations": 0,
+      "skins": 0
+    },
+    "runtime": {
+      "vertices_per_primitive": 29595,
+      "unique_mesh_triangles": 20243,
+      "sha256": "a706322609062695cf03abd18d333a88181e51a87b74ace199f2d4e79586563c",
+      "bytes": 4060764,
+      "meshes": 1,
+      "materials": 1,
+      "images": 3,
+      "animations": 0,
+      "skins": 0
+    },
+    "changes": [
+      "Use owner-provided retopology unchanged, embedded textures preserved",
+      "Runtime scale/orientation and roughness adjusted",
+      "No additional decimation of the supplied retopology"
+    ],
+    "visual_validation": "pending owner playtest",
+    "rig_status": "Static single mesh; door remains baked into geometry",
+    "provided_retopology": {
+      "vertices_per_primitive": 29595,
+      "unique_mesh_triangles": 20243,
+      "sha256": "a706322609062695cf03abd18d333a88181e51a87b74ace199f2d4e79586563c",
+      "bytes": 4060764,
+      "meshes": 1,
+      "materials": 1,
+      "images": 3,
+      "animations": 0,
+      "skins": 0
+    }
+  },
+  "chibi": {
+    "source": "Owner-provided Tripo export, 2026-10-13",
+    "rights": "Provided by owner for this demo; applicable Tripo export terms not independently verified; no blanket third-party design rights inferred.",
+    "original": {
+      "vertices_per_primitive": 992192,
+      "unique_mesh_triangles": 1918750,
+      "sha256": "af21c2fea265226412201decec96a7b464710578f185f7600e9ad0549a82b0b1",
+      "bytes": 57345948,
+      "meshes": 1,
+      "materials": 1,
+      "images": 3,
+      "animations": 0,
+      "skins": 0
+    },
+    "runtime": {
+      "vertices_per_primitive": 22027,
+      "unique_mesh_triangles": 19149,
+      "sha256": "06cd62ada151d3e2b3bcc6f4a34eb9bda198e72e35e2440fab2afba10ccc4064",
+      "bytes": 3846940,
+      "meshes": 1,
+      "materials": 1,
+      "images": 3,
+      "animations": 2,
+      "skins": 1
+    },
+    "changes": [
+      "Use owner-provided retopology unchanged, embedded textures preserved",
+      "Runtime scale/orientation and roughness adjusted",
+      "No additional decimation of the supplied retopology",
+      "Runtime experimental palette shader, fixed hairstyle and face",
+      "In-place clips, normalized cycle speed; walk 1.7, Shift-run 3.8 world units/s"
+    ],
+    "visual_validation": "pending owner playtest",
+    "rig_status": "65 joints, walk and run supplied by owner; horizontal root motion removed in instance-local animation copies; static idle derived from first walk pose",
+    "provided_retopology": {
+      "vertices_per_primitive": 22027,
+      "unique_mesh_triangles": 19149,
+      "sha256": "06cd62ada151d3e2b3bcc6f4a34eb9bda198e72e35e2440fab2afba10ccc4064",
+      "bytes": 3846940,
+      "meshes": 1,
+      "materials": 1,
+      "images": 3,
+      "animations": 2,
+      "skins": 1
+    }
+  }
+}
