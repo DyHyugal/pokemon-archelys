@@ -247,3 +247,5 @@ Livraison D77 : source `5887ff8`, CI [38444514302](https://github.com/DyHyugal/p
 ## D78 — présentation 2D HD jouable
 
 Nouvelle entrée Windows/démo en 2D, sprites décors/personnage, quatre directions marche/course, sols illustrés, PNJ provisoires, intérieurs et logique existante conservée. [Portée et captures réelles](development/LOT_HD2D.md). 28 contrôles headless et 34 avec captures réussis. Personnalisation fixe, photo 2D à adapter, habillage des combats à produire ; le rendu précalculé Tripo ne vaut pas reproduction exacte de l’illustration. Validation owner attendue.
+
+Livraison D78 : source `84cb3ff`, CI [38463267384](https://github.com/DyHyugal/pokemon-archelys/actions/runs/38463267384) réussie ; ZIP `lab-84cb3ff` publié, téléchargé et SHA256 vérifié. [Preuves et captures](development/VERIFICATION_D78.md). Playtest Windows/validation artistique attendus.
