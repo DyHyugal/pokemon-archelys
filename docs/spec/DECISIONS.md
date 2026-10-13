@@ -289,3 +289,7 @@ Propriétaire, 13 octobre 2026 : « partie 3D on oublie », accepte la partie dr
 # D79 — direction B directement dessinée et portion jouable
 
 Propriétaire, 13 octobre 2026 : les essais A/B plaisent, préférence B avec repli A possible si complexité ; puis approbation de la capture réelle Godot et demande « go pour la demo avec ce style là ! ». D78 précalculé Tripo rejeté artistiquement. Direction directement dessinée approuvée, nouveaux intérieurs/avatars individuels et rendu en mouvement à tester séparément. [Portion et limites](../development/LOT_2D_DESSINEE.md) : havre, trois intérieurs et sentier, sauvegardes distinctes, héros fixe, six portraits de combat provisoires. Aucune île complète ou kit final déduit.
+
+## D80 — histoire et graphismes immuables, audit de moteur
+
+Propriétaire, 14 octobre 2026 : HeartGold retiré des candidats ; deux choix à auditer, Essentials ou Godot, en préservant les graphismes et l’histoire d’Archélys, dont le monde à plusieurs îles. La démo D79 n’est pas considérée comme un rendu final satisfaisant. [Audit documentaire et de code](../development/AUDIT_ESSENTIALS_GODOT.md) : Essentials et DS Map Studio ne forment pas une chaîne d’import native ; adaptation HD d’Essentials non éprouvée. Aucun choix de migration, nouveau build ou réduction de cible déduit.
