@@ -58,10 +58,10 @@ func run() -> void:
  key(KEY_F);check(world.dialogue.index==before+1,"Custom interaction advances actual dialogue once")
  key(KEY_F,true);check(world.dialogue.index==before+1,"Holding custom confirm never auto-advances dialogue")
  while world.dialogue.active:key(KEY_F)
- world._begin_pokemon_battle([Mon.make("rattata",8,900000)])
+ check(world._begin_pokemon_battle([Mon.make("rattata",8,900000)]),"Battle actually starts after dialogue; "+world.message.text)
  var deadline: int=Time.get_ticks_msec()+12000
  while world.pokemon_battle.busy and Time.get_ticks_msec()<deadline:await create_timer(0.01).timeout
- check(not world.pokemon_battle.busy and world.pokemon_battle.last_error.is_empty(),"Showdown initial messages ready")
+ check(not world.pokemon_battle.busy and world.pokemon_battle.last_error.is_empty(),"Showdown initial messages ready; busy="+str(world.pokemon_battle.busy)+" error="+world.pokemon_battle.last_error)
  before=world.battle_panel.event_index
  key(KEY_E);check(world.battle_panel.event_index==before,"Old interaction key no longer advances battle text")
  key(KEY_F);check(world.battle_panel.event_index==before+1,"Custom confirm advances actual battle text")

@@ -3,7 +3,7 @@ const Comfort=preload("res://scripts/services/comfort_store.gd")
 var menu: CanvasLayer
 var sliders: Dictionary={}
 var capture_action: String=""
-const NAMES={"left":["Aller à gauche","Move left"],"right":["Aller à droite","Move right"],"up":["Aller vers le haut","Move up"],"down":["Aller vers le bas","Move down"],"interact":["Interagir / texte suivant","Interact / next text"],"menu":["Ouvrir le menu","Open menu"],"bag":["Ouvrir le sac","Open bag"],"journal":["Ouvrir le journal","Open journal"]}
+const NAMES={"left":["Aller à gauche","Move left"],"right":["Aller à droite","Move right"],"up":["Aller vers le haut","Move up"],"down":["Aller vers le bas","Move down"],"interact":["Interagir / texte suivant","Interact / next text"],"menu":["Ouvrir le menu","Open menu"],"bag":["Ouvrir le sac","Open bag"],"journal":["Ouvrir le journal","Open journal"],"run":["Courir (maintenir)","Run (hold)"]}
 func _init(owner: CanvasLayer) -> void:menu=owner
 func t(fr: String,en: String) -> String:return menu.tr_text(fr,en)
 func render() -> void:

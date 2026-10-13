@@ -6,9 +6,9 @@ static func available(owner: RefCounted) -> bool:
 	return owner.initialized and not owner.in_battle and owner.exploration.location in ["center","isle-center"] and owner.exploration.nuzlocke!="on"
 static func grant_samples(owner: RefCounted) -> bool:
 	if not available(owner) or owner.fossil_samples_received:return false
-	for item: String in RECIPES:
-		if int(owner.bag.get(item,0))>=999:return false
-	for item: String in RECIPES:owner.bag[item]=int(owner.bag.get(item,0))+1
+	var samples: Dictionary={}
+	for item: String in RECIPES:samples[item]=1
+	if not owner.grant_items(samples):return false
 	owner.fossil_samples_received=true
 	return true
 static func restore_fossil(owner: RefCounted,item: String) -> Dictionary:

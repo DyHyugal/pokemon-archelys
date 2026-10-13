@@ -209,7 +209,7 @@ E / Enter: interact in the world"))
 			var distance := label(str(camera_size))
 			zoom.value_changed.connect(func(value: float): camera_size=value; distance.text=str(value); camera_changed.emit(value))
 			label(tr_text("Vitesse labo — propositions 1× / 2× / 3× / 4×, musique inchangée", "Laboratory speed — proposed 1× / 2× / 3× / 4×, music unchanged"))
-			var speeds:=OptionButton.new()
+			var speeds:=OptionButton.new();speeds.name="GameSpeed"
 			for value: int in [1,2,3,4]:speeds.add_item("%d×" % value)
 			speeds.select(int(speed)-1);body.add_child(speeds)
 			speeds.item_selected.connect(func(index: int):speed=float(index+1);speed_changed.emit(speed))

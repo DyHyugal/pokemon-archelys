@@ -76,7 +76,7 @@ func render_team() -> void:
 	for item: String in ["","oran-berry","leftovers","lucky-egg","venusaurite","charizardite-x","charizardite-y","blastoisinite"]:
 		var id: String=item
 		menu.button(menu.body,t("Retirer l'objet","Remove held item") if id=="" else t("Tenir : ","Hold: ")+name_of(id),func():
-			var ok: bool=adventure.equip(selected_uid,id);refresh();menu.feedback.text=t("Équipement modifié.","Equipment changed.") if ok else t("Objet absent du sac.","Item missing from bag."))
+			var ok: bool=adventure.equip(selected_uid,id);refresh();menu.feedback.text=t("Équipement modifié.","Equipment changed.") if ok else t("Objet absent ou sac plein pour rendre l’objet précédent.","Item missing or bag full for returning the previous held item."))
 	for item: String in ["potion","antidote","paralyze-heal","thunder-stone","fire-stone"]:
 		var id: String=item
 		menu.button(menu.body,t("Utiliser : ","Use: ")+name_of(id),func():

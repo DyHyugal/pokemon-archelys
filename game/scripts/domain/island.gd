@@ -71,9 +71,7 @@ func gift(owner: RefCounted) -> String:
 func cache(owner: RefCounted,id: String) -> bool:
  if owner.in_battle or id not in CACHES or caches.has(id) or not flags.has("started") or owner.exploration.location!=CACHES[id].location:return false
  var items: Dictionary=CACHES[id].items
- for item: String in items:
-  if int(owner.bag.get(item,0))+int(items[item])>999:return false
- for item: String in items:owner.bag[item]=int(owner.bag.get(item,0))+int(items[item])
+ if not owner.grant_items(items):return false
  caches[id]=true;return true
 func can_battle(owner: RefCounted,id: String) -> bool:
  if owner.in_battle or not flags.has("started") or id not in BATTLES or flags.has(BATTLES[id].flag) or owner.exploration.location!=BATTLES[id].location:return false

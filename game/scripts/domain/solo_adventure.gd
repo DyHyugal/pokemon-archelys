@@ -36,7 +36,7 @@ func initialize() -> void:
 	bag={"poke-ball":20,"great-ball":5,"potion":10,"antidote":5,"paralyze-heal":5,"oran-berry":3,"leftovers":1,"lucky-egg":1,"thunder-stone":1}
 	for id: String in ["bulbasaur","charmander","squirtle"]:add(Mon.make(id,8,next_uid))
 func add(mon: Dictionary) -> String:
-	if not Mon.validate(mon) or team.size()+boxes.size()>=246:return "full"
+	if not Mon.validate(mon) or int(mon.uid)>=1000000 or team.size()+boxes.size()>=246:return "full"
 	for owned: Dictionary in team+boxes:
 		if int(owned.uid)==int(mon.uid):return "duplicate"
 	records.observe(mon.species,true)
@@ -66,6 +66,7 @@ func equip(uid: int, item: String) -> bool:
 	if mon.is_empty() or item not in ["","oran-berry","leftovers","lucky-egg","venusaurite","charizardite-x","charizardite-y","blastoisinite"]:return false
 	if mon.item==item:return true
 	if item!="" and int(bag.get(item,0))<=0:return false
+	if mon.item!="" and int(bag.get(mon.item,0))>=999:return false
 	if item!="":bag[item]-=1
 	if mon.item!="":bag[mon.item]=int(bag.get(mon.item,0))+1
 	mon.item=item;return true
@@ -77,10 +78,10 @@ func use(item: String, uid: int) -> bool:
 	if item=="potion":
 		if mon.hp==Mon.stats(mon).hp:return false
 		mon.hp=mini(Mon.stats(mon).hp,int(mon.hp)+20)
-	elif item=="antidote" and mon.status=="poison":mon.status="";mon.status_turns=0
+	elif item=="antidote" and mon.status in ["poison","toxic"]:mon.status="";mon.status_turns=0
 	elif item=="paralyze-heal" and mon.status=="paralysis":mon.status="";mon.status_turns=0
 	elif item in ["thunder-stone","fire-stone"] and Catalog.species(mon.species).get("evolution",{}).get("item")==item:
-		Mon.evolve(mon,Catalog.species(mon.species).evolution.target)
+		_evolve_with_choices(mon,Catalog.species(mon.species).evolution.target)
 		records.observe(mon.species,true)
 	else:return false
 	bag[item]-=1;return true
@@ -123,7 +124,7 @@ func resolve_choice(index: int, slot: int) -> bool:
 	if mon.is_empty():return false
 	if choice.kind=="evolution":
 		if slot==0:
-			Mon.evolve(mon,choice.target)
+			_evolve_with_choices(mon,choice.target)
 			records.observe(mon.species,true)
 			var next: Dictionary=Catalog.species(mon.species).get("evolution",{})
 			if next.has("level") and mon.level>=next.level:pending.append({"kind":"evolution","uid":mon.uid,"target":next.target})
@@ -224,10 +225,9 @@ func relearn(uid: int, move_id: String, slot: int) -> bool:
 	if in_battle:return false
 	var mon:=find(uid)
 	if mon.is_empty() or slot<0 or slot>mon.moves.size() or slot>=4 or mon.moves.any(func(entry: Dictionary):return entry.id==move_id):return false
-	var id: String=mon.species;var legal: bool=false
-	while not id.is_empty():
+	var legal: bool=false
+	for id: String in Catalog.lineage(mon.species):
 		if Catalog.species(id).learnset.any(func(entry: Dictionary):return entry.move==move_id and entry.level<=mon.level):legal=true
-		id=Catalog.species(id).get("previous","")
 	if not legal:return false
 	var learned: Dictionary={"id":move_id,"pp":int(Catalog.move(move_id).pp)}
 	if slot==mon.moves.size():mon.moves.append(learned)
@@ -269,19 +269,31 @@ func set_ability(uid: int, ability: String) -> bool:
 	mon.ability=ability;return true
 
 func grant_mega_kit() -> bool:
+	if in_battle or exploration.nuzlocke=="on":return false
+	var candidate: RefCounted=get_script().new()
+	if not candidate.restore(snapshot()):return false
+	if not candidate._apply_mega_kit():return false
+	# Commit only the touched fields, keeping existing individual/object references.
+	for incoming: Dictionary in candidate.team+candidate.boxes:
+		var existing: Dictionary=find(int(incoming.uid))
+		if existing.is_empty():add(incoming.duplicate(true))
+		else:existing.item=incoming.item
+	bag.clear();bag.merge(candidate.bag,true);cap=candidate.cap;next_uid=candidate.next_uid
+	return true
+func _apply_mega_kit() -> bool:
 	# Explicit laboratory helper. Preserve existing individuals and held items.
 	if in_battle or exploration.nuzlocke=="on":return false
 	raise_cap(36)
 	for pair: Array in [["venusaur","venusaurite"],["charizard","charizardite-y"],["blastoise","blastoisinite"]]:
 		if not (team+boxes).any(func(mon: Dictionary):return mon.species==pair[0]):
-			if team.size()+boxes.size()<246:add(Mon.make(pair[0],36,next_uid))
+			if team.size()+boxes.size()<246 and add(Mon.make(pair[0],36,next_uid)) not in ["team","pc"]:return false
 		for mon: Dictionary in team+boxes:
 			if mon.species!=pair[0]:continue
 			# Keep a compatible Mega stone, including Charizard X.
 			if Catalog.data().mega_forms.get(mon.item,{}).get("base")==mon.species:continue
 			var stone: String=pair[1]
-			bag[stone]=int(bag.get(stone,0))+1
-			equip(int(mon.uid),stone)
+			if int(bag.get(stone,0))==0:bag[stone]=1
+			if not equip(int(mon.uid),stone):return false
 	for stone: String in ["venusaurite","charizardite-x","charizardite-y","blastoisinite"]:bag[stone]=maxi(1,int(bag.get(stone,0)))
 	return true
 
@@ -322,11 +334,10 @@ func move_options(uid: int,source: String) -> Array:
 	if mon.is_empty():return []
 	if source=="machine":return Catalog.species(mon.species).get("machines",[]).duplicate()
 	if source!="reminder":return []
-	var result: Array=[];var id: String=mon.species
-	while not id.is_empty():
+	var result: Array=[]
+	for id: String in Catalog.lineage(mon.species):
 		for entry: Dictionary in Catalog.species(id).learnset:
 			if entry.level<=mon.level and entry.move not in result:result.append(entry.move)
-		id=Catalog.species(id).get("previous","")
 	return result
 func reorder_moves(uid: int,from: int,to: int) -> bool:
 	if in_battle:return false
@@ -348,3 +359,20 @@ func set_shiny(uid: int,value: bool) -> bool:
 	var mon: Dictionary=find(uid)
 	if mon.is_empty():return false
 	mon.shiny=value;return true
+
+func grant_items(items: Dictionary) -> bool:
+	if in_battle or items.is_empty():return false
+	for item: Variant in items:
+		if not item is String or not Catalog.data().items.has(item) or not Mon.integer(items[item],1,999):return false
+		if int(bag.get(item,0))+int(items[item])>999:return false
+	for item: String in items:bag[item]=int(bag.get(item,0))+int(items[item])
+	return true
+func _evolve_with_choices(mon: Dictionary,target: String) -> void:
+	var evolution: Dictionary=Catalog.species(mon.species).get("evolution",{})
+	var earliest: int=int(evolution.get("level",mon.level))
+	Mon.evolve(mon,target)
+	for learned: Dictionary in Catalog.species(target).learnset:
+		if int(learned.level)<earliest or int(learned.level)>int(mon.level):continue
+		if mon.moves.any(func(move: Dictionary):return move.id==learned.move):continue
+		if pending.any(func(choice: Dictionary):return int(choice.uid)==int(mon.uid) and choice.kind=="move" and choice.target==learned.move):continue
+		pending.append({"kind":"move","uid":int(mon.uid),"target":learned.move})

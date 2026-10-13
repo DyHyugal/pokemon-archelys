@@ -21,11 +21,27 @@ static func effectiveness(type: String, targets: Array) -> float:
 	return result
 static func legal_species(id: String, level: int) -> String:
 	var record:=species(id)
+	if record.is_empty():return ""
+	var seen: Array=[]
 	while record.has("previous") and level<int(record.get("minimum_level",1)):
+		if id in seen:return ""
+		seen.append(id)
 		id=record.previous;record=species(id)
+		if record.is_empty():return ""
+	seen.clear()
 	while record.has("evolution") and record.evolution.has("level") and level>=int(record.evolution.level):
+		if id in seen:return ""
+		seen.append(id)
 		id=record.evolution.target;record=species(id)
+		if record.is_empty():return ""
 	return id
 
 static func text(group: String,id: String,language: String="fr") -> String:
 	return data().get(group,{}).get(id,{}).get(language,id)
+
+static func lineage(id: String) -> Array:
+	var result: Array=[]
+	while not id.is_empty():
+		if id in result or species(id).is_empty():return []
+		result.append(id);id=species(id).get("previous","")
+	return result

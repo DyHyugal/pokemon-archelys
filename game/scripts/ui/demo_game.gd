@@ -72,7 +72,7 @@ func open(owner: Node3D) -> bool:
  owner.get_node("/root/Session").submit_axis(Vector2.ZERO)
  world=World.new();world.locale=locale;owner.add_child(world);world.build(state);world.camera.size=owner.camera.size;world.configure_labels(owner.comfort.data.world_labels)
  menu=preload("res://scripts/ui/pause_menu.gd").new();menu.demo_mode=true;menu.adventure=state.campaign.adventure;menu.comfort=owner.comfort;owner.add_child(menu)
- menu.layer=40;menu.panel.theme=owner.ui_theme
+ menu.layer=40;menu.panel.theme=owner.ui_theme;menu.speed=float(owner.comfort.data.game_speed)
  menu.save_requested.connect(save_game);menu.load_requested.connect(load_game)
  menu.preview_renderer=add_avatar_preview;menu.demo_pages_renderer=render_demo_page
  menu.appearance_changed.connect(func():
@@ -85,7 +85,9 @@ func open(owner: Node3D) -> bool:
  menu.audio_preview_requested.connect(func(kind: String):
   if kind=="stop":owner.lab_audio.stop_previews()
   else:owner.lab_audio.preview(kind))
- menu.speed_changed.connect(func(value: float):Engine.time_scale=value)
+ menu.speed_changed.connect(func(value: float):
+  var error: int=owner._set_game_speed(value)
+  if error!=OK:menu.feedback.text=t("Réglage non enregistré : ","Setting not saved: ")+error_string(error))
  menu.closed.connect(func():
   owner.lab_audio.stop_previews()
   if state.starter.is_empty():starter_screen()
@@ -149,7 +151,9 @@ func add_avatar_preview(body: Node) -> void:
  var picture:=TextureRect.new();picture.name="DemoCharacterPreview";picture.texture=viewport.get_texture();picture.custom_minimum_size=Vector2(210,240);picture.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;picture.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;body.add_child(picture);body.move_child(picture,0)
 func open_menu(page: String="home") -> void:
  clear_modal();menu.adventure=state.campaign.adventure;menu.sync(locale,world.camera.size,state.campaign.laboratory);menu.open(page)
- if page=="home":button(menu.body,t("Revenir à l'atelier (démo sauvegardée)","Return to workshop (demo saved)"),close,"ExitDemo")
+ if page=="home":
+  if not state.campaign.adventure.pending.is_empty():button(menu.body,t("Préparer les %d choix en attente","Review %d pending choices") % state.campaign.adventure.pending.size(),func():open_menu("choices"),"ReviewPendingChoices")
+  button(menu.body,t("Revenir à l'atelier (démo sauvegardée)","Return to workshop (demo saved)"),close,"ExitDemo")
  if page=="appearance":
   var selector: OptionButton=menu.body.get_node("Appearance_style")
   for i: int in range(3):selector.set_item_text(i,[t("Casquette","Cap"),t("Cheveux courts","Short hair"),t("Cheveux longs","Long hair")][i])
@@ -192,11 +196,10 @@ func interact(id: String="") -> void:
   "pc":open_menu("pc")
   "mirror":open_menu("appearance")
   "supplies":
-   if not state.flags.has("supplies"):
-    var a: RefCounted=state.campaign.adventure
-    if int(a.bag.get("poke-ball",0))+3<=999 and int(a.bag.get("potion",0))+2<=999:
-     a.bag['poke-ball']=int(a.bag.get('poke-ball',0))+3;a.bag.potion=int(a.bag.get('potion',0))+2;state.flags.supplies=true;persist_auto()
-   talk([t("La caisse contient des provisions pour le sentier. Réception unique : trois Balls et deux Potions.","The crate contains trail supplies. One-time gift: three Balls and two Potions.")])
+   var received:=false
+   if not state.flags.has("supplies") and state.campaign.adventure.grant_items({"poke-ball":3,"potion":2}):
+    received=true;state.flags.supplies=true;persist_auto()
+   talk([t("Provisions reçues : trois Balls et deux Potions.","Supplies received: three Balls and two Potions.") if received else (t("Ces provisions ont déjà été récupérées.","These supplies have already been collected.") if state.flags.has("supplies") else t("Pas assez de place dans le sac. Les provisions restent dans la caisse.","Not enough bag space. The supplies remain in the crate."))])
   "survey":state.flags.survey=true;persist_auto();talk([t("Balise relevée. Le dresseur attend plus loin dans le sentier.","Beacon surveyed. The trainer waits farther along the trail.")])
   "trainer":
    if not state.flags.has("survey"):talk([t("Relève d'abord la balise à l'ouest du sentier.","Survey the beacon west of the trail first.")])
@@ -249,14 +252,14 @@ func load_game() -> void:
 func _process(delta: float) -> void:
  if not active:return
  if owner_world.photo_mode.active:return
- hud.text="ARCHÉLYS • "+Chapter.name_of(state.location,locale)+"\n"+state.objective(locale)+"\n"+t("E / Entrée : interagir • Échap : menu","E / Enter: interact • Escape: menu")
+ hud.text="ARCHÉLYS • "+Chapter.name_of(state.location,locale)+(t(" • %d choix en attente"," • %d pending choices") % state.campaign.adventure.pending.size() if not state.campaign.adventure.pending.is_empty() else "")+"\n"+state.objective(locale)+"\n"+t("%s / Entrée : interagir • %s : menu • %s / RB : courir","%s / Enter: interact • %s: menu • %s / RB: run") % [owner_world.comfort.caption("interact"),owner_world.comfort.caption("menu"),owner_world.comfort.caption("run")]
  contextual.text=""
  if modal or menu.visible or battle_panel.visible:
   preload("res://scripts/world/tripo_actor.gd").animate(world.hero,false,false)
   return
  var nearby: String=world.nearest()
  if not nearby.is_empty():contextual.text=owner_world.comfort.caption("interact")+" / "+t("Entrée","Enter")+" — "+Guidance.title(nearby,locale)
- var old: Vector3=state.position;world.move_hero(owner_world.comfort.axis(),delta,state,Input.is_key_pressed(KEY_SHIFT))
+ var old: Vector3=state.position;world.move_hero(owner_world.comfort.axis(),delta,state,owner_world.comfort.wants_run())
  var walked: float=old.distance_to(state.position);state.campaign.adventure.nursery.walk(walked)
  if state.location in ["trail","canopy"] and state.position.x>3 and state.position.x<9 and ((state.position.z> -7 and state.position.z< -1) if state.location=="trail" else (state.position.z> -1 and state.position.z<5)):
   steps+=walked

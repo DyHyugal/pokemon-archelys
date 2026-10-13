@@ -28,7 +28,7 @@ shutil.copy2(source/'LICENSE',output/'Showdown-LICENSE.txt')
 shutil.copy2(source/'node_modules/ts-chacha20/LICENSE',output/'ts-chacha20-LICENSE.txt')
 for name in ['bridge.cjs','policy.cjs']:shutil.copy2(ROOT/'combat/showdown'/name,output/name)
 shutil.copy2(ROOT/'game/data/pokemon/laboratory.json',output/'catalog.json')
-metadata={'showdown_commit':PIN,'protocol':1,'node_windows':NODE,'data':'gen9 with selected historical moves and Mega','source_modified':False,'integration_extensions':['Lucky Egg held-item metadata; XP remains in adventure']}
+metadata={'showdown_commit':PIN,'protocol':1,'node_windows':NODE,'data':'gen9 with selected historical moves and Mega','source_modified':False,'integration_extensions':['Lucky Egg held-item metadata; XP remains in adventure','Persistent toxic status and new-battle stage reset']}
 (output/'provenance.json').write_text(json.dumps(metadata,indent=2)+'\n')
 if args.windows:
  asset=f'node-v{NODE}-win-x64.zip';base=f'https://nodejs.org/dist/v{NODE}/'

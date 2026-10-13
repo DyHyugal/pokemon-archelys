@@ -119,8 +119,9 @@ func won(state: RefCounted,id: String) -> bool:
 func can_surf(state: RefCounted) -> bool:return flags.has("keeper") and not state.campaign.adventure.in_battle
 func secret(state: RefCounted) -> bool:
  var a: RefCounted=state.campaign.adventure
- if state.location!="canopy" or not can_surf(state) or flags.has("surf-secret") or int(a.bag.get("great-ball",0))+3>999:return false
- a.bag['great-ball']=int(a.bag.get('great-ball',0))+3;flags['surf-secret']=true;return true
+ if state.location!="canopy" or not can_surf(state) or flags.has("surf-secret"):return false
+ if not a.grant_items({'great-ball':3}):return false
+ flags['surf-secret']=true;return true
 func report(state: RefCounted) -> bool:
  if state.location!="town" or state.campaign.adventure.in_battle or not flags.has("admin-b") or flags.has("reported"):return false
  flags.reported=true;return true

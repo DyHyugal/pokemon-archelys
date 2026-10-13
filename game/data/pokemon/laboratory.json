@@ -2794,6 +2794,10 @@
     "sleep": {
       "en": "sleep",
       "fr": "sommeil"
+    },
+    "toxic": {
+      "fr": "Empoisonnement grave",
+      "en": "Badly poisoned"
     }
   },
   "type_names": {

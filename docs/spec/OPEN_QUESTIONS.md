@@ -76,3 +76,6 @@ D74 : vrais exports Tripo reçus et intégrés (boutique, chibi retopologisé av
 
 
 D75 : le retour owner confirme les pilotes D74 fonctionnels et demande un ajustement de taille/vitesse. Correctif de déplacement ×4, boutique +25 % et course +42 % préparés ; aucune nouvelle sélection graphique requise. Proportions/vitesse finales à apprécier au prochain test, sans rouvrir le choix Tripo ni l’option A.
+
+
+D76 : travaux solo autorisés en autonomie ; graphismes et Pokédex remis à la reprise par le propriétaire. Aucun arbitrage requis pour livrer le [lot de continuité](../development/LOT_SOLO_CONTINUITE.md). Sélection des espèces/starters, familles à plusieurs branches et évolutions spéciales restent ouvertes. Tests Windows/physiques distincts des contrôles automatisés.

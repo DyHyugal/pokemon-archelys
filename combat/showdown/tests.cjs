@@ -196,4 +196,18 @@ function start(player,enemy,mode='singles',extra={}){const a=new Adapter();const
  s=held.act({choice:'move 1'});check(s.player[0].hp>50,'Disabling bag healing does not disable held item recovery');held.close();
  assert.throws(()=>start(player,enemy,'singles',{battleStyle:'wrong'}));checks++;
 }
+{
+ const base=mon('charizard',1,['growl'],{status:'toxic'});
+ const foes=[mon('magikarp',9,['splash'])];
+ const {a,s}=start([base],foes);
+ check(s.player[0].status==='toxic','Bad poison survives campaign import into actual Showdown');
+ const first=a.act({choice:'move 1'});const second=a.act({choice:'move 1'});
+ check(base.hp-first.player[0].hp < first.player[0].hp-second.player[0].hp,'Actual toxic residual increases across turns');
+ const resume={...base,hp:second.player[0].hp,status:second.player[0].status};a.close();
+ const again=start([resume],foes).a;
+ const next=again.act({choice:'move 1'});
+ check(resume.hp-next.player[0].hp===Math.floor(base.hp/16),'New battle retains bad poison but resets its damage stage');
+ again.external({item:'antidote',uid:1});
+ check(again.state().player[0].status==='','Real antidote cures persistent bad poison');again.close();
+}
 console.log(`SHOWDOWN ADAPTER: ${checks} checks, 0 failures`);

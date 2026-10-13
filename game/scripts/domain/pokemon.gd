@@ -6,6 +6,15 @@ static func integer(value: Variant, low: int, high: int) -> bool:
 	return (value is int or value is float) and is_finite(float(value)) and float(value)==floorf(float(value)) and value>=low and value<=high
 static func experience(level: int, group: String) -> int:
 	if level<=1:return 0
+	if group=="erratic":
+		if level<=50:return int(level*level*level*(100-level)/50)
+		if level<=68:return int(level*level*level*(150-level)/100)
+		if level<=98:return int(level*level*level*int((1911-10*level)/3)/500)
+		return int(level*level*level*(160-level)/100)
+	if group=="fluctuating":
+		if level<=15:return int(level*level*level*(int((level+1)/3)+24)/50)
+		if level<=35:return int(level*level*level*(level+14)/50)
+		return int(level*level*level*(int(level/2)+32)/50)
 	if group=="slow":return int(5*level*level*level/4)
 	if group=="fast":return int(4*level*level*level/5)
 	if group=="medium-slow":return maxi(0,int(6.0*pow(level,3)/5.0)-15*level*level+100*level-140)
@@ -39,11 +48,9 @@ static func hidden_power(mon: Dictionary) -> String:
 	for i: int in range(6): total+=(int(mon.iv[order[i]])%2)*(1<<i)
 	return ["fighting","flying","poison","ground","rock","bug","ghost","steel","fire","water","grass","electric","psychic","ice","dragon","dark"][int(total*15/63)]
 static func legal_move(mon: Dictionary, move_id: String) -> bool:
-	var id: String=mon.species
-	while not id.is_empty():
+	for id: String in Catalog.lineage(mon.species):
 		if move_id in Catalog.species(id).get("machines",[]):return true
 		if Catalog.species(id).learnset.any(func(entry: Dictionary):return entry.move==move_id and entry.level<=mon.level):return true
-		id=Catalog.species(id).get("previous","")
 	return false
 static func validate(mon: Variant) -> bool:
 	if not mon is Dictionary or mon.has("battle_form") or not integer(mon.get("uid"),1,1000000) or not mon.get("species") is String or Catalog.species(mon.species).is_empty():return false
@@ -59,7 +66,7 @@ static func validate(mon: Variant) -> bool:
 	if mon.get("nature") not in NATURES or mon.get("ability") not in Catalog.species(mon.species).get("abilities",[Catalog.species(mon.species).ability]):return false
 	if mon.has("shiny") and not mon.shiny is bool:return false
 	if mon.get("item") not in ["","oran-berry","leftovers","lucky-egg","venusaurite","charizardite-x","charizardite-y","blastoisinite"]:return false
-	if mon.get("status") not in ["","burn","poison","paralysis","sleep","freeze"] or not integer(mon.get("status_turns"),0,3):return false
+	if mon.get("status") not in ["","burn","poison","toxic","paralysis","sleep","freeze"] or not integer(mon.get("status_turns"),0,3):return false
 	if not mon.get("moves") is Array or mon.moves.is_empty() or mon.moves.size()>4:return false
 	var known: Array=[]
 	for slot: Variant in mon.moves:
@@ -81,7 +88,11 @@ static func edit(mon: Dictionary, iv: Array, ev: Array, nature: String) -> bool:
 	mon.merge(candidate,true);return true
 static func evolve(mon: Dictionary, target: String) -> void:
 	var damage: int=stats(mon).hp-int(mon.hp)
-	mon.species=target;mon.ability=Catalog.species(target).ability
+	var source: Dictionary=Catalog.species(mon.species)
+	var slot: int=source.get("abilities",[source.ability]).find(mon.ability)
+	var evolved: Dictionary=Catalog.species(target)
+	var abilities: Array=evolved.get("abilities",[evolved.ability])
+	mon.species=target;mon.ability=abilities[slot] if slot>=0 and slot<abilities.size() else evolved.ability
 	mon.hp=0 if mon.hp==0 else maxi(1,stats(mon).hp-damage)
 
 static func normalize(mon: Dictionary) -> Dictionary:

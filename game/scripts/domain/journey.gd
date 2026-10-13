@@ -13,9 +13,7 @@ static func validate(value: Variant) -> bool:
 func restore(value: Dictionary) -> void:flags=value.flags.duplicate()
 func begin(owner: RefCounted) -> bool:
 	if owner.in_battle or not owner.initialized or owner.exploration.location!="village" or flags.has("briefing"):return false
-	if int(owner.bag.get("poke-ball",0))+5>999 or int(owner.bag.get("potion",0))+3>999:return false
-	owner.bag["poke-ball"]=int(owner.bag.get("poke-ball",0))+5
-	owner.bag["potion"]=int(owner.bag.get("potion",0))+3
+	if not owner.grant_items({"poke-ball":5,"potion":3}):return false
 	flags.briefing=true;return true
 func can_enter(owner: RefCounted,target: String) -> bool:
 	if target=="trail":return flags.has("briefing") and owner.records.scenes.has("slice-prologue")

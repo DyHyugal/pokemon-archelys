@@ -52,7 +52,7 @@ func valid_command(command: Dictionary) -> bool:
 			if not Mon.integer(value,-1,3):return false
 			return (int(value)==-1 and available_moves(0).is_empty()) or int(value) in available_moves(0)
 		"switch":return valid_switch(command.get("index"))
-		"ball":return trainer.is_empty() and (current(1).get("shiny",false) or adventure.exploration.may_capture(encounter_zone,int(current(1).uid)) or (not adventure.exploration.claims.has(encounter_zone) and family_duplicate(current(1).species))) and command.get("item") in ["poke-ball","great-ball"] and int(adventure.bag.get(command.item,0))>0 and adventure.team.size()+adventure.boxes.size()<246
+		"ball":return trainer.is_empty() and (current(1).get("shiny",false) or adventure.exploration.may_capture(encounter_zone,int(current(1).uid)) or (not adventure.exploration.claims.has(encounter_zone) and family_duplicate(current(1).species))) and command.get("item") in ["poke-ball","great-ball"] and int(adventure.bag.get(command.item,0))>0 and adventure.team.size()+adventure.boxes.size()<246 and adventure.next_uid<1000000
 		"item":
 			if not adventure.exploration.bag_healing:return false
 			if command.get("item") not in ["potion","antidote","paralyze-heal"] or not Mon.integer(command.get("index"),0,adventure.team.size()-1):return false
@@ -67,6 +67,7 @@ func capture_value(item: String) -> float:
 	var modifier: float=2.5 if target.status in ["sleep","freeze"] else (1.5 if target.status!="" else 1.0)
 	return minf(255.0,((3*total-2*target.hp)/(3*total))*float(Catalog.species(target.species).catch_rate)*(1.5 if item=="great-ball" else 1.0)*modifier)
 func try_capture(item: String) -> bool:
+	if not valid_command({"kind":"ball","item":item}):return false
 	if not current(1).get("shiny",false) and not adventure.exploration.claims.has(encounter_zone):adventure.exploration.reserve_encounter(encounter_zone,int(current(1).uid))
 	adventure.bag[item]-=1
 	var value:=capture_value(item)
@@ -100,11 +101,13 @@ func award_experience(grant_effort: bool=true) -> void:
 			if change=="cap":say("%s a atteint le cap %d." % [title(mon),adventure.cap],"%s reached level cap %d." % [title(mon,"en"),adventure.cap])
 			else:say("%s passe au niveau %s." % [title(mon),change.trim_prefix("level:")],"%s reached level %s." % [title(mon,"en"),change.trim_prefix("level:")])
 		if grant_effort:
+			var prior_damage: int=Mon.stats(mon).hp-int(mon.hp)
 			var effort: Array=Catalog.species(defeated.species).get("effort",[0,0,0,0,0,0])
 			for i: int in range(6):
 				var total: int=0
 				for v: Variant in mon.ev:total+=int(v)
 				mon.ev[i]=mini(252,int(mon.ev[i])+mini(510-total,int(effort[i])))
+			mon.hp=maxi(1,Mon.stats(mon).hp-prior_damage)
 func finish(outcome: String) -> void:
 	if trainer.is_empty() and not enemies[0].get("shiny",false):adventure.exploration.settle_encounter(encounter_zone,int(enemies[0].uid),outcome=="captured")
 	for mon: Dictionary in adventure.team+enemies:

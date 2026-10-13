@@ -1,3 +1,46 @@
+ARCHÉLYS — CONTINUITÉ SOLO ET PRÉPARATION DU CATALOGUE (D76)
+Version : lab-{short_commit}
+Commit : {commit}
+
+Extrais tout le ZIP, garde EXE/PCK/runtime/showdown ensemble et lance
+Archelys-Laboratoire.exe. Nom inchangé ; aucune remise à zéro nécessaire.
+Ce lot regroupe huit blocs solo. Boutique agrandie et vitesse réelle ×4
+conservées. Aucun nouveau décor ni choix de Pokédex définitif.
+
+UN SEUL PARCOURS DE TEST POUR CE LOT
+Charge ta partie, vérifie équipe/sac/position et continue normalement.
+Paramètres → Touches : Course est maintenant reconfigurable (Maj par défaut).
+Choisis une touche libre, ferme le menu et compare marche/course sur le même
+trajet. Relâcher la touche doit arrêter la course. Restaure Maj si souhaité.
+Si tu utilises une manette, RB maintenu active la course ; ce test est facultatif.
+
+Paramètres → Vitesse : choisis ×2 ou ×4, sauvegarde puis ferme réellement le jeu.
+Relance : le réglage doit rester, même si tu charges une autre partie.
+Démo et atelier partagent ce réglage ; comparer ×1 et ×4 sur le même trajet.
+Langue, audio, touches et distance de caméra doivent rester conservés.
+
+Ouvre Sac/Équipe : équiper puis remplacer/retirer un objet doit transférer les
+bons stocks et conserver le même Pokémon. Les cadeaux restent uniques ;
+un refus pour sac plein ne doit ni perdre des objets ni valider une quête.
+Ces limites sont déjà testées automatiquement : pas besoin de remplir le sac
+ou de modifier tes fichiers. Lance un combat puis consulte PV/PP/objets.
+
+Si des choix d'attaque/évolution sont en attente, le compteur apparaît dans
+l'en-tête et le menu propose de les revoir. Accepter une évolution doit garder
+le slot du talent lorsqu'il existe, sans soigner gratuitement les dégâts.
+Les attaques adaptées au nouveau stade sont proposées explicitement ; aucune
+attaque n'est remplacée sans ton choix. Sauvegarde/recharge après résolution.
+Les nouvelles courbes EXP et le poison grave sont vérifiés automatiquement ;
+il n'est pas demandé de provoquer artificiellement ces cas dans cette démo.
+
+Un seul retour groupé suffit : version, lieu/action, attendu et observé.
+Pas de test multi/raid/Nuzlocke/Soul-link. Graphismes et Pokédex seront repris
+ensemble ; les autres bâtiments/PNJ restent provisoires et les combats 2D
+sont encore à produire. Documentation/Solo-continuite.md donne les huit blocs,
+leurs contrôles et limites. Tests Linux réussis, validation Windows attendue.
+Ne pas lire une nouvelle save contenant le statut toxique avec un ancien build.
+
+--- PARCOURS DU LOT PRÉCÉDENT, CONSERVÉ POUR RÉFÉRENCE ---
 ARCHÉLYS — BOUTIQUE AGRANDIE ET VITESSE CORRIGÉE (D75)
 Version : lab-{short_commit}
 Commit : {commit}

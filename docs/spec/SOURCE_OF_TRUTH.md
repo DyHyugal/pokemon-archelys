@@ -26,3 +26,6 @@ D73 autorise dix blocs autonomes suivants : extension proposée de la démo exis
 
 
 D74 : le retour du 13 octobre 2026 accepte l’option A (exploration 3D chibi, combats Pokémon 2D) et autorise l’intégration des pilotes Tripo fournis. Cela remplace les proportions USUL réalistes et l’attente des deux exports sur ce sujet, sans valider les modèles finaux ni toute la région.
+
+
+D76 : le propriétaire autorise les blocs solo disponibles en autonomie et demande une seule livraison. Graphismes/Pokédex seront repris ensuite ; ni roster ni direction artistique supplémentaire n'est décidé dans ce lot. Voir LOT_SOLO_CONTINUITE.

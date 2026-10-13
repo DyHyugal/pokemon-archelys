@@ -279,12 +279,8 @@ func _build_ui() -> void:
 	battle_panel=BattlePanel.new();battle_panel.comfort=comfort;add_child(battle_panel)
 	battle_panel.finished.connect(_battle_finished)
 	exploration_help=Label.new();exploration_help.add_theme_color_override("font_outline_color",Color.BLACK);exploration_help.add_theme_constant_override("outline_size",2);exploration_help.position=Vector2(460,16);layer.add_child(exploration_help)
-	var saved_speed: Variant=JSON.parse_string(FileAccess.get_file_as_string("user://laboratory_speed.json")) if FileAccess.file_exists("user://laboratory_speed.json") else 1
-	if Mon.integer(saved_speed,1,4):pause_menu.speed=float(saved_speed);Engine.time_scale=float(saved_speed)
-	pause_menu.speed_changed.connect(func(value: float):
-		Engine.time_scale=value
-		var file:=FileAccess.open("user://laboratory_speed.json",FileAccess.WRITE)
-		if file:file.store_string(JSON.stringify(int(value))))
+	pause_menu.speed=float(comfort.data.game_speed);Engine.time_scale=pause_menu.speed
+	pause_menu.speed_changed.connect(_set_game_speed)
 	pause_menu.travel_requested.connect(_travel)
 	pause_menu.closed.connect(func():Session.submit_axis(Vector2.ZERO);if lab_audio:lab_audio.stop_previews())
 	log_box=RichTextLabel.new();log_box.custom_minimum_size=Vector2(430,115);stack.add_child(log_box)
@@ -841,3 +837,11 @@ func _demo_runtime_check() -> void:
 	if f:f.store_string(JSON.stringify({"ok":valid,"template":OS.has_feature("template"),"standalone":OS.has_feature("standalone"),"base":base,"error":probe.last_error}));f.close()
 	probe.finish("escaped")
 	get_tree().quit(0 if valid else 1)
+
+func _set_game_speed(value: float) -> Error:
+	if not Mon.integer(value,1,4):return ERR_INVALID_PARAMETER
+	var error: int=comfort.set_option("game_speed",int(value))
+	if error!=OK:return error
+	Engine.time_scale=value;pause_menu.speed=value
+	if demo_game and demo_game.menu:demo_game.menu.speed=value
+	return OK

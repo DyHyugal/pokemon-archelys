@@ -1,7 +1,7 @@
 extends RefCounted
 ## Presentation only: consumes the player's public Showdown protocol, never sets.
 const Catalog=preload("res://scripts/domain/pokemon_catalog.gd")
-const STATUS={"brn":"burn","par":"paralysis","slp":"sleep","frz":"freeze","psn":"poison","tox":"poison"}
+const STATUS={"brn":"burn","par":"paralysis","slp":"sleep","frz":"freeze","psn":"poison","tox":"toxic"}
 const STATS={"atk":["Attaque","Attack"],"def":["Défense","Defense"],"spa":["Attaque Spéciale","Special Attack"],"spd":["Défense Spéciale","Special Defense"],"spe":["Vitesse","Speed"],"accuracy":["Précision","Accuracy"],"evasion":["Esquive","Evasion"]}
 const FIELDS={"SunnyDay":["soleil","sun"],"RainDance":["pluie","rain"],"Sandstorm":["tempête de sable","sandstorm"],"Snow":["neige","snow"],"Hail":["grêle","hail"],"Electric Terrain":["terrain électrique","Electric Terrain"],"Grassy Terrain":["terrain herbu","Grassy Terrain"],"Misty Terrain":["terrain brumeux","Misty Terrain"],"Psychic Terrain":["terrain psychique","Psychic Terrain"]}
 static func phrase(fr: String,en: String,lang: String) -> String:return fr if lang=="fr" else en

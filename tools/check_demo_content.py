@@ -6,7 +6,8 @@ import argparse, json, pathlib, sys
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 
 def audit(catalog, content):
-    errors = []
+    from check_pokemon_catalog import audit_catalog
+    errors = audit_catalog(catalog)
     species = catalog.get('species', {})
     moves = catalog.get('moves', {})
     def fail(condition, text):

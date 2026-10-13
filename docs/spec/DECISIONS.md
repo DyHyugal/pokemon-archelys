@@ -271,3 +271,8 @@ Propriétaire, 13 octobre 2026 : option A acceptée (exploration 3D chibi, prés
 ## D75 — proportions boutique et vitesse de déplacement
 
 Propriétaire, 13 octobre 2026 : D74 fonctionne ; demande boutique plus grande et course plus rapide, signale que ×4 accélère seulement le clip. Boutique +25 % proposée/intégrée, course 3,8 → 5,4 unités/s, déplacement démo et atlas soumis au multiplicateur au même titre que l’animation. Collision, entrée/sortie et reprise des anciennes positions de porte adaptées. Tests à 15/30/60 FPS pour ×1/×2/×4, course et marche, et anti-traversée des murs. Retour owner sur ce réglage à recevoir.
+
+
+## D76 — poursuite autonome du solo, pause graphique/Pokédex
+
+Propriétaire, 13 octobre 2026 : « continue tout les blocs que tu peux faire en autonomie […] un seul résumé […] partie graphique ce soir ou demain […] pokédex […] demain ». Autorise les travaux solo indépendants de ces choix, une seule livraison sans sollicitation intermédiaire. Huit blocs de continuité/commande/inventaire/progression et préflight du catalogue développés : [portée et preuves](../development/LOT_SOLO_CONTINUITE.md). Aucune nouvelle espèce, aucun nouvel asset ni scénario définitif ; schéma campagne 5 conservé. Validation Windows de ce lot à recevoir, multi/raids/défis reportés.

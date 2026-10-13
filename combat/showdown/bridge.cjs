@@ -11,7 +11,7 @@ const catalog = require('./catalog.json');
 if (!Dex.data.Items.luckyegg) Dex.data.Items.luckyegg={name:'Lucky Egg',num:231,gen:2};
 const VERSION = 1;
 const statKeys = ['hp','atk','def','spa','spd','spe'];
-const statuses = {'':'',burn:'brn',poison:'psn',paralysis:'par',sleep:'slp',freeze:'frz'};
+const statuses = {'':'',burn:'brn',poison:'psn',toxic:'tox',paralysis:'par',sleep:'slp',freeze:'frz'};
 const reverseStatus = Object.fromEntries(Object.entries(statuses).map(([a,b])=>[b,a]));
 const weatherIds = {sunnyday:'sun',raindance:'rain',sandstorm:'sand',snowscape:'snow'};
 const terrainIds = {electricterrain:'electric',grassyterrain:'grass',mistyterrain:'misty',psychicterrain:'psychic'};
@@ -53,6 +53,7 @@ function format(mode) {
     p.status=statuses[src.status];
     p.statusState={id:p.status,target:p};
     if(p.status==='slp')p.statusState.time=src.status_turns;
+    if(p.status==='tox')p.statusState.stage=0;
    }
   }};
  Dex.formats.rulesetCache.set(f.id,f);return f;
@@ -163,7 +164,7 @@ class Adapter {
   const defeated=[];
   for(const p of b.p2.pokemon)if(p.fainted&&!this.rewarded.has(p.name)){this.rewarded.add(p.name);defeated.push(Number(p.name));}
   const party=s=>s.pokemon.map(p=>({uid:Number(p.name),hp:p.hp,maxhp:p.maxhp,
-   status:reverseStatus[p.status]||(p.status==='tox'?'poison':''),status_turns:p.status==='slp'?Math.min(3,p.statusState.time||0):0,
+   status:reverseStatus[p.status]||'',status_turns:p.status==='slp'?Math.min(3,p.statusState.time||0):0,
    item:p.item?(Object.keys(catalog.items).find(k=>id(k)===p.item)||p.item):'',
    form:p.species.id,mega:p.species.isMega||false,
    // Transform's temporary moves must never replace permanent campaign moves or their PP.
