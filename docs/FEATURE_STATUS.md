@@ -2,6 +2,8 @@
 
 # État des fonctionnalités
 
+POC graphique isolé du 13 octobre 2026 : [boutique Blender → GLB → Godot](development/poc-boutique/README.md) effectivement produite sans service 3D payant. Source/compatibilité/captures contrôlées ; aucun remplacement dans la démo, finition artistique encore insuffisante pour une validation finale. Les statuts de gameplay ci-dessous restent inchangés.
+
 Les statuts portent sur les preuves, pas sur l’enthousiasme ou la présence dans une roadmap.
 
 | Fonction | État | Preuve ou condition |

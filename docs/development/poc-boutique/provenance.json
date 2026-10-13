@@ -1,0 +1,392 @@
+{
+  "scope": "POC isolé, aucun remplacement dans le jeu",
+  "start_utc": "2026-10-12T23:58:32Z",
+  "sealed_utc": "2026-10-13T00:29:39.381560+00:00",
+  "elapsed_minutes_until_pack": 31.12,
+  "blender": "4.3.2",
+  "godot": "4.6.3",
+  "paid_3d_generation_calls": 0,
+  "geometry_iterations": 3,
+  "author": "Géométrie originale écrite en bpy ; textures albedo déterministes originales avec Pillow",
+  "reference": "D001 boutique, image de travail dérivée des concepts tropicaux D67/D68 ; aucune extraction de modèle officiel",
+  "rights": "Fichiers de travail originaux pour le projet ; aucune licence de designs Pokémon accordée implicitement, pas de licence publique générale d’assets décidée ici",
+  "visual_status": "POC intermédiaire, finition insuffisante pour certifier la qualité finale du concept ; validation owner distincte",
+  "validation": "Source Blender rouverte, GLB autonome audité, 12 rendus FHD réels, 114 conditions Godot sans échec",
+  "files": [
+    {
+      "path": "BILAN.md",
+      "bytes": 9645,
+      "sha256": "bd44f2b212861130b21e39bb4e0a9da769ff3b69467203699c6e0e68c2978848"
+    },
+    {
+      "path": "Comparaison.html",
+      "bytes": 3078,
+      "sha256": "2e60e11579413b2fb4190a092c5b897bbaa0d8ba8adc89e2d370f92bb4cdcaad"
+    },
+    {
+      "path": "LIRE-MOI.md",
+      "bytes": 5192,
+      "sha256": "48aeed55724e770da6337e11b6af10c7e810ba997e0c19ebfc6f8b3838b697ed"
+    },
+    {
+      "path": "audit_model.py",
+      "bytes": 1218,
+      "sha256": "0c333d99ca3ed859884167966dc297872e489dc93f33dbb7e90cb99f64b93f5b"
+    },
+    {
+      "path": "blend-audit.json",
+      "bytes": 247,
+      "sha256": "a7ec46a252a064d517edf87fb1cc2f08b7955ef4800d87d2a76ff1098efb7110"
+    },
+    {
+      "path": "boutique-archelys.blend",
+      "bytes": 7233336,
+      "sha256": "282e0aea7523baa783bcf2abead31264967936bcde5347024af288d863424ae4"
+    },
+    {
+      "path": "boutique-archelys.glb",
+      "bytes": 4208892,
+      "sha256": "4acb87eb530152ebc7e3c828eae7029480fd881b196ae27ae615ddc9c08670f1"
+    },
+    {
+      "path": "build_shop.py",
+      "bytes": 24675,
+      "sha256": "b593316d5b0c87a9935ced7356ab14207e3f7f11fbaa6008694c25e1c1b71a5a"
+    },
+    {
+      "path": "export_runtime.py",
+      "bytes": 2652,
+      "sha256": "6944ae8914270754bf5f4c1b14c532581a8f9c1e54d989b13c7fa2d113cf5eb9"
+    },
+    {
+      "path": "glb-inspection.json",
+      "bytes": 255,
+      "sha256": "56c224bd44fc35ef6c808273c0348ac2f1f5401b534683de1e0add720ffb312c"
+    },
+    {
+      "path": "godot/boutique-archelys.glb",
+      "bytes": 4208892,
+      "sha256": "4acb87eb530152ebc7e3c828eae7029480fd881b196ae27ae615ddc9c08670f1"
+    },
+    {
+      "path": "godot/boutique-archelys.glb.import",
+      "bytes": 1056,
+      "sha256": "6d4ac06088cedb66a202f2a5c8688ff9d5dbb84b7d30147d6a47b89f09b38282"
+    },
+    {
+      "path": "godot/boutique-archelys_basalt.png",
+      "bytes": 153202,
+      "sha256": "544241ff4367bb194f1796578f2f8432fd7aaf2993eacf1d8037f7d0a5b25a68"
+    },
+    {
+      "path": "godot/boutique-archelys_basalt.png.import",
+      "bytes": 1042,
+      "sha256": "445494c857f75a0217d39810dae610649077ec83e683d6df0c90b33d114ae16f"
+    },
+    {
+      "path": "godot/boutique-archelys_canvas.png",
+      "bytes": 84949,
+      "sha256": "051cb055a04fde0898763ef98176cd714eb7269a950f31274867c384defa1598"
+    },
+    {
+      "path": "godot/boutique-archelys_canvas.png.import",
+      "bytes": 1042,
+      "sha256": "66c020790d2e8a66ca7c87dbf339cea103459213799cafa81f1eb2222443c627"
+    },
+    {
+      "path": "godot/boutique-archelys_canvas_teal.png",
+      "bytes": 84998,
+      "sha256": "a8ed46eaa9e78f758706fe46e973419097a66102d53536bdb9ff483b66859609"
+    },
+    {
+      "path": "godot/boutique-archelys_canvas_teal.png.import",
+      "bytes": 1057,
+      "sha256": "d6409ef4359ca21673e992a8a2e03bd0c61216e52ef422a36094f34c4b155a04"
+    },
+    {
+      "path": "godot/boutique-archelys_sandstone.png",
+      "bytes": 153395,
+      "sha256": "3fd5986881ccbe4b9763f9800026e1d3730dae1a772f4d5c37374799bebd740a"
+    },
+    {
+      "path": "godot/boutique-archelys_sandstone.png.import",
+      "bytes": 1051,
+      "sha256": "4d180bd4d2b5270042fc3fa6acfd7b6164af6d55348cc8a96282e3b2125af108"
+    },
+    {
+      "path": "godot/boutique-archelys_stucco.png",
+      "bytes": 115984,
+      "sha256": "c2a935c1de14dc64b45c51c2bdbbc2467433a274bae0b310576545c6857abe80"
+    },
+    {
+      "path": "godot/boutique-archelys_stucco.png.import",
+      "bytes": 1042,
+      "sha256": "d96d9a22564687b42d24ca24414ff594abe45ed80e0611a24d5e0cd97a577b58"
+    },
+    {
+      "path": "godot/boutique-archelys_teal.png",
+      "bytes": 105359,
+      "sha256": "5e32006c4fb2960f639b8ec440fc378b2e894ff2b8331c513da3132d2ec16b9b"
+    },
+    {
+      "path": "godot/boutique-archelys_teal.png.import",
+      "bytes": 1036,
+      "sha256": "f76fb0e369eaaced254683b29b65b8e3f868ad5b22ed3977a86d1b082226a41d"
+    },
+    {
+      "path": "godot/boutique-archelys_teal_dark.png",
+      "bytes": 105617,
+      "sha256": "a5226f8162104139da4472e594921c0d209ae814651455cc226994376f30019f"
+    },
+    {
+      "path": "godot/boutique-archelys_teal_dark.png.import",
+      "bytes": 1051,
+      "sha256": "caedfa444d29a620d3296b5e3d0d3240e6a6a09070b536e47b3e8707e87f166a"
+    },
+    {
+      "path": "godot/boutique-archelys_timber.png",
+      "bytes": 136962,
+      "sha256": "dc8023a85c613975a74ab73745e030ab6078d6372ca4bfb5906ac7eb955724af"
+    },
+    {
+      "path": "godot/boutique-archelys_timber.png.import",
+      "bytes": 1042,
+      "sha256": "b1e084269e3dfb173d3ea89bf4982dc682aab374ce82febd380e12b4a39ffa30"
+    },
+    {
+      "path": "godot/boutique-archelys_timber_dark.png",
+      "bytes": 136960,
+      "sha256": "8321f73d2d756fe59c5a387cc70ba1f911f5b234619719018341f5b8283594a8"
+    },
+    {
+      "path": "godot/boutique-archelys_timber_dark.png.import",
+      "bytes": 1056,
+      "sha256": "5c3d104a03dc0c22828379eda4167fb491e547c3b0a4a1535a485eaf21a9f2de"
+    },
+    {
+      "path": "godot/inspect.gd",
+      "bytes": 6149,
+      "sha256": "791433afdf88425b5c90c3f5ecc633a3e5e09149e82869e4df5bbe40927f3dff"
+    },
+    {
+      "path": "godot/inspect.gd.uid",
+      "bytes": 20,
+      "sha256": "588f76fee57ac06e95e202c505d9f73dda5deb52e100087128424d1cd77dfc83"
+    },
+    {
+      "path": "godot/project.godot",
+      "bytes": 410,
+      "sha256": "1360f1cf747bd251496fb81d327ce42b59a9db07e3e09e1ca892739662cd3e85"
+    },
+    {
+      "path": "godot-metrics.json",
+      "bytes": 11429,
+      "sha256": "cd4ba6ed098beb11090137ae7cc8b0b3e24efc187a2c734f63760c36e64b5637"
+    },
+    {
+      "path": "iteration-01/metrics.json",
+      "bytes": 2368,
+      "sha256": "6b63d326f98524f13c2c6e11f476557ba8cf5e4136e6223ee9cba6cd2dba259f"
+    },
+    {
+      "path": "iteration-01/premier-rendu.png",
+      "bytes": 3783324,
+      "sha256": "85c4efd54cf22b5e996f964f6535fdbdf97055aea7363113158fd6c0a46cf46d"
+    },
+    {
+      "path": "iteration-02/godot-arriere-avant-correction.png",
+      "bytes": 232055,
+      "sha256": "f018c676559cfb13dc34aae1add7d0db51bf15383be6ee1989114db72aff818e"
+    },
+    {
+      "path": "iteration-02/godot-avant-correction.png",
+      "bytes": 515852,
+      "sha256": "e39740d18414d818a8625a0a0b036c6ff39592f4aa0da3dd17cf59596657a4f2"
+    },
+    {
+      "path": "iteration-02/metrics.json",
+      "bytes": 2440,
+      "sha256": "d72fb2d3dfa0b434ea3a6485e835f4526ebcb49425385fcc5166f3fa043da147"
+    },
+    {
+      "path": "logs/blend-audit.log",
+      "bytes": 354,
+      "sha256": "cedecb07085bc3272dd9d797727e63472ee04eacd03b9aedf193f2ea607c0695"
+    },
+    {
+      "path": "logs/build-01.log",
+      "bytes": 55453,
+      "sha256": "8f2cb4954cabafbe029f492153c85dac5d400ca5056e118391345d828b181345"
+    },
+    {
+      "path": "logs/build-02.log",
+      "bytes": 55503,
+      "sha256": "215023e86b21f9b246be19df8b7236e4e880be996eb95e38c5d41ad7db40c709"
+    },
+    {
+      "path": "logs/build-03.log",
+      "bytes": 55503,
+      "sha256": "a5dfd55f3d5fd687757724339c5dd2afc92266d52d7f2c937c94adb4fcb8d225"
+    },
+    {
+      "path": "logs/export-runtime.log",
+      "bytes": 4271,
+      "sha256": "6e5d39798595ab13b4f579ba98ef928a30c927f320fd00fd88f70d73c44ef69b"
+    },
+    {
+      "path": "logs/godot-import.log",
+      "bytes": 3583,
+      "sha256": "dfc52edda9da7fb6ad5d041d8f1f62cf4b68fa2c39a493bd13be138654a1d226"
+    },
+    {
+      "path": "logs/godot-render.log",
+      "bytes": 6214,
+      "sha256": "6e4467455bbb67bb7fd0baea6dfb0cffee38f29ca6fa05579bd9bd55ed6d31b7"
+    },
+    {
+      "path": "logs/render-first.log",
+      "bytes": 83368,
+      "sha256": "1ea465a596fe09fbf1d0e937b7dd868891bc04e49d575d76196310b96ee3a805"
+    },
+    {
+      "path": "logs/renders-final.log",
+      "bytes": 487762,
+      "sha256": "d801bbcc6691e8eb24d1db5d96eb70b6c73ba1faa38e35ca9b24e67fbc44b86f"
+    },
+    {
+      "path": "make_textures.py",
+      "bytes": 1535,
+      "sha256": "fad2ea5302053c138032e89c18ff584b3d389459fa87f66b9ff8470cac91c21e"
+    },
+    {
+      "path": "metrics.json",
+      "bytes": 2440,
+      "sha256": "261bd6949f28076e4f8880bb268e64e613f62f349bcd7bf8b131fc863e2fe788"
+    },
+    {
+      "path": "reference-boutique.png",
+      "bytes": 1916780,
+      "sha256": "5066a8b8416e9acb24a9a307ab3933bf653a3aba3a582e60a881cd610e31dfeb"
+    },
+    {
+      "path": "render_poc.py",
+      "bytes": 1146,
+      "sha256": "b4ca2da6affcd5a128f97802b26c620de367e0fe931a2d942ea473921e97027a"
+    },
+    {
+      "path": "renders/blender-arriere.png",
+      "bytes": 3184370,
+      "sha256": "125f135bd5fee347b105175e3d0e01d8ff4e626fe0eb9171012bd97ae22a58a6"
+    },
+    {
+      "path": "renders/blender-face.png",
+      "bytes": 3349742,
+      "sha256": "f2b4b382f7e03493984c41b741e1c906b00ae37bea2c587e2bc3367210bd6e92"
+    },
+    {
+      "path": "renders/blender-jeu.png",
+      "bytes": 3426534,
+      "sha256": "bd60a77cb06a55e45ff29be21741370ef8484c91496c5418e742367e781c3f57"
+    },
+    {
+      "path": "renders/blender-profil.png",
+      "bytes": 3230414,
+      "sha256": "5690c8daf175e35b8ddc7910d03405eca3ff3539a7ec66f18d1109d3b17abcf6"
+    },
+    {
+      "path": "renders/blender-trois-quarts-arriere.png",
+      "bytes": 3275731,
+      "sha256": "2303de4673272d81c31b2834b3aead8c742a2ef59a7a16207eded2ced58e4a00"
+    },
+    {
+      "path": "renders/blender-trois-quarts.png",
+      "bytes": 3418075,
+      "sha256": "f4327d96443fe89ffee537c753c9bf27c71d82db128785bca34c8d8ec4f819dd"
+    },
+    {
+      "path": "renders/godot-arriere.png",
+      "bytes": 245845,
+      "sha256": "eda7983e8e4066c632f135eabcf4bf59277b698c10409d56fc38f85837f0814d"
+    },
+    {
+      "path": "renders/godot-face.png",
+      "bytes": 388753,
+      "sha256": "fb1b736b72f10ebb0c7f15acd87cec828213fa9993c31078d6c4fe4257e2db46"
+    },
+    {
+      "path": "renders/godot-jeu.png",
+      "bytes": 724197,
+      "sha256": "2f9c4b7afe1a0971a835ab7d08a026c623ff53fa2085a074984986cce5b3f0ac"
+    },
+    {
+      "path": "renders/godot-porte-ouverte.png",
+      "bytes": 622817,
+      "sha256": "a695b248d26b2c8d8c6b8e62690f5afe95691ffa920961b4891bbff853a45068"
+    },
+    {
+      "path": "renders/godot-profil.png",
+      "bytes": 271557,
+      "sha256": "2973d586ee9149b05e2bd09f16ccd5b45becf72ddbe1027697260320c927562e"
+    },
+    {
+      "path": "renders/godot-trois-quarts.png",
+      "bytes": 622788,
+      "sha256": "8ce81d598c24ccee474dc4e76d7fc4b403230e1300650d0605d7a67e501d9a5d"
+    },
+    {
+      "path": "runtime-metrics.json",
+      "bytes": 2315,
+      "sha256": "e625797652c269e554a73d7e4c0908c3272f7b0f5ed966e9dd4afa8a44ca3f49"
+    },
+    {
+      "path": "start.json",
+      "bytes": 242,
+      "sha256": "a1b2116f3d821e0ec90c91651133c3633bf340e8896273989c6f65ca1db5aabd"
+    },
+    {
+      "path": "textures/basalt.png",
+      "bytes": 153202,
+      "sha256": "544241ff4367bb194f1796578f2f8432fd7aaf2993eacf1d8037f7d0a5b25a68"
+    },
+    {
+      "path": "textures/canvas.png",
+      "bytes": 84949,
+      "sha256": "051cb055a04fde0898763ef98176cd714eb7269a950f31274867c384defa1598"
+    },
+    {
+      "path": "textures/canvas_teal.png",
+      "bytes": 84998,
+      "sha256": "a8ed46eaa9e78f758706fe46e973419097a66102d53536bdb9ff483b66859609"
+    },
+    {
+      "path": "textures/sandstone.png",
+      "bytes": 153395,
+      "sha256": "3fd5986881ccbe4b9763f9800026e1d3730dae1a772f4d5c37374799bebd740a"
+    },
+    {
+      "path": "textures/stucco.png",
+      "bytes": 115984,
+      "sha256": "c2a935c1de14dc64b45c51c2bdbbc2467433a274bae0b310576545c6857abe80"
+    },
+    {
+      "path": "textures/teal.png",
+      "bytes": 105359,
+      "sha256": "5e32006c4fb2960f639b8ec440fc378b2e894ff2b8331c513da3132d2ec16b9b"
+    },
+    {
+      "path": "textures/teal_dark.png",
+      "bytes": 105617,
+      "sha256": "a5226f8162104139da4472e594921c0d209ae814651455cc226994376f30019f"
+    },
+    {
+      "path": "textures/timber.png",
+      "bytes": 136962,
+      "sha256": "dc8023a85c613975a74ab73745e030ab6078d6372ca4bfb5906ac7eb955724af"
+    },
+    {
+      "path": "textures/timber_dark.png",
+      "bytes": 136960,
+      "sha256": "8321f73d2d756fe59c5a387cc70ba1f911f5b234619719018341f5b8283594a8"
+    }
+  ]
+}

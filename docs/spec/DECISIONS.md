@@ -1,5 +1,7 @@
 # Registre des décisions
 
+Complément du 13 octobre 2026 : le propriétaire autorise un POC pratique **Codex/Blender sans API 3D payante**, isolé, avec source, GLB, plusieurs vues et import Godot ; aucun remplacement d'asset/scène/gameplay et aucune fusion main sans validation. [Livraison et bilan](../development/poc-boutique/README.md). Cette demande ne valide ni sa finition artistique ni l'abandon de Tripo/Meshy.
+
 Complément graphique après D73 : le propriétaire demande explicitement les références « une asset à chaque fois ». [35 modèles maîtres en images individuelles](../design/ASSETS_ISOLES_PREMIERE_ILE.md) préparés avec prompts et catalogue ; aucune validation de modèles 3D, avatar, rendu en jeu ou détails architecturaux déduite de cette demande.
 
 Complément après D73 : le propriétaire demande un fichier Excel de prompts pour chaque asset prévisible de la première île, avec zone, déclinaison, prompt et commentaire. [Catalogue préparatoire](../design/PROMPTS_PREMIERE_ILE.md) : ne vaut ni validation de nouvelles tenues/designs ni production de modèles. Pokédex/starters/divinité toujours à recevoir.

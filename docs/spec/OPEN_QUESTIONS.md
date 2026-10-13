@@ -1,5 +1,7 @@
 # Questions ouvertes après N01–N51
 
+POC graphique du 13 octobre 2026 : [boutique construite sans service 3D payant](../development/poc-boutique/README.md). Source et import vérifiés ; finition insuffisante pour certifier le concept. L'acceptation visuelle et la comparaison avec un véritable export Meshy/Tripo restent à faire ; ne pas interpréter les contrôles techniques comme choix d'un pipeline final. Aucun nouveau questionnaire ni blocage demandé pendant le POC.
+
 Les 51 réponses sont reçues et transcrites dans REPONSES_N01_N51.md. Ne plus présenter les choix répondus comme ouverts.
 
 - N02 incompris : proposition à expliquer — les portails célestes fonctionneraient avec l'accord des gardiens, et RR chercherait à forcer l'accès. Le pouvoir exact reste à choisir.
