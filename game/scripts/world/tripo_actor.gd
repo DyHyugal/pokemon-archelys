@@ -3,7 +3,7 @@ extends RefCounted
 const Appearance=preload("res://scripts/domain/appearance.gd")
 const PALETTE=preload("res://assets/tripo/chibi_palette.gdshader")
 const WALK_SPEED=1.7
-const RUN_SPEED=3.8
+const RUN_SPEED=5.4
 static func create() -> Node3D:
  var actor:=Node3D.new();actor.name="TripoHero";actor.set_meta("tripo_pilot",true)
  var visual: Node3D=load("res://assets/tripo/chibi.glb").instantiate()

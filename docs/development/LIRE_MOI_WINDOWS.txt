@@ -1,21 +1,27 @@
-ARCHÉLYS — PILOTES GRAPHIQUES TRIPO (D74)
+ARCHÉLYS — BOUTIQUE AGRANDIE ET VITESSE CORRIGÉE (D75)
 Version : lab-{short_commit}
 Commit : {commit}
 
 Extrais tout le dossier, garde EXE/PCK/runtime/showdown ensemble et lance
 Archelys-Laboratoire.exe. Nom inchangé. Aucune remise à zéro nécessaire.
-La boutique et le héros du havre utilisent tes exports Tripo retopologisés.
+La boutique Tripo est 25 % plus grande ; course +42 %. ×4 accélère maintenant
+le déplacement réel autant que l’animation. Héros et exports Tripo conservés.
 Les autres bâtiments/PNJ restent provisoires ; les combats 2D sont à venir.
 
 PARCOURS DE TEST DE CE LOT
 Continue une partie de démo, ou crée une partie sur un emplacement libre.
 Si tu es ailleurs, reviens au havre. Marche jusqu’à la boutique au nord-est,
 près de la grande place. Inspecte façade/toit et taille relative au héros.
-Vérifie que les murs bloquent le passage, puis E/Entrée devant la porte :
-l’intérieur existant doit s’ouvrir. Achat et retour au havre doivent marcher.
+Vérifie que les nouveaux murs bloquent le passage, puis E/Entrée devant la porte :
+l’intérieur existant doit s’ouvrir. Achat et retour au havre doivent marcher,
+sans apparaître dans un mur. Une ancienne position sauvegardée devant la porte
+est déplacée vers le nouveau seuil si elle se trouve dans la boutique agrandie.
 
 Le héros est maintenant ton chibi. Déplace-toi dans plusieurs directions,
 relâche les touches pour arrêter ; maintiens Maj pour courir.
+Dans Paramètres, compare la course à ×1 puis ×4 sur le même trajet : le trajet
+doit prendre environ quatre fois moins de temps, sans traverser les murs.
+La marche respecte aussi le multiplicateur, comme les visites graphiques.
 Observe les jambes/bras, la rotation et l’absence de déplacement autonome
 ou de dérive après l’arrêt. Le repos est une pose fixe du clip de marche,
 pas une nouvelle animation de respiration. La vitesse pourra être ajustée

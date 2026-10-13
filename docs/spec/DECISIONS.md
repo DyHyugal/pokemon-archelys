@@ -266,3 +266,8 @@ Owner : « Ok enchaine sur les 10 prochjains blocs », 12 octobre 2026. Poursuit
 ## D74 — option A et pilotes Tripo
 
 Propriétaire, 13 octobre 2026 : option A acceptée (exploration 3D chibi, présentation des Pokémon en combat 2D), Tripo choisi ; exports boutique et héros fournis, puis versions retopologisées et animées. Intégration/retouches et livraison de démo explicitement demandées. [Lot et limites](../development/LOT_TRIPO_PILOTES.md). Modèles dans la démo, pas de validation artistique ou Windows implicite.
+
+
+## D75 — proportions boutique et vitesse de déplacement
+
+Propriétaire, 13 octobre 2026 : D74 fonctionne ; demande boutique plus grande et course plus rapide, signale que ×4 accélère seulement le clip. Boutique +25 % proposée/intégrée, course 3,8 → 5,4 unités/s, déplacement démo et atlas soumis au multiplicateur au même titre que l’animation. Collision, entrée/sortie et reprise des anciennes positions de porte adaptées. Tests à 15/30/60 FPS pour ×1/×2/×4, course et marche, et anti-traversée des murs. Retour owner sur ce réglage à recevoir.

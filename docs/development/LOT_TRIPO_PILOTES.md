@@ -21,3 +21,12 @@ Les autres bâtiments/PNJ restent des maquettes : aucun remplacement massif, auc
 Contrôles réels : import des GLB, budget géométrique, shaders indépendants entre aperçu/joueur, clips joués et racine stable sur leur boucle, entrée/sortie boutique, obstacles, sauvegarde/reprise et atelier inchangé. Contrôles de cette version : 23 conditions pilotes en headless (avant captures), puis six captures FHD et contrôles associés. Régressions du socle via `tools/check_prototype.py`, incluant `tests/tripo_pilots.gd`. Captures réalisées dans Godot à 1920×1080 avec llvmpipe logiciel ; elles ne prouvent pas une configuration minimale ni les performances Windows.
 
 Validation visuelle et exécution Windows à effectuer par le propriétaire avec le parcours du LIRE-MOI. Vérifier notamment le rendu de face/profil/dos, les mouvements du chibi, la taille relative à la boutique et la fluidité. Pas de test multi requis.
+
+
+## D75 — ajustements après playtest
+
+Le propriétaire confirme le fonctionnement de D74 et demande une boutique plus grande, une course plus rapide et un ×4 qui accélère réellement le déplacement. Boutique agrandie de 25 % (échelle effective 5,58 → 6,975), collision et porte alignées. L’entrée et le retour depuis la boutique utilisent la même position. Une ancienne sauvegarde dans le volume désormais occupé par la boutique est replacée devant la porte en mémoire, avec campagne/équipe/flags conservés ; aucun effacement ni nouveau schéma.
+
+Course 3,8 → 5,4 unités/s (+42 %), marche inchangée. La division du delta par Engine.time_scale annulait le multiplicateur de vitesse ; elle est retirée dans la démo et l’atlas. La limite de frame est exprimée en temps réel puis remise à l’échelle, afin de conserver ×4 à 15/30 FPS. Sous-pas de collision conservés pour éviter de traverser les obstacles à grande vitesse. Le clip reste animé par le même temps simulé.
+
+Contrôles spécifiques : 44 conditions pilotes, dont déplacement ×1/×2/×4 pour marche/course à 15/30/60 FPS, vitesse de course effective et mur franchissable interdit à ×4 ; atlas contrôlé séparément. Retour owner sur taille et vitesse finales à recevoir.

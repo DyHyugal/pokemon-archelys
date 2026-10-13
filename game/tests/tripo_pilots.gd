@@ -24,14 +24,17 @@ func run() -> void:
  game.new_demo();game.choose_starter("charmander")
  while not game.dialogue_lines.is_empty():game.advance_dialogue()
  var shop: Node3D=game.world.geometry.get_node("TripoShop")
- check(shop!=null and shop.scale.is_equal_approx(Vector3.ONE*5.58),"Registry shop replaces only the intended town building at normalized scale")
+ check(shop!=null and shop.scale.is_equal_approx(Vector3.ONE*6.975),"Registry shop replaces only the intended town building at normalized scale")
  var meshes: Array=shop.find_children("*","MeshInstance3D",true,false)
  check(meshes.size()==1 and meshes[0].mesh.get_faces().size()/3<=21000,"Shop uses the reduced geometry, not 1.77M source")
  check(not game.world.can_walk(Vector3(14,0,-12)) and not game.world.can_walk(Vector3(14,0,-9.4)),"Shop footprint remains blocked, including its forward edge")
  game.state.position=game.world.points['door-shop'];game.world.hero.position=game.state.position
  check(game.world.can_walk(game.state.position) and game.world.nearest()=="door-shop","Actual shop doorway remains walkable and nearest interaction")
  game.interact();check(game.state.location=="shop","Door enters the existing functional shop")
- game.interact("exit");check(game.state.location=="town","Existing shop exit returns to town")
+ game.interact("exit");check(game.state.location=="town" and game.state.position.is_equal_approx(game.world.points['door-shop']) and game.world.can_walk(game.state.position),"Shop exit returns outside enlarged footprint at actual door")
+ var old_save: Dictionary=game.state.snapshot()
+ game.state.position=Vector3(15,0,-8.7);game.world.build(game.state)
+ check(game.state.position.is_equal_approx(game.world.points['door-shop']) and game.state.campaign.snapshot()==old_save.campaign and game.state.flags==old_save.flags,"Older doorstep saves are safely repositioned without losing progression")
  var hero: Node3D=game.world.hero
  check(hero.has_meta("tripo_pilot") and hero.find_child("AnimationPlayer",true,false)!=null,"Actual supplied rigged chibi is used")
  var animator: AnimationPlayer=hero.find_child("AnimationPlayer",true,false)
@@ -79,6 +82,24 @@ func run() -> void:
   Actor.animate(hero,true,true,Actor.RUN_SPEED);animator.advance(.25);animator.speed_scale=0;await shot("06-avatar-run")
   Actor.animate(hero,false,false);animator.advance(.2)
 
+ # Feed scaled engine delta for equal REAL durations, including 15/30 FPS.
+ var prior_scale: float=Engine.time_scale
+ for fps: float in [60.0,30.0,15.0]:
+  for running: bool in [false,true]:
+   var baseline:=0.0
+   for multiplier: float in [1.0,2.0,4.0]:
+    Engine.time_scale=multiplier;game.state.position=Vector3(0,0,5);game.world.hero.position=game.state.position
+    for frame: int in range(5):game.world.move_hero(Vector2.RIGHT,multiplier/fps,game.state,running)
+    var distance: float=game.state.position.x
+    if multiplier==1:baseline=distance
+    check(is_equal_approx(distance,baseline*multiplier),"Actual displacement x"+str(multiplier)+" at "+str(fps)+" FPS, running="+str(running))
+ Engine.time_scale=1;game.state.position=Vector3(0,0,5)
+ game.world.move_hero(Vector2.RIGHT,.04,game.state,true)
+ check(is_equal_approx(game.state.position.x,.216),"New run actually travels 5.4 units/second")
+ Engine.time_scale=4;game.state.position=Vector3(14,0,-5)
+ for frame: int in range(10):game.world.move_hero(Vector2.UP,.16,game.state,true)
+ check(game.world.can_walk(game.state.position) and game.state.position.z>game.world.shop_blocker().end.y+.22,"Fast x4 run cannot tunnel through enlarged shop")
+ Engine.time_scale=prior_scale;game.state.position=Vector3(0,0,2)
  for i: int in range(10):game.world.move_hero(Vector2(1,0),.04,game.state)
  check(game.state.position.x>.5 and StateIsValid(game.state),"Rigged hero can move while state remains valid")
  game.save_game();var saved: Dictionary=game.state.snapshot();game.state.position=Vector3.ZERO;game.load_game()

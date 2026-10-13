@@ -24,7 +24,7 @@ manifest={'commit':args.commit,'godot':'4.6.3','stage':'technical-laboratory',
           'showdown':provenance,'distribution':'portable-external-pck-with-offline-showdown','unmodified_godot_template':True,
           'windows_execution':'not validated on Windows','network_validation':'deferred; prior lab-09897ca tested on localhost only'}
 (folder/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
-(folder/'release-notes.md').write_text('D74 : boutique et héros Tripo retopologisés intégrés dans le havre, marche/course (Maj), racine sans dérive, prévisualisation et palettes expérimentales. Saves conservées. Coiffure/visage fixes ; autres décors encore maquettes, présentation des combats 2D à venir. Parcours et limites dans LIRE-MOI.\n',encoding='utf-8')
+(folder/'release-notes.md').write_text('D75 : boutique Tripo agrandie de 25 %, collision/porte et anciennes positions sauvegardées adaptées. Course +42 % ; vitesse ×4 appliquée au déplacement réel dans la démo et l’atlas, y compris à FPS réduit. Schéma de saves conservé. Parcours de test dans LIRE-MOI.\n',encoding='utf-8')
 archive=folder/'Archelys-Laboratoire-Windows.zip'
 with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as z:
     for file in [exe,pck,folder/'LIRE-MOI.txt',folder/'manifest.json',root/'docs/licenses/Godot-LICENSE.txt',root/'docs/licenses/Godot-COPYRIGHT.txt',root/'docs/licenses/PokeAPI-LICENSE.txt',root/'docs/licenses/LABORATORY_AUDIO.md']:z.write(file,file.name)

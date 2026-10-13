@@ -34,6 +34,16 @@ func run() -> void:
    var before: Dictionary=a.snapshot();var pos: Array=session.campaign.players[1].position.duplicate()
    world.pause_menu.body.get_node("AtlasSite%d" % site).pressed.emit();await process_frame
    check(world.atlas_studio.active and not world.world_geometry.visible and not world.gameplay_layer.visible,"Real studio opens isolated proposed site "+region+str(site))
+   if region=="tropical" and site==0:
+    var studio: Node=world.atlas_studio;studio.toggle_walk()
+    var original_scale: float=Engine.time_scale
+    var distances: Array=[]
+    for multiplier: float in [1.0,4.0]:
+     Engine.time_scale=multiplier;studio.visitor_position=Vector3(0,0,11);studio.visitor.position=studio.visitor_position
+     studio.step(Vector2.RIGHT,.04*multiplier);distances.append(studio.visitor_position.distance_to(Vector3(0,0,11)))
+    Engine.time_scale=original_scale
+    check(distances[0]>.1 and is_equal_approx(distances[1],distances[0]*4),"Actual atlas walking also respects x4 movement")
+    studio.toggle_walk()
    if site==1:await proof("studio-"+region)
    world._travel("trail");world._slot_action("new",3);world._play_scene("lab-tour");world._contextual_action("cut");world._island_action("i-nurse")
    check(not world.photo_mode.start(world) and not world._begin_pokemon_battle([Mon.make("rattata",8,900000)]),"Modal studio blocks other modes")

@@ -214,7 +214,8 @@ func travel(id: String,flight: bool=false) -> void:
  var previous: String=state.location
  if not state.travel(id,flight):return
  if id=="town":
-  if previous in ["center","shop","home"]:state.position=World.TOWN_BUILDINGS[previous]+Vector3(0,0,3.5)
+  if previous=="shop":state.position=World.shop_door_position()
+  elif previous in ["center","home"]:state.position=World.TOWN_BUILDINGS[previous]+Vector3(0,0,3.5)
   elif previous=="trail":state.position=Vector3(0,0,-21)
  world.build(state);steps=0;persist_auto()
 func begin_battle(enemies: Array,trainer: String="") -> bool:

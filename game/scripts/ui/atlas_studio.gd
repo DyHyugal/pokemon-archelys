@@ -64,7 +64,7 @@ func step(axis: Vector2,delta: float) -> void:
  if not active or not walking:return
  var radians: float=deg_to_rad(angle)
  var direction:=Vector3(axis.x*cos(radians)+axis.y*sin(radians),0,-axis.x*sin(radians)+axis.y*cos(radians))
- var motion: Vector3=direction*4.0*minf(delta,0.1)/maxf(1.0,Engine.time_scale)
+ var motion: Vector3=direction*4.0*minf(delta,0.1*Engine.time_scale)
  var pieces: int=maxi(1,ceili(motion.length()/0.15))
  for i: int in range(pieces):
   var next: Vector3=visitor_position+Vector3(motion.x/pieces,0,0)

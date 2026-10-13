@@ -223,3 +223,8 @@ Livraison D73 : source `8da0f6f`, CI [38313303857](https://github.com/DyHyugal/p
 ## D74 — pilotes graphiques Tripo
 
 Boutique du havre et héros/aperçu remplacés par les exports retopologisés du propriétaire ; marche/course, racine fixe, collisions/porte et palettes expérimentales intégrées. [Portée et contrôles](development/LOT_TRIPO_PILOTES.md). Coiffure/visage fixes, autres décors encore maquettes, combats 2D non convertis dans ce lot. Playtest Windows et acceptation visuelle restent distincts.
+
+
+## D75 — retour des pilotes et correctifs
+
+Pilotes D74 confirmés fonctionnels par le propriétaire. Boutique agrandie de 25 %, collision/porte/sortie alignées et anciennes positions sauvegardées dégagées si nécessaire. Course 5,4 unités/s ; ×4 accélère désormais déplacement et animation dans la démo et les visites atlas. Réglage visuel/de vitesse à tester, sans modification du schéma des saves.

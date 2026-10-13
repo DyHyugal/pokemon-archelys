@@ -12,6 +12,12 @@ var geometry: Node3D
 var location: String=""
 var avatar_preview: Dictionary={}
 const TOWN_BUILDINGS={"center":Vector3(-15,0,-2),"shop":Vector3(14,0,-12),"home":Vector3(-16,0,8),"arcade":Vector3(0,0,-14),"villa":Vector3(14,0,0)}
+const SHOP_SIZE_MULTIPLIER=1.25
+static func shop_blocker() -> Rect2:
+ var at: Vector3=TOWN_BUILDINGS.shop
+ return Rect2(Vector2(at.x-2.55*SHOP_SIZE_MULTIPLIER,at.z-2.8*SHOP_SIZE_MULTIPLIER),Vector2(5.1,5.6)*SHOP_SIZE_MULTIPLIER)
+static func shop_door_position() -> Vector3:
+ return TOWN_BUILDINGS.shop+Vector3(1.0,0,3.3)*SHOP_SIZE_MULTIPLIER
 var show_labels: bool=true
 var locale: String="fr"
 func configure_labels(enabled: bool) -> void:
@@ -70,6 +76,10 @@ func build(state: RefCounted) -> void:
    npc("roadblock",Vector3(-3.5,0,-15),3)
  elif location in Chapter.LOCATIONS:preload("res://scripts/world/demo_chapter_world.gd").build(self,state)
  else:interior()
+ # Older saves can stand inside the newly enlarged shop footprint.
+ # Only reposition affected characters; do not change party, flags or save schema.
+ if location=="town" and shop_blocker().grow(.22).has_point(Vector2(state.position.x,state.position.z)):
+  state.position=shop_door_position()
  hero.position=state.position;Style.apply(hero,state.campaign.adventure.appearance);configure_labels(show_labels);follow()
 func cliff(at: Vector3,radius: float,height: float) -> void:
  var v:=PackedVector3Array();var normals:=PackedVector3Array();var colors:=PackedColorArray();var rings: Array=[]
@@ -102,18 +112,18 @@ func town() -> void:
  var plaza:=MeshInstance3D.new();plaza.mesh=disk;plaza.position=Vector3(0,.015,0);plaza.material_override=mat("ded5bd");geometry.add_child(plaza)
  for id: String in TOWN_BUILDINGS:
   var at: Vector3=TOWN_BUILDINGS[id]
-  var building: Node3D=asset("villa" if id=="home" else id,at,.9)
+  var building: Node3D=asset("villa" if id=="home" else id,at,.9*(SHOP_SIZE_MULTIPLIER if id=="shop" else 1.0))
   if id=="shop":
    building.name="TripoShop"
    for part: Node in building.find_children("*","MeshInstance3D",true,false):
     var original: Material=part.get_active_material(0)
     if original is StandardMaterial3D:
      var material: StandardMaterial3D=original.duplicate();material.roughness=.9;material.metallic=0;material.metallic_specular=.18;material.normal_scale=.35;part.material_override=material
-   blockers.append(Rect2(Vector2(at.x-2.55,at.z-2.8),Vector2(5.1,5.6)))
+   blockers.append(shop_blocker())
   else:blockers.append(Rect2(Vector2(at.x-3.4,at.z-2.3),Vector2(6.8,4.6)))
   if id in ["center","shop","home"]:
-   points["door-"+id]=at+Vector3(1.0 if id=="shop" else 0.0,0,3.3)
-   var sign:=Label3D.new();sign.text={"center":"CENTRE","shop":"BOUTIQUE","home":"MAISON"}[id];sign.position=at+Vector3(0,2.8,2.5);sign.set_meta("caption_id","door-"+id);sign.font_size=28;sign.pixel_size=.007;sign.billboard=BaseMaterial3D.BILLBOARD_ENABLED;geometry.add_child(sign)
+   points["door-"+id]=shop_door_position() if id=="shop" else at+Vector3(0,0,3.3)
+   var sign:=Label3D.new();sign.text={"center":"CENTRE","shop":"BOUTIQUE","home":"MAISON"}[id];sign.position=at+Vector3(0,2.8,2.5)*(SHOP_SIZE_MULTIPLIER if id=="shop" else 1.0);sign.set_meta("caption_id","door-"+id);sign.font_size=28;sign.pixel_size=.007;sign.billboard=BaseMaterial3D.BILLBOARD_ENABLED;geometry.add_child(sign)
  asset("clocktower",Vector3(-7,0,-5),.8);blockers.append(Rect2(Vector2(-8.3,-6.3),Vector2(2.6,2.6)))
  npc("vyna",Vector3(-3,0,2),2);npc("professor",Vector3(4,0,0),0);npc("resident",Vector3(-12,0,11),3)
  points["fish"]=Vector3(11,0,14);points["gate"]=Vector3(0,0,-23);points["supplies"]=Vector3(6,0,7)
@@ -198,7 +208,7 @@ func can_walk(at: Vector3) -> bool:
  return true
 func move_hero(axis: Vector2,delta: float,state: RefCounted,running: bool=false) -> void:
  var rate: float=preload("res://scripts/world/tripo_actor.gd").RUN_SPEED if running else preload("res://scripts/world/tripo_actor.gd").WALK_SPEED
- var motion:=Vector3(axis.x,0,axis.y)*rate*minf(delta,.08)/maxf(1,Engine.time_scale)
+ var motion:=Vector3(axis.x,0,axis.y)*rate*minf(delta,.08*Engine.time_scale)
  var steps: int=maxi(1,ceili(motion.length()/.12))
  var old: Vector3=state.position
  for i: int in range(steps):

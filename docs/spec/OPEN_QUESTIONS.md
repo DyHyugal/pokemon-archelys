@@ -73,3 +73,6 @@ Owner : « Ok enchaine sur les 10 prochjains blocs », 12 octobre 2026. Poursuit
 
 
 D74 : vrais exports Tripo reçus et intégrés (boutique, chibi retopologisé avec marche/course). Ne plus présenter ces deux modèles comme manquants. Retour visuel/Windows et autres modèles toujours attendus. Option A acceptée ; origine homogène des illustrations Pokémon et passage effectif des combats en 2D à traiter ensuite. Coiffures/visages et modularité des vêtements du chibi restent à produire.
+
+
+D75 : le retour owner confirme les pilotes D74 fonctionnels et demande un ajustement de taille/vitesse. Correctif de déplacement ×4, boutique +25 % et course +42 % préparés ; aucune nouvelle sélection graphique requise. Proportions/vitesse finales à apprécier au prochain test, sans rouvrir le choix Tripo ni l’option A.
