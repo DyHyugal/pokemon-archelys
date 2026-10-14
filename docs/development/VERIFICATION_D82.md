@@ -20,4 +20,6 @@ Le plugin est lié aux services Archélys ; il s’utilise avec le projet fourni
 
 ## Livraison
 
-Archive `Archelys-Atelier-Godot.zip` produite par `tools/package_workshop.py` : projet Godot, guide, outils et moteur de combat hors ligne Windows. Le packager contrôle le CRC et chaque fichier du manifeste SHA256 après écriture. Le `project.godot` de l’archive démarre l’exemple ; celui du dépôt conserve le laboratoire. CI et URL seront consignées après publication effective.
+Archive `Archelys-Atelier-Godot.zip` produite par `tools/package_workshop.py` : projet Godot, guide, outils et moteur de combat hors ligne Windows. Le packager contrôle le CRC et chaque fichier du manifeste SHA256 après écriture. Le `project.godot` de l’archive démarre l’exemple ; celui du dépôt conserve le laboratoire. Livraison source `14ab081f06b3ca40383d6ea778fe9a3ca542e1f6` ; [CI 38565618403](https://github.com/DyHyugal/pokemon-archelys/actions/runs/38565618403) terminée avec succès (validation et publication).
+
+[Télécharger l’Atelier Godot](https://github.com/DyHyugal/pokemon-archelys/releases/download/lab-14ab081/Archelys-Atelier-Godot.zip). Archive publiée effectivement retéléchargée : **261384196 octets**, **1322 fichiers** du manifeste, CRC et chaque SHA256 interne vérifiés. SHA256 de l’archive : `4bffd0da475b7bce0be41e42595dcd2bb42397b0ebd046f0ad8118b12c5c9994`. L’archive conserve le bilan au moment de sa construction ; ce document enregistre ensuite la vérification de publication.
