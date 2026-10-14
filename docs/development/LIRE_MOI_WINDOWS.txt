@@ -1,3 +1,9 @@
+ATELIER GODOT D82
+Le ZIP du laboratoire reste le jeu de test. Le nouvel éditeur se trouve dans
+Archelys-Atelier-Godot.zip (même livraison), à ouvrir avec Godot standard 4.6.3.
+Guide LIRE-MOI.md inclus : maps, PNJ/événements, sources USUL et limites.
+Aucun playtest graphique final ni import complet de ROM n’est annoncé.
+
 ARCHÉLYS — DÉMO DE CALIBRATION 2D (D81)
 Version : lab-{short_commit}
 Commit : {commit}

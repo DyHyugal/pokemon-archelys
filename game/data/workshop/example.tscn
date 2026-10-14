@@ -1,0 +1,149 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://addons/archelys_workshop/nodes/map_2d.gd" id="1_oljws"]
+[ext_resource type="Texture2D" path="res://assets/drawn/calibration/hero-sheet.png" id="2_wynxc"]
+[ext_resource type="Texture2D" path="res://assets/drawn/calibration/ground.png" id="3_8xvkk"]
+[ext_resource type="Script" path="res://addons/archelys_workshop/nodes/object_2d.gd" id="4_8a83e"]
+[ext_resource type="Texture2D" path="res://assets/drawn/calibration/kit.png" id="5_i6hyl"]
+[ext_resource type="Script" path="res://addons/archelys_workshop/core/event.gd" id="6_68beo"]
+[ext_resource type="Script" path="res://addons/archelys_workshop/core/step.gd" id="7_23rqf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggpfv"]
+atlas = ExtResource("2_wynxc")
+region = Rect2(186, 33, 148, 318)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4i35j"]
+atlas = ExtResource("3_8xvkk")
+region = Rect2(0, 0, 627, 627)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xpore"]
+atlas = ExtResource("5_i6hyl")
+region = Rect2(790, 98, 532, 432)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lywe1"]
+atlas = ExtResource("5_i6hyl")
+region = Rect2(157, 40, 440, 496)
+
+[sub_resource type="Resource" id="Resource_vknbx"]
+script = ExtResource("7_23rqf")
+french = "Cette map se modifie dans Godot : objets, collisions et événements. Aucun décor USUL n'est inclus."
+english = "Edit this map in Godot: objects, collisions and events. No USUM scenery is included."
+
+[sub_resource type="Resource" id="Resource_2yeyq"]
+script = ExtResource("7_23rqf")
+action = "give_item"
+key = "workshop-token"
+
+[sub_resource type="Resource" id="Resource_5kuu0"]
+script = ExtResource("7_23rqf")
+action = "set_flag"
+key = "gate-open"
+
+[sub_resource type="Resource" id="Resource_v7p5x"]
+script = ExtResource("7_23rqf")
+french = "Un jeton a été ajouté. Le passage à droite apparaît. Sauvegarder puis recharger conserve les flags et la langue."
+english = "A token was added. The passage appears on the right. Saving preserves flags and language."
+
+[sub_resource type="Resource" id="Resource_x1m27"]
+script = ExtResource("6_68beo")
+event_id = "guide-welcome"
+once_flag = "welcomed"
+steps = Array[ExtResource("7_23rqf")]([SubResource("Resource_vknbx"), SubResource("Resource_2yeyq"), SubResource("Resource_5kuu0"), SubResource("Resource_v7p5x")])
+
+[sub_resource type="Resource" id="Resource_dyw72"]
+script = ExtResource("7_23rqf")
+action = "warp"
+key = "workshop-annex"
+
+[sub_resource type="Resource" id="Resource_otvsu"]
+script = ExtResource("6_68beo")
+event_id = "passage"
+required_flag = "gate-open"
+steps = Array[ExtResource("7_23rqf")]([SubResource("Resource_dyw72")])
+
+[sub_resource type="Resource" id="Resource_06tfm"]
+script = ExtResource("7_23rqf")
+french = "Combat de contrôle Showdown : équipe de laboratoire provisoire."
+english = "Showdown control battle: temporary laboratory team."
+
+[sub_resource type="Resource" id="Resource_8u1cr"]
+script = ExtResource("7_23rqf")
+action = "battle"
+key = "workshop-trainer"
+
+[sub_resource type="Resource" id="Resource_n58cu"]
+script = ExtResource("7_23rqf")
+action = "set_flag"
+key = "trainer-won"
+
+[sub_resource type="Resource" id="Resource_kn28x"]
+script = ExtResource("7_23rqf")
+french = "Victoire confirmée par le moteur. Cette étape ne se valide pas sur défaite."
+english = "The engine confirmed victory. Losing does not complete this step."
+
+[sub_resource type="Resource" id="Resource_pse0c"]
+script = ExtResource("6_68beo")
+event_id = "challenge"
+once_flag = "trainer-won"
+steps = Array[ExtResource("7_23rqf")]([SubResource("Resource_06tfm"), SubResource("Resource_8u1cr"), SubResource("Resource_n58cu"), SubResource("Resource_kn28x")])
+
+[node name="AtelierExemple" type="Node2D" unique_id=633999263]
+script = ExtResource("1_oljws")
+map_id = "workshop-example"
+spawn = Vector2(0, 160)
+actor_texture = SubResource("AtlasTexture_ggpfv")
+
+[node name="@Sprite2D@2" type="Sprite2D" parent="." unique_id=1154630335]
+z_index = -10
+scale = Vector2(2, 1.5)
+texture = SubResource("AtlasTexture_4i35j")
+
+[node name="drawn-home" type="Node2D" parent="." unique_id=1609182700]
+position = Vector2(-260, -40)
+script = ExtResource("4_8a83e")
+object_id = "drawn-home"
+source_id = "drawn-home"
+label = "Maison dessinée"
+texture = SubResource("AtlasTexture_xpore")
+height_pixels = 300.0
+blocking_size = Vector2(190, 70)
+
+[node name="drawn-tree" type="Node2D" parent="." unique_id=1678122555]
+position = Vector2(300, 50)
+script = ExtResource("4_8a83e")
+object_id = "drawn-tree"
+source_id = "drawn-tree"
+label = "Arbre dessiné"
+texture = SubResource("AtlasTexture_lywe1")
+height_pixels = 220.0
+blocking_size = Vector2(25, 25)
+
+[node name="guide" type="Node2D" parent="." unique_id=348555096]
+position = Vector2(70, 140)
+script = ExtResource("4_8a83e")
+object_id = "guide"
+label = "Guide de l'atelier"
+texture = SubResource("AtlasTexture_ggpfv")
+height_pixels = 80.0
+tint = Color(0.85, 0.7, 1, 1)
+interaction = SubResource("Resource_x1m27")
+
+[node name="passage" type="Node2D" parent="." unique_id=1182965519]
+position = Vector2(200, 170)
+script = ExtResource("4_8a83e")
+object_id = "passage"
+label = "Passage"
+texture = SubResource("AtlasTexture_ggpfv")
+height_pixels = 65.0
+tint = Color(0, 1, 1, 1)
+visible_if = "gate-open"
+interaction = SubResource("Resource_otvsu")
+
+[node name="trainer" type="Node2D" parent="." unique_id=1806235605]
+position = Vector2(-100, 170)
+script = ExtResource("4_8a83e")
+object_id = "trainer"
+texture = SubResource("AtlasTexture_ggpfv")
+height_pixels = 80.0
+tint = Color(1, 0.6, 0.5, 1)
+interaction = SubResource("Resource_pse0c")

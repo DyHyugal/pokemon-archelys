@@ -3,3 +3,5 @@
 /builds/
 /artifacts/
 __pycache__/
+/game/assets/local_usul/
+/game/.archelys-local/

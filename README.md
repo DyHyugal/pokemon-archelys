@@ -4,7 +4,9 @@ Fangame Pokémon en cours de conception : un nouvel archipel, un récit original
 
 **État : cadrage approuvé et laboratoire solo jouable ; ouverture proposée, pas de V1 finalisée.**
 
-Le nom de travail est Pokémon Archélys. Le rendu cible est une 3D stylisée nette en Full HD sur Windows. Les choix techniques doivent être éprouvés avant la production.
+Le nom de travail est Pokémon Archélys. La direction actuelle est une aventure 2D dessinée nette en Full HD sur Windows ; le rendu final reste à valider.
+
+**Outil de développement : [Atelier Godot Archélys 0.1](docs/development/ATELIER_GODOT.md).** Plugin dédié aux maps, objets, PNJ et événements, avec priorité aux sources USUL. L'archive `Archelys-Atelier-Godot.zip` s'ouvre dans Godot standard 4.6.3 ; elle est distincte du ZIP joueur. L'import complet d'une ROM et la reconstruction automatique d'Alola ne sont pas encore disponibles.
 
 La [documentation de conception sur develop](https://github.com/DyHyugal/pokemon-archelys/tree/develop/docs) contient le cahier des charges V0.1 à relire, les décisions, la roadmap et les réponses aux questionnaires.
 
@@ -18,7 +20,7 @@ Les [propositions graphiques des six îles et du site Æther](docs/design/ATLAS_
 
 Lire [AGENTS.md](AGENTS.md) avant toute modification. Les choix de game design et la validation visuelle appartiennent au propriétaire du projet. Les recherches et prototypes ne sont pas présentés comme des fonctions terminées.
 
-Ce projet est distinct de Pokémon Tactica. Aucun modèle, animation ou musique tiers n’est inclus à ce stade. Le dépôt ne définit pas encore une licence générale sur son code et ses contenus ; les droits des assets seront suivis séparément.
+Ce projet est distinct de Pokémon Tactica. Les sources et droits des assets du prototype sont suivis dans leurs registres ; aucun dump USUL n'est fourni. Le dépôt ne définit pas encore une licence générale sur son code et ses contenus.
 
 Le [laboratoire et son bilan](https://github.com/DyHyugal/pokemon-archelys/blob/docs/cadrage-valide/docs/development/BILAN_SESSION_2026-10-11.md) sont dans la branche de travail en attente d’intégration. Les prereleases éventuelles sont des prototypes, pas la V1.
 

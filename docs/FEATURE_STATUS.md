@@ -256,3 +256,6 @@ Direction B approuvée sur comparaison/capture statique ; [portion jouable](deve
 D79 livré : source `05e8a44`, [CI verte et ZIP vérifié](development/VERIFICATION_D79.md). Démo dessinée jouable, validation Windows/artistique propriétaire à recevoir. Aucun statut d’île complète ou d’assets finaux.
 
 D81 : [démo de calibration](development/LOT_CALIBRATION_2D.md) développée : havre en assets séparés, douze poses directionnelles, unité et zoom communs, déplacement diagonal/×4, profondeur des arbres, eau/feuillage/lave-preview. Tests ciblés locaux : 39 headless / 46 graphiques ; parcours D79 conservé (61/68). Intérieurs/sentier précomposés et PNJ provisoires. Validation visuelle/Windows à recevoir ; source `a38481b`, [CI et téléchargement vérifiés](development/VERIFICATION_D81.md).
+
+
+D82 : [Atelier Godot 0.1](development/ATELIER_GODOT.md) développé : bibliothèque originale, placement natif 2D/3D avec undo/redo, collisions explicites, dialogues/flags/objets/combats/transitions éditables, prévisualisation avec vraie interface Showdown, langue/sauvegardes isolées, GARC v6 en lecture seule et extraction tracée. Pont Blender/n3ds_importer optionnel ; compatibilité réelle USUL non validée faute de corpus. L'outil n'importe pas automatiquement une ROM, ni tout Alola, ni tous les comportements officiels. [Vérifications exécutées](development/VERIFICATION_D82.md).

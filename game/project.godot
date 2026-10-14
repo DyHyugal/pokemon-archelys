@@ -8,6 +8,9 @@ config/features=PackedStringArray("4.6", "GL Compatibility")
 [autoload]
 Session="*res://scripts/services/session.gd"
 
+[editor_plugins]
+enabled=PackedStringArray("res://addons/archelys_workshop/plugin.cfg")
+
 [display]
 window/size/viewport_width=1280
 window/size/viewport_height=720

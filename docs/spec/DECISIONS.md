@@ -297,3 +297,8 @@ Propriétaire, 14 octobre 2026 : HeartGold retiré des candidats ; deux choix à
 ## D81 — démo de calibration Godot demandée
 
 Propriétaire, 14 octobre 2026 : demande de reprendre les conventions utiles d’Essentials/jeux Pokémon pour échelle, mouvement et animation, puis « fais la demo ». Autorise une petite portion de référence Godot, sans changement d’histoire ou de cible B. [Lot](../development/LOT_CALIBRATION_2D.md) : havre modulaire, poses sur quatre directions, métrique commune, tri des décors, mer/feuillage animés et lave en aperçu hors scénario. Intérieurs/sentier encore précomposés, PNJ provisoires ; validation artistique/Windows de ce lot à recevoir. Sauvegardes distinctes.
+
+
+## D82 — construire l'atelier Godot Archélys, priorité USUL
+
+Propriétaire, 14 octobre 2026 : « construit l'outil qui nous manque […] pluggin godot […] gros focus sur la 7G/USUL […] en accord avec le cahier des charges ». Autorise le développement d'un outil spécialisé au-dessus de Godot et l'adaptation des outils nécessaires. Ne valide pas les concessions du compte rendu externe (réduction du monde, règles 7G, ROM hack), ni une nouvelle direction artistique. Premier lot 0.1 : bibliothèque, maps 2D/3D éditables, ressources d'événements, prévisualisation avec Showdown réel et état isolé, inspection/extraction GARC v6, pont optionnel Blender/n3ds_importer. [Guide, architecture et limites](../development/ATELIER_GODOT.md). Aucun dump USUL fourni : conversion fidèle des ressources officielles et reconstruction d'Alola non validées ; pas de convertisseur universel annoncé. Les sources locales USUL sont exclues de Git et du packager Atelier.

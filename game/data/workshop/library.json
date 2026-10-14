@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "assets": [
+    {
+      "id": "drawn-tree",
+      "label": "Arbre dessiné",
+      "path": "res://assets/drawn/calibration/kit.png",
+      "source": "image_gen D81 ; game/assets/drawn/calibration/provenance.json",
+      "rights": "Asset original du prototype ; aucune ressource ROM",
+      "region": [
+        157,
+        40,
+        440,
+        496
+      ],
+      "height": 220
+    },
+    {
+      "id": "drawn-home",
+      "label": "Maison dessinée",
+      "path": "res://assets/drawn/calibration/kit.png",
+      "source": "image_gen D81 ; game/assets/drawn/calibration/provenance.json",
+      "rights": "Asset original du prototype ; aucune ressource ROM",
+      "region": [
+        790,
+        98,
+        532,
+        432
+      ],
+      "height": 300
+    },
+    {
+      "id": "drawn-shop",
+      "label": "Boutique dessinée",
+      "path": "res://assets/drawn/calibration/kit.png",
+      "source": "image_gen D81 ; game/assets/drawn/calibration/provenance.json",
+      "rights": "Asset original du prototype ; aucune ressource ROM",
+      "region": [
+        125,
+        594,
+        534,
+        431
+      ],
+      "height": 300
+    },
+    {
+      "id": "drawn-center",
+      "label": "Centre dessiné",
+      "path": "res://assets/drawn/calibration/kit.png",
+      "source": "image_gen D81 ; game/assets/drawn/calibration/provenance.json",
+      "rights": "Asset original du prototype ; aucune ressource ROM",
+      "region": [
+        736,
+        572,
+        638,
+        457
+      ],
+      "height": 300
+    }
+  ]
+}

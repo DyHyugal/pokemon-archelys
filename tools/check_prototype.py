@@ -9,6 +9,9 @@ for label,var in [('data','XDG_DATA_HOME'),('config','XDG_CONFIG_HOME'),('cache'
     env.setdefault(var,str(runtime/label));pathlib.Path(env[var]).mkdir(parents=True,exist_ok=True)
 env.setdefault('ARCHELYS_NODE_BIN',shutil.which('node') or '')
 steps=[(['godot','--headless','--path',str(root/'game'),'--editor','--import','--quit'],None),
+       ([sys.executable,str(root/'tools/check_workshop_editor.py')],'WORKSHOP EDITOR:'),
+       (['godot','--headless','--path',str(root/'game'),'--script','res://tests/workshop.gd'],'WORKSHOP CONTRACTS:'),
+       (['godot','--headless','--path',str(root/'game'),'--script','res://tests/workshop_preview.gd'],'WORKSHOP PREVIEW:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/demo_scene.gd'],'DEMO SCENE:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/tripo_pilots.gd'],'TRIPO PILOTS:'),
        (['godot','--headless','--path',str(root/'game'),'--script','res://tests/tripo_scenery.gd'],'TRIPO SCENERY:'),

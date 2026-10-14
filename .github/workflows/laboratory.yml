@@ -30,6 +30,8 @@ jobs:
           mkdir -p builds
           godot --headless --path game --export-release Windows "$PWD/builds/Archelys-Laboratoire.exe"
           python3 tools/package_windows.py --commit "$GITHUB_SHA"
+      - name: Package Godot authoring workshop
+        run: python3 tools/package_workshop.py
       - uses: actions/upload-artifact@v4
         with:
           name: Archelys-Laboratoire-Windows
@@ -37,6 +39,8 @@ jobs:
             builds/Archelys-Laboratoire-Windows.zip
             builds/SHA256SUMS.txt
             builds/release-notes.md
+            builds/Archelys-Atelier-Godot.zip
+            builds/Archelys-Atelier-Godot.sha256
           retention-days: 30
   publish-laboratory:
     if: github.event_name == 'push'
@@ -55,4 +59,4 @@ jobs:
           GH_REPO: ${{ github.repository }}
         run: |
           LAB_TAG="lab-${GITHUB_SHA:0:7}"
-          gh release create "$LAB_TAG" builds/Archelys-Laboratoire-Windows.zip builds/SHA256SUMS.txt --target "$GITHUB_SHA" --prerelease --title "Archélys laboratoire ${GITHUB_SHA:0:7}" --notes-file builds/release-notes.md
+          gh release create "$LAB_TAG" builds/Archelys-Laboratoire-Windows.zip builds/SHA256SUMS.txt builds/Archelys-Atelier-Godot.zip builds/Archelys-Atelier-Godot.sha256 --target "$GITHUB_SHA" --prerelease --title "Archélys laboratoire et atelier ${GITHUB_SHA:0:7}" --notes-file builds/release-notes.md

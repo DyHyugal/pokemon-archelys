@@ -42,3 +42,6 @@ Le propriétaire rejette le rendu précalculé Tripo de D78, préfère la propos
 D80 : le propriétaire fixe histoire et graphismes comme exigences immuables, exclut HeartGold et demande l’audit Essentials/Godot. L’approbation du style B n’équivaut pas à l’acceptation du prototype D79 comme qualité finale. Voir AUDIT_ESSENTIALS_GODOT ; aucune migration ni compromis graphique nouvellement approuvé.
 
 D81 : démo de calibration Godot explicitement autorisée ; proportions et animations proposées à éprouver, histoire/style B inchangés. Aucun choix Essentials ni migration implicite. La lave est une prévisualisation technique hors scénario. Voir LOT_CALIBRATION_2D.
+
+
+D82 : développement d'un plugin Godot spécialisé Archélys explicitement demandé, sources USUL prioritaires. L'outil sert le cahier existant ; l'audit externe ne le remplace pas. Le premier atelier fonctionnel ne constitue ni un import complet de ROM ni une validation graphique. Voir ATELIER_GODOT et VERIFICATION_D82.
