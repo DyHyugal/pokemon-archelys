@@ -12,6 +12,10 @@ La [documentation de conception sur develop](https://github.com/DyHyugal/pokemon
 
 Les [propositions graphiques des six îles et du site Æther](docs/design/ATLAS_PROPOSE_2026-10-12.md) comprennent sept planches de quatre vues. Elles ont été approuvées comme direction artistique (D68), distincte des modèles provisoires intégrés.
 
+## Reprendre le travail en local
+
+[Guide de passation Codex local](docs/development/REPRISE_CODEX_LOCAL.md) : branche à récupérer, message à donner au nouveau chat, dépendances et utilisation d'une source USUL locale hors Git.
+
 ## Branches
 
 `main` accueille les jalons validés ; `develop` assemble le prochain jalon. Une seule branche de travail temporaire est active par défaut, puis supprimée après intégration. L’initialisation de main est documentaire et ne représente pas une version jouable validée.

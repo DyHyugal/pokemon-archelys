@@ -5,3 +5,6 @@
 __pycache__/
 /game/assets/local_usul/
 /game/.archelys-local/
+/local_sources/
+*.3ds
+*.cia

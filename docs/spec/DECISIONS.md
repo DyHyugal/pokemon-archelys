@@ -302,3 +302,8 @@ Propriétaire, 14 octobre 2026 : demande de reprendre les conventions utiles d�
 ## D82 — construire l'atelier Godot Archélys, priorité USUL
 
 Propriétaire, 14 octobre 2026 : « construit l'outil qui nous manque […] pluggin godot […] gros focus sur la 7G/USUL […] en accord avec le cahier des charges ». Autorise le développement d'un outil spécialisé au-dessus de Godot et l'adaptation des outils nécessaires. Ne valide pas les concessions du compte rendu externe (réduction du monde, règles 7G, ROM hack), ni une nouvelle direction artistique. Premier lot 0.1 : bibliothèque, maps 2D/3D éditables, ressources d'événements, prévisualisation avec Showdown réel et état isolé, inspection/extraction GARC v6, pont optionnel Blender/n3ds_importer. [Guide, architecture et limites](../development/ATELIER_GODOT.md). Aucun dump USUL fourni : conversion fidèle des ressources officielles et reconstruction d'Alola non validées ; pas de convertisseur universel annoncé. Les sources locales USUL sont exclues de Git et du packager Atelier.
+
+
+## D83 — préparer la reprise par Codex local avec une source USUL locale
+
+Propriétaire : souhaite quitter le cloud pour permettre à un autre chat Codex local de reprendre le travail et d'accéder à sa source USUL. Passation créée dans [REPRISE_CODEX_LOCAL](../development/REPRISE_CODEX_LOCAL.md), référencée depuis AGENTS. Aucun transfert de ROM, installation sur le PC, changement d'architecture ou validation supplémentaire d'import n'a eu lieu dans le cloud. Branche actuelle conservée ; formats/conversion réels à examiner localement.

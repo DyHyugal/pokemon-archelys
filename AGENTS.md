@@ -1,6 +1,6 @@
 # Instructions de développement — Pokémon Archélys
 
-Lire les documents de docs/spec sur develop : SOURCE_OF_TRUTH.md, CAHIER_DES_CHARGES.md, DECISIONS.md et OPEN_QUESTIONS.md, puis le document du domaine concerné.
+Pour une reprise locale, lire d'abord `docs/development/REPRISE_CODEX_LOCAL.md`. Les travaux récents sont sur `docs/cadrage-valide` ; `develop` ne contient pas encore leur état actuel. Lire les documents de `docs/spec` du checkout de travail : SOURCE_OF_TRUTH.md, CAHIER_DES_CHARGES.md, DECISIONS.md et OPEN_QUESTIONS.md, puis le document du domaine concerné. Préserver les modifications locales avant toute mise à jour ou changement de branche.
 
 ## Autorité et phase actuelle
 
