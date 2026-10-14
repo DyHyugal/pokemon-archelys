@@ -3,6 +3,7 @@ import argparse
 import hashlib
 import json
 import pathlib
+import subprocess
 import zipfile
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -20,11 +21,12 @@ for name in ["game", "combat", "tools", "docs/licenses", "builds/showdown", "bui
         if any(part in [".godot", "__pycache__", "local_usul", ".archelys-local"] for part in relative.parts): continue
         if path.suffix in [".tmp", ".pyc"]: continue
         files.append(path)
-for name in ["tools/convert_usul_asset.py", "tools/prepare_showdown.py", "docs/development/ATELIER_GODOT.md"]:
+for name in ["tools/convert_usul_asset.py", "tools/prepare_showdown.py", "docs/development/ATELIER_GODOT.md", "docs/development/VERIFICATION_D82.md", "docs/development/workshop/editor.png"]:
     files.append(ROOT / name)
 args.output.parent.mkdir(parents=True, exist_ok=True)
 prefix = "Archelys-Atelier"
-manifest = {"schema": 1, "version": "0.1.0", "kind": "Godot editor project, not ROM converter", "files": {}}
+commit = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
+manifest = {"schema": 1, "version": "0.1.0", "commit": commit, "kind": "Godot editor project, not ROM converter", "files": {}}
 with zipfile.ZipFile(args.output, "w", zipfile.ZIP_DEFLATED, compresslevel=6) as archive:
     for path in sorted(set(files)):
         relative = path.relative_to(ROOT).as_posix()
