@@ -392,7 +392,7 @@ Voir les [épreuves et arènes — architecture, énigmes et synchronisation](EP
 
 ## Quatre maîtres draconiques : scaling nécessaire
 
-Les fiches D01–D04 ci-dessus définissent le **tier d'entrée à N.38**. Tous les biomes étant ouverts après la première île, les joueurs peuvent choisir **n'importe quelle épreuve**, dans l'ordre voulu. Au lancement du combat, le tier est fixé en fonction du **dernier jalon d'île libérée**, pas du niveau du Pokémon le plus élevé du joueur :
+Les fiches D01–D04 ci-dessus définissent le **tier d'entrée à N.38** ; les douze autres variantes intégrales se trouvent en annexe. Tous les biomes étant ouverts après la première île, les joueurs peuvent choisir **n'importe quelle épreuve**, dans l'ordre voulu. Au lancement du combat, le tier est fixé en fonction du **dernier jalon d'île libérée**, pas du niveau du Pokémon le plus élevé du joueur :
 
 | Îles ordinaires libérées | Tier de maître | Taille suggérée | Évolution des équipes |
 |---:|---:|---:|---|
@@ -403,7 +403,7 @@ Les fiches D01–D04 ci-dessus définissent le **tier d'entrée à N.38**. Tous 
 
 **Règle fondamentale :** une épreuve validée au tier 38 **reste validée**. Le joueur peut donc terminer les quatre dès l'île 1 mais ne peut pas accéder à la dernière arène avant la libération de l'île IV (proposition). Les revanches tardives sont optionnelles, sauf décision contraire du propriétaire. **Aucun Pokémon sauvage** d'une zone draconique ouverte au tier 38 ne passe artificiellement au tier 95 : respecter `earliest_access_cap` de Tactica. Les éventuelles rencontres haut niveau nécessitent des **sous-zones réellement ouvertes plus tard**, pas le recalcul des anciennes tables.
 
-Pour Codex : les remplacements de stades à tier 57 sont des exemples conditionnels : ne jamais faire évoluer automatiquement une famille qui dépend d'une pierre, amitié, temps, objet tenu ou Fil Liaison par simple passage d'un seuil numérique ; utiliser une **entrée d'équipe autorisée et auditable** pour la version 57/80/95. Les listes tier 57/80/95 doivent être matérialisées en rosters distincts et vérifiées avant le développement jouable, elles ne sont **pas** de nouvelles équipes complètes certifiées ici.
+Pour Codex : les remplacements de stades à tier 57 sont des exemples conditionnels : ne jamais faire évoluer automatiquement une famille qui dépend d'une pierre, amitié, temps, objet tenu ou Fil Liaison par simple passage d'un seuil numérique ; utiliser une **entrée d'équipe autorisée et auditable** pour la version 57/80/95. Les listes tier 57/80/95 sont matérialisées en annexe sous forme de rosters distincts ; elles restent à faire vérifier dans le moteur, et ne sont **pas** des équipes certifiées.
 
 ## Les gardiens célestes et la divinité
 
@@ -421,6 +421,131 @@ Les quatre équipes C01–C04 sont à N.100 et précèdent un **cinquième comba
 - [ ] Vérifier que les compositions C01–C04 ne font pas intervenir un talent/mouvement 8G+ non disponible dans le périmètre choisi, ou une espèce réservée au raid local.
 - [ ] Tester NORMAL/HARD sur les mêmes équipes, HARD IV/EV et IA sans omniscience ; simulations solo, 2 et 3 joueurs après implémentation des règles coop, pas avant.
 - [ ] Ne pas annoncer ces builds « validés Codex » tant que les audits ci-dessus ne sont pas réussis et que le propriétaire n'a pas approuvé les fiches finales.
+
+
+## Annexe — les 12 rosters draconiques complets des tiers 57, 80 et 95
+
+Ces fiches **remplacent les suggestions de substitutions automatiques non finalisées** du paragraphe de scaling précédent. Les masters D01–D04 ont chacun quatre versions complètes : tier 38 dans la section principale, puis tier 57/80/95 ci-dessous. Tous les Pokémon sont proposés, non importés ni validés via Showdown ; talents/learnsets doivent être audités. Les quatre biomes **sont tous accessibles après l'île I**, seul le tier du **combat du maître** dépend du nombre d'îles libérées ; une victoire à un tier faible reste acquise, et les revanches de tier haut sont facultatives.
+
+### D01 — palier 57
+
+| Pokémon | Niv. | Talent | Objet | Nature | Profil EV HARD | Capacités |
+|---|---:|---|---|---|---|---|
+| Bruyverne | 55 | Infiltration | Lunettes Choix | Timide | S | Draco-Météore · Vent Violent · Lance-Flammes · Demi-Tour |
+| Drattak | 56 | Intimidation | Baie Prine | Jovial | P | Draco-Griffe · Séisme · Crocs Feu · Danse Draco |
+| Altaria | 56 | Médic Nature | Restes | Calme | M | Draco-Choc · Lance-Flammes · Atterrissage · Coton Garde |
+| Dracolosse | 57 | Multiécaille | Vulné-Assurance | Rigide | P | Danse Draco · Draco-Griffe · Vitesse Extrême · Séisme |
+
+### D01 — palier 80
+
+| Pokémon | Niv. | Talent | Objet | Nature | Profil EV HARD | Capacités |
+|---|---:|---|---|---|---|---|
+| Bruyverne | 78 | Infiltration | Lunettes Choix | Timide | S | Draco-Météore · Vent Violent · Lance-Flammes · Demi-Tour |
+| Altaria | 78 | Médic Nature | Restes | Calme | M | Draco-Choc · Lance-Flammes · Atterrissage · Coton Garde |
+| Drattak | 79 | Intimidation | Orbe Vie | Jovial | P | Danse Draco · Draco-Griffe · Séisme · Atterrissage |
+| Dracolosse | 79 | Multiécaille | Baie Prine | Rigide | P | Danse Draco · Draco-Griffe · Vitesse Extrême · Séisme |
+| Draïeul | 80 | Herbivore | Veste de Combat | Modeste | S | Draco-Météore · Mégaphone · Lance-Flammes · Tonnerre |
+
+### D01 — palier 95
+
+| Pokémon | Niv. | Talent | Objet | Nature | Profil EV HARD | Capacités |
+|---|---:|---|---|---|---|---|
+| Bruyverne | 93 | Infiltration | Lunettes Choix | Timide | S | Draco-Météore · Vent Violent · Lance-Flammes · Demi-Tour |
+| Altaria | 93 | Médic Nature | Restes | Calme | M | Draco-Choc · Lance-Flammes · Atterrissage · Coton Garde |
+| Drattak | 94 | Intimidation | Orbe Vie | Jovial | P | Danse Draco · Draco-Griffe · Séisme · Atterrissage |
+| Dracolosse | 94 | Multiécaille | Baie Prine | Rigide | P | Danse Draco · Draco-Griffe · Vitesse Extrême · Séisme |
+| Draïeul | 94 | Herbivore | Veste de Combat | Modeste | S | Draco-Météore · Mégaphone · Lance-Flammes · Tonnerre |
+| Libégon | 95 | Lévitation | Mouchoir Choix | Jovial | P | Séisme · Draco-Griffe · Demi-Tour · Éboulement |
+
+### D02 — palier 57
+
+| Pokémon | Niv. | Talent | Objet | Nature | Profil EV HARD | Capacités |
+|---|---:|---|---|---|---|---|
+| Libégon | 55 | Lévitation | Mouchoir Choix | Jovial | P | Séisme · Draco-Griffe · Demi-Tour · Éboulement |
+| Carchacrok | 56 | Peau Dure | Casque Brut | Jovial | P | Séisme · Draco-Griffe · Piège de Roc · Lame de Roc |
+| Rexillius | 56 | Prognathe | Ceinture Pro | Rigide | P | Fracass'Tête · Draco-Griffe · Séisme · Crocs Feu |
+| Tranchodon | 57 | Brise Moule | Baie Prine | Jovial | P | Danse Draco · Draco-Griffe · Séisme · Tête de Fer |
+
+### D02 — palier 80
+
+| Pokémon | Niv. | Talent | Objet | Nature | Profil EV HARD | Capacités |
+|---|---:|---|---|---|---|---|
+| Libégon | 78 | Lévitation | Mouchoir Choix | Jovial | P | Séisme · Draco-Griffe · Demi-Tour · Éboulement |
+| Carchacrok | 79 | Peau Dure | Casque Brut | Jovial | P | Séisme · Draco-Griffe · Piège de Roc · Lame de Roc |
+| Rexillius | 79 | Prognathe | Ceinture Pro | Rigide | P | Fracass'Tête · Draco-Griffe · Séisme · Crocs Feu |
+| Tranchodon | 79 | Brise Moule | Baie Prine | Jovial | P | Danse Draco · Draco-Griffe · Séisme · Tête de Fer |
+| Draïeul | 80 | Herbivore | Veste de Combat | Modeste | S | Draco-Météore · Mégaphone · Lance-Flammes · Tonnerre |
+
+### D02 — palier 95
+
+| Pokémon | Niv. | Talent | Objet | Nature | Profil EV HARD | Capacités |
+|---|---:|---|---|---|---|---|
+| Libégon | 93 | Lévitation | Mouchoir Choix | Jovial | P | Séisme · Draco-Griffe · Demi-Tour · Éboulement |
+| Carchacrok | 93 | Peau Dure | Casque Brut | Jovial | P | Séisme · Draco-Griffe · Piège de Roc · Lame de Roc |
+| Rexillius | 94 | Prognathe | Ceinture Pro | Rigide | P | Fracass'Tête · Draco-Griffe · Séisme · Crocs Feu |
+| Tranchodon | 94 | Brise Moule | Baie Prine | Jovial | P | Danse Draco · Draco-Griffe · Séisme · Tête de Fer |
+| Draïeul | 94 | Herbivore | Veste de Combat | Modeste | S | Draco-Météore · Mégaphone · Lance-Flammes · Tonnerre |
+| Trioxhydre | 95 | Lévitation | Orbe Vie | Timide | S | Draco-Météore · Vibrobscur · Lance-Flammes · Exploforce |
+
+### D03 — palier 57
+
+| Pokémon | Niv. | Talent | Objet | Nature | Profil EV HARD | Capacités |
+|---|---:|---|---|---|---|---|
+| Dragmara | 55 | Alerte Neige | Roche Glace | Modeste | S | Blizzard · Lyophilisation · Telluriforce · Protection |
+| Polagriffe | 55 | Chasse-Neige | Orbe Vie | Jovial | P | Chute Glace · Surpuissance · Aqua-Jet · Danse-Lames |
+| Dracolosse | 56 | Multiécaille | Baie Prine | Rigide | P | Danse Draco · Draco-Griffe · Vitesse Extrême · Séisme |
+| Rexillius | 57 | Prognathe | Ceinture Pro | Rigide | P | Fracass'Tête · Draco-Griffe · Séisme · Crocs Feu |
+
+### D03 — palier 80
+
+| Pokémon | Niv. | Talent | Objet | Nature | Profil EV HARD | Capacités |
+|---|---:|---|---|---|---|---|
+| Dragmara | 78 | Alerte Neige | Roche Glace | Modeste | S | Blizzard · Lyophilisation · Telluriforce · Protection |
+| Polagriffe | 78 | Chasse-Neige | Orbe Vie | Jovial | P | Chute Glace · Surpuissance · Aqua-Jet · Danse-Lames |
+| Dracolosse | 79 | Multiécaille | Baie Prine | Rigide | P | Danse Draco · Draco-Griffe · Vitesse Extrême · Séisme |
+| Momartik | 79 | Corps Maudit | Ceinture Force | Timide | S | Blizzard · Ball'Ombre · Picots · Prélèvement Destin |
+| Rexillius | 80 | Prognathe | Ceinture Pro | Rigide | P | Fracass'Tête · Draco-Griffe · Séisme · Crocs Feu |
+
+### D03 — palier 95
+
+| Pokémon | Niv. | Talent | Objet | Nature | Profil EV HARD | Capacités |
+|---|---:|---|---|---|---|---|
+| Dragmara | 93 | Alerte Neige | Roche Glace | Modeste | S | Blizzard · Lyophilisation · Telluriforce · Protection |
+| Polagriffe | 93 | Chasse-Neige | Orbe Vie | Jovial | P | Chute Glace · Surpuissance · Aqua-Jet · Danse-Lames |
+| Dracolosse | 94 | Multiécaille | Baie Prine | Rigide | P | Danse Draco · Draco-Griffe · Vitesse Extrême · Séisme |
+| Momartik | 94 | Corps Maudit | Ceinture Force | Timide | S | Blizzard · Ball'Ombre · Picots · Prélèvement Destin |
+| Rexillius | 94 | Prognathe | Ceinture Pro | Rigide | P | Fracass'Tête · Draco-Griffe · Séisme · Crocs Feu |
+| Crustabri | 95 | Multi-Coups | Herbe Blanche | Jovial | P | Exuviation · Stalactite · Boule Roc · Aqua-Jet |
+
+### D04 — palier 57
+
+| Pokémon | Niv. | Talent | Objet | Nature | Profil EV HARD | Capacités |
+|---|---:|---|---|---|---|---|
+| Chartor | 55 | Sécheresse | Roche Chaude | Assuré | D | Lance-Flammes · Piège de Roc · Tour Rapide · Feu Follet |
+| Dracaufeu | 56 | Force Soleil | Grosses Bottes | Timide | S | Lance-Flammes · Draco-Choc · Lance-Soleil · Atterrissage |
+| Draïeul | 56 | Herbivore | Veste de Combat | Modeste | S | Draco-Météore · Mégaphone · Lance-Flammes · Tonnerre |
+| Drattak | 57 | Intimidation | Baie Prine | Jovial | P | Draco-Griffe · Séisme · Crocs Feu · Danse Draco |
+
+### D04 — palier 80
+
+| Pokémon | Niv. | Talent | Objet | Nature | Profil EV HARD | Capacités |
+|---|---:|---|---|---|---|---|
+| Chartor | 78 | Sécheresse | Roche Chaude | Assuré | D | Lance-Flammes · Piège de Roc · Tour Rapide · Feu Follet |
+| Dracaufeu | 78 | Force Soleil | Grosses Bottes | Timide | S | Lance-Flammes · Draco-Choc · Lance-Soleil · Atterrissage |
+| Draïeul | 79 | Herbivore | Veste de Combat | Modeste | S | Draco-Météore · Mégaphone · Lance-Flammes · Tonnerre |
+| Drattak | 79 | Intimidation | Baie Prine | Jovial | P | Draco-Griffe · Séisme · Crocs Feu · Danse Draco |
+| Trioxhydre | 80 | Lévitation | Lunettes Choix | Timide | S | Draco-Météore · Vibrobscur · Lance-Flammes · Exploforce |
+
+### D04 — palier 95
+
+| Pokémon | Niv. | Talent | Objet | Nature | Profil EV HARD | Capacités |
+|---|---:|---|---|---|---|---|
+| Chartor | 93 | Sécheresse | Roche Chaude | Assuré | D | Lance-Flammes · Piège de Roc · Tour Rapide · Feu Follet |
+| Dracaufeu | 93 | Force Soleil | Grosses Bottes | Timide | S | Lance-Flammes · Draco-Choc · Lance-Soleil · Atterrissage |
+| Draïeul | 94 | Herbivore | Veste de Combat | Modeste | S | Draco-Météore · Mégaphone · Lance-Flammes · Tonnerre |
+| Drattak | 94 | Intimidation | Baie Prine | Jovial | P | Draco-Griffe · Séisme · Crocs Feu · Danse Draco |
+| Trioxhydre | 94 | Lévitation | Lunettes Choix | Timide | S | Draco-Météore · Vibrobscur · Lance-Flammes · Exploforce |
+| Pyrax | 95 | Corps Ardent | Orbe Vie | Timide | S | Papillodanse · Déflagration · Bourdon · Giga-Sangsue |
 
 ## Sources Tactica consultées
 
