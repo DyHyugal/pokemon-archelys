@@ -114,7 +114,7 @@
 | Pokémon | Niv. | Talent proposé | Objet tenu | Capacités candidates (ordre indifférent) |
 |---|---:|---|---|---|
 | Crocorible | 52 | Intimidation | Casque Brut | Séisme / Sabotage / Piège de Roc / Provoc |
-| Zoroark | 52 | Illusion | Lunettes Choix | Vibrobscur / Lance-Flammes / Exploforce / Machination |
+| Zoroark | 52 | Illusion | Ceinture Pro | Vibrobscur / Lance-Flammes / Exploforce / Machination |
 | Corboss | 53 | Impudence | Orbe Vie | Rapace / Coup Bas / Atterrissage / Canicule |
 | Vaututrice | 54 | Envelocape | Restes | Tricherie / Anti-Brume / Atterrissage / Toxik |
 | Scalproie | 54 | Acharné | Baie Sitrus | Tête de Fer / Coup Bas / Danse Lames / Sabotage |
@@ -145,7 +145,7 @@
 |---|---:|---|---|---|
 | Noacier | 73 | Épine de Fer | Casque Brut | Piège de Roc / Vampigraine / Gyroballe / Sabotage |
 | Corvaillus | 74 | Pression | Restes | Rapace / Atterrissage / Demi-Tour / Gonflette |
-| Magnézone | 75 | Magnépiège | Lunettes Choix | Tonnerre / Luminocanon / Change Éclair / Cage Éclair |
+| Magnézone | 75 | Magnépiège | Aimant | Tonnerre / Luminocanon / Change Éclair / Cage Éclair |
 | Exagide | 75 | Déclic Tactique | Baie Sitrus | Bouclier Royal / Lame Sainte / Tête de Fer / Ombre Portée |
 | Lucario | 76 | Attention | Orbe Vie | Close Combat / Poing Météore / Vitesse Extrême / Danse Lames |
 | Galeking → Méga-Galeking | 78 | Fermeté → Filtre | Galekingite | Tacle Lourd / Séisme / Repos / Malédiction |
@@ -162,7 +162,7 @@
 | Motisma-Lavage | 89 | Lévitation | Baie Sitrus | Hydrocanon / Change Éclair / Feu Follet / Balance |
 | Raichu d'Alola | 90 | Surf Caudal | Orbe Vie | Tonnerre / Psyko / Surf / Machination |
 | Élekable | 90 | Sans Limite [si validé dans Archélys] | Ceinture Pro | Poing Éclair / Poing Glace / Close Combat / Séisme |
-| Salarsen | 91 | Punk Rock | Lunettes Choix | Overdrive / Bomb-Beurk / Provoc / Change Éclair |
+| Salarsen | 91 | Punk Rock | Spray Gorge | Overdrive / Bomb-Beurk / Provoc / Change Éclair |
 | Pharamp → Méga-Pharamp | 93 | Statik → Brise Moule | Pharampite | Tonnerre / Draco-Choc / Exploforce / Change Éclair |
 
 ### Arène 8 — Le jugement du sanctuaire (Dragon, Draconique)
@@ -174,10 +174,10 @@
 | Pokémon | Niv. | Talent proposé | Objet tenu | Capacités candidates (ordre indifférent) |
 |---|---:|---|---|---|
 | Majaspic [Plante/Dragon si validé] | 96 | Contestation | Restes | Tempête Verte / Draco-Choc / Regard Médusant / Clonage |
-| Hyporoi | 97 | Sniper | Lunettes Choix | Draco-Météore / Hydrocanon / Laser Glace / Hâte |
+| Hyporoi | 97 | Sniper | Lunettes Sages | Draco-Météore / Hydrocanon / Laser Glace / Hâte |
 | Tranchodon [Dragon/Acier si validé] | 98 | Brise Moule | Baie Prine | Danse Draco / Colère / Tête de Fer / Séisme |
 | Lanssorien | 98 | Corps Sain | Orbe Vie | Draco-Flèches / Demi-Tour / Hantise / Lance-Flammes |
-| Dracolosse | 99 | Multiécaille | Bottes Choix | Danse Draco / Vitesse Extrême / Séisme / Poing de Feu |
+| Dracolosse | 99 | Multiécaille | Grosses Bottes | Danse Draco / Vitesse Extrême / Séisme / Poing de Feu |
 | Carchacrok → Méga-Carchacrok | 100 | Voile Sable → Force Sable | Carchacrokite | Danse Lames / Séisme / Draco-Griffe / Lame de Roc |
 
 ## 5. Contrôles de validation pour Codex
