@@ -1,5 +1,7 @@
 # Pokémon Archélys — Courbe de niveaux, arènes et épreuves V1
 
+> **ARCHIVE DE PROPOSITION (16 OCTOBRE 2026).** Ce document conserve la première courbe proposée (gym 22/36/47/55/68/78/93/100 ; biomes draconiques fixes 40–50/55–65/70–85/90–98). Elle n'avait **pas été approuvée** par le propriétaire. La proposition ultérieure détaillée se trouve dans [EQUIPES_TACTICA_ARCHIPEL_V1.md](EQUIPES_TACTICA_ARCHIPEL_V1.md) et [EPREUVES_ET_ARENES_V1.md](EPREUVES_ET_ARENES_V1.md) ; **ne pas mélanger les paliers des deux variantes dans les données**. La seule décision acquise sur Dragon est que les **quatre biomes** sont ouverts après l'île 1 ; le modèle de niveaux évolutifs versus zones fixes et le seuil de l'arène finale restent des paramètres de conception à valider.
+
 > **SPOILERS DEV — proposition de game design, 16 octobre 2026.** Réfère au scénario [SCENARIO_INTEGRAL_V2_CODEX.md](SCENARIO_INTEGRAL_V2_CODEX.md).
 > Les **types des huit arènes, 2+2+2+1+1, plages des quatre îles, niveau 100 céleste, accès draconique intégral après île 1** sont des décisions explicites du propriétaire. **Les caps précis, membres des équipes, attaques, talents, objets, noms et mini-jeux restent des propositions non testées.**
 > Référence Tactica : `DyHyugal/pokemon-tactica`, branche `integration/v1`, `docs/spec/SOURCE_OF_TRUTH.md`, `BOSSES_AI.md`, `EVOLUTIONS.md`. Ne pas importer des équipes HnS obsolètes.
