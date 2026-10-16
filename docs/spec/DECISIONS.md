@@ -46,3 +46,15 @@ Recommandations non assimilées à une approbation : neige 9G, première approch
 | SN10 | Scénario complet V2 **rédigé comme proposition** pour Codex, et non approuvé scène par scène : [document](../design/SCENARIO_INTEGRAL_V2_CODEX.md). | Demande du 16 octobre 2026 |
 
 Les noms Varakoa, Varek, Naélis, Orien, Vérian, Caëlan, Aloïs, Maëlle, les divinités et l'invention de Couronne Zéro/la Concordance restent des propositions à valider, même si la structure générale du scénario a été demandée.
+
+## Précisions de progression et arènes — 16 octobre 2026
+
+| ID | Statut | Précision | Provenance |
+|---|---|---|---|
+| SN11 | **Acté** | Huit arènes en campagne : tropicale Plante+Feu ; mystique Psy+Ténèbres ; hivernale Glace+Acier ; high-tech Électrik ; draconique Dragon (dernière). | Conversation du 16 octobre 2026 |
+| SN12 | **Acté** | Plages de niveaux des îles occupées : 1–38, 40–57, 60–80, 80–95 ; île céleste niveau 100. | Conversation du 16 octobre 2026 |
+| SN13 | **Acté, remplace SN09 partiellement** | L'île draconique est accessible **après libération de l'île 1 avec ses quatre biomes tous immédiatement disponibles**. Aucun déblocage individuel lié aux libérations II, III, IV. | Rectificatif du 16 octobre 2026 |
+| SN14 | **Proposé, non validé** | Niveaux fixes des 4 biomes draconiques 40–50 / 55–65 / 70–85 / 90–98, puis arène Dragon niveau 100 ; détails des arènes et builds dans [ARENES_EPREUVES_COURBE_V1.md](../design/ARENES_EPREUVES_COURBE_V1.md). | Proposition assistant du 16 octobre 2026 |
+| SN15 | **Demandé comme règle d'équilibrage** | S'inspirer des règles Tactica (évolutions autorisées, talents réellement légaux, équipes cohérentes) et proposer des épreuves de types distincts des arènes de l'île quand possible. **L'import automatique des espèces/formes et des niveaux historiques Tactica n'est pas autorisé par cette décision.** | Conversation du 16 octobre 2026 |
+
+L'ancien SN09 décrivant une ouverture progressive des quatre biomes draconiques est **supplanté sur ce point uniquement**. Les quatre épreuves et la dernière arène draconique demeurent obligatoires pour la conclusion de la réserve.
