@@ -26,3 +26,23 @@ Décisions explicites à transcrire ; leur assemblage dans le cahier V0.1 reste 
 | D20 | Nuzlocke solo et Soul-link coop ; restauration libre | C28 |
 
 Recommandations non assimilées à une approbation : neige 9G, première approche LAN/direct, nombre final d’îles, disposition des boss, version Godot, licence du code, synchronisation automatique du wiki. Elles attendent étude ou arbitrage.
+
+
+## Complément narratif explicite du 16 octobre 2026 (conversation propriétaire)
+
+> Les décisions ci-dessous sont plus récentes que ce registre initial de la branche develop. La documentation de `docs/cadrage-valide` contient également des décisions techniques et questionnaires plus récents : ne pas remplacer cette branche de cadrage par l'ancienne photographie de develop.
+
+| ID de suivi | Décision explicite | Origine |
+|---|---|---|
+| SN01 | Trois protagonistes permanents et membres d'une même fratrie : Vyna, Raidon, Hyu, avec père commun à libérer. Pas de quatrième MC. | Conversation du 16 octobre 2026 |
+| SN02 | En solo 1 joueur remplace l'un des trois et 2 rôles sont PNJ ; en duo 2 joueurs remplacent 2 rôles ; en trio les 3 sont humains. Questionnaire de 2–3 questions maximum et identification par profil. | Conversation du 16 octobre 2026 |
+| SN03 | Dialogues écrits pour les trois rôles indépendamment de leur contrôle ; l'étiquette de nom et les apostrophes utilisent le nom de dresseur du joueur humain qui occupe le rôle. | Conversation du 16 octobre 2026 |
+| SN04 | Voyage majoritairement commun, courtes séparations et rendez-vous synchronisés ; dialogues ou combats familiaux possibles ; pas d'échanges imposés ; objectifs et attente des joueurs visibles dans les quêtes. | Conversation du 16 octobre 2026 |
+| SN05 | Rainbow Rocket est une **coalition de branches héritées** : Rocket/Silver, Magma, Aqua, Galaxie, Plasma, Flare ; pas le projet personnel de Silver. Chaque île possède des organisations, sbires et admins cohérents. | Conversations du 15–16 octobre 2026 |
+| SN06 | Arènes et Défi des Îles **officiellement autorisés par RR** pour détecter les dresseurs capables de combattre des légendaires. Inscription obligatoire et base RR ; les champions peuvent retarder l'enregistrement central des victoires sans annuler les badges. | Conversation du 15 octobre 2026 |
+| SN07 | Oppression RR visible par des règles, patrouilles et conséquences ; espoir des champions croissant au fil des victoires et des îles libérées, sans répétition mécanique. | Conversation du 15 octobre 2026 |
+| SN08 | Conception des îles dans l'ordre : histoire et géographie, noms, arènes/épreuves, personnages ; noms de toutes les îles et des nouveaux personnages **non validés**. | Conversation du 15 octobre 2026 |
+| SN09 | Réserve draconique accessible après île 1, puis un biome par île libérée ; 4 épreuves avant la dernière arène ; réserve jamais occupée. Île céleste accessible après la conclusion draconique. | Conversations du 15–16 octobre 2026 |
+| SN10 | Scénario complet V2 **rédigé comme proposition** pour Codex, et non approuvé scène par scène : [document](../design/SCENARIO_INTEGRAL_V2_CODEX.md). | Demande du 16 octobre 2026 |
+
+Les noms Varakoa, Varek, Naélis, Orien, Vérian, Caëlan, Aloïs, Maëlle, les divinités et l'invention de Couronne Zéro/la Concordance restent des propositions à valider, même si la structure générale du scénario a été demandée.
