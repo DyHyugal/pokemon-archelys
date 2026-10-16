@@ -1,6 +1,6 @@
 # Scénario — SPOILERS DEV
 
-> **MISE À JOUR 16 OCTOBRE 2026 — Source de scénario pour Codex :** [SCENARIO_INTEGRAL_V2_CODEX.md](SCENARIO_INTEGRAL_V2_CODEX.md).
+> **MISE À JOUR 16 OCTOBRE 2026 — Source de scénario pour Codex :** [SCENARIO_INTEGRAL_V2_CODEX.md](SCENARIO_INTEGRAL_V2_CODEX.md), [équipes Tactica](EQUIPES_TACTICA_ARCHIPEL_V1.md) et [épreuves/arènes](EPREUVES_ET_ARENES_V1.md).
 >
 > Le texte ci-dessous est un **ancien synopsis historique**. Il contient une structure dépassée (« héros + trois compagnons »). **La version V2 la corrige : Vyna, Raidon et Hyu sont trois frères et sœur, tous protagonistes ; 1 à 3 joueurs remplacent directement leurs rôles.** Le scénario V2 conserve les distinctions entre décisions actées, nouvelles propositions, noms non validés et détails techniques non implémentés. Lire le nouveau document avant tout travail de scénario.
 >
