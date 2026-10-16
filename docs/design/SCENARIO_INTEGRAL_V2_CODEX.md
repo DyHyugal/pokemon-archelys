@@ -299,9 +299,9 @@ Noms de travail sans présumer du choix : **Sélombre**, **Vesper** ou tout autr
 ### 9.3 Défis de biomes — proposition
 
 1. **Lac et ponts : arène Psy**, énigmes de reflets ; championne douée de **précognition**.
-2. **Forêt des lanternes : épreuve Fée/Spectre**, recherche de lanternes et faux sentiers.
+2. **Forêt des lanternes : épreuve Fée**, recherche de lanternes et faux sentiers.
 3. **Ruines : arène Ténèbres**, jeux de lumière, stratégie et faux indices.
-4. **Observatoire côtier : épreuve Spectre/Psy**, archives, astres et chemins dimensionnels.
+4. **Observatoire côtier : épreuve Spectre**, archives, astres et chemins dimensionnels.
 
 L'**intervention Aqua principale** survient **après le troisième biome**, contrairement à Magma après le premier. Petites patrouilles possibles avant ; pas trois cinématiques répétant la même menace.
 
@@ -370,9 +370,9 @@ Suggestions de travail : « Skeld », « Frimas », autre nom à créer après r
 ### 11.3 Défis de biomes — proposition
 
 1. **Port et fjord : arène Glace**, routes gelées et navigation.
-2. **Hauts plateaux : épreuve Vol/Glace**, tempête, refuges et orientation.
-3. **Sources thermales : arène Eau/Feu ou stratégie neige/soleil**, équilibre de température.
-4. **Glacier et mine : épreuve Roche/Acier**, circuits thermiques et cristaux.
+2. **Hauts plateaux : épreuve Vol**, tempête, refuges et orientation.
+3. **Sources thermales : arène Acier (arène 6)**, forge métallurgique géothermique, réglage des rails et aimants.
+4. **Glacier et mine : épreuve Roche**, circuits thermiques et cristaux.
 
 L'**intervention Galaxie principale** intervient **après le deuxième biome**.
 
@@ -429,10 +429,10 @@ Propositions « Axion », « Novaxis » ou nom entièrement nouveau après final
 
 ### 13.3 Défis de biomes — proposition
 
-1. **Centre urbain et transports : arène Électrik**, carrefours et circuits.
+1. **Centre urbain et transports : arène Électrik (arène 7, combat en fin de parcours)**, carrefours et circuits.
 2. **Quartier industriel : épreuve Acier**, chaîne d'assemblage et appareils.
-3. **Port marémoteur : arène Eau/Électrik**, contrôle des courants.
-4. **Tour de réseaux : épreuve Psy/Acier**, traitement des informations, sécurité et anticipation.
+3. **Port marémoteur : épreuve Eau**, contrôle des courants.
+4. **Tour de réseaux : épreuve Psy**, traitement des informations, sécurité et anticipation.
 
 Une démonstration des capacités de RR a lieu tôt sur l'île, puis **la révélation majeure** n'arrive qu'après les archives du troisième biome, afin d'éviter une structure copiée à l'identique des trois chapitres précédents.
 
@@ -532,7 +532,7 @@ Après la révélation sur Couronne Zéro, Raidon estime qu'ils ont aidé RR, Hy
 
 ## 15. INTERLUDE DRACONIQUE IV — Le dernier Défi des Îles
 
-### D4-01 — Dernier biome ouvert
+### D4-01 — Le biome draconique le plus dangereux
 
 **Accès au biome 4 :** dès la libération de l'île I. **Visite conseillée :** après l'île IV pour sa difficulté élevée (90–98). **Biome 4 :** crêtes volcaniques, orages et sanctuaire de haute montagne. **Épreuve 4/4 :** protéger une migration draconique d'un phénomène naturel dangereux, puis combat contre le quatrième maître. La réserve ne devient pas un chapitre de libération RR.
 
