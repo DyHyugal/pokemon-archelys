@@ -1,5 +1,7 @@
 # Pokémon Archélys — Scénario intégral V2 pour Codex
 
+> **MISE À JOUR CONCEPTION DES COMBATS, 16 OCTOBRE 2026 :** consulter en priorité [EQUIPES_TACTICA_ARCHIPEL_V1.md](EQUIPES_TACTICA_ARCHIPEL_V1.md) (8 arènes, épreuves, admins RR, 4 gardiens célestes, et 4 maîtres draconiques × 4 paliers avec builds) et [EPREUVES_ET_ARENES_V1.md](EPREUVES_ET_ARENES_V1.md) (agencement, énigmes, quêtes et progression). Ces deux documents détaillent une **nouvelle proposition** de courbe interne (aces d'arène 18/36/45/55/64/78/93/98) et des **combats de maîtres draconiques adaptatifs** 38/57/80/95, non encore validés par le propriétaire ; ils **ne changent pas** les plages des îles ni l'accès immédiat à tous les biomes Dragon. Ils remplacent les rosters et niveaux *provisoires* du document antérieur ARENES_EPREUVES_COURBE_V1.md, notamment son ancienne proposition de paliers fixes et d'arène Dragon 100. Les paragraphes historiques du présent scénario mentionnant encore ces anciennes propositions doivent être lus comme non normatifs. **Ne pas implémenter ces choix contradictoires simultanément.**
+>
 > **SPOILERS DEV — Document de conception / proposition narrative au 16 octobre 2026.**
 > **Branche de destination : develop.** Ne pas publier ce texte tel quel dans le wiki destiné aux joueurs.
 > **Statut :** les règles explicitement indiquées comme « actées » proviennent des choix du propriétaire ; les noms, équipes, détails du récit et personnages nouvellement inventés sont **des propositions**, et ne doivent pas être traités comme validés.
