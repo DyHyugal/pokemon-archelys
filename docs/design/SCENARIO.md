@@ -1,5 +1,10 @@
 # Scénario — SPOILERS DEV
 
+> **MISE À JOUR 16 OCTOBRE 2026 — Source de scénario pour Codex :** [SCENARIO_INTEGRAL_V2_CODEX.md](SCENARIO_INTEGRAL_V2_CODEX.md).
+>
+> Le texte ci-dessous est un **ancien synopsis historique**. Il contient une structure dépassée (« héros + trois compagnons »). **La version V2 la corrige : Vyna, Raidon et Hyu sont trois frères et sœur, tous protagonistes ; 1 à 3 joueurs remplacent directement leurs rôles.** Le scénario V2 conserve les distinctions entre décisions actées, nouvelles propositions, noms non validés et détails techniques non implémentés. Lire le nouveau document avant tout travail de scénario.
+>
+
 **Synopsis de cadrage ; pas un scénario complet approuvé.** Ne pas publier ce document dans le wiki joueurs. Le dépôt public reste lisible par toute personne, même si elle n’est pas censée consulter les documents développeur.
 
 ## Points explicitement demandés
