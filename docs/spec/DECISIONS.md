@@ -58,3 +58,11 @@ Les noms Varakoa, Varek, Naélis, Orien, Vérian, Caëlan, Aloïs, Maëlle, les 
 | SN15 | **Demandé comme règle d'équilibrage** | S'inspirer des règles Tactica (évolutions autorisées, talents réellement légaux, équipes cohérentes) et proposer des épreuves de types distincts des arènes de l'île quand possible. **L'import automatique des espèces/formes et des niveaux historiques Tactica n'est pas autorisé par cette décision.** | Conversation du 16 octobre 2026 |
 
 L'ancien SN09 décrivant une ouverture progressive des quatre biomes draconiques est **supplanté sur ce point uniquement**. Les quatre épreuves et la dernière arène draconique demeurent obligatoires pour la conclusion de la réserve.
+
+## Nouveau lot de conception d'équipes et d'épreuves — 16 octobre 2026
+
+| ID | Statut | Point | Référence |
+|---|---|---|---|
+| SN16 | **Proposition de builds, non validée** | 8 rosters de champions (types actés), 4 gardiens célestes, 5 administrateurs RR locaux et les maîtres d'épreuves, avec niveaux, quatre attaques, talents, objets, natures et profils EV HARD. Basés sur les règles de Pokémon Tactica, avec audit de légalité encore nécessaire et contrôle du Pokédex Archélys à réaliser. | [Équipes Tactica V1](../design/EQUIPES_TACTICA_ARCHIPEL_V1.md) |
+| SN17 | **Proposition de levels/puzzles, non validée** | Nouvelle courbe des ace : 18/36/45/55/64/78/93/98. Plans d'arènes et épreuves par biome. Quatre biomes draconiques accessibles dès la fin de l'île 1 ; maîtres au palier 38/57/80/95, avec combats adaptés, toutes les épreuves dans l'ordre voulu. Cette proposition remplace **la proposition** SN14, pas un choix propriétaire validé. | [Arènes/Épreuves V1](../design/EPREUVES_ET_ARENES_V1.md) |
+| SN18 | **Question ouverte** | Le propriétaire n'a pas arbitré entre les quatre biomes draconiques à **niveaux fixes très distincts** (ancienne SN14) et la proposition récente **de maîtres adaptatifs** ; ni formellement décidé si la dernière arène Dragon exige la libération des quatre autres îles. Ne pas déclarer ces choix comme actés. | Deux versions documentées ; arbitrage ultérieur |
