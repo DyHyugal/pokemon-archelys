@@ -9,7 +9,7 @@ Voir les [épreuves et arènes — architecture, énigmes et synchronisation](EP
 - **Niveaux imposés par le propriétaire :** île 1 N.1–38 ; île 2 N.40–57 ; île 3 N.60–80 ; île 4 N.80–95 ; céleste N.100. Arène Dragon finale N.98 proposé, entre île IV et île céleste. Les quatre biomes draconiques deviennent **tous accessibles** après la fin de l'île 1 ; seuls les combats des maîtres draconiques s'adaptent au palier courant (N.38 / 57 / 80 / 95), sans réhausser le niveau des Pokémon sauvages d'une zone déjà accessible.
 - **8 arènes** : Plante N.18, Feu N.36, Psy N.45, Ténèbres N.55, Glace N.64, Acier N.78, Électrik N.93, Dragon N.98. La huitième n'ouvre qu'une fois les **quatre îles ordinaires libérées et les quatre épreuves draconiques terminées**, même si tous les biomes ont été ouverts dès la première libération. Ce verrou de dernière arène est une **proposition de conciliation** avec « dernier défi » ; à valider explicitement.
 - **Tactica :** 1er champion 3 Pokémon, 2e 4, à partir du 3e 6. Jusqu'au 3e badge, pas de Méga ; à partir du 4e champion inclus : **une Méga propre au champion**. Méga-Gemmes non dupliquées entre chefs majeurs ; le Pokémon entre avec un talent pré-Méga légal. Les chefs des épreuves utilisent des effectifs différents selon leur niveau de menace. Les équipes sont les mêmes en NORMAL et HARD : seul HARD applique les IV 31, EV stratégiques et IA adaptée sans triche.
-- **Objets uniques** par équipe, un exemplaire de chaque objet tenu. **1 objet maximum au premier gym**, 3 maximum au deuxième par adaptation prudente du profil « early Tactica » (Tactica impose exactement 1/2/3 objets aux trois premiers champions, mais cette proposition Archelys comporte 1ère et 2e arène seulement avant N.38 ; **par défaut imposer maximum 2 objets à A02 si on applique strictement la progression des badges**. A02 possède actuellement 3 objets : **correction requise avant l'implémentation**). Les phases EARLY/MID ne doivent pas employer un set final disproportionné. Pas de double objet identique sur une équipe, ni de talent inaccessible dans la forme de base.
+- **Objets uniques** par équipe, un exemplaire de chaque objet tenu. **Au maximum 1 objet équipé au premier gym, 2 au deuxième, 3 au troisième**, conformément aux restrictions Tactica (Albert/Hector/Blanche), puis les équipes complètes peuvent être équipées, sans doublon. Les fiches A01, A02, A03 respectent ces limites. Les phases EARLY/MID ne doivent pas employer un set final disproportionné. Pas de double objet identique sur une équipe, ni de talent inaccessible dans la forme de base.
 - **EV HARD en raccourci :** P=252 Atq / 252 Vit / 4 PV, S=252 Atq. Spé / 252 Vit / 4 PV, D=252 PV / 252 Déf / 4 Déf. Spé, M=252 PV / 252 Déf. Spé / 4 Déf, V=252 PV / 252 Vit / 4 Déf. Spé. Pour certains poseurs de murs, V peut nécessiter un profil davantage PV/Déf : le calcul final doit être optimisé par essais réels. Natures proposées à valider (p.ex. « Brave » sur Distorsion implique IV Vitesse 0, exception motivée aux IV31 standard et à spécifier explicitement si on la conserve).
 - **Évolutions :** les stades doivent être légaux **au niveau réel**. Échange simple = Fil Liaison ; échange + objet tenu = objet officiel tenu et Fil Liaison ; les méthodes faisables en 9G restent officielles sans niveaux artificiels. Les boss peuvent détenir une forme légalement obtenue par objet/Fil Liaison sans forcer le Pokémon sauvage à l'avoir déjà. Pas de famille starter en **rencontre sauvage** avant le 2e badge (cette restriction n'interdit pas un starter dans l'équipe d'un champion).
 - **Types custom Tactica confirmés :** Dracaufeu et sa famille Feu/Dragon ; Tranchodon Dragon/Acier ; Élekable Électrik/Combat avec Sans Limite ; Jungko et Majaspic Plante/Dragon. Leur inclusion dans Archélys est conditionnée à l'import effectif de cette balance ; ne pas leur attribuer les nouveaux types dans Godot avant intégration vérifiée.
@@ -25,6 +25,8 @@ Voir les [épreuves et arènes — architecture, énigmes et synchronisation](EP
 | IV · high-tech | Électrik 93 | Acier 84 ; Eau 89 ; Psy 93 | 95 | Plasma/Flare 95 |
 | Réserve Dragon (parallèle) | Dragon 98, seulement au final | Quatre épreuves, tier 38 / 57 / 80 / 95 | 98 proposé | Aucune occupation |
 | Céleste | Aucune arène | Quatre gardiens avec six Pokémon N.100 | Dieu 5e combat N.100 | Aucun |
+
+**Note :** la fiche T06 (sources d'eau hivernales) est une **épreuve secondaire facultative**, non requise pour libérer l'île : les quatre biomes principaux exigent deux arènes (port et sources) et deux épreuves (plateau et glacier). Le défi T06 peut devenir un tournoi annexe ou être supprimé après avis du propriétaire.
 
 **Niveaux de détail :** cette V1 propose les quatre attaques, le talent, la nature, l'objet, la composition, les intentions stratégiques et le profil EV de chaque équipe. Une capacité de couverture listée n'est **pas une certification de légalité**. La traduction d'une attaque peut diverger de Showdown (ex. « Ébullition » = Scald) ; créer des constantes stables à la génération et auditer le learnset officiel adapté Tactica.
 
@@ -57,7 +59,7 @@ Voir les [épreuves et arènes — architecture, énigmes et synchronisation](EP
 | # | Pokémon | Niv. | Talent (avant > après Méga) | Objet | Nature | EV HARD | Attaques |
 |---|---|---:|---|---|---|---|---|
 | 1 | Feunard | 33 | Sécheresse | Roche Chaude | Timide | S | Lance-Flammes · Feu Follet · Éco-Sphère · Choc Psy |
-| 2 | Magmar | 34 | Corps Ardent | Baie Sitrus | Modeste | S | Lance-Flammes · Choc Psy · Onde Folie · Tonnerre |
+| 2 | Magmar | 34 | Corps Ardent | — | Modeste | S | Lance-Flammes · Choc Psy · Onde Folie · Tonnerre |
 | 3 | Reptincel | 35 | Brasier | — | Jovial | P | Crocs Feu · Draco-Griffe · Griffe Ombre · Danse-Lames |
 | 4 **(ace)** | Arcanin | 36 | Intimidation | Ceinture Pro | Rigide | P | Boutefeu · Vitesse Extrême · Câlinerie · Mâchouille |
 
@@ -80,7 +82,7 @@ Voir les [épreuves et arènes — architecture, énigmes et synchronisation](EP
 | 1 | Chartor | 36 | Sécheresse | Roche Chaude | Assuré | D | Piège de Roc · Lance-Flammes · Tour Rapide · Feu Follet |
 | 2 | Camérupt | 37 | Solide Roc | Baie Sitrus | Modeste | S | Telluriforce · Lance-Flammes · Éboulement · Abri |
 | 3 | Maganon | 37 | Corps Ardent | Ceinture Pro | Modeste | S | Lance-Flammes · Tonnerre · Exploforce · Psyko |
-| 4 **(ace)** | Rhinastoc | 38 | Solide Roc | — | Rigide | P | Séisme · Lame de Roc · Mégacorne · Poing Feu |
+| 4 **(ace)** | Gigalithe | 38 | Fermeté | — | Rigide | P | Séisme · Lame de Roc · Surpuissance · Explosion |
 
 ### A03 — Championne visionnaire Psy — île 2, lac
 
@@ -89,10 +91,10 @@ Voir les [épreuves et arènes — architecture, énigmes et synchronisation](EP
 | # | Pokémon | Niv. | Talent (avant > après Méga) | Objet | Nature | EV HARD | Attaques |
 |---|---|---:|---|---|---|---|---|
 | 1 | Mistigrix mâle | 42 | Farceur | Lumargile | Timide | V | Mur Lumière · Protection · Choc Psy · Cage Éclair |
-| 2 | Xatu | 43 | Miroir Magik | Grosses Bottes | Timide | S | Psyko · Air Slash · Atterrissage · Demi-Tour |
+| 2 | Xatu | 43 | Miroir Magik | — | Timide | S | Psyko · Air Slash · Atterrissage · Demi-Tour |
 | 3 | Flagadoss | 43 | Régé-Force | Restes | Assuré | D | Ébullition · Psyko · Paresse · Cage Éclair |
-| 4 | Mentali | 44 | Miroir Magik | Orbe Vie | Timide | S | Psyko · Éclat Magique · Ball'Ombre · Plénitude |
-| 5 | Gardevoir | 44 | Calque | Ceinture Pro | Modeste | S | Psyko · Pouvoir Lunaire · Tonnerre · Feu Follet |
+| 4 | Mentali | 44 | Miroir Magik | — | Timide | S | Psyko · Éclat Magique · Ball'Ombre · Plénitude |
+| 5 | Gardevoir | 44 | Calque | — | Modeste | S | Psyko · Pouvoir Lunaire · Tonnerre · Feu Follet |
 | 6 **(ace)** | Alakazam | 45 | Garde Magik | Ceinture Force | Timide | S | Psyko · Exploforce · Ball'Ombre · Encore |
 
 ### T03 — Maître des lanternes — forêt mystique
@@ -161,7 +163,7 @@ Voir les [épreuves et arènes — architecture, énigmes et synchronisation](EP
 | # | Pokémon | Niv. | Talent (avant > après Méga) | Objet | Nature | EV HARD | Attaques |
 |---|---|---:|---|---|---|---|---|
 | 1 | Lakmécygne | 67 | Regard Vif | Lunettes Sages | Timide | S | Surf · Vent Violent · Laser Glace · Atterrissage |
-| 2 | Scorvol | 68 | Soin Poison | Orbe Toxique | Jovial | P | Séisme · Acrobatie · Provoc · Atterrissage |
+| 2 | Scorvol | 68 | Soin Poison | Orbe Toxique | Jovial | P | Séisme · Sabotage · Provoc · Atterrissage |
 | 3 **(ace)** | Airmure | 69 | Fermeté | Casque Brut | Malin | D | Piège de Roc · Rapace · Atterrissage · Cyclone |
 
 ### A06 — Champion Acier — île 3, village des sources
@@ -311,7 +313,7 @@ Voir les [épreuves et arènes — architecture, énigmes et synchronisation](EP
 |---|---|---:|---|---|---|---|---|
 | 1 | Amagara | 36 | Peau Gelée | Baie Oran | Calme | M | Vent Glace · Pouvoir Antique · Onde Folie · Protection |
 | 2 | Draco | 37 | Mue | Évoluroc | Calme | M | Draco-Souffle · Laser Glace · Cage Éclair · Abri |
-| 3 **(ace)** | Polarhume | 38 | Rideau Neige | Baie Sitrus | Rigide | P | Chute Glace · Aqua-Jet · Tranche · Charme |
+| 3 **(ace)** | Polagriffe | 38 | Rideau Neige | Baie Sitrus | Rigide | P | Chute Glace · Aqua-Jet · Surpuissance · Éboulement |
 
 ### D04 — Maître draconique 4 — crêtes chaudes
 
@@ -345,7 +347,7 @@ Voir les [épreuves et arènes — architecture, énigmes et synchronisation](EP
 | 1 **(ace)** | Scalproie | 100 | Acharné | Lunettes Noires | Rigide | P | Danse-Lames · Tête de Fer · Sabotage · Coup Bas |
 | 2 **(ace)** | Carchacrok | 100 | Peau Dure | Casque Brut | Jovial | P | Séisme · Draco-Griffe · Piège de Roc · Crocs Feu |
 | 3 **(ace)** | Ectoplasma | 100 | Corps Maudit | Orbe Vie | Timide | S | Ball'Ombre · Bomb-Beurk · Exploforce · Tonnerre |
-| 4 **(ace)** | Brutalibré | 100 | Délestage | Graine Herbe | Rigide | P | Acrobatie · Close Combat · Danse-Lames · Atterrissage |
+| 4 **(ace)** | Brutalibré | 100 | Délestage | Baie Sitrus | Rigide | P | Acrobatie · Close Combat · Danse-Lames · Atterrissage |
 | 5 **(ace)** | Métalosse | 100 | Corps Sain | Veste de Combat | Rigide | P | Poing Météore · Séisme · Poing Glace · Pisto-Poing |
 | 6 **(ace)** | Lockpin | 100 | Joli Sourire > Querelleur (Méga) | Lockpinite | Jovial | P | Retour · Close Combat · Bluff · Poing Glace |
 
@@ -412,7 +414,7 @@ Les quatre équipes C01–C04 sont à N.100 et précèdent un **cinquième comba
 - [ ] Extraire le Pokédex final choisi pour Archélys (et pas le Pokédex de Tactica), vérifier présence de chaque famille et ses formes ; remplacer les espèces absentes sans perdre la stratégie.
 - [ ] Valider chaque espèce, nature, talent normal/HA, objet, stade, attaques (level-up / CT / tutor / œuf / transfert) contre les données de génération retenues et les exceptions custom approuvées.
 - [ ] Corriger les combinaisons contestables (ce document ne prétend pas avoir exécuté Showdown), notamment certaines attaques de couverture, formes conditionnelles, talents des Pokémon de soutien et restrictions de la première île.
-- [ ] Imposer **maximum 2 objets tenus** pour l'arène A02 si application stricte des deux premiers gyms Tactica ; retirer un objet non critique (par exemple celui de Magmar) avant import.
+- [x] Contrôle de structure : A01 maximum 1 objet ; A02 maximum 2 objets ; A03 maximum 3 objets ; à conserver comme tests de données.
 - [ ] Éliminer les doublons de Méga d'ace entre tous les dresseurs majeurs, y compris chefs RR finaux encore à définir.
 - [ ] Vérifier le cap avant/après chaque raid et administrateur et empêcher une régression lors de l'aller-retour avec la réserve.
 - [ ] Compiler les quatre tiers des quatre maîtres Dragon en rosters légaux ; éviter les jumps de stade inaccessibles et respecter les méthodes réelles.
