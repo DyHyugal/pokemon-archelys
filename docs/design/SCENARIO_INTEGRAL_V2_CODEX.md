@@ -3,6 +3,8 @@
 > **SPOILERS DEV — Document de conception / proposition narrative au 16 octobre 2026.**
 > **Branche de destination : develop.** Ne pas publier ce texte tel quel dans le wiki destiné aux joueurs.
 > **Statut :** les règles explicitement indiquées comme « actées » proviennent des choix du propriétaire ; les noms, équipes, détails du récit et personnages nouvellement inventés sont **des propositions**, et ne doivent pas être traités comme validés.
+> **RECTIFICATIF PRIORITAIRE — ÉQUILIBRAGE ET ARÈNES (16 octobre 2026) :** consulter [ARENES_EPREUVES_COURBE_V1.md](ARENES_EPREUVES_COURBE_V1.md) avant d'exploiter les anciennes propositions de ce scénario. **Décisions du propriétaire : 8 arènes, soit Plante/Feu (île 1), Psy/Ténèbres (île 2), Glace/Acier (île 3), Électrik (île 4), Dragon (draconique) ; plages d'îles 1–38, 40–57, 60–80, 80–95 ; céleste niv. 100. L'île draconique devient intégralement accessible dès la libération de l'île 1, ses QUATRE biomes et épreuves simultanément.** Niveaux internes de la réserve proposés : 40–50, 55–65, 70–85, 90–98, puis dernière arène Dragon niveau 100. Les étapes D1–D4 entre îles plus bas indiquent un **ordre conseillé de visite**, plus des déblocages. Ce rectificatif prévaut sur les anciennes descriptions incompatibles.
+
 > **Important :** document d'histoire et de mise en scène, **pas une autorisation implicite de développer toutes les fonctionnalités immédiatement**. Construire en solo d'abord ; rendre le contenu adaptable à la coop 1 à 3 joueurs. Préserver le projet, ses scènes et ses sauvegardes existantes.
 
 ## 0. Comment utiliser ce document
@@ -25,8 +27,8 @@ La première île s'appuie aussi sur docs/design/ATLAS_PROPOSE_2026-10-12.md, do
 6. **Le Défi des Îles et les arènes restent officiellement autorisés par RR** parce que l'organisation recherche les dresseurs capables d'affronter des Pokémon légendaires et de servir le projet Couronne Zéro. Inscription des dresseurs, carte et résultats administrés dans une base RR. Des champions peuvent certifier la victoire localement tout en retardant ou falsifiant le rapport central pour protéger les jeunes dresseurs. Les conséquences de cette dissimulation apparaissent dans le récit.
 7. **L'occupation doit être vivante :** patrouilles de nuit, couvre-feu, contrôles des cartes, taxes, monopoles, abus de pouvoir, propagande, réquisitions et résistances. Ces événements sont souvent de **courts dialogues ou interactions in-game** ; les grandes cinématiques sont réservées aux moments majeurs. Après libération, les PNJ, commerces et patrouilles changent.
 8. **Les champions et maîtres d'épreuves deviennent progressivement porteurs d'espoir.** Au départ ils sont prudents ; ensuite certains protègent le trio et en parlent à d'autres ; à la fin ils soutiennent la révolte. Éviter de répéter après chaque badge « vous êtes la lueur d'espoir » ; faire monter cette conviction par des actes.
-9. **Ordre principal validé :** île tropicale/volcanique → île mystique → île hivernale → île high-tech, avec retours à l'île draconique ; puis île céleste ; puis assaut final sur l'ancien Æther. Sur chaque île occupée : exploration de ses biomes et défis, interventions RR à moments variables, puis **raid de divinité locale → repaire secondaire RR → libération et changement visible du monde**.
-10. **L'île draconique est libre** (trop dangereuse pour une occupation durable). Elle s'ouvre **après la libération de la première île**. Ses **quatre biomes se débloquent chacun après l'une des quatre libérations** et chacun propose **une épreuve obligatoire**. **Après les quatre épreuves : dernière arène du jeu**, puis conclusion sacrée de la réserve. On ne parle jamais de « libérer » cette île.
+9. **Ordre principal validé :** île tropicale/volcanique → île mystique → île hivernale → île high-tech, avec île draconique intégralement accessible en parallèle dès l'île 1 libérée et retours facultatifs ; puis île céleste ; puis assaut final sur l'ancien Æther. Sur chaque île occupée : exploration de ses biomes et défis, interventions RR à moments variables, puis **raid de divinité locale → repaire secondaire RR → libération et changement visible du monde**.
+10. **L'île draconique est libre** (trop dangereuse pour une occupation durable). Elle s'ouvre **après la libération de la première île** avec **ses quatre biomes et ses quatre épreuves disponibles immédiatement**. Leur difficulté est fixe et volontairement très différente (40–50, 55–65, 70–85, 90–98) pour permettre une exploration parallèle et des retours facultatifs. **Après les quatre épreuves : dernière arène Dragon niveau 100**, puis conclusion sacrée de la réserve. On ne parle jamais de « libérer » cette île.
 11. **L'île céleste n'est accessible qu'après la victoire finale sur l'île draconique.** Défi divin en cinq combats : **quatre gardiens humains puis une divinité, cinquième adversaire**. Entre les combats, soins, objets et CT possibles ; **pas de PC ni de sortie de l'île** pendant le défi. Titre de Gardien d'Archélys attribué selon les jalons acquis par les joueurs.
 12. **La conclusion au quartier général Æther vise à sauver le père et détruire la coalition RR.** Les dirigeants vaincus peuvent être emprisonnés s'ils se rendent ; certains refusant de cesser leurs violences subissent une fin tragique, **sans gore**. Le climax n'est pas seulement « Silver contre le monde ». La chute des six branches et de leur projet commun doit être lisible.
 13. **Légendaires affrontés pendant le scénario, capturables seulement en postgame.** Ultra-Dimension et ses huit arènes, revanches, défense du titre et raids rejouables ensuite. Répartition de référence : trois boss de fin d'île en phases successives, deux en affrontement simultané sur les cinq îles ordinaires ; ne pas imposer les espèces proposées tant que le Pokédex du propriétaire n'est pas fixé.
@@ -93,13 +95,13 @@ Une championne Psy de l'île mystique possède de vraies prédispositions divina
 |---|---|---|---|---|
 | P | Ville natale sur île tropicale | Magma, sous registre central RR | Famille, inscription, starters, premières injustices | Départ du trio |
 | I | Île tropicale-volcanique « Varakoa » (proposition) | **Magma** | Côte → jungle → sources → volcan | Raid volcanique → repaire Magma → libération |
-| D1 | Île draconique (sans nom validé) | Aucune | Biome 1 : falaises-forêt | Épreuve 1/4 |
+| D1 (visite conseillée) | Île draconique (sans nom validé) | Aucune | Biome 1 : falaises-forêt, disponible dès fin île I | Épreuve 1/4 |
 | II | Île mystique (sans nom validé) | **Aqua** | Lac/brume → forêt → ruines → observatoire | Raid mystique → repaire Aqua → libération |
-| D2 | Île draconique | Aucune | Biome 2 : canyon-oasis | Épreuve 2/4 |
+| D2 (visite conseillée) | Île draconique | Aucune | Biome 2 : canyon-oasis, disponible dès fin île I | Épreuve 2/4 |
 | III | Île hivernale (sans nom validé) | **Galaxie** | Port → hauts plateaux → sources → glacier | Raid du glacier → repaire Galaxie → libération |
-| D3 | Île draconique | Aucune | Biome 3 : hautes vallées gelées | Épreuve 3/4 |
+| D3 (visite conseillée) | Île draconique | Aucune | Biome 3 : hautes vallées gelées, disponible dès fin île I | Épreuve 3/4 |
 | IV | Île high-tech (sans nom validé) | **Plasma + Flare**, fonctions distinctes | Métropole → quartier de contrôle → littoral énergétique → tour | Raid électrique → repaire commun → libération |
-| D4 | Île draconique | Aucune | Biome 4 : crêtes volcaniques et orages, puis 4/4 et arène finale | Divinité draconique → accès céleste |
+| D4 (visite conseillée) | Île draconique | Aucune | Biome 4 : crêtes volcaniques et orages, disponible dès fin île I ; après 4/4 arène finale | Divinité draconique → accès céleste |
 | V | Île céleste (sans nom validé) | Aucune | 4 gardiens, puis divinité (5e combat) | Titre de Gardien et crise dimensionnelle |
 | VI | Ancien Æther, repaire central (nom provisoire « Nœud Atlas ») | **Conseil RR des six** | Assaut des alliés → branches → prison → machine | Père libéré, conseil défait, Couronne Zéro détruite |
 | VII | Épilogue et postgame | Pas de nouvelle RR | Réouvertures, raids, Ultra-Dimension, titre | Aventure libre |
@@ -209,20 +211,20 @@ L'île vivait de l'équilibre entre océan, forêt et géothermie : « les deux 
 
 **« Varakoa » est une proposition NON VALIDÉE** ; noms de zones proposés : Havre-Clair (port et maison), Chemin des Alizés (côte), Canopée des Mille-Feuilles (jungle), Fumerolles (village), Bassins du Souffle (sources), Mont Khar (volcan), Galeries de Basalte (grotte), Cœur du Volcan (sanctuaire), Complexe du Cratère (repaire Magma). Renommer après validation sans modifier les identifiants stables de zone.
 
-### 7.3 Défis de biomes — proposition
+### 7.3 Défis de biomes — proposition révisée (types d'arènes fixés)
 
-1. **Littoral : arène Eau**, épreuve de marées/passerelles. Premier champion reconnu par RR ; début de sa confiance envers les trois.
-2. **Jungle : épreuve Plante/Insecte**, relevés, passages et relais. Maître d'épreuve s'inquiétant des Pokémon déplacés par Magma.
-3. **Sources : arène Feu**, stratégie soleil et installations géothermiques. Championne ayant connu Aloïs.
-4. **Volcan : épreuve Roche/Sol**, galeries, mécanismes et zones dangereuses, avec responsable ancien mineur.
+1. **Littoral : épreuve Eau**, marées/passerelles et contrôle des vannes du port.
+2. **Jungle : arène Plante (arène 1)**, jardins de la canopée, relais et croissance végétale.
+3. **Sources : arène Feu (arène 2)**, stratégie soleil et installations géothermiques. Championne ayant connu Aloïs.
+4. **Volcan : épreuve Roche**, galeries, mécanismes et zones dangereuses, avec responsable ancien mineur.
 
 Chaque défi exige une victoire propre aux rôles joués par des humains selon la progression individuelle prévue ; en solo les PNJ obtiennent leur progression narrative sans trois combats autonomes simulés inutilement.
 
 ### 7.4 Casting local — propositions
 
 - Doyenne **Alma** : défend l'autonomie du port sans afficher une révolte impossible.
-- Champion Eau **Ewen** : discret, courage prudent, transmet normalement le premier badge.
-- Maîtresse jungle **Iona** : botaniste, protège les rencontres sauvages ; retarde le rapport de victoire du trio.
+- Maître d'épreuve Eau **Ewen** : discret, courage prudent, valide la première épreuve littorale.
+- Championne Plante **Iona** : botaniste, protège les rencontres sauvages ; retarde le rapport de victoire de l'arène de la canopée.
 - Championne Feu **Mila** : connaissait Aloïs ; retarde le rapport, donne accès à une ancienne galerie.
 - Maître volcan **Boran** : ancien mineur, guide jusqu'au sanctuaire.
 - Officier Magma **Sarn** : fait appliquer contrôles et réquisitions.
@@ -236,11 +238,11 @@ Chaque défi exige une victoire propre aux rôles joués par des humains selon l
 
 **I-02 — Un duel entre frères et sœur (voir section 14).** Sur la grande place : Vyna part au centre commercial, Hyu et Raidon préparent l'arène. Premier duel Hyu/Raidon, puis Vyna défie le gagnant. Événement léger, jouable dans tous les modes, pas d'échange exigé.
 
-**I-03 — Arène des marées.** Le champion Eau affronte le trio, remarque leurs styles très différents, les félicite sans proclamer un sauveur. Les résultats sont certifiés et transmis normalement ; premier jalon officiel.
+**I-03 — Épreuve des marées (Eau).** Le maître d'épreuve affronte le trio à l'issue d'un puzzle de vannes, remarque leurs styles différents, les félicite sans proclamer de sauveur. Résultat certifié et transmis normalement ; premier jalon officiel, sans badge d'arène.
 
 **I-04 — Premier abus Magma majeur.** Après le **premier biome**, un convoi détruit les cultures en installant des pompes dans la jungle. Un officier menace des villageois. Le trio défend les habitants et découvre des câbles partant vers le volcan.
 
-**I-05 — Épreuve de la canopée.** Deux relais à neutraliser ou détourner, trois relevés botaniques et combat de la maîtresse. Après la victoire, Iona certifie les résultats **localement**, mais indique que son terminal « attendra une meilleure connexion » avant la transmission centrale.
+**I-05 — Arène Plante de la canopée (arène 1).** Les relais et relevés botaniques forment l'approche de l'arène dans la jungle. Après les combats officiels, Iona certifie le badge **localement**, mais indique que son terminal « attendra une meilleure connexion » avant la transmission centrale.
 
 **[ROLE_VYNA] :** « On n'a jamais été aussi près de comprendre ce qu'ils font. »
 **[ROLE_HYU] :** « Les relais ne servaient pas seulement à surveiller la forêt. Ils reliaient les installations à la caldeira. »
@@ -266,11 +268,11 @@ Chaque défi exige une victoire propre aux rôles joués par des humains selon l
 
 **I-11 — Libération.** Civils reprennent les centrales ; garnisons se rendent ou fuient, couvre-feu levé, commerces et ferries intérieurs rouverts. Alma remercie les **trois** enfants. Ewen et Mila se concertent : peut-être que ces trois jeunes sont un espoir réel. Retour poignant à la maison, promesse de ramener Aloïs.
 
-**I-12 — Conséquences et ouverture.** Accès à l'île mystique et **premier biome draconique**. Après scène : PNJ/rues/boutiques/mer évoluent ; plus de patrouille Magma de nuit. Une surveillance RR maritime globale persiste hors île.
+**I-12 — Conséquences et ouverture.** Accès à l'île mystique et **à la totalité des quatre biomes draconiques**, dont les niveaux sont fixes et certains trop élevés pour être vaincus immédiatement. Après scène : PNJ/rues/boutiques/mer évoluent ; plus de patrouille Magma de nuit. Une surveillance RR maritime globale persiste hors île.
 
 ## 8. INTERLUDE DRACONIQUE I — La terre qui refuse les conquérants
 
-**Condition :** île I libérée. La réserve a conservé son indépendance grâce à ses Pokémon puissants, à une géographie dangereuse et à ses défenseurs, pas par négligence inexplicable de RR.
+**Condition :** île I libérée pour accéder librement à **tous les biomes**, l'interlude I n'est qu'une première visite conseillée. La réserve a conservé son indépendance grâce à ses Pokémon puissants, à une géographie dangereuse et à ses défenseurs, pas par négligence inexplicable de RR.
 
 **Biome 1 : falaises battues par le vent et ancienne forêt draconique.** Le trio rencontre l'autorité locale **Ilyra** (nom proposé), qui refuse de les traiter en sauveurs sur parole.
 
@@ -278,7 +280,7 @@ Chaque défi exige une victoire propre aux rôles joués par des humains selon l
 **[ROLE_RAIDON] :** « On ne vient pas la conquérir ! »
 **Ilyra :** « Alors montrez que vous savez la traverser sans déranger ceux qui l'habitent. »
 
-**Épreuve 1/4 :** observation de nids, traversée des falaises, combat stratégique contre un maître local. La victoire ouvre uniquement les zones autorisées. Ne pas lancer l'arène finale. Aucune bannière ni base RR dans la réserve.
+**Épreuve 1/4 (niveau candidat 50) :** observation de nids, traversée des falaises, combat stratégique contre un maître local. Les trois autres biomes sont déjà accessibles ; cette victoire **ne doit pas être utilisée comme clé d'ouverture des autres biomes**. Ne pas lancer l'arène finale avant 4/4. Aucune bannière ni base RR dans la réserve.
 
 ## 9. ÎLE II — Mystique, mer et secrets du futur
 
@@ -324,11 +326,11 @@ L'**intervention Aqua principale** survient **après le troisième biome**, cont
 **[ROLE_HYU] :** « Une image du futur n'est pas une certitude. »
 **Éloane :** « Et c'est précisément ce qui me donne encore de l'espoir. »
 
-**II-03 — Arène Psy.** Combat du trio contre Éloane, puis reconnaissance prudente : elle garde secret le véritable niveau des enfants, accepte de certifier sans transférer immédiatement toutes les données.
+**II-03 — Arène Psy (arène 3).** Combat du trio contre Éloane, puis reconnaissance prudente : elle garde secret le véritable niveau des enfants, accepte de certifier sans transférer immédiatement toutes les données.
 
 **II-04 — Forêt et lanternes.** Épreuve nocturne, courtes discussions familiales au camp : Vyna aime les contes, Raidon se moque des fausses apparitions, Hyu cherche leur cause. Un petit duel facultatif de rivalité peut exister, jamais une obligation de repasser une même scène de combat.
 
-**II-05 — Ruines des ombres.** Troisième défi du parcours. Les trois découvrent un ancien nom lié à Aloïs et un registre transporté vers l'observatoire. Un champion plus prudent avertit : toute erreur mettra les habitants en danger.
+**II-05 — Arène Ténèbres (arène 4) aux ruines des ombres.** Troisième défi du parcours. Les trois découvrent un ancien nom lié à Aloïs et un registre transporté vers l'observatoire. Un champion plus prudent avertit : toute erreur mettra les habitants en danger.
 
 **II-06 — Intervention Aqua majeure.** Aqua ferme les écluses, provoque la montée des eaux et crée un brouillard permanent pour protéger ses transports clandestins. Le trio défend un village et déjoue un barrage. Naélis exprime ses objectifs maritimes propres, non un ordre secret de Silver.
 
@@ -337,7 +339,7 @@ L'**intervention Aqua principale** survient **après le troisième biome**, cont
 **Naélis :** « La sécurité exige parfois qu'on prive les autres de choix. »
 **[ROLE_VYNA] :** « Alors ce n'est pas la sécurité que tu protèges. »
 
-**II-07 — Observatoire et archives.** Dernière épreuve. Documents partiellement authentiques prouvent qu'Aloïs a étudié des passages anciens ; ne pas affirmer qu'il a volontairement inventé une arme. Les héros commencent à entendre le terme « Concordance » sans le comprendre.
+**II-07 — Observatoire et archives.** Dernière épreuve Spectre. Documents partiellement authentiques prouvent qu'Aloïs a étudié des passages anciens ; ne pas affirmer qu'il a volontairement inventé une arme. Les héros commencent à entendre le terme « Concordance » sans le comprendre.
 
 **II-08 — Raid mystique.** Divinité locale **Lunala** ou combinaison de manifestations **Darkrai/Cresselia** à décider selon Pokédex ; **format simultané**. Les résonances ne permettent aucune capture en histoire. Les écluses retournent progressivement à un état stable.
 
@@ -345,11 +347,11 @@ L'**intervention Aqua principale** survient **après le troisième biome**, cont
 
 **II-10 — Un membre du conseil RR apparaît.** Silver, en **émissaire de la coalition**, examine les rapports manquants et peut faire combattre **une seule équipe de test** contre un responsable spécial, ou se montrer lui-même. Ne pas multiplier gratuitement les duels. Affrontement gagnable s'il y en a un ; pas de défaite forcée.
 
-**II-11 — Libération.** Écluses reprises, brumes artificielles dissipées, commerce maritime rétabli, couvre-feu levé. Éloane confie à une personne de confiance que les trois enfants pourraient accomplir sa vision. Son doute sur la « porte » persiste. Accès île III et biome draconique 2.
+**II-11 — Libération.** Écluses reprises, brumes artificielles dissipées, commerce maritime rétabli, couvre-feu levé. Éloane confie à une personne de confiance que les trois enfants pourraient accomplir sa vision. Son doute sur la « porte » persiste. Accès île III ; **le biome draconique 2 était déjà disponible**, mais il correspond désormais au niveau de l'aventure.
 
 ## 10. INTERLUDE DRACONIQUE II
 
-**Condition :** île II libérée.
+**Visite conseillée :** après île II libérée ; **accès réel dès l'île I libérée**.
 
 **Biome 2 : canyon, désert rocheux et oasis sous arches naturelles.** Les dresseurs locaux privilégient l'endurance et la lecture des déplacements des Pokémon Dragon. **Épreuve 2/4 :** traversée guidée, aide à un habitat menacé par une tempête, combat contre un maître du canyon. Pas d'occupation ni de repaire RR. Le défi conclut ce biome sans offrir le titre céleste ni ouvrir l'arène finale.
 
@@ -385,15 +387,15 @@ L'**intervention Galaxie principale** intervient **après le deuxième biome**.
 
 **III-01 — Le chauffage comme laisse.** Arrivée au port. Une famille supplie une patrouille de rétablir sa chaudière ; un officier exige le paiement d'une nouvelle taxe.
 
-**III-02 — Premier défi au port.** Le trio remporte l'arène. Le champion connaît leurs exploits, mais parle discrètement pour ne pas déclencher une enquête.
+**III-02 — Arène Glace au port (arène 5).** Le trio remporte l'arène. Le champion connaît leurs exploits, mais parle discrètement pour ne pas déclencher une enquête.
 
-**III-03 — Plateau, refuges et épreuve.** Les trois se séparent brièvement : l'un vérifie un refuge, un autre aide un Pokémon blessé, le dernier parcourt une voie de montagne. Une réplique et un regroupement commun font progresser ; ne pas séparer artificiellement les humains pendant une longue demi-heure.
+**III-03 — Plateau, refuges et épreuve Vol.** Les trois se séparent brièvement : l'un vérifie un refuge, un autre aide un Pokémon blessé, le dernier parcourt une voie de montagne. Une réplique et un regroupement commun font progresser ; ne pas séparer artificiellement les humains pendant une longue demi-heure.
 
 **III-04 — Intervention Galaxie.** Des soldats ferment le réseau de chauffage après une protestation. L'héritier prétend que les sacrifices sont nécessaires pour comprendre les fondations du monde. Le trio peut restaurer les chaudières **sans couper la chaleur** aux familles : choix d'un bon itinéraire, pas sabotage aveugle.
 
-**III-05 — Village des sources et troisième défi.** Les habitants commencent à identifier le trio comme une vraie résistance ; un champion met à disposition une salle de repos, mais refuse que son nom apparaisse dans un rapport RR.
+**III-05 — Village des sources et arène Acier (arène 6).** Les habitants commencent à identifier le trio comme une vraie résistance ; un champion met à disposition une salle de repos, mais refuse que son nom apparaisse dans un rapport RR.
 
-**III-06 — Archives du glacier.** Quatrième défi. La console révèle : **ALOÏS — DÉTENU — STATUT : VIVANT — SITE ÆTHER/ATLAS**. Trois réactions familiales distinctes, pas seulement celle du joueur.
+**III-06 — Archives du glacier, épreuve Roche.** Quatrième défi. La console révèle : **ALOÏS — DÉTENU — STATUT : VIVANT — SITE ÆTHER/ATLAS**. Trois réactions familiales distinctes, pas seulement celle du joueur.
 
 **[ROLE_VYNA] :** « Il est vivant… On va vraiment pouvoir le retrouver. »
 **[ROLE_RAIDON] :** « Alors qu'est-ce qu'on attend pour y aller ? »
@@ -403,11 +405,11 @@ L'**intervention Galaxie principale** intervient **après le deuxième biome**.
 
 **III-08 — Repaire Galaxie.** Mine et observatoire fusionnés en forteresse scientifique. Confrontations administrateur puis héritier, preuves de collaboration avec les autres branches. Le trio coupe l'extraction et rend les commandes aux techniciens locaux.
 
-**III-09 — Libération.** Retour du chauffage, ouverture des routes de montagne et des ateliers. Les champions de plusieurs îles échangent désormais discrètement au sujet des trois enfants. Le groupe reçoit un message anonyme le prévenant de **ne pas attaquer Æther avant d'avoir acquis la reconnaissance céleste**. Déblocage île IV et biome draconique 3.
+**III-09 — Libération.** Retour du chauffage, ouverture des routes de montagne et des ateliers. Les champions de plusieurs îles échangent désormais discrètement au sujet des trois enfants. Le groupe reçoit un message anonyme le prévenant de **ne pas attaquer Æther avant d'avoir acquis la reconnaissance céleste**. Déblocage île IV ; **le biome draconique 3 est déjà ouvert depuis l'île I, mais son niveau devient maintenant adapté**.
 
 ## 12. INTERLUDE DRACONIQUE III
 
-**Condition :** île III libérée.
+**Visite conseillée :** après île III libérée ; **accès réel dès l'île I libérée**.
 
 **Biome 3 : hautes vallées, pics neigeux et grottes cristallines.** Épreuve 3/4 : protéger une migration de Pokémon draconiques, résoudre les passages de glace et combattre le maître local. Le conseil commence à respecter les trois enfants, mais leur rappelle qu'être forts ne leur donne pas le droit de posséder la réserve.
 
@@ -445,7 +447,7 @@ Une démonstration des capacités de RR a lieu tôt sur l'île, puis **la révé
 
 **IV-01 — La ville vitrine.** Le trio arrive dans un centre commercial où tout paraît prospère. Plus bas, les habitants font la queue devant des postes d'identification. Les trois personnages comparent les quartiers, sans supposer que tout civil riche est un ennemi.
 
-**IV-02 — Première arène et infiltration du registre.** Le champion autorise une participation officielle ; le registre indique des résultats **partiellement manquants** pour les enfants, malgré les certifications détenues. Un inspecteur soupçonne plusieurs champions d'avoir effacé des données.
+**IV-02 — Repérage de l'arène Électrik et infiltration du registre.** La participation est autorisée, mais son combat principal est prévu plus loin au niveau ~93 ; le registre indique des résultats **partiellement manquants** pour les enfants, malgré les certifications détenues. Un inspecteur soupçonne plusieurs champions d'avoir effacé des données.
 
 **IV-03 — Rencontre Flare.** L'héritier défend l'idée d'une civilisation développée pour quelques privilégiés. Il montre les avancées énergétiques réelles puis refuse de les partager à tous.
 
@@ -453,9 +455,9 @@ Une démonstration des capacités de RR a lieu tôt sur l'île, puis **la révé
 **[ROLE_VYNA] :** « Donc ceux qui ne peuvent pas payer doivent vivre sans ? »
 **Caëlan :** « Tous les privilèges ont une condition. »
 
-**IV-04 — Épreuve industrielle.** Énigmes de machines, accès à la centralisation des données. Pas de chantier interminable : deux ou trois étapes lisibles.
+**IV-04 — Épreuve Acier industrielle.** Énigmes de machines, accès à la centralisation des données. Pas de chantier interminable : deux ou trois étapes lisibles.
 
-**IV-05 — District ouvrier et port énergétique.** Le trio aide une communauté à réactiver un service public tout en terminant l'arène. Plasma déclenche des contrôles ciblés sur le groupe. Le héros est désormais connu sous son nom de dresseur si ce rôle est joué par l'humain ; affiches et radio peuvent parler du **trio**.
+**IV-05 — District ouvrier et port énergétique, épreuve Eau.** Le trio aide une communauté à réactiver un service public au fil d'une épreuve de gestion marémotrice. Plasma déclenche des contrôles ciblés sur le groupe. Le héros est désormais connu sous son nom de dresseur si ce rôle est joué par l'humain ; affiches et radio peuvent parler du **trio**.
 
 **IV-06 — Révélation Couronne Zéro.** Dans une salle de mesures, Hyu identifie des pics alignés exactement avec les raids gagnés aux îles I–III. Vidéoconférence du **conseil de la coalition**, Silver parmi ses membres ; on comprend que les branches ont récolté des données à distance malgré leurs défaites.
 
@@ -469,13 +471,13 @@ Une démonstration des capacités de RR a lieu tôt sur l'île, puis **la révé
 
 La coalition ne « voulait pas perdre les îles » ; elle a anticipé et exploité le **risque** d'une victoire du trio, ce qui la rend crédible et faillible.
 
-**IV-07 — Dernier défi : tour et archives.** Mise au jour de plans complets d'Æther et d'une voie vers l'île céleste impossible à forcer simplement. Un agent spécial RR tente une **évaluation finale** du trio, pas un combat de routine.
+**IV-07 — Arène Électrik (arène 7), puis épreuve Psy de la tour et archives.** Après les défis de la ville, le trio affronte le champion Électrik niveau ~93 ; la tour et l'épreuve Psy (~94) mettent au jour des plans complets d'Æther et d'une voie vers l'île céleste impossible à forcer simplement. Un agent spécial RR tente une **évaluation finale** du trio, pas un combat de routine.
 
 **IV-08 — Raid électrique.** Boss locaux proposés **Miraidon, Zekrom et Zeraora** ; format **simultané**, adaptation selon 1/2/3 joueurs et présence éventuelle de frères/sœur IA. Les espèces exactes et combats dépendent du roster définitif. La quatrième résonance est captée malgré la désactivation du complexe.
 
 **IV-09 — Repaire Plasma/Flare.** Tour de contrôle à plusieurs secteurs : propagande et registre (Plasma), usine du noyau (Flare), salle mixte finale. Combats contre administrateurs de chaque branche, puis les héritiers dans un dernier affrontement local ou leur repli. Les deux organisations restent des partenaires majeurs de la coalition et conservent leurs dirigeants pour le final tant qu'ils ne sont pas capturés.
 
-**IV-10 — Libération ambivalente.** Caméras et autorisations coercitives désactivées ; le quartier populaire célèbre ; les privilégiés ont peur de la transition. Les techniciens civils récupèrent les infrastructures ; les enfants ne deviennent pas gouvernants. Déblocage quatrième biome draconique.
+**IV-10 — Libération ambivalente.** Caméras et autorisations coercitives désactivées ; le quartier populaire célèbre ; les privilégiés ont peur de la transition. Les techniciens civils récupèrent les infrastructures ; les enfants ne deviennent pas gouvernants. Le quatrième biome draconique, déjà ouvert depuis l'île I, correspond maintenant au niveau de fin d'aventure.
 
 ## 14. Événements familiaux transversaux — scripts et synchronisation
 
@@ -532,7 +534,7 @@ Après la révélation sur Couronne Zéro, Raidon estime qu'ils ont aidé RR, Hy
 
 ### D4-01 — Dernier biome ouvert
 
-**Condition :** île IV libérée et épreuves 1–3 accomplies. **Biome 4 :** crêtes volcaniques, orages et sanctuaire de haute montagne. **Épreuve 4/4 :** protéger une migration draconique d'un phénomène naturel dangereux, puis combat contre le quatrième maître. La réserve ne devient pas un chapitre de libération RR.
+**Accès au biome 4 :** dès la libération de l'île I. **Visite conseillée :** après l'île IV pour sa difficulté élevée (90–98). **Biome 4 :** crêtes volcaniques, orages et sanctuaire de haute montagne. **Épreuve 4/4 :** protéger une migration draconique d'un phénomène naturel dangereux, puis combat contre le quatrième maître. La réserve ne devient pas un chapitre de libération RR.
 
 ### D4-02 — Quatre épreuves vérifiées
 
@@ -552,7 +554,7 @@ Après la dernière arène, sanctuaire central et raid proposé contre **Zygarde
 
 Une ancienne porte s'ouvre au-dessus des nuages. Ilyra souhaite bonne chance aux trois enfants et promet que les habitants de la réserve contribueront à protéger les îles libres, pas à régner sur elles.
 
-**Jalon :** quatre épreuves draconiques + dernière arène + événement sacré = ACCES_CELESTE.
+**Jalon :** quatre épreuves draconiques accessibles depuis la fin de l'île I + dernière arène Dragon niveau 100 + événement sacré = ACCES_CELESTE. La convergence avec la fin des îles II–IV doit être clarifiée avant codage du verrou céleste.
 
 ## 16. ÎLE CÉLESTE — Le Défi divin
 
@@ -717,15 +719,15 @@ Noms **indicatifs** des drapeaux pour Codex ; ne pas changer un schéma de sauve
 | SC_PROLOGUE_INSCRIT | Starter, inscription des trois rôles | Cartes de dresseur et accès première route |
 | SC_I_BIOMES_OK | 4 défis locaux terminés | Accès au sanctuaire volcanique |
 | SC_I_RAID_OK | Biomes I validés | Repaire Magma accessible, légendaire non capturable |
-| SC_I_LIBEREE | Raid I + repaire Magma | Patrouilles retirées ; île II + DRAGON_BIOME_1 |
+| SC_I_LIBEREE | Raid I + repaire Magma | Patrouilles retirées ; île II + DRAGON_BIOMES_1_2_3_4 ouverts ensemble |
 | SC_D1_OK | Première épreuve draconique | Certification 1/4 |
-| SC_II_LIBEREE | Défis II + raid + repaire Aqua | Île III + DRAGON_BIOME_2 |
+| SC_II_LIBEREE | Défis II + raid + repaire Aqua | Île III ; aucun nouveau verrou draconique levé |
 | SC_D2_OK | Deuxième épreuve draconique | Certification 2/4 |
 | SC_III_PERE_VIVANT | Consultation du dossier Galaxie | Journal : Aloïs détenu à Æther |
-| SC_III_LIBEREE | Défis III + raid + repaire Galaxie | Île IV + DRAGON_BIOME_3 |
+| SC_III_LIBEREE | Défis III + raid + repaire Galaxie | Île IV ; aucun nouveau verrou draconique levé |
 | SC_D3_OK | Troisième épreuve draconique | Certification 3/4 |
 | SC_IV_TWIST | Découverte des relevés des raids | Révélation Couronne Zéro, journal et dialogues adaptés |
-| SC_IV_LIBEREE | Défis IV + raid + repaire Plasma/Flare | DRAGON_BIOME_4 |
+| SC_IV_LIBEREE | Défis IV + raid + repaire Plasma/Flare | Fin de l'occupation des quatre îles ; les biomes draconiques restent déjà ouverts |
 | SC_D4_OK | Quatrième épreuve draconique | Certification 4/4 |
 | SC_DRAGON_ARENE_OK | D1 + D2 + D3 + D4 | Dernière arène draconique gagnée |
 | SC_DRAGON_TERMINE | Arène + raid draconique | ACCES_CELESTE |
@@ -774,7 +776,7 @@ Chaque scène à traduire ensuite en données comprend : ID stable ; zone ; fen�
 
 1. Noms définitifs des **six îles** et lieux, des champions, maîtres d'épreuves, doyens, admins et nouveaux héritiers (tous noms proposés ici non validés).
 2. Identités visuelles et espèces des **starters**, du Pokédex définitif, des formes delta et Fakemons ; choix des divinités locales et de l'éventuel dieu céleste original.
-3. Nombre définitif de défis humains par île ordinaire selon le découpage réel des biomes et durée de campagne. **Les quatre épreuves de l'île draconique + dernière arène sont, elles, imposées**.
+3. **Répartition des arènes fixée :** îles I, II, III = deux arènes chacune ; île IV = une ; réserve draconique = une dernière arène. Soit **huit arènes** : Plante, Feu, Psy, Ténèbres, Glace, Acier, Électrik, Dragon. Les épreuves de biomes et leurs mini-jeux sont proposés dans [ARENES_EPREUVES_COURBE_V1.md](ARENES_EPREUVES_COURBE_V1.md). Les quatre épreuves de l'île draconique + dernière arène sont imposées.
 4. Fonctions exactes de la Concordance, conditions des portails et Couronne Zéro ; c'est un fil rouge narratif proposé, à valider.
 5. Distribution finale des branches **Aqua/Galaxie/Plasma/Flare** entre les îles II–IV ; Magma sur l'île I et Coalition à Æther sont les références récentes de conversation.
 6. Identité et sort individuel des chefs qui se rendent ou refusent ; scène dramatique sans gore, aucun décès nominatif définitivement décidé ici.
@@ -797,7 +799,7 @@ Avant de convertir cette bible en contenu jouable, contrôler les scénarios sui
 - [ ] Chaque branche RR possède des sbires, une hiérarchie et un rôle économique/narratif ; Silver n'écrase pas les cinq autres chefs.
 - [ ] Les interventions RR importantes ne sont pas toutes au même moment du chapitre.
 - [ ] Chaque île ordinaire termine par raid local, repaire, puis libération, dans cet ordre.
-- [ ] Après chaque libération, **un seul biome draconique supplémentaire** est débloqué ; quatre épreuves obligatoires avant dernière arène.
+- [ ] Après île I libérée, **les quatre biomes et les quatre épreuves draconiques** sont accessibles immédiatement ; **aucune ouverture de biome** liée aux îles II–IV ; quatre épreuves obligatoires avant dernière arène.
 - [ ] Réserve draconique et île céleste **jamais occupées** ; aucun texte « île draconique libérée ».
 - [ ] Accès céleste seulement après dernière arène draconique et conclusion de sa divinité.
 - [ ] Défi divin : **4 gardiens + 1 dieu**, pas 4 combats dont le dieu ; pas d'accès PC ni départ entre les cinq combats.
