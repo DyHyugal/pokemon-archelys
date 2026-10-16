@@ -31,3 +31,8 @@ Ces points ne bloquent pas la rédaction du cadrage. Ils doivent être résolus 
 - Plongée et île sous-marine : estimation et décision de périmètre avant ajout.
 - Synchronisation du wiki, hébergement, licence du code et actifs originaux ; séparation des spoilers publics.
 - Invitation Internet sans configuration, coût/limites de relais, serveur dédié : décider après un essai vérifiable.
+
+
+## Précisions ouvertes après le scénario V2 du 16 octobre 2026
+
+Les questions historiques ci-dessus sont conservées pour provenance ; plusieurs ont depuis reçu des réponses dans `docs/cadrage-valide`. **Ne pas les rouvrir sans nécessité**. Après la nouvelle bible [SCENARIO_INTEGRAL_V2_CODEX.md](../design/SCENARIO_INTEGRAL_V2_CODEX.md), restent à valider : noms définitifs des six îles et des personnages locaux ; correspondance finale des branches Aqua/Galaxie/Plasma/Flare aux îles II–IV ; identité des divinités, gardiens, équipes et starters ; nature exacte de Couronne Zéro et de la Concordance ; sort individuel des héritiers ; détails de famille (mère/triplés) ; questionnaire final et variations linguistiques. L'architecture narrative 1 à 3 rôles joueurs/PNJ est un **choix acté**, mais son implémentation réseau reste reportée.
