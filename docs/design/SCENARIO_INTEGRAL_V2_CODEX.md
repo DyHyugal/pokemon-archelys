@@ -1,5 +1,7 @@
 # Pokémon Archélys — Scénario intégral V2 pour Codex
 
+> **RECTIFICATIF PRIORITAIRE DU 17 OCTOBRE 2026 — AUDIT D118 ET CHOIX DES MONTURES :** la première île a **deux arènes Plante et Feu** (aucune épreuve locale obligatoire avant le raid) et conserve **raid → repaire Magma → cinématique de libération**. Ensuite, le trio doit accomplir **l'épreuve maritime de Sharpedo** depuis la plage pour rejoindre l'île II, en réutilisant la monture déjà implémentée. **Île II :** conserver ses épreuves Fée/Spectre et ses arènes Psy/Ténèbres ; **après raid → repaire Aqua → cinématique de libération**, débloquer **Dracaufeu en vol libre** et le **voyage rapide vers les villes visitées**, puis réaliser la traversée aérienne vers l'île III. **Réserve draconique :** dès la libération de I, les **quatre portes** de biomes sont accessibles **sans progression II/III/IV**, mais chacune exige de battre **son gardien d'entrée** pour ouvrir le biome (accès aux dragons sauvages). Les tâches des quatre épreuves restent liées aux certificats exigés par l'arène finale, sans second combat maître obligatoire. Référence détaillée : [EPREUVES_ET_ARENES_V1.md](EPREUVES_ET_ARENES_V1.md). **Ce rectificatif prévaut sur les anciennes étapes I-03, I-08 et autres tableaux historiques tant qu'elles n'ont pas toutes été réécrites.**
+
 > **MISE À JOUR CONCEPTION DES COMBATS, 16 OCTOBRE 2026 :** consulter en priorité [EQUIPES_TACTICA_ARCHIPEL_V1.md](EQUIPES_TACTICA_ARCHIPEL_V1.md) (8 arènes, épreuves, admins RR, 4 gardiens célestes, et 4 maîtres draconiques × 4 paliers avec builds) et [EPREUVES_ET_ARENES_V1.md](EPREUVES_ET_ARENES_V1.md) (agencement, énigmes, quêtes et progression). Ces deux documents détaillent une **nouvelle proposition** de courbe interne (aces d'arène 18/36/45/55/64/78/93/98) et des **combats de maîtres draconiques adaptatifs** 38/57/80/95, non encore validés par le propriétaire ; ils **ne changent pas** les plages des îles ni l'accès immédiat à tous les biomes Dragon. Ils remplacent les rosters et niveaux *provisoires* du document antérieur ARENES_EPREUVES_COURBE_V1.md, notamment son ancienne proposition de paliers fixes et d'arène Dragon 100. Les paragraphes historiques du présent scénario mentionnant encore ces anciennes propositions doivent être lus comme non normatifs. **Ne pas implémenter ces choix contradictoires simultanément.**
 >
 > **SPOILERS DEV — Document de conception / proposition narrative au 16 octobre 2026.**
@@ -213,68 +215,63 @@ L'île vivait de l'équilibre entre océan, forêt et géothermie : « les deux 
 
 **« Varakoa » est une proposition NON VALIDÉE** ; noms de zones proposés : Havre-Clair (port et maison), Chemin des Alizés (côte), Canopée des Mille-Feuilles (jungle), Fumerolles (village), Bassins du Souffle (sources), Mont Khar (volcan), Galeries de Basalte (grotte), Cœur du Volcan (sanctuaire), Complexe du Cratère (repaire Magma). Renommer après validation sans modifier les identifiants stables de zone.
 
-### 7.3 Défis de biomes — proposition révisée (types d'arènes fixés)
+### 7.3 Arènes et activités — mise à jour du 17 octobre 2026
 
-1. **Littoral : épreuve Eau**, marées/passerelles et contrôle des vannes du port.
-2. **Jungle : arène Plante (arène 1)**, jardins de la canopée, relais et croissance végétale.
-3. **Sources : arène Feu (arène 2)**, stratégie soleil et installations géothermiques. Championne ayant connu Aloïs.
-4. **Volcan : épreuve Roche**, galeries, mécanismes et zones dangereuses, avec responsable ancien mineur.
+**Défis principaux avant raid : uniquement deux arènes officielles :**
+1. **GYM-01 Plante (ace 18 proposé)** dans le Bourg côté jardins/forêt ou dans la canopée : implantation finale non tranchée, cohérence à vérifier avec la carte D118. Énigme de serre, vannes et croissance de plantes ; l'insigne est officiellement enregistré ou certifié localement.
+2. **GYM-02 Feu (ace 36 proposé)** dans **le village au cinquième palier, tout au fond du cratère**. Énigme de bassins et de températures ; la championne ayant connu Aloïs fournit un indice du sanctuaire.
 
-Chaque défi exige une victoire propre aux rôles joués par des humains selon la progression individuelle prévue ; en solo les PNJ obtiennent leur progression narrative sans trois combats autonomes simulés inutilement.
+**La plage n'abrite plus un maître Eau à vaincre avant raid.** L'épreuve Eau officielle de l'île I devient **la traversée Sharpedo vers l'île II APRÈS la libération**. La jungle avec relais et relevés botaniques, la mangrove, les sources, les mineurs et les galeries Roche/Sol restent des zones de progression et/ou missions secondaires, **pas des épreuves obligatoires donnant un certificat de biome**. Aucun nouveau biome n'est requis par l'audit.
 
-### 7.4 Casting local — propositions
+**Volcan :** descente **de cinq paliers numérotés de haut en bas**. Paliers 1 à 4 : galeries Roche/Sol/Feu, escaliers, lave non franchissable ; **palier 5 : village et arène Feu en terrasse habitable**, accès au sanctuaire distinct du village et raccourci retour. Ces implantations sont les décisions issues de l'audit D118 ; positions exactes et géométrie restent au travail du mapping.
 
-- Doyenne **Alma** : défend l'autonomie du port sans afficher une révolte impossible.
-- Maître d'épreuve Eau **Ewen** : discret, courage prudent, valide la première épreuve littorale.
-- Championne Plante **Iona** : botaniste, protège les rencontres sauvages ; retarde le rapport de victoire de l'arène de la canopée.
-- Championne Feu **Mila** : connaissait Aloïs ; retarde le rapport, donne accès à une ancienne galerie.
-- Maître volcan **Boran** : ancien mineur, guide jusqu'au sanctuaire.
-- Officier Magma **Sarn** : fait appliquer contrôles et réquisitions.
-- Administrateur Magma **Darek** : contrôle le repaire final.
-- Héritier Magma **Varek** : dirige la branche et réapparaît dans le conseil central.
-- Salia et la famille restent des personnages transversaux.
+### 7.4 Personnages locaux — noms proposés, fonctions corrigées
 
-### 7.5 Déroulé des scènes
+- Doyenne **Alma** : défend l'autonomie du port.
+- Championne Plante **Iona** : botaniste et responsable de l'arène GYM-01 ; peut conserver les relevés botaniques comme quête secondaire et cacher un rapport au registre.
+- Championne Feu **Mila** : tient GYM-02 au fond du cratère, connaissait Aloïs, retarde un rapport et donne accès à l'ancien sanctuaire.
+- **Ewen** : guide maritime / responsable de l'épreuve Sharpedo après libération, **pas de maître Eau obligatoire à combattre avant raid**.
+- **Boran** : ancien mineur, guide des galeries et du sanctuaire, **pas de second maître d'épreuve Roche/Sol imposé**.
+- Officier Magma **Sarn**, administrateur **Darek**, héritier Magma **Varek** : responsables de l'occupation et du repaire, noms non fixés.
 
-**I-01 — La côte réglementée.** À la sortie du port, un barrage réclame les cartes. Sur le quai, un marchand paie une taxe punitive. Un affrontement contre un contrôleur Magma ouvre le sentier ; les habitants ne célèbrent pas encore les héros.
+### 7.5 Scènes jouables actualisées
 
-**I-02 — Un duel entre frères et sœur (voir section 14).** Sur la grande place : Vyna part au centre commercial, Hyu et Raidon préparent l'arène. Premier duel Hyu/Raidon, puis Vyna défie le gagnant. Événement léger, jouable dans tous les modes, pas d'échange exigé.
+**I-01 — Contrôle RR au port.** Inspection des cartes des trois frères et sœur, restrictions, taxes et patrouilles. Un affrontement simple peut permettre d'ouvrir la route intérieure, sans transformer la plage en troisième gym.
 
-**I-03 — Épreuve des marées (Eau).** Le maître d'épreuve affronte le trio à l'issue d'un puzzle de vannes, remarque leurs styles différents, les félicite sans proclamer de sauveur. Résultat certifié et transmis normalement ; premier jalon officiel, sans badge d'arène.
+**I-02 — Rivalité familiale à proximité de l'arène.** Vyna effectue une course au centre commercial, Hyu et Raidon se défient, Vyna affronte le gagnant ; variantes humaines/PNJ de la section 14. Aucun échange obligatoire.
 
-**I-04 — Premier abus Magma majeur.** Après le **premier biome**, un convoi détruit les cultures en installant des pompes dans la jungle. Un officier menace des villageois. Le trio défend les habitants et découvre des câbles partant vers le volcan.
+**I-03 — Arène Plante.** Au Bourg côté forêt (implantation proposée à valider avec Codex), le trio remporte GYM-01 ; Iona admire leurs capacités. Un premier badge réel et une première confiance naissante.
 
-**I-05 — Arène Plante de la canopée (arène 1).** Les relais et relevés botaniques forment l'approche de l'arène dans la jungle. Après les combats officiels, Iona certifie le badge **localement**, mais indique que son terminal « attendra une meilleure connexion » avant la transmission centrale.
+**I-04 — Magma frappe la jungle.** Après le premier biome/secteur, Magma pose conduites et relais ; le trio aide les villageois et découvre une connexion avec le volcan. Les relevés, deux relais et la botanique restent une **quête d'exploration**, pas une épreuve officielle supplémentaire.
 
-**[ROLE_VYNA] :** « On n'a jamais été aussi près de comprendre ce qu'ils font. »
-**[ROLE_HYU] :** « Les relais ne servaient pas seulement à surveiller la forêt. Ils reliaient les installations à la caldeira. »
-**[ROLE_RAIDON] :** « Alors direction le volcan. »
+**I-05 — Traversée de la forêt et sources.** Progression à travers forêt, mangrove, camp et sources. Les membres de la famille enquêtent sur le détournement géothermique, découvrent les premiers indices concernant Aloïs ; les lieux préexistants ne sont pas supprimés.
 
-**I-06 — Sources et village de basalte.** Un foyer a perdu l'accès au chauffage des bains ; courte quête de vannes et circuit d'eau, sans bloquer abusivement l'aventure. Découverte de logements de mineurs et collecte d'un témoignage.
+**I-06 — Descente du volcan par cinq paliers.** Galeries, passages naturels, mineurs, chaleur et lave délimitée. Les quatre étages supérieurs conduisent au village du **palier 5**, non à une arène sur le sommet. Boran ouvre et explique les galeries sans délivrer un certificat obligatoire de maître Roche.
 
-**I-07 — Arène du soleil.** Avant le combat, Mila apprend le nom d'Aloïs. Après victoire, elle confie une ancienne carte d'accès et dissimule à son tour le rapport central.
+**I-07 — Arène Feu au village du fond.** Mila reconnaît le nom du père et certifie la victoire GYM-02 ; elle donne des informations sur l'ancienne entrée du sanctuaire.
 
-**Mila :** « Votre père a découvert quelque chose dans les galeries. Il voulait empêcher qu'on réveille ce qui dort au-dessous. »
-**[ROLE_HYU] :** « Vous pensez qu'il travaillait ici ? »
-**Mila :** « J'en suis certaine. Et je ne transmettrai pas vos derniers résultats à ceux qui l'ont emmené. »
+**Mila :** « Votre père a découvert quelque chose dans ces galeries. Je crois qu'il voulait empêcher qu'on réveille ce qui dort au-dessous. »
+**[ROLE_VYNA] :** « Alors il est vraiment passé ici ? »
+**Mila :** « Oui. Et je ne transmettrai pas tous vos résultats à ceux qui l'ont emmené. »
 
-**I-08 — Épreuve des galeries.** Boran impose de traverser des passerelles au-dessus de la lave et d'actionner des mécanismes ; combat Roche/Sol. Les mineurs expliquent la suractivité des forages et la disparition de l'ancien personnel du sanctuaire.
+**I-08 — Exploration des galeries et du sanctuaire.** Une exploration Roche/Sol, un mécanisme de blocs/passerelles et un secours aux mineurs permettent de trouver la chambre sacrée. **Ce n'est pas une épreuve à maître/équipe obligatoire** ; pas de T02 à vaincre pour ouvrir le raid.
 
-**I-09 — Raid de divinité, proposé Heatran.** Magma déstabilise la chambre géothermique ; Heatran s'éveille. **Format successif** (phases réinitialisées selon règles de raid à finaliser). Le trio calme la divinité. Une résonance est enregistrée par une sonde dissimulée, sans que les héros comprennent sa portée.
+**I-09 — Raid légendaire, Heatran proposé.** La surcharge géothermique a perturbé la divinité. Combat en phases, sans capture pendant la campagne ; ses empreintes alimentent secrètement Couronne Zéro.
 
-**I-10 — Repaire Magma.** Entrée après le raid seulement, pas avant. Poste extérieur → machines → salle des admins → chambre d'extraction. Darek défie le trio. Le dirigeant Magma intervient en personne ou par communication selon rythme, reconnaît la perte du site et envoie des archives centrales à Æther avant repli.
+**I-10 — Repaire Magma.** Salles fonctionnelles dans la forteresse agrandie, garde et caméras, machinerie de la branche Magma. Combat contre Darek, confrontation avec l'héritier. Démantèlement de la raffinerie et coupure des réseaux d'occupation.
 
-**Darek :** « Vous pensez avoir arrêté nos opérations ? Les données ont déjà quitté cette île. »
-**[ROLE_HYU] :** « Quelles données ? »
-**Darek :** « Celles pour lesquelles vos victoires sont devenues si intéressantes. »
+**I-11 — Libération officielle.** Cinématique majeure de libération : retraits des drapeaux et patrouilles Magma, services rendus aux habitants, deux champions qui reconnaissent l'espoir suscité par la fratrie. **C'est à cet instant que l'île draconique et les quatre portes de biomes deviennent accessibles, sans en ouvrir encore les intérieurs gardés.**
 
-**I-11 — Libération.** Civils reprennent les centrales ; garnisons se rendent ou fuient, couvre-feu levé, commerces et ferries intérieurs rouverts. Alma remercie les **trois** enfants. Ewen et Mila se concertent : peut-être que ces trois jeunes sont un espoir réel. Retour poignant à la maison, promesse de ramener Aloïs.
+**I-12 — Épreuve de Sharpedo et traversée I → II.** Après la cinématique, le trio revient à la **plage littorale**. Ewen introduit la Pokémonture Sharpedo déjà disponible techniquement ; courte épreuve de pilotage Eau avec chenal, bouées, courants et rochers (pas une pêche ni un combat maître). Le groupe atteint le rivage de l'île mystique. **Déclencheur : SC_I_LIBEREE, pas GYM-01 seul ; obtention de l'autorisation de poursuivre l'aventure à l'île II.** Les joueurs peuvent explorer l'île draconique en parallèle avant ou après la traversée.
 
-**I-12 — Conséquences et ouverture.** Accès à l'île mystique et **à la totalité des quatre biomes draconiques**, dont les niveaux sont fixes et certains trop élevés pour être vaincus immédiatement. Après scène : PNJ/rues/boutiques/mer évoluent ; plus de patrouille Magma de nuit. Une surveillance RR maritime globale persiste hors île.
+**Ewen :** « Les grands bateaux sont encore surveillés. Entre les récifs, il reste un passage que les patrouilles n'empruntent jamais. »
+**[ROLE_RAIDON] :** « Un passage à dos de Sharpedo ? Voilà qui me plaît ! »
+**[ROLE_HYU] :** « Suivons les bouées. Le courant tourne vers le nord après les deux récifs. »
+**[ROLE_VYNA] :** « On se retrouve tous sur l'autre rive ! »
 
 ## 8. INTERLUDE DRACONIQUE I — La terre qui refuse les conquérants
 
-**Condition :** île I libérée pour accéder librement à **tous les biomes**, l'interlude I n'est qu'une première visite conseillée. La réserve a conservé son indépendance grâce à ses Pokémon puissants, à une géographie dangereuse et à ses défenseurs, pas par négligence inexplicable de RR.
+**Condition :** île I libérée pour accéder à **chacune des quatre portes de biomes**. Chaque porte reste fermée jusqu'à la victoire contre **son gardien d'entrée**, quel que soit l'ordre choisi ; l'interlude I n'est qu'une première visite conseillée. La réserve a conservé son indépendance grâce à ses Pokémon puissants, à une géographie dangereuse et à ses défenseurs, pas par négligence inexplicable de RR.
 
 **Biome 1 : falaises battues par le vent et ancienne forêt draconique.** Le trio rencontre l'autorité locale **Ilyra** (nom proposé), qui refuse de les traiter en sauveurs sur parole.
 
@@ -282,7 +279,7 @@ Chaque défi exige une victoire propre aux rôles joués par des humains selon l
 **[ROLE_RAIDON] :** « On ne vient pas la conquérir ! »
 **Ilyra :** « Alors montrez que vous savez la traverser sans déranger ceux qui l'habitent. »
 
-**Épreuve 1/4 (niveau candidat 50) :** observation de nids, traversée des falaises, combat stratégique contre un maître local. Les trois autres biomes sont déjà accessibles ; cette victoire **ne doit pas être utilisée comme clé d'ouverture des autres biomes**. Ne pas lancer l'arène finale avant 4/4. Aucune bannière ni base RR dans la réserve.
+**Gardien 1/4 à la porte (ace 38 proposé) :** combat stratégique ouvrant **uniquement le biome des falaises**. Ensuite, exploration de nids, balises et ponts de vent pour le certificat 1/4, sans autre duel obligatoire. Les trois autres **portes** sont déjà accessibles ; cette victoire **ne doit pas être utilisée comme clé d'ouverture des autres biomes**. Ne pas lancer l'arène finale avant 4/4. Aucune bannière ni base RR dans la réserve.
 
 ## 9. ÎLE II — Mystique, mer et secrets du futur
 
@@ -349,13 +346,19 @@ L'**intervention Aqua principale** survient **après le troisième biome**, cont
 
 **II-10 — Un membre du conseil RR apparaît.** Silver, en **émissaire de la coalition**, examine les rapports manquants et peut faire combattre **une seule équipe de test** contre un responsable spécial, ou se montrer lui-même. Ne pas multiplier gratuitement les duels. Affrontement gagnable s'il y en a un ; pas de défaite forcée.
 
-**II-11 — Libération.** Écluses reprises, brumes artificielles dissipées, commerce maritime rétabli, couvre-feu levé. Éloane confie à une personne de confiance que les trois enfants pourraient accomplir sa vision. Son doute sur la « porte » persiste. Accès île III ; **le biome draconique 2 était déjà disponible**, mais il correspond désormais au niveau de l'aventure.
+**II-11 — Libération et cinématique.** Écluses reprises, brumes artificielles dissipées, commerce maritime rétabli, couvre-feu levé. Éloane confie à une personne de confiance que les trois enfants pourraient accomplir sa vision. Son doute sur la « porte » persiste. Les **deux arènes Psy/Ténèbres et les deux épreuves Fée/Spectre ont été conservées**. L'île III **n'est pas atteinte par une simple ellipse** : la traversée suivante se déclenche après la cinématique.
+
+**II-12 — Épreuve finale de Dracaufeu, vol libre et voyage rapide.** À la sortie de la célébration, un guide présente la Pokémonture Dracaufeu et l'apprentissage du pilotage aérien. La capacité **vol libre** est débloquée, ainsi que le **voyage rapide vers les villes déjà découvertes** ; pas de découverte à distance de villes inconnues. Courte épreuve de vol : décollage, franchissement d'un corridor de nuages et de vents, arrivée à l'île III. Le trio se rassemble pour sa première scène hivernale ; les rôles PNJ suivent automatiquement et les humains doivent réellement franchir la destination ou attendre au rendez-vous. **Ne pas marquer Dracaufeu « déjà implémenté » sans audit du moteur.**
+
+**[ROLE_VYNA] :** « On va vraiment traverser jusqu'à l'île suivante dans les airs ? »
+**[ROLE_RAIDON] :** « J'espère que ça va vite ! »
+**[ROLE_HYU] :** « Avant de foncer, vérifions les courants. On ne survole pas cette mer à l'aveugle. »
 
 ## 10. INTERLUDE DRACONIQUE II
 
 **Visite conseillée :** après île II libérée ; **accès réel dès l'île I libérée**.
 
-**Biome 2 : canyon, désert rocheux et oasis sous arches naturelles.** Les dresseurs locaux privilégient l'endurance et la lecture des déplacements des Pokémon Dragon. **Épreuve 2/4 :** traversée guidée, aide à un habitat menacé par une tempête, combat contre un maître du canyon. Pas d'occupation ni de repaire RR. Le défi conclut ce biome sans offrir le titre céleste ni ouvrir l'arène finale.
+**Biome 2 : canyon, désert rocheux et oasis sous arches naturelles.** Les dresseurs locaux privilégient l'endurance et la lecture des déplacements des Pokémon Dragon. **Gardien 2/4 à la porte (ace 38 proposé) :** combat ouvrant uniquement le canyon ; **épreuve 2/4 ensuite :** traversée guidée, aide à un habitat menacé par une tempête, sans second duel obligatoire. Pas d'occupation ni de repaire RR. Le défi conclut ce biome sans offrir le titre céleste ni ouvrir l'arène finale.
 
 ## 11. ÎLE III — Hivernale, savoir et survie
 
@@ -387,7 +390,7 @@ L'**intervention Galaxie principale** intervient **après le deuxième biome**.
 
 ### 11.5 Déroulé
 
-**III-01 — Le chauffage comme laisse.** Arrivée au port. Une famille supplie une patrouille de rétablir sa chaudière ; un officier exige le paiement d'une nouvelle taxe.
+**III-01 — Le chauffage comme laisse.** Après la traversée aérienne sur Dracaufeu, le trio atterrit à l'arrivée portuaire. L'introduction de l'île III attend les joueurs humains réunis. Arrivée au port. Une famille supplie une patrouille de rétablir sa chaudière ; un officier exige le paiement d'une nouvelle taxe.
 
 **III-02 — Arène Glace au port (arène 5).** Le trio remporte l'arène. Le champion connaît leurs exploits, mais parle discrètement pour ne pas déclencher une enquête.
 
@@ -536,7 +539,7 @@ Après la révélation sur Couronne Zéro, Raidon estime qu'ils ont aidé RR, Hy
 
 ### D4-01 — Le biome draconique le plus dangereux
 
-**Accès au biome 4 :** dès la libération de l'île I. **Visite conseillée :** après l'île IV pour sa difficulté élevée (90–98). **Biome 4 :** crêtes volcaniques, orages et sanctuaire de haute montagne. **Épreuve 4/4 :** protéger une migration draconique d'un phénomène naturel dangereux, puis combat contre le quatrième maître. La réserve ne devient pas un chapitre de libération RR.
+**Accès à la porte du biome 4 :** dès la libération de l'île I ; **entrée à l'intérieur uniquement après la victoire contre son gardien d'entrée (ace 38 proposé)**. **Visite conseillée :** après l'île IV pour sa difficulté élevée (90–98). **Biome 4 :** crêtes volcaniques, orages et sanctuaire de haute montagne. **Épreuve 4/4 :** protéger une migration draconique d'un phénomène naturel dangereux après la victoire contre le gardien d'entrée ; pas de deuxième combat obligatoire. La réserve ne devient pas un chapitre de libération RR.
 
 ### D4-02 — Quatre épreuves vérifiées
 
@@ -719,18 +722,18 @@ Noms **indicatifs** des drapeaux pour Codex ; ne pas changer un schéma de sauve
 | ID logique | Préconditions | Effets narratifs |
 |---|---|---|
 | SC_PROLOGUE_INSCRIT | Starter, inscription des trois rôles | Cartes de dresseur et accès première route |
-| SC_I_BIOMES_OK | 4 défis locaux terminés | Accès au sanctuaire volcanique |
+| SC_I_BIOMES_OK | **GYM-01 Plante + GYM-02 Feu** gagnés ; galeries explorées | Sanctuaire volcanique accessible ; aucune épreuve Eau/Insecte/Roche supplémentaire obligatoire |
 | SC_I_RAID_OK | Biomes I validés | Repaire Magma accessible, légendaire non capturable |
-| SC_I_LIBEREE | Raid I + repaire Magma | Patrouilles retirées ; île II + DRAGON_BIOMES_1_2_3_4 ouverts ensemble |
-| SC_D1_OK | Première épreuve draconique | Certification 1/4 |
-| SC_II_LIBEREE | Défis II + raid + repaire Aqua | Île III ; aucun nouveau verrou draconique levé |
-| SC_D2_OK | Deuxième épreuve draconique | Certification 2/4 |
+| SC_I_LIBEREE | Raid I + repaire Magma + cinématique de libération | Patrouilles retirées ; **quatre PORTES draconiques accessibles**, mais chaque entrée attend son propre gardien ; Sharpedo vers II proposé |
+| SC_I_SHARPEDO_TERMINE | SC_I_LIBEREE + traversée Sharpedo réussie | Arrivée sur île II, certificat de traversée Eau |\n| SC_D1_ENTREE_OK | Gardien d'entrée falaises vaincu | Biome 1 ouvert ; Pokémon draconiques accessibles |\n| SC_D1_OK | Gardien 1 vaincu + activité du biome complétée | Certification 1/4 |
+| SC_II_LIBEREE | Deux arènes et deux épreuves II + raid + repaire Aqua + cinématique | Autorisation épreuve finale Dracaufeu ; aucun nouveau verrou draconique levé |\n| SC_II_DRACAUFEU_TERMINE | SC_II_LIBEREE + vol libre débloqué + traversée réussie | Arrivée île III ; voyage rapide vers les villes découvertes |
+| SC_D2_ENTREE_OK | Gardien d'entrée canyon vaincu | Biome 2 ouvert et capturable |\n| SC_D2_OK | Gardien 2 vaincu + activité du biome | Certification 2/4 |
 | SC_III_PERE_VIVANT | Consultation du dossier Galaxie | Journal : Aloïs détenu à Æther |
 | SC_III_LIBEREE | Défis III + raid + repaire Galaxie | Île IV ; aucun nouveau verrou draconique levé |
-| SC_D3_OK | Troisième épreuve draconique | Certification 3/4 |
+| SC_D3_ENTREE_OK | Gardien d'entrée glacier vaincu | Biome 3 ouvert et capturable |\n| SC_D3_OK | Gardien 3 vaincu + activité du biome | Certification 3/4 |
 | SC_IV_TWIST | Découverte des relevés des raids | Révélation Couronne Zéro, journal et dialogues adaptés |
 | SC_IV_LIBEREE | Défis IV + raid + repaire Plasma/Flare | Fin de l'occupation des quatre îles ; les biomes draconiques restent déjà ouverts |
-| SC_D4_OK | Quatrième épreuve draconique | Certification 4/4 |
+| SC_D4_ENTREE_OK | Gardien d'entrée crêtes vaincu | Biome 4 ouvert et capturable |\n| SC_D4_OK | Gardien 4 vaincu + activité du biome | Certification 4/4 |
 | SC_DRAGON_ARENE_OK | D1 + D2 + D3 + D4 | Dernière arène draconique gagnée |
 | SC_DRAGON_TERMINE | Arène + raid draconique | ACCES_CELESTE |
 | SC_CELESTE_GARDIENS | 4 gardiens gagnés | Cinquième porte autorisée |
