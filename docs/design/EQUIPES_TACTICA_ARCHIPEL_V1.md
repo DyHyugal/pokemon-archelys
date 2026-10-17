@@ -1,13 +1,15 @@
 # Pokémon Archélys — Équipes compétitives Tactica, V1 de conception
 
+> **RECTIFICATIF DES COMBATS, 17 OCTOBRE 2026 :** arènes inchangées (Plante 18, Feu 36, Psy 45, Ténèbres 55, Glace 64, Acier 78, Électrik 93, Dragon 98 : **aces proposés, non homologués**). Les anciennes fiches **T01 Insecte et T02 Roche/Sol** de l'île I restent archivées comme compositions facultatives de PNJ ; elles **ne doivent plus être instanciées comme épreuves officielles obligatoires**. La seule épreuve Eau de l'île I est la traversée **Sharpedo vers l'île II après libération** : aucun roster maître de combat obligatoire. À l'île II, garder T03 Fée et T04 Spectre ; après libération débloquer **Dracaufeu en vol libre / voyage rapide** pour rejoindre III, sans équipe de combat d'épreuve supplémentaire. **D01–D04 tier 38** représentent désormais **quatre gardiens de PORTE draconiques**, chacun bloque seulement son propre biome et son accès aux Pokémon sauvages. Les variantes de rosters 57/80/95 ne servent **qu'à des revanches optionnelles** ; aucun scaling du premier gardien selon une autre île libérée et aucun nouveau duel obligatoire au bout du biome. Les puzzles/activités des quatre épreuves restent requis pour leurs certificats et la dernière arène. Aucun set n'est certifié légal sans validation Showdown et Pokédex final.
+
 > **SPOILERS DEV — PROPOSITIONS À VALIDER — 16 octobre 2026.** Source : décisions du propriétaire dans les conversations des 15–16 octobre 2026, et référentiel [Pokémon Tactica / integration/v1](https://github.com/DyHyugal/pokemon-tactica/tree/integration/v1/docs/spec) consulté le 16 octobre 2026. **Aucune équipe n'a été testée dans Pokémon Showdown, Godot ou le runtime Archélys ; elles ne sont pas garanties importables en l'état.** Vérifier espèces retenues du Pokédex Archélys, existence des Méga, learnsets 9G/adaptations Tactica et talents dans le moteur avant validation définitive.
 
 Voir les [épreuves et arènes — architecture, énigmes et synchronisation](EPREUVES_ET_ARENES_V1.md) et le [scénario narratif V2](SCENARIO_INTEGRAL_V2_CODEX.md).
 
 ## Source de vérité et règles de compilation
 
-- **Niveaux imposés par le propriétaire :** île 1 N.1–38 ; île 2 N.40–57 ; île 3 N.60–80 ; île 4 N.80–95 ; céleste N.100. Arène Dragon finale N.98 proposé, entre île IV et île céleste. Les quatre biomes draconiques deviennent **tous accessibles** après la fin de l'île 1 ; seuls les combats des maîtres draconiques s'adaptent au palier courant (N.38 / 57 / 80 / 95), sans réhausser le niveau des Pokémon sauvages d'une zone déjà accessible.
-- **8 arènes** : Plante N.18, Feu N.36, Psy N.45, Ténèbres N.55, Glace N.64, Acier N.78, Électrik N.93, Dragon N.98. La huitième n'ouvre qu'une fois les **quatre îles ordinaires libérées et les quatre épreuves draconiques terminées**, même si tous les biomes ont été ouverts dès la première libération. Ce verrou de dernière arène est une **proposition de conciliation** avec « dernier défi » ; à valider explicitement.
+- **Niveaux imposés par le propriétaire :** île 1 N.1–38 ; île 2 N.40–57 ; île 3 N.60–80 ; île 4 N.80–95 ; céleste N.100. Arène Dragon finale N.98 proposé, entre île IV et île céleste. Les quatre **portes** draconiques deviennent accessibles après la libération de l'île 1 ; chaque intérieur de biome attend un **gardien de porte niveau 38** (proposé) propre à ce biome. Les variantes 57/80/95 sont des revanches facultatives sans incidence sur l'entrée ni sur les captures.
+- **8 arènes** : Plante N.18, Feu N.36, Psy N.45, Ténèbres N.55, Glace N.64, Acier N.78, Électrik N.93, Dragon N.98. La huitième demande **les quatre certificats d'épreuves draconiques** ; l'exigence supplémentaire des **quatre îles ordinaires libérées** reste une proposition à valider. Les portes des biomes sont indépendantes des libérations II/III/IV. Ce verrou de dernière arène est une **proposition de conciliation** avec « dernier défi » ; à valider explicitement.
 - **Tactica :** 1er champion 3 Pokémon, 2e 4, à partir du 3e 6. Jusqu'au 3e badge, pas de Méga ; à partir du 4e champion inclus : **une Méga propre au champion**. Méga-Gemmes non dupliquées entre chefs majeurs ; le Pokémon entre avec un talent pré-Méga légal. Les chefs des épreuves utilisent des effectifs différents selon leur niveau de menace. Les équipes sont les mêmes en NORMAL et HARD : seul HARD applique les IV 31, EV stratégiques et IA adaptée sans triche.
 - **Objets uniques** par équipe, un exemplaire de chaque objet tenu. **Au maximum 1 objet équipé au premier gym, 2 au deuxième, 3 au troisième**, conformément aux restrictions Tactica (Albert/Hector/Blanche), puis les équipes complètes peuvent être équipées, sans doublon. Les fiches A01, A02, A03 respectent ces limites. Les phases EARLY/MID ne doivent pas employer un set final disproportionné. Pas de double objet identique sur une équipe, ni de talent inaccessible dans la forme de base.
 - **EV HARD en raccourci :** P=252 Atq / 252 Vit / 4 PV, S=252 Atq. Spé / 252 Vit / 4 PV, D=252 PV / 252 Déf / 4 Déf. Spé, M=252 PV / 252 Déf. Spé / 4 Déf, V=252 PV / 252 Vit / 4 Déf. Spé. Pour certains poseurs de murs, V peut nécessiter un profil davantage PV/Déf : le calcul final doit être optimisé par essais réels. Natures proposées à valider (p.ex. « Brave » sur Distorsion implique IV Vitesse 0, exception motivée aux IV31 standard et à spécifier explicitement si on la conserve).
@@ -26,7 +28,7 @@ Voir les [épreuves et arènes — architecture, énigmes et synchronisation](EP
 | Réserve Dragon (parallèle) | Dragon 98, seulement au final | Quatre épreuves, tier 38 / 57 / 80 / 95 | 98 proposé | Aucune occupation |
 | Céleste | Aucune arène | Quatre gardiens avec six Pokémon N.100 | Dieu 5e combat N.100 | Aucun |
 
-**Note :** la fiche T06 (sources d'eau hivernales) est une **épreuve secondaire facultative**, non requise pour libérer l'île : les quatre biomes principaux exigent deux arènes (port et sources) et deux épreuves (plateau et glacier). Le défi T06 peut devenir un tournoi annexe ou être supprimé après avis du propriétaire.
+**Note :** les fiches T01 et T02 de l'île I sont maintenant **des propositions d'adversaires facultatifs non liées aux validations**. La traversée Eau/Sharpedo post-libération et le trajet aérien/Dracaufeu post-libération II ne nécessitent aucun roster supplémentaire. La fiche T06 (sources d'eau hivernales) est une **épreuve secondaire facultative**, non requise pour libérer l'île : les quatre biomes principaux exigent deux arènes (port et sources) et deux épreuves (plateau et glacier). Le défi T06 peut devenir un tournoi annexe ou être supprimé après avis du propriétaire.
 
 **Niveaux de détail :** cette V1 propose les quatre attaques, le talent, la nature, l'objet, la composition, les intentions stratégiques et le profil EV de chaque équipe. Une capacité de couverture listée n'est **pas une certification de légalité**. La traduction d'une attaque peut diverger de Showdown (ex. « Ébullition » = Scald) ; créer des constantes stables à la génération et auditer le learnset officiel adapté Tactica.
 
@@ -285,9 +287,9 @@ Voir les [épreuves et arènes — architecture, énigmes et synchronisation](EP
 | 5 | Arcanin | 94 | Intimidation | Bandeau Choix | Rigide | P | Boutefeu · Vitesse Extrême · Éclair Fou · Câlinerie |
 | 6 **(ace)** | Pyrax | 95 | Corps Ardent | Orbe Vie | Timide | S | Papillodanse · Déflagration · Bourdon · Giga-Sangsue |
 
-### D01 — Maître draconique 1 — falaises
+### D01 — Gardien d'entrée draconique 1 — falaises
 
-**Épreuve draconique adaptative · Type/thème : Dragon / Vol · Palier ADAPT · ace N.38.** Récupérer les marques de nids et traverser les ponts de vent.
+**Combat du gardien de PORTE (premier affrontement tier 38 fixe proposé) · Type/thème : Dragon / Vol · Palier ADAPT · ace N.38.** Récupérer les marques de nids et traverser les ponts de vent.
 
 | # | Pokémon | Niv. | Talent (avant > après Méga) | Objet | Nature | EV HARD | Attaques |
 |---|---|---:|---|---|---|---|---|
@@ -295,9 +297,9 @@ Voir les [épreuves et arènes — architecture, énigmes et synchronisation](EP
 | 2 | Drackhaus | 37 | Tête de Roc | Évoluroc | Malin | D | Draco-Griffe · Éboulement · Abri · Bâillement |
 | 3 **(ace)** | Altaria | 38 | Médic Nature | Baie Sitrus | Calme | M | Draco-Souffle · Lance-Flammes · Coton Garde · Atterrissage |
 
-### D02 — Maître draconique 2 — canyon
+### D02 — Gardien d'entrée draconique 2 — canyon
 
-**Épreuve draconique adaptative · Type/thème : Dragon / Sol · Palier ADAPT · ace N.38.** Orientation parmi les arches et sauvegarde d'un nid après tempête.
+**Combat du gardien de PORTE (premier affrontement tier 38 fixe proposé) · Type/thème : Dragon / Sol · Palier ADAPT · ace N.38.** Orientation parmi les arches et sauvegarde d'un nid après tempête.
 
 | # | Pokémon | Niv. | Talent (avant > après Méga) | Objet | Nature | EV HARD | Attaques |
 |---|---|---:|---|---|---|---|---|
@@ -305,9 +307,9 @@ Voir les [épreuves et arènes — architecture, énigmes et synchronisation](EP
 | 2 | Carmache | 37 | Voile Sable | Évoluroc | Rigide | P | Draco-Griffe · Piétisol · Éboulement · Abri |
 | 3 **(ace)** | Incisache | 38 | Brise Moule | Baie Sitrus | Rigide | P | Draco-Griffe · Tranche · Danse Draco · Crocs Feu |
 
-### D03 — Maître draconique 3 — glaciers
+### D03 — Gardien d'entrée draconique 3 — glaciers
 
-**Épreuve draconique adaptative · Type/thème : Dragon / Glace · Palier ADAPT · ace N.38.** Parcours de gel et de réchauffement des caches de nourriture.
+**Combat du gardien de PORTE (premier affrontement tier 38 fixe proposé) · Type/thème : Dragon / Glace · Palier ADAPT · ace N.38.** Parcours de gel et de réchauffement des caches de nourriture.
 
 | # | Pokémon | Niv. | Talent (avant > après Méga) | Objet | Nature | EV HARD | Attaques |
 |---|---|---:|---|---|---|---|---|
@@ -315,9 +317,9 @@ Voir les [épreuves et arènes — architecture, énigmes et synchronisation](EP
 | 2 | Draco | 37 | Mue | Évoluroc | Calme | M | Draco-Souffle · Laser Glace · Cage Éclair · Abri |
 | 3 **(ace)** | Polagriffe | 38 | Rideau Neige | Baie Sitrus | Rigide | P | Chute Glace · Aqua-Jet · Surpuissance · Éboulement |
 
-### D04 — Maître draconique 4 — crêtes chaudes
+### D04 — Gardien d'entrée draconique 4 — crêtes chaudes
 
-**Épreuve draconique adaptative · Type/thème : Dragon / Feu · Palier ADAPT · ace N.38.** Éviter les jets de vapeur et stabiliser trois stations de sécurité.
+**Combat du gardien de PORTE (premier affrontement tier 38 fixe proposé) · Type/thème : Dragon / Feu · Palier ADAPT · ace N.38.** Éviter les jets de vapeur et stabiliser trois stations de sécurité.
 
 | # | Pokémon | Niv. | Talent (avant > après Méga) | Objet | Nature | EV HARD | Attaques |
 |---|---|---:|---|---|---|---|---|
@@ -390,20 +392,12 @@ Voir les [épreuves et arènes — architecture, énigmes et synchronisation](EP
 | 5 **(ace)** | Grolem d'Alola | 100 | Peau Électrique | Ceinture Pro | Brave | P | Éclair Fou · Lame de Roc · Séisme · Explosion |
 | 6 **(ace)** | Mysdibule | 100 | Intimidation > Coloforce (Méga) | Mysdibulite | Brave | P | Câlinerie · Tête de Fer · Coup Bas · Danse-Lames |
 
-## Quatre maîtres draconiques : scaling nécessaire
+## Quatre gardiens des biomes : portes indépendantes et revanches facultatives
 
-Les fiches D01–D04 ci-dessus définissent le **tier d'entrée à N.38** ; les douze autres variantes intégrales se trouvent en annexe. Tous les biomes étant ouverts après la première île, les joueurs peuvent choisir **n'importe quelle épreuve**, dans l'ordre voulu. Au lancement du combat, le tier est fixé en fonction du **dernier jalon d'île libérée**, pas du niveau du Pokémon le plus élevé du joueur :
+Les **quatre portes draconiques** sont accessibles immédiatement après l'île I, sans passer par les îles II/III/IV. Pour ouvrir **un biome donné**, vaincre **le gardien situé à SA porte** (fiche D01, D02, D03 ou D04, composition tier 38 proposée ci-dessus). Chaque combat est un affrontement réel et vaut uniquement pour l'entrée concernée. Les joueurs peuvent choisir les portes dans n'importe quel ordre. Dès la victoire, l'accès à la zone et **ses Pokémon sauvages** devient permanent ; une nouvelle libération d'île n'est jamais requise pour y pénétrer.
 
-| Îles ordinaires libérées | Tier de maître | Taille suggérée | Évolution des équipes |
-|---:|---:|---:|---|
-| 1 | 38 | 3 | Compositions D01–D04 telles qu'affichées |
-| 2 | 57 | 4 | Sonistrelle→Bruyverne (48), Drackhaus→Drattak (50), Carmache→Carchacrok (48), Vibraninf→Libégon (45), Incisache→Tranchodon (48), Amagara→Dragmara (39 de nuit), Polarhume→Polagriffe (37), Draco→Dracolosse (55), selon les rôles ; conserver espèces de support adaptées |
-| 3 | 80 | 5 | Formes finales, objets et sets FINAL ; ajouter un soutien/tank de biome, autorisé dans le roster sélectionné et sans Méga imposée |
-| 4 | 95 | 6 | Formes finales + couverture/objets FINAL, six Pokémon et IA HARD optimisée, **pour les nouveaux défis ou les revanches facultatives**, sans rendre obligatoires les quatre revanches |
+Les quatre **activités d'épreuve** (falaises, canyon, glacier, crêtes) demeurent des objectifs de certification à l'intérieur de chaque biome et sont nécessaires pour obtenir les **quatre attestations de la dernière arène Dragon**. Leur réalisation n'ajoute pas un second affrontement obligatoire avec le même gardien. Les rosters tier **57/80/95** détaillés ci-dessous sont conservés uniquement pour **des revanches facultatives** disponibles avec le niveau de progression, sans impact sur l'ouverture ou la fermeture des biomes. Les défis et récompenses devront être testés en jeu.
 
-**Règle fondamentale :** une épreuve validée au tier 38 **reste validée**. Le joueur peut donc terminer les quatre dès l'île 1 mais ne peut pas accéder à la dernière arène avant la libération de l'île IV (proposition). Les revanches tardives sont optionnelles, sauf décision contraire du propriétaire. **Aucun Pokémon sauvage** d'une zone draconique ouverte au tier 38 ne passe artificiellement au tier 95 : respecter `earliest_access_cap` de Tactica. Les éventuelles rencontres haut niveau nécessitent des **sous-zones réellement ouvertes plus tard**, pas le recalcul des anciennes tables.
-
-Pour Codex : les remplacements de stades à tier 57 sont des exemples conditionnels : ne jamais faire évoluer automatiquement une famille qui dépend d'une pierre, amitié, temps, objet tenu ou Fil Liaison par simple passage d'un seuil numérique ; utiliser une **entrée d'équipe autorisée et auditable** pour la version 57/80/95. Les listes tier 57/80/95 sont matérialisées en annexe sous forme de rosters distincts ; elles restent à faire vérifier dans le moteur, et ne sont **pas** des équipes certifiées.
 
 ## Les gardiens célestes et la divinité
 
@@ -423,9 +417,9 @@ Les quatre équipes C01–C04 sont à N.100 et précèdent un **cinquième comba
 - [ ] Ne pas annoncer ces builds « validés Codex » tant que les audits ci-dessus ne sont pas réussis et que le propriétaire n'a pas approuvé les fiches finales.
 
 
-## Annexe — les 12 rosters draconiques complets des tiers 57, 80 et 95
+## Annexe — 12 équipes de revanche OPTIONNELLES (57, 80, 95) des quatre gardiens
 
-Ces fiches **remplacent les suggestions de substitutions automatiques non finalisées** du paragraphe de scaling précédent. Les masters D01–D04 ont chacun quatre versions complètes : tier 38 dans la section principale, puis tier 57/80/95 ci-dessous. Tous les Pokémon sont proposés, non importés ni validés via Showdown ; talents/learnsets doivent être audités. Les quatre biomes **sont tous accessibles après l'île I**, seul le tier du **combat du maître** dépend du nombre d'îles libérées ; une victoire à un tier faible reste acquise, et les revanches de tier haut sont facultatives.
+Chaque gardien D01–D04 possède une équipe d'entrée **tier 38 (premier affrontement)** et trois équipes de **revanche facultative 57/80/95**. Ces variantes ne déterminent pas les verrous : chaque porte se débloque une fois au tier 38 et reste ouverte. Tous les sets restent des propositions à auditer avec Showdown et le Pokédex Archélys.
 
 ### D01 — palier 57
 
