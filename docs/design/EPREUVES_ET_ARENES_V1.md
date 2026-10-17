@@ -1,5 +1,7 @@
 # Pokémon Archélys — Arènes et épreuves, conception détaillée V1
 
+> **RECTIFICATIF DU 17 OCTOBRE 2026 — DÉCISIONS PROPRIÉTAIRE, PRIORITÉ SUR LES PROPOSITIONS ANTÉRIEURES.** À la suite de l'audit D118 : île I = **arènes Plante et Feu**, raid → repaire Magma → libération, puis **épreuve de traversée Île I → II à dos de Sharpedo** (monture existante à réutiliser, sans nouvelle implémentation déduite). Les anciennes épreuves obligatoires de la canopée, des galeries et de la plage sont remplacées comme défis officiels ; leurs secteurs, quêtes, énigmes et PNJ peuvent rester comme exploration et missions secondaires. Île II = arènes/épreuves existantes conservées ; **après raid → repaire Aqua → libération**, épreuve de traversée à dos de **Dracaufeu**, déblocage de **Vol libre + voyage rapide vers les villes**, arrivée sur l'île III. Réserve draconique = accès à l'île après libération de I ; **quatre accès de biomes disponibles immédiatement, mais chacun gardé par un gardien à vaincre pour ouvrir son biome**. Aucune condition de libération des îles II–IV pour entrer dans l'un de ces quatre biomes. Les équipes D01–D04 au palier 38 sont proposées comme gardiens d'entrée ; les tiers supérieurs deviennent des **revanches optionnelles**, pas des clés de zone. Les tâches des quatre épreuves draconiques restent pertinentes pour la dernière arène. Ce rectificatif remplace toute condition contraire plus bas.
+
 > **SPOILERS DEV / PROPOSITION au 16 octobre 2026.** Les types et le nombre d'arènes ainsi que les tranches de niveaux viennent du propriétaire ; noms, énigmes, plans et PNJ restent proposés. Les équipes complètes associées sont dans [EQUIPES_TACTICA_ARCHIPEL_V1.md](EQUIPES_TACTICA_ARCHIPEL_V1.md). Le récit est dans [SCENARIO_INTEGRAL_V2_CODEX.md](SCENARIO_INTEGRAL_V2_CODEX.md). Aucun bâtiment, combat, puzzle ou mode coop décrit ici n'est déclaré déjà implémenté.
 
 ## Décisions et paliers
@@ -8,16 +10,16 @@
 
 | Zone | Plage propriétaire | Gym(s) : ace proposé | Épreuve(s) : ace proposé | Raid et repaire |
 |---|---|---|---|---|
-| Île I tropicale | 1–38 | 18, 36 | 26, 36 | 38 / Magma |
-| Île II mystique | 40–57 | 45, 55 | 50, 55 | 57 / Aqua proposé |
+| Île I tropicale | 1–38 | 18, 36 | Traversée Sharpedo après libération ; pas de combat maître obligatoire | 38 / Magma |
+| Île II mystique | 40–57 | 45, 55 | Fée 50, Spectre 55 ; traversée Dracaufeu après libération | 57 / Aqua proposé |
 | Île III hivernale | 60–80 | 64, 78 | 69, 78 | 80 / Galaxie proposé |
 | Île IV high-tech | 80–95 | 93 | 84, 89, 93 | 95 / Plasma et Flare proposés |
-| Réserve Dragon | ouverte après fin I | arène finale 98 | 4 défis à tier 38/57/80/95 | raid 98 ; **jamais occupée** |
+| Réserve Dragon | disponible après fin I | arène finale 98 (proposé) | 4 gardiens d'entrée ace 38 ; activités des 4 épreuves, revanches 57/80/95 facultatives | raid final ; **jamais occupée** |
 | Île céleste | 100 | Aucune | 4 gardiens + dieu (5 combats) | Pas d'occupation |
 
-**Règle draconique corrigée :** les **quatre biomes sont accessibles dès la libération de l'île 1**. Les maîtres s'adaptent aux paliers de libération déjà atteints (38, 57, 80, 95), sans recalculer artificiellement les niveaux sauvages des zones accessibles au premier palier. Les épreuves peuvent être complétées immédiatement et ne nécessitent pas d'être rejouées ensuite. Pour conserver la dernière arène comme ultime gym, proposer son ouverture seulement après les quatre îles occupées libérées **et** les quatre épreuves achevées : **condition additionnelle à valider**, pas une règle owner expressément confirmée.
+**Règle draconique corrigée le 17 octobre :** l'île et les **quatre portes de biomes** sont accessibles dès la libération de l'île I, **mais la traversée de chaque porte exige de battre son propre gardien** (combat d'accès niveau 38 proposé, même si le joueur est allé ailleurs auparavant). Aucun biome ne dépend des îles II/III/IV ni des trois autres gardiens. Une fois la porte vaincue, son biome est librement exploré et les espèces draconiques y restent disponibles, sans verrou tardif. Les quatre activités d'épreuve déjà imaginées peuvent être achevées pour recevoir leurs certificats ; ne pas imposer un second combat de maître identique après le gardien. Les équipes adaptatives 57/80/95 sont réservées à d'éventuelles revanches volontaires. La dernière arène Dragon à haut niveau reste le dernier défi ; l'obligation de finir les quatre îles ordinaires avant elle reste **une proposition à valider**.
 
-**Ordre des fins d'îles occupées, impératif :** défis des biomes → raid légendaire sans capture → repaire de la branche RR dominante → libération et changements des PNJ. Les grandes interventions des branches RR se placent à des moments différents selon l'île.
+**Ordre des fins d'îles occupées, impératif :** défis principaux du chapitre → raid légendaire sans capture → repaire de la branche RR dominante → libération et changements des PNJ. **Spécificités de voyage post-libération :** île I → Sharpedo vers II ; île II → Dracaufeu vers III. Ces transitions ne passent pas avant le raid/repaire et ne retardent pas la cinématique de libération. Les grandes interventions des branches RR se placent à des moments différents selon l'île.
 
 ## Principes de création des lieux
 
@@ -113,21 +115,31 @@
 
 ## Les épreuves de biomes
 
-### EP-I-01 — Les relais de la canopée
+### EP-I-TR-01 — La passe des courants, Sharpedo (épreuve officielle de fin de l'île I)
 
-**Lieu :** Île I / jungle · **Type :** Insecte · **Ace ou tier :** N.26 · **Équipe :** T01.
+**Lieu :** plage littorale de l'île I, corridor maritime vers l'île II · **Thème/type :** Eau · **Combat de maître :** aucun imposé · **Précondition :** **SC_I_LIBEREE** (raid volcanique + repaire Magma + cinématique de libération déjà achevés).
 
-**Épreuve :** Trouver trois plantes-repères, établir le lien entre deux relais installés par Magma et déconnecter leur pompe sans détruire les arbres. Relais est/ouest dans n'importe quel ordre. Combat du maître ensuite.
+**Mise en scène :** après l'évacuation des garnisons, une responsable des transports explique que les ferries inter-îles demeurent bloqués par des résidus de surveillance Aqua ; Sharpedo permet d'utiliser un chenal étroit où les grands navires ne peuvent pas passer. L'équipe utilise le **système de Pokémonture Sharpedo déjà implémenté**, sans inventer une seconde monture ni imposer la capture d'un Sharpedo.
 
-**Scénario / résultat :** Après le premier biome : des sbires violentent les habitants pour installer le chantier ; la maîtresse d'épreuve soutient le trio en retardant le rapport RR.
+**Épreuve :** parler au responsable sur la plage ; voir le tracé du chenal sur une carte/quelques bouées ; monter sur Sharpedo ; franchir un parcours maritime de courants et rochers avec 2 ou 3 repères de navigation ; atteindre la plage d'arrivée de l'île II avec le trio regroupé. Difficulté par pilotage/repères et observation ; **pas de mécanique de pêche** et pas d'obligation d'échange ou de Pokémon de l'équipe. Les éventuels sbires maritimes ou obstacles sont facultatifs, pas un nouveau boss obligatoire.
 
-### EP-I-02 — Le cœur du basalte
+**Journal / coop :** « Rejoindre la plage de départ », « Parcourir le chenal à dos de Sharpedo », « Retrouver les autres joueurs sur la côte de l'île II ». Départ et arrivée des scènes communes synchronisés ; les rôles PNJ traversent automatiquement dans le récit. Ne pas forcer un joueur éloigné à se téléporter sans son accord.
 
-**Lieu :** Île I / volcan · **Type :** Roche / Sol · **Ace ou tier :** N.36 · **Équipe :** T02.
+**Résultat :** certificat de traversée / autorisation maritime (nom à valider), arrivée sur île II. Le déblocage de l'île draconique reste lié à la libération de I, **pas** à ce certificat.
 
-**Épreuve :** Ouvrir trois sas de galerie, actionner deux vannes de pression, dégager un groupe de mineurs ; pas de lave traversable. Combat du maître des galeries ; accès au raid volcanique.
+**Ancien contenu rétrogradé :** la canopée (ancien EP-I-01 / équipe T01) et les galeries (ancien EP-I-02 / équipe T02) restent des zones d'exploration, de quêtes et de progression ; leurs maîtres et combats ne sont **plus des préconditions** du raid, de la libération ou de la traversée. L'ancienne épreuve Eau sur plage basée seulement sur des vannes/passerelles est **remplacée** par Sharpedo, et ne s'ajoute pas comme troisième défi obligatoire.
 
-**Scénario / résultat :** Les mineurs savent qu'Aloïs étudiait autrefois ce sanctuaire. Raid volcanique puis repaire Magma seulement après les défis.
+### EP-II-TR-01 — La route des nuages, Dracaufeu (traversée finale de l'île II)
+
+**Lieu :** zone de départ de l'île II après libération, trajet aérien vers l'île III · **Thème :** Vol · **Précondition stricte :** raid mystique → repaire Aqua → **cinématique de libération** II terminée. Cette traversée est **additionnelle aux deux épreuves de biome existantes** Fée/Spectre ; ne pas supprimer EP-II-01 ni EP-II-02.
+
+**Déblocage :** une scène courte remet l'accès à la Pokémonture **Dracaufeu en vol libre** et au **voyage rapide vers les villes déjà découvertes** (règles de destination à vérifier et documenter). Ne pas prétendre que cette fonctionnalité est déjà implémentée : seule la disponibilité actuelle de Sharpedo a été indiquée explicitement.
+
+**Épreuve :** décollage accompagné, pilotage sur un couloir aérien naturel balisé (nuages, vents, balises et courants ascendants), découverte visuelle de l'archipel, atterrissage contrôlé à l'île III. Pas de combat ni échange imposé ; le vol libre se débloque durant cette séquence et reste utilisable après ; le voyage rapide ne débloque pas instantanément des villes jamais visitées.
+
+**Journal / coop :** « Parler au guide aérien », « Décoller sur Dracaufeu », « Traverser le bras de mer vers l'île III », « Rejoindre la fratrie au point d'arrivée ». En solo les PNJ suivent ; en coop les participants peuvent piloter indépendamment, puis se regroupent au point d'arrivée avant la scène d'introduction de III. La séparation n'annule pas leurs validations personnelles.
+
+**Résultat :** accès pratique à l'île III, monture aérienne et Vol rapide ; les autres épreuves des îles II, III et IV demeurent telles que décrites ci-dessous.
 
 ### EP-II-01 — Le sentier des lanternes
 
@@ -195,7 +207,7 @@
 
 ### DR-01 — Le souffle des falaises
 
-**Lieu :** Réserve draconique / falaises · **Type :** Dragon / Vol · **Ace ou tier :** N.38/57/80/95 · **Équipe :** D01.
+**Lieu :** Réserve draconique / falaises · **Type :** Dragon / Vol · **Ace ou tier :** N.38 à l'entrée (57/80/95 en revanche optionnelle) · **Équipe :** D01.
 
 **Épreuve :** Franchir trois arches en lisant la direction du vent, relever deux balises tombées, calmer un nid d'Altaria ; duel contre le maître adaptatif.
 
@@ -203,7 +215,7 @@
 
 ### DR-02 — L'écho du canyon
 
-**Lieu :** Réserve draconique / canyon · **Type :** Dragon / Sol · **Ace ou tier :** N.38/57/80/95 · **Équipe :** D02.
+**Lieu :** Réserve draconique / canyon · **Type :** Dragon / Sol · **Ace ou tier :** N.38 à l'entrée (57/80/95 en revanche optionnelle) · **Équipe :** D02.
 
 **Épreuve :** Suivre des empreintes, traverser une oasis et protéger une caravane surprise par le sable sans détruire les nids ; duel contre le maître adaptatif.
 
@@ -211,7 +223,7 @@
 
 ### DR-03 — Le serment des glaces
 
-**Lieu :** Réserve draconique / glaciers · **Type :** Dragon / Glace · **Ace ou tier :** N.38/57/80/95 · **Équipe :** D03.
+**Lieu :** Réserve draconique / glaciers · **Type :** Dragon / Glace · **Ace ou tier :** N.38 à l'entrée (57/80/95 en revanche optionnelle) · **Équipe :** D03.
 
 **Épreuve :** Retrouver trois balises thermiques et protéger une grotte de migration. Réduire le gel par des mécanismes, pas par un Pokémon imposé ; duel contre le maître.
 
@@ -219,7 +231,7 @@
 
 ### DR-04 — Le pacte du feu
 
-**Lieu :** Réserve draconique / crêtes · **Type :** Dragon / Feu · **Ace ou tier :** N.38/57/80/95 · **Équipe :** D04.
+**Lieu :** Réserve draconique / crêtes · **Type :** Dragon / Feu · **Ace ou tier :** N.38 à l'entrée (57/80/95 en revanche optionnelle) · **Équipe :** D04.
 
 **Épreuve :** Ouvrir trois soupapes pour dévier la vapeur des nids et déplacer une coulée contrôlée vers un bassin rocheux ; duel contre le maître.
 
@@ -241,11 +253,11 @@ Après l'arène Dragon et sa divinité, entrée dans une citadelle à **quatre p
 
 | Territoire | Conditions de fin |
 |---|---|
-| Île I | GYM-01 + EP-I-01 + GYM-02 + EP-I-02 → raid → admin Magma → île libérée ; **ouvre les 4 biomes Dragon** |
-| Île II | GYM-03 + EP-II-01 + GYM-04 + EP-II-02 → raid → admin Aqua → île libérée |
+| Île I | **GYM-01 Plante + GYM-02 Feu** → raid → repaire Magma → libération → **EP-I-TR-01 Sharpedo** vers île II ; **les quatre portes Dragon deviennent accessibles dès la libération** |
+| Île II | GYM-03 Psy + EP-II-01 Fée + GYM-04 Ténèbres + EP-II-02 Spectre → raid → repaire Aqua → **libération et cinématique** → **EP-II-TR-01 Dracaufeu** + vol libre/rapide vers île III |
 | Île III | GYM-05 + EP-III-01 + GYM-06 + EP-III-02 → raid → admin Galaxie → île libérée ; EP-III-OPTION facultative |
 | Île IV | EP-IV-01 + EP-IV-02 + GYM-07 + EP-IV-03 → raid → deux branches RR → île libérée |
-| Dragon | DR-01 à DR-04 dans n'importe quel ordre, gym Dragon finale après tous les territoires libérés (verrou proposé), raid Dragon → accès céleste |
+| Dragon | Dès libération I : **4 gardiens d'entrée indépendants** (tier 38 proposé) → chaque victoire ouvre son biome et ses espèces, sans autre verrou narratif ; activités des 4 épreuves → gym Dragon finale haut niveau (verrou 4 îles ordinaires proposé, à valider) → raid Dragon → céleste |
 | Céleste | 4 gardiens humains + 1 dieu → titre, finale Æther |
 
 Chaque ID doit recevoir plus tard : carte et coordonnées, déclencheurs, règles des portes, indices des puzzles, interactions FR/EN, présence coop, sauvegarde de phase, victoire par profil, récompense unique et version de la ville après libération. Ne pas confondre document de conception avec un niveau réellement construit.
