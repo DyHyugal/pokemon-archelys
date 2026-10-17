@@ -207,6 +207,8 @@
 
 ### DR-01 — Le souffle des falaises
 
+**GARDIEN D'ENTRÉE — règle propriétaire 17/10 :** à la porte du biome falaises, un gardien bloque physiquement l'accès et doit être vaincu. Son équipe proposée est **D01 tier 38** du document d'équipes ; il est accessible dès la libération de l'île I, indépendamment des trois autres portes et des libérations II/III/IV. La victoire lève définitivement le verrou de ce biome (exploration, rencontres sauvages, captures). Les tiers 57/80/95 sont uniquement des revanches facultatives ; conserver les tâches d'exploration ci-dessous comme partie de la certification des quatre épreuves, **sans second combat obligatoire contre le même maître**.
+
 **Lieu :** Réserve draconique / falaises · **Type :** Dragon / Vol · **Ace ou tier :** N.38 à l'entrée (57/80/95 en revanche optionnelle) · **Équipe :** D01.
 
 **Épreuve :** Franchir trois arches en lisant la direction du vent, relever deux balises tombées, calmer un nid d'Altaria ; duel contre le maître adaptatif.
@@ -214,6 +216,8 @@
 **Scénario / résultat :** Certificat des Cimes ; disponible sans autre libération après l'île I.
 
 ### DR-02 — L'écho du canyon
+
+**GARDIEN D'ENTRÉE — règle propriétaire 17/10 :** à la porte du biome canyon, un gardien bloque physiquement l'accès et doit être vaincu. Son équipe proposée est **D02 tier 38** du document d'équipes ; il est accessible dès la libération de l'île I, indépendamment des trois autres portes et des libérations II/III/IV. La victoire lève définitivement le verrou de ce biome (exploration, rencontres sauvages, captures). Les tiers 57/80/95 sont uniquement des revanches facultatives ; conserver les tâches d'exploration ci-dessous comme partie de la certification des quatre épreuves, **sans second combat obligatoire contre le même maître**.
 
 **Lieu :** Réserve draconique / canyon · **Type :** Dragon / Sol · **Ace ou tier :** N.38 à l'entrée (57/80/95 en revanche optionnelle) · **Équipe :** D02.
 
@@ -223,6 +227,8 @@
 
 ### DR-03 — Le serment des glaces
 
+**GARDIEN D'ENTRÉE — règle propriétaire 17/10 :** à la porte du biome glaciers, un gardien bloque physiquement l'accès et doit être vaincu. Son équipe proposée est **D03 tier 38** du document d'équipes ; il est accessible dès la libération de l'île I, indépendamment des trois autres portes et des libérations II/III/IV. La victoire lève définitivement le verrou de ce biome (exploration, rencontres sauvages, captures). Les tiers 57/80/95 sont uniquement des revanches facultatives ; conserver les tâches d'exploration ci-dessous comme partie de la certification des quatre épreuves, **sans second combat obligatoire contre le même maître**.
+
 **Lieu :** Réserve draconique / glaciers · **Type :** Dragon / Glace · **Ace ou tier :** N.38 à l'entrée (57/80/95 en revanche optionnelle) · **Équipe :** D03.
 
 **Épreuve :** Retrouver trois balises thermiques et protéger une grotte de migration. Réduire le gel par des mécanismes, pas par un Pokémon imposé ; duel contre le maître.
@@ -230,6 +236,8 @@
 **Scénario / résultat :** Certificat du Givre ; pas de blocage après île III.
 
 ### DR-04 — Le pacte du feu
+
+**GARDIEN D'ENTRÉE — règle propriétaire 17/10 :** à la porte du biome crêtes, un gardien bloque physiquement l'accès et doit être vaincu. Son équipe proposée est **D04 tier 38** du document d'équipes ; il est accessible dès la libération de l'île I, indépendamment des trois autres portes et des libérations II/III/IV. La victoire lève définitivement le verrou de ce biome (exploration, rencontres sauvages, captures). Les tiers 57/80/95 sont uniquement des revanches facultatives ; conserver les tâches d'exploration ci-dessous comme partie de la certification des quatre épreuves, **sans second combat obligatoire contre le même maître**.
 
 **Lieu :** Réserve draconique / crêtes · **Type :** Dragon / Feu · **Ace ou tier :** N.38 à l'entrée (57/80/95 en revanche optionnelle) · **Équipe :** D04.
 
